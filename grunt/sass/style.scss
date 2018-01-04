@@ -1,0 +1,82 @@
+/*!
+* Theme Name: Skeleton
+* Theme URI: http://www.yourdomain.com
+* Description: A Custom theme
+* Version: 1.0
+* Author: Three Sixty Eight Team
+* Author URI: www.threesixtyeight.com
+* License: GPL
+* License URI: http://wordpress.org/about/gpl/
+*/
+
+@import "compass/utilities";
+@import "compass/css3";
+@import "bower_components/breakpoint-sass/stylesheets/breakpoint";
+
+// Required in same order
+@import "partials/variables";
+
+// Mixins
+@import "partials/mixins/mixins";
+
+// Reset and default styles
+@import "partials/normalize";
+@import "partials/base-selectors";
+
+// Grid
+@import "partials/bootstrap-grid";
+
+// Javascript
+// @import "partials/js/swiper";
+@import "partials/js/magnific-popup";
+@import "partials/js/js-socials";
+
+// Helper classes can be overwritten
+@import "partials/helpers/base-helpers";
+
+@import "partials/layout/header";
+@import "partials/layout/header-menu";
+@import "partials/layout/content";
+// @import "partials/layout/sidebar";
+@import "partials/layout/footer";
+
+// Page templates
+// @import "partials/templates/front-page";
+// @import "partials/templates/page";
+// @import "partials/templates/contact";
+@import "partials/templates/flexible-content.scss";
+// @import "partials/templates/search";
+// @import "partials/templates/404";
+@import "partials/templates/sitemap";
+
+// Post & CPT
+// @import "partials/templates/projects";
+// @import "partials/templates/single";
+
+// WP modules
+// @import "partials/modules/widgets";
+// @import "partials/modules/comments";
+
+// WP plugins
+@import "partials/plugins/gravity-form";
+// @import "partials/plugins/tribe-events/tribe_base";
+// @import "partials/plugins/yoast-breadcrumbs";
+
+
+// Helpers
+@import "partials/helpers/table";
+@import "partials/helpers/list";
+@import "partials/helpers/buttons";
+// @import "partials/helpers/icons";
+@import "partials/helpers/helpers";
+@import "partials/helpers/keyframes";
+// @import "partials/helpers/base64";
+
+// Last minute changes
+// @import "partials/shame";
+
+// IE specific
+// @import "partials/ie";
+
+// Print
+// @import "partials/print";

@@ -1,0 +1,182 @@
+@import "buttons";
+@import "icons";
+@import "gradients";
+@import "images";
+@import "rem";
+// @import "flexbox";
+
+@mixin stagger-animation( $animation, $child ) {
+	visibility: visible;
+	@include animation-duration( 1s );
+	@include animation-fill-mode( both );
+	@include animation-name( $animation );
+	@for $i from 1 through $child {
+	  &:nth-child(#{$i}) {
+			@include animation-delay( unquote('.' + $i + 's') );
+	  }
+	}
+}
+
+@mixin target-ie-10-11 {
+	@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+		@content;
+	}
+}
+
+@mixin input-placeholder( $color ) {
+	&:-moz-placeholder            { color: $color; } // Firefox 4-18
+	&::-moz-placeholder           { color: $color; } // Firefox 19+
+	&:-ms-input-placeholder       { color: $color; } // Internet Explorer 10+
+	&::-webkit-input-placeholder  { color: $color; } // Safari and Chrome
+}
+
+@mixin input-text {
+	background: $input_bg_color;
+	color: $input_color;
+	line-height: $input_line_height; //same as button
+	min-width: $input_min_width;
+	padding: $input_padding_x_xs $input_padding_y_xs;
+	border: $input_border;
+	border-radius: $input_border_radius;
+	@include transition( $input_transition );
+	@include experimental(appearance, none); //remove browser styling
+	@include input-placeholder( $input_placeholder_color );
+	&:focus {
+		border-color: $input_focus_border;
+	}
+	@include breakpoint( $sm ) {
+		padding: $input_padding_x_sm $input_padding_y_sm;
+	}
+	//required to disable auto zoom in iOS when font is less than 16px
+	@media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 767px) {
+		font-size: 16px !important;
+	}
+}
+
+@mixin custom-select-block { //add to select wrapper
+	background: none; //make dropdown icon visible
+	position: relative;
+	select {
+		background: transparent;
+		width: 100%; //make dropdown sit on top of select
+		padding-right: 35px;
+		@include experimental(appearance, none); //remove browser styling
+	}
+	select::-ms-expand {
+		display: none;
+	}
+	&:after {
+		@include icon-font-properties;
+		content: $i_dropdown;
+		font-size: 18px;
+		display: block;
+		position: absolute;
+		right: 15px;
+		top: 50%;
+		z-index: -1;
+		@include translateY(-50%);
+	}
+}
+
+@mixin animate-underline-hover( $border_color, $text_color ) {
+	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
+	padding-bottom: 1px;
+	position: relative;
+	@include transition(.2s);
+	&:after {
+		background-color: $border_color;
+		content: '';
+		left: 0;
+		right: 0;
+		height: 1px;
+		position: absolute;
+		bottom: 0;
+		@include scale(0);
+		@include transition(.25s ease-out);
+	}
+	&:hover {
+		color: $text_color;
+		&:after {
+			@include scale(1);
+		}
+	}
+}
+
+@mixin bg-cover {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+@mixin pagination-links {
+	background: #fff;
+	color: #666;
+	font-size: 12px;
+	line-height: 1;
+	text-decoration: none;
+	text-align: center;
+	display: block;
+	min-width: 35px;
+	padding: 10px;
+	box-shadow: 0 0 1px rgba(0,0,0,.3);
+}
+
+/// Mixin to customize scrollbars
+/// Beware, this does not work in all browsers
+/// @author Hugo Giraudel
+/// @param {Length} $size - Horizontal scrollbar's height and vertical scrollbar's width
+/// @param {Color} $foreground-color - Scrollbar's color
+/// @param {Color} $background-color [mix($primary, white, 75%)] - Scrollbar's color
+/// @example scss - Scrollbar styling
+///   @include scrollbars(.5em, slategray);
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, #888, 50%)) {
+	::-webkit-scrollbar {
+			width:  $size;
+			height: $size;
+	}
+
+	::-webkit-scrollbar-thumb {
+			background: $foreground-color;
+	}
+
+	::-webkit-scrollbar-track {
+			background: $background-color;
+	}
+
+	// For Internet Explorer
+	body {
+		scrollbar-face-color: $foreground-color;
+		scrollbar-track-color: $background-color;
+	}
+}
+
+@mixin list-unstyled {
+	list-style: none;
+	margin-left: 0;
+}
+
+@mixin clearfix {
+	&:before,
+	&:after {
+		content: " ";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+@mixin text-hide {
+	color: transparent;
+	font: 0/0 a;
+	text-shadow: none;
+	// letter-spacing: -1px; Safari fix
+}
+
+@mixin text-truncate {
+	//Requires the element to be block or inline-block
+	display: block;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}

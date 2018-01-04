@@ -1,0 +1,258 @@
+/*----------  Swiper Dot Pagination  ----------*/
+.swiper-dot-pagination {
+	span {
+		background-color: rgba( 255,255,255,.4 );
+		display: inline-block;
+		width: 10px;
+		height: 10px;
+		margin-left: 10px;
+		border-radius: 50%;
+		position: relative;
+		cursor: pointer;
+		&.swiper-pagination-bullet-active {
+			background-color: #fff;
+			@include transition( .2s );
+		}
+	}
+}
+
+/*----------  Swiper Arrow Navigation  ----------*/
+.swiper-arrow-navigation {
+	.btn {
+		color: $brand_color_primary;
+		position: absolute;
+		@include transition( .2s ease-in-out );
+		&.swiper-button-disabled {
+			opacity: .4;
+			pointer-events: none;
+		}
+		&:after {
+			@include icon-font-properties;
+			content: '';
+			display: block;
+			font-size: 36px;
+		}
+		&:hover {
+			&:after {
+				@include animation( leftRightBounce 1s infinite );
+			}
+		}
+	}
+	.btn-next {
+		right: 15px;
+		&:before {
+			left: 0;
+			@include translateX( -100% );
+		}
+		&:after {
+			content: $i_arrow_right;
+		}
+	}
+	.btn-prev {
+		left: 15px;
+		&:before {
+			right: 0;
+			@include translateX( 100% );
+		}
+		&:after {
+			content: $i_arrow_left;
+		}
+	}
+	@include breakpoint( $sm ) {
+		.btn {
+			&:after {
+				font-size: 60px;
+			}
+		}
+	}
+}
+
+.custom-select-block {
+	@include custom-select-block;
+}
+
+.img-frame {
+	border: 1px solid #e5e5e5;
+	padding: 5px;
+}
+
+.alert {
+	background-color: #e5e5e5;
+	padding: 25px;
+	border: 1px solid #ddd;
+	margin-bottom: $global_margin_bottom;
+}
+
+.alert-info {
+	background-color: #ffffd9;
+	border: 1px solid darken( #ffffd9, 47% );
+}
+
+.alert-error {
+	background-color: #ffd9d9;
+	border: 1px solid darken( #ffd9d9, 10% );
+}
+
+.alert-success {
+	background-color: #dbffd9;
+	border: 1px solid darken( #dbffd9, 20% );
+}
+
+.hr {
+	@extend hr;
+}
+
+p:empty {
+	display: none; //added by wp-editor
+}
+
+.btn {
+	@include btn;
+}
+
+.row {
+	margin-bottom: $global_margin_bottom;
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.row-gutter-sm-20 {
+  @include breakpoint( $sm ) {
+    margin-left: -20px;
+    margin-right: -20px;
+    .col {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+}
+
+.row-gutter-sm-25 {
+  @include breakpoint( $sm ) {
+    margin-left: -25px;
+    margin-right: -25px;
+    .col {
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+  }
+}
+
+.row-gutter-sm-30 {
+  @include breakpoint( $sm ) {
+    margin-left: -30px;
+    margin-right: -30px;
+    .col {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+}
+
+.row-gutter-sm-35 {
+  @include breakpoint( $sm ) {
+    margin-left: -35px;
+    margin-right: -35px;
+    .col {
+      padding-left: 35px;
+      padding-right: 35px;
+    }
+  }
+}
+
+.row-gutter-sm-40 {
+  @include breakpoint( $sm ) {
+    margin-left: -40px;
+    margin-right: -40px;
+    .col {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+}
+
+.row-grid {
+	@include breakpoint( $sm ) {
+		margin-top: -15px;
+		[class*="col-sm-"] {
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
+	}
+	@include breakpoint( $md ) {
+		margin-top: -15px;
+		[class*="col-md-"] {
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
+	}
+	@include breakpoint( $lg ) {
+		margin-top: -15px;
+		[class*="col-lg-"] {
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
+	}
+}
+
+.row-grid-3 {
+	@include breakpoint( $sm ) {
+		[class*="col-sm-"] {
+			&:nth-child(3n+1) {
+				clear: both;
+			}
+		}
+	}
+	@include breakpoint( $md ) {
+		[class*="col-md-"] {
+			&:nth-child(3n+1) {
+				clear: both;
+			}
+		}
+	}
+}
+
+.row-grid-4 {
+	@include breakpoint( $sm ) {
+		[class*="col-sm-"] {
+			&:nth-child(4n+1) {
+				clear: both;
+			}
+		}
+	}
+	@include breakpoint( $md ) {
+		[class*="col-md-"] {
+			&:nth-child(4n+1) {
+				clear: both;
+			}
+		}
+	}
+}
+
+[class*="col-sm"], [class*="col-md"], [class*="col-lg"] {
+	@include breakpoint( $xs ) {
+		margin-bottom: $gutter_3;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+[class*="col-md-"], [class*="col-lg-"] {
+	@include breakpoint( $sm_max ) {
+		margin-bottom: $gutter_3;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+[class*="col-lg-"] {
+	@include breakpoint( $md_max ) {
+		margin-bottom: $gutter_3;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}

@@ -1,0 +1,13 @@
+#Ignore sass cache folder
+**/.sass-cache
+.phpintel
+**/.sass-cache/*
+.sass-cache
+*.css.map
+Thumbs.db
+sftp-config.json
+sftp-config-live.json
+sftp-config-dev.json
+/nbproject/private/
+acf-json
+node_modules

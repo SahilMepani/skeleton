@@ -1,0 +1,92 @@
+@mixin btn {
+	background: transparent;
+	font-weight: 400;
+	line-height: $input_line_height;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	display: inline-block;
+	border: none;
+	padding: 0;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-clip: padding-box;
+	@include transition-property(background, color, border-color);
+	@include transition-duration(.2s);
+	&:hover, &:focus {
+		@include transition-duration(.1s);
+		text-decoration: none;
+	}
+	&:focus {
+		outline: none;
+	}
+	// &:active {
+	// 	@include scale(.95);
+	// }
+}
+
+@mixin btn-red {
+	background: $red;
+	color: #fff;
+	&:hover, &:focus, &:active {
+		background: darken($red,7%);
+		color: #fff;
+	}
+}
+
+@mixin btn-black {
+	background: $black;
+	color: #fff;
+	&:hover, &:focus, &:active {
+		background: darken($black,7%);
+		color: #fff;
+	}
+}
+
+@mixin btn-primary {
+	@include btn-red;
+}
+
+@mixin btn-secondary {
+	@include btn-black;
+}
+
+@mixin btn-xs {
+	padding: 5px 10px;
+}
+
+@mixin btn-sm {
+	padding: 10px 20px;
+}
+
+@mixin btn-md {
+	padding: 15px 30px;
+}
+
+@mixin btn-lg {
+	padding: 20px 40px;
+}
+
+@mixin btn-xlg {
+	padding: 25px 50px;
+}
+
+@mixin btn-input-clone( $bg_color ) {
+	background-color: $bg_color;
+	font-size: 16px;
+	text-transform: uppercase;
+	padding-top: $input_padding_x_xs;
+	padding-bottom: $input_padding_x_xs;
+	border: 1px solid $bg_color;
+	@include breakpoint( $sm ) {
+	  padding-top: $input_padding_x_sm;
+		padding-bottom: $input_padding_x_sm;
+	}
+}
+
+@mixin btn-block {
+	display: block;
+	width: 100%;
+}

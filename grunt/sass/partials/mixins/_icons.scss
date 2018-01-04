@@ -1,0 +1,22 @@
+@mixin icon-font-properties {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@mixin font-icon( $char, $size: null, $color: null, $properties: true ) {
+	content: '#{$char}';
+	@if $properties == true {
+		@include icon-font-properties;
+	}
+	color: $color;
+	font-size: $size;
+	@content;
+}

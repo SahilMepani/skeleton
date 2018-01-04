@@ -1,0 +1,39 @@
+.sidebar {
+	position: relative;
+	a {
+		&:hover, &:focus {
+
+		}
+	}
+	ul {
+		@include list-unstyled;
+	}
+	.widget-heading {
+		font-weight: 700;
+		font-size: 14px;
+		line-height: 1.2;
+		text-transform: uppercase;
+	}
+	li.widget {
+		clear: both;
+		padding-bottom: 20px;
+		border-bottom: 1px solid #e5e5e5;
+		margin-bottom: 20px;
+		@include clearfix;
+		&:last-child {
+			padding-bottom: 0;
+			border-bottom: none;
+			margin-bottom: 0;
+		}
+		li {
+			margin-bottom: 10px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+			a {
+				line-height: 1.4;
+				padding-right: 5px;
+			}
+		}
+	}
+}

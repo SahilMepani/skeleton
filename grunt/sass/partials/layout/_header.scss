@@ -1,0 +1,19 @@
+#header {
+	padding: 10px 0;
+	border-bottom: 1px solid #eee;
+	position: relative;
+	z-index: 100;
+}
+
+.header-logo {
+	// background: url(images/header-logo.png) no-repeat;
+	width: 60px;
+	height: 60px;
+	float: left;
+	margin: 0;
+	a {
+		// @include hide-text();
+		display: block;
+		height: 100%;
+	}
+}

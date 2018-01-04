@@ -1,0 +1,44 @@
+// @mixin sprite-data( $img ) {
+//   @include spr-sprite( $img );
+//   display: block;
+//   width: spr-sprite-width( $img );
+//   height: spr-sprite-height( $img );
+// }
+
+// @mixin icon-data( $img ) {
+//   @include icons-sprite( $img );
+//   display: block;
+//   width: icons-sprite-width( $img );
+//   height: icons-sprite-height( $img );
+// }
+
+@mixin image-data( $img ) {
+	@include background( image-url( $img ) );
+	background-repeat: no-repeat;
+	display: block;
+	width: image-width( $img );
+	height: image-height( $img );
+}
+
+// Frames
+@mixin frame-bootstrap {
+	background-color: #fff;
+	display: block;
+	padding: 4px;
+	border: 1px solid #ddd;
+	box-shadow: 0 1px 3px rgba( 0, 0, 0, .055 );
+	@include transition( all .2s ease-in-out );
+}
+
+@mixin frame-bootstrap-hover {
+	border-color: $base_link_color;
+	box-shadow: 0 1px 4px rgba( 0, 102, 214, .25 );
+}
+
+@mixin frame-transparent {
+	box-shadow: 0 1px 4px rgba( 0, 0, 0, 0.2 );
+}
+
+@mixin frame-transparent-hover {
+	box-shadow: 0 1px 4px rgba( 0, 0, 0, 0.4 );
+}

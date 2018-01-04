@@ -1,0 +1,17 @@
+@mixin gradient-style( $bg ) {
+	@include gradient-light-linear( $bg );
+	border: 1px solid darken( $bg, 3% );
+	border-bottom-color: darken( $bg, 7% );
+	box-shadow: 0 1px 2px darken( $bg, 4% ), 0 1px 0 lighten( $bg, 20% ) inset;
+	background-clip: padding-box;
+}
+
+@mixin gradient-light-linear( $color, $alpha: .1 ) {
+	background-color: $color;
+	@include background-image( linear-gradient( rgba( 255, 255, 255, $alpha ), rgba( 0, 0, 0, $alpha ) ));
+}
+
+@mixin gradient-dark-linear( $color, $alpha: .1 ) {
+	background-color: $color;
+	@include background-image( linear-gradient( rgba( 0, 0, 0, $alpha ), rgba( 255, 255, 255, $alpha ) ));
+}

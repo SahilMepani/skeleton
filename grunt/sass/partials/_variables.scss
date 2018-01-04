@@ -1,0 +1,162 @@
+/*===============================
+=            Globals            =
+===============================*/
+$global_margin_bottom : 30px; /* p, table, ul, ol, dl, dd, pre, blockquote, address */
+$global_line_height   : 1.6; /* p, pre, blockquote, address, dt, textarea */
+
+
+/*==============================
+=            Colors            =
+==============================*/
+$red                   : #ff2500;
+$black                 : #2c2c2c;
+$brand_color_primary   : $red;
+$brand_color_secondary : $black;
+
+
+/*=============================
+=            Links            =
+=============================*/
+$base_link_color            : $red;
+$base_link_hover_color      : $black;
+$base_link_decoration       : none;
+$base_link_hover_decoration : none;
+
+
+/*===================================
+=            Font Family            =
+===================================*/
+$lato      : Lato, sans-serif;
+$monospace : Menlo, Monaco, Consolas, "Courier New", monospace;
+
+
+/*============================
+=            Body            =
+============================*/
+$base_bg_color    : #fff;
+$base_color       : #444;
+$base_font_family : $lato;
+$base_font_size   : 16px; /* match this value in function.php for wp-editor */
+$base_line_height : 1;
+
+
+/*================================
+=            Headings            =
+================================*/
+$headings_color         : inherit;
+$headings_font_family   : inherit;
+$headings_font_weight   : 700;
+$headings_line_height   : 1.4;
+$headings_margin_top    : $global_margin_bottom + $global_margin_bottom/2;
+$headings_margin_bottom : $global_margin_bottom;
+
+
+/*===============================
+=            Gutters            =
+===============================*/
+$gutter_1: 15px; //xxs
+$gutter_2: 30px; //xs
+$gutter_3: 50px;
+$gutter_4: 70px;
+$gutter_5: 90px;
+$gutter_6: 120px;
+$gutter_7: 150px;
+
+$ar_gutter : $gutter_1, $gutter_2, $gutter_3, $gutter_4, $gutter_5, $gutter_6, $gutter_7;
+
+
+/*=============================================
+=            Inputs & GravityForms            =
+=============================================*/
+$input_bg_color          : #fff;
+$input_color             : #444;
+$input_line_height       : 1.2; /* used for btn mixin, so when next to each other they have same height */
+$input_min_width         : auto;
+$input_padding_x_xs      : 15px; /* left and right for mobile */
+$input_padding_x_sm      : 15px; /* top and bottom for desktop  */
+$input_padding_y_xs      : 20px; /* top and bottom for mobile  */
+$input_padding_y_sm      : 20px; /* left and right for desktop */
+$input_border            : 1px solid #666;
+$input_focus_border      : #000;
+$input_placeholder_color : #b0b0b0;
+$input_border_radius     : 0;
+$input_transition        : none;
+
+
+/*=============================
+=            Icons            =
+=============================*/
+$i_menu             : '\e62f';
+$i_search           : '\e612';
+$i_cross            : '\e62e';
+$i_calendar         : '\e60d';
+$i_radio            : '\e608';
+$i_radio_checked    : '\e609';
+$i_checkbox         : '\e607';
+$i_checkbox_checked : '\e046';
+$i_mail             : '\e613';
+/* Arrows */
+$i_arrow_down       : '\e615';
+$i_arrow_up         : '\e617';
+$i_arrow_left       : '\e616';
+$i_arrow_right      : '\e617';
+$i_dropdown         : $i_arrow_down;
+$i_go_top           : '\e61c';
+/* Social */
+$i_facebook         : '\e907';
+$i_twitter          : '\e631';
+$i_instagram        : '\e905';
+$i_gplus            : '\e627';
+$i_youtube          : '\e634';
+$i_pinterest        : '\e62d';
+$i_linkedin         : '\e62b';
+
+
+/*======================================
+=            Text Selection            =
+======================================*/
+$text_selection_bg_color : #F7EA6F;
+$text_selection_color    : #2c2c2c;
+
+
+/*===================================
+=            Breakpoints            =
+===================================*/
+/* Orientation */
+$portrait: orientation portrait;
+$landscape: orientation landscape;
+
+/* Min Width */
+$min_400 : 400px;
+$min_401 : 401px;
+$min_480 : 480px;
+$min_481 : 481px;
+$min_600 : 600px;
+$min_601 : 601px;
+$sm      : 768px;
+$md      : 992px;
+$lg      : 1200px;
+$xlg     : 1500px;
+
+/* Max Width */
+$max_400 : max-width 400px;
+$max_479 : max-width 479px;
+$max_480 : max-width 480px;
+$max_599 : max-width 599px;
+$max_600 : max-width 600px;
+$xs      : max-width ($sm - 1);
+$xs_max  : $xs;
+$sm_max  : max-width ($md - 1);
+$md_max  : max-width ($lg - 1);
+$lg_max  : max-width ($xlg - 1);
+
+/* Range */
+$sm_range : $sm $sm_max;
+$md_range : $md $md_max;
+$lg_range : $lg $lg_max;
+
+/* Max Height */
+$xs_max_height: max-height 767px;
+
+$ar_bp: $xs, $sm, $md, $lg; // breakpoint variable array
+$ar_bp_classes: xs, sm, md, lg; // breakpoint classes for loop

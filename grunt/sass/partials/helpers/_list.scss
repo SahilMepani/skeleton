@@ -1,0 +1,109 @@
+.list-socials {
+	margin: 0;
+	list-style: none;
+	li {
+		float: left;
+		margin: 0 7px 0 0;
+		&:last-child {
+			margin-right: 0;
+		}
+		a {
+			@include text-hide;
+			text-align: center;
+			text-decoration: none;
+			display: block;
+			height: 100%;
+			position: relative;
+			&:before {
+				@include icon-font-properties;
+				color: #333;
+				font-size: 48px;
+				display: block; // cross browser fix
+			}
+			&:hover, &:focus {
+				text-decoration: none;
+				.tooltip {
+					visibility: visible;
+					opacity: 1;
+					@include transform( translateX(-50%) translateY(7px) scale(1) ); //transpateY same as tooltip border
+					z-index: 10;
+				}
+			}
+			.tooltip {
+				visibility: hidden;
+				opacity: 0;
+				background-color: #333;
+				color: #fff;
+				font: 20px $base_font_family; //must use font shorthand to overwrite above
+				text-align: center;
+				padding: 10px 20px;
+				position: absolute;
+				top: 100%;
+				left: 50%;
+				@include transform( translateX(-50%) translateY(20px) scale(1.2) );
+				border-radius: 5px;
+				@include transition( 250ms ease-in-out );
+				&:before {
+					content: '';
+					border: 7px solid transparent;
+					border-bottom-color: #333;
+					position: absolute;
+					bottom: 100%;
+					left: 50%;
+					@include translateX(-50%);
+				}
+			}
+		}
+	}
+	.icon-facebook {
+		a {
+			&:before {
+				content: $i_facebook;
+			}
+		}
+	}
+	.icon-twitter {
+		a {
+			&:before {
+				content: $i_twitter;
+			}
+		}
+	}
+	.icon-instagram {
+		a {
+			&:before {
+				content: $i_instagram;
+			}
+		}
+	}
+	.icon-linkedin {
+		a {
+			&:before {
+				content: $i_linkedin;
+			}
+		}
+	}
+	.icon-gplus {
+		a {
+			&:before {
+				content: $i_gplus;
+			}
+		}
+	}
+	.icon-pinterest {
+		a {
+			&:before {
+				content: $i_pinterest;
+			}
+		}
+	}
+	@include breakpoint( $sm ) {
+		li {
+			a {
+				.tooltip {
+					display: block;
+				}
+			}
+		}
+	}
+}

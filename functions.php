@@ -9,11 +9,17 @@ require_once( get_template_directory() . '/functions/filters.php' );
 require_once( get_template_directory() . '/functions/acf.php' );
 require_once( get_template_directory() . '/functions/custom-post-types.php' );
 require_once( get_template_directory() . '/functions/admin-ajax.php' );
-// require_once( get_template_directory() . '/functions/captcha.php' );
 // require_once( get_template_directory() . '/functions/twitter-feed/feed.php' );
 // require_once( get_template_directory() . '/functions/instagram-feed/feed.php' );
 // require_once( get_template_directory() . '/functions/pinterest-feed/feed.php' );
 // require_once( get_template_directory() . '/functions/post-like/post-like.php' );
+
+// function is_login_page() {
+// 	return in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'));
+// }
+// if ( is_login_page() ) {
+// 	require_once( get_template_directory() . '/functions/captcha.php' );
+// }
 
 
 /* =========================================
@@ -40,8 +46,8 @@ function vt_scripts() {
 	wp_enqueue_script('jquery-custom', get_template_directory_uri() . '/js/jquery.custom.js', array('jquery', 'jquery-plugins'), '1.0', true);
 	/* First argument is the handle where it is used */
 	wp_localize_script('jquery-custom', 'localize_var', array(
-    'adminUrl' => admin_url('admin-ajax.php'),
-  ));
+		'adminUrl' => admin_url('admin-ajax.php'),
+	));
 }
 
 add_action('wp_enqueue_scripts', 'vt_scripts');

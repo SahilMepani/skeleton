@@ -67,7 +67,8 @@ update_option( 'large_size_h', 9999 );
 
 /* Custom media sizes */
 //add_image_size( 'blog_featured_thumb', width, height, crop );
-add_image_size( 'preview', 300, 9999 );
+add_image_size( 'preview_landscape', 300, 9999 );
+add_image_size( 'preview_portrait', 9999, 200 );
 add_image_size( 'medium_crop', 600, 400, true );
 add_image_size( 'w300h300c', 300, 300, true );
 add_image_size( 'w800', 800, 9999 );

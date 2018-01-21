@@ -3,11 +3,13 @@
 .phpintel
 **/.sass-cache/*
 .sass-cache
+node_modules
 *.css.map
 Thumbs.db
+grunt/bower_components
+grunt/node_modules
 sftp-config.json
 sftp-config-live.json
 sftp-config-dev.json
 /nbproject/private/
 acf-json
-node_modules

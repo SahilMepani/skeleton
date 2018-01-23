@@ -3,7 +3,6 @@
 .phpintel
 **/.sass-cache/*
 .sass-cache
-node_modules
 *.css.map
 Thumbs.db
 grunt/bower_components

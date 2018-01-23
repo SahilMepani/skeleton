@@ -44,8 +44,9 @@ function vt_scripts() {
 	wp_enqueue_script('modernizr', get_template_directory_uri() . '/js/vendor/modernizr-3.3.1.min.js');
 	wp_enqueue_script('jquery-plugins', get_template_directory_uri() . '/js/jquery.plugins.js', array('jquery'), '1.0', true);
 	wp_enqueue_script('jquery-custom', get_template_directory_uri() . '/js/jquery.custom.js', array('jquery', 'jquery-plugins'), '1.0', true);
+	wp_enqueue_script('jquery-admin-ajax', get_template_directory_uri() . '/js/admin-ajax.js', array('jquery'), '1.0', true);
 	/* First argument is the handle where it is used */
-	wp_localize_script('jquery-custom', 'localize_var', array(
+	wp_localize_script('jquery-admin-ajax', 'localize_var', array(
 		'adminUrl' => admin_url('admin-ajax.php'),
 	));
 }

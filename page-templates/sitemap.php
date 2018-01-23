@@ -36,7 +36,7 @@
 				<?php
 					$args = array(
 						'title_li' => '',
-						'order_by' => 'menu_order',
+						'orderby' => 'menu_order',
 						'order'    => 'ASC',
 						//'exclude' => 'sitemap_id, page_id',
 					);

@@ -18,7 +18,7 @@
 			<?php } ?>
 			<ul class="nested-tabs-slider-pagination padding-bottom-2">
 				<?php foreach ( $slides as $slide ) { ?>
-					<li class="tab-heading-<?php echo vt_scrollspy_link($slide['tab_heading']); ?>" data-slide-index=""><?php echo $slide['tab_heading']; ?></li>
+					<li class="tab-heading-<?php echo tse_scrollspy_link($slide['tab_heading']); ?>" data-slide-index=""><?php echo $slide['tab_heading']; ?></li>
 				<?php  } ?>
 			</ul> <!-- .tabs-slider-pagination -->
 		</div> <!-- .container -->
@@ -33,13 +33,13 @@
 					<?php $nested_slides = $slide['nested_slides']; ?>
 
 					<script>
-						jQuery('.tab-heading-<?php echo vt_scrollspy_link($slide['tab_heading']); ?>')
+						jQuery('.tab-heading-<?php echo tse_scrollspy_link($slide['tab_heading']); ?>')
 						.attr( 'data-slide-index', <?php echo $tab_slides_count; ?> );
 					</script>
 
 					<?php foreach ( $nested_slides as $nested_slide ) : ?>
 						<?php $tab_slides_count++; ?>
-						<div class="swiper-slide" data-tab-heading="tab-heading-<?php echo vt_scrollspy_link($slide['tab_heading']); ?>">
+						<div class="swiper-slide" data-tab-heading="tab-heading-<?php echo tse_scrollspy_link($slide['tab_heading']); ?>">
 							<div class="container">
 
 								<div class="content-block text-center">

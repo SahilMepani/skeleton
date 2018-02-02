@@ -51,7 +51,7 @@
 								</header>
 
 								<div class="excerpt-block">
-									<p class="excerpt"> <?php echo vt_excerpt(55); ?> </p>
+									<p class="excerpt"> <?php echo tse_excerpt(55); ?> </p>
 									<a href="<?php the_permalink(); ?>" class="btn btn-primary btn-md clear">Read More</a>
 								</div> <!-- .excerpt-block -->
 
@@ -60,7 +60,7 @@
 						<?php endwhile; ?>
 
 						<!-- Archive Pagination -->
-						<?php vt_posts_pagination($wp_query->max_num_pages); ?>
+						<?php tse_posts_pagination($wp_query->max_num_pages); ?>
 
 					<?php else : ?>
 

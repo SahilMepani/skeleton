@@ -8,7 +8,7 @@
 /*======================================================================
 =            Redirect to result, if search query one result            =
 ======================================================================*/
-function vt_redirect_single_post() {
+function tse_redirect_single_post() {
 	if (is_search()) {
 		global $wp_query;
 		if ($wp_query->post_count == 1 && $wp_query->max_num_pages == 1) {
@@ -17,7 +17,7 @@ function vt_redirect_single_post() {
 		}
 	}
 }
-add_action('template_redirect', 'vt_redirect_single_post');
+add_action('template_redirect', 'tse_redirect_single_post');
 
 /*====================================================
 =            Limit search results to post            =
@@ -52,17 +52,17 @@ add_filter('upload_mimes', 'wpcontent_svg_mime_type');
 /*=============================================================
 =            Change Gravity Form submission loader            =
 =============================================================*/
-function vt_custom_gforms_spinner($src) {
+function tse_custom_gforms_spinner($src) {
 	return get_stylesheet_directory_uri() . '/images/gf-submission.gif';
 }
-add_filter('gform_ajax_spinner_url', 'vt_custom_gforms_spinner');
+add_filter('gform_ajax_spinner_url', 'tse_custom_gforms_spinner');
 
 
 /* ======================================================================
  * Fix an issue where the blog page is highlighted as a menu item
  * for archives/singles of custom post types.
  * ====================================================================== */
-function vt_custom_type_nav_class($classes, $item) {
+function tse_custom_type_nav_class($classes, $item) {
 	$post_type = get_post_type();
 
 	// Remove current_page_parent from classes if the current item is the blog page
@@ -83,53 +83,53 @@ function vt_custom_type_nav_class($classes, $item) {
 
 	return $classes;
 }
-add_filter('nav_menu_css_class', 'vt_custom_type_nav_class', 10, 2);
+add_filter('nav_menu_css_class', 'tse_custom_type_nav_class', 10, 2);
 
 
 /*==================================================
 =            Add body classes to editor            =
 ==================================================*/
-function vt_mce_settings($initArray) {
+function tse_mce_settings($initArray) {
 	$initArray['body_class'] = 'post';
 	return $initArray;
 }
-add_filter('tiny_mce_before_init', 'vt_mce_settings');
+add_filter('tiny_mce_before_init', 'tse_mce_settings');
 
 
 /*===================================================
 =            Add page slug to body class            =
 ===================================================*/
-function vt_add_slug_body_class($classes) {
+function tse_add_slug_body_class($classes) {
 	global $post;
 	if (isset($post)) {
 		$classes[] = $post->post_type . '-' . $post->post_name;
 	}
 	return $classes;
 }
-add_filter('body_class', 'vt_add_slug_body_class');
+add_filter('body_class', 'tse_add_slug_body_class');
 
 
 /*=============================================================================
 =            Remove width & height attributes from inserted images            =
 =============================================================================*/
-// function vt_remove_width_attribute($html) {
+// function tse_remove_width_attribute($html) {
 // 	$html = preg_replace('/(width|height)="\d*"\s/', "", $html);
 // 	return $html;
 // }
-// add_filter('post_thumbnail_html', 'vt_remove_width_attribute', 10);
-// add_filter('image_send_to_editor', 'vt_remove_width_attribute', 10);
+// add_filter('post_thumbnail_html', 'tse_remove_width_attribute', 10);
+// add_filter('image_send_to_editor', 'tse_remove_width_attribute', 10);
 
 
 /*=============================================================
 =            Remove query string from static files            =
 =============================================================*/
-// function vt_remove_cssjs_ver( $src ) {
+// function tse_remove_cssjs_ver( $src ) {
 //  if( strpos( $src, '?ver=' ) )
 //  $src = remove_query_arg( 'ver', $src );
 //  return $src;
 // }
-// add_filter( 'style_loader_src', 'vt_remove_cssjs_ver', 10, 2 );
-// add_filter( 'script_loader_src', 'vt_remove_cssjs_ver', 10, 2 );
+// add_filter( 'style_loader_src', 'tse_remove_cssjs_ver', 10, 2 );
+// add_filter( 'script_loader_src', 'tse_remove_cssjs_ver', 10, 2 );
 
 
 /*============================================================
@@ -164,31 +164,31 @@ add_filter('login_errors', 'no_wordpress_errors');
 /*==================================================================================
 =            Register the useful media sizes for use in add media modal            =
 ==================================================================================*/
-function vt_custom_sizes($sizes) {
+function tse_custom_sizes($sizes) {
 	return array_merge($sizes, array(
 		'medium_crop' => __('Medium Cropped'),
 		'large_crop'  => __('Large Cropped'),
 	));
 }
-add_filter('image_size_names_choose', 'vt_custom_sizes');
+add_filter('image_size_names_choose', 'tse_custom_sizes');
 
 
 /*=====================================================
 =            Change default excerpt length            =
 =====================================================*/
-function vt_excerpt_length() {
+function tse_excerpt_length() {
 	return 150; // Default Length
 }
-add_filter('excerpt_length', 'vt_excerpt_length');
+add_filter('excerpt_length', 'tse_excerpt_length');
 
 
 /*==========================================================
 =            Add ellipsis at the end of excerpt            =
 ==========================================================*/
-function vt_excerpt_more( $more ) {
+function tse_excerpt_more( $more ) {
 	return '... ';
 }
-add_filter('excerpt_more', 'vt_excerpt_more');
+add_filter('excerpt_more', 'tse_excerpt_more');
 
 
 /*====================================

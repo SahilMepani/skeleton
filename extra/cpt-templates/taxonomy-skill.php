@@ -50,12 +50,12 @@
 
 					<div class="post-meta">
 						Published by <?php the_author_posts_link(); ?> on
-						<time pubdate><?php the_time('F j, Y'); ?></time> under <?php vt_the_terms( $post->ID, 'skills' ); ?>
+						<time pubdate><?php the_time('F j, Y'); ?></time> under <?php tse_the_terms( $post->ID, 'skills' ); ?>
 					</div> <!-- .post-meta -->
 				</header>
 
 				<div class="excerpt-block">
-					<p class="excerpt"> <?php echo vt_excerpt(55); ?> </p>
+					<p class="excerpt"> <?php echo tse_excerpt(55); ?> </p>
 					<a href="<?php the_permalink(); ?>" class="btn btn-sm btn-more">Read More</a>
 				</div> <!-- .excerpt-block -->
 
@@ -63,7 +63,7 @@
 
 		<?php endwhile; ?>
 
-			<?php vt_posts_pagination( $custom_query->max_num_pages ); ?>
+			<?php tse_posts_pagination( $custom_query->max_num_pages ); ?>
 
 			<?php wp_reset_postdata(); ?>
 

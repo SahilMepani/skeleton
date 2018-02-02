@@ -3,7 +3,7 @@
 /* ======================================
 =            ScrollSpy Link            =
 ====================================== */
-function vt_scrollspy_link( $string ) {
+function tse_scrollspy_link( $string ) {
 	// Lower case everything
 	$string = strtolower($string);
 	// Make alphanumeric (removes all other characters)
@@ -18,7 +18,7 @@ function vt_scrollspy_link( $string ) {
 /*====================================================================
 =            Custom excerpt function with length argument            =
 ====================================================================*/
-function vt_excerpt( $limit ) {
+function tse_excerpt( $limit ) {
 	$excerpt = explode(' ', get_the_excerpt(), $limit);
 	if ( count($excerpt) >= $limit ) {
 		array_pop($excerpt);
@@ -33,14 +33,14 @@ function vt_excerpt( $limit ) {
 /*================================
 =            Tiny URL            =
 ================================*/
-function vt_tiny_url($url) {
+function tse_tiny_url($url) {
 	return file_get_contents('http://tinyurl.com/api-create.php?url=' . $url);
 }
 
 /*====================================
 =            Text Shorter            =
 ====================================*/
-function vt_text_shorter($input, $length) {
+function tse_text_shorter($input, $length) {
 	//no need to trim, already shorter than trim length
 	if (strlen($input) <= $length) {
 		return $input;
@@ -59,7 +59,7 @@ function vt_text_shorter($input, $length) {
 /*=================================================
 =            Return terms without link            =
 =================================================*/
-function vt_the_terms($post_id, $taxonomy) {
+function tse_the_terms($post_id, $taxonomy) {
 	$terms = get_the_terms($post_id, $taxonomy); // Returns objects array
 	$ar_term = array(); // Initialize an array
 	foreach ($terms as $term) {

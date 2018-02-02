@@ -32,7 +32,7 @@ if ( !isset($content_width) )
 /* ===========================================
 =            Enqueue javascripts            =
 =========================================== */
-function vt_scripts() {
+function tse_scripts() {
 	/* Load google fonts */
 	wp_enqueue_style('google-fonts', '//fonts.googleapis.com/css?family=Lato:400,400i,600,600i,700,700i&subset=latin,latin-ext', 'all');
 
@@ -51,7 +51,7 @@ function vt_scripts() {
 	));
 }
 
-add_action('wp_enqueue_scripts', 'vt_scripts');
+add_action('wp_enqueue_scripts', 'tse_scripts');
 
 
 /* ===============================================
@@ -138,11 +138,11 @@ add_editor_style();
 =====================================================*/
 /* Dont forget to add the typekit ID in the below file */
 
-// function vt_mce_external_plugins($plugin_array) {
+// function tse_mce_external_plugins($plugin_array) {
 //   $plugin_array['typekit'] = get_template_directory_uri() . '/js/typekit.tinymce.js';
 //   return $plugin_array;
 // }
-// add_filter("mce_external_plugins", "vt_mce_external_plugins");
+// add_filter("mce_external_plugins", "tse_mce_external_plugins");
 
 
 /* =================================================
@@ -168,7 +168,7 @@ add_action('admin_head-post-new.php', 'editor_css');
 =            Blog pagination            =
 =======================================*/
 //http://wp.tutsplus.com/tutorials/wordpress-pagination-a-primer
-function vt_posts_pagination($pages) {
+function tse_posts_pagination($pages) {
 	$total_pages = $pages;
 
 	if ($total_pages > 1) {
@@ -206,7 +206,7 @@ function vt_posts_pagination($pages) {
  * @return string Formatted output in HTML.
  */
 
-// function vt_wp_link_pages($args = '') {
+// function tse_wp_link_pages($args = '') {
 //   $defaults = array(
 //       'before' => '<div class="single-pagination">' . '<span class="index">Pages:</span>',
 //       'after' => '</div>',

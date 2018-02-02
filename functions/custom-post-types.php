@@ -3,7 +3,7 @@
 /*=============================================
 =            Post Type - Portfolio            =
 =============================================*/
-function vt_create_post_type() {
+function tse_create_post_type() {
 	$cpt_project_labels = array(
 		'name'               => __( 'Projects' ),
 		'singular_name'      => __( 'Project'  ),
@@ -44,7 +44,7 @@ function vt_create_post_type() {
 /*================================
 =            Taxonomy            =
 ================================*/
-function vt_build_taxonomies() {
+function tse_build_taxonomies() {
 
 	/*----------  First Tax  ----------*/
 	$tax_one_labels = array(
@@ -109,5 +109,5 @@ function vt_build_taxonomies() {
 	);
 
 }
-add_action( 'init', 'vt_build_taxonomies', 0 );
-add_action( 'init', 'vt_create_post_type' );
+add_action( 'init', 'tse_build_taxonomies', 0 );
+add_action( 'init', 'tse_create_post_type' );

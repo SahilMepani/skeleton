@@ -14,7 +14,7 @@
 
 				<?php the_content(); ?>
 
-				<?php get_template_part( 'flexible-content/index.php' ); ?>
+				<?php get_template_part( 'flexible-content/index' ); ?>
 
 			</article> <!-- .type-post -->
 

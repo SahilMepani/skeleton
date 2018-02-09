@@ -176,19 +176,19 @@ add_filter('image_size_names_choose', 'tse_custom_sizes');
 /*=====================================================
 =            Change default excerpt length            =
 =====================================================*/
-function tse_excerpt_length() {
+function tse_get_the_excerpt_length() {
 	return 150; // Default Length
 }
-add_filter('excerpt_length', 'tse_excerpt_length');
+add_filter('excerpt_length', 'tse_get_the_excerpt_length');
 
 
 /*==========================================================
 =            Add ellipsis at the end of excerpt            =
 ==========================================================*/
-function tse_excerpt_more( $more ) {
+function tse_get_the_excerpt_more( $more ) {
 	return '... ';
 }
-add_filter('excerpt_more', 'tse_excerpt_more');
+add_filter('excerpt_more', 'tse_get_the_excerpt_more');
 
 
 /*====================================

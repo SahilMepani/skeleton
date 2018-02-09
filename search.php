@@ -24,7 +24,7 @@
 					</h2>
 				</header>
 
-				<p class="excerpt"><?php echo tse_excerpt(55); ?> </p>
+				<p class="excerpt"><?php echo tse_get_the_excerpt(55); ?> </p>
 				<a href="<?php the_permalink(); ?>" class="btn btn-sm btn-more">Read More</a>
 
 			</article> <!-- .type-post -->
@@ -63,7 +63,7 @@
 							</a>
 						</aside> <!-- .featured-thumb-block -->
 					<?php } ?>
-					<p class="excerpt"> <?php echo tse_excerpt(55); ?> </p>
+					<p class="excerpt"> <?php echo tse_get_the_excerpt(55); ?> </p>
 					<a href="<?php the_permalink(); ?>" class="btn btn-sm btn-more">Read More</a>
 				</div> <!-- Entry -->
 

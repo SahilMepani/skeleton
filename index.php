@@ -51,7 +51,7 @@
 								</header>
 
 								<div class="excerpt-block">
-									<p class="excerpt"> <?php echo tse_excerpt(55); ?> </p>
+									<p class="excerpt"> <?php echo tse_get_the_excerpt(55); ?> </p>
 									<a href="<?php the_permalink(); ?>" class="btn btn-primary btn-md clear">Read More</a>
 								</div> <!-- .excerpt-block -->
 

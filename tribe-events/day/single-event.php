@@ -40,7 +40,7 @@ $has_venue_address = ( ! empty( $venue_details['address'] ) ) ? ' location' : ''
 
   <!-- <p class="organizer"><?php //echo tribe_get_organizer( $organizer ); ?></p> -->
 
-  <p class="excerpt clear"><?php echo tse_excerpt(20); ?></p>
+  <p class="excerpt clear"><?php echo tse_get_the_excerpt(20); ?></p>
 
   <div class="event-meta">
     <span class="event-location"><?php echo tribe_get_venue(); ?></span>

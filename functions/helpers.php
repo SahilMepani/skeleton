@@ -18,7 +18,7 @@ function tse_scrollspy_link( $string ) {
 /*====================================================================
 =            Custom excerpt function with length argument            =
 ====================================================================*/
-function tse_excerpt( $limit ) {
+function tse_get_the_excerpt( $limit ) {
 	$excerpt = explode(' ', get_the_excerpt(), $limit);
 	if ( count($excerpt) >= $limit ) {
 		array_pop($excerpt);

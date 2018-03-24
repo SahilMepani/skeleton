@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <?php
-	$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+	$current_term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
 ?>
 
 <div class="content-section">
@@ -22,7 +22,7 @@
 					array(
 						'taxonomy' => 'skills',
 						'field'    => 'slug',
-						'terms'    => $term->slug
+						'terms'    => $current_term->slug
 					)
 				),
 				'paged' => $paged

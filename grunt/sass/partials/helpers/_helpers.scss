@@ -1,6 +1,24 @@
 /*=====================================
 =            Miscellaneous            =
 =====================================*/
+@include mq-retina {
+  .img-retina {
+    display: inline-block;
+  }
+  .img-non-retina {
+    display: none;
+  }
+}
+
+@include mq-non-retina {
+  .img-retina {
+    display: none;
+  }
+  .img-non-retina {
+    display: inline-block;
+  }
+}
+
 .btn-load-more-block {
 
 }
@@ -173,8 +191,48 @@
 ===============================*/
 .inline { display: inline; }
 .inline-block { display: inline-block; }
-.block, .show { display: block !important; }
 .hidden, .hide { display: none !important; }
+.hidden-xs {
+  @include breakpoint( $xs ) {
+    display: none !important;
+  }
+}
+.hidden-sm {
+  @include breakpoint( $sm ) {
+    display: none !important;
+  }
+}
+.hidden-md {
+  @include breakpoint( $md ) {
+    display: none !important;
+  }
+}
+.hidden-lg {
+  @include breakpoint( $lg ) {
+    display: none !important;
+  }
+}
+.block, .show { display: block !important; }
+.show-xs {
+  @include breakpoint( $xs ) {
+    display: block !important;
+  }
+}
+.show-sm {
+  @include breakpoint( $sm ) {
+    display: block !important;
+  }
+}
+.show-md {
+  @include breakpoint( $md ) {
+    display: block !important;
+  }
+}
+.show-lg {
+  @include breakpoint( $lg ) {
+    display: block !important;
+  }
+}
 .visible { visibility: visible !important; }
 .invisible { visibility: hidden !important; }
 .flex { @include display-flex; }

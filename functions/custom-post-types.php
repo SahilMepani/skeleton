@@ -6,6 +6,7 @@
 function tse_create_post_type() {
 	$cpt_project_labels = array(
 		'name'               => __( 'Projects' ),
+		'all_items'          => __( 'All Projects' ),
 		'singular_name'      => __( 'Project'  ),
 		'add_new'            => __('Add New' ),
 		'add_new_item'       => __('Add New Project' ),
@@ -49,6 +50,7 @@ function tse_build_taxonomies() {
 	/*----------  First Tax  ----------*/
 	$tax_one_labels = array(
 		'name'                       => __( 'Taxs One' ),
+		'all_items'                  => __( 'All Taxs One' ),
 		'singular_name'              => __( 'Tax One' ),
 		'search_items'               => __( 'Search Taxs One' ),
 		'popular_items'              => __( 'Popular Taxs One' ),

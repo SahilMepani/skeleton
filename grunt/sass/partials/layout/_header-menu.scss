@@ -82,6 +82,7 @@ $mobile_sub_menu_font_size: $base_font_size;
 $mobile_sub_menu_bg_color: #fff;
 $mobile_sub_menu_link_bg_color: transparent;
 $mobile_sub_menu_link_hover_bg_color: rgba(0,0,0,.1);
+$mobile_sub_menu_link_color: #000;
 $mobile_sub_menu_link_hover_color: #000;
 $mobile_sub_menu_link_padding_y: 13px;
 $mobile_sub_menu_link_padding_x: $mobile_parent_menu_item_padding_x; //usually this is same as parent menu
@@ -105,6 +106,13 @@ $mobile_sub_menu_link_height: 42px; //req for animation, manually calculate usua
 		&.is-active {
 			@include translateX(0);
 			@include box-shadow( 0 0 10px rgba(120,120,120,.3));
+		}
+		ul {
+			list-style: none;
+			margin: 0;
+		}
+		li {
+			margin-bottom: 0;
 		}
 		.parent-menu {
 			> li {
@@ -135,12 +143,6 @@ $mobile_sub_menu_link_height: 42px; //req for animation, manually calculate usua
 				}
 			}
 			.menu-item-has-children {
-				span:hover {
-					background: $mobile_parent_menu_dropdown_hover_bg_color;
-					&:after {
-						border-top-color: $mobile_parent_menu_dropdown_hover_icon_color;
-					}
-				}
 				> a {
 					position: relative;
 					span {
@@ -162,6 +164,12 @@ $mobile_sub_menu_link_height: 42px; //req for animation, manually calculate usua
 							margin-top: -4px;
 							margin-left: -6px;
 						}
+						&:hover {
+							background: $mobile_parent_menu_dropdown_hover_bg_color;
+							&:after {
+								border-top-color: $mobile_parent_menu_dropdown_hover_icon_color;
+							}
+						}
 					}
 				}
 			}
@@ -172,7 +180,6 @@ $mobile_sub_menu_link_height: 42px; //req for animation, manually calculate usua
 				> li > a {
 					height: $mobile_sub_menu_link_height;
 					visibility: visible;
-					color: $black;
 					padding-top: $mobile_sub_menu_link_padding_y;
 					padding-bottom: $mobile_sub_menu_link_padding_y;
 					@include transition(
@@ -187,7 +194,7 @@ $mobile_sub_menu_link_height: 42px; //req for animation, manually calculate usua
 					height: 0;
 					visibility: hidden;
 					background-color: $mobile_sub_menu_link_bg_color;
-					color: transparent;
+					color: $mobile_sub_menu_link_color;
 					display: block;
 					padding: 0 $mobile_sub_menu_link_padding_x;
 					text-decoration: none;

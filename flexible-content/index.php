@@ -6,13 +6,8 @@
 ?>
 
 		<!-- <h1>Flexible Layout Called</h1> -->
-		<?php get_template_part( 'flexible-content/wysiwyg' ); ?>
-		<?php get_template_part( 'flexible-content/half-image-and-half-content' ); ?>
-		<?php get_template_part( 'flexible-content/images-slider' ); ?>
-		<?php get_template_part( 'flexible-content/centered-slider' ); ?>
-		<?php get_template_part( 'flexible-content/carousel-slider' ); ?>
-		<?php get_template_part( 'flexible-content/tabs-slider' ); ?>
-		<?php get_template_part( 'flexible-content/nested-tabs-slider' ); ?>
+		<?php get_template_part( 'flexible-content/blank' ); ?>
+
 
 <?php
 	endwhile; //layout

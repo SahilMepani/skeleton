@@ -1,5 +1,5 @@
+/*----------  Icon font  ----------*/
 @font-face {
-	/* Icons Font */
 	font-family: 'icomoon';
 	src:url('fonts/icomoon.eot');
 	src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
@@ -13,17 +13,19 @@
 ::-moz-selection { background: $text_selection_bg_color; color: $text_selection_color; text-shadow: none; }
 ::selection { background: $text_selection_bg_color; color: $text_selection_color; text-shadow: none; }
 
-* {
-	@include box-sizing( border-box );
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html {
 	font-family: $base_font_family;
-	@include rem-baseline;
 	//min-width: $container; if non-responsive
-	// -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-	// -ms-text-size-adjust: 100%;
-	// -webkit-text-size-adjust: 100%;
+	-webkit-tap-highlight-color: transparent;
+	-ms-text-size-adjust: 100%;
+	-ms-overflow-style: scrollbar;
+	-webkit-text-size-adjust: 100%;
 	// -webkit-font-smoothing: antialiased;
 	//www.intridea.com/blog/2014/5/8/better-font-smoothing-in-chrome-on-mac-os-x
 	// below code makes the fonts on mac slightly bold and dark. Use with testing
@@ -40,6 +42,7 @@ html {
 body {
 	background: $base_bg_color;
 	color: $base_color;
+	@include rem-baseline;
 	font-family: $base_font_family;
 	line-height: $base_line_height;
 	// @include breakpoint( $xlg ) {
@@ -47,42 +50,7 @@ body {
 	// }
 }
 
-a {
-	color: $base_link_color;
-	text-decoration: $base_link_decoration;
-	&:hover, &:focus {
-		color: $base_link_hover_color;
-		text-decoration: $base_link_hover_decoration;
-	}
-	&:focus {
-		outline: 5px auto -webkit-focus-ring-color;
-		outline-offset: -2px;
-	}
-}
-
-button {
-	outline: none;
-}
-
-a, button, input[type="submit"], input[type="button"], input[type="reset"] {
-	@include transition-property(background, color, border-color);
-	@include transition-duration(.2s);
-	border-radius: 0;
-	&:hover, &:focus {
-		@include transition-duration(.1s);
-	}
-}
-
-img {
-	vertical-align: middle;
-	max-width: 100%;
-}
-
-iframe {
-	max-width: 100%;
-}
-
-/* Headings */
+/*----------  Headings  ----------*/
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	font-family: $headings_font_family;
 	color: $headings_color;
@@ -135,14 +103,41 @@ h6, .h6 {
 	font-size: .75rem;
 }
 
-/* Miscellaneous */
+/*----------  Links/Buttons  ----------*/
+a {
+	color: $base_link_color;
+	text-decoration: $base_link_decoration;
+	&:hover, &:focus {
+		color: $base_link_hover_color;
+		text-decoration: $base_link_hover_decoration;
+	}
+	&:focus {
+		outline: 5px auto -webkit-focus-ring-color;
+		outline-offset: -2px;
+	}
+}
+
+button {
+	outline: none;
+}
+
+a, button, input[type="submit"], input[type="button"], input[type="reset"] {
+	@include transition-property(background, color, border-color);
+	@include transition-duration(.2s);
+	border-radius: 0;
+	&:hover, &:focus {
+		@include transition-duration(.1s);
+	}
+}
+
+/*----------  Content  ----------*/
 p, table, ul, ol, dl, dd, pre, blockquote, address, h1, h2, h3, h4, h5, h6 {
 	&:last-child {
 		margin-bottom: 0;
 	}
 }
 
-p, pre, blockquote, address, dt {
+p, pre, blockquote, address, dd {
 	line-height: $global_line_height;
 }
 
@@ -174,12 +169,38 @@ address {
 	font-style: normal;
 }
 
-/* Table */
+output {
+	display: block;
+	padding-top: 7px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	@include breakpoint( $sm ) {
+		@include rem(font-size, 14px);
+	}
+}
+
+code {
+	background-color: #f9f9f9;
+	color: green;
+	font-weight: 400;
+	font-family: $monospace;
+	display: inline-block;
+	padding: 5px;
+	border: 1px solid #eee;
+}
+
+/*----------  Table  ----------*/
 table {
+	width: 100%;
+	max-width: 100%;
+	border-collapse: collapse;
 	caption {
 		font-family: $headings_font_family;
-		// font-weight: 700;
-		margin-bottom: 10px;
+	  text-align: left;
+		padding-top: 10px;
+	  padding-bottom: 10px;
+	  caption-side: bottom;
 	}
 	tbody {
 		tr:last-child {
@@ -193,12 +214,16 @@ table {
 		font-weight: 700;
 		text-align: left;
 	}
+	thead th {
+		vertical-align: bottom;
+	}
 	th, td {
+		vertical-align: top;
 		padding: 12px;
 	}
 }
 
-/* Lists */
+/*----------  Lists  ----------*/
 ul, ol, dl {
 	padding: 0;
 }
@@ -219,9 +244,6 @@ ul, ol {
 			line-height: 1;
 		}
 	}
-	li {
-		margin-bottom: 15px;
-	}
 }
 
 ul {
@@ -233,16 +255,18 @@ ol {
 }
 
 li {
-	line-height: $global_line_height - .2;
+	line-height: $global_line_height;
+	margin-bottom: 15px;
 }
 
 dt {
 	font-family: $headings_font_family;
+	line-height: $global_line_height;
 	font-weight: 700;
-	margin: 0 0 15px;
+	margin: 0 0 $global_margin_bottom/2;
 }
 
-/* Form */
+/*----------  Form  ----------*/
 form {
 	ul {
 		@include list-unstyled;
@@ -292,6 +316,7 @@ input[type="date"] {
 textarea {
 	line-height: $global_line_height;
 	height: 150px;
+	resize: vertical;
 }
 
 input[type="checkbox"], input[type="radio"] {
@@ -322,23 +347,17 @@ input[type="checkbox"]:focus {
 	outline-offset: -2px;
 }
 
-output {
-	display: block;
-	padding-top: 7px;
-	font-size: 14px;
-	line-height: 1.42857143;
-	color: #555;
-	@include breakpoint( $sm ) {
-		@include rem(font-size, 14px);
-	}
+/*----------  Miscellaneous  ----------*/
+img,
+iframe {
+	max-width: 100%;
 }
 
-code {
-	background-color: #f9f9f9;
-	color: green;
-	font-weight: 400;
-	font-family: $monospace;
-	display: inline-block;
-	padding: 5px;
-	border: 1px solid #eee;
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
 }

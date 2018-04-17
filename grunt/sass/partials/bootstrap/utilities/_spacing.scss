@@ -1,0 +1,192 @@
+/*----------  Custom Values  ----------*/
+.p-0 { padding: 0 !important; }
+.pt-0 { padding-top: 0 !important; }
+.pb-0 { padding-bottom: 0 !important; }
+.px-0 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.py-0 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.m-0 { margin: 0 !important; }
+.mt-0 { margin-top: 0 !important; }
+.mb-0 { margin-bottom: 0 !important; }
+.mx-0 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.my-0 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@for $i from 1 through length($ar_gutter) {
+  .p-#{$i} {
+    padding-top: nth( $ar_gutter, $i ) !important;
+    padding-bottom: nth( $ar_gutter, $i ) !important;
+  }
+  .pt-#{$i} {
+    padding-top: nth( $ar_gutter, $i ) !important;
+  }
+  .pb-#{$i} {
+    padding-bottom: nth( $ar_gutter, $i ) !important;
+  }
+  .px-#{$i} {
+    padding-left: nth( $ar_gutter, $i ) !important;
+    padding-right: nth( $ar_gutter, $i ) !important;
+  }
+  .py-#{$i} {
+    padding-top: nth( $ar_gutter, $i ) !important;
+    padding-bottom: nth( $ar_gutter, $i ) !important;
+  }
+  .m-#{$i} {
+    margin: nth( $ar_gutter, $i ) !important;
+    margin: nth( $ar_gutter, $i ) !important;
+  }
+  .mt-#{$i} {
+    margin-top: nth( $ar_gutter, $i ) !important;
+  }
+  .mb-#{$i} {
+    margin-bottom: nth( $ar_gutter, $i ) !important;
+  }
+  .mx-#{$i} {
+    margin-left: nth( $ar_gutter, $i ) !important;
+    margin-right: nth( $ar_gutter, $i ) !important;
+  }
+  .my-#{$i} {
+    margin-top: nth( $ar_gutter, $i ) !important;
+    margin-bottom: nth( $ar_gutter, $i ) !important;
+  }
+}
+
+/* Change higher paddings small on mobile */
+@include breakpoint( $xs ) {
+  @for $i from 4 through length($ar_gutter) {
+    .p-#{$i} {
+      padding: 50px !important;
+    }
+    .pt-#{$i} {
+      padding-top: 50px !important;
+    }
+    .pb-#{$i} {
+      padding-bottom: 50px !important;
+    }
+    .px-#{$i} {
+      padding-left: 50px !important;
+      padding-right: 50px !important;
+    }
+    .py-#{$i} {
+      padding-top: 50px !important;
+      padding-bottom: 50px !important;
+    }
+    .m-#{$i} {
+      margin: 50px !important;
+    }
+    .mt-#{$i} {
+      margin-top: 50px !important;
+    }
+    .mb-#{$i} {
+      margin-bottom: 50px !important;
+    }
+    .mx-#{$i} {
+      margin-left: 50px !important;
+      margin-right: 50px !important;
+    }
+    .my-#{$i} {
+      margin-top: 50px !important;
+      margin-bottom: 50px !important;
+    }
+  }
+}
+
+/* MQ classes */
+@for $counter from 1 through length($ar_bp) {
+  @include breakpoint( nth($ar_bp, $counter) ) {
+    @for $i from 1 through length($ar_gutter) {
+
+      .p-#{nth($ar_bp_classes, $counter)}-#{$i} {
+        padding: nth( $ar_gutter, $i ) !important;
+      }
+      .pt-#{nth($ar_bp_classes, $counter)}-#{$i} {
+        padding-top: nth( $ar_gutter, $i ) !important;
+      }
+      .pb-#{nth($ar_bp_classes, $counter)}-#{$i} {
+        padding-bottom: nth( $ar_gutter, $i ) !important;
+      }
+      .px-#{nth($ar_bp_classes, $counter)}-#{$i} {
+        padding-left: nth( $ar_gutter, $i ) !important;
+        padding-right: nth( $ar_gutter, $i ) !important;
+      }
+      .py-#{nth($ar_bp_classes, $counter)}-#{$i} {
+        padding-top: nth( $ar_gutter, $i ) !important;
+        padding-bottom: nth( $ar_gutter, $i ) !important;
+      }
+      .m-#{nth($ar_bp_classes, $counter)}-#{$i} {
+        margin: nth( $ar_gutter, $i ) !important;
+      }
+      .mt-#{nth($ar_bp_classes, $counter)}-#{$i} {
+        margin-top: nth( $ar_gutter, $i ) !important;
+      }
+      .mb-#{nth($ar_bp_classes, $counter)}-#{$i} {
+        margin-bottom: nth( $ar_gutter, $i ) !important;
+      }
+      .mx-#{nth($ar_bp_classes, $counter)}-#{$i} {
+        margin-left: nth( $ar_gutter, $i ) !important;
+        margin-right: nth( $ar_gutter, $i ) !important;
+      }
+      .my-#{nth($ar_bp_classes, $counter)}-#{$i} {
+        margin-top: nth( $ar_gutter, $i ) !important;
+        margin-bottom: nth( $ar_gutter, $i ) !important;
+      }
+
+    }
+  }
+}
+
+@for $counter from 1 through length($ar_bp) {
+  @include breakpoint( nth($ar_bp, $counter) ) {
+
+    .p-#{nth($ar_bp_classes, $counter)}-0 {
+      padding-top: 0 !important;
+    }
+    .pt-#{nth($ar_bp_classes, $counter)}-0 {
+      padding-top: 0 !important;
+    }
+    .pb-#{nth($ar_bp_classes, $counter)}-0 {
+      padding-bottom: 0 !important;
+    }
+    .px-#{nth($ar_bp_classes, $counter)}-0 {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    .py-#{nth($ar_bp_classes, $counter)}-0 {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    .m-#{nth($ar_bp_classes, $counter)}-0 {
+      margin: 0 !important;
+    }
+    .mt-#{nth($ar_bp_classes, $counter)}-0 {
+      margin-top: 0 !important;
+    }
+    .mb-#{nth($ar_bp_classes, $counter)}-0 {
+      margin-bottom: 0 !important;
+    }
+    .mx-#{nth($ar_bp_classes, $counter)}-0 {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    .my-#{nth($ar_bp_classes, $counter)}-0 {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+  }
+}

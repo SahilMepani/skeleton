@@ -47,8 +47,8 @@ $headings_color         : inherit;
 $headings_font_family   : inherit;
 $headings_font_weight   : 700;
 $headings_line_height   : 1.4;
-$headings_margin_top    : $global_margin_bottom + $global_margin_bottom/2;
-$headings_margin_bottom : $global_margin_bottom;
+$headings_margin_top    : $global_margin_bottom + $global_margin_bottom;
+$headings_margin_bottom : $global_margin_bottom/2;
 
 
 /*===============================
@@ -119,6 +119,18 @@ $text_selection_bg_color : #F7EA6F;
 $text_selection_color    : #2c2c2c;
 
 
+/*===============================
+=            Z-index            =
+===============================*/
+$zindex-dropdown:          1000 !default;
+$zindex-sticky:            1020 !default;
+$zindex-fixed:             1030 !default;
+$zindex-modal-backdrop:    1040 !default;
+$zindex-modal:             1050 !default;
+$zindex-popover:           1060 !default;
+$zindex-tooltip:           1070 !default;
+
+
 /*===================================
 =            Breakpoints            =
 ===================================*/
@@ -133,22 +145,23 @@ $min_480 : 480px;
 $min_481 : 481px;
 $min_600 : 600px;
 $min_601 : 601px;
-$sm      : 768px;
-$md      : 992px;
-$lg      : 1200px;
-$xlg     : 1500px;
+$sm      : 576px;
+$md      : 768px;
+$lg      : 992px;
+$xl      : 1200px;
+$xxl     : 1500px;
 
 /* Max Width */
-$max_400 : max-width 400px;
-$max_479 : max-width 479px;
-$max_480 : max-width 480px;
-$max_599 : max-width 599px;
-$max_600 : max-width 600px;
-$xs      : max-width ($sm - 1);
+// $max_400 : max-width 400px;
+// $max_479 : max-width 479px;
+// $max_480 : max-width 480px;
+// $max_599 : max-width 599px;
+// $max_600 : max-width 600px;
+$xs      : max-width ($sm - .2);
 $xs_max  : $xs;
-$sm_max  : max-width ($md - 1);
-$md_max  : max-width ($lg - 1);
-$lg_max  : max-width ($xlg - 1);
+$sm_max  : max-width ($md - .2);
+$md_max  : max-width ($lg - .2);
+$lg_max  : max-width ($xl - .2);
 
 /* Range */
 $sm_range : $sm $sm_max;

@@ -23,8 +23,8 @@
 @import "partials/normalize";
 @import "partials/base-selectors";
 
-// Grid
-@import "partials/bootstrap-grid";
+// Bootstrap Grid
+@import "partials/bootstrap/grid.scss";
 
 // Javascript
 // @import "partials/js/swiper";
@@ -59,9 +59,28 @@
 
 // WP plugins
 @import "partials/plugins/gravity-form";
-// @import "partials/plugins/tribe-events/tribe_base";
+@import "partials/plugins/tribe-events/tribe_base";
 // @import "partials/plugins/yoast-breadcrumbs";
 
+// Bootstrap Content
+@import "partials/bootstrap/content/typography.scss";
+@import "partials/bootstrap/content/images.scss";
+@import "partials/bootstrap/content/figures.scss";
+
+// Bootstrap Utilities
+@import "partials/bootstrap/utilities/clearfix.scss";
+@import "partials/bootstrap/utilities/display.scss";
+@import "partials/bootstrap/utilities/embed.scss";
+@import "partials/bootstrap/utilities/flex.scss";
+@import "partials/bootstrap/utilities/float.scss";
+@import "partials/bootstrap/utilities/image-replacement.scss";
+@import "partials/bootstrap/utilities/position.scss";
+@import "partials/bootstrap/utilities/screenreaders.scss";
+@import "partials/bootstrap/utilities/sizing.scss";
+@import "partials/bootstrap/utilities/spacing.scss";
+@import "partials/bootstrap/utilities/text.scss";
+@import "partials/bootstrap/utilities/vertical-align.scss";
+@import "partials/bootstrap/utilities/visibility.scss";
 
 // Helpers
 @import "partials/helpers/table";

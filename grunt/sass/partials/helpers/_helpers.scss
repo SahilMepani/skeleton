@@ -42,15 +42,6 @@
   }
 }
 
-.flex-vertical-center {
-  //when used on rows with bootstrap col, generates a bug on iphone 6s+, so used for above small breakpoints only
-  @include breakpoint( $sm ) {
-    @include display-flex;
-    @include flex-wrap( wrap );
-    @include align-items( center );
-  }
-}
-
 .list-unstyled {
   @include list-unstyled;
 }
@@ -60,20 +51,11 @@
   margin: 0 auto;
 }
 
-.max-width-none {
-  max-width: none;
-}
-
-
 /*===================================
 =            Backgrounds            =
 ===================================*/
 .bg-cover {
   @include bg-cover;
-}
-
-.bg-grey {
-  background-color: #ddd;
 }
 
 .bg-overlay-black {
@@ -92,38 +74,6 @@
     bottom: 0;
   }
 }
-
-/*==============================
-=            Images            =
-==============================*/
-.img-responsive {
-  width: auto;
-  height: auto;
-}
-
-.img-limit-block-xs-2 {
-  @include breakpoint( $xs ) {
-    img {
-      max-height: 200px;
-    }
-  }
-}
-
-.img-limit-block-xs-3 {
-  @include breakpoint( $xs ) {
-    img {
-      max-height: 200px;
-    }
-  }
-}
-
-/*================================
-=            Position            =
-================================*/
-.static { position: static; }
-.relative { position: relative; }
-.fixed { position: fixed; }
-.absolute { position: absolute; }
 
 
 /*==================================
@@ -147,250 +97,6 @@
 .color-primary { color: $brand_color_primary !important; }
 .color-secondary { color: $brand_color_secondary !important; }
 .colo-base { color: $base_color; }
-.text-center { text-align: center; }
-.text-center-xs {
-  @include breakpoint( $xs ) {
-    text-align: center;
-  }
-}
-.text-center-sm {
-  @include breakpoint( $sm ) {
-    text-align: center;
-  }
-}
-.text-left { text-align: left; }
-.text-right { text-align: right; }
-.text-justify { text-align: justify; }
-.text-truncate { @include text-truncate; }
-.text-underline { text-decoration: underline; }
-.lead, .big { font-size: $base_font_size + 4; }
-.small { @extend small; }
-.light { font-weight: 300; }
-.regular { font-weight: 400; }
-.semi-bold { font-weight: 600; }
-.bold { font-weight: 700; }
-.caps { text-transform: uppercase; }
-.capitalize { text-transform: capitalize; }
-
-
-/*=============================
-=            Float            =
-=============================*/
-.pull-left { float: left !important; }
-.push-right { float: right !important; }
-.align-left, .alignleft {
-  float: left;
-  margin: 0 25px 10px 0;
-}
-.align-right, .alignright {
-  float: right;
-  margin: 0 0 10px 25px;
-}
-.align-center, .aligncenter {
-  clear: both;
-  display: block;
-  margin: 0 auto $global_margin_bottom auto;
-}
-/* img.align-left, img.alignleft, img.align-right, img.alignright, img.align-center, img.aligncenter {} */
-
-
-/*===============================
-=            Display            =
-===============================*/
-.inline { display: inline; }
-.inline-block { display: inline-block; }
-.hidden, .hide { display: none !important; }
-.hidden-xs {
-  @include breakpoint( $xs ) {
-    display: none !important;
-  }
-}
-.hidden-sm {
-  @include breakpoint( $sm ) {
-    display: none !important;
-  }
-}
-.hidden-md {
-  @include breakpoint( $md ) {
-    display: none !important;
-  }
-}
-.hidden-lg {
-  @include breakpoint( $lg ) {
-    display: none !important;
-  }
-}
-.block, .show { display: block !important; }
-.show-xs {
-  @include breakpoint( $xs ) {
-    display: block !important;
-  }
-}
-.show-sm {
-  @include breakpoint( $sm ) {
-    display: block !important;
-  }
-}
-.show-md {
-  @include breakpoint( $md ) {
-    display: block !important;
-  }
-}
-.show-lg {
-  @include breakpoint( $lg ) {
-    display: block !important;
-  }
-}
-.visible { visibility: visible !important; }
-.invisible { visibility: hidden !important; }
-.flex { @include display-flex; }
-.flex-xs {
-  @include breakpoint( $xs ) {
-    @include display-flex;
-  }
-}
-.flex-sm {
-  @include breakpoint( $sm ) {
-    @include display-flex;
-  }
-}
-.flex-md {
-  @include breakpoint( $md ) {
-    @include display-flex;
-  }
-}
-.flex-lg {
-  @include breakpoint( $lg ) {
-    @include display-flex;
-  }
-}
-
-
-/*=============================
-=            Clear            =
-=============================*/
-.clearfix { @include clearfix; }
-.clear { clear: both !important; }
-.clear-left { clear: left !important; }
-.clear-right { clear: right !important; }
-
-
-/*======================================
-=            Padding/Margin            =
-======================================*/
-.padding-0 {
-  padding-top: 0 ;
-  padding-bottom: 0 ;
-}
-.padding-top-0 { padding-top: 0 ; }
-.padding-bottom-0 { padding-bottom: 0 ; }
-.margin-0 {
-  margin: 0 !important;
-}
-.margin-top-0 { margin-top: 0 !important; }
-.margin-bottom-0 { margin-bottom: 0 !important; }
-
-@for $i from 1 through length($ar_gutter) {
-  .padding-#{$i} {
-    padding-top: nth( $ar_gutter, $i );
-    padding-bottom: nth( $ar_gutter, $i );
-  }
-  .padding-top-#{$i} {
-    padding-top: nth( $ar_gutter, $i );
-  }
-  .padding-bottom-#{$i} {
-    padding-bottom: nth( $ar_gutter, $i );
-  }
-  .margin-#{$i} {
-    margin: nth( $ar_gutter, $i ) !important;
-    margin: nth( $ar_gutter, $i ) !important;
-  }
-  .margin-top-#{$i} {
-    margin-top: nth( $ar_gutter, $i ) !important;
-  }
-  .margin-bottom-#{$i} {
-    margin-bottom: nth( $ar_gutter, $i ) !important;
-  }
-}
-
-/* Change higher paddings small on mobile */
-@include breakpoint( $xs ) {
-  @for $i from 4 through length($ar_gutter) {
-    .padding-#{$i} {
-      padding-top: 50px;
-      padding-bottom: 50px;
-    }
-    .padding-top-#{$i} {
-      padding-top: 50px;
-    }
-    .padding-bottom-#{$i} {
-      padding-bottom: 50px;
-    }
-    .margin-#{$i} {
-      margin: 50px !important;
-      margin: 50px !important;
-    }
-    .margin-top-#{$i} {
-      margin-top: 50px !important;
-    }
-    .margin-bottom-#{$i} {
-      margin-bottom: 50px !important;
-    }
-  }
-}
-
-/* MQ classes */
-@for $counter from 1 through length($ar_bp) {
-  @include breakpoint( nth($ar_bp, $counter) ) {
-    @for $i from 1 through length($ar_gutter) {
-      .padding-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        padding-top: nth( $ar_gutter, $i );
-        padding-bottom: nth( $ar_gutter, $i );
-      }
-      .padding-top-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        padding-top: nth( $ar_gutter, $i );
-      }
-      .padding-bottom-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        padding-bottom: nth( $ar_gutter, $i );
-      }
-      .margin-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        margin: nth( $ar_gutter, $i ) !important;
-        margin: nth( $ar_gutter, $i ) !important;
-      }
-      .margin-top-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        margin-top: nth( $ar_gutter, $i ) !important;
-      }
-      .margin-bottom-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        margin-bottom: nth( $ar_gutter, $i ) !important;
-      }
-    }
-  }
-}
-
-@for $counter from 1 through length($ar_bp) {
-  @include breakpoint( nth($ar_bp, $counter) ) {
-    .padding-#{nth($ar_bp_classes, $counter)}-0 {
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-    .padding-top-#{nth($ar_bp_classes, $counter)}-0 {
-      padding-top: 0;
-    }
-    .padding-bottom-#{nth($ar_bp_classes, $counter)}-0 {
-      padding-bottom: 0;
-    }
-    .margin-#{nth($ar_bp_classes, $counter)}-0 {
-      margin: 0 !important;
-      margin: 0 !important;
-    }
-    .margin-top-#{nth($ar_bp_classes, $counter)}-0 {
-      margin-top: 0 !important;
-    }
-    .margin-bottom-#{nth($ar_bp_classes, $counter)}-0 {
-      margin-bottom: 0 !important;
-    }
-  }
-}
 
 
 /*===========================
@@ -407,21 +113,6 @@
 .no-mutationobserver .wow {
   visibility: visible !important;
   @include animation( none !important);
-}
-
-
-/*======================================
-=            Screen Readers            =
-======================================*/
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  border: 0;
 }
 
 /*===============================

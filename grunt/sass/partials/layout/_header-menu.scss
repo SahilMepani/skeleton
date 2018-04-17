@@ -182,11 +182,11 @@ $mobile_sub_menu_link_height: 42px; //req for animation, manually calculate usua
 					visibility: visible;
 					padding-top: $mobile_sub_menu_link_padding_y;
 					padding-bottom: $mobile_sub_menu_link_padding_y;
-					@include transition(
-					  0.5s height cubic-bezier(.73,.32,.34,1.5),
-					  0.5s padding cubic-bezier(.73,.32,.34,1.5),
-					  0.5s 0.2s color
-					);
+					// @include transition(
+					//   0.5s height cubic-bezier(.73,.32,.34,1.5),
+					//   0.5s padding cubic-bezier(.73,.32,.34,1.5),
+					//   0.5s 0.2s color
+					// );
 				}
 			}
 			> li {
@@ -198,13 +198,13 @@ $mobile_sub_menu_link_height: 42px; //req for animation, manually calculate usua
 					display: block;
 					padding: 0 $mobile_sub_menu_link_padding_x;
 					text-decoration: none;
-					@include transition(
-					  0.5s 0.1s height,
-					  0.5s 0.1s padding,
-					  0.3s color,
-					  0.6s visibility,
-					  .2s background
-					);
+					// @include transition(
+					//   0.5s 0.1s height,
+					//   0.5s 0.1s padding,
+					//   0.3s color,
+					//   0.6s visibility,
+					//   .2s background
+					// );
 					&:hover, &:focus {
 						background: $mobile_sub_menu_link_hover_bg_color;
 						color: $mobile_sub_menu_link_hover_color;
@@ -297,11 +297,11 @@ $desktop_sub_menu_link_height: 36px; //req for animation, manually calculate usu
 								height: $desktop_sub_menu_link_height;
 								padding-top: $desktop_sub_menu_link_padding_y;
 								padding-bottom: $desktop_sub_menu_link_padding_y;
-								@include transition(
-								  0.5s height cubic-bezier(.73,.32,.34,1.5),
-								  0.5s padding cubic-bezier(.73,.32,.34,1.5),
-								  0.5s 0.2s color
-								);
+								// @include transition(
+								//   0.5s height cubic-bezier(.73,.32,.34,1.5),
+								//   0.5s padding cubic-bezier(.73,.32,.34,1.5),
+								//   0.5s 0.2s color
+								// );
 								&:hover, &:focus {
 									background-color: $desktop_sub_menu_link_hover_bg_color;
 									color: $desktop_sub_menu_link_hover_color;
@@ -327,14 +327,14 @@ $desktop_sub_menu_link_height: 36px; //req for animation, manually calculate usu
 					display: block;
 					height: 0;
 					padding: 0 $desktop_sub_menu_link_padding_x;
-					@include transition(
-					  0.5s 0.1s height,
-					  0.5s 0.1s padding,
-					  0.5s 0.1s margin,
-					  0.3s color,
-					  0.6s visibility,
-					  .2s background
-					);
+					// @include transition(
+					//   0.5s 0.1s height,
+					//   0.5s 0.1s padding,
+					//   0.5s 0.1s margin,
+					//   0.3s color,
+					//   0.6s visibility,
+					//   .2s background
+					// );
 				}
 			}
 			> li.current-menu-item > a {

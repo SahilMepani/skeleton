@@ -2,11 +2,11 @@
 
 <?php get_header(); ?>
 
-<div class="container-fluid padding-4">
+<div class="container py-4">
 
 <div class="row">
 
-<div class="col-sm-6">
+<div class="col">
 	<h1><code>&lt;h1&gt;</code> Heading</h1>
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores tempore amet aut reiciendis illum necessitatibus.</p>
 
@@ -24,9 +24,9 @@
 
 	<h6><code>&lt;h6&gt;</code> Heading</h6>
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores tempore amet aut reiciendis illum necessitatibus.</p>
-</div> <!-- .col-sm-6 -->
+</div> <!-- .col -->
 
-<div class="col-sm-6">
+<div class="col">
 	<h5>Inline Text</h5>
 
 	<p>You might have noticed all the monospaced text in this guide. There are a number of inline <abbr title="HyperText Markup Language">HTML</abbr> elements you may use anywhere within other elements, including <abbr title="Abbreviation">abbr</abbr>, <cite>cite</cite>, <code>code</code>, <del>del</del>, <em>em</em>, <ins>ins</ins>, <strong>strong</strong>, <var>var</var>, and <a href="#" title="link">link</a></p>
@@ -55,7 +55,7 @@
 			<p>&mdash; LEONARDO DA VINCI</p>
 		</footer>
 	</blockquote>
-</div> <!-- .col-sm-6 -->
+</div> <!-- .col -->
 
 </div> <!-- .row -->
 
@@ -66,7 +66,7 @@
 
 <div class="row">
 
-<div class="col-sm-6">
+<div class="col">
 	<h5>Ordered List <code>&lt;ol&gt;</code></h5>
 	<ol>
 		<li>List Item</li>
@@ -78,9 +78,9 @@
 			<li>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.</li>
 		</ol>
 	</ol>
-</div> <!-- .col-sm-6 -->
+</div> <!-- .col -->
 
-<div class="col-sm-6">
+<div class="col">
 	<h5>Unordered List <code>&lt;ul&gt;</code></h5>
 	<ul>
 		<li>List Item</li>
@@ -92,9 +92,25 @@
 				<li>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.</li>
 			</ul>
 	</ul>
-</div> <!-- .col-sm-6 -->
+</div> <!-- .col -->
 
 </div> <!-- .row -->
+
+<div class="row">
+	<div class="col">
+		<h5>Definition List List <code>&lt;dl&gt;</code></h5>
+		<dl>
+		   <dt>Definition list</dt>
+		   <dd>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+		aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+		commodo consequat.</dd>
+		   <dt>Lorem ipsum dolor sit amet</dt>
+		   <dd>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+		aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+		commodo consequat.</dd>
+		</dl>
+	</div> <!-- .col -->
+</div> <!-- .row col-sm-12 -->
 
 <hr class="hr">
 
@@ -102,7 +118,7 @@
 
 <div class="row margin-bottom-2">
 
-	<div class="col-sm-6">
+	<div class="col">
 	<table>
 		<caption><b>Default</b> <code>&lt;table&gt;</code></caption>
 		<thead>
@@ -134,11 +150,11 @@
 			</tr>
 		</tbody>
 	</table>
-	</div> <!-- .col-sm-6 -->
+	</div> <!-- .col -->
 
-	<div class="col-sm-6">
-		<table class="table-expanded">
-			<caption><b>Expanded <i>(Full Width)</i></b> <code>&lt;table class="table-expanded"&gt;</code></caption>
+	<div class="col">
+		<table class="table-hover">
+			<caption><b>Hover</i></b> <code>&lt;table class="table-hover"&gt;</code></caption>
 			<thead>
 				<tr>
 					<th scope="col">Heading</th>
@@ -168,15 +184,15 @@
 				</tr>
 			</tbody>
 		</table>
-	</div> <!-- .col-sm-6 -->
+	</div> <!-- .col -->
 
 </div> <!-- .row -->
 
 <div class="row">
 
-	<div class="col-sm-6">
-		<table class="table-expanded table-bordered margin-bottom-2">
-			<caption><b>Expanded & Bordered</b> <code>&lt;table class="table-expanded table-bordered"&gt;</code></caption>
+	<div class="col">
+		<table class="table-bordered margin-bottom-2">
+			<caption><b>Bordered</b> <code>&lt;table class="table-expanded table-bordered"&gt;</code></caption>
 			<thead>
 				<tr>
 					<th scope="col">Heading</th>
@@ -207,11 +223,11 @@
 			</tbody>
 		</table>
 
-	</div> <!-- .col-sm-6 -->
+	</div> <!-- .col -->
 
-	<div class="col-sm-6">
+	<div class="col">
 		<table class="table-expanded table-striped margin-bottom-2">
-			<caption><b>Expanded & Striped</b> <code>&lt;table class="table-expanded table-striped"&gt;</code></caption>
+			<caption><b>Striped</b> <code>&lt;table class="table-striped"&gt;</code></caption>
 			<thead>
 				<tr>
 					<th scope="col">Heading</th>
@@ -241,12 +257,12 @@
 				</tr>
 			</tbody>
 		</table>
-	</div> <!-- .col-sm-6 -->
+	</div> <!-- .col -->
 
 </div> <!-- .row -->
 
-<table class="table-mixed">
-	<caption><b>Mixed</b> <code>&lt;table class="table-mixed"&gt;</code></caption>
+<table class="table-mixed table-hover">
+	<caption><b>Mixed & Hover</b> <code>&lt;table class="table-mixed table-hover"&gt;</code></caption>
 	<thead>
 		<tr>
 			<th scope="col">Heading</th>
@@ -283,17 +299,17 @@
 
 <div class="row margin-bottom-2">
 
-	<div class="col-sm-6">
+	<div class="col">
 		<h5>Left <code>&lt;img class="align-left"&gt;</code></h5>
 		<img src="http://placehold.it/150/f15500/ffffff&text=368" class="align-left">
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, culpa, officiis, recusandae minus qui autem labore eveniet ullam praesentium maxime vel eos nam! Voluptatem, iste, suscipit sit quidem veritatis vitae animi fugit numquam doloribus nemo non fugiat quibusdam laboriosam a quis deleniti minima cum repudiandae sint officiis maxime necessitatibus voluptas.</p>
-	</div> <!-- .col-sm-6 -->
+	</div> <!-- .col -->
 
-	<div class="col-sm-6">
+	<div class="col">
 		<h5>Right <code>&lt;img class="align-right"&gt;</code></h5>
 		<img src="http://placehold.it/150/f15500/ffffff&text=368" class="align-right">
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, culpa, oRightficiis, recusandae minus qui autem labore eveniet ullam praesentium maxime vel eos nam! Voluptatem, iste, suscipit sit quidem veritatis vitae animi fugit numquam doloribus nemo non fugiat quibusdam laboriosam a quis deleniti minima cum repudiandae sint officiis maxime necessitatibus voluptas.</p>
-	</div> <!-- .col-sm-6 -->
+	</div> <!-- .col -->
 
 </div> <!-- .row -->
 
@@ -304,9 +320,9 @@
 
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, quos, deserunt obcaecati sapiente vero repellendus vel alias doloremque nam magnam quidem dolore consequuntur. Inventore, illum.</p>
 
-<h5>Image with Frame <code>&lt;img class="img-frame"&gt;</code></h5>
+<h5>Image with Frame <code>&lt;img class="img-thumbnail"&gt;</code></h5>
 
-<p><img src="http://placehold.it/150/f15500/ffffff&text=368" class="img-frame"></p>
+<p><img src="http://placehold.it/150/f15500/ffffff&text=368" class="img-thumbnail"></p>
 
 <hr class="hr">
 
@@ -341,7 +357,7 @@
 <h2>Buttons</h2>
 
 <div class="row">
-	<div class="col-sm-6">
+	<div class="col">
 		<h5>Primary</h5>
 		<p>
 			<a href="#" class="btn btn-primary btn-xs">Extra Small</a>
@@ -350,9 +366,9 @@
 			<a href="#" class="btn btn-primary btn-lg">Large</a>
 			<a href="#" class="btn btn-primary btn-xlg">Extra Large</a>
 		</p>
-	</div> <!-- .col-sm-6 -->
+	</div> <!-- .col -->
 
-	<div class="col-sm-6">
+	<div class="col">
 		<h5>Secondary</h5>
 		<p>
 			<a href="#" class="btn btn-secondary btn-xs">Extra Small</a>
@@ -361,7 +377,7 @@
 			<a href="#" class="btn btn-secondary btn-lg">Large</a>
 			<a href="#" class="btn btn-secondary btn-xlg">Extra Large</a>
 		</p>
-	</div> <!-- .col-sm-6 -->
+	</div> <!-- .col -->
 </div> <!-- .row -->
 
 <hr class="hr">

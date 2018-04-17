@@ -46,7 +46,7 @@
 }
 
 .jssocials-share-link { // link
-	background-color: $sky_blue;
+	background-color: $base_color;
 	color: #fff;
 	text-align: center;
 	text-decoration: none;
@@ -55,7 +55,7 @@
 	display: block;
 	padding: 10px;
 	&:hover, &:focus, &:active {
-		background-color: $dark_blue;
+		background-color: $base_color;
 		color: #fff;
 	}
 }

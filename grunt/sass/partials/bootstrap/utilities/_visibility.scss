@@ -1,0 +1,60 @@
+.visible {
+  visibility: visible !important;
+}
+
+.invisible {
+  visibility: hidden !important;
+}
+
+/*----------  Custom Classes  ----------*/
+.hidden, .hide { display: none !important; }
+
+.hidden-xs {
+  @include breakpoint( $xs ) {
+    display: none !important;
+  }
+}
+
+.hidden-sm {
+  @include breakpoint( $sm ) {
+    display: none !important;
+  }
+}
+
+.hidden-md {
+  @include breakpoint( $md ) {
+    display: none !important;
+  }
+}
+
+.hidden-lg {
+  @include breakpoint( $lg ) {
+    display: none !important;
+  }
+}
+
+.block, .show { display: block !important; }
+
+.show-xs {
+  @include breakpoint( $xs ) {
+    display: block !important;
+  }
+}
+
+.show-sm {
+  @include breakpoint( $sm ) {
+    display: block !important;
+  }
+}
+
+.show-md {
+  @include breakpoint( $md ) {
+    display: block !important;
+  }
+}
+
+.show-lg {
+  @include breakpoint( $lg ) {
+    display: block !important;
+  }
+}

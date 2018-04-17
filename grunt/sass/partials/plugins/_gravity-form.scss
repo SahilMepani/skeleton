@@ -322,7 +322,7 @@ $gf_description_font_size: 16px;
 			border: $input_focus_border;
 		}
 	}
-	@include breakpoint( $max_480 ) {
+	@include breakpoint( $xs ) {
 		 //iOS fix, chosen plugin not used by default
 		.chosen-select {
 			font-size: 16px;

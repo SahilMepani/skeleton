@@ -36,6 +36,9 @@ function my_acf_admin_head() {
 			background-color: #00a0d2 ;
 			color: #fff;
 		}
+		.acf-button-group {
+			flex-wrap: wrap;
+		}
 	</style>
 	<?php
 }

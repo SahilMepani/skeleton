@@ -11,4 +11,3 @@ sftp-config.json
 sftp-config-live.json
 sftp-config-dev.json
 /nbproject/private/
-acf-json

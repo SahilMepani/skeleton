@@ -1,0 +1,105 @@
+{
+    "key": "group_5ab8d94c7b34d",
+    "title": "Flexible Content",
+    "fields": [
+        {
+            "key": "field_5ab8d96758141",
+            "label": "Flexible Content",
+            "name": "flexible_content",
+            "type": "flexible_content",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layouts": {
+                "5ab8da97a72a4": {
+                    "key": "5ab8da97a72a4",
+                    "name": "wysiwyg_section",
+                    "label": "WYSIWYG Section",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5ab8daa1c3f2d",
+                            "label": "WYSIWYG Section",
+                            "name": "wysiwyg_section",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5ab8d97b9ca67"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "5ab8dabec3f2e": {
+                    "key": "5ab8dabec3f2e",
+                    "name": "wysiwyg_2_section",
+                    "label": "WYSIWYG 2 Section",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5ab8dac8c3f2f",
+                            "label": "WYSIWYG 2 Section",
+                            "name": "wysiwyg_2_section",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5ab8d9fc37a7f"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            },
+            "button_label": "Add Row",
+            "min": "",
+            "max": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1522065342
+}

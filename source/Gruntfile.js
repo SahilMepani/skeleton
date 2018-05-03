@@ -29,18 +29,18 @@ module.exports = function(grunt) {
 		concat: {
 	    plugin: {
 	      src: ['js/plugins/*.js'],
-	      dest: '../js/jquery.plugins.js',
+	      dest: '../js/plugins.js',
 	    },
 	    custom: {
 	      src: ['js/custom/*.js'],
-	      dest: '../js/jquery.custom.js',
+	      dest: '../js/custom.js',
 	    },
 	  },
 	  uglify: {
 		  js: {
 		    files: [{
 		      expand: true,
-		      src: ['../js/jquery.plugins.js', '../js/jquery.custom.js'],
+		      src: ['../js/plugins.js', '../js/custom.js'],
 		      dest: '../js/',
 		    }]
 		  }

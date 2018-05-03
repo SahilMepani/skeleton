@@ -34,7 +34,7 @@
 		}
 		&:hover {
 			&:after {
-				@include animation( leftRightBounce 1s infinite );
+				//@include animation( leftRightBounce 1s infinite );
 			}
 		}
 	}

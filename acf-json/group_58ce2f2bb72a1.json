@@ -92,14 +92,14 @@
                 "id": ""
             },
             "choices": {
-                "padding-top-0": "0",
-                "padding-top-1": "15px",
-                "padding-top-2": "30px",
-                "padding-top-3": "50px",
-                "padding-top-4": "70px",
-                "padding-top-5": "90px",
-                "padding-top-6": "120px",
-                "padding-top-7": "150px"
+                "pt-0": "0",
+                "pt-1": "15px",
+                "pt-2": "30px",
+                "pt-3": "50px",
+                "pt-4": "70px",
+                "pt-5": "90px",
+                "pt-6": "120px",
+                "pt-7": "150px"
             },
             "allow_null": 0,
             "default_value": "padding-top-4",
@@ -120,14 +120,14 @@
                 "id": ""
             },
             "choices": {
-                "padding-bottom-0": "0",
-                "padding-bottom-1": "15px",
-                "padding-bottom-2": "30px",
-                "padding-bottom-3": "50px",
-                "padding-bottom-4": "70px",
-                "padding-bottom-5": "90px",
-                "padding-bottom-6": "120px",
-                "padding-bottom-7": "150px"
+                "pb-0": "0",
+                "pb-1": "15px",
+                "pb-2": "30px",
+                "pb-3": "50px",
+                "pb-4": "70px",
+                "pb-5": "90px",
+                "pb-6": "120px",
+                "pb-7": "150px"
             },
             "allow_null": 0,
             "default_value": "padding-bottom-4",
@@ -196,5 +196,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1522064621
+    "modified": 1525371947
 }

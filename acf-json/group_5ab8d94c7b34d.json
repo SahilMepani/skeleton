@@ -16,65 +16,12 @@
                 "id": ""
             },
             "layouts": {
-                "5ab8da97a72a4": {
-                    "key": "5ab8da97a72a4",
+                "5aeb5175f8ae9": {
+                    "key": "5aeb5175f8ae9",
                     "name": "wysiwyg_section",
                     "label": "WYSIWYG Section",
                     "display": "block",
-                    "sub_fields": [
-                        {
-                            "key": "field_5ab8daa1c3f2d",
-                            "label": "WYSIWYG Section",
-                            "name": "wysiwyg_section",
-                            "type": "clone",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "clone": [
-                                "group_5ab8d97b9ca67"
-                            ],
-                            "display": "seamless",
-                            "layout": "block",
-                            "prefix_label": 0,
-                            "prefix_name": 0
-                        }
-                    ],
-                    "min": "",
-                    "max": ""
-                },
-                "5ab8dabec3f2e": {
-                    "key": "5ab8dabec3f2e",
-                    "name": "wysiwyg_2_section",
-                    "label": "WYSIWYG 2 Section",
-                    "display": "block",
-                    "sub_fields": [
-                        {
-                            "key": "field_5ab8dac8c3f2f",
-                            "label": "WYSIWYG 2 Section",
-                            "name": "wysiwyg_2_section",
-                            "type": "clone",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "clone": [
-                                "group_5ab8d9fc37a7f"
-                            ],
-                            "display": "seamless",
-                            "layout": "block",
-                            "prefix_label": 0,
-                            "prefix_name": 0
-                        }
-                    ],
+                    "sub_fields": [],
                     "min": "",
                     "max": ""
                 }
@@ -101,5 +48,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1522065342
+    "modified": 1525371268
 }

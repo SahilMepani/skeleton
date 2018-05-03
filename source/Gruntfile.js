@@ -1,14 +1,19 @@
-var compass = require('compass-importer')
+var compass = require( 'compass-importer' )
 
-module.exports = function(grunt) {
-	grunt.initConfig({
+module.exports = function( grunt ) {
+
+	grunt.initConfig( {
 		watch: {
 			sass: {
-				files: ['sass/**/*.{scss,sass}','sass/_partials/**/*.{scss,sass}'],
-				tasks: ['sass:dist']
+				files: [ 'sass/**/*.{scss,sass}', 'sass/_partials/**/*.{scss,sass}' ],
+				tasks: [ 'sass' ]
+			},
+			js: {
+				files: [ 'js/**/*.js' ],
+				tasks: [ 'concat', 'uglify' ]
 			},
 			livereload: {
-				files: ['../*.html', '../*.php', '../js/**/*.{js,json}', '../*.css','../img/**/*.{png,jpg,jpeg,gif,webp,svg}'],
+				files: [ '../*.html', '../*.php', '../js/**/*.{js,json}', '../*.css', '../img/**/*.{png,jpg,jpeg,gif,webp,svg}' ],
 				options: {
 					livereload: true
 				}
@@ -27,28 +32,41 @@ module.exports = function(grunt) {
 			}
 		},
 		concat: {
-	    plugin: {
-	      src: ['js/plugins/*.js'],
-	      dest: '../js/plugins.js',
-	    },
-	    custom: {
-	      src: ['js/custom/*.js'],
-	      dest: '../js/custom.js',
-	    },
-	  },
-	  uglify: {
-		  js: {
-		    files: [{
-		      expand: true,
-		      src: ['../js/plugins.js', '../js/custom.js'],
-		      dest: '../js/',
-		    }]
-		  }
+			options: {
+				separator: ';\n', //add a semi colon and new line after each file, required.
+			},
+			dist: {
+				plugin: {
+					src: [ 'js/plugins/*.js' ],
+					dest: '../js/plugins.js',
+				},
+				custom: {
+					src: [ 'js/custom/*.js' ],
+					dest: '../js/custom.js',
+				},
+			}
 		},
-	});
-	grunt.registerTask('default', ['sass:dist', 'concat', 'uglify', 'watch']);
-	grunt.loadNpmTasks('grunt-sass');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
+		uglify: {
+			options: {
+				output: {
+					comments: 'all',
+				}
+			},
+			dist: {
+				files: [ {
+					expand: true,
+					src: [ '../js/plugins.js', '../js/custom.js' ],
+					dest: '../js/',
+		    } ]
+			}
+		},
+	} );
+
+	grunt.loadNpmTasks( 'grunt-sass' );
+	grunt.loadNpmTasks( 'grunt-contrib-watch' );
+	grunt.loadNpmTasks( 'grunt-contrib-concat' );
+	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
+
+	grunt.registerTask( 'default', [ 'sass', 'concat', 'uglify', 'watch' ] );
+
 };

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "Gruntfile.js",
-  "dependencies": {
+  "devDependencies": {
     "compass-importer": "^0.4.1",
     "grunt": "^1.0.1",
     "grunt-contrib-uglify": "^3.3.0",

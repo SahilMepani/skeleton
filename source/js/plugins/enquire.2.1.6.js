@@ -1,4 +1,4 @@
-/*!
+/*@licence
  * enquire.js v2.1.6 - Awesome Media Queries in JavaScript
  * Copyright (c) 2017 Nick Williams - http://wicky.nillia.ms/enquire.js
  * License: MIT */

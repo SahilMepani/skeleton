@@ -5,8 +5,8 @@
 .sass-cache
 *.css.map
 Thumbs.db
-grunt/bower_components
-grunt/node_modules
+source/bower_components
+source/node_modules
 sftp-config.json
 sftp-config-live.json
 sftp-config-dev.json

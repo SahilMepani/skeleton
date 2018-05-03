@@ -47,7 +47,6 @@ module.exports = function(grunt) {
 		},
 	});
 	grunt.registerTask('default', ['sass:dist', 'concat', 'uglify', 'watch']);
-	grunt.registerTask('concat', ['concat', 'uglify']);
 	grunt.loadNpmTasks('grunt-sass');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-concat');

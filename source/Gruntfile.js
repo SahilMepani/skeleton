@@ -3,6 +3,7 @@ var compass = require( 'compass-importer' )
 module.exports = function( grunt ) {
 
 	grunt.initConfig( {
+
 		watch: {
 			sass: {
 				files: [ 'sass/**/*.{scss,sass}', 'sass/_partials/**/*.{scss,sass}' ],
@@ -19,11 +20,12 @@ module.exports = function( grunt ) {
 				}
 			}
 		},
+
 		sass: {
 			options: {
-				sourcemap: false,
-				outputStyle: 'compact', // must be compact or expanded to avoid merge conflict in git.
-				importer: compass
+				sourcemap   : false,
+				outputStyle : 'compact', // must be compact or expanded to avoid merge conflict in git.
+				importer    : compass
 			},
 			dist: {
 				files: {
@@ -31,40 +33,42 @@ module.exports = function( grunt ) {
 				}
 			}
 		},
+
 		concat: {
 			options: {
-				separator: ';\n', //add a semi colon and new line after each file, required.
+				separator: ';\n'
 			},
-			dist: {
-				plugin: {
-					src: [ 'js/plugins/*.js' ],
-					dest: '../js/plugins.js',
-				},
-				custom: {
-					src: [ 'js/custom/*.js' ],
-					dest: '../js/custom.js',
-				},
-			}
+			plugin: {
+				src  : 'js/plugins/*.js',
+				dest : '../js/plugins.js',
+			},
+			custom: {
+				src  : 'js/custom/*.js',
+				dest : '../js/custom.js',
+			},
 		},
+
 		uglify: {
 			options: {
 				output: {
-					comments: 'all',
+					comments: 'all'
 				}
 			},
 			dist: {
 				files: [ {
-					expand: true,
-					src: [ '../js/plugins.js', '../js/custom.js' ],
-					dest: '../js/',
+					expand : true,
+					src    : [ '../js/plugins.js', '../js/custom.js' ],
+					dest   : '../js/',
 		    } ]
 			}
-		},
+		}
+
 	} );
 
 	grunt.loadNpmTasks( 'grunt-sass' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-contrib-concat' );
+	grunt.loadNpmTasks( 'grunt-jquery-ready' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 
 	grunt.registerTask( 'default', [ 'sass', 'concat', 'uglify', 'watch' ] );

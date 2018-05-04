@@ -81,16 +81,16 @@ jQuery( document ).ready( function( $ ) {
 			prevButton: '.btn-prev',
 			speed: 500,
 			onSlideChangeStart: function() {
-				$( '.tabs-slider-pagination > li' ).removeClass( 'is-active' );
-				$( '.tabs-slider-pagination > li' ).eq( tabsSlider.activeIndex ).addClass( 'is-active' );
+				$( '.tabs-slider-pagination > li' ).removeClass( 'js-active' );
+				$( '.tabs-slider-pagination > li' ).eq( tabsSlider.activeIndex ).addClass( 'js-active' );
 			}
 		} );
 		// pagination
-		$( '.tabs-slider-pagination > li' ).eq( 0 ).addClass( 'is-active' );
+		$( '.tabs-slider-pagination > li' ).eq( 0 ).addClass( 'js-active' );
 		$( '.tabs-slider-pagination > li' ).click( function() {
 			tabsSlider.slideTo( $( this ).index() );
-			$( '.tabs-slider-pagination > li' ).removeClass( 'is-active' );
-			$( this ).addClass( 'is-active' )
+			$( '.tabs-slider-pagination > li' ).removeClass( 'js-active' );
+			$( this ).addClass( 'js-active' )
 		} )
 	} );
 
@@ -106,16 +106,16 @@ jQuery( document ).ready( function( $ ) {
 		onSlideChangeStart: function() {
 			$activeSlide = $( '.nested-tabs-slider .swiper-slide-active' );
 			$tabActiveClass = $activeSlide.data( 'tab-heading' );
-			$( '.nested-tabs-slider-pagination > li' ).removeClass( 'is-active' );
-			$( '.' + $tabActiveClass ).addClass( 'is-active' );
+			$( '.nested-tabs-slider-pagination > li' ).removeClass( 'js-active' );
+			$( '.' + $tabActiveClass ).addClass( 'js-active' );
 		}
 	} );
 	// navigation
-	$( '.nested-tabs-slider-pagination > li' ).eq( 0 ).addClass( 'is-active' );
+	$( '.nested-tabs-slider-pagination > li' ).eq( 0 ).addClass( 'js-active' );
 	$( '.nested-tabs-slider-pagination > li' ).click( function() {
 		nestedTabSlider.slideTo( $( this ).data( 'slide-index' ) );
-		$( '.nested-tabs-slider-pagination > li' ).removeClass( 'is-active' );
-		$( this ).addClass( 'is-active' )
+		$( '.nested-tabs-slider-pagination > li' ).removeClass( 'js-active' );
+		$( this ).addClass( 'js-active' )
 	} );
 
 
@@ -123,14 +123,14 @@ jQuery( document ).ready( function( $ ) {
 	=            Header Menu            =
 	===================================*/
 	$( '.header-menu-toggle' ).click( function( e ) {
-		$( this ).toggleClass( 'is-active' );
-		$( '#header-menu' ).toggleClass( 'is-active' );
+		$( this ).toggleClass( 'js-active' );
+		$( '#header-menu' ).toggleClass( 'js-active' );
 		e.preventDefault();
 	} );
 
 	$( '.header-menu-close' ).click( function( e ) {
-		$( '.header-menu-toggle' ).toggleClass( 'is-active' );
-		$( '#header-menu' ).toggleClass( 'is-active' );
+		$( '.header-menu-toggle' ).toggleClass( 'js-active' );
+		$( '#header-menu' ).toggleClass( 'js-active' );
 		e.preventDefault();
 	} );
 
@@ -138,7 +138,7 @@ jQuery( document ).ready( function( $ ) {
 	$( '.parent-menu > li.menu-item-has-children > a' ).append( '<span></span>' );
 	$( '.parent-menu > li.menu-item-has-children > a span' ).on( 'click', function( e ) {
 		e.preventDefault();
-		$( this ).parent( 'a' ).siblings( '.sub-menu' ).toggleClass( 'is-active' );
+		$( this ).parent( 'a' ).siblings( '.sub-menu' ).toggleClass( 'js-active' );
 	} );
 
 

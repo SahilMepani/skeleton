@@ -3,7 +3,7 @@
 /*==========================================
 =            Hide admin toolbar            =
 ==========================================*/
-// add_filter('show_admin_bar', '__return_false');
+add_filter('show_admin_bar', '__return_false');
 
 /*======================================================================
 =            Redirect to result, if search query one result            =

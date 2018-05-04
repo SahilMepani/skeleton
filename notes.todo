@@ -1,0 +1,5 @@
+Use BEM for CSS - http://getbem.com/introduction/
+New image size in functions.php should be named as per the dimensions, for eg.
+   Size with width: 100px and height: 9999px(auto) should be named "w100". Auto dimension is ignored.
+   Size with width: 9999px(auto) and height: 400px and crop enabled should be named "h400_c". Again auto dimension is ignored
+

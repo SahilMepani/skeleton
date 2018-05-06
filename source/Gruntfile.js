@@ -11,7 +11,7 @@ module.exports = function( grunt ) {
 			},
 			js: {
 				files: [ 'js/**/*.js' ],
-				tasks: [ 'concat', 'uglify' ]
+				tasks: [ 'concat' ]
 			},
 			livereload: {
 				files: [ '../*.html', '../*.php', '../js/**/*.{js,json}', '../*.css', '../img/**/*.{png,jpg,jpeg,gif,webp,svg}' ],
@@ -71,6 +71,7 @@ module.exports = function( grunt ) {
 	grunt.loadNpmTasks( 'grunt-jquery-ready' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 
-	grunt.registerTask( 'default', [ 'sass', 'concat', 'uglify', 'watch' ] );
+	grunt.registerTask( 'default', [ 'sass', 'concat', 'watch' ] );
+	grunt.registerTask( 'uglify', [ 'uglify' ] );
 
 };

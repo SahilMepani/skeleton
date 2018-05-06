@@ -1,5 +1,16 @@
-Use BEM for CSS - http://getbem.com/introduction/
+CSS:
+  Use BEM for CSS - http://getbem.com/introduction/
+  Any div that covers the entire width is called a section. e.g. content-section
+  Any div inside container that wraps elements is called a block. e.g content-block
+  Any div inside section and outside container is called a wrapper. e.g. content-wrapper
+  Any class/ID added using javascript should be prefixed using "js-" e.g. js-active, js-hidden
+  Avoid ID as much as possible.
+  Whenever possible use helper classes in html.
+
+PHP:
 New image size in functions.php should be named as per the dimensions, for eg.
    Size with width: 100px and height: 9999px(auto) should be named "w100". Auto dimension is ignored.
    Size with width: 9999px(auto) and height: 400px and crop enabled should be named "h400_c". Again auto dimension is ignored
 
+TRIVIA:
+  Stick posts won't work with ajax filters. It will not be at the top once the post/cpt are filtered.

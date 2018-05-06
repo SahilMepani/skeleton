@@ -51,7 +51,7 @@
 		top: 0;
 		&:before {
 			content: $i_cross;
-			color: #fff;
+			color: #000;
 			font-size: 24px;
 		}
 		&:hover, &:active {
@@ -69,16 +69,16 @@
 /*==============================
 =            Mobile            =
 ==============================*/
-$mobile_sidebar_bg_color: red;
+$mobile_sidebar_bg_color: #ddd;
 /*----------  Parent Menu  ----------*/
 $mobile_parent_menu_item_border_bottom: 1px solid rgba(0,0,0,.1);
 $mobile_parent_menu_link_bg_color: transparent;
-$mobile_parent_menu_link_color: #fff;
+$mobile_parent_menu_link_color: #000;
 $mobile_parent_menu_link_hover_bg_color: rgba(0,0,0,.1);
-$mobile_parent_menu_link_hover_color: #fff;
+$mobile_parent_menu_link_hover_color: #000;
 $mobile_parent_menu_item_padding_y: 13px;
 $mobile_parent_menu_item_padding_x: 20px;
-$mobile_parent_menu_current_item_link_bg_color: rgba(0,0,0,.1);
+$mobile_parent_menu_current_item_link_bg_color: $red;
 $mobile_parent_menu_current_item_link_color: #fff;
 $mobile_parent_menu_dropdown_bg_color: #fff;
 $mobile_parent_menu_dropdown_icon_color: #000;
@@ -88,12 +88,11 @@ $mobile_parent_menu_dropdown_hover_icon_color: red;
 $mobile_sub_menu_font_size: $base_font_size;
 $mobile_sub_menu_bg_color: #fff;
 $mobile_sub_menu_link_bg_color: transparent;
-$mobile_sub_menu_link_hover_bg_color: rgba(0,0,0,.1);
-$mobile_sub_menu_link_color: #000;
+$mobile_sub_menu_link_hover_bg_color: rgba(0,0,0,.05);
+$mobile_sub_menu_link_color: #666;
 $mobile_sub_menu_link_hover_color: #000;
 $mobile_sub_menu_link_padding_y: 13px;
 $mobile_sub_menu_link_padding_x: $mobile_parent_menu_item_padding_x; //usually this is same as parent menu
-$mobile_sub_menu_link_height: 42px; //req for animation, manually calculate usually font height(not size) + padding-top and bottom.
 
 .header__menu {
 	@include breakpoint( $md_max ) {
@@ -129,6 +128,9 @@ $mobile_sub_menu_link_height: 42px; //req for animation, manually calculate usua
 			> a {
 				background-color: $mobile_parent_menu_link_bg_color;
 				color: $mobile_parent_menu_link_color;
+				font-size: 14px;
+				font-weight: 700;
+				letter-spacing: 2px;
 				display: block;
 				padding: $mobile_parent_menu_item_padding_y $mobile_parent_menu_item_padding_x;
 				text-transform: uppercase;
@@ -188,22 +190,22 @@ $mobile_sub_menu_link_height: 42px; //req for animation, manually calculate usua
 .header__menu .sub-menu {
 	@include breakpoint( $md_max ) {
 	  background: $mobile_sub_menu_bg_color;
-		&.js-active {
-			> li > a {
-				height: $mobile_sub_menu_link_height;
-				visibility: visible;
-				padding-top: $mobile_sub_menu_link_padding_y;
-				padding-bottom: $mobile_sub_menu_link_padding_y;
-			}
-		}
+	  height: 0;
+	  visibility: hidden;
+	  &.js-active {
+	  	height: auto;
+	  	visibility: visible;
+	  }
 		> li {
 			> a {
-				height: 0;
-				visibility: hidden;
 				background-color: $mobile_sub_menu_link_bg_color;
 				color: $mobile_sub_menu_link_color;
+				font-size: 14px;
+				font-weight: 700;
+				letter-spacing: 1px;
+				text-transform: uppercase;
 				display: block;
-				padding: 0 $mobile_sub_menu_link_padding_x;
+				padding: $mobile_sub_menu_link_padding_y $mobile_sub_menu_link_padding_x $mobile_sub_menu_link_padding_y ($mobile_sub_menu_link_padding_x + 15px);
 				text-decoration: none;
 				&:hover, &:focus {
 					background: $mobile_sub_menu_link_hover_bg_color;

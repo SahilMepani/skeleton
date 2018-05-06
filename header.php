@@ -20,7 +20,7 @@
 <body id="site-wrapper" <?php body_class(); ?>>
 
 <header id="header" class="clearfix">
-	<div class="container-fluid">
+	<div class="container-fluid px-5vw">
 
 		<h3 class="header__logo">
 			<a href="<?php echo esc_url( home_url() ); ?>" title="<?php esc_attr_e( get_bloginfo( 'name' ) ); ?>">

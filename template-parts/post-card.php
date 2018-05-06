@@ -1,4 +1,4 @@
-<li id="post-<?php the_ID(); ?>" <?php post_class('type-post--blog clearfix'); ?>>
+<li id="post-<?php the_ID(); ?>" <?php post_class('type-post--blog clearfix wow fadeInUp'); ?>>
 
 	<?php if ( has_post_thumbnail() ) { ?>
 		<aside class="img-block">

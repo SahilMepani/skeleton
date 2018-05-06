@@ -198,6 +198,9 @@ $( '.header__menu__parent-menu > li.menu-item-has-children > a span' ).on( 'clic
 	e.preventDefault();
 	$( this ).parent( 'a' ).siblings( '.sub-menu' ).toggleClass( 'js-active' );
 } );;
+Visibility.onVisible( function() {
+	var wow = new WOW().init();
+} );;
 } ); // Document Ready
 
 

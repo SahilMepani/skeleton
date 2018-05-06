@@ -119,28 +119,6 @@ jQuery( document ).ready( function( $ ) {
 	} );
 
 
-	/*===================================
-	=            Header Menu            =
-	===================================*/
-	$( '.header-menu-toggle' ).click( function( e ) {
-		$( this ).toggleClass( 'js-active' );
-		$( '#header-menu' ).toggleClass( 'js-active' );
-		e.preventDefault();
-	} );
-
-	$( '.header-menu-close' ).click( function( e ) {
-		$( '.header-menu-toggle' ).toggleClass( 'js-active' );
-		$( '#header-menu' ).toggleClass( 'js-active' );
-		e.preventDefault();
-	} );
-
-	/* Add dropdown arrow for mobile parent menu */
-	$( '.parent-menu > li.menu-item-has-children > a' ).append( '<span></span>' );
-	$( '.parent-menu > li.menu-item-has-children > a span' ).on( 'click', function( e ) {
-		e.preventDefault();
-		$( this ).parent( 'a' ).siblings( '.sub-menu' ).toggleClass( 'js-active' );
-	} );
-
 
 	/*=====================================
 	=            Scroll to top            =
@@ -174,12 +152,6 @@ jQuery( document ).ready( function( $ ) {
 	} );
 
 
-	/*=====================================
-	=            WOW Init                 =
-	=====================================*/
-	Visibility.onVisible( function() {
-		var wow = new WOW().init();
-	} );
 
 
 	/*=======================================
@@ -189,12 +161,3 @@ jQuery( document ).ready( function( $ ) {
 
 } ); // Document Ready
 
-
-/*=================================
-=            Buggyfill            =
-=================================*/
-/* Polyfill for vh,vw units on iphone4,5 */
-window.viewportUnitsBuggyfill.init( {
-	refreshDebounceWait: 50,
-	hacks: window.viewportUnitsBuggyfillHacks
-} );

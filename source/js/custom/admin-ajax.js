@@ -7,7 +7,7 @@ var formSearchPost = $( '#ajax-search-post' );
 btnMorePost.on( 'click', function( e ) {
 	e.preventDefault();
 
-	$( this ).addClass( 'js-disabled' );
+	$( this ).addClass( 'btn-disabled' );
 	$( '.loading-dots' ).addClass( 'js-active' );
 
 	filter_post( $( this ), 'filter_more' );
@@ -157,9 +157,9 @@ function filter_post( $this, trigger ) {
 				// console.log( $data.length );
 
 				if ( $data.length < 6 ) {
-					btnMorePost.addClass( 'js-disabled' );
+					btnMorePost.addClass( 'btn-disabled' );
 				} else {
-					btnMorePost.removeClass( 'js-disabled' );
+					btnMorePost.removeClass( 'btn-disabled' );
 				}
 
 			}  else {

@@ -71,10 +71,11 @@ function tse_build_taxonomies() {
 		'tax-one', // taxonomy name
 		array( 'project' ), // post type
 		array(
-			'labels'       => $tax_one_labels,
-			'public'       => true,
-			'show_ui'      => true,
-			'hierarchical' => true,
+			'labels'            => $tax_one_labels,
+			'public'            => true,
+			'show_ui'           => true,
+			'hierarchical'      => true,
+			'show_admin_column' => true
 			//'rewrite'    => array( 'slug' => 'custom_post_type', 'with_front' => false ) //this will enable the url to be custom_post_type/term instead of taxonomy/term
 		)
 	);
@@ -102,10 +103,11 @@ function tse_build_taxonomies() {
 		'tax-two', // taxonomy name
 		array( 'project' ), // post type
 		array(
-			'labels'       => $tax_two_labels,
-			'public'       => true,
-			'show_ui'      => true,
-			'hierarchical' => true,
+			'labels'            => $tax_two_labels,
+			'public'            => true,
+			'show_ui'           => true,
+			'hierarchical'      => true,
+			'show_admin_column' => true
 			//'rewrite'    => array( 'slug' => 'custom_post_type', 'with_front' => false ) //this will enable the url to be custom_post_type/term instead of taxonomy/term
 		)
 	);

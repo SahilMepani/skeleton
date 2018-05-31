@@ -59,6 +59,16 @@ FINALIZE
  ☐ Add .htaccess code for speed optimization
  ☐ REMOVE sftp-config.json file
 
+RESPONSIVE:
+ ☐ IE 11
+ ☐ IE 11+
+ ☐ Chrome
+ ☐ Safari
+ ☐ Firefox
+ ☐ iOS - Mobile, iPad
+ ☐ Android - Mobile
+ ☐ Mac
+
  ☐ Remove all the theme files from server and upload it the newest copy. This is because after all the checklist most of the files are deleted from local copy but not from server.
 
  - Add iThemes Security Plugin

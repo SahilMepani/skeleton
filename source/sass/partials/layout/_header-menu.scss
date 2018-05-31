@@ -1,4 +1,4 @@
-.header__menu {
+.header__nav {
 	ul {
 		@include list-unstyled;
 	}
@@ -15,7 +15,7 @@
 	}
 }
 
-.header__menu-toggle {
+.header__nav-toggle {
 	@include breakpoint( $md_max ) {
 		background: red;
 		color: #fff;
@@ -40,7 +40,7 @@
 	}
 }
 
-.header__menu-close {
+.header__nav-close {
 	@include breakpoint( $md_max ) {
 	  background: none;
 		text-decoration: none;
@@ -78,7 +78,7 @@ $mobile_parent_menu_link_hover_bg_color: rgba(0,0,0,.1);
 $mobile_parent_menu_link_hover_color: #000;
 $mobile_parent_menu_item_padding_y: 13px;
 $mobile_parent_menu_item_padding_x: 20px;
-$mobile_parent_menu_current_item_link_bg_color: $red;
+$mobile_parent_menu_current_item_link_bg_color: $brand_color_primary;
 $mobile_parent_menu_current_item_link_color: #fff;
 $mobile_parent_menu_dropdown_bg_color: #fff;
 $mobile_parent_menu_dropdown_icon_color: #000;
@@ -94,7 +94,7 @@ $mobile_sub_menu_link_hover_color: #000;
 $mobile_sub_menu_link_padding_y: 13px;
 $mobile_sub_menu_link_padding_x: $mobile_parent_menu_item_padding_x; //usually this is same as parent menu
 
-.header__menu {
+.header__nav {
 	@include breakpoint( $md_max ) {
 		background-color: $mobile_sidebar_bg_color;
 		width: 100%;
@@ -121,7 +121,7 @@ $mobile_sub_menu_link_padding_x: $mobile_parent_menu_item_padding_x; //usually t
 	}
 }
 
-.header__menu__parent-menu {
+.header__nav__parent-menu {
 	@include breakpoint( $md_max ) {
 	  > li {
 			border-bottom: $mobile_parent_menu_item_border_bottom;
@@ -187,7 +187,7 @@ $mobile_sub_menu_link_padding_x: $mobile_parent_menu_item_padding_x; //usually t
 	}
 }
 
-.header__menu .sub-menu {
+.header__nav .sub-menu {
 	@include breakpoint( $md_max ) {
 	  background: $mobile_sub_menu_bg_color;
 	  height: 0;
@@ -226,7 +226,7 @@ $desktop_parent_menu_link_hover_bg_color: #ddd;
 $desktop_parent_menu_link_hover_color: #000;
 $desktop_parent_menu_item_padding_y: 15px;
 $desktop_parent_menu_item_padding_x: 20px;
-$desktop_parent_menu_current_item_link_bg_color: $red;
+$desktop_parent_menu_current_item_link_bg_color: $brand_color_primary;
 $desktop_parent_menu_current_item_link_color: #fff;
 $desktop_parent_menu_dropdown_icon_color: #999;
 $desktop_parent_menu_dropdown_icon_border: 5px;
@@ -244,7 +244,7 @@ $desktop_sub_menu_link_padding_y: 8px;
 $desktop_sub_menu_link_padding_x: $desktop_parent_menu_item_padding_x; //usually this is same as parent menu
 $desktop_sub_menu_link_height: 36px; //req for animation, manually calculate usually font height(not size) + padding-top and bottom.
 
-.header__menu__parent-menu {
+.header__nav__parent-menu {
 	@include breakpoint( $lg ) {
 	  > li {
 			float: left;
@@ -302,7 +302,7 @@ $desktop_sub_menu_link_height: 36px; //req for animation, manually calculate usu
 	}
 }
 
-.header__menu .sub-menu {
+.header__nav .sub-menu {
 	@include breakpoint( $lg ) {
 	  width: $desktop_sub_menu_width;
 		position: absolute;

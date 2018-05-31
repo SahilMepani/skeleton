@@ -8,6 +8,7 @@
 	display: inline-block;
 	border: none;
 	padding: 0;
+	cursor: pointer;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -27,15 +28,6 @@
 	// }
 }
 
-@mixin btn-red {
-	background: $red;
-	color: #fff;
-	&:hover, &:focus, &:active {
-		background: darken($red,7%);
-		color: #fff;
-	}
-}
-
 @mixin btn-black {
 	background: $black;
 	color: #fff;
@@ -46,7 +38,12 @@
 }
 
 @mixin btn-primary {
-	@include btn-red;
+	background: $brand_color_primary;
+	color: #fff;
+	&:hover, &:focus, &:active {
+		background: darken($brand_color_primary,7%);
+		color: #fff;
+	}
 }
 
 @mixin btn-secondary {
@@ -87,7 +84,8 @@
 	}
 }
 
-@mixin btn-block {
-	display: block;
-	width: 100%;
+@mixin btn-disabled {
+	cursor: default;
+  pointer-events: none;
+  opacity: .3;
 }

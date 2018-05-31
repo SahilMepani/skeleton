@@ -107,7 +107,7 @@
 
       <div class="clear">
       	<h4 id="alert-no-data" class="hide">Sorry, there are no available post matching your filters.</h4>
-        <button id="ajax-more-post" data-cpt="post" data-cpt-tax="category" class="<?php echo ($post_count < 6) ? 'js-disabled' : ''; ?> btn btn-primary btn-more-post btn-md">Load More</button>
+        <button id="ajax-more-post" data-cpt="post" data-cpt-tax="category" class="<?php echo ($post_count < 6) ? 'btn-disabled' : ''; ?> btn btn-primary btn-more-post btn-md">Load More</button>
       </div>
     </div> <!-- .text-center -->
 

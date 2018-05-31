@@ -1,4 +1,5 @@
 jQuery( document ).ready( function( $ ) {;
+;
 var btnMorePost = $( '#ajax-more-post' );
 var formSearchPost = $( '#ajax-search-post' );
 
@@ -8,7 +9,7 @@ var formSearchPost = $( '#ajax-search-post' );
 btnMorePost.on( 'click', function( e ) {
 	e.preventDefault();
 
-	$( this ).addClass( 'js-disabled' );
+	$( this ).addClass( 'btn-disabled' );
 	$( '.loading-dots' ).addClass( 'js-active' );
 
 	filter_post( $( this ), 'filter_more' );
@@ -158,9 +159,9 @@ function filter_post( $this, trigger ) {
 				// console.log( $data.length );
 
 				if ( $data.length < 6 ) {
-					btnMorePost.addClass( 'js-disabled' );
+					btnMorePost.addClass( 'btn-disabled' );
 				} else {
-					btnMorePost.removeClass( 'js-disabled' );
+					btnMorePost.removeClass( 'btn-disabled' );
 				}
 
 			}  else {
@@ -198,6 +199,224 @@ $( '.header__menu__parent-menu > li.menu-item-has-children > a span' ).on( 'clic
 	e.preventDefault();
 	$( this ).parent( 'a' ).siblings( '.sub-menu' ).toggleClass( 'js-active' );
 } );;
+$(".js-socials-share").jsSocials({
+	shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest"],
+	showLabel: true,
+	showCount: false,
+	shareIn: "popup"
+});;
+/*==============================================
+=            Magnific Popup - Basic            =
+==============================================*/
+// $( '.popup-link' ).magnificPopup( {
+// 	mainClass: 'mfp-fade'
+// } );
+
+
+/*=======================================================
+=            Open gallery from external link            =
+=======================================================*/
+// $( '.view-gallery' ).on( 'click', function() {
+// 	$( '.gallery' ).magnificPopup( 'open' );
+// 	// $(this).next().magnificPopup('open');
+// } );
+
+
+/*================================================
+=            Magnific Popup - Gallery            =
+================================================*/
+// $( '.gallery-grid' ).magnificPopup( {
+// 	delegate: 'a', // child items selector, by clicking on it popup will open
+// 	type: 'image',
+// 	gallery: {
+// 		enabled: true,
+// 		preload: [ 0, 1 ]
+// 	},
+// 	mainClass: 'mfp-zoom-in mfp-fade', // add class for animation
+// 	removalDelay: 300, // delay removal by X to allow out-animation
+// 	titleSrc: 'title', // custom function will nest inside image: {}
+// 	callbacks: {
+// 		imageLoadComplete: function() {
+// 			var self = this;
+// 			setTimeout( function() {
+// 				self.wrap.addClass( 'mfp-image-loaded' );
+// 			}, 16 );
+// 		},
+// 		close: function() {
+// 			this.wrap.removeClass( 'mfp-image-loaded' );
+// 		}
+// 	}
+// } );
+
+
+/*==============================================
+=            Magnific Popup - Video            =
+==============================================*/
+// $( '.popup-video' ).magnificPopup( {
+// 	type: 'iframe',
+// 	removalDelay: 300,
+// 	mainClass: 'mfp-fade',
+// 	fixedContentPos: false // disable scrollbar
+// } );
+
+
+/*====================================================
+=            Magnific Popup - Members Bio            =
+====================================================*/
+// all the popup should have a same class
+/*$( '.list-members' ).magnificPopup( {
+	delegate: 'a',
+	mainClass: 'mfp-move-from-top',
+	removalDelay: 500, // delay removal by X to allow out-animation
+	midClick: true,
+	gallery: {
+		enabled: true
+	}
+} );*/
+
+
+/*====================================================
+=            Open a popup after 2 seconds            =
+====================================================*/
+// setTimeout( function() {
+// 	$.magnificPopup.open( {
+// 		items: {
+// 			src: '#subscribe-modal'
+// 		},
+// 		removalDelay: 300,
+// 		mainClass: 'mfp-fade',
+// 	} );
+// }, 2000 );
+
+
+/*====================================
+=            Custom Title            =
+====================================*/
+// $( '.list-members' ).magnificPopup( {
+// 	image: {
+// 		titleSrc: function( item ) {
+// 			return item.el.attr( 'title' ) + ' - <a href="' + item.el.parents( 'li' ).find( '.download-link' ).attr( 'href' ) + '">Download</a>';
+// 		}
+// 	}
+// } );
+
+
+/*=======================================================================
+=            Next/Previous Arrows for gallery inside content            =
+=======================================================================*/
+// $( '.element' ).magnificPopup( {
+// 	callbacks: {
+// 		buildControls: function() {
+// 			// re-appends controls inside the main container
+// 			this.content.append( this.arrowLeft.add( this.arrowRight ) ); //content is predefined property. Check API
+// 		}
+// 	}
+// } )
+
+
+/*==============================================================================================
+=            Open on load and custom close with cookie set - REQUIRES cookie plugin            =
+==============================================================================================*/
+// if ( $( 'body' ).hasClass( 'page-template-literature' ) ) {
+// 	if ( Cookies.get( '2022' ) != '1' ) {
+// 		$.magnificPopup.open( {
+// 			items: {
+// 				src: '#terms-modal'
+// 			},
+// 			removalDelay: 300,
+// 			mainClass: 'mfp-fade terms-modal',
+// 			closeOnBgClick: false,
+// 			showCloseBtn: false,
+// 			enableEscapeKey: false
+// 		} );
+
+// 		$( '.terms-modal .btn-accept' ).click( function( e ) {
+// 			$.magnificPopup.close();
+// 			Cookies.set( '2022', '1', {
+// 				expires: 1
+// 			} );
+// 		} );
+// 	}
+// };
+/*===================================
+=            Simple Tabs            =
+===================================*/
+// $( '.list-tabs-trigger > li' ).click( function( e ) {
+// 	$( '.list-tabs-trigger > li' ).removeClass( 'js-active' );
+// 	$( this ).addClass( 'js-active' );
+// 	var index = $( this ).index();
+// 	$( '.list-tabs-content > li' ).removeClass( 'js-active' );
+// 	$( '.list-tabs-content > li' ).eq( index ).addClass( 'js-active' );
+// } );
+
+
+/*===================================================
+=            Simple Equal Height Columns            =
+===================================================*/
+// var equalHeight = debounce( function() {
+// 	if ( $( this ).width() > 991 ) {
+
+// 		var arColHeight = [];
+// 		// store each height in array
+// 		$( '.list-purchase-books li' ).each( function() {
+// 			arColHeight.push( $( this ).find( '.desc-block' ).outerHeight() );
+// 		} );
+// 		// set height
+// 		$( '.list-purchase-books .desc-block' ).height( Math.max.apply( Math, arColHeight ) );
+
+// 	} else {
+
+// 		$( '.list-purchase-books .desc-block' ).css('height','auto');
+
+// 	}
+// }, 200 );
+
+// // run on page load
+// equalHeight();
+// // run on resize
+// window.addEventListener( 'resize', equalHeight );
+;
+/*=============================================
+=            General scroll to any            =
+=============================================*/
+$('.scroll-to').click(function(e) {
+  e.preventDefault();
+  $('html,body').animate({
+    scrollTop: $(this.hash).offset().top
+  }, 500 );
+});
+
+/*=====================================
+=            Scroll to top            =
+=====================================*/
+var scrollToTop = debounce( function() {
+	// if width is greater
+	if ( $( this ).width() > 767 ) {
+		// if scrollTop offset is greater
+		if ( $( this ).scrollTop() > 200 ) {
+			$( '.scroll-to-top' ).fadeIn( 200 );
+		} else {
+			$( '.scroll-to-top' ).fadeOut( 200 );
+		}
+	}
+}, 200 );
+
+// run on page load
+scrollToTop();
+
+// run on scroll
+window.addEventListener( 'scroll', scrollToTop );;
+// function stickyEl() {
+//   if ( window.innerWidth > 767 ) {
+//     $( "#sticky-nav-bar" ).sticky({
+//     	topSpacing: 0
+//     });
+//   } else {
+//     $("#sticky-nav-bar").unstick();
+//   }
+// }
+// stickyEl();
+// window.addEventListener( 'resize', stickyEl() );;
 Visibility.onVisible( function() {
 	var wow = new WOW().init();
 } );;

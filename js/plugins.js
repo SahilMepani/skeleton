@@ -1,3 +1,1548 @@
+/*!
+ * Datepicker v0.6.5
+ * https://github.com/fengyuanchen/datepicker
+ *
+ * Copyright (c) 2014-2018 Chen Fengyuan
+ * Released under the MIT license
+ *
+ * Date: 2018-03-31T06:17:11.587Z
+ */
+
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('jquery')) :
+  typeof define === 'function' && define.amd ? define(['jquery'], factory) :
+  (factory(global.jQuery));
+}(this, (function ($) { 'use strict';
+
+  $ = $ && $.hasOwnProperty('default') ? $['default'] : $;
+
+  var DEFAULTS = {
+    // Show the datepicker automatically when initialized
+    autoShow: false,
+
+    // Hide the datepicker automatically when picked
+    autoHide: false,
+
+    // Pick the initial date automatically when initialized
+    autoPick: false,
+
+    // Enable inline mode
+    inline: false,
+
+    // A element (or selector) for putting the datepicker
+    container: null,
+
+    // A element (or selector) for triggering the datepicker
+    trigger: null,
+
+    // The ISO language code (built-in: en-US)
+    language: '',
+
+    // The date string format
+    format: 'mm/dd/yyyy',
+
+    // The initial date
+    date: null,
+
+    // The start view date
+    startDate: null,
+
+    // The end view date
+    endDate: null,
+
+    // The start view when initialized
+    startView: 0, // 0 for days, 1 for months, 2 for years
+
+    // The start day of the week
+    // 0 for Sunday, 1 for Monday, 2 for Tuesday, 3 for Wednesday,
+    // 4 for Thursday, 5 for Friday, 6 for Saturday
+    weekStart: 0,
+
+    // Show year before month on the datepicker header
+    yearFirst: false,
+
+    // A string suffix to the year number.
+    yearSuffix: '',
+
+    // Days' name of the week.
+    days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+
+    // Shorter days' name
+    daysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+
+    // Shortest days' name
+    daysMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+
+    // Months' name
+    months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+
+    // Shorter months' name
+    monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+
+    // A element tag for each item of years, months and days
+    itemTag: 'li',
+
+    // A class (CSS) for muted date item
+    mutedClass: 'muted',
+
+    // A class (CSS) for picked date item
+    pickedClass: 'picked',
+
+    // A class (CSS) for disabled date item
+    disabledClass: 'disabled',
+
+    // A class (CSS) for highlight date item
+    highlightedClass: 'highlighted',
+
+    // The template of the datepicker
+    template: '<div class="datepicker-container">' + '<div class="datepicker-panel" data-view="years picker">' + '<ul>' + '<li data-view="years prev">&lsaquo;</li>' + '<li data-view="years current"></li>' + '<li data-view="years next">&rsaquo;</li>' + '</ul>' + '<ul data-view="years"></ul>' + '</div>' + '<div class="datepicker-panel" data-view="months picker">' + '<ul>' + '<li data-view="year prev">&lsaquo;</li>' + '<li data-view="year current"></li>' + '<li data-view="year next">&rsaquo;</li>' + '</ul>' + '<ul data-view="months"></ul>' + '</div>' + '<div class="datepicker-panel" data-view="days picker">' + '<ul>' + '<li data-view="month prev">&lsaquo;</li>' + '<li data-view="month current"></li>' + '<li data-view="month next">&rsaquo;</li>' + '</ul>' + '<ul data-view="week"></ul>' + '<ul data-view="days"></ul>' + '</div>' + '</div>',
+
+    // The offset top or bottom of the datepicker from the element
+    offset: 10,
+
+    // The `z-index` of the datepicker
+    zIndex: 1000,
+
+    // Filter each date item (return `false` to disable a date item)
+    filter: null,
+
+    // Event shortcuts
+    show: null,
+    hide: null,
+    pick: null
+  };
+
+  var WINDOW = typeof window !== 'undefined' ? window : {};
+  var NAMESPACE = 'datepicker';
+  var EVENT_CLICK = 'click.' + NAMESPACE;
+  var EVENT_FOCUS = 'focus.' + NAMESPACE;
+  var EVENT_HIDE = 'hide.' + NAMESPACE;
+  var EVENT_KEYUP = 'keyup.' + NAMESPACE;
+  var EVENT_PICK = 'pick.' + NAMESPACE;
+  var EVENT_RESIZE = 'resize.' + NAMESPACE;
+  var EVENT_SHOW = 'show.' + NAMESPACE;
+  var CLASS_HIDE = NAMESPACE + '-hide';
+  var LANGUAGES = {};
+  var VIEWS = {
+    DAYS: 0,
+    MONTHS: 1,
+    YEARS: 2
+  };
+
+  var toString = Object.prototype.toString;
+
+
+  function typeOf(obj) {
+    return toString.call(obj).slice(8, -1).toLowerCase();
+  }
+
+  function isString(value) {
+    return typeof value === 'string';
+  }
+
+  var isNaN = Number.isNaN || WINDOW.isNaN;
+
+  function isNumber(value) {
+    return typeof value === 'number' && !isNaN(value);
+  }
+
+  function isUndefined(value) {
+    return typeof value === 'undefined';
+  }
+
+  function isDate(value) {
+    return typeOf(value) === 'date';
+  }
+
+  function proxy(fn, context) {
+    for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+      args[_key - 2] = arguments[_key];
+    }
+
+    return function () {
+      for (var _len2 = arguments.length, args2 = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args2[_key2] = arguments[_key2];
+      }
+
+      return fn.apply(context, args.concat(args2));
+    };
+  }
+
+  function selectorOf(view) {
+    return '[data-view="' + view + '"]';
+  }
+
+  function isLeapYear(year) {
+    return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
+  }
+
+  function getDaysInMonth(year, month) {
+    return [31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
+  }
+
+  function getMinDay(year, month, day) {
+    return Math.min(day, getDaysInMonth(year, month));
+  }
+
+  var formatParts = /(y|m|d)+/g;
+
+  function parseFormat(format) {
+    var source = String(format).toLowerCase();
+    var parts = source.match(formatParts);
+
+    if (!parts || parts.length === 0) {
+      throw new Error('Invalid date format.');
+    }
+
+    format = {
+      source: source,
+      parts: parts
+    };
+
+    $.each(parts, function (i, part) {
+      switch (part) {
+        case 'dd':
+        case 'd':
+          format.hasDay = true;
+          break;
+
+        case 'mm':
+        case 'm':
+          format.hasMonth = true;
+          break;
+
+        case 'yyyy':
+        case 'yy':
+          format.hasYear = true;
+          break;
+
+        default:
+      }
+    });
+
+    return format;
+  }
+
+  var REGEXP_DIGITS = /\d+/g;
+
+  var methods = {
+    // Show the datepicker
+    show: function show() {
+      if (!this.built) {
+        this.build();
+      }
+
+      if (this.shown) {
+        return;
+      }
+
+      if (this.trigger(EVENT_SHOW).isDefaultPrevented()) {
+        return;
+      }
+
+      this.shown = true;
+      this.$picker.removeClass(CLASS_HIDE).on(EVENT_CLICK, $.proxy(this.click, this));
+      this.showView(this.options.startView);
+
+      if (!this.inline) {
+        $(window).on(EVENT_RESIZE, this.onResize = proxy(this.place, this));
+        $(document).on(EVENT_CLICK, this.onGlobalClick = proxy(this.globalClick, this));
+        $(document).on(EVENT_KEYUP, this.onGlobalKeyup = proxy(this.globalKeyup, this));
+        this.place();
+      }
+    },
+
+
+    // Hide the datepicker
+    hide: function hide() {
+      if (!this.shown) {
+        return;
+      }
+
+      if (this.trigger(EVENT_HIDE).isDefaultPrevented()) {
+        return;
+      }
+
+      this.shown = false;
+      this.$picker.addClass(CLASS_HIDE).off(EVENT_CLICK, this.click);
+
+      if (!this.inline) {
+        $(window).off(EVENT_RESIZE, this.onResize);
+        $(document).off(EVENT_CLICK, this.onGlobalClick);
+        $(document).off(EVENT_KEYUP, this.onGlobalKeyup);
+      }
+    },
+    toggle: function toggle() {
+      if (this.shown) {
+        this.hide();
+      } else {
+        this.show();
+      }
+    },
+
+
+    // Update the datepicker with the current input value
+    update: function update() {
+      var value = this.getValue();
+
+      if (value === this.oldValue) {
+        return;
+      }
+
+      this.setDate(value, true);
+      this.oldValue = value;
+    },
+
+
+    /**
+     * Pick the current date to the element
+     *
+     * @param {String} _view (private)
+     */
+    pick: function pick(_view) {
+      var $this = this.$element;
+      var date = this.date;
+
+
+      if (this.trigger(EVENT_PICK, {
+        view: _view || '',
+        date: date
+      }).isDefaultPrevented()) {
+        return;
+      }
+
+      date = this.formatDate(this.date);
+      this.setValue(date);
+
+      if (this.isInput) {
+        $this.trigger('input');
+        $this.trigger('change');
+      }
+    },
+
+
+    // Reset the datepicker
+    reset: function reset() {
+      this.setDate(this.initialDate, true);
+      this.setValue(this.initialValue);
+
+      if (this.shown) {
+        this.showView(this.options.startView);
+      }
+    },
+
+
+    /**
+     * Get the month name with given argument or the current date
+     *
+     * @param {Number} month (optional)
+     * @param {Boolean} short (optional)
+     * @return {String} (month name)
+     */
+    getMonthName: function getMonthName(month, short) {
+      var options = this.options;
+      var monthsShort = options.monthsShort;
+      var months = options.months;
+
+
+      if ($.isNumeric(month)) {
+        month = Number(month);
+      } else if (isUndefined(short)) {
+        short = month;
+      }
+
+      if (short === true) {
+        months = monthsShort;
+      }
+
+      return months[isNumber(month) ? month : this.date.getMonth()];
+    },
+
+
+    /**
+     * Get the day name with given argument or the current date
+     *
+     * @param {Number} day (optional)
+     * @param {Boolean} short (optional)
+     * @param {Boolean} min (optional)
+     * @return {String} (day name)
+     */
+    getDayName: function getDayName(day, short, min) {
+      var options = this.options;
+      var days = options.days;
+
+
+      if ($.isNumeric(day)) {
+        day = Number(day);
+      } else {
+        if (isUndefined(min)) {
+          min = short;
+        }
+
+        if (isUndefined(short)) {
+          short = day;
+        }
+      }
+
+      if (min) {
+        days = options.daysMin;
+      } else if (short) {
+        days = options.daysShort;
+      }
+
+      return days[isNumber(day) ? day : this.date.getDay()];
+    },
+
+
+    /**
+     * Get the current date
+     *
+     * @param {Boolean} formatted (optional)
+     * @return {Date|String} (date)
+     */
+    getDate: function getDate(formatted) {
+      var date = this.date;
+
+
+      return formatted ? this.formatDate(date) : new Date(date);
+    },
+
+
+    /**
+     * Set the current date with a new date
+     *
+     * @param {Date} date
+     * @param {Boolean} _updated (private)
+     */
+    setDate: function setDate(date, _updated) {
+      var filter = this.options.filter;
+
+
+      if (isDate(date) || isString(date)) {
+        date = this.parseDate(date);
+
+        if ($.isFunction(filter) && filter.call(this.$element, date) === false) {
+          return;
+        }
+
+        this.date = date;
+        this.viewDate = new Date(date);
+
+        if (!_updated) {
+          this.pick();
+        }
+
+        if (this.built) {
+          this.render();
+        }
+      }
+    },
+
+
+    /**
+     * Set the start view date with a new date
+     *
+     * @param {Date} date
+     */
+    setStartDate: function setStartDate(date) {
+      if (isDate(date) || isString(date)) {
+        this.startDate = this.parseDate(date);
+
+        if (this.built) {
+          this.render();
+        }
+      }
+    },
+
+
+    /**
+     * Set the end view date with a new date
+     *
+     * @param {Date} date
+     */
+    setEndDate: function setEndDate(date) {
+      if (isDate(date) || isString(date)) {
+        this.endDate = this.parseDate(date);
+
+        if (this.built) {
+          this.render();
+        }
+      }
+    },
+
+
+    /**
+     * Parse a date string with the set date format
+     *
+     * @param {String} date
+     * @return {Date} (parsed date)
+     */
+    parseDate: function parseDate(date) {
+      var format = this.format;
+
+      var parts = [];
+
+      if (isDate(date)) {
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      } else if (isString(date)) {
+        parts = date.match(REGEXP_DIGITS) || [];
+      }
+
+      date = new Date();
+
+      var length = format.parts.length;
+
+      var year = date.getFullYear();
+      var day = date.getDate();
+      var month = date.getMonth();
+
+      if (parts.length === length) {
+        $.each(parts, function (i, part) {
+          var value = parseInt(part, 10) || 1;
+
+          switch (format.parts[i]) {
+            case 'dd':
+            case 'd':
+              day = value;
+              break;
+
+            case 'mm':
+            case 'm':
+              month = value - 1;
+              break;
+
+            case 'yy':
+              year = 2000 + value;
+              break;
+
+            case 'yyyy':
+              year = value;
+              break;
+
+            default:
+          }
+        });
+      }
+
+      return new Date(year, month, day);
+    },
+
+
+    /**
+     * Format a date object to a string with the set date format
+     *
+     * @param {Date} date
+     * @return {String} (formatted date)
+     */
+    formatDate: function formatDate(date) {
+      var format = this.format;
+
+      var formatted = '';
+
+      if (isDate(date)) {
+        var year = date.getFullYear();
+        var values = {
+          d: date.getDate(),
+          m: date.getMonth() + 1,
+          yy: year.toString().substring(2),
+          yyyy: year
+        };
+
+        values.dd = (values.d < 10 ? '0' : '') + values.d;
+        values.mm = (values.m < 10 ? '0' : '') + values.m;
+        formatted = format.source;
+        $.each(format.parts, function (i, part) {
+          formatted = formatted.replace(part, values[part]);
+        });
+      }
+
+      return formatted;
+    },
+
+
+    // Destroy the datepicker and remove the instance from the target element
+    destroy: function destroy() {
+      this.unbind();
+      this.unbuild();
+      this.$element.removeData(NAMESPACE);
+    }
+  };
+
+  var handlers = {
+    click: function click(e) {
+      var $target = $(e.target);
+      var options = this.options,
+          viewDate = this.viewDate,
+          format = this.format;
+
+
+      e.stopPropagation();
+      e.preventDefault();
+
+      if ($target.hasClass('disabled')) {
+        return;
+      }
+
+      var view = $target.data('view');
+      var viewYear = viewDate.getFullYear();
+      var viewMonth = viewDate.getMonth();
+      var viewDay = viewDate.getDate();
+
+      switch (view) {
+        case 'years prev':
+        case 'years next':
+          {
+            viewYear = view === 'years prev' ? viewYear - 10 : viewYear + 10;
+            this.viewDate = new Date(viewYear, viewMonth, getMinDay(viewYear, viewMonth, viewDay));
+            this.renderYears();
+            break;
+          }
+
+        case 'year prev':
+        case 'year next':
+          viewYear = view === 'year prev' ? viewYear - 1 : viewYear + 1;
+          this.viewDate = new Date(viewYear, viewMonth, getMinDay(viewYear, viewMonth, viewDay));
+          this.renderMonths();
+          break;
+
+        case 'year current':
+          if (format.hasYear) {
+            this.showView(VIEWS.YEARS);
+          }
+
+          break;
+
+        case 'year picked':
+          if (format.hasMonth) {
+            this.showView(VIEWS.MONTHS);
+          } else {
+            $target.addClass(options.pickedClass).siblings().removeClass(options.pickedClass);
+            this.hideView();
+          }
+
+          this.pick('year');
+          break;
+
+        case 'year':
+          viewYear = parseInt($target.text(), 10);
+          this.date = new Date(viewYear, viewMonth, getMinDay(viewYear, viewMonth, viewDay));
+
+          if (format.hasMonth) {
+            this.viewDate = new Date(this.date);
+            this.showView(VIEWS.MONTHS);
+          } else {
+            $target.addClass(options.pickedClass).siblings().removeClass(options.pickedClass);
+            this.hideView();
+          }
+
+          this.pick('year');
+          break;
+
+        case 'month prev':
+        case 'month next':
+          viewMonth = view === 'month prev' ? viewMonth - 1 : viewMonth + 1;
+
+          if (viewMonth < 0) {
+            viewYear -= 1;
+            viewMonth += 12;
+          } else if (viewMonth > 11) {
+            viewYear += 1;
+            viewMonth -= 12;
+          }
+
+          this.viewDate = new Date(viewYear, viewMonth, getMinDay(viewYear, viewMonth, viewDay));
+          this.renderDays();
+          break;
+
+        case 'month current':
+          if (format.hasMonth) {
+            this.showView(VIEWS.MONTHS);
+          }
+
+          break;
+
+        case 'month picked':
+          if (format.hasDay) {
+            this.showView(VIEWS.DAYS);
+          } else {
+            $target.addClass(options.pickedClass).siblings().removeClass(options.pickedClass);
+            this.hideView();
+          }
+
+          this.pick('month');
+          break;
+
+        case 'month':
+          viewMonth = $.inArray($target.text(), options.monthsShort);
+          this.date = new Date(viewYear, viewMonth, getMinDay(viewYear, viewMonth, viewDay));
+
+          if (format.hasDay) {
+            this.viewDate = new Date(viewYear, viewMonth, getMinDay(viewYear, viewMonth, viewDay));
+            this.showView(VIEWS.DAYS);
+          } else {
+            $target.addClass(options.pickedClass).siblings().removeClass(options.pickedClass);
+            this.hideView();
+          }
+
+          this.pick('month');
+          break;
+
+        case 'day prev':
+        case 'day next':
+        case 'day':
+          if (view === 'day prev') {
+            viewMonth -= 1;
+          } else if (view === 'day next') {
+            viewMonth += 1;
+          }
+
+          viewDay = parseInt($target.text(), 10);
+          this.date = new Date(viewYear, viewMonth, viewDay);
+          this.viewDate = new Date(viewYear, viewMonth, viewDay);
+          this.renderDays();
+
+          if (view === 'day') {
+            this.hideView();
+          }
+
+          this.pick('day');
+          break;
+
+        case 'day picked':
+          this.hideView();
+          this.pick('day');
+          break;
+
+        default:
+      }
+    },
+    globalClick: function globalClick(_ref) {
+      var target = _ref.target;
+      var element = this.element,
+          $trigger = this.$trigger;
+
+      var trigger = $trigger[0];
+      var hidden = true;
+
+      while (target !== document) {
+        if (target === trigger || target === element) {
+          hidden = false;
+          break;
+        }
+
+        target = target.parentNode;
+      }
+
+      if (hidden) {
+        this.hide();
+      }
+    },
+    keyup: function keyup() {
+      this.update();
+    },
+    globalKeyup: function globalKeyup(_ref2) {
+      var target = _ref2.target,
+          key = _ref2.key,
+          keyCode = _ref2.keyCode;
+
+      if (this.isInput && target !== this.element && this.shown && (key === 'Tab' || keyCode === 9)) {
+        this.hide();
+      }
+    }
+  };
+
+  var render = {
+    render: function render() {
+      this.renderYears();
+      this.renderMonths();
+      this.renderDays();
+    },
+    renderWeek: function renderWeek() {
+      var _this = this;
+
+      var items = [];
+      var _options = this.options,
+          weekStart = _options.weekStart,
+          daysMin = _options.daysMin;
+
+
+      weekStart = parseInt(weekStart, 10) % 7;
+      daysMin = daysMin.slice(weekStart).concat(daysMin.slice(0, weekStart));
+      $.each(daysMin, function (i, day) {
+        items.push(_this.createItem({
+          text: day
+        }));
+      });
+
+      this.$week.html(items.join(''));
+    },
+    renderYears: function renderYears() {
+      var options = this.options,
+          startDate = this.startDate,
+          endDate = this.endDate;
+      var disabledClass = options.disabledClass,
+          filter = options.filter,
+          yearSuffix = options.yearSuffix;
+
+      var viewYear = this.viewDate.getFullYear();
+      var now = new Date();
+      var thisYear = now.getFullYear();
+      var year = this.date.getFullYear();
+      var start = -5;
+      var end = 6;
+      var items = [];
+      var prevDisabled = false;
+      var nextDisabled = false;
+      var i = void 0;
+
+      for (i = start; i <= end; i += 1) {
+        var date = new Date(viewYear + i, 1, 1);
+        var disabled = false;
+
+        if (startDate) {
+          disabled = date.getFullYear() < startDate.getFullYear();
+
+          if (i === start) {
+            prevDisabled = disabled;
+          }
+        }
+
+        if (!disabled && endDate) {
+          disabled = date.getFullYear() > endDate.getFullYear();
+
+          if (i === end) {
+            nextDisabled = disabled;
+          }
+        }
+
+        if (!disabled && filter) {
+          disabled = filter.call(this.$element, date) === false;
+        }
+
+        var picked = viewYear + i === year;
+        var view = picked ? 'year picked' : 'year';
+
+        items.push(this.createItem({
+          picked: picked,
+          disabled: disabled,
+          text: viewYear + i,
+          view: disabled ? 'year disabled' : view,
+          highlighted: date.getFullYear() === thisYear
+        }));
+      }
+
+      this.$yearsPrev.toggleClass(disabledClass, prevDisabled);
+      this.$yearsNext.toggleClass(disabledClass, nextDisabled);
+      this.$yearsCurrent.toggleClass(disabledClass, true).html(viewYear + start + yearSuffix + ' - ' + (viewYear + end) + yearSuffix);
+      this.$years.html(items.join(''));
+    },
+    renderMonths: function renderMonths() {
+      var options = this.options,
+          startDate = this.startDate,
+          endDate = this.endDate,
+          viewDate = this.viewDate;
+
+      var disabledClass = options.disabledClass || '';
+      var months = options.monthsShort;
+      var filter = $.isFunction(options.filter) && options.filter;
+      var viewYear = viewDate.getFullYear();
+      var now = new Date();
+      var thisYear = now.getFullYear();
+      var thisMonth = now.getMonth();
+      var year = this.date.getFullYear();
+      var month = this.date.getMonth();
+      var items = [];
+      var prevDisabled = false;
+      var nextDisabled = false;
+      var i = void 0;
+
+      for (i = 0; i <= 11; i += 1) {
+        var date = new Date(viewYear, i, 1);
+        var disabled = false;
+
+        if (startDate) {
+          prevDisabled = date.getFullYear() === startDate.getFullYear();
+          disabled = prevDisabled && date.getMonth() < startDate.getMonth();
+        }
+
+        if (!disabled && endDate) {
+          nextDisabled = date.getFullYear() === endDate.getFullYear();
+          disabled = nextDisabled && date.getMonth() > endDate.getMonth();
+        }
+
+        if (!disabled && filter) {
+          disabled = filter.call(this.$element, date) === false;
+        }
+
+        var picked = viewYear === year && i === month;
+        var view = picked ? 'month picked' : 'month';
+
+        items.push(this.createItem({
+          disabled: disabled,
+          picked: picked,
+          highlighted: viewYear === thisYear && date.getMonth() === thisMonth,
+          index: i,
+          text: months[i],
+          view: disabled ? 'month disabled' : view
+        }));
+      }
+
+      this.$yearPrev.toggleClass(disabledClass, prevDisabled);
+      this.$yearNext.toggleClass(disabledClass, nextDisabled);
+      this.$yearCurrent.toggleClass(disabledClass, prevDisabled && nextDisabled).html(viewYear + options.yearSuffix || '');
+      this.$months.html(items.join(''));
+    },
+    renderDays: function renderDays() {
+      var $element = this.$element,
+          options = this.options,
+          startDate = this.startDate,
+          endDate = this.endDate,
+          viewDate = this.viewDate,
+          currentDate = this.date;
+      var disabledClass = options.disabledClass,
+          filter = options.filter,
+          monthsShort = options.monthsShort,
+          weekStart = options.weekStart,
+          yearSuffix = options.yearSuffix;
+
+      var viewYear = viewDate.getFullYear();
+      var viewMonth = viewDate.getMonth();
+      var now = new Date();
+      var thisYear = now.getFullYear();
+      var thisMonth = now.getMonth();
+      var thisDay = now.getDate();
+      var year = currentDate.getFullYear();
+      var month = currentDate.getMonth();
+      var day = currentDate.getDate();
+      var length = void 0;
+      var i = void 0;
+      var n = void 0;
+
+      // Days of prev month
+      // -----------------------------------------------------------------------
+
+      var prevItems = [];
+      var prevViewYear = viewYear;
+      var prevViewMonth = viewMonth;
+      var prevDisabled = false;
+
+      if (viewMonth === 0) {
+        prevViewYear -= 1;
+        prevViewMonth = 11;
+      } else {
+        prevViewMonth -= 1;
+      }
+
+      // The length of the days of prev month
+      length = getDaysInMonth(prevViewYear, prevViewMonth);
+
+      // The first day of current month
+      var firstDay = new Date(viewYear, viewMonth, 1);
+
+      // The visible length of the days of prev month
+      // [0,1,2,3,4,5,6] - [0,1,2,3,4,5,6] => [-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6]
+      n = firstDay.getDay() - parseInt(weekStart, 10) % 7;
+
+      // [-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6] => [1,2,3,4,5,6,7]
+      if (n <= 0) {
+        n += 7;
+      }
+
+      if (startDate) {
+        prevDisabled = firstDay.getTime() <= startDate.getTime();
+      }
+
+      for (i = length - (n - 1); i <= length; i += 1) {
+        var prevViewDate = new Date(prevViewYear, prevViewMonth, i);
+        var disabled = false;
+
+        if (startDate) {
+          disabled = prevViewDate.getTime() < startDate.getTime();
+        }
+
+        if (!disabled && filter) {
+          disabled = filter.call($element, prevViewDate) === false;
+        }
+
+        prevItems.push(this.createItem({
+          disabled: disabled,
+          highlighted: prevViewYear === thisYear && prevViewMonth === thisMonth && prevViewDate.getDate() === thisDay,
+          muted: true,
+          picked: prevViewYear === year && prevViewMonth === month && i === day,
+          text: i,
+          view: 'day prev'
+        }));
+      }
+
+      // Days of next month
+      // -----------------------------------------------------------------------
+
+      var nextItems = [];
+      var nextViewYear = viewYear;
+      var nextViewMonth = viewMonth;
+      var nextDisabled = false;
+
+      if (viewMonth === 11) {
+        nextViewYear += 1;
+        nextViewMonth = 0;
+      } else {
+        nextViewMonth += 1;
+      }
+
+      // The length of the days of current month
+      length = getDaysInMonth(viewYear, viewMonth);
+
+      // The visible length of next month (42 means 6 rows and 7 columns)
+      n = 42 - (prevItems.length + length);
+
+      // The last day of current month
+      var lastDate = new Date(viewYear, viewMonth, length);
+
+      if (endDate) {
+        nextDisabled = lastDate.getTime() >= endDate.getTime();
+      }
+
+      for (i = 1; i <= n; i += 1) {
+        var date = new Date(nextViewYear, nextViewMonth, i);
+        var picked = nextViewYear === year && nextViewMonth === month && i === day;
+        var _disabled = false;
+
+        if (endDate) {
+          _disabled = date.getTime() > endDate.getTime();
+        }
+
+        if (!_disabled && filter) {
+          _disabled = filter.call($element, date) === false;
+        }
+
+        nextItems.push(this.createItem({
+          disabled: _disabled,
+          picked: picked,
+          highlighted: nextViewYear === thisYear && nextViewMonth === thisMonth && date.getDate() === thisDay,
+          muted: true,
+          text: i,
+          view: 'day next'
+        }));
+      }
+
+      // Days of current month
+      // -----------------------------------------------------------------------
+
+      var items = [];
+
+      for (i = 1; i <= length; i += 1) {
+        var _date = new Date(viewYear, viewMonth, i);
+        var _disabled2 = false;
+
+        if (startDate) {
+          _disabled2 = _date.getTime() < startDate.getTime();
+        }
+
+        if (!_disabled2 && endDate) {
+          _disabled2 = _date.getTime() > endDate.getTime();
+        }
+
+        if (!_disabled2 && filter) {
+          _disabled2 = filter.call($element, _date) === false;
+        }
+
+        var _picked = viewYear === year && viewMonth === month && i === day;
+        var view = _picked ? 'day picked' : 'day';
+
+        items.push(this.createItem({
+          disabled: _disabled2,
+          picked: _picked,
+          highlighted: viewYear === thisYear && viewMonth === thisMonth && _date.getDate() === thisDay,
+          text: i,
+          view: _disabled2 ? 'day disabled' : view
+        }));
+      }
+
+      // Render days picker
+      // -----------------------------------------------------------------------
+
+      this.$monthPrev.toggleClass(disabledClass, prevDisabled);
+      this.$monthNext.toggleClass(disabledClass, nextDisabled);
+      this.$monthCurrent.toggleClass(disabledClass, prevDisabled && nextDisabled).html(options.yearFirst ? viewYear + yearSuffix + ' ' + monthsShort[viewMonth] : monthsShort[viewMonth] + ' ' + viewYear + yearSuffix);
+      this.$days.html(prevItems.join('') + items.join('') + nextItems.join(''));
+    }
+  };
+
+  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  // Classes
+  var CLASS_TOP_LEFT = NAMESPACE + '-top-left';
+  var CLASS_TOP_RIGHT = NAMESPACE + '-top-right';
+  var CLASS_BOTTOM_LEFT = NAMESPACE + '-bottom-left';
+  var CLASS_BOTTOM_RIGHT = NAMESPACE + '-bottom-right';
+  var CLASS_PLACEMENTS = [CLASS_TOP_LEFT, CLASS_TOP_RIGHT, CLASS_BOTTOM_LEFT, CLASS_BOTTOM_RIGHT].join(' ');
+
+  var Datepicker = function () {
+    function Datepicker(element) {
+      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+      _classCallCheck(this, Datepicker);
+
+      this.$element = $(element);
+      this.element = element;
+      this.options = $.extend({}, DEFAULTS, LANGUAGES[options.language], options);
+      this.built = false;
+      this.shown = false;
+      this.isInput = false;
+      this.inline = false;
+      this.initialValue = '';
+      this.initialDate = null;
+      this.startDate = null;
+      this.endDate = null;
+      this.init();
+    }
+
+    _createClass(Datepicker, [{
+      key: 'init',
+      value: function init() {
+        var $this = this.$element,
+            options = this.options;
+        var startDate = options.startDate,
+            endDate = options.endDate,
+            date = options.date;
+
+
+        this.$trigger = $(options.trigger);
+        this.isInput = $this.is('input') || $this.is('textarea');
+        this.inline = options.inline && (options.container || !this.isInput);
+        this.format = parseFormat(options.format);
+
+        var initialValue = this.getValue();
+
+        this.initialValue = initialValue;
+        this.oldValue = initialValue;
+        date = this.parseDate(date || initialValue);
+
+        if (startDate) {
+          startDate = this.parseDate(startDate);
+
+          if (date.getTime() < startDate.getTime()) {
+            date = new Date(startDate);
+          }
+
+          this.startDate = startDate;
+        }
+
+        if (endDate) {
+          endDate = this.parseDate(endDate);
+
+          if (startDate && endDate.getTime() < startDate.getTime()) {
+            endDate = new Date(startDate);
+          }
+
+          if (date.getTime() > endDate.getTime()) {
+            date = new Date(endDate);
+          }
+
+          this.endDate = endDate;
+        }
+
+        this.date = date;
+        this.viewDate = new Date(date);
+        this.initialDate = new Date(this.date);
+        this.bind();
+
+        if (options.autoShow || this.inline) {
+          this.show();
+        }
+
+        if (options.autoPick) {
+          this.pick();
+        }
+      }
+    }, {
+      key: 'build',
+      value: function build() {
+        if (this.built) {
+          return;
+        }
+
+        this.built = true;
+
+        var $this = this.$element,
+            options = this.options;
+
+        var $picker = $(options.template);
+
+        this.$picker = $picker;
+        this.$week = $picker.find(selectorOf('week'));
+
+        // Years view
+        this.$yearsPicker = $picker.find(selectorOf('years picker'));
+        this.$yearsPrev = $picker.find(selectorOf('years prev'));
+        this.$yearsNext = $picker.find(selectorOf('years next'));
+        this.$yearsCurrent = $picker.find(selectorOf('years current'));
+        this.$years = $picker.find(selectorOf('years'));
+
+        // Months view
+        this.$monthsPicker = $picker.find(selectorOf('months picker'));
+        this.$yearPrev = $picker.find(selectorOf('year prev'));
+        this.$yearNext = $picker.find(selectorOf('year next'));
+        this.$yearCurrent = $picker.find(selectorOf('year current'));
+        this.$months = $picker.find(selectorOf('months'));
+
+        // Days view
+        this.$daysPicker = $picker.find(selectorOf('days picker'));
+        this.$monthPrev = $picker.find(selectorOf('month prev'));
+        this.$monthNext = $picker.find(selectorOf('month next'));
+        this.$monthCurrent = $picker.find(selectorOf('month current'));
+        this.$days = $picker.find(selectorOf('days'));
+
+        if (this.inline) {
+          $(options.container || $this).append($picker.addClass(NAMESPACE + '-inline'));
+        } else {
+          $(document.body).append($picker.addClass(NAMESPACE + '-dropdown'));
+          $picker.addClass(CLASS_HIDE);
+        }
+
+        this.renderWeek();
+      }
+    }, {
+      key: 'unbuild',
+      value: function unbuild() {
+        if (!this.built) {
+          return;
+        }
+
+        this.built = false;
+        this.$picker.remove();
+      }
+    }, {
+      key: 'bind',
+      value: function bind() {
+        var options = this.options,
+            $this = this.$element;
+
+
+        if ($.isFunction(options.show)) {
+          $this.on(EVENT_SHOW, options.show);
+        }
+
+        if ($.isFunction(options.hide)) {
+          $this.on(EVENT_HIDE, options.hide);
+        }
+
+        if ($.isFunction(options.pick)) {
+          $this.on(EVENT_PICK, options.pick);
+        }
+
+        if (this.isInput) {
+          $this.on(EVENT_KEYUP, $.proxy(this.keyup, this));
+        }
+
+        if (!this.inline) {
+          if (options.trigger) {
+            this.$trigger.on(EVENT_CLICK, $.proxy(this.toggle, this));
+          } else if (this.isInput) {
+            $this.on(EVENT_FOCUS, $.proxy(this.show, this));
+          } else {
+            $this.on(EVENT_CLICK, $.proxy(this.show, this));
+          }
+        }
+      }
+    }, {
+      key: 'unbind',
+      value: function unbind() {
+        var $this = this.$element,
+            options = this.options;
+
+
+        if ($.isFunction(options.show)) {
+          $this.off(EVENT_SHOW, options.show);
+        }
+
+        if ($.isFunction(options.hide)) {
+          $this.off(EVENT_HIDE, options.hide);
+        }
+
+        if ($.isFunction(options.pick)) {
+          $this.off(EVENT_PICK, options.pick);
+        }
+
+        if (this.isInput) {
+          $this.off(EVENT_KEYUP, this.keyup);
+        }
+
+        if (!this.inline) {
+          if (options.trigger) {
+            this.$trigger.off(EVENT_CLICK, this.toggle);
+          } else if (this.isInput) {
+            $this.off(EVENT_FOCUS, this.show);
+          } else {
+            $this.off(EVENT_CLICK, this.show);
+          }
+        }
+      }
+    }, {
+      key: 'showView',
+      value: function showView(view) {
+        var $yearsPicker = this.$yearsPicker,
+            $monthsPicker = this.$monthsPicker,
+            $daysPicker = this.$daysPicker,
+            format = this.format;
+
+
+        if (format.hasYear || format.hasMonth || format.hasDay) {
+          switch (Number(view)) {
+            case VIEWS.YEARS:
+              $monthsPicker.addClass(CLASS_HIDE);
+              $daysPicker.addClass(CLASS_HIDE);
+
+              if (format.hasYear) {
+                this.renderYears();
+                $yearsPicker.removeClass(CLASS_HIDE);
+                this.place();
+              } else {
+                this.showView(VIEWS.DAYS);
+              }
+
+              break;
+
+            case VIEWS.MONTHS:
+              $yearsPicker.addClass(CLASS_HIDE);
+              $daysPicker.addClass(CLASS_HIDE);
+
+              if (format.hasMonth) {
+                this.renderMonths();
+                $monthsPicker.removeClass(CLASS_HIDE);
+                this.place();
+              } else {
+                this.showView(VIEWS.YEARS);
+              }
+
+              break;
+
+            // case VIEWS.DAYS:
+            default:
+              $yearsPicker.addClass(CLASS_HIDE);
+              $monthsPicker.addClass(CLASS_HIDE);
+
+              if (format.hasDay) {
+                this.renderDays();
+                $daysPicker.removeClass(CLASS_HIDE);
+                this.place();
+              } else {
+                this.showView(VIEWS.MONTHS);
+              }
+          }
+        }
+      }
+    }, {
+      key: 'hideView',
+      value: function hideView() {
+        if (!this.inline && this.options.autoHide) {
+          this.hide();
+        }
+      }
+    }, {
+      key: 'place',
+      value: function place() {
+        if (this.inline) {
+          return;
+        }
+
+        var $this = this.$element,
+            options = this.options,
+            $picker = this.$picker;
+
+        var containerWidth = $(document).outerWidth();
+        var containerHeight = $(document).outerHeight();
+        var elementWidth = $this.outerWidth();
+        var elementHeight = $this.outerHeight();
+        var width = $picker.width();
+        var height = $picker.height();
+
+        var _$this$offset = $this.offset(),
+            left = _$this$offset.left,
+            top = _$this$offset.top;
+
+        var offset = parseFloat(options.offset);
+        var placement = CLASS_TOP_LEFT;
+
+        if (isNaN(offset)) {
+          offset = 10;
+        }
+
+        if (top > height && top + elementHeight + height > containerHeight) {
+          top -= height + offset;
+          placement = CLASS_BOTTOM_LEFT;
+        } else {
+          top += elementHeight + offset;
+        }
+
+        if (left + width > containerWidth) {
+          left += elementWidth - width;
+          placement = placement.replace('left', 'right');
+        }
+
+        $picker.removeClass(CLASS_PLACEMENTS).addClass(placement).css({
+          top: top,
+          left: left,
+          zIndex: parseInt(options.zIndex, 10)
+        });
+      }
+
+      // A shortcut for triggering custom events
+
+    }, {
+      key: 'trigger',
+      value: function trigger(type, data) {
+        var e = $.Event(type, data);
+
+        this.$element.trigger(e);
+
+        return e;
+      }
+    }, {
+      key: 'createItem',
+      value: function createItem(data) {
+        var options = this.options;
+        var itemTag = options.itemTag;
+
+        var item = {
+          text: '',
+          view: '',
+          muted: false,
+          picked: false,
+          disabled: false,
+          highlighted: false
+        };
+        var classes = [];
+
+        $.extend(item, data);
+
+        if (item.muted) {
+          classes.push(options.mutedClass);
+        }
+
+        if (item.highlighted) {
+          classes.push(options.highlightedClass);
+        }
+
+        if (item.picked) {
+          classes.push(options.pickedClass);
+        }
+
+        if (item.disabled) {
+          classes.push(options.disabledClass);
+        }
+
+        return '<' + itemTag + ' class="' + classes.join(' ') + '" data-view="' + item.view + '">' + item.text + '</' + itemTag + '>';
+      }
+    }, {
+      key: 'getValue',
+      value: function getValue() {
+        var $this = this.$element;
+
+        return this.isInput ? $this.val() : $this.text();
+      }
+    }, {
+      key: 'setValue',
+      value: function setValue() {
+        var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+        var $this = this.$element;
+
+        if (this.isInput) {
+          $this.val(value);
+        } else {
+          $this.text(value);
+        }
+      }
+    }], [{
+      key: 'setDefaults',
+      value: function setDefaults() {
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+        $.extend(DEFAULTS, LANGUAGES[options.language], options);
+      }
+    }]);
+
+    return Datepicker;
+  }();
+
+  if ($.extend) {
+    $.extend(Datepicker.prototype, render, handlers, methods);
+  }
+
+  if ($.fn) {
+    var AnotherDatepicker = $.fn.datepicker;
+
+    $.fn.datepicker = function jQueryDatepicker(option) {
+      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        args[_key - 1] = arguments[_key];
+      }
+
+      var result = void 0;
+
+      this.each(function (i, element) {
+        var $element = $(element);
+        var isDestroy = option === 'destroy';
+        var datepicker = $element.data(NAMESPACE);
+
+        if (!datepicker) {
+          if (isDestroy) {
+            return;
+          }
+
+          var options = $.extend({}, $element.data(), $.isPlainObject(option) && option);
+
+          datepicker = new Datepicker(element, options);
+          $element.data(NAMESPACE, datepicker);
+        }
+
+        if (isString(option)) {
+          var fn = datepicker[option];
+
+          if ($.isFunction(fn)) {
+            result = fn.apply(datepicker, args);
+
+            if (isDestroy) {
+              $element.removeData(NAMESPACE);
+            }
+          }
+        }
+      });
+
+      return !isUndefined(result) ? result : this;
+    };
+
+    $.fn.datepicker.Constructor = Datepicker;
+    $.fn.datepicker.languages = LANGUAGES;
+    $.fn.datepicker.setDefaults = Datepicker.setDefaults;
+    $.fn.datepicker.noConflict = function noConflict() {
+      $.fn.datepicker = AnotherDatepicker;
+      return this;
+    };
+  }
+
+})));;
+//https://davidwalsh.name/javascript-debounce-function
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// N milliseconds. If `immediate` is passed, trigger the function on the
+// leading edge, instead of the trailing.
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};;
 /*
  * enquire.js v2.1.6 - Awesome Media Queries in JavaScript
  * Copyright (c) 2017 Nick Williams - http://wicky.nillia.ms/enquire.js
@@ -314,6 +1859,2879 @@ module.exports = new MediaQueryDispatch();
 
 },{"2":2}]},{},[5])(5)
 });;
+/*!
+ * headroom.js v0.9.4 - Give your page some headroom. Hide your header until you need it
+ * Copyright (c) 2017 Nick Williams - http://wicky.nillia.ms/headroom.js
+ * License: MIT
+ */
+
+(function(root, factory) {
+  'use strict';
+
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define([], factory);
+  }
+  else if (typeof exports === 'object') {
+    // COMMONJS
+    module.exports = factory();
+  }
+  else {
+    // BROWSER
+    root.Headroom = factory();
+  }
+}(this, function() {
+  'use strict';
+
+  /* exported features */
+
+  var features = {
+    bind : !!(function(){}.bind),
+    classList : 'classList' in document.documentElement,
+    rAF : !!(window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame)
+  };
+  window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
+
+  /**
+   * Handles debouncing of events via requestAnimationFrame
+   * @see http://www.html5rocks.com/en/tutorials/speed/animations/
+   * @param {Function} callback The callback to handle whichever event
+   */
+  function Debouncer (callback) {
+    this.callback = callback;
+    this.ticking = false;
+  }
+  Debouncer.prototype = {
+    constructor : Debouncer,
+
+    /**
+     * dispatches the event to the supplied callback
+     * @private
+     */
+    update : function() {
+      this.callback && this.callback();
+      this.ticking = false;
+    },
+
+    /**
+     * ensures events don't get stacked
+     * @private
+     */
+    requestTick : function() {
+      if(!this.ticking) {
+        requestAnimationFrame(this.rafCallback || (this.rafCallback = this.update.bind(this)));
+        this.ticking = true;
+      }
+    },
+
+    /**
+     * Attach this as the event listeners
+     */
+    handleEvent : function() {
+      this.requestTick();
+    }
+  };
+  /**
+   * Check if object is part of the DOM
+   * @constructor
+   * @param {Object} obj element to check
+   */
+  function isDOMElement(obj) {
+    return obj && typeof window !== 'undefined' && (obj === window || obj.nodeType);
+  }
+
+  /**
+   * Helper function for extending objects
+   */
+  function extend (object /*, objectN ... */) {
+    if(arguments.length <= 0) {
+      throw new Error('Missing arguments in extend function');
+    }
+
+    var result = object || {},
+        key,
+        i;
+
+    for (i = 1; i < arguments.length; i++) {
+      var replacement = arguments[i] || {};
+
+      for (key in replacement) {
+        // Recurse into object except if the object is a DOM element
+        if(typeof result[key] === 'object' && ! isDOMElement(result[key])) {
+          result[key] = extend(result[key], replacement[key]);
+        }
+        else {
+          result[key] = result[key] || replacement[key];
+        }
+      }
+    }
+
+    return result;
+  }
+
+  /**
+   * Helper function for normalizing tolerance option to object format
+   */
+  function normalizeTolerance (t) {
+    return t === Object(t) ? t : { down : t, up : t };
+  }
+
+  /**
+   * UI enhancement for fixed headers.
+   * Hides header when scrolling down
+   * Shows header when scrolling up
+   * @constructor
+   * @param {DOMElement} elem the header element
+   * @param {Object} options options for the widget
+   */
+  function Headroom (elem, options) {
+    options = extend(options, Headroom.options);
+
+    this.lastKnownScrollY = 0;
+    this.elem             = elem;
+    this.tolerance        = normalizeTolerance(options.tolerance);
+    this.classes          = options.classes;
+    this.offset           = options.offset;
+    this.scroller         = options.scroller;
+    this.initialised      = false;
+    this.onPin            = options.onPin;
+    this.onUnpin          = options.onUnpin;
+    this.onTop            = options.onTop;
+    this.onNotTop         = options.onNotTop;
+    this.onBottom         = options.onBottom;
+    this.onNotBottom      = options.onNotBottom;
+  }
+  Headroom.prototype = {
+    constructor : Headroom,
+
+    /**
+     * Initialises the widget
+     */
+    init : function() {
+      if(!Headroom.cutsTheMustard) {
+        return;
+      }
+
+      this.debouncer = new Debouncer(this.update.bind(this));
+      this.elem.classList.add(this.classes.initial);
+
+      // defer event registration to handle browser
+      // potentially restoring previous scroll position
+      setTimeout(this.attachEvent.bind(this), 100);
+
+      return this;
+    },
+
+    /**
+     * Unattaches events and removes any classes that were added
+     */
+    destroy : function() {
+      var classes = this.classes;
+
+      this.initialised = false;
+
+      for (var key in classes) {
+        if(classes.hasOwnProperty(key)) {
+          this.elem.classList.remove(classes[key]);
+        }
+      }
+
+      this.scroller.removeEventListener('scroll', this.debouncer, false);
+    },
+
+    /**
+     * Attaches the scroll event
+     * @private
+     */
+    attachEvent : function() {
+      if(!this.initialised){
+        this.lastKnownScrollY = this.getScrollY();
+        this.initialised = true;
+        this.scroller.addEventListener('scroll', this.debouncer, false);
+
+        this.debouncer.handleEvent();
+      }
+    },
+
+    /**
+     * Unpins the header if it's currently pinned
+     */
+    unpin : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+
+      if(classList.contains(classes.pinned) || !classList.contains(classes.unpinned)) {
+        classList.add(classes.unpinned);
+        classList.remove(classes.pinned);
+        this.onUnpin && this.onUnpin.call(this);
+      }
+    },
+
+    /**
+     * Pins the header if it's currently unpinned
+     */
+    pin : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+
+      if(classList.contains(classes.unpinned)) {
+        classList.remove(classes.unpinned);
+        classList.add(classes.pinned);
+        this.onPin && this.onPin.call(this);
+      }
+    },
+
+    /**
+     * Handles the top states
+     */
+    top : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+
+      if(!classList.contains(classes.top)) {
+        classList.add(classes.top);
+        classList.remove(classes.notTop);
+        this.onTop && this.onTop.call(this);
+      }
+    },
+
+    /**
+     * Handles the not top state
+     */
+    notTop : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+
+      if(!classList.contains(classes.notTop)) {
+        classList.add(classes.notTop);
+        classList.remove(classes.top);
+        this.onNotTop && this.onNotTop.call(this);
+      }
+    },
+
+    bottom : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+
+      if(!classList.contains(classes.bottom)) {
+        classList.add(classes.bottom);
+        classList.remove(classes.notBottom);
+        this.onBottom && this.onBottom.call(this);
+      }
+    },
+
+    /**
+     * Handles the not top state
+     */
+    notBottom : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+
+      if(!classList.contains(classes.notBottom)) {
+        classList.add(classes.notBottom);
+        classList.remove(classes.bottom);
+        this.onNotBottom && this.onNotBottom.call(this);
+      }
+    },
+
+    /**
+     * Gets the Y scroll position
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Window.scrollY
+     * @return {Number} pixels the page has scrolled along the Y-axis
+     */
+    getScrollY : function() {
+      return (this.scroller.pageYOffset !== undefined)
+        ? this.scroller.pageYOffset
+        : (this.scroller.scrollTop !== undefined)
+          ? this.scroller.scrollTop
+          : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+    },
+
+    /**
+     * Gets the height of the viewport
+     * @see http://andylangton.co.uk/blog/development/get-viewport-size-width-and-height-javascript
+     * @return {int} the height of the viewport in pixels
+     */
+    getViewportHeight : function () {
+      return window.innerHeight
+        || document.documentElement.clientHeight
+        || document.body.clientHeight;
+    },
+
+    /**
+     * Gets the physical height of the DOM element
+     * @param  {Object}  elm the element to calculate the physical height of which
+     * @return {int}     the physical height of the element in pixels
+     */
+    getElementPhysicalHeight : function (elm) {
+      return Math.max(
+        elm.offsetHeight,
+        elm.clientHeight
+      );
+    },
+
+    /**
+     * Gets the physical height of the scroller element
+     * @return {int} the physical height of the scroller element in pixels
+     */
+    getScrollerPhysicalHeight : function () {
+      return (this.scroller === window || this.scroller === document.body)
+        ? this.getViewportHeight()
+        : this.getElementPhysicalHeight(this.scroller);
+    },
+
+    /**
+     * Gets the height of the document
+     * @see http://james.padolsey.com/javascript/get-document-height-cross-browser/
+     * @return {int} the height of the document in pixels
+     */
+    getDocumentHeight : function () {
+      var body = document.body,
+        documentElement = document.documentElement;
+
+      return Math.max(
+        body.scrollHeight, documentElement.scrollHeight,
+        body.offsetHeight, documentElement.offsetHeight,
+        body.clientHeight, documentElement.clientHeight
+      );
+    },
+
+    /**
+     * Gets the height of the DOM element
+     * @param  {Object}  elm the element to calculate the height of which
+     * @return {int}     the height of the element in pixels
+     */
+    getElementHeight : function (elm) {
+      return Math.max(
+        elm.scrollHeight,
+        elm.offsetHeight,
+        elm.clientHeight
+      );
+    },
+
+    /**
+     * Gets the height of the scroller element
+     * @return {int} the height of the scroller element in pixels
+     */
+    getScrollerHeight : function () {
+      return (this.scroller === window || this.scroller === document.body)
+        ? this.getDocumentHeight()
+        : this.getElementHeight(this.scroller);
+    },
+
+    /**
+     * determines if the scroll position is outside of document boundaries
+     * @param  {int}  currentScrollY the current y scroll position
+     * @return {bool} true if out of bounds, false otherwise
+     */
+    isOutOfBounds : function (currentScrollY) {
+      var pastTop  = currentScrollY < 0,
+        pastBottom = currentScrollY + this.getScrollerPhysicalHeight() > this.getScrollerHeight();
+
+      return pastTop || pastBottom;
+    },
+
+    /**
+     * determines if the tolerance has been exceeded
+     * @param  {int} currentScrollY the current scroll y position
+     * @return {bool} true if tolerance exceeded, false otherwise
+     */
+    toleranceExceeded : function (currentScrollY, direction) {
+      return Math.abs(currentScrollY-this.lastKnownScrollY) >= this.tolerance[direction];
+    },
+
+    /**
+     * determine if it is appropriate to unpin
+     * @param  {int} currentScrollY the current y scroll position
+     * @param  {bool} toleranceExceeded has the tolerance been exceeded?
+     * @return {bool} true if should unpin, false otherwise
+     */
+    shouldUnpin : function (currentScrollY, toleranceExceeded) {
+      var scrollingDown = currentScrollY > this.lastKnownScrollY,
+        pastOffset = currentScrollY >= this.offset;
+
+      return scrollingDown && pastOffset && toleranceExceeded;
+    },
+
+    /**
+     * determine if it is appropriate to pin
+     * @param  {int} currentScrollY the current y scroll position
+     * @param  {bool} toleranceExceeded has the tolerance been exceeded?
+     * @return {bool} true if should pin, false otherwise
+     */
+    shouldPin : function (currentScrollY, toleranceExceeded) {
+      var scrollingUp  = currentScrollY < this.lastKnownScrollY,
+        pastOffset = currentScrollY <= this.offset;
+
+      return (scrollingUp && toleranceExceeded) || pastOffset;
+    },
+
+    /**
+     * Handles updating the state of the widget
+     */
+    update : function() {
+      var currentScrollY  = this.getScrollY(),
+        scrollDirection = currentScrollY > this.lastKnownScrollY ? 'down' : 'up',
+        toleranceExceeded = this.toleranceExceeded(currentScrollY, scrollDirection);
+
+      if(this.isOutOfBounds(currentScrollY)) { // Ignore bouncy scrolling in OSX
+        return;
+      }
+
+      if (currentScrollY <= this.offset ) {
+        this.top();
+      } else {
+        this.notTop();
+      }
+
+      if(currentScrollY + this.getViewportHeight() >= this.getScrollerHeight()) {
+        this.bottom();
+      }
+      else {
+        this.notBottom();
+      }
+
+      if(this.shouldUnpin(currentScrollY, toleranceExceeded)) {
+        this.unpin();
+      }
+      else if(this.shouldPin(currentScrollY, toleranceExceeded)) {
+        this.pin();
+      }
+
+      this.lastKnownScrollY = currentScrollY;
+    }
+  };
+  /**
+   * Default options
+   * @type {Object}
+   */
+  Headroom.options = {
+    tolerance : {
+      up : 0,
+      down : 0
+    },
+    offset : 0,
+    scroller: window,
+    classes : {
+      pinned : 'headroom--pinned',
+      unpinned : 'headroom--unpinned',
+      top : 'headroom--top',
+      notTop : 'headroom--not-top',
+      bottom : 'headroom--bottom',
+      notBottom : 'headroom--not-bottom',
+      initial : 'headroom'
+    }
+  };
+  Headroom.cutsTheMustard = typeof features !== 'undefined' && features.rAF && features.bind && features.classList;
+
+  return Headroom;
+}));;
+/**
+ * author Remy Sharp
+ * url http://remysharp.com/2009/01/26/element-in-view-event-plugin/
+ * fork https://github.com/zuk/jquery.inview
+ */
+(function($) {
+    'use strict';
+
+    function getScrollTop() {
+        return window.pageYOffset ||
+            document.documentElement.scrollTop ||
+            document.body.scrollTop;
+    }
+
+    function getViewportHeight() {
+        var height = window.innerHeight; // Safari, Opera
+        // if this is correct then return it. iPad has compat Mode, so will
+        // go into check clientHeight (which has the wrong value).
+        if (height) {
+            return height;
+        }
+        var mode = document.compatMode;
+
+        if ((mode || !$.support.boxModel)) { // IE, Gecko
+            height = (mode === 'CSS1Compat') ?
+                document.documentElement.clientHeight : // Standards
+                document.body.clientHeight; // Quirks
+        }
+
+        return height;
+    }
+
+    function offsetTop(debug) {
+        // Manually calculate offset rather than using jQuery's offset
+        // This works-around iOS < 4 on iPad giving incorrect value
+        // cf http://bugs.jquery.com/ticket/6446#comment:9
+        var curtop = 0;
+        for (var obj = debug; obj; obj = obj.offsetParent) {
+            curtop += obj.offsetTop;
+        }
+        return curtop;
+    }
+
+    function checkInView() {
+        var viewportTop = getScrollTop(),
+            viewportBottom = viewportTop + getViewportHeight();
+
+
+
+
+        $('.inview').each(function() {
+            var $el = $(this),
+                elTop = offsetTop(this),
+                elHeight = $el.height(),
+                elBottom = elTop + elHeight,
+                wasInView = $el.data('inview') || false,
+                offset = $el.data('offset') || 0,
+                inView = elTop >= viewportTop && elBottom <= viewportBottom,
+                isBottomVisible = elBottom + offset >= viewportTop && elTop <= viewportTop,
+                isTopVisible = elTop - offset <= viewportBottom && elBottom >= viewportBottom,
+                inViewWithOffset = inView || isBottomVisible || isTopVisible ||
+                    (elTop <= viewportTop && elBottom >= viewportBottom);
+
+
+            if (inViewWithOffset) {
+                var visPart = (isTopVisible) ? 'top' : (isBottomVisible) ? 'bottom' : 'both';
+                if (!wasInView || wasInView !== visPart) {
+                    $el.data('inview', visPart);
+                    $el.trigger('inview', [true, visPart]);
+
+                }
+            } else if (!inView && wasInView) {
+                $el.data('inview', false);
+                $el.trigger('inview', [false]);
+
+            }
+        });
+    }
+
+    function createFunctionLimitedToOneExecutionPerDelay(fn, delay) {
+        var shouldRun = false;
+        var timer = null;
+
+        function runOncePerDelay() {
+            if (timer !== null) {
+                shouldRun = true;
+                return;
+            }
+            shouldRun = false;
+            fn();
+            timer = setTimeout(function() {
+                timer = null;
+                if (shouldRun) {
+                    runOncePerDelay();
+                }
+            }, delay);
+        }
+
+        return runOncePerDelay;
+    }
+
+    // ready.inview kicks the event to pick up any elements already in view.
+    // note however, this only works if the plugin is included after the elements are bound to 'inview'
+    var runner = createFunctionLimitedToOneExecutionPerDelay(checkInView, 100);
+    $(window).on('checkInView.inview click.inview ready.inview scroll.inview resize.inview', runner);
+
+})(jQuery);;
+/*! jssocials - v1.4.0 - 2016-10-10
+* http://js-socials.com
+* Copyright (c) 2016 Artem Tabalin; Licensed MIT */
+(function(window, $, undefined) {
+
+    var JSSOCIALS = "JSSocials",
+        JSSOCIALS_DATA_KEY = JSSOCIALS;
+
+    var getOrApply = function(value, context) {
+        if($.isFunction(value)) {
+            return value.apply(context, $.makeArray(arguments).slice(2));
+        }
+        return value;
+    };
+
+    var IMG_SRC_REGEX = /(\.(jpeg|png|gif|bmp|svg)$|^data:image\/(jpeg|png|gif|bmp|svg\+xml);base64)/i;
+    var URL_PARAMS_REGEX = /(&?[a-zA-Z0-9]+=)?\{([a-zA-Z0-9]+)\}/g;
+
+    var MEASURES = {
+        "G": 1000000000,
+        "M": 1000000,
+        "K": 1000
+    };
+
+    var shares = {};
+
+    function Socials(element, config) {
+        var $element = $(element);
+
+        $element.data(JSSOCIALS_DATA_KEY, this);
+
+        this._$element = $element;
+
+        this.shares = [];
+
+        this._init(config);
+        this._render();
+    }
+
+    Socials.prototype = {
+        url: "",
+        text: "",
+        shareIn: "blank",
+
+        showLabel: function(screenWidth) {
+            return (this.showCount === false) ?
+                (screenWidth > this.smallScreenWidth) :
+                (screenWidth >= this.largeScreenWidth);
+        },
+
+        showCount: function(screenWidth) {
+            return (screenWidth <= this.smallScreenWidth) ? "inside" : true;
+        },
+
+        smallScreenWidth: 640,
+        largeScreenWidth: 1024,
+
+        resizeTimeout: 200,
+
+        elementClass: "jssocials",
+        sharesClass: "jssocials-shares",
+        shareClass: "jssocials-share",
+        shareButtonClass: "jssocials-share-button",
+        shareLinkClass: "jssocials-share-link",
+        shareLogoClass: "jssocials-share-logo",
+        shareLabelClass: "jssocials-share-label",
+        shareLinkCountClass: "jssocials-share-link-count",
+        shareCountBoxClass: "jssocials-share-count-box",
+        shareCountClass: "jssocials-share-count",
+        shareZeroCountClass: "jssocials-share-no-count",
+
+        _init: function(config) {
+            this._initDefaults();
+            $.extend(this, config);
+            this._initShares();
+            this._attachWindowResizeCallback();
+        },
+
+        _initDefaults: function() {
+            this.url = window.location.href;
+            this.text = $.trim($("meta[name=description]").attr("content") || $("title").text());
+        },
+
+        _initShares: function() {
+            this.shares = $.map(this.shares, $.proxy(function(shareConfig) {
+                if(typeof shareConfig === "string") {
+                    shareConfig = { share: shareConfig };
+                }
+
+                var share = (shareConfig.share && shares[shareConfig.share]);
+
+                if(!share && !shareConfig.renderer) {
+                    throw Error("Share '" + shareConfig.share + "' is not found");
+                }
+
+                return $.extend({ url: this.url, text: this.text }, share, shareConfig);
+            }, this));
+        },
+
+        _attachWindowResizeCallback: function() {
+            $(window).on("resize", $.proxy(this._windowResizeHandler, this));
+        },
+
+        _detachWindowResizeCallback: function() {
+            $(window).off("resize", this._windowResizeHandler);
+        },
+
+        _windowResizeHandler: function() {
+            if($.isFunction(this.showLabel) || $.isFunction(this.showCount)) {
+                window.clearTimeout(this._resizeTimer);
+                this._resizeTimer = setTimeout($.proxy(this.refresh, this), this.resizeTimeout);
+            }
+        },
+
+        _render: function() {
+            this._clear();
+
+            this._defineOptionsByScreen();
+
+            this._$element.addClass(this.elementClass);
+
+            this._$shares = $("<div>").addClass(this.sharesClass)
+                .appendTo(this._$element);
+
+            this._renderShares();
+        },
+
+        _defineOptionsByScreen: function() {
+            this._screenWidth = $(window).width();
+            this._showLabel = getOrApply(this.showLabel, this, this._screenWidth);
+            this._showCount = getOrApply(this.showCount, this, this._screenWidth);
+        },
+
+        _renderShares: function() {
+            $.each(this.shares, $.proxy(function(_, share) {
+                this._renderShare(share);
+            }, this));
+        },
+
+        _renderShare: function(share) {
+            var $share;
+
+            if($.isFunction(share.renderer)) {
+                $share = $(share.renderer());
+            } else {
+                $share = this._createShare(share);
+            }
+
+            $share.addClass(this.shareClass)
+                .addClass(share.share ? "jssocials-share-" + share.share : "")
+                .addClass(share.css)
+                .appendTo(this._$shares);
+        },
+
+        _createShare: function(share) {
+            var $result = $("<div>");
+            var $shareLink = this._createShareLink(share).appendTo($result);
+
+            if(this._showCount) {
+                var isInsideCount = (this._showCount === "inside");
+                var $countContainer = isInsideCount ? $shareLink : $("<div>").addClass(this.shareCountBoxClass).appendTo($result);
+                $countContainer.addClass(isInsideCount ? this.shareLinkCountClass : this.shareCountBoxClass);
+                this._renderShareCount(share, $countContainer);
+            }
+
+            return $result;
+        },
+
+        _createShareLink: function(share) {
+            var shareStrategy = this._getShareStrategy(share);
+
+            var $result = shareStrategy.call(share, {
+                shareUrl: this._getShareUrl(share)
+            });
+
+            $result.addClass(this.shareLinkClass)
+                .append(this._createShareLogo(share));
+
+            if(this._showLabel) {
+                $result.append(this._createShareLabel(share));
+            }
+
+            $.each(this.on || {}, function(event, handler) {
+                if($.isFunction(handler)) {
+                    $result.on(event, $.proxy(handler, share));
+                }
+            });
+
+            return $result;
+        },
+
+        _getShareStrategy: function(share) {
+            var result = shareStrategies[share.shareIn || this.shareIn];
+
+            if(!result)
+                throw Error("Share strategy '" + this.shareIn + "' not found");
+
+            return result;
+        },
+
+        _getShareUrl: function(share) {
+            var shareUrl = getOrApply(share.shareUrl, share);
+            return this._formatShareUrl(shareUrl, share);
+        },
+
+        _createShareLogo: function(share) {
+            var logo = share.logo;
+
+            var $result = IMG_SRC_REGEX.test(logo) ?
+                $("<img>").attr("src", share.logo) :
+                $("<i>").addClass(logo);
+
+            $result.addClass(this.shareLogoClass);
+
+            return $result;
+        },
+
+        _createShareLabel: function(share) {
+            return $("<span>").addClass(this.shareLabelClass)
+                .text(share.label);
+        },
+
+        _renderShareCount: function(share, $container) {
+            var $count = $("<span>").addClass(this.shareCountClass);
+
+            $container.addClass(this.shareZeroCountClass)
+                .append($count);
+
+            this._loadCount(share).done($.proxy(function(count) {
+                if(count) {
+                    $container.removeClass(this.shareZeroCountClass);
+                    $count.text(count);
+                }
+            }, this));
+        },
+
+        _loadCount: function(share) {
+            var deferred = $.Deferred();
+            var countUrl = this._getCountUrl(share);
+
+            if(!countUrl) {
+                return deferred.resolve(0).promise();
+            }
+
+            var handleSuccess = $.proxy(function(response) {
+                deferred.resolve(this._getCountValue(response, share));
+            }, this);
+
+            $.getJSON(countUrl).done(handleSuccess)
+                .fail(function() {
+                    $.get(countUrl).done(handleSuccess)
+                        .fail(function() {
+                            deferred.resolve(0);
+                        });
+                });
+
+            return deferred.promise();
+        },
+
+        _getCountUrl: function(share) {
+            var countUrl = getOrApply(share.countUrl, share);
+            return this._formatShareUrl(countUrl, share);
+        },
+
+        _getCountValue: function(response, share) {
+            var count = ($.isFunction(share.getCount) ? share.getCount(response) : response) || 0;
+            return (typeof count === "string") ? count : this._formatNumber(count);
+        },
+
+        _formatNumber: function(number) {
+            $.each(MEASURES, function(letter, value) {
+                if(number >= value) {
+                    number = parseFloat((number / value).toFixed(2)) + letter;
+                    return false;
+                }
+            });
+
+            return number;
+        },
+
+        _formatShareUrl: function(url, share) {
+            return url.replace(URL_PARAMS_REGEX, function(match, key, field) {
+                var value = share[field] || "";
+                return value ? (key || "") + window.encodeURIComponent(value) : "";
+            });
+        },
+
+        _clear: function() {
+            window.clearTimeout(this._resizeTimer);
+            this._$element.empty();
+        },
+
+        _passOptionToShares: function(key, value) {
+            var shares = this.shares;
+
+            $.each(["url", "text"], function(_, optionName) {
+                if(optionName !== key)
+                    return;
+
+                $.each(shares, function(_, share) {
+                    share[key] = value;
+                });
+            });
+        },
+
+        _normalizeShare: function(share) {
+            if($.isNumeric(share)) {
+                return this.shares[share];
+            }
+
+            if(typeof share === "string") {
+                return $.grep(this.shares, function(s) {
+                    return s.share === share;
+                })[0];
+            }
+
+            return share;
+        },
+
+        refresh: function() {
+            this._render();
+        },
+
+        destroy: function() {
+            this._clear();
+            this._detachWindowResizeCallback();
+
+            this._$element
+                .removeClass(this.elementClass)
+                .removeData(JSSOCIALS_DATA_KEY);
+        },
+
+        option: function(key, value) {
+            if(arguments.length === 1) {
+                return this[key];
+            }
+
+            this[key] = value;
+
+            this._passOptionToShares(key, value);
+
+            this.refresh();
+        },
+
+        shareOption: function(share, key, value) {
+            share = this._normalizeShare(share);
+
+            if(arguments.length === 2) {
+                return share[key];
+            }
+
+            share[key] = value;
+            this.refresh();
+        }
+    };
+
+
+    $.fn.jsSocials = function(config) {
+        var args = $.makeArray(arguments),
+            methodArgs = args.slice(1),
+            result = this;
+
+        this.each(function() {
+            var $element = $(this),
+                instance = $element.data(JSSOCIALS_DATA_KEY),
+                methodResult;
+
+            if(instance) {
+                if(typeof config === "string") {
+                    methodResult = instance[config].apply(instance, methodArgs);
+                    if(methodResult !== undefined && methodResult !== instance) {
+                        result = methodResult;
+                        return false;
+                    }
+                } else {
+                    instance._detachWindowResizeCallback();
+                    instance._init(config);
+                    instance._render();
+                }
+            } else {
+                new Socials($element, config);
+            }
+        });
+
+        return result;
+    };
+
+    var setDefaults = function(config) {
+        var component;
+
+        if($.isPlainObject(config)) {
+            component = Socials.prototype;
+        } else {
+            component = shares[config];
+            config = arguments[1] || {};
+        }
+
+        $.extend(component, config);
+    };
+
+    var shareStrategies = {
+        popup: function(args) {
+            return $("<a>").attr("href", "#")
+                .on("click", function() {
+                    window.open(args.shareUrl, null, "width=600, height=400, location=0, menubar=0, resizeable=0, scrollbars=0, status=0, titlebar=0, toolbar=0");
+                    return false;
+                });
+        },
+
+        blank: function(args) {
+            return $("<a>").attr({ target: "_blank", href: args.shareUrl });
+        },
+
+        self: function(args) {
+            return $("<a>").attr({ target: "_self", href: args.shareUrl });
+        }
+    };
+
+    window.jsSocials = {
+        Socials: Socials,
+        shares: shares,
+        shareStrategies: shareStrategies,
+        setDefaults: setDefaults
+    };
+
+}(window, jQuery));
+
+
+(function(window, $, jsSocials, undefined) {
+
+    $.extend(jsSocials.shares, {
+
+        email: {
+            label: "E-mail",
+            logo: "fa fa-at",
+            shareUrl: "mailto:{to}?subject={text}&body={url}",
+            countUrl: "",
+            shareIn: "self"
+        },
+
+        twitter: {
+            label: "Tweet",
+            logo: "fa fa-twitter",
+            shareUrl: "https://twitter.com/share?url={url}&text={text}&via={via}&hashtags={hashtags}",
+            countUrl: ""
+        },
+
+        facebook: {
+            label: "Like",
+            logo: "fa fa-facebook",
+            shareUrl: "https://facebook.com/sharer/sharer.php?u={url}",
+            countUrl: "https://graph.facebook.com/?id={url}",
+            getCount: function(data) {
+                return data.share && data.share.share_count || 0;
+            }
+        },
+
+        vkontakte: {
+            label: "Like",
+            logo: "fa fa-vk",
+            shareUrl: "https://vk.com/share.php?url={url}&title={title}&description={text}",
+            countUrl: "https://vk.com/share.php?act=count&index=1&url={url}",
+            getCount: function(data) {
+                return parseInt(data.slice(15, -2).split(', ')[1]);
+            }
+        },
+
+        googleplus: {
+            label: "+1",
+            logo: "fa fa-google",
+            shareUrl: "https://plus.google.com/share?url={url}",
+            countUrl: ""
+        },
+
+        linkedin: {
+            label: "Share",
+            logo: "fa fa-linkedin",
+            shareUrl: "https://www.linkedin.com/shareArticle?mini=true&url={url}",
+            countUrl: "https://www.linkedin.com/countserv/count/share?format=jsonp&url={url}&callback=?",
+            getCount: function(data) {
+                return data.count;
+            }
+        },
+
+        pinterest: {
+            label: "Pin it",
+            logo: "fa fa-pinterest",
+            shareUrl: "https://pinterest.com/pin/create/bookmarklet/?media={media}&url={url}&description={text}",
+            countUrl: "https://api.pinterest.com/v1/urls/count.json?&url={url}&callback=?",
+            getCount: function(data) {
+                return data.count;
+            }
+        },
+
+        stumbleupon: {
+            label: "Share",
+            logo: "fa fa-stumbleupon",
+            shareUrl: "http://www.stumbleupon.com/submit?url={url}&title={title}",
+            countUrl:  "https://cors-anywhere.herokuapp.com/https://www.stumbleupon.com/services/1.01/badge.getinfo?url={url}",
+            getCount: function(data) {
+                return data.result.views;
+            }
+        },
+
+        telegram: {
+            label: "Telegram",
+            logo: "fa fa-paper-plane",
+            shareUrl: "tg://msg?text={url} {text}",
+            countUrl: "",
+            shareIn: "self"
+        },
+
+        whatsapp: {
+            label: "WhatsApp",
+            logo: "fa fa-whatsapp",
+            shareUrl: "whatsapp://send?text={url} {text}",
+            countUrl: "",
+            shareIn: "self"
+        },
+
+        line: {
+            label: "LINE",
+            logo: "fa fa-comment",
+            shareUrl: "http://line.me/R/msg/text/?{text} {url}",
+            countUrl: ""
+        },
+
+        viber: {
+            label: "Viber",
+            logo: "fa fa-volume-control-phone",
+            shareUrl: "viber://forward?text={url} {text}",
+            countUrl: "",
+            shareIn: "self"
+        },
+
+        pocket: {
+            label: "Pocket",
+            logo: "fa fa-get-pocket",
+            shareUrl: "https://getpocket.com/save?url={url}&title={title}",
+            countUrl: ""
+        },
+
+        messenger: {
+            label: "Share",
+            logo: "fa fa-commenting",
+            shareUrl: "fb-messenger://share?link={url}",
+            countUrl: "",
+            shareIn: "self"
+        }
+
+    });
+
+}(window, jQuery, window.jsSocials));
+
+;
+/*! Magnific Popup - v1.1.0 - 2016-02-20
+* http://dimsemenov.com/plugins/magnific-popup/
+* Copyright (c) 2016 Dmitry Semenov; */
+;(function (factory) {
+if (typeof define === 'function' && define.amd) {
+ // AMD. Register as an anonymous module.
+ define(['jquery'], factory);
+ } else if (typeof exports === 'object') {
+ // Node/CommonJS
+ factory(require('jquery'));
+ } else {
+ // Browser globals
+ factory(window.jQuery || window.Zepto);
+ }
+ }(function($) {
+
+/*>>core*/
+/**
+ *
+ * Magnific Popup Core JS file
+ *
+ */
+
+
+/**
+ * Private static constants
+ */
+var CLOSE_EVENT = 'Close',
+	BEFORE_CLOSE_EVENT = 'BeforeClose',
+	AFTER_CLOSE_EVENT = 'AfterClose',
+	BEFORE_APPEND_EVENT = 'BeforeAppend',
+	MARKUP_PARSE_EVENT = 'MarkupParse',
+	OPEN_EVENT = 'Open',
+	CHANGE_EVENT = 'Change',
+	NS = 'mfp',
+	EVENT_NS = '.' + NS,
+	READY_CLASS = 'mfp-ready',
+	REMOVING_CLASS = 'mfp-removing',
+	PREVENT_CLOSE_CLASS = 'mfp-prevent-close';
+
+
+/**
+ * Private vars
+ */
+/*jshint -W079 */
+var mfp, // As we have only one instance of MagnificPopup object, we define it locally to not to use 'this'
+	MagnificPopup = function(){},
+	_isJQ = !!(window.jQuery),
+	_prevStatus,
+	_window = $(window),
+	_document,
+	_prevContentType,
+	_wrapClasses,
+	_currPopupType;
+
+
+/**
+ * Private functions
+ */
+var _mfpOn = function(name, f) {
+		mfp.ev.on(NS + name + EVENT_NS, f);
+	},
+	_getEl = function(className, appendTo, html, raw) {
+		var el = document.createElement('div');
+		el.className = 'mfp-'+className;
+		if(html) {
+			el.innerHTML = html;
+		}
+		if(!raw) {
+			el = $(el);
+			if(appendTo) {
+				el.appendTo(appendTo);
+			}
+		} else if(appendTo) {
+			appendTo.appendChild(el);
+		}
+		return el;
+	},
+	_mfpTrigger = function(e, data) {
+		mfp.ev.triggerHandler(NS + e, data);
+
+		if(mfp.st.callbacks) {
+			// converts "mfpEventName" to "eventName" callback and triggers it if it's present
+			e = e.charAt(0).toLowerCase() + e.slice(1);
+			if(mfp.st.callbacks[e]) {
+				mfp.st.callbacks[e].apply(mfp, $.isArray(data) ? data : [data]);
+			}
+		}
+	},
+	_getCloseBtn = function(type) {
+		if(type !== _currPopupType || !mfp.currTemplate.closeBtn) {
+			mfp.currTemplate.closeBtn = $( mfp.st.closeMarkup.replace('%title%', mfp.st.tClose ) );
+			_currPopupType = type;
+		}
+		return mfp.currTemplate.closeBtn;
+	},
+	// Initialize Magnific Popup only when called at least once
+	_checkInstance = function() {
+		if(!$.magnificPopup.instance) {
+			/*jshint -W020 */
+			mfp = new MagnificPopup();
+			mfp.init();
+			$.magnificPopup.instance = mfp;
+		}
+	},
+	// CSS transition detection, http://stackoverflow.com/questions/7264899/detect-css-transitions-using-javascript-and-without-modernizr
+	supportsTransitions = function() {
+		var s = document.createElement('p').style, // 's' for style. better to create an element if body yet to exist
+			v = ['ms','O','Moz','Webkit']; // 'v' for vendor
+
+		if( s['transition'] !== undefined ) {
+			return true;
+		}
+
+		while( v.length ) {
+			if( v.pop() + 'Transition' in s ) {
+				return true;
+			}
+		}
+
+		return false;
+	};
+
+
+
+/**
+ * Public functions
+ */
+MagnificPopup.prototype = {
+
+	constructor: MagnificPopup,
+
+	/**
+	 * Initializes Magnific Popup plugin.
+	 * This function is triggered only once when $.fn.magnificPopup or $.magnificPopup is executed
+	 */
+	init: function() {
+		var appVersion = navigator.appVersion;
+		mfp.isLowIE = mfp.isIE8 = document.all && !document.addEventListener;
+		mfp.isAndroid = (/android/gi).test(appVersion);
+		mfp.isIOS = (/iphone|ipad|ipod/gi).test(appVersion);
+		mfp.supportsTransition = supportsTransitions();
+
+		// We disable fixed positioned lightbox on devices that don't handle it nicely.
+		// If you know a better way of detecting this - let me know.
+		mfp.probablyMobile = (mfp.isAndroid || mfp.isIOS || /(Opera Mini)|Kindle|webOS|BlackBerry|(Opera Mobi)|(Windows Phone)|IEMobile/i.test(navigator.userAgent) );
+		_document = $(document);
+
+		mfp.popupsCache = {};
+	},
+
+	/**
+	 * Opens popup
+	 * @param  data [description]
+	 */
+	open: function(data) {
+
+		var i;
+
+		if(data.isObj === false) {
+			// convert jQuery collection to array to avoid conflicts later
+			mfp.items = data.items.toArray();
+
+			mfp.index = 0;
+			var items = data.items,
+				item;
+			for(i = 0; i < items.length; i++) {
+				item = items[i];
+				if(item.parsed) {
+					item = item.el[0];
+				}
+				if(item === data.el[0]) {
+					mfp.index = i;
+					break;
+				}
+			}
+		} else {
+			mfp.items = $.isArray(data.items) ? data.items : [data.items];
+			mfp.index = data.index || 0;
+		}
+
+		// if popup is already opened - we just update the content
+		if(mfp.isOpen) {
+			mfp.updateItemHTML();
+			return;
+		}
+
+		mfp.types = [];
+		_wrapClasses = '';
+		if(data.mainEl && data.mainEl.length) {
+			mfp.ev = data.mainEl.eq(0);
+		} else {
+			mfp.ev = _document;
+		}
+
+		if(data.key) {
+			if(!mfp.popupsCache[data.key]) {
+				mfp.popupsCache[data.key] = {};
+			}
+			mfp.currTemplate = mfp.popupsCache[data.key];
+		} else {
+			mfp.currTemplate = {};
+		}
+
+
+
+		mfp.st = $.extend(true, {}, $.magnificPopup.defaults, data );
+		mfp.fixedContentPos = mfp.st.fixedContentPos === 'auto' ? !mfp.probablyMobile : mfp.st.fixedContentPos;
+
+		if(mfp.st.modal) {
+			mfp.st.closeOnContentClick = false;
+			mfp.st.closeOnBgClick = false;
+			mfp.st.showCloseBtn = false;
+			mfp.st.enableEscapeKey = false;
+		}
+
+
+		// Building markup
+		// main containers are created only once
+		if(!mfp.bgOverlay) {
+
+			// Dark overlay
+			mfp.bgOverlay = _getEl('bg').on('click'+EVENT_NS, function() {
+				mfp.close();
+			});
+
+			mfp.wrap = _getEl('wrap').attr('tabindex', -1).on('click'+EVENT_NS, function(e) {
+				if(mfp._checkIfClose(e.target)) {
+					mfp.close();
+				}
+			});
+
+			mfp.container = _getEl('container', mfp.wrap);
+		}
+
+		mfp.contentContainer = _getEl('content');
+		if(mfp.st.preloader) {
+			mfp.preloader = _getEl('preloader', mfp.container, mfp.st.tLoading);
+		}
+
+
+		// Initializing modules
+		var modules = $.magnificPopup.modules;
+		for(i = 0; i < modules.length; i++) {
+			var n = modules[i];
+			n = n.charAt(0).toUpperCase() + n.slice(1);
+			mfp['init'+n].call(mfp);
+		}
+		_mfpTrigger('BeforeOpen');
+
+
+		if(mfp.st.showCloseBtn) {
+			// Close button
+			if(!mfp.st.closeBtnInside) {
+				mfp.wrap.append( _getCloseBtn() );
+			} else {
+				_mfpOn(MARKUP_PARSE_EVENT, function(e, template, values, item) {
+					values.close_replaceWith = _getCloseBtn(item.type);
+				});
+				_wrapClasses += ' mfp-close-btn-in';
+			}
+		}
+
+		if(mfp.st.alignTop) {
+			_wrapClasses += ' mfp-align-top';
+		}
+
+
+
+		if(mfp.fixedContentPos) {
+			mfp.wrap.css({
+				overflow: mfp.st.overflowY,
+				overflowX: 'hidden',
+				overflowY: mfp.st.overflowY
+			});
+		} else {
+			mfp.wrap.css({
+				top: _window.scrollTop(),
+				position: 'absolute'
+			});
+		}
+		if( mfp.st.fixedBgPos === false || (mfp.st.fixedBgPos === 'auto' && !mfp.fixedContentPos) ) {
+			mfp.bgOverlay.css({
+				height: _document.height(),
+				position: 'absolute'
+			});
+		}
+
+
+
+		if(mfp.st.enableEscapeKey) {
+			// Close on ESC key
+			_document.on('keyup' + EVENT_NS, function(e) {
+				if(e.keyCode === 27) {
+					mfp.close();
+				}
+			});
+		}
+
+		_window.on('resize' + EVENT_NS, function() {
+			mfp.updateSize();
+		});
+
+
+		if(!mfp.st.closeOnContentClick) {
+			_wrapClasses += ' mfp-auto-cursor';
+		}
+
+		if(_wrapClasses)
+			mfp.wrap.addClass(_wrapClasses);
+
+
+		// this triggers recalculation of layout, so we get it once to not to trigger twice
+		var windowHeight = mfp.wH = _window.height();
+
+
+		var windowStyles = {};
+
+		if( mfp.fixedContentPos ) {
+            if(mfp._hasScrollBar(windowHeight)){
+                var s = mfp._getScrollbarSize();
+                if(s) {
+                    windowStyles.marginRight = s;
+                }
+            }
+        }
+
+		if(mfp.fixedContentPos) {
+			if(!mfp.isIE7) {
+				windowStyles.overflow = 'hidden';
+			} else {
+				// ie7 double-scroll bug
+				$('body, html').css('overflow', 'hidden');
+			}
+		}
+
+
+
+		var classesToadd = mfp.st.mainClass;
+		if(mfp.isIE7) {
+			classesToadd += ' mfp-ie7';
+		}
+		if(classesToadd) {
+			mfp._addClassToMFP( classesToadd );
+		}
+
+		// add content
+		mfp.updateItemHTML();
+
+		_mfpTrigger('BuildControls');
+
+		// remove scrollbar, add margin e.t.c
+		$('html').css(windowStyles);
+
+		// add everything to DOM
+		mfp.bgOverlay.add(mfp.wrap).prependTo( mfp.st.prependTo || $(document.body) );
+
+		// Save last focused element
+		mfp._lastFocusedEl = document.activeElement;
+
+		// Wait for next cycle to allow CSS transition
+		setTimeout(function() {
+
+			if(mfp.content) {
+				mfp._addClassToMFP(READY_CLASS);
+				mfp._setFocus();
+			} else {
+				// if content is not defined (not loaded e.t.c) we add class only for BG
+				mfp.bgOverlay.addClass(READY_CLASS);
+			}
+
+			// Trap the focus in popup
+			_document.on('focusin' + EVENT_NS, mfp._onFocusIn);
+
+		}, 16);
+
+		mfp.isOpen = true;
+		mfp.updateSize(windowHeight);
+		_mfpTrigger(OPEN_EVENT);
+
+		return data;
+	},
+
+	/**
+	 * Closes the popup
+	 */
+	close: function() {
+		if(!mfp.isOpen) return;
+		_mfpTrigger(BEFORE_CLOSE_EVENT);
+
+		mfp.isOpen = false;
+		// for CSS3 animation
+		if(mfp.st.removalDelay && !mfp.isLowIE && mfp.supportsTransition )  {
+			mfp._addClassToMFP(REMOVING_CLASS);
+			setTimeout(function() {
+				mfp._close();
+			}, mfp.st.removalDelay);
+		} else {
+			mfp._close();
+		}
+	},
+
+	/**
+	 * Helper for close() function
+	 */
+	_close: function() {
+		_mfpTrigger(CLOSE_EVENT);
+
+		var classesToRemove = REMOVING_CLASS + ' ' + READY_CLASS + ' ';
+
+		mfp.bgOverlay.detach();
+		mfp.wrap.detach();
+		mfp.container.empty();
+
+		if(mfp.st.mainClass) {
+			classesToRemove += mfp.st.mainClass + ' ';
+		}
+
+		mfp._removeClassFromMFP(classesToRemove);
+
+		if(mfp.fixedContentPos) {
+			var windowStyles = {marginRight: ''};
+			if(mfp.isIE7) {
+				$('body, html').css('overflow', '');
+			} else {
+				windowStyles.overflow = '';
+			}
+			$('html').css(windowStyles);
+		}
+
+		_document.off('keyup' + EVENT_NS + ' focusin' + EVENT_NS);
+		mfp.ev.off(EVENT_NS);
+
+		// clean up DOM elements that aren't removed
+		mfp.wrap.attr('class', 'mfp-wrap').removeAttr('style');
+		mfp.bgOverlay.attr('class', 'mfp-bg');
+		mfp.container.attr('class', 'mfp-container');
+
+		// remove close button from target element
+		if(mfp.st.showCloseBtn &&
+		(!mfp.st.closeBtnInside || mfp.currTemplate[mfp.currItem.type] === true)) {
+			if(mfp.currTemplate.closeBtn)
+				mfp.currTemplate.closeBtn.detach();
+		}
+
+
+		if(mfp.st.autoFocusLast && mfp._lastFocusedEl) {
+			$(mfp._lastFocusedEl).focus(); // put tab focus back
+		}
+		mfp.currItem = null;
+		mfp.content = null;
+		mfp.currTemplate = null;
+		mfp.prevHeight = 0;
+
+		_mfpTrigger(AFTER_CLOSE_EVENT);
+	},
+
+	updateSize: function(winHeight) {
+
+		if(mfp.isIOS) {
+			// fixes iOS nav bars https://github.com/dimsemenov/Magnific-Popup/issues/2
+			var zoomLevel = document.documentElement.clientWidth / window.innerWidth;
+			var height = window.innerHeight * zoomLevel;
+			mfp.wrap.css('height', height);
+			mfp.wH = height;
+		} else {
+			mfp.wH = winHeight || _window.height();
+		}
+		// Fixes #84: popup incorrectly positioned with position:relative on body
+		if(!mfp.fixedContentPos) {
+			mfp.wrap.css('height', mfp.wH);
+		}
+
+		_mfpTrigger('Resize');
+
+	},
+
+	/**
+	 * Set content of popup based on current index
+	 */
+	updateItemHTML: function() {
+		var item = mfp.items[mfp.index];
+
+		// Detach and perform modifications
+		mfp.contentContainer.detach();
+
+		if(mfp.content)
+			mfp.content.detach();
+
+		if(!item.parsed) {
+			item = mfp.parseEl( mfp.index );
+		}
+
+		var type = item.type;
+
+		_mfpTrigger('BeforeChange', [mfp.currItem ? mfp.currItem.type : '', type]);
+		// BeforeChange event works like so:
+		// _mfpOn('BeforeChange', function(e, prevType, newType) { });
+
+		mfp.currItem = item;
+
+		if(!mfp.currTemplate[type]) {
+			var markup = mfp.st[type] ? mfp.st[type].markup : false;
+
+			// allows to modify markup
+			_mfpTrigger('FirstMarkupParse', markup);
+
+			if(markup) {
+				mfp.currTemplate[type] = $(markup);
+			} else {
+				// if there is no markup found we just define that template is parsed
+				mfp.currTemplate[type] = true;
+			}
+		}
+
+		if(_prevContentType && _prevContentType !== item.type) {
+			mfp.container.removeClass('mfp-'+_prevContentType+'-holder');
+		}
+
+		var newContent = mfp['get' + type.charAt(0).toUpperCase() + type.slice(1)](item, mfp.currTemplate[type]);
+		mfp.appendContent(newContent, type);
+
+		item.preloaded = true;
+
+		_mfpTrigger(CHANGE_EVENT, item);
+		_prevContentType = item.type;
+
+		// Append container back after its content changed
+		mfp.container.prepend(mfp.contentContainer);
+
+		_mfpTrigger('AfterChange');
+	},
+
+
+	/**
+	 * Set HTML content of popup
+	 */
+	appendContent: function(newContent, type) {
+		mfp.content = newContent;
+
+		if(newContent) {
+			if(mfp.st.showCloseBtn && mfp.st.closeBtnInside &&
+				mfp.currTemplate[type] === true) {
+				// if there is no markup, we just append close button element inside
+				if(!mfp.content.find('.mfp-close').length) {
+					mfp.content.append(_getCloseBtn());
+				}
+			} else {
+				mfp.content = newContent;
+			}
+		} else {
+			mfp.content = '';
+		}
+
+		_mfpTrigger(BEFORE_APPEND_EVENT);
+		mfp.container.addClass('mfp-'+type+'-holder');
+
+		mfp.contentContainer.append(mfp.content);
+	},
+
+
+	/**
+	 * Creates Magnific Popup data object based on given data
+	 * @param  {int} index Index of item to parse
+	 */
+	parseEl: function(index) {
+		var item = mfp.items[index],
+			type;
+
+		if(item.tagName) {
+			item = { el: $(item) };
+		} else {
+			type = item.type;
+			item = { data: item, src: item.src };
+		}
+
+		if(item.el) {
+			var types = mfp.types;
+
+			// check for 'mfp-TYPE' class
+			for(var i = 0; i < types.length; i++) {
+				if( item.el.hasClass('mfp-'+types[i]) ) {
+					type = types[i];
+					break;
+				}
+			}
+
+			item.src = item.el.attr('data-mfp-src');
+			if(!item.src) {
+				item.src = item.el.attr('href');
+			}
+		}
+
+		item.type = type || mfp.st.type || 'inline';
+		item.index = index;
+		item.parsed = true;
+		mfp.items[index] = item;
+		_mfpTrigger('ElementParse', item);
+
+		return mfp.items[index];
+	},
+
+
+	/**
+	 * Initializes single popup or a group of popups
+	 */
+	addGroup: function(el, options) {
+		var eHandler = function(e) {
+			e.mfpEl = this;
+			mfp._openClick(e, el, options);
+		};
+
+		if(!options) {
+			options = {};
+		}
+
+		var eName = 'click.magnificPopup';
+		options.mainEl = el;
+
+		if(options.items) {
+			options.isObj = true;
+			el.off(eName).on(eName, eHandler);
+		} else {
+			options.isObj = false;
+			if(options.delegate) {
+				el.off(eName).on(eName, options.delegate , eHandler);
+			} else {
+				options.items = el;
+				el.off(eName).on(eName, eHandler);
+			}
+		}
+	},
+	_openClick: function(e, el, options) {
+		var midClick = options.midClick !== undefined ? options.midClick : $.magnificPopup.defaults.midClick;
+
+
+		if(!midClick && ( e.which === 2 || e.ctrlKey || e.metaKey || e.altKey || e.shiftKey ) ) {
+			return;
+		}
+
+		var disableOn = options.disableOn !== undefined ? options.disableOn : $.magnificPopup.defaults.disableOn;
+
+		if(disableOn) {
+			if($.isFunction(disableOn)) {
+				if( !disableOn.call(mfp) ) {
+					return true;
+				}
+			} else { // else it's number
+				if( _window.width() < disableOn ) {
+					return true;
+				}
+			}
+		}
+
+		if(e.type) {
+			e.preventDefault();
+
+			// This will prevent popup from closing if element is inside and popup is already opened
+			if(mfp.isOpen) {
+				e.stopPropagation();
+			}
+		}
+
+		options.el = $(e.mfpEl);
+		if(options.delegate) {
+			options.items = el.find(options.delegate);
+		}
+		mfp.open(options);
+	},
+
+
+	/**
+	 * Updates text on preloader
+	 */
+	updateStatus: function(status, text) {
+
+		if(mfp.preloader) {
+			if(_prevStatus !== status) {
+				mfp.container.removeClass('mfp-s-'+_prevStatus);
+			}
+
+			if(!text && status === 'loading') {
+				text = mfp.st.tLoading;
+			}
+
+			var data = {
+				status: status,
+				text: text
+			};
+			// allows to modify status
+			_mfpTrigger('UpdateStatus', data);
+
+			status = data.status;
+			text = data.text;
+
+			mfp.preloader.html(text);
+
+			mfp.preloader.find('a').on('click', function(e) {
+				e.stopImmediatePropagation();
+			});
+
+			mfp.container.addClass('mfp-s-'+status);
+			_prevStatus = status;
+		}
+	},
+
+
+	/*
+		"Private" helpers that aren't private at all
+	 */
+	// Check to close popup or not
+	// "target" is an element that was clicked
+	_checkIfClose: function(target) {
+
+		if($(target).hasClass(PREVENT_CLOSE_CLASS)) {
+			return;
+		}
+
+		var closeOnContent = mfp.st.closeOnContentClick;
+		var closeOnBg = mfp.st.closeOnBgClick;
+
+		if(closeOnContent && closeOnBg) {
+			return true;
+		} else {
+
+			// We close the popup if click is on close button or on preloader. Or if there is no content.
+			if(!mfp.content || $(target).hasClass('mfp-close') || (mfp.preloader && target === mfp.preloader[0]) ) {
+				return true;
+			}
+
+			// if click is outside the content
+			if(  (target !== mfp.content[0] && !$.contains(mfp.content[0], target))  ) {
+				if(closeOnBg) {
+					// last check, if the clicked element is in DOM, (in case it's removed onclick)
+					if( $.contains(document, target) ) {
+						return true;
+					}
+				}
+			} else if(closeOnContent) {
+				return true;
+			}
+
+		}
+		return false;
+	},
+	_addClassToMFP: function(cName) {
+		mfp.bgOverlay.addClass(cName);
+		mfp.wrap.addClass(cName);
+	},
+	_removeClassFromMFP: function(cName) {
+		this.bgOverlay.removeClass(cName);
+		mfp.wrap.removeClass(cName);
+	},
+	_hasScrollBar: function(winHeight) {
+		return (  (mfp.isIE7 ? _document.height() : document.body.scrollHeight) > (winHeight || _window.height()) );
+	},
+	_setFocus: function() {
+		(mfp.st.focus ? mfp.content.find(mfp.st.focus).eq(0) : mfp.wrap).focus();
+	},
+	_onFocusIn: function(e) {
+		if( e.target !== mfp.wrap[0] && !$.contains(mfp.wrap[0], e.target) ) {
+			mfp._setFocus();
+			return false;
+		}
+	},
+	_parseMarkup: function(template, values, item) {
+		var arr;
+		if(item.data) {
+			values = $.extend(item.data, values);
+		}
+		_mfpTrigger(MARKUP_PARSE_EVENT, [template, values, item] );
+
+		$.each(values, function(key, value) {
+			if(value === undefined || value === false) {
+				return true;
+			}
+			arr = key.split('_');
+			if(arr.length > 1) {
+				var el = template.find(EVENT_NS + '-'+arr[0]);
+
+				if(el.length > 0) {
+					var attr = arr[1];
+					if(attr === 'replaceWith') {
+						if(el[0] !== value[0]) {
+							el.replaceWith(value);
+						}
+					} else if(attr === 'img') {
+						if(el.is('img')) {
+							el.attr('src', value);
+						} else {
+							el.replaceWith( $('<img>').attr('src', value).attr('class', el.attr('class')) );
+						}
+					} else {
+						el.attr(arr[1], value);
+					}
+				}
+
+			} else {
+				template.find(EVENT_NS + '-'+key).html(value);
+			}
+		});
+	},
+
+	_getScrollbarSize: function() {
+		// thx David
+		if(mfp.scrollbarSize === undefined) {
+			var scrollDiv = document.createElement("div");
+			scrollDiv.style.cssText = 'width: 99px; height: 99px; overflow: scroll; position: absolute; top: -9999px;';
+			document.body.appendChild(scrollDiv);
+			mfp.scrollbarSize = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+			document.body.removeChild(scrollDiv);
+		}
+		return mfp.scrollbarSize;
+	}
+
+}; /* MagnificPopup core prototype end */
+
+
+
+
+/**
+ * Public static functions
+ */
+$.magnificPopup = {
+	instance: null,
+	proto: MagnificPopup.prototype,
+	modules: [],
+
+	open: function(options, index) {
+		_checkInstance();
+
+		if(!options) {
+			options = {};
+		} else {
+			options = $.extend(true, {}, options);
+		}
+
+		options.isObj = true;
+		options.index = index || 0;
+		return this.instance.open(options);
+	},
+
+	close: function() {
+		return $.magnificPopup.instance && $.magnificPopup.instance.close();
+	},
+
+	registerModule: function(name, module) {
+		if(module.options) {
+			$.magnificPopup.defaults[name] = module.options;
+		}
+		$.extend(this.proto, module.proto);
+		this.modules.push(name);
+	},
+
+	defaults: {
+
+		// Info about options is in docs:
+		// http://dimsemenov.com/plugins/magnific-popup/documentation.html#options
+
+		disableOn: 0,
+
+		key: null,
+
+		midClick: false,
+
+		mainClass: '',
+
+		preloader: true,
+
+		focus: '', // CSS selector of input to focus after popup is opened
+
+		closeOnContentClick: false,
+
+		closeOnBgClick: true,
+
+		closeBtnInside: true,
+
+		showCloseBtn: true,
+
+		enableEscapeKey: true,
+
+		modal: false,
+
+		alignTop: false,
+
+		removalDelay: 0,
+
+		prependTo: null,
+
+		fixedContentPos: 'auto',
+
+		fixedBgPos: 'auto',
+
+		overflowY: 'auto',
+
+		closeMarkup: '<button title="%title%" type="button" class="mfp-close">&#215;</button>',
+
+		tClose: 'Close (Esc)',
+
+		tLoading: 'Loading...',
+
+		autoFocusLast: true
+
+	}
+};
+
+
+
+$.fn.magnificPopup = function(options) {
+	_checkInstance();
+
+	var jqEl = $(this);
+
+	// We call some API method of first param is a string
+	if (typeof options === "string" ) {
+
+		if(options === 'open') {
+			var items,
+				itemOpts = _isJQ ? jqEl.data('magnificPopup') : jqEl[0].magnificPopup,
+				index = parseInt(arguments[1], 10) || 0;
+
+			if(itemOpts.items) {
+				items = itemOpts.items[index];
+			} else {
+				items = jqEl;
+				if(itemOpts.delegate) {
+					items = items.find(itemOpts.delegate);
+				}
+				items = items.eq( index );
+			}
+			mfp._openClick({mfpEl:items}, jqEl, itemOpts);
+		} else {
+			if(mfp.isOpen)
+				mfp[options].apply(mfp, Array.prototype.slice.call(arguments, 1));
+		}
+
+	} else {
+		// clone options obj
+		options = $.extend(true, {}, options);
+
+		/*
+		 * As Zepto doesn't support .data() method for objects
+		 * and it works only in normal browsers
+		 * we assign "options" object directly to the DOM element. FTW!
+		 */
+		if(_isJQ) {
+			jqEl.data('magnificPopup', options);
+		} else {
+			jqEl[0].magnificPopup = options;
+		}
+
+		mfp.addGroup(jqEl, options);
+
+	}
+	return jqEl;
+};
+
+/*>>core*/
+
+/*>>inline*/
+
+var INLINE_NS = 'inline',
+	_hiddenClass,
+	_inlinePlaceholder,
+	_lastInlineElement,
+	_putInlineElementsBack = function() {
+		if(_lastInlineElement) {
+			_inlinePlaceholder.after( _lastInlineElement.addClass(_hiddenClass) ).detach();
+			_lastInlineElement = null;
+		}
+	};
+
+$.magnificPopup.registerModule(INLINE_NS, {
+	options: {
+		hiddenClass: 'hide', // will be appended with `mfp-` prefix
+		markup: '',
+		tNotFound: 'Content not found'
+	},
+	proto: {
+
+		initInline: function() {
+			mfp.types.push(INLINE_NS);
+
+			_mfpOn(CLOSE_EVENT+'.'+INLINE_NS, function() {
+				_putInlineElementsBack();
+			});
+		},
+
+		getInline: function(item, template) {
+
+			_putInlineElementsBack();
+
+			if(item.src) {
+				var inlineSt = mfp.st.inline,
+					el = $(item.src);
+
+				if(el.length) {
+
+					// If target element has parent - we replace it with placeholder and put it back after popup is closed
+					var parent = el[0].parentNode;
+					if(parent && parent.tagName) {
+						if(!_inlinePlaceholder) {
+							_hiddenClass = inlineSt.hiddenClass;
+							_inlinePlaceholder = _getEl(_hiddenClass);
+							_hiddenClass = 'mfp-'+_hiddenClass;
+						}
+						// replace target inline element with placeholder
+						_lastInlineElement = el.after(_inlinePlaceholder).detach().removeClass(_hiddenClass);
+					}
+
+					mfp.updateStatus('ready');
+				} else {
+					mfp.updateStatus('error', inlineSt.tNotFound);
+					el = $('<div>');
+				}
+
+				item.inlineElement = el;
+				return el;
+			}
+
+			mfp.updateStatus('ready');
+			mfp._parseMarkup(template, {}, item);
+			return template;
+		}
+	}
+});
+
+/*>>inline*/
+
+
+
+/*>>image*/
+var _imgInterval,
+	_getTitle = function(item) {
+		if(item.data && item.data.title !== undefined)
+			return item.data.title;
+
+		var src = mfp.st.image.titleSrc;
+
+		if(src) {
+			if($.isFunction(src)) {
+				return src.call(mfp, item);
+			} else if(item.el) {
+				return item.el.attr(src) || '';
+			}
+		}
+		return '';
+	};
+
+$.magnificPopup.registerModule('image', {
+
+	options: {
+		markup: '<div class="mfp-figure">'+
+					'<div class="mfp-close"></div>'+
+					'<figure>'+
+						'<div class="mfp-img"></div>'+
+						'<figcaption>'+
+							'<div class="mfp-bottom-bar">'+
+								'<div class="mfp-title"></div>'+
+								'<div class="mfp-counter"></div>'+
+							'</div>'+
+						'</figcaption>'+
+					'</figure>'+
+				'</div>',
+		cursor: 'mfp-zoom-out-cur',
+		titleSrc: 'title',
+		verticalFit: true,
+		tError: '<a href="%url%">The image</a> could not be loaded.'
+	},
+
+	proto: {
+		initImage: function() {
+			var imgSt = mfp.st.image,
+				ns = '.image';
+
+			mfp.types.push('image');
+
+			_mfpOn(OPEN_EVENT+ns, function() {
+				if(mfp.currItem.type === 'image' && imgSt.cursor) {
+					$(document.body).addClass(imgSt.cursor);
+				}
+			});
+
+			_mfpOn(CLOSE_EVENT+ns, function() {
+				if(imgSt.cursor) {
+					$(document.body).removeClass(imgSt.cursor);
+				}
+				_window.off('resize' + EVENT_NS);
+			});
+
+			_mfpOn('Resize'+ns, mfp.resizeImage);
+			if(mfp.isLowIE) {
+				_mfpOn('AfterChange', mfp.resizeImage);
+			}
+		},
+		resizeImage: function() {
+			var item = mfp.currItem;
+			if(!item || !item.img) return;
+
+			if(mfp.st.image.verticalFit) {
+				var decr = 0;
+				// fix box-sizing in ie7/8
+				if(mfp.isLowIE) {
+					decr = parseInt(item.img.css('padding-top'), 10) + parseInt(item.img.css('padding-bottom'),10);
+				}
+				item.img.css('max-height', mfp.wH-decr);
+			}
+		},
+		_onImageHasSize: function(item) {
+			if(item.img) {
+
+				item.hasSize = true;
+
+				if(_imgInterval) {
+					clearInterval(_imgInterval);
+				}
+
+				item.isCheckingImgSize = false;
+
+				_mfpTrigger('ImageHasSize', item);
+
+				if(item.imgHidden) {
+					if(mfp.content)
+						mfp.content.removeClass('mfp-loading');
+
+					item.imgHidden = false;
+				}
+
+			}
+		},
+
+		/**
+		 * Function that loops until the image has size to display elements that rely on it asap
+		 */
+		findImageSize: function(item) {
+
+			var counter = 0,
+				img = item.img[0],
+				mfpSetInterval = function(delay) {
+
+					if(_imgInterval) {
+						clearInterval(_imgInterval);
+					}
+					// decelerating interval that checks for size of an image
+					_imgInterval = setInterval(function() {
+						if(img.naturalWidth > 0) {
+							mfp._onImageHasSize(item);
+							return;
+						}
+
+						if(counter > 200) {
+							clearInterval(_imgInterval);
+						}
+
+						counter++;
+						if(counter === 3) {
+							mfpSetInterval(10);
+						} else if(counter === 40) {
+							mfpSetInterval(50);
+						} else if(counter === 100) {
+							mfpSetInterval(500);
+						}
+					}, delay);
+				};
+
+			mfpSetInterval(1);
+		},
+
+		getImage: function(item, template) {
+
+			var guard = 0,
+
+				// image load complete handler
+				onLoadComplete = function() {
+					if(item) {
+						if (item.img[0].complete) {
+							item.img.off('.mfploader');
+
+							if(item === mfp.currItem){
+								mfp._onImageHasSize(item);
+
+								mfp.updateStatus('ready');
+							}
+
+							item.hasSize = true;
+							item.loaded = true;
+
+							_mfpTrigger('ImageLoadComplete');
+
+						}
+						else {
+							// if image complete check fails 200 times (20 sec), we assume that there was an error.
+							guard++;
+							if(guard < 200) {
+								setTimeout(onLoadComplete,100);
+							} else {
+								onLoadError();
+							}
+						}
+					}
+				},
+
+				// image error handler
+				onLoadError = function() {
+					if(item) {
+						item.img.off('.mfploader');
+						if(item === mfp.currItem){
+							mfp._onImageHasSize(item);
+							mfp.updateStatus('error', imgSt.tError.replace('%url%', item.src) );
+						}
+
+						item.hasSize = true;
+						item.loaded = true;
+						item.loadError = true;
+					}
+				},
+				imgSt = mfp.st.image;
+
+
+			var el = template.find('.mfp-img');
+			if(el.length) {
+				var img = document.createElement('img');
+				img.className = 'mfp-img';
+				if(item.el && item.el.find('img').length) {
+					img.alt = item.el.find('img').attr('alt');
+				}
+				item.img = $(img).on('load.mfploader', onLoadComplete).on('error.mfploader', onLoadError);
+				img.src = item.src;
+
+				// without clone() "error" event is not firing when IMG is replaced by new IMG
+				// TODO: find a way to avoid such cloning
+				if(el.is('img')) {
+					item.img = item.img.clone();
+				}
+
+				img = item.img[0];
+				if(img.naturalWidth > 0) {
+					item.hasSize = true;
+				} else if(!img.width) {
+					item.hasSize = false;
+				}
+			}
+
+			mfp._parseMarkup(template, {
+				title: _getTitle(item),
+				img_replaceWith: item.img
+			}, item);
+
+			mfp.resizeImage();
+
+			if(item.hasSize) {
+				if(_imgInterval) clearInterval(_imgInterval);
+
+				if(item.loadError) {
+					template.addClass('mfp-loading');
+					mfp.updateStatus('error', imgSt.tError.replace('%url%', item.src) );
+				} else {
+					template.removeClass('mfp-loading');
+					mfp.updateStatus('ready');
+				}
+				return template;
+			}
+
+			mfp.updateStatus('loading');
+			item.loading = true;
+
+			if(!item.hasSize) {
+				item.imgHidden = true;
+				template.addClass('mfp-loading');
+				mfp.findImageSize(item);
+			}
+
+			return template;
+		}
+	}
+});
+
+/*>>image*/
+
+/*>>zoom*/
+var hasMozTransform,
+	getHasMozTransform = function() {
+		if(hasMozTransform === undefined) {
+			hasMozTransform = document.createElement('p').style.MozTransform !== undefined;
+		}
+		return hasMozTransform;
+	};
+
+$.magnificPopup.registerModule('zoom', {
+
+	options: {
+		enabled: false,
+		easing: 'ease-in-out',
+		duration: 300,
+		opener: function(element) {
+			return element.is('img') ? element : element.find('img');
+		}
+	},
+
+	proto: {
+
+		initZoom: function() {
+			var zoomSt = mfp.st.zoom,
+				ns = '.zoom',
+				image;
+
+			if(!zoomSt.enabled || !mfp.supportsTransition) {
+				return;
+			}
+
+			var duration = zoomSt.duration,
+				getElToAnimate = function(image) {
+					var newImg = image.clone().removeAttr('style').removeAttr('class').addClass('mfp-animated-image'),
+						transition = 'all '+(zoomSt.duration/1000)+'s ' + zoomSt.easing,
+						cssObj = {
+							position: 'fixed',
+							zIndex: 9999,
+							left: 0,
+							top: 0,
+							'-webkit-backface-visibility': 'hidden'
+						},
+						t = 'transition';
+
+					cssObj['-webkit-'+t] = cssObj['-moz-'+t] = cssObj['-o-'+t] = cssObj[t] = transition;
+
+					newImg.css(cssObj);
+					return newImg;
+				},
+				showMainContent = function() {
+					mfp.content.css('visibility', 'visible');
+				},
+				openTimeout,
+				animatedImg;
+
+			_mfpOn('BuildControls'+ns, function() {
+				if(mfp._allowZoom()) {
+
+					clearTimeout(openTimeout);
+					mfp.content.css('visibility', 'hidden');
+
+					// Basically, all code below does is clones existing image, puts in on top of the current one and animated it
+
+					image = mfp._getItemToZoom();
+
+					if(!image) {
+						showMainContent();
+						return;
+					}
+
+					animatedImg = getElToAnimate(image);
+
+					animatedImg.css( mfp._getOffset() );
+
+					mfp.wrap.append(animatedImg);
+
+					openTimeout = setTimeout(function() {
+						animatedImg.css( mfp._getOffset( true ) );
+						openTimeout = setTimeout(function() {
+
+							showMainContent();
+
+							setTimeout(function() {
+								animatedImg.remove();
+								image = animatedImg = null;
+								_mfpTrigger('ZoomAnimationEnded');
+							}, 16); // avoid blink when switching images
+
+						}, duration); // this timeout equals animation duration
+
+					}, 16); // by adding this timeout we avoid short glitch at the beginning of animation
+
+
+					// Lots of timeouts...
+				}
+			});
+			_mfpOn(BEFORE_CLOSE_EVENT+ns, function() {
+				if(mfp._allowZoom()) {
+
+					clearTimeout(openTimeout);
+
+					mfp.st.removalDelay = duration;
+
+					if(!image) {
+						image = mfp._getItemToZoom();
+						if(!image) {
+							return;
+						}
+						animatedImg = getElToAnimate(image);
+					}
+
+					animatedImg.css( mfp._getOffset(true) );
+					mfp.wrap.append(animatedImg);
+					mfp.content.css('visibility', 'hidden');
+
+					setTimeout(function() {
+						animatedImg.css( mfp._getOffset() );
+					}, 16);
+				}
+
+			});
+
+			_mfpOn(CLOSE_EVENT+ns, function() {
+				if(mfp._allowZoom()) {
+					showMainContent();
+					if(animatedImg) {
+						animatedImg.remove();
+					}
+					image = null;
+				}
+			});
+		},
+
+		_allowZoom: function() {
+			return mfp.currItem.type === 'image';
+		},
+
+		_getItemToZoom: function() {
+			if(mfp.currItem.hasSize) {
+				return mfp.currItem.img;
+			} else {
+				return false;
+			}
+		},
+
+		// Get element postion relative to viewport
+		_getOffset: function(isLarge) {
+			var el;
+			if(isLarge) {
+				el = mfp.currItem.img;
+			} else {
+				el = mfp.st.zoom.opener(mfp.currItem.el || mfp.currItem);
+			}
+
+			var offset = el.offset();
+			var paddingTop = parseInt(el.css('padding-top'),10);
+			var paddingBottom = parseInt(el.css('padding-bottom'),10);
+			offset.top -= ( $(window).scrollTop() - paddingTop );
+
+
+			/*
+
+			Animating left + top + width/height looks glitchy in Firefox, but perfect in Chrome. And vice-versa.
+
+			 */
+			var obj = {
+				width: el.width(),
+				// fix Zepto height+padding issue
+				height: (_isJQ ? el.innerHeight() : el[0].offsetHeight) - paddingBottom - paddingTop
+			};
+
+			// I hate to do this, but there is no another option
+			if( getHasMozTransform() ) {
+				obj['-moz-transform'] = obj['transform'] = 'translate(' + offset.left + 'px,' + offset.top + 'px)';
+			} else {
+				obj.left = offset.left;
+				obj.top = offset.top;
+			}
+			return obj;
+		}
+
+	}
+});
+
+
+
+/*>>zoom*/
+
+/*>>iframe*/
+
+var IFRAME_NS = 'iframe',
+	_emptyPage = '//about:blank',
+
+	_fixIframeBugs = function(isShowing) {
+		if(mfp.currTemplate[IFRAME_NS]) {
+			var el = mfp.currTemplate[IFRAME_NS].find('iframe');
+			if(el.length) {
+				// reset src after the popup is closed to avoid "video keeps playing after popup is closed" bug
+				if(!isShowing) {
+					el[0].src = _emptyPage;
+				}
+
+				// IE8 black screen bug fix
+				if(mfp.isIE8) {
+					el.css('display', isShowing ? 'block' : 'none');
+				}
+			}
+		}
+	};
+
+$.magnificPopup.registerModule(IFRAME_NS, {
+
+	options: {
+		markup: '<div class="mfp-iframe-scaler">'+
+					'<div class="mfp-close"></div>'+
+					'<iframe class="mfp-iframe" src="//about:blank" frameborder="0" allowfullscreen></iframe>'+
+				'</div>',
+
+		srcAction: 'iframe_src',
+
+		// we don't care and support only one default type of URL by default
+		patterns: {
+			youtube: {
+				index: 'youtube.com',
+				id: 'v=',
+				src: '//www.youtube.com/embed/%id%?autoplay=1'
+			},
+			vimeo: {
+				index: 'vimeo.com/',
+				id: '/',
+				src: '//player.vimeo.com/video/%id%?autoplay=1'
+			},
+			gmaps: {
+				index: '//maps.google.',
+				src: '%id%&output=embed'
+			}
+		}
+	},
+
+	proto: {
+		initIframe: function() {
+			mfp.types.push(IFRAME_NS);
+
+			_mfpOn('BeforeChange', function(e, prevType, newType) {
+				if(prevType !== newType) {
+					if(prevType === IFRAME_NS) {
+						_fixIframeBugs(); // iframe if removed
+					} else if(newType === IFRAME_NS) {
+						_fixIframeBugs(true); // iframe is showing
+					}
+				}// else {
+					// iframe source is switched, don't do anything
+				//}
+			});
+
+			_mfpOn(CLOSE_EVENT + '.' + IFRAME_NS, function() {
+				_fixIframeBugs();
+			});
+		},
+
+		getIframe: function(item, template) {
+			var embedSrc = item.src;
+			var iframeSt = mfp.st.iframe;
+
+			$.each(iframeSt.patterns, function() {
+				if(embedSrc.indexOf( this.index ) > -1) {
+					if(this.id) {
+						if(typeof this.id === 'string') {
+							embedSrc = embedSrc.substr(embedSrc.lastIndexOf(this.id)+this.id.length, embedSrc.length);
+						} else {
+							embedSrc = this.id.call( this, embedSrc );
+						}
+					}
+					embedSrc = this.src.replace('%id%', embedSrc );
+					return false; // break;
+				}
+			});
+
+			var dataObj = {};
+			if(iframeSt.srcAction) {
+				dataObj[iframeSt.srcAction] = embedSrc;
+			}
+			mfp._parseMarkup(template, dataObj, item);
+
+			mfp.updateStatus('ready');
+
+			return template;
+		}
+	}
+});
+
+
+
+/*>>iframe*/
+
+/*>>gallery*/
+/**
+ * Get looped index depending on number of slides
+ */
+var _getLoopedId = function(index) {
+		var numSlides = mfp.items.length;
+		if(index > numSlides - 1) {
+			return index - numSlides;
+		} else  if(index < 0) {
+			return numSlides + index;
+		}
+		return index;
+	},
+	_replaceCurrTotal = function(text, curr, total) {
+		return text.replace(/%curr%/gi, curr + 1).replace(/%total%/gi, total);
+	};
+
+$.magnificPopup.registerModule('gallery', {
+
+	options: {
+		enabled: false,
+		arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
+		preload: [0,2],
+		navigateByImgClick: true,
+		arrows: true,
+
+		tPrev: 'Previous (Left arrow key)',
+		tNext: 'Next (Right arrow key)',
+		tCounter: '%curr% of %total%'
+	},
+
+	proto: {
+		initGallery: function() {
+
+			var gSt = mfp.st.gallery,
+				ns = '.mfp-gallery';
+
+			mfp.direction = true; // true - next, false - prev
+
+			if(!gSt || !gSt.enabled ) return false;
+
+			_wrapClasses += ' mfp-gallery';
+
+			_mfpOn(OPEN_EVENT+ns, function() {
+
+				if(gSt.navigateByImgClick) {
+					mfp.wrap.on('click'+ns, '.mfp-img', function() {
+						if(mfp.items.length > 1) {
+							mfp.next();
+							return false;
+						}
+					});
+				}
+
+				_document.on('keydown'+ns, function(e) {
+					if (e.keyCode === 37) {
+						mfp.prev();
+					} else if (e.keyCode === 39) {
+						mfp.next();
+					}
+				});
+			});
+
+			_mfpOn('UpdateStatus'+ns, function(e, data) {
+				if(data.text) {
+					data.text = _replaceCurrTotal(data.text, mfp.currItem.index, mfp.items.length);
+				}
+			});
+
+			_mfpOn(MARKUP_PARSE_EVENT+ns, function(e, element, values, item) {
+				var l = mfp.items.length;
+				values.counter = l > 1 ? _replaceCurrTotal(gSt.tCounter, item.index, l) : '';
+			});
+
+			_mfpOn('BuildControls' + ns, function() {
+				if(mfp.items.length > 1 && gSt.arrows && !mfp.arrowLeft) {
+					var markup = gSt.arrowMarkup,
+						arrowLeft = mfp.arrowLeft = $( markup.replace(/%title%/gi, gSt.tPrev).replace(/%dir%/gi, 'left') ).addClass(PREVENT_CLOSE_CLASS),
+						arrowRight = mfp.arrowRight = $( markup.replace(/%title%/gi, gSt.tNext).replace(/%dir%/gi, 'right') ).addClass(PREVENT_CLOSE_CLASS);
+
+					arrowLeft.click(function() {
+						mfp.prev();
+					});
+					arrowRight.click(function() {
+						mfp.next();
+					});
+
+					mfp.container.append(arrowLeft.add(arrowRight));
+				}
+			});
+
+			_mfpOn(CHANGE_EVENT+ns, function() {
+				if(mfp._preloadTimeout) clearTimeout(mfp._preloadTimeout);
+
+				mfp._preloadTimeout = setTimeout(function() {
+					mfp.preloadNearbyImages();
+					mfp._preloadTimeout = null;
+				}, 16);
+			});
+
+
+			_mfpOn(CLOSE_EVENT+ns, function() {
+				_document.off(ns);
+				mfp.wrap.off('click'+ns);
+				mfp.arrowRight = mfp.arrowLeft = null;
+			});
+
+		},
+		next: function() {
+			mfp.direction = true;
+			mfp.index = _getLoopedId(mfp.index + 1);
+			mfp.updateItemHTML();
+		},
+		prev: function() {
+			mfp.direction = false;
+			mfp.index = _getLoopedId(mfp.index - 1);
+			mfp.updateItemHTML();
+		},
+		goTo: function(newIndex) {
+			mfp.direction = (newIndex >= mfp.index);
+			mfp.index = newIndex;
+			mfp.updateItemHTML();
+		},
+		preloadNearbyImages: function() {
+			var p = mfp.st.gallery.preload,
+				preloadBefore = Math.min(p[0], mfp.items.length),
+				preloadAfter = Math.min(p[1], mfp.items.length),
+				i;
+
+			for(i = 1; i <= (mfp.direction ? preloadAfter : preloadBefore); i++) {
+				mfp._preloadItem(mfp.index+i);
+			}
+			for(i = 1; i <= (mfp.direction ? preloadBefore : preloadAfter); i++) {
+				mfp._preloadItem(mfp.index-i);
+			}
+		},
+		_preloadItem: function(index) {
+			index = _getLoopedId(index);
+
+			if(mfp.items[index].preloaded) {
+				return;
+			}
+
+			var item = mfp.items[index];
+			if(!item.parsed) {
+				item = mfp.parseEl( index );
+			}
+
+			_mfpTrigger('LazyLoad', item);
+
+			if(item.type === 'image') {
+				item.img = $('<img class="mfp-img" />').on('load.mfploader', function() {
+					item.hasSize = true;
+				}).on('error.mfploader', function() {
+					item.hasSize = true;
+					item.loadError = true;
+					_mfpTrigger('LazyLoadError', item);
+				}).attr('src', item.src);
+			}
+
+
+			item.preloaded = true;
+		}
+	}
+});
+
+/*>>gallery*/
+
+
+ _checkInstance(); }));;
 /*
      _ _      _       _
  ___| (_) ___| | __  (_)___
@@ -3352,6 +7770,294 @@ module.exports = new MediaQueryDispatch();
 
 }));
 ;
+// Sticky Plugin v1.0.4 for jQuery
+// =============
+// Author: Anthony Garand
+// Improvements by German M. Bravo (Kronuz) and Ruud Kamphuis (ruudk)
+// Improvements by Leonardo C. Daronco (daronco)
+// Created: 02/14/2011
+// Date: 07/20/2015
+// Website: http://stickyjs.com/
+// Description: Makes an element on the page stick on the screen as you scroll
+//              It will only set the 'top' and 'position' of your element, you
+//              might need to adjust the width in some cases.
+
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery'], factory);
+    } else if (typeof module === 'object' && module.exports) {
+        // Node/CommonJS
+        module.exports = factory(require('jquery'));
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function ($) {
+    var slice = Array.prototype.slice; // save ref to original slice()
+    var splice = Array.prototype.splice; // save ref to original slice()
+
+  var defaults = {
+      topSpacing: 0,
+      bottomSpacing: 0,
+      className: 'is-sticky',
+      wrapperClassName: 'sticky-wrapper',
+      center: false,
+      getWidthFrom: '',
+      widthFromWrapper: true, // works only when .getWidthFrom is empty
+      responsiveWidth: false,
+      zIndex: 'inherit'
+    },
+    $window = $(window),
+    $document = $(document),
+    sticked = [],
+    windowHeight = $window.height(),
+    scroller = function() {
+      var scrollTop = $window.scrollTop(),
+        documentHeight = $document.height(),
+        dwh = documentHeight - windowHeight,
+        extra = (scrollTop > dwh) ? dwh - scrollTop : 0;
+
+      for (var i = 0, l = sticked.length; i < l; i++) {
+        var s = sticked[i],
+          elementTop = s.stickyWrapper.offset().top,
+          etse = elementTop - s.topSpacing - extra;
+
+        //update height in case of dynamic content
+        s.stickyWrapper.css('height', s.stickyElement.outerHeight());
+
+        if (scrollTop <= etse) {
+          if (s.currentTop !== null) {
+            s.stickyElement
+              .css({
+                'width': '',
+                'position': '',
+                'top': '',
+                'z-index': ''
+              });
+            s.stickyElement.parent().removeClass(s.className);
+            s.stickyElement.trigger('sticky-end', [s]);
+            s.currentTop = null;
+          }
+        }
+        else {
+          var newTop = documentHeight - s.stickyElement.outerHeight()
+            - s.topSpacing - s.bottomSpacing - scrollTop - extra;
+          if (newTop < 0) {
+            newTop = newTop + s.topSpacing;
+          } else {
+            newTop = s.topSpacing;
+          }
+          if (s.currentTop !== newTop) {
+            var newWidth;
+            if (s.getWidthFrom) {
+                padding =  s.stickyElement.innerWidth() - s.stickyElement.width();
+                newWidth = $(s.getWidthFrom).width() - padding || null;
+            } else if (s.widthFromWrapper) {
+                newWidth = s.stickyWrapper.width();
+            }
+            if (newWidth == null) {
+                newWidth = s.stickyElement.width();
+            }
+            s.stickyElement
+              .css('width', newWidth)
+              .css('position', 'fixed')
+              .css('top', newTop)
+              .css('z-index', s.zIndex);
+
+            s.stickyElement.parent().addClass(s.className);
+
+            if (s.currentTop === null) {
+              s.stickyElement.trigger('sticky-start', [s]);
+            } else {
+              // sticky is started but it have to be repositioned
+              s.stickyElement.trigger('sticky-update', [s]);
+            }
+
+            if (s.currentTop === s.topSpacing && s.currentTop > newTop || s.currentTop === null && newTop < s.topSpacing) {
+              // just reached bottom || just started to stick but bottom is already reached
+              s.stickyElement.trigger('sticky-bottom-reached', [s]);
+            } else if(s.currentTop !== null && newTop === s.topSpacing && s.currentTop < newTop) {
+              // sticky is started && sticked at topSpacing && overflowing from top just finished
+              s.stickyElement.trigger('sticky-bottom-unreached', [s]);
+            }
+
+            s.currentTop = newTop;
+          }
+
+          // Check if sticky has reached end of container and stop sticking
+          var stickyWrapperContainer = s.stickyWrapper.parent();
+          var unstick = (s.stickyElement.offset().top + s.stickyElement.outerHeight() >= stickyWrapperContainer.offset().top + stickyWrapperContainer.outerHeight()) && (s.stickyElement.offset().top <= s.topSpacing);
+
+          if( unstick ) {
+            s.stickyElement
+              .css('position', 'absolute')
+              .css('top', '')
+              .css('bottom', 0)
+              .css('z-index', '');
+          } else {
+            s.stickyElement
+              .css('position', 'fixed')
+              .css('top', newTop)
+              .css('bottom', '')
+              .css('z-index', s.zIndex);
+          }
+        }
+      }
+    },
+    resizer = function() {
+      windowHeight = $window.height();
+
+      for (var i = 0, l = sticked.length; i < l; i++) {
+        var s = sticked[i];
+        var newWidth = null;
+        if (s.getWidthFrom) {
+            if (s.responsiveWidth) {
+                newWidth = $(s.getWidthFrom).width();
+            }
+        } else if(s.widthFromWrapper) {
+            newWidth = s.stickyWrapper.width();
+        }
+        if (newWidth != null) {
+            s.stickyElement.css('width', newWidth);
+        }
+      }
+    },
+    methods = {
+      init: function(options) {
+        return this.each(function() {
+          var o = $.extend({}, defaults, options);
+          var stickyElement = $(this);
+
+          var stickyId = stickyElement.attr('id');
+          var wrapperId = stickyId ? stickyId + '-' + defaults.wrapperClassName : defaults.wrapperClassName;
+          var wrapper = $('<div></div>')
+            .attr('id', wrapperId)
+            .addClass(o.wrapperClassName);
+
+          stickyElement.wrapAll(function() {
+            if ($(this).parent("#" + wrapperId).length == 0) {
+                    return wrapper;
+            }
+});
+
+          var stickyWrapper = stickyElement.parent();
+
+          if (o.center) {
+            stickyWrapper.css({width:stickyElement.outerWidth(),marginLeft:"auto",marginRight:"auto"});
+          }
+
+          if (stickyElement.css("float") === "right") {
+            stickyElement.css({"float":"none"}).parent().css({"float":"right"});
+          }
+
+          o.stickyElement = stickyElement;
+          o.stickyWrapper = stickyWrapper;
+          o.currentTop    = null;
+
+          sticked.push(o);
+
+          methods.setWrapperHeight(this);
+          methods.setupChangeListeners(this);
+        });
+      },
+
+      setWrapperHeight: function(stickyElement) {
+        var element = $(stickyElement);
+        var stickyWrapper = element.parent();
+        if (stickyWrapper) {
+          stickyWrapper.css('height', element.outerHeight());
+        }
+      },
+
+      setupChangeListeners: function(stickyElement) {
+        if (window.MutationObserver) {
+          var mutationObserver = new window.MutationObserver(function(mutations) {
+            if (mutations[0].addedNodes.length || mutations[0].removedNodes.length) {
+              methods.setWrapperHeight(stickyElement);
+            }
+          });
+          mutationObserver.observe(stickyElement, {subtree: true, childList: true});
+        } else {
+          if (window.addEventListener) {
+            stickyElement.addEventListener('DOMNodeInserted', function() {
+              methods.setWrapperHeight(stickyElement);
+            }, false);
+            stickyElement.addEventListener('DOMNodeRemoved', function() {
+              methods.setWrapperHeight(stickyElement);
+            }, false);
+          } else if (window.attachEvent) {
+            stickyElement.attachEvent('onDOMNodeInserted', function() {
+              methods.setWrapperHeight(stickyElement);
+            });
+            stickyElement.attachEvent('onDOMNodeRemoved', function() {
+              methods.setWrapperHeight(stickyElement);
+            });
+          }
+        }
+      },
+      update: scroller,
+      unstick: function(options) {
+        return this.each(function() {
+          var that = this;
+          var unstickyElement = $(that);
+
+          var removeIdx = -1;
+          var i = sticked.length;
+          while (i-- > 0) {
+            if (sticked[i].stickyElement.get(0) === that) {
+                splice.call(sticked,i,1);
+                removeIdx = i;
+            }
+          }
+          if(removeIdx !== -1) {
+            unstickyElement.unwrap();
+            unstickyElement
+              .css({
+                'width': '',
+                'position': '',
+                'top': '',
+                'float': '',
+                'z-index': ''
+              })
+            ;
+          }
+        });
+      }
+    };
+
+  // should be more efficient than using $window.scroll(scroller) and $window.resize(resizer):
+  if (window.addEventListener) {
+    window.addEventListener('scroll', scroller, false);
+    window.addEventListener('resize', resizer, false);
+  } else if (window.attachEvent) {
+    window.attachEvent('onscroll', scroller);
+    window.attachEvent('onresize', resizer);
+  }
+
+  $.fn.sticky = function(method) {
+    if (methods[method]) {
+      return methods[method].apply(this, slice.call(arguments, 1));
+    } else if (typeof method === 'object' || !method ) {
+      return methods.init.apply( this, arguments );
+    } else {
+      $.error('Method ' + method + ' does not exist on jQuery.sticky');
+    }
+  };
+
+  $.fn.unstick = function(method) {
+    if (methods[method]) {
+      return methods[method].apply(this, slice.call(arguments, 1));
+    } else if (typeof method === 'object' || !method ) {
+      return methods.unstick.apply( this, arguments );
+    } else {
+      $.error('Method ' + method + ' does not exist on jQuery.sticky');
+    }
+  };
+  $(function() {
+    setTimeout(scroller, 0);
+  });
+}));;
 /*!
  * viewport-units-buggyfill.hacks v0.6.2
  * @web: https://github.com/rodneyrehm/viewport-units-buggyfill/

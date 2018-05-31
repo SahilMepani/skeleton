@@ -1,7 +1,3 @@
-.btn-input-clone {
-	@include btn-input-clone( transparent );
-}
-
 .btn-primary {
 	@include btn-primary;
 }
@@ -30,6 +26,10 @@
 	@include btn-xlg;
 }
 
-.btn-block {
-	@include btn-block;
+.btn-input-clone {
+	@include btn-input-clone( transparent );
+}
+
+.btn-disabled {
+	@include btn-disabled;
 }

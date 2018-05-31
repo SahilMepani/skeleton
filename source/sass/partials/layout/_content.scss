@@ -1,9 +1,7 @@
 #site-wrapper { //body
 	@include display-flex;
-	@include flex-direction(column);
+	@include flex-direction( column );
 	min-height: 100vh;
-	// display: -ms-flexbox; //check ie10
-	// -ms-flex-wrap: column; //check ie10
 	// Overlay - remove if not required
 	// &:before {
 	//   opacity: 0;
@@ -26,6 +24,5 @@
 }
 
 #site-content {
-	@include flex(1 0 auto);
-	// -ms-flex: 1 0 auto; //check ie10
+	@include flex( 1 0 auto );
 }

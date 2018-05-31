@@ -68,9 +68,9 @@ jQuery( document ).ready( function( $ ) {
 					}, 300 );
 
 					if ( $data.length < 6 ) {
-						loadMoreBtn.removeClass( 'js-active js-disabled' ).addClass( 'js-disabled' );
+						loadMoreBtn.removeClass( 'js-active btn-disabled' ).addClass( 'btn-disabled' );
 					} else {
-						loadMoreBtn.removeClass( 'js-active js-disabled' ).addClass( 'js-active' );
+						loadMoreBtn.removeClass( 'js-active btn-disabled' ).addClass( 'js-active' );
 					}
 
 				}
@@ -87,7 +87,7 @@ jQuery( document ).ready( function( $ ) {
 	===========================================*/
 	$( '#ajax-load-more-post' ).on( 'click', function( e ) {
 		e.preventDefault();
-		$( this ).removeClass( 'js-active' ).addClass( 'js-disabled' );
+		$( this ).removeClass( 'js-active' ).addClass( 'btn-disabled' );
 		$( '.spinner' ).addClass( 'js-active' );
 		load_more_post( $( this ) );
 	} );
@@ -123,14 +123,14 @@ jQuery( document ).ready( function( $ ) {
 						$( '.spinner' ).removeClass( 'js-active' );
 
 						if ( $data.length < 6 ) {
-							$this.addClass( 'js-disabled' );
+							$this.addClass( 'btn-disabled' );
 						} else {
-							$this.removeClass( 'js-disabled' ).addClass( 'js-active' );
+							$this.removeClass( 'btn-disabled' ).addClass( 'js-active' );
 						}
 
 					} else {
 						$( '.spinner' ).removeClass( 'js-active' );
-						$this.removeClass( 'js-active' ).addClass( 'js-disabled' );
+						$this.removeClass( 'js-active' ).addClass( 'btn-disabled' );
 					}
 
 				} //success
@@ -225,9 +225,9 @@ jQuery( document ).ready( function( $ ) {
 					}, 300 );
 
 					if ( $data.length < 6 ) {
-						loadMoreBtn.removeClass( 'js-active' ).addClass( 'js-disabled' );
+						loadMoreBtn.removeClass( 'js-active' ).addClass( 'btn-disabled' );
 					} else {
-						loadMoreBtn.removeClass( 'js-disabled' ).addClass( 'js-active' );
+						loadMoreBtn.removeClass( 'btn-disabled' ).addClass( 'js-active' );
 					}
 
 				}
@@ -245,7 +245,7 @@ jQuery( document ).ready( function( $ ) {
 	===============================================*/
 	$( '#ajax-load-more-post-dual' ).on( 'click', function( e ) {
 		e.preventDefault();
-		$( this ).removeClass( 'js-active' ).addClass( 'js-disabled' );
+		$( this ).removeClass( 'js-active' ).addClass( 'btn-disabled' );
 		$( '.spinner' ).addClass( 'js-active' );
 		load_more_dual_cpt( $( this ) );
 	} );
@@ -285,14 +285,14 @@ jQuery( document ).ready( function( $ ) {
 						$( '.spinner' ).removeClass( 'js-active' );
 
 						if ( $data.length < 6 ) {
-							$this.addClass( 'js-disabled' );
+							$this.addClass( 'btn-disabled' );
 						} else {
-							$this.removeClass( 'js-disabled' ).addClass( 'js-active' );
+							$this.removeClass( 'btn-disabled' ).addClass( 'js-active' );
 						}
 
 					} else {
 						$( '.spinner' ).removeClass( 'js-active' );
-						$this.removeClass( 'js-active' ).addClass( 'js-disabled' );
+						$this.removeClass( 'js-active' ).addClass( 'btn-disabled' );
 					}
 
 				} //success

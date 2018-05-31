@@ -100,7 +100,7 @@
 	}
 }
 
-@mixin animate-underline-hover( $border_color, $text_color ) {
+@mixin animate-underline-on-hover( $border_color, $text_color ) {
 	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
 	padding-bottom: 1px;
 	position: relative;

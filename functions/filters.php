@@ -314,6 +314,46 @@ function add_script_attribute($tag, $handle) {
 add_filter('script_loader_tag', 'add_script_attribute', 10, 2);
 
 
+/*===================================================================
+=            Display a custom taxonomy dropdown in admin            =
+===================================================================*/
+add_action('restrict_manage_posts', 'tse_filter_post_type_by_taxonomy');
+function tse_filter_post_type_by_taxonomy() {
+	global $typenow;
+	$post_type = 'project'; // change to your post type
+	$taxonomy  = 'tax-one'; // change to your taxonomy
+	if ($typenow == $post_type) {
+		$selected      = isset($_GET[$taxonomy]) ? $_GET[$taxonomy] : '';
+		$info_taxonomy = get_taxonomy($taxonomy);
+		wp_dropdown_categories(array(
+			'show_option_all' => __("Show All {$info_taxonomy->label}"),
+			'taxonomy'        => $taxonomy,
+			'name'            => $taxonomy,
+			'orderby'         => 'name',
+			'selected'        => $selected,
+			'show_count'      => true,
+			'hide_empty'      => true,
+		));
+	};
+}
+
+
+/*=========================================================
+=            Filter posts by taxonomy in admin            =
+=========================================================*/
+add_filter('parse_query', 'tse_convert_id_to_term_in_query');
+function tse_convert_id_to_term_in_query($query) {
+	global $pagenow;
+	$post_type = 'project'; // change to your post type
+	$taxonomy  = 'tax-one'; // change to your taxonomy
+	$q_vars    = &$query->query_vars;
+	if ( $pagenow == 'edit.php' && isset($q_vars['post_type']) && $q_vars['post_type'] == $post_type && isset($q_vars[$taxonomy]) && is_numeric($q_vars[$taxonomy]) && $q_vars[$taxonomy] != 0 ) {
+		$term = get_term_by('id', $q_vars[$taxonomy], $taxonomy);
+		$q_vars[$taxonomy] = $term->slug;
+	}
+}
+
+
 /*========================================================
 =            Add attributes to enqueue styles            =
 ========================================================*/

@@ -63,7 +63,7 @@
 		}
 		&:hover {
 			&:before {
-				color: $red;
+				color: $brand_color_primary;
 			}
 		}
 	}
@@ -157,7 +157,7 @@
 }
 
 .btn-more-post {
-	&.js-disabled {
+	&.btn-disabled {
     cursor: default;
     pointer-events: none;
     opacity: .3;

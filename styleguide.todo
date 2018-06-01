@@ -1,0 +1,33 @@
+Base:
+This values are used as default unless they are explicity set outside base.
+ ☐ $base_color: It includes headings, paragraph etc. All the text.
+ ☐ $base_link_color: Any link
+ ☐ $base_link_decoration: Should it be underline
+ ☐ $base_link_hover_color: Any link when hovered
+ ☐ $base_link_hover_decoration: Underline on hover
+ ☐ $base_font_family: It includes headings, paragraph etc. All the text.
+ ☐ $base_font_size: All the text except headings.
+ ☐ $global_margin_bottom: This is used for paragraph, list etc. Its the margin we need between two blocks of text. For eg Margin between two paragraph inside an article.
+ ☐ $global_line_height: This is used for paragraph.
+
+Headings:
+ ☐ h1 to h6 (Different set for mobile and Desktop)
+   fonts size (required)
+   font-weight (required)
+   font family (optional)
+   line-height (required)
+   Color (optional)
+ Optional values are inherited from base if not specified.
+
+Custom Typography:
+ ☐ $lead: If we are using any font-size higher than base font size for paragraph/lists.
+ ☐ $display-1: Font size, font family and line height other than headings
+ ☐ $display-2: Font size, font family and line height other than headings
+ ☐ $display-3: Font size, font family and line height other than headings
+ ☐ $display-4 Font size, font family and line height other than headings
+
+Color Scheme:
+ ☐ $brand_color_primary - This is the primary site color. Mainly used for buttons and links.
+ ☐ $brand_color_secondary - Similar to primary but this is a secodary.
+
+For everything else please follow the styleguide.

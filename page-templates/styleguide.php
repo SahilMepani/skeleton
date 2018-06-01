@@ -27,9 +27,16 @@
 </div> <!-- .col -->
 
 <div class="col">
-	<h5>Inline Text</h5>
+
+	<h4>Article</h4>
 
 	<p>You might have noticed all the monospaced text in this guide. There are a number of inline <abbr title="HyperText Markup Language">HTML</abbr> elements you may use anywhere within other elements, including <abbr title="Abbreviation">abbr</abbr>, <cite>cite</cite>, <code>code</code>, <del>del</del>, <em>em</em>, <ins>ins</ins>, <strong>strong</strong>, <var>var</var>, and <a href="#" title="link">link</a></p>
+
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur tempore eveniet consequatur illum ipsam impedit.</p>
+
+	<h4>Heading between copy</h4>
+
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime aliquam perferendis a, praesentium, placeat commodi rerum tempore officiis et quo. Omnis itaque optio maxime saepe.</p>
 
 	<hr>
 
@@ -39,13 +46,6 @@
 		<p>A complex system that works is invariably found to have evolved from a simple system that worked. The inverse proposition also appears to be true: <em>A complex system designed from scratch never works</em> and cannot be made to work. You have to start over, beginning with a working simple system.</p>
 		<footer>
 			<p><a href="http://en.wikipedia.org/wiki/Gall%27s_law">http://en.wikipedia.org/wiki/Gall%27s_law</a></p>
-		</footer>
-	</blockquote>
-
-	<blockquote>
-		<p>I think most programmers spend the first 5 years of their career mastering complexity, and the rest of their lives learning simplicity.</p>
-		<footer>
-			<p>&mdash; BUZZ ANDERSEN</p>
 		</footer>
 	</blockquote>
 

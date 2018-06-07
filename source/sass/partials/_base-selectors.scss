@@ -20,6 +20,7 @@
 }
 
 html {
+	@include rem-baseline;
 	font-family: $base_font_family;
 	//min-width: $container; if non-responsive
 	-webkit-tap-highlight-color: transparent;
@@ -42,12 +43,9 @@ html {
 body {
 	background: $base_bg_color;
 	color: $base_color;
-	@include rem-baseline;
+	@include rem( font-size, $base_font_size );
 	font-family: $base_font_family;
 	line-height: $base_line_height;
-	// @include breakpoint( $xlg ) {
-	//   @include rem(font-size, 20px);
-	// }
 }
 
 /*----------  Headings  ----------*/
@@ -63,36 +61,21 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 h1, .h1 {
-	@include rem(font-size, 36px);
+	@include rem(font-size, 32px);
 	line-height: 1.2;
-	@include breakpoint( $md ) {
-		@include rem(font-size, 48px);
-		line-height: 1.1;
-	}
 }
 
 h2, .h2 {
 	@include rem(font-size, 30px);
 	line-height: 1.3;
-	@include breakpoint( $md ) {
-		@include rem(font-size, 36px);
-		line-height: 1.2;
-	}
 }
 
 h3, .h3 {
 	@include rem(font-size, 24px);
-	@include breakpoint( $md ) {
-		@include rem(font-size, 30px);
-		line-height: 1.3;
-	}
 }
 
 h4, .h4 {
 	@include rem(font-size, 20px);
-	@include breakpoint( $md ) {
-		@include rem(font-size, 24px);
-	}
 }
 
 h5, .h5 {

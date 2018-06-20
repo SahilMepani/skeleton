@@ -14,3 +14,7 @@ New image size in functions.php should be named as per the dimensions, for eg.
 
 TRIVIA:
   Stick posts won't work with ajax filters. It will not be at the top once the post/cpt are filtered.
+
+FLEXIBLE CONTENT:
+ ☐ No need to prefix the section field names for section options or developer options.
+ ☐ Section options should be not be a part of section clone because sometimes we need left or top aligned tabs.

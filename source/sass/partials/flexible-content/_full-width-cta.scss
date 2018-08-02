@@ -1,0 +1,13 @@
+.full-width-cta-section {
+	@include display-flex;
+	@include flex-wrap(wrap);
+	@include justify-content(center);
+	@include align-items(center);
+	height: 450px;
+	.content-block {
+		@include breakpoint( $lg ) {
+		  width: 80%;
+		  margin: 0 auto;
+		}
+	}
+}

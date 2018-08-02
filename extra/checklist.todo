@@ -1,5 +1,7 @@
 START
  ☐ Remove the folders inside uploads directory if versatile wp-content is copied.
+ ☐ Delete the files inside acf-json
+ ☐ Delete .git, .sass-cache, .php folders
  ☐ Change WP_DEBUG to true in config file.
  ☐ Update Wordpress & plugins
  ☐ Edit sass/style.scss and add the theme info
@@ -8,12 +10,12 @@ START
  ☐ Create theme screenshot
  ☐ Create favicon.png & favicon.ico
  ☐ Disable search engine (Settings/Reading)
+ ☐ Set Front & Posts Page, if required (Settings/Reading)
  ☐ Blog pages show at most - 5 (Settings/Reading)
  ☐ Disable comments & gravatar (Settings/Discussion)
  ☐ Set permalinks (Settings/Permalinks)
  ☐ Activate required plugins
  ☐ Create required pages using bulk page creator plugin (Settings/Bulk Page Creator)
- ☐ Set Front & Posts Page, if required (Settings/Reading)
  ☐ Set default post image sizes - Large will be the highest container size.
  ☐ Set typekit id in js file to load the fonts in editor
 

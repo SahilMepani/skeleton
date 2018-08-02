@@ -330,6 +330,8 @@ input[type="text"]:-ms-input-placeholder, input[type="tel"]:-ms-input-placeholde
 
 input[type="text"]::-webkit-input-placeholder, input[type="tel"]::-webkit-input-placeholder, input[type="url"]::-webkit-input-placeholder, input[type="number"]::-webkit-input-placeholder, input[type="password"]::-webkit-input-placeholder, input[type="email"]::-webkit-input-placeholder, input[type="range"]::-webkit-input-placeholder, input[type="file"]::-webkit-input-placeholder, input[type="date"]::-webkit-input-placeholder, input[type="search"]::-webkit-input-placeholder, textarea::-webkit-input-placeholder, select::-webkit-input-placeholder { color: #b0b0b0; }
 
+input[type="text"]::placeholder, input[type="tel"]::placeholder, input[type="url"]::placeholder, input[type="number"]::placeholder, input[type="password"]::placeholder, input[type="email"]::placeholder, input[type="range"]::placeholder, input[type="file"]::placeholder, input[type="date"]::placeholder, input[type="search"]::placeholder, textarea::placeholder, select::placeholder { color: #b0b0b0; }
+
 input[type="text"]:focus, input[type="tel"]:focus, input[type="url"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="range"]:focus, input[type="file"]:focus, input[type="date"]:focus, input[type="search"]:focus, textarea:focus, select:focus { border-color: #000; }
 
 @media (min-width: 576px) { input[type="text"], input[type="tel"], input[type="url"], input[type="number"], input[type="password"], input[type="email"], input[type="range"], input[type="file"], input[type="date"], input[type="search"], textarea, select { padding: 15px 20px; } }
@@ -1401,6 +1403,10 @@ p:empty { display: none; }
   .half-image-and-half-content-section .content-col { display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; width: 50%; padding-top: 70px; padding-bottom: 70px; }
   .half-image-and-half-content-section .content-col * { max-width: 100%; /* IE 10-11 fix */ } }
 
+.full-width-cta-section { display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; -webkit-justify-content: center; justify-content: center; -webkit-align-items: center; align-items: center; height: 450px; }
+
+@media (min-width: 992px) { .full-width-cta-section .content-block { width: 80%; margin: 0 auto; } }
+
 #sitemap-tabs { border: 1px solid #ddd; }
 
 #sitemap-tabs .list-tabs { margin-left: 0; border-bottom: none; overflow: hidden; display: -webkit-flex; display: flex; }
@@ -1627,6 +1633,8 @@ p:empty { display: none; }
 
 .gform_wrapper .chosen-single::-webkit-input-placeholder { color: #b0b0b0; }
 
+.gform_wrapper .chosen-single::placeholder { color: #b0b0b0; }
+
 .gform_wrapper .chosen-single:focus { border-color: #000; }
 
 @media (min-width: 576px) { .gform_wrapper .chosen-single { padding: 15px 20px; } }
@@ -1774,6 +1782,8 @@ input[type="file"] { width: auto; }
 .gform_drop_area:-ms-input-placeholder { color: #b0b0b0; }
 
 .gform_drop_area::-webkit-input-placeholder { color: #b0b0b0; }
+
+.gform_drop_area::placeholder { color: #b0b0b0; }
 
 .gform_drop_area:focus { border-color: #000; }
 

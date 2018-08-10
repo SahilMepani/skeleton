@@ -1,18 +1,64 @@
-/*----------  Swiper Dot Pagination  ----------*/
-.swiper-dot-pagination {
-	span {
-		background-color: rgba( 255,255,255,.4 );
+.bg-video {
+	/* fullscreen */
+	position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 100%;
+  -o-object-fit: fill;
+  object-fit: cover;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.bg-video {
+	/* Not fullscreen - add overflow hidden to parent */
+	position: absolute;
+  left: 0;
+  top: 0;
+  max-width: 100%;
+  -o-object-fit: fill;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.container-fluid {
+  &.px-md-5vw {
+    @include breakpoint( $md ) {
+      padding-left: 5vw;
+      padding-right: 5vw;
+    }
+  }
+}
+
+.gutters-5px { // used on .row
+  margin-right: -5px;
+  margin-left: -5px;
+  > .col, > [class*="col-"] {
+	  padding-right: -5px;
+	  padding-left: -5px;
+	}
+}
+
+/*----------  Slick Dots  ----------*/
+.slick-dots {
+	@include list-unstyled;
+	li {
 		display: inline-block;
+		margin: 0 10px 0 0;
+		position: relative;
+		&.slick-active {
+			button {
+				background-color: #fff;
+			}
+		}
+	}
+	button {
+		@include btn;
+		@include text-hide;
+		background-color: rgba(255,255,255,.5);
 		width: 10px;
 		height: 10px;
-		margin-left: 10px;
 		border-radius: 50%;
-		position: relative;
-		cursor: pointer;
-		&.swiper-pagination-bullet-active {
-			background-color: #fff;
-			@include transition( .2s );
-		}
 	}
 }
 

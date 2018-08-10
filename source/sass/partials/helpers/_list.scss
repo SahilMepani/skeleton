@@ -1,4 +1,4 @@
-.list-socials {
+.list-social-icons {
 	margin: 0;
 	list-style: none;
 	li {
@@ -55,42 +55,42 @@
 			}
 		}
 	}
-	.icon-facebook {
+	.i-facebook {
 		a {
 			&:before {
 				content: $i_facebook;
 			}
 		}
 	}
-	.icon-twitter {
+	.i-twitter {
 		a {
 			&:before {
 				content: $i_twitter;
 			}
 		}
 	}
-	.icon-instagram {
+	.i-instagram {
 		a {
 			&:before {
 				content: $i_instagram;
 			}
 		}
 	}
-	.icon-linkedin {
+	.i-linkedin {
 		a {
 			&:before {
 				content: $i_linkedin;
 			}
 		}
 	}
-	.icon-gplus {
+	.i-gplus {
 		a {
 			&:before {
 				content: $i_gplus;
 			}
 		}
 	}
-	.icon-pinterest {
+	.i-pinterest {
 		a {
 			&:before {
 				content: $i_pinterest;

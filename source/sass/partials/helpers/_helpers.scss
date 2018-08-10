@@ -1,30 +1,9 @@
 /*=====================================
 =            Miscellaneous            =
 =====================================*/
-@include mq-retina {
-  .img-retina {
-    display: inline-block;
-  }
-  .img-non-retina {
-    display: none;
-  }
-}
-
-@include mq-non-retina {
-  .img-retina {
-    display: none;
-  }
-  .img-non-retina {
-    display: inline-block;
-  }
-}
-
-.section-top-separator-line {
-  border-top: 1px solid #ddd;
-}
-
-.section-bottom-separator-line {
-  border-bottom: 1px solid #ddd;
+.img-responsive {
+  width: auto;
+  height: auto;
 }
 
 .list-unstyled {

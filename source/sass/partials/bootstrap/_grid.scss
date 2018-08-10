@@ -47,12 +47,6 @@
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  &.px-5vw {
-    @include breakpoint( $md ) {
-      padding-left: 5vw;
-      padding-right: 5vw;
-    }
-  }
 }
 
 .row {

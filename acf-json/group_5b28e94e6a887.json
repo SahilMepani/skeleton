@@ -1,0 +1,143 @@
+{
+    "key": "group_5b28e94e6a887",
+    "title": "Hero-Fullscreen - Clone",
+    "fields": [
+        {
+            "key": "field_5b6dba0abe25b",
+            "label": "Background Type",
+            "name": "hero_background_type",
+            "type": "button_group",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "image": "Image",
+                "video": "Video"
+            },
+            "allow_null": 0,
+            "default_value": "image",
+            "layout": "horizontal",
+            "return_format": "value"
+        },
+        {
+            "key": "field_5b28e9705dbe5",
+            "label": "Image",
+            "name": "hero_image",
+            "type": "image",
+            "instructions": "Please optimize the image at <a href=\"https:\/\/tinypng.com\" target=\"_blank\">https:\/\/tinypng.com<\/a>. If background type is video, please upload the first frame of video.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "preview_landscape",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_5b6dbb63be25d",
+            "label": "Video MP4",
+            "name": "hero_video_mp4",
+            "type": "file",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5b6dba0abe25b",
+                        "operator": "==",
+                        "value": "video"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "mp4"
+        },
+        {
+            "key": "field_5b6dbba0be25e",
+            "label": "Video WEBM",
+            "name": "hero_video_webm",
+            "type": "file",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5b6dba0abe25b",
+                        "operator": "==",
+                        "value": "video"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "webm"
+        },
+        {
+            "key": "field_5b6dbbd9be260",
+            "label": "Title",
+            "name": "hero_title",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "comment",
+                "operator": "==",
+                "value": "attachment"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1533919862
+}

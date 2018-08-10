@@ -485,6 +485,7 @@ scrollToTop();
 
 // run on scroll
 window.addEventListener( 'scroll', scrollToTop );;
+;
 // function stickyEl() {
 //   if ( window.innerWidth > 767 ) {
 //     $( "#sticky-nav-bar" ).sticky({

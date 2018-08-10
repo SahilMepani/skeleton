@@ -1,24 +1,19 @@
 .bg-video {
-	/* fullscreen */
 	position: absolute;
   left: 0;
   top: 0;
-  min-width: 100%;
   -o-object-fit: fill;
   object-fit: cover;
-  min-height: 100%;
   overflow: hidden;
 }
 
-.bg-video {
-	/* Not fullscreen - add overflow hidden to parent */
-	position: absolute;
-  left: 0;
-  top: 0;
+.bg-video--fullscreen {
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.bg-video--inline {
   max-width: 100%;
-  -o-object-fit: fill;
-  object-fit: cover;
-  overflow: hidden;
 }
 
 .container-fluid {

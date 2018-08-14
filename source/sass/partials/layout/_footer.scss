@@ -30,12 +30,12 @@
 
 }
 
-// Scroll to top
-#scroll-top {
+.scroll-to-top {
 	@include breakpoint( $xs ) {
 	  display: none !important;
 	}
 	@include breakpoint( $sm ) {
+		cursor: pointer;
 		@include text-hide();
 		position: fixed;
 		right: 30px;

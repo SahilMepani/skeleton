@@ -9,7 +9,7 @@
 </div> <!-- .container -->
 </footer> <!-- #footer -->
 
-<button id="scroll-top" class="btn"></button>
+<a href="#site-wrapper" class="scroll-to-top scroll-to"></a>
 
 <?php wp_footer(); ?>
 </body>

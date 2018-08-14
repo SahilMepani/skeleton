@@ -334,20 +334,20 @@
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, placeat perspiciatis facere expedita quae rem similique voluptatem animi dicta debitis excepturi nobis corporis nam totam.</p>
 </div>
 
-<h5><code>&lt;div class="alert alert-info"&gt;</code></h5>
-<div class="alert alert-info">
+<h5><code>&lt;div class="alert alert--info"&gt;</code></h5>
+<div class="alert alert--info">
 	<h5>Info Alert</h5>
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, placeat perspiciatis facere expedita quae rem similique voluptatem animi dicta debitis excepturi nobis corporis nam totam.</p>
 </div>
 
-<h5><code>&lt;div class="alert alert-error"&gt;</code></h5>
-<div class="alert alert-error">
+<h5><code>&lt;div class="alert alert--error"&gt;</code></h5>
+<div class="alert alert--error">
 	<h5>Error Alert</h5>
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, placeat perspiciatis facere expedita quae rem similique voluptatem animi dicta debitis excepturi nobis corporis nam totam.</p>
 </div>
 
-<h5><code>&lt;div class="alert alert-success"&gt;</code></h5>
-<div class="alert alert-success">
+<h5><code>&lt;div class="alert alert--success"&gt;</code></h5>
+<div class="alert alert--success">
 	<h5>Success Alert</h5>
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, placeat perspiciatis facere expedita quae rem similique voluptatem animi dicta debitis excepturi nobis corporis nam totam.</p>
 </div>

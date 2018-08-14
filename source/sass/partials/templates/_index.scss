@@ -29,6 +29,31 @@
 	form {
 		position: relative;
 	}
+	.submit-block {
+		width: 45px;
+		position: absolute;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		&:before {
+			@include icon-font-properties;
+			content: $i_search;
+			color: #ccc;
+			font-size: 30px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			@include translate(-50%, -50%);
+		}
+		input[type="submit"] {
+			background: transparent;
+			width: 100%;
+			position: absolute;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		}
+	}
 	.loading-spinner {
 		visibility: hidden;
 		opacity: 0;
@@ -42,7 +67,6 @@
 	}
 	.clear-search {
 		@include btn;
-		@include icon-font-properties;
 		position: absolute;
 		right: 0;
 		top: 0;
@@ -52,10 +76,14 @@
 		visibility: hidden;
 		opacity: 0;
 		&:before {
+			@include icon-font-properties;
 			content: $i_cross;
 			color: #999;
 			font-size: 24px;
-			line-height: 50px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			@include translate(-50%, -50%);
 		}
 		&.js-active {
 			visibility: visible;
@@ -67,6 +95,11 @@
 			}
 		}
 	}
+}
+
+.list-blog-post {
+	list-style: none;
+	margin-left: 0;
 }
 
 .type-post--blog {

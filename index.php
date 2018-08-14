@@ -9,6 +9,9 @@
 				<h5>Search</h5>
 				<form action="<?php echo home_url(); ?>/" method="get" id="ajax-search-post" data-cpt="post" data-cpt-tax="category">
 					<input type="text" name="s" placeholder="Search for" class="input-search w-100" />
+					<div id="ajax-submit-block" class="submit-block">
+						<input type="submit" value="" class="btn" />
+					</div> <!-- .submit-block -->
 					<div class="loading-spinner"></div>
 					<a href="#" id="ajax-search-clear" class="clear-search" title="clear"></a>
 				</form>
@@ -64,19 +67,19 @@
 	  <?php if ( is_category() ) { ?>
 			<input type="hidden" id="filter-cat-id" value="<?php echo $cat_id; ?>" />
 		<?php } else { ?>
-			<input type="hidden" id="filter-cat-id" value="-1" />
+			<input type="hidden" id="filter-cat-id" value="" />
 		<?php } ?>
 
 		<?php if ( is_author() ) { ?>
 			<input type="hidden" id="filter-author-id" value="<?php echo $author_id; ?>" />
 		<?php } else { ?>
-			<input type="hidden" id="filter-author-id" value="-1" />
+			<input type="hidden" id="filter-author-id" value="" />
 		<?php } ?>
 
 		<?php if ( is_tag() ) { ?>
 			<input type="hidden" id="filter-tag-id" value="<?php echo $tag_id; ?>" />
 		<?php } else { ?>
-			<input type="hidden" id="filter-tag-id" value="-1" />
+			<input type="hidden" id="filter-tag-id" value="" />
 		<?php } ?>
 
 		<?php if ( is_search() ) { ?>
@@ -87,7 +90,7 @@
 
 		<input type="hidden" id="filter-pagenum" value="1" />
 
-		<ul id="ajax-list-post" class="list-blog-post list-unstyled">
+		<ul id="ajax-list-post" class="list-blog-post">
 
       <?php if ( have_posts() ) : ?>
       <?php while ( have_posts() ) : the_post(); ?>

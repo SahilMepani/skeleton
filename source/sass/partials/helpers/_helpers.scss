@@ -22,23 +22,9 @@
   @include bg-cover;
 }
 
-.bg-overlay-black {
-  position: relative;
-  * {
-    color: #fff;
-  }
-  &:before {
-    content: '';
-    background-color: rgba(0,0,0,.5);
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
+.bg-overlay {
+  @include bg-overlay;
 }
-
 
 /*==================================
 =            Icon Fonts            =
@@ -58,9 +44,9 @@
 /*==================================
 =            Text/Fonts            =
 ==================================*/
+.color-base { color: $base_color; }
 .color-primary { color: $brand_color_primary !important; }
 .color-secondary { color: $brand_color_secondary !important; }
-.colo-base { color: $base_color; }
 
 
 /*===========================

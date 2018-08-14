@@ -82,7 +82,7 @@
 	select {
 		background: transparent;
 		width: 100%; //make dropdown sit on top of select
-		padding-right: 35px;
+		padding-right: 40px;
 		@include experimental(appearance, none); //remove browser styling
 	}
 	select::-ms-expand {
@@ -129,6 +129,19 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+}
+
+@mixin bg-overlay {
+	position: relative;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
 }
 
 @mixin pagination-links {

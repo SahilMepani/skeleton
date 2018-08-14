@@ -20,6 +20,7 @@ btnMorePost.on( 'click', function( e ) {
 formSearchPost.submit( function( e ) {
 	e.preventDefault();
 
+	$( '#ajax-submit-block' ).addClass( 'hidden' );
 	$( '#alert-no-data').addClass('hide');
 	$( '#ajax-search-clear' ).removeClass( 'js-active' );
 	$( this ).find( '.loading-spinner' ).addClass( 'js-active' );
@@ -132,6 +133,8 @@ function filter_post( $this, trigger ) {
 					setTimeout( function() {
 						if ( search != '' ) {
 							$( '#ajax-search-clear' ).addClass( 'js-active' );
+						} else {
+							$( '#ajax-submit-block' ).removeClass( 'hidden' );
 						}
 						$( '.loading-spinner' ).removeClass( 'js-active' );
 						$( '#ajax-list-post' ).append( $data );

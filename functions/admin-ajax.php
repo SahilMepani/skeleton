@@ -15,7 +15,7 @@ function filter_post() {
     $args['paged'] = $data['pageNumber'] + 1;
   }
 
-  if ( $data['catID'] != '-1' ) {
+  if ( $data['catID'] != '' ) {
     $args['tax_query'] = array(
       array(
         'taxonomy' => $data['cptTax'],
@@ -25,15 +25,15 @@ function filter_post() {
     );
   }
 
-  if ( $data['authorID'] != '-1' ) {
+  if ( $data['authorID'] != '' ) {
     $args['author'] = $data['authorID'];
   }
 
-  if ( $data['tagID'] != '-1' ) {
+  if ( $data['tagID'] != '' ) {
     $args['tag_id'] = $data['tagID'];
   }
 
-  if ( $data['search'] != '-1' ) {
+  if ( $data['search'] != '' ) {
     $args['s'] = $data['search'];
   }
 

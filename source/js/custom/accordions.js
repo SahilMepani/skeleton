@@ -22,7 +22,7 @@
 /*=======================================
 =            Invidual Toggle            =
 =======================================*/
-// $( '.list-accordions .content' ).css( {
+// $( '.list-accordions .content-block' ).css( {
 // 	'display': 'none'
 // } );
 

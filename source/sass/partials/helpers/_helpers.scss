@@ -1,7 +1,7 @@
 /*=====================================
 =            Miscellaneous            =
 =====================================*/
-.img-responsive {
+.img-responsive, .alignone, .alignleft, .alignright, .aligncenter {
   width: auto;
   height: auto;
 }
@@ -47,6 +47,13 @@
 .color-base { color: $base_color; }
 .color-primary { color: $brand_color_primary !important; }
 .color-secondary { color: $brand_color_secondary !important; }
+
+.text-underline { text-decoration: underline; }
+.text-family-heading { font-family: $headings_font_family; }
+.text-family-base { font-family: $base_font_family; }
+.text-lead, .text-big { font-size: $base_font_size + 4; }
+.text-small { @extend small; }
+.text-caps { text-transform: uppercase; }
 
 
 /*===========================

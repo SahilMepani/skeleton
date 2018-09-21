@@ -39,6 +39,26 @@ function my_acf_admin_head() {
 		.acf-button-group {
 			flex-wrap: wrap;
 		}
+		.alert {
+			background-color: #e5e5e5;
+			padding: 15px;
+			border: 1px solid #ddd;
+			margin-bottom: $global_margin_bottom;
+		}
+		.alert-info {
+			background-color: #ffffd9;
+			border: 1px solid darken( #ffffd9, 47% );
+		}
+
+		.alert-error {
+			background-color: #ffd9d9;
+			border: 1px solid darken( #ffd9d9, 10% );
+		}
+
+		.alert-success {
+			background-color: #dbffd9;
+			border: 1px solid darken( #dbffd9, 20% );
+		}
 	</style>
 	<?php
 }

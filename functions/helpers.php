@@ -15,6 +15,16 @@ function tse_scrollspy_link( $string ) {
 	return $string;
 }
 
+
+/*================================================================
+=            Validate Youtube link for Magnific Popup            =
+================================================================*/
+function tse_validate_youtube_link( $link ) {
+	preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $link, $matches);
+	$link = 'https://www.youtube.com/watch?v=' . $matches[0];
+	return $link;
+}
+
 /*====================================================================
 =            Custom excerpt function with length argument            =
 ====================================================================*/

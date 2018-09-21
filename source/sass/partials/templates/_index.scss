@@ -29,6 +29,9 @@
 	form {
 		position: relative;
 	}
+	input[type="text"] {
+		padding-right: 45px;
+	}
 	.submit-block {
 		width: 45px;
 		position: absolute;

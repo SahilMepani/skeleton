@@ -18,3 +18,14 @@ TRIVIA:
 FLEXIBLE CONTENT:
  ☐ No need to prefix the section field names for section options or developer options.
  ☐ Section options should be not be a part of section clone because sometimes we need left or top aligned tabs.
+ ☐ Clone cannot be directly used as a standalone on any page. All clones fields slug will not have any prefix. Because it will be used inside the flexible-content loop which will load different fields so there is no conflict. If incase you want to use the clone section outside the flexible-content loop. We need to create another section cloning that clone and add a prefix to it so that there is no conflict with other sections on that page. All clone groups will be set to inactive.
+ ☐ When cloned it will be displayed as a seamless.
+ ☐ Don't add "section" postfix inside the Flexible Content.
+ For e.g
+ We create Hero Section - Clone Field Group
+ It contains a field Background image and its slug is background_image. No prefix like hero_
+ It will work fine if thise clone group used inside flexible-content loop.
+ It will create conflict if we directly use it inside a page as background_image might be used by some other section called directly on that page. So we create a new section with that clone and add a prefix like hero_.
+
+ACF Fields Instructions
+Upload an optimized image from <a href="https://tinypng.com" target="_blank">here</a>.

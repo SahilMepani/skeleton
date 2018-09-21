@@ -66,6 +66,9 @@
 	@include input-placeholder( $input_placeholder_color );
 	&:focus {
 		border-color: $input_focus_border;
+		@if $input_focus_outline == false {
+			outline: none;
+		}
 	}
 	@include breakpoint( $sm ) {
 		padding: $input_padding_x_sm $input_padding_y_sm;

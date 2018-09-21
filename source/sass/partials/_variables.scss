@@ -78,6 +78,7 @@ $input_padding_y_xs      : 20px; /* top and bottom for mobile  */
 $input_padding_y_sm      : 20px; /* left and right for desktop */
 $input_border            : 1px solid #666;
 $input_focus_border      : #000;
+$input_focus_outline     : false;
 $input_placeholder_color : #b0b0b0;
 $input_border_radius     : 0;
 $input_transition        : none;
@@ -86,6 +87,7 @@ $input_transition        : none;
 /*=============================
 =            Icons            =
 =============================*/
+/* Defaults */
 $i_menu             : '\e62f';
 $i_search           : '\e612';
 $i_cross            : '\e62e';
@@ -110,6 +112,7 @@ $i_gplus            : '\e627';
 $i_youtube          : '\e634';
 $i_pinterest        : '\e62d';
 $i_linkedin         : '\e62b';
+/* Project Specific */
 
 
 /*======================================

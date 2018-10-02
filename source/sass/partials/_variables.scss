@@ -54,15 +54,16 @@ $headings_margin_bottom : $global_margin_bottom/2;
 /*===============================
 =            Gutters            =
 ===============================*/
-$gutter_1: 15px; //xxs
-$gutter_2: 30px; //xs
-$gutter_3: 50px;
-$gutter_4: 70px;
-$gutter_5: 90px;
-$gutter_6: 120px;
-$gutter_7: 150px;
+$gutter_1: 0; //xxs
+$gutter_2: 15px; //xxs
+$gutter_3: 30px; //xs
+$gutter_4: 50px;
+$gutter_5: 70px;
+$gutter_6: 90px;
+$gutter_7: 120px;
+$gutter_8: 150px;
 
-$ar_gutter : $gutter_1, $gutter_2, $gutter_3, $gutter_4, $gutter_5, $gutter_6, $gutter_7;
+$ar_gutter : $gutter_1, $gutter_2, $gutter_3, $gutter_4, $gutter_5, $gutter_6, $gutter_7, $gutter_8;
 
 
 /*=============================================
@@ -176,3 +177,6 @@ $xs_max_height: max-height 767px;
 
 $ar_bp: $xs, $sm, $md, $lg; // breakpoint variable array
 $ar_bp_classes: xs, sm, md, lg; // breakpoint classes for loop
+
+$ar_bp_max: $lg_max, $md_max, $sm_max, $xs_max; // breakpoint variable array, different order is used for specificty
+$ar_bp_max_classes: lg-max, md-max, sm-max, xs-max; // breakpoint classes for loop

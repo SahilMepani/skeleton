@@ -73,6 +73,9 @@ RESPONSIVE:
 
  ☐ Remove all the theme files from server and upload it the newest copy. This is because after all the checklist most of the files are deleted from local copy but not from server.
 
+
+ http://wiki.threesixtyeight.is/article/launch-check-list/
+
  - Add iThemes Security Plugin
 - Change /wp-admin to /manage
 - Update password to random secure

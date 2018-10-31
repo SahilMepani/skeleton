@@ -339,6 +339,24 @@ $(".js-socials-share").jsSocials({
 // 	removalDelay: 300,
 // 	mainClass: 'mfp-fade',
 // 	fixedContentPos: false // disable scrollbar
+// iframe: {
+//   patterns: {
+//     youtube: {
+//       index: 'youtube.com/', // String that detects type of video (in this case YouTube). Simply via url.indexOf(index).
+//       id: 'v=', // String that splits URL in a two parts, second part should be %id%
+//       // Or null - full URL will be returned
+//       // Or a function that should return %id%, for example:
+//       // id: function(url) { return 'parsed id'; }
+//       src: '//www.youtube.com/embed/%id%?autoplay=1&rel=0' // URL that will be set as a source for iframe.
+//     }
+//     ,
+//     vimeo: {
+//       index: 'vimeo.com/',
+//       id: '/',
+//       src: '//player.vimeo.com/video/%id%?autoplay=1'
+//     }
+//   }
+// }
 // } );
 
 
@@ -420,6 +438,9 @@ $(".js-socials-share").jsSocials({
 // 		} );
 // 	}
 // };
+
+
+
 /*===================================
 =            Simple Tabs            =
 ===================================*/
@@ -500,6 +521,68 @@ window.addEventListener( 'scroll', scrollToTop );;
 // }
 // stickyEl();
 // window.addEventListener( 'resize', stickyEl() );;
+// $('.sticky-sidebar').stick_in_parent({
+// 	offset_top: topSpacing + 30,
+// 	spacer: false // disable disappearing sticky element when reach bottom
+// });
+
+
+// /*============================
+// =            SMHS            =
+// ============================*/
+// /* Sticky Sidebar */
+// var stickyEl = function stickyEl() {
+//   var $topSpacing = '';
+//   if ( window.innerWidth < 1051 ) {
+//     $topSpacing = $('.mobile-header').outerHeight();
+//   } else if ( window.innerWidth > 1050 ) {
+//     $topSpacing = $('.header-primary-menu-section').outerHeight() + $('.header-secondary-menu-section').outerHeight();
+//   }
+//   if ( window.innerWidth > 767 ) {
+//     $(".sticky-sidebar").trigger("sticky_kit:detach");
+//     $('.sticky-sidebar').stick_in_parent({
+//       offset_top: $topSpacing + 30,
+//       spacer: false
+//     });
+//   }
+// }
+// stickyEl();
+// window.addEventListener( 'resize', debounce(stickyEl, 200) );
+
+
+
+// ============================
+// =            LDVA            =
+// ============================
+// var stickyEl = function stickyEl() {
+//   var topSpacing = headerHeight + $('#sections-menu-bar').outerHeight(); //margin
+//   if ( window.innerWidth > 767 ) {
+//     $("#img-stick-right").stick_in_parent({
+//       offset_top: topSpacing
+//     });
+
+//     $("#img-stick-right").stick_in_parent()
+//       .on("sticky_kit:stick", function(e) {
+//         $(this).addClass('is-sticky');
+//       })
+//       .on("sticky_kit:unstick", function(e) {
+//         $(this).removeClass('is-sticky');
+//       })
+//       .on("sticky_kit:bottom", function(e) {
+//         $(this).removeClass('unbottom-out is-sticky').addClass('bottom-out');
+//       })
+//       .on("sticky_kit:unbottom", function(e) {
+//         $(this).removeClass('bottom-out').addClass('unbottom-out is-sticky');
+//       });
+
+//     $('.sticky-sidebar').stick_in_parent({
+//       offset_top: topSpacing + 30
+//     });
+//   }
+// }
+// stickyEl();
+// window.addEventListener( 'resize', debounce(stickyEl, 200) );
+;
 Visibility.onVisible( function() {
 	var wow = new WOW().init();
 } );;

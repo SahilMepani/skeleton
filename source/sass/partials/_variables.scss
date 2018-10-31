@@ -99,10 +99,14 @@ $i_checkbox         : '\e607';
 $i_checkbox_checked : '\e046';
 $i_mail             : '\e613';
 /* Arrows */
-$i_arrow_down       : '\e615';
-$i_arrow_up         : '\e617';
-$i_arrow_left       : '\e616';
-$i_arrow_right      : '\e617';
+$i_chevron_down     : '\e615';
+$i_chevron_up       : '\e617';
+$i_chevron_left     : '\e616';
+$i_chevron_right    : '\e617';
+$i_arrow_down       : '\e097';
+$i_arrow_up         : '\e096';
+$i_arrow_left       : '\e094';
+$i_arrow_right      : '\e095';
 $i_dropdown         : $i_arrow_down;
 $i_go_top           : '\e61c';
 /* Social */
@@ -154,6 +158,7 @@ $md      : 768px;
 $lg      : 992px;
 $xl      : 1200px;
 $xxl     : 1500px;
+$mac_13  : ($md) (max-height 800px);
 
 /* Max Width */
 // $max_400 : max-width 400px;

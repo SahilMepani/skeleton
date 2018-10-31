@@ -249,6 +249,7 @@ $gf_description_font_size: 16px;
 =            Enhanced Select            =
 =======================================*/
 .gform_wrapper {
+	position: relative;
 	//contain the selected value
 	.chosen-single {
 		padding: $input_padding_y_xs $input_padding_x_xs;
@@ -322,8 +323,19 @@ $gf_description_font_size: 16px;
 			border: $input_focus_border;
 		}
 	}
-	@include breakpoint( $xs ) {
+	@include breakpoint( $sm_max ) {
 		 //iOS fix, chosen plugin not used by default
+	 	&:after {
+			@include icon-font-properties;
+			content: $i_dropdown;
+			font-size: 18px;
+			display: block;
+			position: absolute;
+			right: 15px;
+			top: 50%;
+			z-index: 1;
+			@include translateY(-50%);
+		}
 		.chosen-select {
 			font-size: 16px;
 			letter-spacing: 1px;

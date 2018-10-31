@@ -6,7 +6,10 @@
 
 		<span class="text-404">404</span>
 
-		<p class="bold">Oops! <span>We are really sorry. The page you requested cannot be found.</span><p>
+		Sometimes you take the road less travelled …
+		We're not sure how you got here, but you should head home.
+
+		It's probably our fault that you're here; but if you're having trouble with the site just shoot us an email.
 
 		<p>1) Perhaps you can find what you are looking for by <strong>searching the site</strong>.</p>
 

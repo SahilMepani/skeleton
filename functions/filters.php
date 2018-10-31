@@ -1,9 +1,21 @@
 <?php
 
+/*===========================================
+=            Change Backend Logo            =
+===========================================*/
+function custom_loginlogo() {
+echo '<style type="text/css">
+h1 a {background-image: url('.get_bloginfo('template_directory').'/images/header-logo.png) !important; width: auto !important; background-size: contain !important; }
+</style>';
+}
+add_action('login_head', 'custom_loginlogo');
+
+
 /*==========================================
 =            Hide admin toolbar            =
 ==========================================*/
-add_filter('show_admin_bar', '__return_false');
+// add_filter('show_admin_bar', '__return_false');
+
 
 /*======================================================================
 =            Redirect to result, if search query one result            =

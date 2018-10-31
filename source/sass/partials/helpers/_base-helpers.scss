@@ -295,3 +295,8 @@ p:empty {
 		}
 	}
 }
+
+/*----------  Scroll Reveal  ----------*/
+html.js:not(.is-mobile) [data-animation] {
+  visibility: hidden;
+}

@@ -1,94 +1,113 @@
 jQuery( document ).ready( function( $ ) {
 
-// ScrollReveal.debug = true; // can be used only with unminified code
-// by default sreveal class has the fadeIn effect.
+	// ScrollReveal.debug = true; // can be used only with unminified code
+	// by default sreveal class has the fadeIn effect.
 
-var fadeInUp = {
-	origin: 'bottom',
-	distance: '30px'
-}
+	var fadeInUp = {
+		origin: 'bottom',
+		distance: '30px'
+	}
 
-var fadeInDown = {
-	origin: 'top',
-	distance: '30px'
-}
+	var fadeInDown = {
+		origin: 'top',
+		distance: '30px'
+	}
 
-var fadeInRight = {
-	origin: 'left',
-	distance: '30px'
-}
+	var fadeInRight = {
+		origin: 'left',
+		distance: '30px'
+	}
 
-var fadeInLeft = {
-	origin: 'right',
-	distance: '30px'
-}
+	var fadeInLeft = {
+		origin: 'right',
+		distance: '30px'
+	}
 
-var slideInUp = {
-	origin: 'bottom',
-	distance: '30px',
-	opacity: null
-}
+	var slideInUp = {
+		origin: 'bottom',
+		distance: '30px',
+		opacity: null
+	}
 
-var slideInDown = {
-	origin: 'top',
-	distance: '30px',
-	opacity: null
-}
+	var slideInDown = {
+		origin: 'top',
+		distance: '30px',
+		opacity: null
+	}
 
-var slideInRight = {
-	origin: 'left',
-	distance: '30px',
-	opacity: null
-}
+	var slideInRight = {
+		origin: 'left',
+		distance: '30px',
+		opacity: null
+	}
 
-var slideInLeft = {
-	origin: 'right',
-	distance: '30px',
-	opacity: null
-}
+	var slideInLeft = {
+		origin: 'right',
+		distance: '30px',
+		opacity: null
+	}
 
-window.sr = ScrollReveal({
-	duration: 1000,
-	mobile: false,
-});
+	var zoomOut = {
+		scale: '2',
+	}
 
-// sr.reveal( '.list-partners > li', {
-// 	origin: 'bottom',
-// 	distance: '30px',
-// 	interval: 100,
-// } );
-
-sr.reveal( '[data-animation="fadeIn"]' );
-sr.reveal( '[data-animation="fadeInUp"]', fadeInUp );
-sr.reveal( '[data-animation="fadeInDown"]', fadeInDown );
-sr.reveal( '[data-animation="fadeInRight"]', fadeInRight );
-sr.reveal( '[data-animation="fadeInLeft"]', fadeInLeft );
-sr.reveal( '[data-animation="slideInUp"]', slideInUp );
-sr.reveal( '[data-animation="slideInDown"]', slideInDown );
-sr.reveal( '[data-animation="slideInRight"]', slideInRight );
-sr.reveal( '[data-animation="slideInLeft"]', slideInLeft );
-
-
-$( '[data-animation]' ).each( function() {
-
-	var el = $(this);
-
-	var options = ['delay', 'distance', 'duration', 'easing', 'interval', 'opacity', 'origin', 'rotate', 'scale', 'desktop', 'mobile', 'reset', 'useDelay', 'viewFactor', 'viewOffset'];
-
-	var settings = {};
-	var interval = 0;
-
-	$( options ).each( function(index, element) {
-
-		if ( el.data( 'animation-' + options[index] ) ) {
-			var option = options[index];
-			settings[option] = el.data( 'animation-' + option );
-		}
-
+	window.sr = ScrollReveal({
+		duration: 1000,
+		mobile: false,
 	});
 
-	sr.reveal( el, settings );
-} );
+	// sr.reveal( '.list-partners > li', {
+	// 	origin: 'bottom',
+	// 	distance: '30px',
+	// 	interval: 100,
+	// } );
+
+	sr.reveal( '[data-animation="fadeIn"]' );
+	sr.reveal( '[data-animation="fadeInUp"]', fadeInUp );
+	sr.reveal( '[data-animation="fadeInDown"]', fadeInDown );
+	sr.reveal( '[data-animation="fadeInRight"]', fadeInRight );
+	sr.reveal( '[data-animation="fadeInLeft"]', fadeInLeft );
+	sr.reveal( '[data-animation="slideInUp"]', slideInUp );
+	sr.reveal( '[data-animation="slideInDown"]', slideInDown );
+	sr.reveal( '[data-animation="slideInRight"]', slideInRight );
+	sr.reveal( '[data-animation="slideInLeft"]', slideInLeft );
+	sr.reveal( '[data-animation="zoomOut"]', zoomOut );
+
+
+	$( '[data-animation]' ).each( function() {
+
+		var el = $(this);
+
+		var options = ['delay', 'distance', 'duration', 'easing', 'interval', 'opacity', 'origin', 'rotate', 'scale', 'desktop', 'mobile', 'reset', 'useDelay', 'viewFactor', 'viewOffset'];
+
+		var settings = {};
+		var interval = 0;
+
+		$( options ).each( function(index, element) {
+
+			if ( el.data( 'animation-' + options[index] ) ) {
+				var option = options[index];
+				settings[option] = el.data( 'animation-' + option );
+			}
+
+		});
+
+		sr.reveal( el, settings );
+	} );
+
+	$('.sreveal').css('animation-name', 'none');
+
+	sr.reveal( '.sreveal', {
+		opacity: null,
+		duration: 0,
+		beforeReveal: function( el ) {
+			el.style.animationName = '';
+			el.classList.add( 'animated' );
+		},
+		afterReveal: function( el ) {
+			// el.classList.remove( 'animated' );
+		}
+	} );
 
 } ); // Document Ready
 

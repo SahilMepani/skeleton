@@ -6,6 +6,22 @@
 // } );
 
 
+/*====================================================
+=            Manually Open Magnific Popup            =
+====================================================*/
+// $( '.trigger-form' ).on( 'click', function() {
+// 	$.magnificPopup.open({
+//     items: {
+//       src: '.popup-block'
+//     },
+//     type: 'inline',
+//     mainClass: 'mfp-zoom-in', // add class for animation
+//     removalDelay: 500, // delay removal by X to allow out-animation
+//   });
+// } );
+
+
+
 /*=======================================================
 =            Open gallery from external link            =
 =======================================================*/

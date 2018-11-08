@@ -59,15 +59,15 @@
 /*===========================
 =            WOW            =
 ===========================*/
-.wow {
-  visibility: hidden;
-  @include breakpoint( $xs_max, $xs_max_height ) {
-    visibility: visible !important;
-    @include animation( none !important);
-  }
-}
+// .wow {
+//   visibility: hidden;
+//   @include breakpoint( $xs_max, $xs_max_height ) {
+//     visibility: visible !important;
+//     @include animation( none !important);
+//   }
+// }
 
-.no-mutationobserver .wow {
-  visibility: visible !important;
-  @include animation( none !important);
-}
+// .no-mutationobserver .wow {
+//   visibility: visible !important;
+//   @include animation( none !important);
+// }

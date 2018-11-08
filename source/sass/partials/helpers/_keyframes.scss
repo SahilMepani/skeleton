@@ -1,760 +1,1264 @@
-@charset "UTF-8";
-
-/*!
+/*! 01-11-18
  * animate.css -http://daneden.me/animate
- * Version - 3.5.1
+ * Version - 3.7.0
  * Licensed under the MIT license - http://opensource.org/licenses/MIT
  *
- * Copyright (c) 2016 Daniel Eden
+ * Copyright (c) 2018 Daniel Eden
  */
 
-.animated {
-	-webkit-animation-duration: 1s;
-	animation-duration: 1s;
-	-webkit-animation-fill-mode: both;
-	animation-fill-mode: both;
+@include keyframes( bounce ) {
+  from,
+  20%,
+  53%,
+  80%,
+  to {
+    @include animation-timing-function( cubic-bezier(0.215, 0.61, 0.355, 1) );
+    @include transform( translate3d(0, 0, 0) );
+  }
+
+  40%,
+  43% {
+    @include animation-timing-function( cubic-bezier(0.755, 0.05, 0.855, 0.06) );
+    @include transform( translate3d(0, -30px, 0) );
+  }
+
+  70% {
+    @include animation-timing-function( cubic-bezier(0.755, 0.05, 0.855, 0.06) );
+    @include transform( translate3d(0, -15px, 0) );
+  }
+
+  90% {
+    @include transform( translate3d(0, -4px, 0) );
+  }
 }
 
-.animated.infinite {
-	-webkit-animation-iteration-count: infinite;
-	animation-iteration-count: infinite;
+.bounce {
+  @include animation-name( bounce );
+  @include transform-origin( center bottom );
 }
 
-@-webkit-keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
+@include keyframes( flash ) {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
 
-	to {
-		opacity: 1;
-	}
+  25%,
+  75% {
+    opacity: 0;
+  }
 }
 
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
+.flash {
+  @include animation-name( flash );
+}
 
-	to {
-		opacity: 1;
-	}
+/* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
+@include keyframes( pulse ) {
+  from {
+    @include transform( scale3d(1, 1, 1) );
+  }
+
+  50% {
+    @include transform( scale3d(1.05, 1.05, 1.05) );
+  }
+
+  to {
+    @include transform( scale3d(1, 1, 1) );
+  }
+}
+
+.pulse {
+  @include animation-name( pulse );
+}
+
+@include keyframes( rubberBand ) {
+  from {
+    @include transform( scale3d(1, 1, 1) );
+  }
+
+  30% {
+    @include transform( scale3d(1.25, 0.75, 1) );
+  }
+
+  40% {
+    @include transform( scale3d(0.75, 1.25, 1) );
+  }
+
+  50% {
+    @include transform( scale3d(1.15, 0.85, 1) );
+  }
+
+  65% {
+    @include transform( scale3d(0.95, 1.05, 1) );
+  }
+
+  75% {
+    @include transform( scale3d(1.05, 0.95, 1) );
+  }
+
+  to {
+    @include transform( scale3d(1, 1, 1) );
+  }
+}
+
+.rubberBand {
+  @include animation-name( rubberBand );
+}
+
+@include keyframes( shake ) {
+  from,
+  to {
+    @include transform( translate3d(0, 0, 0) );
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    @include transform( translate3d(-10px, 0, 0) );
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    @include transform( translate3d(10px, 0, 0) );
+  }
+}
+
+.shake {
+  @include animation-name( shake );
+}
+
+@include keyframes( headShake ) {
+  0% {
+    @include transform( translateX(0) );
+  }
+
+  6.5% {
+    @include transform( translateX(-6px) rotateY(-9deg) );
+  }
+
+  18.5% {
+    @include transform( translateX(5px) rotateY(7deg) );
+  }
+
+  31.5% {
+    @include transform( translateX(-3px) rotateY(-5deg) );
+  }
+
+  43.5% {
+    @include transform( translateX(2px) rotateY(3deg) );
+  }
+
+  50% {
+    @include transform( translateX(0) );
+  }
+}
+
+.headShake {
+  @include animation-timing-function( ease-in-out );
+  @include animation-name( headShake );
+}
+
+@include keyframes( swing ) {
+  20% {
+    @include transform( rotate3d(0, 0, 1, 15deg) );
+  }
+
+  40% {
+    @include transform( rotate3d(0, 0, 1, -10deg) );
+  }
+
+  60% {
+    @include transform( rotate3d(0, 0, 1, 5deg) );
+  }
+
+  80% {
+    @include transform( rotate3d(0, 0, 1, -5deg) );
+  }
+
+  to {
+    @include transform( rotate3d(0, 0, 1, 0deg) );
+  }
+}
+
+.swing {
+  @include transform-origin( top center );
+  @include animation-name( swing );
+}
+
+@include keyframes( tada ) {
+  from {
+    @include transform( scale3d(1, 1, 1) );
+  }
+
+  10%,
+  20% {
+    @include transform( scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg) );
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    @include transform( scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg) );
+  }
+
+  40%,
+  60%,
+  80% {
+    @include transform( scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg) );
+  }
+
+  to {
+    @include transform( scale3d(1, 1, 1) );
+  }
+}
+
+.tada {
+  @include animation-name( tada );
+}
+
+/* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
+@include keyframes( wobble ) {
+  from {
+    @include transform( translate3d(0, 0, 0) );
+  }
+
+  15% {
+    @include transform( translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg) );
+  }
+
+  30% {
+    @include transform( translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg) );
+  }
+
+  45% {
+    @include transform( translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg) );
+  }
+
+  60% {
+    @include transform( translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg) );
+  }
+
+  75% {
+    @include transform( translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg) );
+  }
+
+  to {
+    @include transform( translate3d(0, 0, 0) );
+  }
+}
+
+.wobble {
+  @include animation-name( wobble );
+}
+
+@include keyframes( jello ) {
+  from,
+  11.1%,
+  to {
+    @include transform( translate3d(0, 0, 0) );
+  }
+
+  22.2% {
+    @include transform( skewX(-12.5deg) skewY(-12.5deg) );
+  }
+
+  33.3% {
+    @include transform( skewX(6.25deg) skewY(6.25deg) );
+  }
+
+  44.4% {
+    @include transform( skewX(-3.125deg) skewY(-3.125deg) );
+  }
+
+  55.5% {
+    @include transform( skewX(1.5625deg) skewY(1.5625deg) );
+  }
+
+  66.6% {
+    @include transform( skewX(-0.78125deg) skewY(-0.78125deg) );
+  }
+
+  77.7% {
+    @include transform( skewX(0.390625deg) skewY(0.390625deg) );
+  }
+
+  88.8% {
+    @include transform( skewX(-0.1953125deg) skewY(-0.1953125deg) );
+  }
+}
+
+.jello {
+  @include animation-name( jello );
+  @include transform-origin( center );
+}
+
+@include keyframes( heartBeat ) {
+  0% {
+    @include transform( scale(1) );
+  }
+
+  14% {
+    @include transform( scale(1.3) );
+  }
+
+  28% {
+    @include transform( scale(1) );
+  }
+
+  42% {
+    @include transform( scale(1.3) );
+  }
+
+  70% {
+    @include transform( scale(1) );
+  }
+}
+
+.heartBeat {
+  @include animation-name( heartBeat );
+  @include animation-duration( 1.3s );
+  @include animation-timing-function( ease-in-out );
+}
+
+@include keyframes( bounceIn ) {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    @include animation-timing-function( cubic-bezier(0.215, 0.61, 0.355, 1) );
+  }
+
+  0% {
+    opacity: 0;
+    @include transform( scale3d(0.3, 0.3, 0.3) );
+  }
+
+  20% {
+    @include transform( scale3d(1.1, 1.1, 1.1) );
+  }
+
+  40% {
+    @include transform( scale3d(0.9, 0.9, 0.9) );
+  }
+
+  60% {
+    opacity: 1;
+    @include transform( scale3d(1.03, 1.03, 1.03) );
+  }
+
+  80% {
+    @include transform( scale3d(0.97, 0.97, 0.97) );
+  }
+
+  to {
+    opacity: 1;
+    @include transform( scale3d(1, 1, 1) );
+  }
+}
+
+.bounceIn {
+  @include animation-duration( 0.75s );
+  @include animation-name( bounceIn );
+}
+
+@include keyframes( bounceInDown ) {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    @include animation-timing-function( cubic-bezier(0.215, 0.61, 0.355, 1) );
+  }
+
+  0% {
+    opacity: 0;
+    @include transform( translate3d(0, -3000px, 0) );
+  }
+
+  60% {
+    opacity: 1;
+    @include transform( translate3d(0, 25px, 0) );
+  }
+
+  75% {
+    @include transform( translate3d(0, -10px, 0) );
+  }
+
+  90% {
+    @include transform( translate3d(0, 5px, 0) );
+  }
+
+  to {
+    @include transform( translate3d(0, 0, 0) );
+  }
+}
+
+.bounceInDown {
+  @include animation-name( bounceInDown );
+}
+
+@include keyframes( bounceInLeft ) {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    @include animation-timing-function( cubic-bezier(0.215, 0.61, 0.355, 1) );
+  }
+
+  0% {
+    opacity: 0;
+    @include transform( translate3d(-3000px, 0, 0) );
+  }
+
+  60% {
+    opacity: 1;
+    @include transform( translate3d(25px, 0, 0) );
+  }
+
+  75% {
+    @include transform( translate3d(-10px, 0, 0) );
+  }
+
+  90% {
+    @include transform( translate3d(5px, 0, 0) );
+  }
+
+  to {
+    @include transform( translate3d(0, 0, 0) );
+  }
+}
+
+.bounceInLeft {
+  @include animation-name( bounceInLeft );
+}
+
+@include keyframes( bounceInRight ) {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    @include animation-timing-function( cubic-bezier(0.215, 0.61, 0.355, 1) );
+  }
+
+  from {
+    opacity: 0;
+    @include transform( translate3d(3000px, 0, 0) );
+  }
+
+  60% {
+    opacity: 1;
+    @include transform( translate3d(-25px, 0, 0) );
+  }
+
+  75% {
+    @include transform( translate3d(10px, 0, 0) );
+  }
+
+  90% {
+    @include transform( translate3d(-5px, 0, 0) );
+  }
+
+  to {
+    @include transform( translate3d(0, 0, 0) );
+  }
+}
+
+.bounceInRight {
+  @include animation-name( bounceInRight );
+}
+
+@include keyframes( bounceInUp ) {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    @include animation-timing-function( cubic-bezier(0.215, 0.61, 0.355, 1) );
+  }
+
+  from {
+    opacity: 0;
+    @include transform( translate3d(0, 3000px, 0) );
+  }
+
+  60% {
+    opacity: 1;
+    @include transform( translate3d(0, -20px, 0) );
+  }
+
+  75% {
+    @include transform( translate3d(0, 10px, 0) );
+  }
+
+  90% {
+    @include transform( translate3d(0, -5px, 0) );
+  }
+
+  to {
+    @include transform( translate3d(0, 0, 0) );
+  }
+}
+
+.bounceInUp {
+  @include animation-name( bounceInUp );
+}
+
+@include keyframes( fadeIn ) {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .fadeIn {
-	-webkit-animation-name: fadeIn;
-	animation-name: fadeIn;
+  @include animation-name( fadeIn );
 }
 
-@-webkit-keyframes fadeInDown {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(0, -50px, 0);
-		transform: translate3d(0, -50px, 0);
-	}
+@include keyframes( fadeInDown ) {
+  from {
+    opacity: 0;
+    @include transform( translate3d(0, -30px, 0) );
+  }
 
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
-}
-
-@keyframes fadeInDown {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(0, -50px, 0);
-		transform: translate3d(0, -50px, 0);
-	}
-
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
+  to {
+    opacity: 1;
+    @include transform( translate3d(0, 0, 0) );
+  }
 }
 
 .fadeInDown {
-	-webkit-animation-name: fadeInDown;
-	animation-name: fadeInDown;
+  @include animation-name( fadeInDown );
 }
 
-@-webkit-keyframes fadeInDownBig {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(0, -2000px, 0);
-		transform: translate3d(0, -2000px, 0);
-	}
+@include keyframes( fadeInDownBig ) {
+  from {
+    opacity: 0;
+    @include transform( translate3d(0, -2000px, 0) );
+  }
 
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
-}
-
-@keyframes fadeInDownBig {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(0, -2000px, 0);
-		transform: translate3d(0, -2000px, 0);
-	}
-
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
+  to {
+    opacity: 1;
+    @include transform( translate3d(0, 0, 0) );
+  }
 }
 
 .fadeInDownBig {
-	-webkit-animation-name: fadeInDownBig;
-	animation-name: fadeInDownBig;
+  @include animation-name( fadeInDownBig );
 }
 
-@-webkit-keyframes fadeInDownItself {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(0, -100%, 0);
-		transform: translate3d(0, -100%, 0);
-	}
+@include keyframes( fadeInLeft ) {
+  from {
+    opacity: 0;
+    @include transform( translate3d(-30px, 0, 0) );
+  }
 
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
-}
-
-@keyframes fadeInDownItself {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(0, -100%, 0);
-		transform: translate3d(0, -100%, 0);
-	}
-
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
-}
-
-.fadeInDownItself {
-	-webkit-animation-name: fadeInDownItself;
-	animation-name: fadeInDownItself;
-}
-
-@-webkit-keyframes fadeInLeft {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(-50px, 0, 0);
-		transform: translate3d(-50px, 0, 0);
-	}
-
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
-}
-
-@keyframes fadeInLeft {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(-50px, 0, 0);
-		transform: translate3d(-50px, 0, 0);
-	}
-
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
+  to {
+    opacity: 1;
+    @include transform( translate3d(0, 0, 0) );
+  }
 }
 
 .fadeInLeft {
-	-webkit-animation-name: fadeInLeft;
-	animation-name: fadeInLeft;
+  @include animation-name( fadeInLeft );
 }
 
-@-webkit-keyframes fadeInLeftBig {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(-2000px, 0, 0);
-		transform: translate3d(-2000px, 0, 0);
-	}
+@include keyframes( fadeInLeftBig ) {
+  from {
+    opacity: 0;
+    @include transform( translate3d(-2000px, 0, 0) );
+  }
 
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
-}
-
-@keyframes fadeInLeftBig {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(-2000px, 0, 0);
-		transform: translate3d(-2000px, 0, 0);
-	}
-
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
+  to {
+    opacity: 1;
+    @include transform( translate3d(0, 0, 0) );
+  }
 }
 
 .fadeInLeftBig {
-	-webkit-animation-name: fadeInLeftBig;
-	animation-name: fadeInLeftBig;
+  @include animation-name( fadeInLeftBig );
 }
 
-@-webkit-keyframes fadeInLeftItself {
+@include keyframes( fadeInRight ) {
   from {
     opacity: 0;
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    @include transform( translate3d(30px, 0, 0) );
   }
 
   to {
     opacity: 1;
-    -webkit-transform: none;
-    transform: none;
+    @include transform( translate3d(0, 0, 0) );
   }
-}
-
-@keyframes fadeInLeftItself {
-  from {
-    opacity: 0;
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-  }
-
-  to {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-.fadeInLeftItself {
-  -webkit-animation-name: fadeInLeftItself;
-  animation-name: fadeInLeftItself;
-}
-
-@-webkit-keyframes fadeInRight {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(50px, 0, 0);
-		transform: translate3d(50px, 0, 0);
-	}
-
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
-}
-
-@keyframes fadeInRight {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(50px, 0, 0);
-		transform: translate3d(50px, 0, 0);
-	}
-
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
 }
 
 .fadeInRight {
-	-webkit-animation-name: fadeInRight;
-	animation-name: fadeInRight;
+  @include animation-name( fadeInRight );
 }
 
-@-webkit-keyframes fadeInRightBig {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(2000px, 0, 0);
-		transform: translate3d(2000px, 0, 0);
-	}
+@include keyframes( fadeInRightBig ) {
+  from {
+    opacity: 0;
+    @include transform( translate3d(2000px, 0, 0) );
+  }
 
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
-}
-
-@keyframes fadeInRightBig {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(2000px, 0, 0);
-		transform: translate3d(2000px, 0, 0);
-	}
-
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
+  to {
+    opacity: 1;
+    @include transform( translate3d(0, 0, 0) );
+  }
 }
 
 .fadeInRightBig {
-	-webkit-animation-name: fadeInRightBig;
-	animation-name: fadeInRightBig;
+  @include animation-name( fadeInRightBig );
 }
 
-@-webkit-keyframes fadeInRightItself {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(100%, 0, 0);
-		transform: translate3d(100%, 0, 0);
-	}
+@include keyframes( fadeInUp ) {
+  from {
+    opacity: 0;
+    @include transform( translate3d(0, 30px, 0) );
+  }
 
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
-}
-
-@keyframes fadeInRightItself {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(100%, 0, 0);
-		transform: translate3d(100%, 0, 0);
-	}
-
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
-}
-
-.fadeInRightItself {
-	-webkit-animation-name: fadeInRightItself;
-	animation-name: fadeInRightItself;
-}
-
-@-webkit-keyframes fadeInUp {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(0, 50px, 0);
-		transform: translate3d(0, 50px, 0);
-	}
-
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
-}
-
-@keyframes fadeInUp {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(0, 50px, 0);
-		transform: translate3d(0, 50px, 0);
-	}
-
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
+  to {
+    opacity: 1;
+    @include transform( translate3d(0, 0, 0) );
+  }
 }
 
 .fadeInUp {
-	-webkit-animation-name: fadeInUp;
-	animation-name: fadeInUp;
+  @include animation-name( fadeInUp );
 }
 
-@-webkit-keyframes fadeInUpBig {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(0, 2000px, 0);
-		transform: translate3d(0, 2000px, 0);
-	}
+@include keyframes( fadeInUpBig ) {
+  from {
+    opacity: 0;
+    @include transform( translate3d(0, 2000px, 0) );
+  }
 
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
-}
-
-@keyframes fadeInUpBig {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(0, 2000px, 0);
-		transform: translate3d(0, 2000px, 0);
-	}
-
-	to {
-		opacity: 1;
-		-webkit-transform: none;
-		transform: none;
-	}
+  to {
+    opacity: 1;
+    @include transform( translate3d(0, 0, 0) );
+  }
 }
 
 .fadeInUpBig {
-	-webkit-animation-name: fadeInUpBig;
-	animation-name: fadeInUpBig;
+  @include animation-name( fadeInUpBig );
 }
 
-@-webkit-keyframes slideInDown {
-	from {
-		-webkit-transform: translate3d(0, -50px, 0);
-		transform: translate3d(0, -50px, 0);
-		visibility: visible;
-	}
+@include keyframes( flip ) {
+  from {
+    @include transform( perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, -360deg) );
+    @include animation-timing-function( ease-out );
+  }
 
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
+  40% {
+    @include transform( perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg) );
+    @include animation-timing-function( ease-out );
+  }
+
+  50% {
+    @include transform( perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg) );
+    @include animation-timing-function( ease-in );
+  }
+
+  80% {
+    @include transform( perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg) );
+    @include animation-timing-function( ease-in );
+  }
+
+  to {
+    @include transform( perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg) );
+    @include animation-timing-function( ease-in );
+  }
 }
 
-@-webkit-keyframes fadeInUpItself {
+.animated.flip {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  @include animation-name( flip );
+}
+
+@include keyframes( flipInX ) {
+  from {
+    @include transform( perspective(400px) rotate3d(1, 0, 0, 90deg) );
+    @include animation-timing-function( ease-in );
+    opacity: 0;
+  }
+
+  40% {
+    @include transform( perspective(400px) rotate3d(1, 0, 0, -20deg) );
+    @include animation-timing-function( ease-in );
+  }
+
+  60% {
+    @include transform( perspective(400px) rotate3d(1, 0, 0, 10deg) );
+    opacity: 1;
+  }
+
+  80% {
+    @include transform( perspective(400px) rotate3d(1, 0, 0, -5deg) );
+  }
+
+  to {
+    @include transform( perspective(400px) );
+  }
+}
+
+.flipInX {
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  @include animation-name( flipInX );
+}
+
+@include keyframes( flipInY ) {
+  from {
+    @include transform( perspective(400px) rotate3d(0, 1, 0, 90deg) );
+    @include animation-timing-function( ease-in );
+    opacity: 0;
+  }
+
+  40% {
+    @include transform( perspective(400px) rotate3d(0, 1, 0, -20deg) );
+    @include animation-timing-function( ease-in );
+  }
+
+  60% {
+    @include transform( perspective(400px) rotate3d(0, 1, 0, 10deg) );
+    opacity: 1;
+  }
+
+  80% {
+    @include transform( perspective(400px) rotate3d(0, 1, 0, -5deg) );
+  }
+
+  to {
+    @include transform( perspective(400px) );
+  }
+}
+
+.flipInY {
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  @include animation-name( flipInY );
+}
+
+@include keyframes( lightSpeedIn ) {
+  from {
+    @include transform( translate3d(100%, 0, 0) skewX(-30deg) );
+    opacity: 0;
+  }
+
+  60% {
+    @include transform( skewX(20deg) );
+    opacity: 1;
+  }
+
+  80% {
+    @include transform( skewX(-5deg) );
+  }
+
+  to {
+    @include transform( translate3d(0, 0, 0) );
+  }
+}
+
+.lightSpeedIn {
+  @include animation-name( lightSpeedIn );
+  @include animation-timing-function( ease-out );
+}
+
+@include keyframes( rotateIn ) {
+  from {
+    @include transform-origin( center );
+    @include transform( rotate3d(0, 0, 1, -200deg) );
+    opacity: 0;
+  }
+
+  to {
+    @include transform-origin( center );
+    @include transform( translate3d(0, 0, 0) );
+    opacity: 1;
+  }
+}
+
+.rotateIn {
+  @include animation-name( rotateIn );
+}
+
+@include keyframes( rotateInDownLeft ) {
+  from {
+    @include transform-origin( left bottom );
+    @include transform( rotate3d(0, 0, 1, -45deg) );
+    opacity: 0;
+  }
+
+  to {
+    @include transform-origin( left bottom );
+    @include transform( translate3d(0, 0, 0) );
+    opacity: 1;
+  }
+}
+
+.rotateInDownLeft {
+  @include animation-name( rotateInDownLeft );
+}
+
+@include keyframes( rotateInDownRight ) {
+  from {
+    @include transform-origin( right bottom );
+    @include transform( rotate3d(0, 0, 1, 45deg) );
+    opacity: 0;
+  }
+
+  to {
+    @include transform-origin( right bottom );
+    @include transform( translate3d(0, 0, 0) );
+    opacity: 1;
+  }
+}
+
+.rotateInDownRight {
+  @include animation-name( rotateInDownRight );
+}
+
+@include keyframes( rotateInUpLeft ) {
+  from {
+    @include transform-origin( left bottom );
+    @include transform( rotate3d(0, 0, 1, 45deg) );
+    opacity: 0;
+  }
+
+  to {
+    @include transform-origin( left bottom );
+    @include transform( translate3d(0, 0, 0) );
+    opacity: 1;
+  }
+}
+
+.rotateInUpLeft {
+  @include animation-name( rotateInUpLeft );
+}
+
+@include keyframes( rotateInUpRight ) {
+  from {
+    @include transform-origin( right bottom );
+    @include transform( rotate3d(0, 0, 1, -90deg) );
+    opacity: 0;
+  }
+
+  to {
+    @include transform-origin( right bottom );
+    @include transform( translate3d(0, 0, 0) );
+    opacity: 1;
+  }
+}
+
+.rotateInUpRight {
+  @include animation-name( rotateInUpRight );
+}
+
+@include keyframes( hinge ) {
+  0% {
+    @include transform-origin( top left );
+    @include animation-timing-function( ease-in-out );
+  }
+
+  20%,
+  60% {
+    @include transform( rotate3d(0, 0, 1, 80deg) );
+    @include transform-origin( top left );
+    @include animation-timing-function( ease-in-out );
+  }
+
+  40%,
+  80% {
+    @include transform( rotate3d(0, 0, 1, 60deg) );
+    @include transform-origin( top left );
+    @include animation-timing-function( ease-in-out );
+    opacity: 1;
+  }
+
+  to {
+    @include transform( translate3d(0, 700px, 0) );
+    opacity: 0;
+  }
+}
+
+.hinge {
+  @include animation-duration( 2s );
+  @include animation-name( hinge );
+}
+
+@include keyframes( jackInTheBox ) {
   from {
     opacity: 0;
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
+    @include transform( scale(0.1) rotate(30deg) );
+    @include transform-origin( center bottom );
+  }
+
+  50% {
+    @include transform( rotate(-10deg) );
+  }
+
+  70% {
+    @include transform( rotate(3deg) );
   }
 
   to {
     opacity: 1;
-    -webkit-transform: none;
-    transform: none;
+    @include transform( scale(1) );
   }
 }
 
-@keyframes fadeInUpItself {
+.jackInTheBox {
+  @include animation-name( jackInTheBox );
+}
+
+/* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
+
+@include keyframes( rollIn ) {
   from {
     opacity: 0;
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
+    @include transform( translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg) );
   }
 
   to {
     opacity: 1;
-    -webkit-transform: none;
-    transform: none;
+    @include transform( translate3d(0, 0, 0) );
   }
 }
 
-.fadeInUpItself {
-  -webkit-animation-name: fadeInUpItself;
-  animation-name: fadeInUpItself;
+.rollIn {
+  @include animation-name( rollIn );
 }
 
-@keyframes slideInDown {
-	from {
-		-webkit-transform: translate3d(0, -50px, 0);
-		transform: translate3d(0, -50px, 0);
-		visibility: visible;
-	}
+/* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
 
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
+@include keyframes( rollOut ) {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    @include transform( translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg) );
+  }
+}
+
+.rollOut {
+  @include animation-name( rollOut );
+}
+
+
+@include keyframes( zoomIn ) {
+  from {
+    opacity: 0;
+    @include transform( scale3d(0.3, 0.3, 0.3) );
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.zoomIn {
+  @include animation-name( zoomIn );
+}
+
+
+@include keyframes( zoomInDown ) {
+  from {
+    opacity: 0;
+    @include transform( scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0) );
+    @include animation-timing-function( cubic-bezier(0.55, 0.055, 0.675, 0.19) );
+  }
+
+  60% {
+    opacity: 1;
+    @include transform( scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0) );
+    @include animation-timing-function( cubic-bezier(0.175, 0.885, 0.32, 1) );
+  }
+}
+
+.zoomInDown {
+  @include animation-name( zoomInDown );
+}
+
+@include keyframes( zoomInLeft ) {
+  from {
+    opacity: 0;
+    @include transform( scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0) );
+    @include animation-timing-function( cubic-bezier(0.55, 0.055, 0.675, 0.19) );
+  }
+
+  60% {
+    opacity: 1;
+    @include transform( scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0) );
+    @include animation-timing-function( cubic-bezier(0.175, 0.885, 0.32, 1) );
+  }
+}
+
+.zoomInLeft {
+  @include animation-name( zoomInLeft );
+}
+
+@include keyframes( zoomInRight ) {
+  from {
+    opacity: 0;
+    @include transform( scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0) );
+    @include animation-timing-function( cubic-bezier(0.55, 0.055, 0.675, 0.19) );
+  }
+
+  60% {
+    opacity: 1;
+    @include transform( scale3d(0.475, 0.475, 0.475) translate3d(-10px, 0, 0) );
+    @include animation-timing-function( cubic-bezier(0.175, 0.885, 0.32, 1) );
+  }
+}
+
+.zoomInRight {
+  @include animation-name( zoomInRight );
+}
+
+@include keyframes( zoomInUp ) {
+  from {
+    opacity: 0;
+    @include transform( scale3d(0.1, 0.1, 0.1) translate3d(0, 1000px, 0) );
+    @include animation-timing-function( cubic-bezier(0.55, 0.055, 0.675, 0.19) );
+  }
+
+  60% {
+    opacity: 1;
+    @include transform( scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0) );
+    @include animation-timing-function( cubic-bezier(0.175, 0.885, 0.32, 1) );
+  }
+}
+
+.zoomInUp {
+  @include animation-name( zoomInUp );
+}
+
+@include keyframes( zoomOut ) {
+  from {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+    @include transform( scale3d(0.3, 0.3, 0.3) );
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.zoomOut {
+  @include animation-name( zoomOut );
+}
+
+@include keyframes( zoomOutDown ) {
+  40% {
+    opacity: 1;
+    @include transform( scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0) );
+    @include animation-timing-function( cubic-bezier(0.55, 0.055, 0.675, 0.19) );
+  }
+
+  to {
+    opacity: 0;
+    @include transform( scale3d(0.1, 0.1, 0.1) translate3d(0, 2000px, 0) );
+    @include transform-origin( center bottom );
+    @include animation-timing-function( cubic-bezier(0.175, 0.885, 0.32, 1) );
+  }
+}
+
+.zoomOutDown {
+  @include animation-name( zoomOutDown );
+}
+
+@include keyframes( zoomOutLeft ) {
+  40% {
+    opacity: 1;
+    @include transform( scale3d(0.475, 0.475, 0.475) translate3d(42px, 0, 0) );
+  }
+
+  to {
+    opacity: 0;
+    @include transform( scale(0.1) translate3d(-2000px, 0, 0) );
+    @include transform-origin( left center );
+  }
+}
+
+.zoomOutLeft {
+  @include animation-name( zoomOutLeft );
+}
+
+@include keyframes( zoomOutRight ) {
+  40% {
+    opacity: 1;
+    @include transform( scale3d(0.475, 0.475, 0.475) translate3d(-42px, 0, 0) );
+  }
+
+  to {
+    opacity: 0;
+    @include transform( scale(0.1) translate3d(2000px, 0, 0) );
+    @include transform-origin( right center );
+  }
+}
+
+.zoomOutRight {
+  @include animation-name( zoomOutRight );
+}
+
+@include keyframes( zoomOutUp ) {
+  40% {
+    opacity: 1;
+    @include transform( scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0) );
+    @include animation-timing-function( cubic-bezier(0.55, 0.055, 0.675, 0.19) );
+  }
+
+  to {
+    opacity: 0;
+    @include transform( scale3d(0.1, 0.1, 0.1) translate3d(0, -2000px, 0) );
+    @include transform-origin( center bottom );
+    @include animation-timing-function( cubic-bezier(0.175, 0.885, 0.32, 1) );
+  }
+}
+
+.zoomOutUp {
+  @include animation-name( zoomOutUp );
+}
+
+@include keyframes( slideInDown ) {
+  from {
+    @include transform( translate3d(0, -100%, 0) );
+    visibility: visible;
+  }
+
+  to {
+    @include transform( translate3d(0, 0, 0) );
+  }
 }
 
 .slideInDown {
-	-webkit-animation-name: slideInDown;
-	animation-name: slideInDown;
+  @include animation-name( slideInDown );
 }
 
-@-webkit-keyframes slideInDownItself {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(-100%);
-    transform: translateY(-100%);
+@include keyframes( slideInLeft ) {
+  from {
+    @include transform( translate3d(-100%, 0, 0) );
+    visibility: visible;
   }
 
-  100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
+  to {
+    @include transform( translate3d(0, 0, 0) );
   }
-}
-
-@keyframes slideInDownItself {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(-100%);
-    -ms-transform: translateY(-100%);
-    transform: translateY(-100%);
-  }
-
-  100% {
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
-  }
-}
-
-.slideInDownItself {
-  -webkit-animation-name: slideInDownItself;
-  animation-name: slideInDownItself;
-}
-
-@-webkit-keyframes slideInLeft {
-	from {
-		-webkit-transform: translate3d(-50px, 0, 0);
-		transform: translate3d(-50px, 0, 0);
-		visibility: visible;
-	}
-
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
-}
-
-@keyframes slideInLeft {
-	from {
-		-webkit-transform: translate3d(-50px, 0, 0);
-		transform: translate3d(-50px, 0, 0);
-		visibility: visible;
-	}
-
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
 }
 
 .slideInLeft {
-	-webkit-animation-name: slideInLeft;
-	animation-name: slideInLeft;
+  @include animation-name( slideInLeft );
 }
 
-@-webkit-keyframes slideInRight {
-	from {
-		-webkit-transform: translate3d(50px, 0, 0);
-		transform: translate3d(50px, 0, 0);
-		visibility: visible;
-	}
+@include keyframes( slideInRight ) {
+  from {
+    @include transform( translate3d(100%, 0, 0) );
+    visibility: visible;
+  }
 
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
-}
-
-@keyframes slideInRight {
-	from {
-		-webkit-transform: translate3d(50px, 0, 0);
-		transform: translate3d(50px, 0, 0);
-		visibility: visible;
-	}
-
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
+  to {
+    @include transform( translate3d(0, 0, 0) );
+  }
 }
 
 .slideInRight {
-	-webkit-animation-name: slideInRight;
-	animation-name: slideInRight;
+  @include animation-name( slideInRight );
 }
 
-@-webkit-keyframes slideInRightItself {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
+@include keyframes( slideInUp ) {
+  from {
+    @include transform( translate3d(0, 100%, 0) );
+    visibility: visible;
   }
 
-  100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
+  to {
+    @include transform( translate3d(0, 0, 0) );
   }
-}
-
-@keyframes slideInRightItself {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateX(100%);
-    -ms-transform: translateX(100%);
-    transform: translateX(100%);
-  }
-
-  100% {
-    -webkit-transform: translateX(0);
-    -ms-transform: translateX(0);
-    transform: translateX(0);
-  }
-}
-
-.slideInRightItself {
-  -webkit-animation-name: slideInRightItself;
-  animation-name: slideInRightItself;
-}
-
-@-webkit-keyframes slideInUp {
-	from {
-		-webkit-transform: translate3d(0, 50px, 0);
-		transform: translate3d(0, 50px, 0);
-		visibility: visible;
-	}
-
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
-}
-
-@keyframes slideInUp {
-	from {
-		-webkit-transform: translate3d(0, 50px, 0);
-		transform: translate3d(0, 50px, 0);
-		visibility: visible;
-	}
-
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
 }
 
 .slideInUp {
-	-webkit-animation-name: slideInUp;
-	animation-name: slideInUp;
+  @include animation-name( slideInUp );
 }
 
-@-webkit-keyframes slideInDownBig {
-	from {
-		-webkit-transform: translate3d(0, -2000px, 0);
-		transform: translate3d(0, -2000px, 0);
-		visibility: visible;
-	}
-
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
+.animated {
+  @include animation-duration( 1s );
+  animation-fill-mode: both;
 }
 
-@keyframes slideInDownBig {
-	from {
-		-webkit-transform: translate3d(0, -2000px, 0);
-		transform: translate3d(0, -2000px, 0);
-		visibility: visible;
-	}
-
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
+.animated.infinite {
+  animation-iteration-count: infinite;
 }
 
-.slideInDownBig {
-	-webkit-animation-name: slideInDownBig;
-	animation-name: slideInDownBig;
+.animated.delay-1s {
+  animation-delay: 1s;
 }
 
-@-webkit-keyframes slideInLeftBig {
-	from {
-		-webkit-transform: translate3d(-2000px, 0, 0);
-		transform: translate3d(-2000px, 0, 0);
-		visibility: visible;
-	}
-
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
+.animated.delay-2s {
+  animation-delay: 2s;
 }
 
-@keyframes slideInLeftBig {
-	from {
-		-webkit-transform: translate3d(-2000px, 0, 0);
-		transform: translate3d(-2000px, 0, 0);
-		visibility: visible;
-	}
-
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
+.animated.delay-3s {
+  animation-delay: 3s;
 }
 
-.slideInLeftBig {
-	-webkit-animation-name: slideInLeftBig;
-	animation-name: slideInLeftBig;
+.animated.delay-4s {
+  animation-delay: 4s;
 }
 
-@-webkit-keyframes slideInRightBig {
-	from {
-		-webkit-transform: translate3d(2000px, 0, 0);
-		transform: translate3d(2000px, 0, 0);
-		visibility: visible;
-	}
-
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
+.animated.delay-5s {
+  animation-delay: 5s;
 }
 
-@keyframes slideInRightBig {
-	from {
-		-webkit-transform: translate3d(2000px, 0, 0);
-		transform: translate3d(2000px, 0, 0);
-		visibility: visible;
-	}
-
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
+.animated.fast {
+  @include animation-duration( 800ms );
 }
 
-.slideInRightBig {
-	-webkit-animation-name: slideInRightBig;
-	animation-name: slideInRightBig;
+.animated.faster {
+  @include animation-duration( 500ms );
 }
 
-@-webkit-keyframes slideInUpBig {
-	from {
-		-webkit-transform: translate3d(0, 2000px, 0);
-		transform: translate3d(0, 2000px, 0);
-		visibility: visible;
-	}
-
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
+.animated.slow {
+  @include animation-duration( 2s );
 }
 
-@keyframes slideInUpBig {
-	from {
-		-webkit-transform: translate3d(0, 2000px, 0);
-		transform: translate3d(0, 2000px, 0);
-		visibility: visible;
-	}
-
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-	}
+.animated.slower {
+  @include animation-duration( 3s );
 }
 
-.slideInUpBig {
-	-webkit-animation-name: slideInUpBig;
-	animation-name: slideInUpBig;
+.animated.delay-200 {
+  @include animation-delay(200ms);
 }
 
+.animated.delay-400 {
+  @include animation-delay(400ms);
+}
+
+// @media (prefers-reduced-motion) {
+//   .animated {
+//     animation: unset !important;
+//     transition: none !important;
+//   }
+// }
 
 /*========================================
 =            Custom Keyframes            =
@@ -810,12 +1314,12 @@
 
 @include keyframes( pulse ) {
 	0% {
-		box-shadow: 0 0 0 0 rgba(#11ac80, 0.4);
+		box-shadow: 0 0 0 0 rgba($purple, 0.6);
 	}
 	70% {
-		box-shadow: 0 0 0 20px rgba(#11ac80, 0);
+		box-shadow: 0 0 0 20px rgba($purple, 0);
 	}
 	100% {
-		box-shadow: 0 0 0 0 rgba(#11ac80, 0);
+		box-shadow: 0 0 0 0 rgba($blue, 0);
 	}
 }

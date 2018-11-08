@@ -300,3 +300,11 @@ p:empty {
 html.js:not(.is-mobile) [data-animation] {
   visibility: hidden;
 }
+
+html.js:not(.is-mobile) .sreveal {
+	// @include animation-name( none );
+	visibility: hidden !important;
+	&.animated {
+		visibility: visible !important;
+	}
+}

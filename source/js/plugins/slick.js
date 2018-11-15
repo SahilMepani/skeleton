@@ -1109,6 +1109,14 @@
             _.slideOffset += _.slideWidth * Math.floor(_.options.slidesToShow / 2);
         }
 
+        /* Original */
+        // if (_.options.vertical === false) {
+        //     targetLeft = ((slideIndex * _.slideWidth) * -1) + _.slideOffset;
+        // } else {
+        //     targetLeft = ((slideIndex * verticalHeight) * -1) + verticalOffset;
+        // }
+
+        /* Replacement */
         if (_.options.vertical === false) {
           targetLeft = ((slideIndex * _.slideWidth) * -1) + _.slideOffset;
         } else {
@@ -1119,15 +1127,17 @@
           }
 
           if (_.options.infinite === true) {
-            Array.from(_.$slideTrack[0].children).forEach((slide) => {
-              if (slide.dataset.slickIndex < 0) {
-                verticalOffset += $(slide).outerHeight(true);
+            var $slideCounts = Array.prototype.slice.call( _.$slideTrack[0].children );
+            for (var i = 0; i < $slideCounts.length; i++) {
+              if ($slideCounts[i].dataset.slickIndex < 0) {
+                verticalOffset += $($slideCounts[i]).outerHeight(true);
               }
-            });
+            }
           }
 
           targetLeft = verticalOffset * -1;
         }
+        /* End Replacement */
 
         if (_.options.variableWidth === true) {
 

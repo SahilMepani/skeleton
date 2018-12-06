@@ -382,19 +382,19 @@ function tse_convert_id_to_term_in_query($query) {
   =            Custom wp login logo and link            =
   ========================================================== */
 
-// function my_login_logo() {
-//   ?>
-//   <style type="text/css">
-//     #login h1 a, .login h1 a {
-//       background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg');
-//       width: auto;
-//       background-size: contain;
-//       background-repeat: no-repeat;
-//       margin: 0 auto 10px;
-//     }
-//   </style>
-//   <?php
-// }
+/*function my_login_logo() {
+  ?>
+  <style type="text/css">
+    #login h1 a, .login h1 a {
+      background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg');
+      width: auto;
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin: 0 auto 10px;
+    }
+  </style>
+  <?php
+}*/
 
 // add_action('login_enqueue_scripts', 'my_login_logo');
 

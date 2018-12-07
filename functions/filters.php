@@ -366,6 +366,57 @@ function tse_convert_id_to_term_in_query($query) {
 }
 
 
+
+/*==========================================================
+=            Filter post by meta field in admin            =
+==========================================================*/
+
+// //Adding Column
+// //We can change the function name as we want
+// add_filter( 'manage_post-type_posts_columns', 'post_type_filter_posts_columns' );
+// function post_type_filter_posts_columns( $columns ) {
+//   $columns['meta_field'] = 'Meta Field';
+//   return $columns;
+// }
+
+
+// //Adding content to the column
+// add_action( 'manage_post-type_posts_custom_column', 'post_type_column', 10, 2);
+// function post_type_column( $column, $post_id ) {
+
+//  // Rank Column
+//   if ( 'meta_field' === $column ) {
+//     $meta_field = get_post_meta( $post_id, 'meta_field', true );
+//     echo @$meta_field;
+//   }
+// }
+
+// //Filter posts by the column
+// add_filter( 'manage_edit-post-type_sortable_columns', 'post_type_sortable_columns');
+// function post_type_sortable_columns( $columns ) {
+//   $columns['meta_field'] = 'meta_field';
+//   return $columns;
+// }
+
+// //Ordering by meta value
+// add_action( 'pre_get_posts', 'meta_field_orderby' );
+// function meta_field_orderby( $query ) {
+//   if( ! is_admin() )
+//       return;
+
+//   $orderby = $query->get( 'orderby');
+
+//   if( 'meta_field' == $orderby ) {
+//       $query->set('meta_key','meta_field');
+//       $query->set('orderby','meta_value'); //use meta_value_num if it is numeric
+//   }
+// }
+
+
+/*=====  End of Filter post by meta field in admin  ======*/
+
+
+
 /*========================================================
 =            Add attributes to enqueue styles            =
 ========================================================*/

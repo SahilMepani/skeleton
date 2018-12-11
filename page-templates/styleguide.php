@@ -6,7 +6,7 @@
 
 <div class="row">
 
-<div class="col">
+<div class="col-md">
 	<h1><code>&lt;h1&gt;</code> Heading</h1>
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores tempore amet aut reiciendis illum necessitatibus.</p>
 
@@ -26,35 +26,20 @@
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores tempore amet aut reiciendis illum necessitatibus.</p>
 </div> <!-- .col -->
 
-<div class="col">
+<div class="col-md">
 
-	<h4>Article</h4>
+	<h4>h4 - Heading</h4></h4>
 
 	<p>You might have noticed all the monospaced text in this guide. There are a number of inline <abbr title="HyperText Markup Language">HTML</abbr> elements you may use anywhere within other elements, including <abbr title="Abbreviation">abbr</abbr>, <cite>cite</cite>, <code>code</code>, <del>del</del>, <em>em</em>, <ins>ins</ins>, <strong>strong</strong>, <var>var</var>, and <a href="#" title="link">link</a></p>
 
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur tempore eveniet consequatur illum ipsam impedit.</p>
 
-	<h4>Heading between copy</h4>
+	<h4>h4 - Heading between paragraphs</h4></h4>
 
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime aliquam perferendis a, praesentium, placeat commodi rerum tempore officiis et quo. Omnis itaque optio maxime saepe.</p>
 
 	<hr>
 
-	<h5>Blockquote</h5>
-
-	<blockquote cite="http://en.wikipedia.org/wiki/Gall%27s_law">
-		<p>A complex system that works is invariably found to have evolved from a simple system that worked. The inverse proposition also appears to be true: <em>A complex system designed from scratch never works</em> and cannot be made to work. You have to start over, beginning with a working simple system.</p>
-		<footer>
-			<p><a href="http://en.wikipedia.org/wiki/Gall%27s_law">http://en.wikipedia.org/wiki/Gall%27s_law</a></p>
-		</footer>
-	</blockquote>
-
-	<blockquote>
-		<p><em>Simplicity</em> is the ultimate sophistication.</p>
-		<footer>
-			<p>&mdash; LEONARDO DA VINCI</p>
-		</footer>
-	</blockquote>
 </div> <!-- .col -->
 
 </div> <!-- .row -->
@@ -297,6 +282,18 @@
 
 <h2>Image Alignments</h2>
 
+<div class="alert alert--info">
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, similique?</p>
+</div> <!-- .alert -->
+
+<div class="alert alert--error">
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, similique?</p>
+</div> <!-- .alert -->
+
+<div class="alert alert--success">
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, similique?</p>
+</div> <!-- .alert -->
+
 <div class="row margin-bottom-2">
 
 	<div class="col">
@@ -323,34 +320,6 @@
 <h5>Image with Frame <code>&lt;img class="img-thumbnail"&gt;</code></h5>
 
 <p><img src="http://placehold.it/150/f15500/ffffff&text=368" class="img-thumbnail"></p>
-
-<hr class="hr">
-
-<h2>Alerts</h2>
-
-<h5><code>&lt;div class="alert"&gt;</code></h5>
-<div class="alert">
-	<h5>Alert</h5>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, placeat perspiciatis facere expedita quae rem similique voluptatem animi dicta debitis excepturi nobis corporis nam totam.</p>
-</div>
-
-<h5><code>&lt;div class="alert alert--info"&gt;</code></h5>
-<div class="alert alert--info">
-	<h5>Info Alert</h5>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, placeat perspiciatis facere expedita quae rem similique voluptatem animi dicta debitis excepturi nobis corporis nam totam.</p>
-</div>
-
-<h5><code>&lt;div class="alert alert--error"&gt;</code></h5>
-<div class="alert alert--error">
-	<h5>Error Alert</h5>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, placeat perspiciatis facere expedita quae rem similique voluptatem animi dicta debitis excepturi nobis corporis nam totam.</p>
-</div>
-
-<h5><code>&lt;div class="alert alert--success"&gt;</code></h5>
-<div class="alert alert--success">
-	<h5>Success Alert</h5>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, placeat perspiciatis facere expedita quae rem similique voluptatem animi dicta debitis excepturi nobis corporis nam totam.</p>
-</div>
 
 <hr class="hr">
 

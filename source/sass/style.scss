@@ -28,7 +28,7 @@
 @import "partials/bootstrap/grid.scss";
 
 // Javascript
-// @import "partials/js/slick";
+@import "partials/js/slick";
 @import "partials/js/magnific-popup";
 @import "partials/js/js-socials";
 
@@ -41,14 +41,21 @@
 // @import "partials/layout/sidebar";
 @import "partials/layout/footer";
 
+// Flexible Content
+@import "partials/flexible-content/wysiwyg";
+@import "partials/flexible-content/fullscreen-slider";
+@import "partials/flexible-content/post-cards";
+@import "partials/flexible-content/fixed-and-fluid-column-1";
+@import "partials/flexible-content/fixed-and-fluid-column-2";
+@import "partials/flexible-content/fixed-and-fluid-column-3";
+@import "partials/flexible-content/fixed-and-fluid-column-4";
+
 // Page templates
 // @import "partials/templates/front-page";
 // @import "partials/templates/page";
 // @import "partials/templates/contact";
 @import "partials/templates/index.scss";
 @import "partials/templates/flexible-content.scss";
-@import "partials/flexible-content/full-width-cta.scss";
-@import "partials/flexible-content/hero-fullscreen.scss";
 // @import "partials/templates/search";
 // @import "partials/templates/404";
 @import "partials/templates/sitemap";

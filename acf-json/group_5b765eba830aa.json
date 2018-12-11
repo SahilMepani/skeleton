@@ -1,13 +1,13 @@
 {
-    "key": "group_5b28e94e6a887",
-    "title": "Fullscreen Slider - Clone",
+    "key": "group_5b765eba830aa",
+    "title": "Buttons Helpers - Clone",
     "fields": [
         {
-            "key": "field_5bfb836f76b87",
-            "label": "Slides",
-            "name": "slides",
+            "key": "field_5b765ec432f0f",
+            "label": "Buttons",
+            "name": "buttons",
             "type": "repeater",
-            "instructions": "Add Slides.",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -16,16 +16,16 @@
                 "id": ""
             },
             "collapsed": "",
-            "min": 1,
+            "min": 0,
             "max": 0,
-            "layout": "block",
-            "button_label": "Add Slide",
+            "layout": "table",
+            "button_label": "Add Button",
             "sub_fields": [
                 {
-                    "key": "field_5bfb5ef22f733",
-                    "label": "Media Helpers",
-                    "name": "media_helpers",
-                    "type": "clone",
+                    "key": "field_5b765ed432f10",
+                    "label": "Link",
+                    "name": "link",
+                    "type": "link",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -34,32 +34,30 @@
                         "class": "",
                         "id": ""
                     },
-                    "clone": [
-                        "group_5b7549e9c57b0"
-                    ],
-                    "display": "seamless",
-                    "layout": "block",
-                    "prefix_label": 0,
-                    "prefix_name": 0
+                    "return_format": "array"
                 },
                 {
-                    "key": "field_5b6dbbd9be260",
-                    "label": "Heading",
-                    "name": "heading",
-                    "type": "text",
+                    "key": "field_5b765eef32f11",
+                    "label": "Button Color",
+                    "name": "color",
+                    "type": "button_group",
                     "instructions": "",
-                    "required": 1,
+                    "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
+                    "choices": {
+                        "primary": "Primary",
+                        "secondary": "Secondary",
+                        "black": "Black"
+                    },
+                    "allow_null": 0,
+                    "default_value": "primary",
+                    "layout": "horizontal",
+                    "return_format": "value"
                 }
             ]
         }
@@ -67,9 +65,9 @@
     "location": [
         [
             {
-                "param": "comment",
+                "param": "post_type",
                 "operator": "==",
-                "value": "attachment"
+                "value": "post"
             }
         ]
     ],
@@ -81,5 +79,5 @@
     "hide_on_screen": "",
     "active": 0,
     "description": "",
-    "modified": 1543513380
+    "modified": 1543032326
 }

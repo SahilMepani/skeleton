@@ -73,10 +73,11 @@ add_image_size( 'w600h400_c', 600, 400, true );
 add_image_size( 'w300h300c', 300, 300, true );
 add_image_size( 'w800', 800, 9999 );
 add_image_size( 'w1250', 1250, 9999 );
+add_image_size( 'w1920h900', 1920, 9999 );
 add_image_size( 'w1600h900', 1600, 900 );
-add_image_size( 'w2500', 2500, 9999 );
-add_image_size( 'w2500h900', 2500, 900 );
-add_image_size( 'w2500h1600', 2500, 1600 );
+add_image_size( 'w2560', 2560, 9999 );
+add_image_size( 'w2560h900', 2560, 900 );
+add_image_size( 'w2560h1600', 2560, 1600 );
 
 
 /*=========================================

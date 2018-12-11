@@ -14,7 +14,7 @@
   margin-top: 15px !important; // overwrite :first-child
   margin-bottom: 0;
   a {
-    @include text-hide;
+    @include hide-text;
     display: block;
     height: 100%;
     position: absolute;

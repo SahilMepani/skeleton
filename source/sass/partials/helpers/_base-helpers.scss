@@ -1,3 +1,10 @@
+.container {
+	&.container--small {
+		max-width: 800px;
+	}
+}
+
+/*----------  Background Video  ----------*/
 .bg-video {
 	position: absolute;
   left: 0;
@@ -16,14 +23,14 @@
   max-width: 100%;
 }
 
-.container-fluid {
-  &.px-md-5vw {
-    @include breakpoint( $md ) {
-      padding-left: 5vw;
-      padding-right: 5vw;
-    }
-  }
-}
+// .container-fluid {
+//   &.px-md-5vw {
+//     @include breakpoint( $md ) {
+//       padding-left: 5vw;
+//       padding-right: 5vw;
+//     }
+//   }
+// }
 
 /*----------  Swiper Arrow Navigation  ----------*/
 // .swiper-arrow-navigation {
@@ -77,47 +84,47 @@
 // }
 
 /*----------  Slick Dots  ----------*/
-.slick-dots {
-	@include list-unstyled;
-	li {
-		display: inline-block;
-		margin: 0 10px 0 0;
-		position: relative;
-		&.slick-active {
-			button {
-				background-color: #fff;
-			}
-		}
-	}
-	button {
-		@include btn;
-		@include text-hide;
-		background-color: rgba(255,255,255,.5);
-		width: 10px;
-		height: 10px;
-		border-radius: 50%;
-	}
-}
+// .slick-dots {
+// 	@include list--unstyled;
+// 	li {
+// 		display: inline-block;
+// 		margin: 0 10px 0 0;
+// 		position: relative;
+// 		&.slick-active {
+// 			button {
+// 				background-color: #fff;
+// 			}
+// 		}
+// 	}
+// 	button {
+// 		@include btn;
+// 		@include hide-text;
+// 		background-color: rgba(255,255,255,.5);
+// 		width: 10px;
+// 		height: 10px;
+// 		border-radius: 50%;
+// 	}
+// }
 
 /*----------  Alert  ----------*/
 .alert {
 	background-color: #e5e5e5;
-	padding: 25px;
+	padding: calc(15px + (25 - 15) * ((100vw - #{$md}) / (#{strip-unit($k2)} - #{strip-unit($md)})));
 	border: 1px solid #ddd;
 	margin-bottom: $global_margin_bottom;
 }
 
-.alert-info {
+.alert--info {
 	background-color: #ffffd9;
 	border: 1px solid darken( #ffffd9, 47% );
 }
 
-.alert-error {
+.alert--error {
 	background-color: #ffd9d9;
 	border: 1px solid darken( #ffd9d9, 10% );
 }
 
-.alert-success {
+.alert--success {
 	background-color: #dbffd9;
 	border: 1px solid darken( #dbffd9, 20% );
 }

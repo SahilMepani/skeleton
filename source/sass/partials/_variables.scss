@@ -1,8 +1,8 @@
 /*===============================
 =            Globals            =
 ===============================*/
-$global_margin_bottom : 30px; /* p, table, ul, ol, dl, dd, pre, blockquote, address */
-$global_line_height   : 1.6; /* p, pre, blockquote, address, dt, textarea */
+$global_margin_bottom : calc(30px + (40 - 30) * ((100vw - 768px) / (1920 - 768))); /* p, table, ul, ol, dl, dd, pre, blockquote, address */
+$global_line_height   : 1.7; /* p, pre, blockquote, address, dt, textarea */
 
 
 /*==============================
@@ -36,7 +36,8 @@ $monospace : Menlo, Monaco, Consolas, "Courier New", monospace;
 $base_bg_color    : #fff;
 $base_color       : #444;
 $base_font_family : $lato;
-$base_font_size   : 16px; /* match this value in function.php for wp-editor */
+$base_font_size   : 16px; /* it equals to 1rem. Don't change this value. If you want to increase the size, use body selector */
+$body_font_size   : 18px;
 $base_line_height : 1;
 
 
@@ -48,22 +49,7 @@ $headings_font_family   : inherit;
 $headings_font_weight   : 700;
 $headings_line_height   : 1.4;
 $headings_margin_top    : $global_margin_bottom;
-$headings_margin_bottom : $global_margin_bottom/2;
-
-
-/*===============================
-=            Gutters            =
-===============================*/
-$gutter_1: 0; //xxs
-$gutter_2: 15px; //xxs
-$gutter_3: 30px; //xs
-$gutter_4: 50px;
-$gutter_5: 70px;
-$gutter_6: 90px;
-$gutter_7: 120px;
-$gutter_8: 150px;
-
-$ar_gutter : $gutter_1, $gutter_2, $gutter_3, $gutter_4, $gutter_5, $gutter_6, $gutter_7, $gutter_8;
+$headings_margin_bottom : $global_margin_bottom;
 
 
 /*=============================================
@@ -71,12 +57,12 @@ $ar_gutter : $gutter_1, $gutter_2, $gutter_3, $gutter_4, $gutter_5, $gutter_6, $
 =============================================*/
 $input_bg_color          : #fff;
 $input_color             : #444;
-$input_line_height       : 1.2; /* used for btn mixin, so when next to each other they have same height */
+$input_line_height       : 1.2; /* used for btn mixin, so when input is next to btn they have same height */
 $input_min_width         : auto;
 $input_padding_x_xs      : 15px; /* left and right for mobile */
-$input_padding_x_sm      : 15px; /* top and bottom for desktop  */
+$input_padding_x_md      : 15px; /* left and right for desktop */
 $input_padding_y_xs      : 20px; /* top and bottom for mobile  */
-$input_padding_y_sm      : 20px; /* left and right for desktop */
+$input_padding_y_md      : 20px; /* top and bottom for desktop  */
 $input_border            : 1px solid #666;
 $input_focus_border      : #000;
 $input_focus_outline     : false;
@@ -107,7 +93,7 @@ $i_arrow_down       : '\e097';
 $i_arrow_up         : '\e096';
 $i_arrow_left       : '\e094';
 $i_arrow_right      : '\e095';
-$i_dropdown         : $i_arrow_down;
+$i_dropdown         : $i_chevron_down;
 $i_go_top           : '\e61c';
 /* Social */
 $i_facebook         : '\e907';
@@ -147,17 +133,16 @@ $portrait: orientation portrait;
 $landscape: orientation landscape;
 
 /* Min Width */
-$min_400 : 400px;
-$min_401 : 401px;
-$min_480 : 480px;
-$min_481 : 481px;
-$min_600 : 600px;
-$min_601 : 601px;
+$min_375 : 375px;
+$min_414 : 414px;
 $sm      : 576px;
 $md      : 768px;
 $lg      : 992px;
 $xl      : 1200px;
-$xxl     : 1500px;
+$xxl     : 1400px;
+$xxxl    : 1600px;
+$k2      : 1920px;
+$k4      : 4000px;
 $mac_13  : ($md) (max-height 800px);
 
 /* Max Width */
@@ -177,11 +162,26 @@ $sm_range : $sm $sm_max;
 $md_range : $md $md_max;
 $lg_range : $lg $lg_max;
 
-/* Max Height */
-$xs_max_height: max-height 767px;
+/* Arrays */
+$ar_bp: $sm, $md, $lg; // breakpoint variable array
+$ar_bp_classes: sm, md, lg; // breakpoint classes for loop
 
-$ar_bp: $xs, $sm, $md, $lg; // breakpoint variable array
-$ar_bp_classes: xs, sm, md, lg; // breakpoint classes for loop
+// $ar_bp_max: $lg_max, $md_max, $sm_max, $xs_max; // breakpoint variable array, different order is used for specificty
+// $ar_bp_max_classes: lg-max, md-max, sm-max, xs-max; // breakpoint classes for loop
 
-$ar_bp_max: $lg_max, $md_max, $sm_max, $xs_max; // breakpoint variable array, different order is used for specificty
-$ar_bp_max_classes: lg-max, md-max, sm-max, xs-max; // breakpoint classes for loop
+
+/*===============================
+=            Gutters            =
+===============================*/
+$gutter_1  : 10px;
+$gutter_2  : 20px;
+$gutter_3  : 30px;
+$gutter_4  : 40px;
+$gutter_5  : 50px;
+$gutter_6  : 60px;
+$gutter_7  : 70px;
+$gutter_8  : 80px;
+$gutter_9  : 90px;
+$gutter_10 : 100px;
+
+$ar_gutter : $gutter_1, $gutter_2, $gutter_3, $gutter_4, $gutter_5, $gutter_6, $gutter_7, $gutter_8, $gutter_9, $gutter_10;

@@ -1,3 +1,7 @@
+.btn-black {
+	@include btn-black;
+}
+
 .btn-primary {
 	@include btn-primary;
 }

@@ -1,0 +1,52 @@
+.fixed-and-fluid-column-2 {
+	@include clearfix;
+	.fluid-col {
+		@include bg-cover;
+	}
+	.fixed-col {
+		padding: 0 5vw;
+	}
+	@include breakpoint( $sm_max ) {
+		.fixed-col {
+			margin-bottom: 50px;
+		}
+		.fluid-col {
+			img {
+				display: block;
+				margin: 0 auto;
+			}
+		}
+	}
+	@include breakpoint( $md ) {
+		padding: 70px 0;
+		.flex {
+			@include display-flex;
+		}
+		.fluid-col {
+			@include flex( 0 0 50% );
+			max-width: 50%;
+			text-align: right;
+		}
+		.fixed-col {
+			@include flex( 0 1 auto );
+		}
+	}
+	@include breakpoint( ($md) ($md_max) ) {
+		.fluid-col {
+			background: none !important;
+		}
+	}
+	@include breakpoint( $lg ) {
+		@include display-flex;
+		@include flex-direction( column );
+		padding: 0;
+		.flex {
+			@include display-flex;
+		}
+		.fixed-col {
+			@include display-flex;
+			@include flex-direction( column );
+			@include justify-content( center );
+		}
+	}
+}

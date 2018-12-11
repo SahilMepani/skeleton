@@ -1,6 +1,6 @@
 {
     "key": "group_58ce2f2bb72a1",
-    "title": "Developers Options - Clone",
+    "title": "Developer Options - Clone",
     "fields": [
         {
             "key": "field_58eb89e6d28e6",
@@ -93,16 +93,16 @@
             },
             "choices": {
                 "pt-0": "0",
-                "pt-1": "15",
-                "pt-2": "30",
-                "pt-3": "50",
-                "pt-4": "70",
-                "pt-5": "90",
-                "pt-6": "120",
-                "pt-7": "150"
+                "pt-1": "15px",
+                "pt-2": "30px",
+                "pt-3": "50px",
+                "pt-4": "70px",
+                "pt-5": "90px",
+                "pt-6": "120px",
+                "pt-7": "150px"
             },
             "allow_null": 0,
-            "default_value": "pt-4",
+            "default_value": "padding-top-4",
             "layout": "horizontal",
             "return_format": "value"
         },
@@ -121,16 +121,16 @@
             },
             "choices": {
                 "pb-0": "0",
-                "pb-1": "15",
-                "pb-2": "30",
-                "pb-3": "50",
-                "pb-4": "70",
-                "pb-5": "90",
-                "pb-6": "120",
-                "pb-7": "150"
+                "pb-1": "15px",
+                "pb-2": "30px",
+                "pb-3": "50px",
+                "pb-4": "70px",
+                "pb-5": "90px",
+                "pb-6": "120px",
+                "pb-7": "150px"
             },
             "allow_null": 0,
-            "default_value": "pb-4",
+            "default_value": "padding-bottom-4",
             "layout": "horizontal",
             "return_format": "value"
         }
@@ -152,5 +152,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1534430915
+    "modified": 1543481704
 }

@@ -43,7 +43,7 @@ html {
 body {
 	background: $base_bg_color;
 	color: $base_color;
-	@include rem( font-size, $base_font_size );
+	@include rem( font-size, $body_font_size ); // change this value, should we need to increase para font size.
 	font-family: $base_font_family;
 	line-height: $base_line_height;
 }
@@ -54,6 +54,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	color: $headings_color;
 	font-weight: $headings_font_weight;
 	line-height: $headings_line_height;
+}
+
+h1, h2, h3, h4, h5, h6 {
 	margin: $headings_margin_top 0 $headings_margin_bottom 0;
 	&:first-child {
 		margin-top: 0;
@@ -61,25 +64,23 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 h1, .h1 {
-	@include rem(font-size, 48px);
-	line-height: 1.2;
+	@include fluid( font-size, $sm, $k2, 36px, 36px * 1.5 );
 }
 
 h2, .h2 {
-	@include rem(font-size, 36px);
-	line-height: 1.3;
+	@include fluid( font-size, $sm, $k2, 30px, 30px * 1.5 );
 }
 
 h3, .h3 {
-	@include rem(font-size, 30px);
+	@include fluid( font-size, $sm, $k2, 24px, 24px * 1.5 );
 }
 
 h4, .h4 {
-	@include rem(font-size, 24px);
+	@include fluid( font-size, $sm, $k2, 20px, 20px * 1.5 );
 }
 
 h5, .h5 {
-	font-size: 1rem;
+	@include rem(font-size, 18px);
 }
 
 h6, .h6 {
@@ -102,6 +103,14 @@ a {
 
 button {
 	outline: none;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	font-family: $base_font_family;
 }
 
 a, button, input[type="submit"], input[type="button"], input[type="reset"] {
@@ -128,11 +137,6 @@ p, table, ul, ol, dl, dd, pre, blockquote, address {
 	margin: 0 0 $global_margin_bottom;
 }
 
-blockquote {
-	padding-left: 20px;
-	border-left: 5px solid lighten( $brand_color_primary, 20% );
-}
-
 b, strong {
 	font-weight: 700;
 }
@@ -144,8 +148,8 @@ small {
 hr {
 	border: none;
 	border-top: 1px solid #e5e5e5;
-	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-top: calc(30px + (40 - 30) * ((100vw - #{$md}) / (#{strip-unit($k2)} - #{strip-unit($md)})));
+	margin-bottom: calc(30px + (40 - 30) * ((100vw - #{$md}) / (#{strip-unit($k2)} - #{strip-unit($md)})));
 }
 
 address {
@@ -155,12 +159,8 @@ address {
 output {
 	display: block;
 	padding-top: 7px;
-	font-size: 14px;
 	line-height: 1.42857143;
 	color: #555;
-	@include breakpoint( $sm ) {
-		@include rem(font-size, 14px);
-	}
 }
 
 code {
@@ -181,8 +181,8 @@ table {
 	caption {
 		font-family: $headings_font_family;
 	  text-align: left;
-		padding-top: 10px;
-	  padding-bottom: 10px;
+		padding-top: calc(10px + (20 - 10) * ((100vw - #{$md}) / (#{strip-unit($k2)} - #{strip-unit($md)})));
+	  padding-bottom: calc(10px + (20 - 10) * ((100vw - #{$md}) / (#{strip-unit($k2)} - #{strip-unit($md)})));
 	  caption-side: bottom;
 	}
 	tbody {
@@ -239,7 +239,7 @@ ol {
 
 li {
 	line-height: $global_line_height;
-	margin-bottom: 15px;
+	margin-bottom: calc(20px + (40 - 20) * ((100vw - #{$k2}) / (#{strip-unit($k4)} - #{strip-unit($k2)})));
 }
 
 dt {
@@ -252,12 +252,12 @@ dt {
 /*----------  Form  ----------*/
 form {
 	ul {
-		@include list-unstyled;
+		@include list--unstyled;
 	}
 	> ul {
 		> li {
 			clear: both;
-			margin-bottom: 15px;
+			margin-bottom: calc(20px + (40 - 20) * ((100vw - $k2) / (#{strip-unit($k4)} - #{strip-unit($k2)}));
 			> label {
 				margin-right: 10px;
 			}
@@ -276,7 +276,7 @@ legend {
 	font-weight: 700;
 	display: block;
 	border: none;
-	margin-bottom: 20px;
+	margin-bottom: calc(20px + (40 - 20) * ((100vw - $k2) / (#{strip-unit($k4)} - #{strip-unit($k2)}));
 }
 
 input[type="text"], input[type="tel"], input[type="url"], input[type="number"], input[type="password"], input[type="email"],  input[type="range"], input[type="file"], input[type="date"], input[type="search"], textarea, select {

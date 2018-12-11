@@ -1,6 +1,12 @@
-BOILETERPLATE:
+GRAVITY FORMS:
  ☐ Replace gravity forms columns to work with flex: 1
- ☐ Meta Description
+ ☐ Add gravity forms default classes support.
+ ☐ Input paddings and other values to be fluid
+
+MISCELLANEOUS:
+ ☐ Fluid property support.
+ ☐ Differents options for hamburger icon, with menu text and without.
+ ☐ Different dropdown effect for menu.
 
 
  ✔ Tooltip @done (04-05-17 15:56)

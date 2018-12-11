@@ -1,15 +1,15 @@
 #footer {
-	background-color: #f9f9f9;
-	font-size: 13px;
-	clear: both;
-	padding: 20px 0;
-	border-top: 1px solid #ddd;
+	// background-color: #f9f9f9;
+	// font-size: 13px;
+	// clear: both;
+	// padding: 20px 0;
+	// border-top: 1px solid #ddd;
 }
 
 // Footer menu
 .footer-menu {
 	float: right;
-	@include list-unstyled;
+	@include list--unstyled;
 	li {
 		list-style: none;
 		float: left;
@@ -36,7 +36,7 @@
 	}
 	@include breakpoint( $sm ) {
 		cursor: pointer;
-		@include text-hide();
+		@include hide-text;
 		position: fixed;
 		right: 30px;
 		bottom: 30px;

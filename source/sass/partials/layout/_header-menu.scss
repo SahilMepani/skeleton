@@ -1,6 +1,6 @@
 .header__nav {
 	ul {
-		@include list-unstyled;
+		@include list--unstyled;
 	}
 	li {
 		margin-bottom: 0;
@@ -85,7 +85,7 @@ $mobile_parent_menu_dropdown_icon_color: #000;
 $mobile_parent_menu_dropdown_hover_bg_color: #fff;
 $mobile_parent_menu_dropdown_hover_icon_color: red;
 /* Sub Menu */
-$mobile_sub_menu_font_size: $base_font_size;
+$mobile_sub_menu_font_size: 1rem;
 $mobile_sub_menu_bg_color: #fff;
 $mobile_sub_menu_link_bg_color: transparent;
 $mobile_sub_menu_link_hover_bg_color: rgba(0,0,0,.05);

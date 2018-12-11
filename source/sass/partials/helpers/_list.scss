@@ -9,7 +9,7 @@
 			margin-right: 0;
 		}
 		a {
-			@include text-hide;
+			@include hide-text;
 			color: rgba(255,255,255,.4);
 			text-align: center;
 			text-decoration: none;
@@ -61,7 +61,7 @@
 // 			margin-right: 0;
 // 		}
 // 		a {
-// 			@include text-hide;
+// 			@include hide-text;
 // 			text-align: center;
 // 			text-decoration: none;
 // 			display: block;

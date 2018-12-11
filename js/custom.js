@@ -7,17 +7,17 @@ jQuery( document ).ready( function( $ ) {;
 // } ); // if loaded via ajax. Set this in css or toggleClass with css to hide it
 
 // /* Works with Ajax loaded content */
-// $( '.list-accordions .content-block' ).css( {
-// 	'display': 'none'
-// } );
-// $( 'body' ).on( 'click', '.list-accordions .heading', function( e ) {
-// 	$( '.list-accordions li' ).removeClass( 'js-active' );
-// 	$( '.list-accordions .content-block' ).slideUp( 'fast' );
-// 	if ( $( this ).next().is( ':hidden' ) == true ) {
-// 		$( this ).parent().addClass( 'js-active' );
-// 		$( this ).next().slideDown( 'fast' );
-// 	}
-// } );
+$( '.list-accordions .content-block' ).css( {
+	'display': 'none'
+} );
+$( 'body' ).on( 'click', '.list-accordions .heading', function( e ) {
+	$( '.list-accordions li' ).removeClass( 'js-active' );
+	$( '.list-accordions .content-block' ).slideUp( 'fast' );
+	if ( $( this ).next().is( ':hidden' ) == true ) {
+		$( this ).parent().addClass( 'js-active' );
+		$( this ).next().slideDown( 'fast' );
+	}
+} );
 
 
 /*=======================================
@@ -295,6 +295,22 @@ $(".js-socials-share").jsSocials({
 // } );
 
 
+/*====================================================
+=            Manually Open Magnific Popup            =
+====================================================*/
+// $( '.trigger-form' ).on( 'click', function() {
+// 	$.magnificPopup.open({
+//     items: {
+//       src: '.popup-block'
+//     },
+//     type: 'inline',
+//     mainClass: 'mfp-zoom-in', // add class for animation
+//     removalDelay: 500, // delay removal by X to allow out-animation
+//   });
+// } );
+
+
+
 /*=======================================================
 =            Open gallery from external link            =
 =======================================================*/
@@ -479,6 +495,150 @@ $(".js-socials-share").jsSocials({
 // // run on resize
 // window.addEventListener( 'resize', equalHeight );
 ;
+// ScrollReveal.debug = true; // can be used only with unminified code
+// by default sreveal class has the fadeIn effect.
+
+var fadeInUp = {
+	origin: 'bottom',
+	distance: '30px'
+}
+
+var fadeInDown = {
+	origin: 'top',
+	distance: '30px'
+}
+
+var fadeInRight = {
+	origin: 'left',
+	distance: '30px'
+}
+
+var fadeInLeft = {
+	origin: 'right',
+	distance: '30px'
+}
+
+var slideInUp = {
+	origin: 'bottom',
+	distance: '30px',
+	opacity: null
+}
+
+var slideInDown = {
+	origin: 'top',
+	distance: '30px',
+	opacity: null
+}
+
+var slideInRight = {
+	origin: 'left',
+	distance: '30px',
+	opacity: null
+}
+
+var slideInLeft = {
+	origin: 'right',
+	distance: '30px',
+	opacity: null
+}
+
+var zoomOut = {
+	scale: '2',
+}
+
+window.sr = ScrollReveal({
+	duration: 1000,
+	mobile: false,
+});
+
+// sr.reveal( '.list-partners > li', {
+// 	origin: 'bottom',
+// 	distance: '30px',
+// 	interval: 100,
+// } );
+
+sr.reveal( '[data-animation="fadeIn"]' );
+sr.reveal( '[data-animation="fadeInUp"]', fadeInUp );
+sr.reveal( '[data-animation="fadeInDown"]', fadeInDown );
+sr.reveal( '[data-animation="fadeInRight"]', fadeInRight );
+sr.reveal( '[data-animation="fadeInLeft"]', fadeInLeft );
+sr.reveal( '[data-animation="slideInUp"]', slideInUp );
+sr.reveal( '[data-animation="slideInDown"]', slideInDown );
+sr.reveal( '[data-animation="slideInRight"]', slideInRight );
+sr.reveal( '[data-animation="slideInLeft"]', slideInLeft );
+sr.reveal( '[data-animation="zoomOut"]', zoomOut );
+
+
+$( '[data-animation]' ).each( function() {
+
+	var el = $(this);
+
+	var options = ['delay', 'distance', 'duration', 'easing', 'interval', 'opacity', 'origin', 'rotate', 'scale', 'desktop', 'mobile', 'reset', 'useDelay', 'viewFactor', 'viewOffset'];
+
+	var settings = {};
+	var interval = 0;
+
+	$( options ).each( function(index, element) {
+
+		if ( el.data( 'animation-' + options[index] ) ) {
+			var option = options[index];
+			settings[option] = el.data( 'animation-' + option );
+		}
+
+	});
+
+	sr.reveal( el, settings );
+} );
+
+$('.sreveal').css('animation-name', 'none');
+
+sr.reveal( '.sreveal', {
+	opacity: null,
+	duration: 0,
+	beforeReveal: function( el ) {
+		el.style.animationName = '';
+		el.classList.add( 'animated' );
+	},
+	afterReveal: function( el ) {
+		// el.classList.remove( 'animated' );
+	}
+} );
+
+
+
+/* Default Values */
+/*{
+delay: 0,
+distance: '0px', // %, px, em
+duration: 600,
+easing: 'cubic-bezier(0.5, 0, 0, 1)',
+interval: 0, // is the time between each reveal.
+opacity: 0,
+origin: 'bottom',
+rotate: {
+		x: 0,
+		y: 0,
+		z: 0,
+},
+scale: 1,
+cleanup: true,
+container: document.documentElement,
+desktop: true,
+mobile: true,
+reset: false, //enables/disables elements returning to their initialized position when they leave the viewport. When true elements reveal each time they enter the viewport instead of once.
+useDelay: 'always', // always, once, onload
+viewFactor: 0.0, // specifies what portion of an element must be within the viewport for it to be considered visible.  range between 0.0 and 1.0
+viewOffset: { // expands/contracts the active boundaries of the viewport when calculating element visibility. Accepts only number as pixels
+		top: 0,
+		right: 0,
+		bottom: 0,
+		left: 0,
+},
+afterReset: function (el) {},
+afterReveal: function (el) {},
+beforeReset: function (el) {},
+beforeReveal: function (el) {},
+}*/;
 /*=============================================
 =            General scroll to any            =
 =============================================*/
@@ -509,7 +669,84 @@ scrollToTop();
 
 // run on scroll
 window.addEventListener( 'scroll', scrollToTop );;
-;
+/*----------  Fullscreen Slider  ----------*/
+function fullscreenSlider() {
+	$( '.fullscreen-slider' ).each( function() {
+
+		$( this ).slick( {
+			touchThreshold: 30,
+			mobileFirst: true,
+			speed: 500,
+			dots: true,
+			appendDots: $( this ).parent().find( '.slick-slider-dots' ),
+		} );
+
+		$( this ).on( 'beforeChange', function( event, slick, currentSlide, nextSlide ) {
+			if ( $( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( currentSlide ).find( 'video' ).length ) {
+				$( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( currentSlide ).find( 'video' )[ 0 ].currentTime = 0;
+			}
+			if ( $( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( nextSlide ).find( 'video' ).length ) {
+				$( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( nextSlide ).find( 'video' )[ 0 ].currentTime = 0;
+			}
+		} );
+
+		$( this ).on( 'afterChange', function( event, slick, currentSlide ) {
+			if ( $( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( currentSlide ).find( 'video' ).length ) {
+				$( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( currentSlide ).find( 'video' )[ 0 ].play();
+			}
+		} );
+
+		// play the first video when the first slide comes inview.
+		$( this ).one( 'inview', function( event, isInView ) {
+			if ( isInView ) {
+				if ( $( this ).find( '.slick-slide' ).eq( 0 ).find( 'video' ).length ) {
+					$( this ).find( '.slick-slide' ).eq( 0 ).find( 'video' )[ 0 ].play();
+				}
+			}
+		} );
+
+	} );
+}
+fullscreenSlider();
+
+
+/*----------  Post Cards Carousel  ----------*/
+function postCardsCarousel() {
+  $( '.post-cards-carousel' ).each( function() {
+    $( this ).slick( {
+      touchThreshold: 30,
+      mobileFirst: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dots: true,
+      appendDots: $( this ).parent('.container').siblings( '.slick-slider-dots' ),
+      arrows: false,
+      responsive: [ {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        }
+      },
+        {
+          breakpoint: 1500,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 4,
+          }
+      } ]
+    } );
+  } );
+}
+postCardsCarousel();;
 // function stickyEl() {
 //   if ( window.innerWidth > 767 ) {
 //     $( "#sticky-nav-bar" ).sticky({

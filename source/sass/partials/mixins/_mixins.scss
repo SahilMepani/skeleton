@@ -5,6 +5,47 @@
 @import "rem";
 // @import "flexbox";
 
+/* Fluid Typography */
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+// https://codepen.io/MadeByMike/pen/vNrvdZ
+@mixin fluid($properties, $min-screen, $max-screen, $min-value, $max-value, $max-breakpoint: false) {
+	& {
+		@each $property in $properties {
+			#{$property}: $min-value;
+		}
+
+		@media screen and (min-width: $min-screen) {
+			@each $property in $properties {
+				#{$property}: calc-interpolation($min-screen, $min-value, $max-screen, $max-value);
+			}
+		}
+
+		@if ( $max-breakpoint ) {
+			@media screen and (min-width: $max-screen) {
+				@each $property in $properties {
+					#{$property}: $max-value;
+				}
+			}
+		}
+	}
+}
+
+// Requires the calc-interpolation function which can also be used independently
+@function calc-interpolation($min-screen, $min-value, $max-screen, $max-value) {
+	$a: ($max-value - $min-value) / ($max-screen - $min-screen);
+	$b: $min-value - $a * $min-screen;
+
+	$sign: "+";
+	@if ($b < 0) {
+		$sign: "-";
+		$b: abs($b);
+	}
+	@return calc(#{$a*100}vw #{$sign} #{$b});
+}
+
 @mixin mq-retina() {
 	@media only screen and (-webkit-min-device-pixel-ratio: 1.25),
 	only screen and ( min--moz-device-pixel-ratio: 1.25),
@@ -70,8 +111,8 @@
 			outline: none;
 		}
 	}
-	@include breakpoint( $sm ) {
-		padding: $input_padding_x_sm $input_padding_y_sm;
+	@include breakpoint( $md ) {
+		padding: $input_padding_x_md $input_padding_y_md;
 	}
 	//required to disable auto zoom in iOS when font is less than 16px
 	@media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 767px) {
@@ -189,7 +230,7 @@
 	}
 }
 
-@mixin list-unstyled {
+@mixin list--unstyled {
 	margin-left: 0;
 	> li {
 		list-style: none;
@@ -207,7 +248,7 @@
 	}
 }
 
-@mixin text-hide {
+@mixin hide-text {
 	font: 0/0 a;
   color: transparent;
   text-shadow: none;
@@ -215,7 +256,7 @@
   border: 0;
 }
 
-@mixin text-truncate {
+@mixin truncate-text {
 	//Requires the element to be block or inline-block
 	display: block;
 	white-space: nowrap;

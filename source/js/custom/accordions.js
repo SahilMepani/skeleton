@@ -6,17 +6,17 @@
 // } ); // if loaded via ajax. Set this in css or toggleClass with css to hide it
 
 // /* Works with Ajax loaded content */
-// $( '.list-accordions .content-block' ).css( {
-// 	'display': 'none'
-// } );
-// $( 'body' ).on( 'click', '.list-accordions .heading', function( e ) {
-// 	$( '.list-accordions li' ).removeClass( 'js-active' );
-// 	$( '.list-accordions .content-block' ).slideUp( 'fast' );
-// 	if ( $( this ).next().is( ':hidden' ) == true ) {
-// 		$( this ).parent().addClass( 'js-active' );
-// 		$( this ).next().slideDown( 'fast' );
-// 	}
-// } );
+$( '.list-accordions .content-block' ).css( {
+	'display': 'none'
+} );
+$( 'body' ).on( 'click', '.list-accordions .heading', function( e ) {
+	$( '.list-accordions li' ).removeClass( 'js-active' );
+	$( '.list-accordions .content-block' ).slideUp( 'fast' );
+	if ( $( this ).next().is( ':hidden' ) == true ) {
+		$( this ).parent().addClass( 'js-active' );
+		$( this ).next().slideDown( 'fast' );
+	}
+} );
 
 
 /*=======================================

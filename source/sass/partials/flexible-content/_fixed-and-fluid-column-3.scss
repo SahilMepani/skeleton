@@ -1,0 +1,74 @@
+.fixed-and-fluid-column-3 {
+	@include clearfix;
+	.fluid-col {
+		@include bg-cover;
+	}
+	.fixed-col {
+		padding: 0 5vw;
+	}
+	@include breakpoint( $sm_max ) {
+		.fixed-col {
+			margin-bottom: 50px;
+		}
+		.fluid-col {
+			@include bg-cover;
+			background-color: #ddd;
+			padding-bottom: 56.25%;
+			img {
+				display: none;
+			}
+		}
+	}
+	@include breakpoint( $md ) {
+		padding: 70px 0;
+		.flex {
+			@include display-flex;
+		}
+		.fluid-col {
+			@include flex( 0 0 50% );
+			max-width: 50%;
+		}
+		.fixed-col {
+			@include flex( 0 1 auto );
+			margin-left: calc(50% - 360px);
+			padding: 0 5vw 0 15px;
+		}
+	}
+	@include breakpoint( ($md) ($md_max) ) {
+		.fluid-col {
+			background: none !important;
+		}
+	}
+	@include breakpoint( $lg ) {
+		min-height: 600px;
+		.flex {
+			min-height: 600px;
+		}
+		.fluid-col {
+			img {
+				display: none;
+			}
+		}
+		.fixed-col {
+			@include display-flex;
+			@include flex-direction( column );
+			@include justify-content( center );
+			margin-left: calc(50% - 480px);
+		}
+	}
+	@include breakpoint( $xl ) {
+	  .fixed-col {
+			margin-left: calc(50% - 570px);
+		}
+	}
+	@include breakpoint( $xxl ) {
+	  .fixed-col {
+			margin-left: calc(50% - 670px);
+		}
+	}
+	@include breakpoint( $xxxl ) {
+	  .fixed-col {
+			margin-left: calc(50% - 770px);
+		}
+	}
+}

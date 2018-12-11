@@ -10,9 +10,13 @@
 	$section_padding_top    = get_sub_field('section_padding_top');
 	$section_padding_bottom = get_sub_field('section_padding_bottom');
 ?>
-e
+
 <section class="<?php echo $section_padding_top . ' ' . $section_padding_bottom ?> <?php echo $section_classes . ' ' . $section_bg_color; ?>" style="<?php echo $section_css ?>">
 	<div class="container">
+
+		<ul class="list-post-cards">
+
+		</ul> <!-- .list-post-cards -->
 
 	</div> <!-- .container -->
 </section>

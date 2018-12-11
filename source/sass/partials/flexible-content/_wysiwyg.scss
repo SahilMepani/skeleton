@@ -1,0 +1,106 @@
+/*----------  Buttons  ----------*/
+.btns-row {
+  > div {
+    margin-bottom: 10px;
+  }
+}
+
+/*----------  Blockquote  ----------*/
+.blockquote-block {
+  blockquote {
+    font-weight: 400;
+    font-style: italic;
+    padding-left: 5vw;
+    border-left: 5px solid lighten( $brand_color_primary, 20% );
+  }
+  .author {
+    color: $brand_color_primary;
+    @include rem( font-size, 18px );
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-left: 30px;
+    position: relative;
+    &:before {
+      content: '\2014';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      @include translateY(-50%);
+    }
+  }
+  @include breakpoint( $md ) {
+    blockquote {
+      padding-left: 40px;
+    }
+  }
+}
+
+/*----------  Accordions  ----------*/
+.list-accordions {
+  @include list--unstyled;
+  ::-moz-selection { background: transparent; color: $base_color; }
+  ::selection { background: transparent; color: $base_color; }
+  > li {
+    text-align: left;
+    margin-bottom: 0;
+    position: relative; //  Avoid Jumping
+    overflow: hidden;
+    &.js-active {
+      .heading {
+        &:before {
+          @include rotate(0);
+        }
+      }
+    }
+  }
+  .heading {
+    line-height: 1;
+    text-decoration: none;
+    padding: 0 40px 15px 0;
+    border-bottom: 1px solid #C8D0D6;
+    margin-bottom: 0;
+    position: relative;
+    cursor: pointer;
+    @include transition(.2s ease-out);
+    &:before {
+      @include icon-font-properties;
+      content: $i_cross;
+      @include rem( font-size, 24px );
+      color: $brand_color_primary;
+      line-height: 1;
+      display: block;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      margin: -20px 0 0;
+      @include transition(.2s ease-out);
+      @include rotate(-45deg);
+    }
+  }
+  .content-block {
+    .inner-block {
+      background-color: #f9f9f9;
+      padding: 20px 30px 40px; //fix jumping
+    }
+  }
+}
+
+/*----------  List  ----------*/
+.list--ordered {
+  @include list--unstyled;
+  > li {
+    counter-increment: counter;
+    padding-left: 25px;
+    position: relative;
+    &:before {
+      content: counter( counter );
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}
+
+.list--unstyled {
+  @include list--unstyled;
+}

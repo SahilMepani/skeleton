@@ -14,7 +14,7 @@ add_action('login_head', 'custom_loginlogo');
 /*==========================================
 =            Hide admin toolbar            =
 ==========================================*/
-// add_filter('show_admin_bar', '__return_false');
+add_filter('show_admin_bar', '__return_false');
 
 
 /*======================================================================

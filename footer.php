@@ -3,8 +3,8 @@
 <footer id="footer" class="clearfix">
 <div class="container">
 
-	<?php wp_nav_menu( array( 'theme_location' => 'footer-menu', 'menu_class' => 'footer-menu' ) ); ?>
-	<p class="copyright">&copy; <?php echo date( 'Y' ); // WPCS: XSS ok. ?>. All Rights Reserved.</p>
+	<?php //wp_nav_menu( array( 'theme_location' => 'footer-menu', 'menu_class' => 'footer-menu' ) ); ?>
+	<!-- <p class="copyright">&copy; <?php //echo date( 'Y' ); ?>. All Rights Reserved.</p> -->
 
 </div> <!-- .container -->
 </footer> <!-- #footer -->

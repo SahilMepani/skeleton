@@ -1,13 +1,13 @@
 /*=====================================
 =            Miscellaneous            =
 =====================================*/
-.img-responsive, .alignone, .alignleft, .alignright, .aligncenter {
+.img-responsive, .alignnone, .alignleft, .alignright, .aligncenter {
   width: auto;
   height: auto;
 }
 
-.list-unstyled {
-  @include list-unstyled;
+.list--unstyled {
+  @include list--unstyled;
 }
 
 .limit-content {
@@ -24,6 +24,10 @@
 
 .bg-overlay {
   @include bg-overlay;
+}
+
+.bg-grey {
+  background-color: #f9f9f9;
 }
 
 /*==================================
@@ -51,7 +55,7 @@
 .text-underline { text-decoration: underline; }
 .text-family-heading { font-family: $headings_font_family; }
 .text-family-base { font-family: $base_font_family; }
-.text-lead, .text-big { font-size: $base_font_size + 4; }
+.text-lead, .text-big { @include rem( font-size, 20px ) }
 .text-small { @extend small; }
 .text-caps { text-transform: uppercase; }
 

@@ -366,6 +366,57 @@ function tse_convert_id_to_term_in_query($query) {
 }
 
 
+
+/*==========================================================
+=            Filter post by meta field in admin            =
+==========================================================*/
+
+// //Adding Column
+// //We can change the function name as we want
+// add_filter( 'manage_post-type_posts_columns', 'post_type_filter_posts_columns' );
+// function post_type_filter_posts_columns( $columns ) {
+//   $columns['meta_field'] = 'Meta Field';
+//   return $columns;
+// }
+
+
+// //Adding content to the column
+// add_action( 'manage_post-type_posts_custom_column', 'post_type_column', 10, 2);
+// function post_type_column( $column, $post_id ) {
+
+//  // Rank Column
+//   if ( 'meta_field' === $column ) {
+//     $meta_field = get_post_meta( $post_id, 'meta_field', true );
+//     echo @$meta_field;
+//   }
+// }
+
+// //Filter posts by the column
+// add_filter( 'manage_edit-post-type_sortable_columns', 'post_type_sortable_columns');
+// function post_type_sortable_columns( $columns ) {
+//   $columns['meta_field'] = 'meta_field';
+//   return $columns;
+// }
+
+// //Ordering by meta value
+// add_action( 'pre_get_posts', 'meta_field_orderby' );
+// function meta_field_orderby( $query ) {
+//   if( ! is_admin() )
+//       return;
+
+//   $orderby = $query->get( 'orderby');
+
+//   if( 'meta_field' == $orderby ) {
+//       $query->set('meta_key','meta_field');
+//       $query->set('orderby','meta_value'); //use meta_value_num if it is numeric
+//   }
+// }
+
+
+/*=====  End of Filter post by meta field in admin  ======*/
+
+
+
 /*========================================================
 =            Add attributes to enqueue styles            =
 ========================================================*/
@@ -376,3 +427,61 @@ function tse_convert_id_to_term_in_query($query) {
 //   return str_replace( " rel='stylesheet'", " rel='preload'", $tag );
 // }
 // add_filter('style_loader_tag', 'add_style_attribute', 10, 2);
+
+
+/* ==========================================================
+  =            Custom wp login logo and link            =
+  ========================================================== */
+
+/*function my_login_logo() {
+  ?>
+  <style type="text/css">
+    #login h1 a, .login h1 a {
+      background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg');
+      width: auto;
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin: 0 auto 10px;
+    }
+  </style>
+  <?php
+}*/
+
+// add_action('login_enqueue_scripts', 'my_login_logo');
+
+// function my_login_logo_url() {
+//   return tse_home_url();
+// }
+
+// add_filter('login_headerurl', 'my_login_logo_url');
+
+// function my_login_logo_url_title() {
+//   return 'Skeleton';
+// }
+
+// add_filter('login_headertitle', 'my_login_logo_url_title');
+
+
+/*===================================================
+=            Featured Image - Image Size            =
+===================================================*/
+
+// function add_featured_image_display_settings( $content, $post_id ) {
+// 	$screen = get_current_screen();
+
+// 	if ($screen->post_type == 'post'):
+// 		$field_text  = esc_html__( 'Recommended Image Size: 1900 x 1080 (WxH) in px.', 'Uss Kidd' );
+
+// 		$field_label = sprintf(
+// 		    '<p><label>%1$s</label></p>',
+// 		    $field_text
+// 		);
+
+// 		return $content .= $field_label;
+// 	endif;
+
+// 	return $content;
+// }
+// add_filter( 'admin_post_thumbnail_html', 'add_featured_image_display_settings', 10, 2 );
+
+/*=====  End of Featured Image - Image Size  ======*/

@@ -8,7 +8,7 @@
 	}
 	@include breakpoint( $sm_max ) {
 		.fixed-col {
-			margin-bottom: 50px;
+			margin-bottom: rem-calc(50px);
 		}
 		.fluid-col {
 			@include bg-cover;
@@ -20,7 +20,7 @@
 		}
 	}
 	@include breakpoint( $md ) {
-		padding: 70px 0;
+		padding: rem-calc(70px) 0;
 		.fluid-col {
 			float: left;
 			width: 50%;
@@ -39,10 +39,10 @@
 		@include display-flex;
 		@include flex-direction( column );
 		padding: 0;
-		min-height: 600px;
+		min-height: rem-calc(600px);
 		.flex {
 			@include display-flex;
-			min-height: 600px;
+			min-height: rem-calc(600px);
 		}
 		.fluid-col {
 			img {

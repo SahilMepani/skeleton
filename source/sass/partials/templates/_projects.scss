@@ -24,7 +24,7 @@
 }
 
 .list-tax-one-filters, .list-tax-two-filters {
-  @include list--unstyled;
+  @include list-unstyled;
   margin-bottom: 0;
   > li {
     display: inline-block;
@@ -61,7 +61,7 @@
 }
 
 .blog-grid {
-  @include list--unstyled;
+  @include list-unstyled;
   margin-top: -12px;
   margin-left: -12px;
   margin-right: -12px;
@@ -108,7 +108,7 @@
   }
   time {
   color: #999;
-    font-size: $base_font_size - 1;
+    font-size: $root_font_size - 1;
     line-height: 1;
   }
   &.resources-grid {

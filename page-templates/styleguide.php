@@ -4,6 +4,48 @@
 
 <div class="container py-4">
 
+<h3>GRID</h3>
+
+<div class="grid">
+	<div class="row">
+		<div class="col"><div class="inner-col">1</div></div>
+		<div class="col"><div class="inner-col">1</div></div>
+		<div class="col"><div class="inner-col">1</div></div>
+		<div class="col"><div class="inner-col">1</div></div>
+		<div class="col"><div class="inner-col">1</div></div>
+		<div class="col"><div class="inner-col">1</div></div>
+		<div class="col"><div class="inner-col">1</div></div>
+		<div class="col"><div class="inner-col">1</div></div>
+		<div class="col"><div class="inner-col">1</div></div>
+		<div class="col"><div class="inner-col">1</div></div>
+		<div class="col"><div class="inner-col">1</div></div>
+		<div class="col"><div class="inner-col">1</div></div>
+	</div> <!-- .row -->
+	<div class="row">
+		<div class="col-2"><div class="inner-col">2</div></div>
+		<div class="col-2"><div class="inner-col">2</div></div>
+		<div class="col-2"><div class="inner-col">2</div></div>
+		<div class="col-2"><div class="inner-col">2</div></div>
+		<div class="col-2"><div class="inner-col">2</div></div>
+		<div class="col-2"><div class="inner-col">2</div></div>
+	</div> <!-- .row -->
+	<div class="row">
+		<div class="col-3"><div class="inner-col">3</div></div>
+		<div class="col-3"><div class="inner-col">3</div></div>
+		<div class="col-3"><div class="inner-col">3</div></div>
+		<div class="col-3"><div class="inner-col">3</div></div>
+	</div> <!-- .row -->
+	<div class="row">
+		<div class="col-4"><div class="inner-col">4</div></div>
+		<div class="col-4"><div class="inner-col">4</div></div>
+		<div class="col-4"><div class="inner-col">4</div></div>
+	</div> <!-- .row -->
+	<div class="row">
+		<div class="col-6"><div class="inner-col">6</div></div>
+		<div class="col-6"><div class="inner-col">6</div></div>
+	</div> <!-- .row -->
+</div> <!-- .grid -->
+
 <div class="row">
 
 <div class="col-md">
@@ -282,15 +324,15 @@
 
 <h2>Image Alignments</h2>
 
-<div class="alert alert--info">
+<div class="alert alert-info">
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, similique?</p>
 </div> <!-- .alert -->
 
-<div class="alert alert--error">
+<div class="alert alert-error">
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, similique?</p>
 </div> <!-- .alert -->
 
-<div class="alert alert--success">
+<div class="alert alert-success">
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, similique?</p>
 </div> <!-- .alert -->
 

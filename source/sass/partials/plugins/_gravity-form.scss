@@ -41,7 +41,7 @@ $gf_description_font_size: 16px;
 .gform_body {
 	//unordered list used to structure all of the form elements (ul)
 	.gform_fields {
-		@include list--unstyled;
+		@include list-unstyled;
 	}
 	//individual list items containing each form element (li)
 	.gfield {
@@ -700,7 +700,7 @@ input[type="file"] {
 	[id^="extensions_message"] {
     display: block;
     color: $gf_description_color;
-    font-size: $base_font_size - 2px;
+    font-size: $root_font_size - 2px;
     margin: 5px 0 0;
   }
 	//rejected files
@@ -792,7 +792,7 @@ table.gfield_list {
 =================================================*/
 .gforms_confirmation_message {
 	@extend .alert;
-	@extend .alert--success;
+	@extend .alert-success;
 	text-align: center;
 	line-height: 1.4;
 }
@@ -800,7 +800,7 @@ table.gfield_list {
 //combined validation error
 .validation_error {
 	@extend .alert;
-	@extend .alert--info;
+	@extend .alert-info;
 	text-align: center;
 	line-height: 1.4;
 }
@@ -824,7 +824,7 @@ table.gfield_list {
 //displays on same page upon successful completion of the form
 .gform_confirmation_message {
 	@extend .alert;
-	@extend .alert--success;
+	@extend .alert-success;
 	text-align: center;
 	line-height: 1.4;
 	&:last-child {
@@ -1034,7 +1034,7 @@ table.gfield_list {
 	.gf-row {
 		padding: 0; //overwrite gfield_html
 		ul {
-			@include list--unstyled;
+			@include list-unstyled;
 			@include clearfix;
 			margin-top: 0;
 		}
@@ -1069,7 +1069,7 @@ table.gfield_list {
 		}
 	}
 	.gf-block-row {
-		@include list--unstyled;
+		@include list-unstyled;
 		@include clearfix;
 		margin-top: 0;
 		.gf-block-col-2 {

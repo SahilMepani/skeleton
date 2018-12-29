@@ -1,6 +1,6 @@
 .container {
 	&.container--small {
-		max-width: 800px;
+		max-width: rem-calc( 800px );
 	}
 }
 
@@ -85,7 +85,7 @@
 
 /*----------  Slick Dots  ----------*/
 // .slick-dots {
-// 	@include list--unstyled;
+// 	@include list-unstyled;
 // 	li {
 // 		display: inline-block;
 // 		margin: 0 10px 0 0;
@@ -109,22 +109,22 @@
 /*----------  Alert  ----------*/
 .alert {
 	background-color: #e5e5e5;
-	padding: calc(15px + (25 - 15) * ((100vw - #{$md}) / (#{strip-unit($k2)} - #{strip-unit($md)})));
+	padding: rem-calc( 20px );
 	border: 1px solid #ddd;
 	margin-bottom: $global_margin_bottom;
 }
 
-.alert--info {
+.alert-info {
 	background-color: #ffffd9;
 	border: 1px solid darken( #ffffd9, 47% );
 }
 
-.alert--error {
+.alert-error {
 	background-color: #ffd9d9;
 	border: 1px solid darken( #ffd9d9, 10% );
 }
 
-.alert--success {
+.alert-success {
 	background-color: #dbffd9;
 	border: 1px solid darken( #dbffd9, 20% );
 }

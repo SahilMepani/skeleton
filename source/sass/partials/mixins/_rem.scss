@@ -1,4 +1,4 @@
-$rem-baseline: $base_font_size !default;
+$rem-baseline: $root_font_size !default;
 
 $rem-fallback: false !default;
 $rem-px-only: false !default;
@@ -18,7 +18,7 @@ $rem-px-only: false !default;
 }
 
 @mixin rem-baseline($zoom: 100%) {
-	font-size: $zoom / $base_font_size * $rem-baseline;
+	font-size: $zoom / $root_font_size * $rem-baseline;
 }
 
 @function rem-convert($to, $values...) {
@@ -63,4 +63,16 @@ $rem-px-only: false !default;
 			}
 		}
 	}
+}
+
+
+@function rem-calc($values...) {
+	$result: ();
+	$separator: rem-separator($values);
+
+	@each $value in $values {
+		$result: append($result, $value / ($rem-baseline / 1rem), $separator);
+	}
+
+	@return if(length($result) == 1, nth($result, 1), $result);
 }

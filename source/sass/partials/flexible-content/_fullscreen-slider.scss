@@ -48,6 +48,10 @@
       @include icon-font-properties;
       font-size: 26px;
       color: #fff;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      @include translate( -50%, -50% );
     }
     &:hover {
       background: #000;
@@ -72,7 +76,7 @@
     right: 0;
     bottom: 30px;
     ul {
-      @include list--unstyled;
+      @include list-unstyled;
       @include display-flex;
       @include justify-content( center );
       margin-bottom: 0;
@@ -95,6 +99,25 @@
       border: none;
       padding: 0;
       cursor: pointer;
+    }
+  }
+  @include breakpoint( $two_k ) {
+    .slick-arrow {
+      width: rem-calc( 50px );
+      height: rem-calc( 50px );
+      &:before {
+        font-size: rem-calc( 26px );
+      }
+    }
+    .slick-slider-dots {
+      bottom: rem-calc( 30px );
+      li {
+        padding: 0 rem-calc( 10px );
+      }
+      button {
+        width: rem-calc( 15px );
+        height: rem-calc( 15px );
+      }
     }
   }
 }

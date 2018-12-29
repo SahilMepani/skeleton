@@ -6,8 +6,8 @@
   height: auto;
 }
 
-.list--unstyled {
-  @include list--unstyled;
+.list-unstyled {
+  @include list-unstyled;
 }
 
 .limit-content {
@@ -57,7 +57,6 @@
 .text-family-base { font-family: $base_font_family; }
 .text-lead, .text-big { @include rem( font-size, 20px ) }
 .text-small { @extend small; }
-.text-caps { text-transform: uppercase; }
 
 
 /*===========================

@@ -30,32 +30,28 @@
 
 @for $i from 1 through length($ar_gutter) {
   .pt-#{$i} {
-    padding-top: nth( $ar_gutter, $i );
+    @include fluid( (padding-top), $md, $two_k, nth( $ar_gutter, $i ), nth( $ar_gutter, $i )*2 );
   }
   .pb-#{$i} {
-    padding-bottom: nth( $ar_gutter, $i );
+    @include fluid( (padding-bottom), $md, $two_k, nth( $ar_gutter, $i ), nth( $ar_gutter, $i )*2 );
   }
   .px-#{$i} {
-    padding-left: nth( $ar_gutter, $i );
-    padding-right: nth( $ar_gutter, $i );
+    @include fluid( (padding-left, padding-right), $md, $two_k, nth( $ar_gutter, $i ), nth( $ar_gutter, $i )*2 );
   }
   .py-#{$i} {
-    padding-top: nth( $ar_gutter, $i );
-    padding-bottom: nth( $ar_gutter, $i );
+    @include fluid( (padding-top, padding-bottom), $md, $two_k, nth( $ar_gutter, $i ), nth( $ar_gutter, $i )*2 );
   }
   .mt-#{$i} {
-    margin-top: nth( $ar_gutter, $i );
+    @include fluid( (margin-top), $md, $two_k, nth( $ar_gutter, $i ), nth( $ar_gutter, $i )*2 );
   }
   .mb-#{$i} {
-    margin-bottom: nth( $ar_gutter, $i );
+    @include fluid( (margin-bottom), $md, $two_k, nth( $ar_gutter, $i ), nth( $ar_gutter, $i )*2 );
   }
   .mx-#{$i} {
-    margin-left: nth( $ar_gutter, $i );
-    margin-right: nth( $ar_gutter, $i );
+    @include fluid( (margin-left, margin-right), $md, $two_k, nth( $ar_gutter, $i ), nth( $ar_gutter, $i )*2 );
   }
   .my-#{$i} {
-    margin-top: nth( $ar_gutter, $i );
-    margin-bottom: nth( $ar_gutter, $i );
+    @include fluid( (margin-top, margin-bottom), $md, $two_k, nth( $ar_gutter, $i ), nth( $ar_gutter, $i )*2 );
   }
 }
 
@@ -95,32 +91,32 @@
     @for $i from 1 through length($ar_gutter) {
 
       .pt-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        padding-top: nth( $ar_gutter, $i );
+        padding-top: calc(#{nth( $ar_gutter, $i )} + (#{strip-unit(nth( $ar_gutter, $i ))*2)} - #{strip-unit(nth( $ar_gutter, $i ))}) * ((100vw - #{nth($ar_bp, $counter)}) / (#{strip-unit($two_k)} - #{strip-unit(nth( $ar_bp, $counter ))})));
       }
       .pb-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        padding-bottom: nth( $ar_gutter, $i );
+        padding-bottom: calc(#{nth( $ar_gutter, $i )} + (#{strip-unit(nth( $ar_gutter, $i ))*2)} - #{strip-unit(nth( $ar_gutter, $i ))}) * ((100vw - #{nth($ar_bp, $counter)}) / (#{strip-unit($two_k)} - #{strip-unit(nth( $ar_bp, $counter ))})));
       }
       .px-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        padding-left: nth( $ar_gutter, $i );
-        padding-right: nth( $ar_gutter, $i );
+        padding-left: calc(#{nth( $ar_gutter, $i )} + (#{strip-unit(nth( $ar_gutter, $i ))*2)} - #{strip-unit(nth( $ar_gutter, $i ))}) * ((100vw - #{nth($ar_bp, $counter)}) / (#{strip-unit($two_k)} - #{strip-unit(nth( $ar_bp, $counter ))})));
+        padding-right: calc(#{nth( $ar_gutter, $i )} + (#{strip-unit(nth( $ar_gutter, $i ))*2)} - #{strip-unit(nth( $ar_gutter, $i ))}) * ((100vw - #{nth($ar_bp, $counter)}) / (#{strip-unit($two_k)} - #{strip-unit(nth( $ar_bp, $counter ))})));
       }
       .py-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        padding-top: nth( $ar_gutter, $i );
-        padding-bottom: nth( $ar_gutter, $i );
+        padding-top: calc(#{nth( $ar_gutter, $i )} + (#{strip-unit(nth( $ar_gutter, $i ))*2)} - #{strip-unit(nth( $ar_gutter, $i ))}) * ((100vw - #{nth($ar_bp, $counter)}) / (#{strip-unit($two_k)} - #{strip-unit(nth( $ar_bp, $counter ))})));
+        padding-bottom: calc(#{nth( $ar_gutter, $i )} + (#{strip-unit(nth( $ar_gutter, $i ))*2)} - #{strip-unit(nth( $ar_gutter, $i ))}) * ((100vw - #{nth($ar_bp, $counter)}) / (#{strip-unit($two_k)} - #{strip-unit(nth( $ar_bp, $counter ))})));
       }
       .mt-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        margin-top: nth( $ar_gutter, $i );
+        margin-top: calc(#{nth( $ar_gutter, $i )} + (#{strip-unit(nth( $ar_gutter, $i ))*2)} - #{strip-unit(nth( $ar_gutter, $i ))}) * ((100vw - #{nth($ar_bp, $counter)}) / (#{strip-unit($two_k)} - #{strip-unit(nth( $ar_bp, $counter ))})));
       }
       .mb-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        margin-bottom: nth( $ar_gutter, $i );
+        margin-bottom: calc(#{nth( $ar_gutter, $i )} + (#{strip-unit(nth( $ar_gutter, $i ))*2)} - #{strip-unit(nth( $ar_gutter, $i ))}) * ((100vw - #{nth($ar_bp, $counter)}) / (#{strip-unit($two_k)} - #{strip-unit(nth( $ar_bp, $counter ))})));
       }
       .mx-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        margin-left: nth( $ar_gutter, $i );
-        margin-right: nth( $ar_gutter, $i );
+        margin-left: calc(#{nth( $ar_gutter, $i )} + (#{strip-unit(nth( $ar_gutter, $i ))*2)} - #{strip-unit(nth( $ar_gutter, $i ))}) * ((100vw - #{nth($ar_bp, $counter)}) / (#{strip-unit($two_k)} - #{strip-unit(nth( $ar_bp, $counter ))})));
+        margin-right: calc(#{nth( $ar_gutter, $i )} + (#{strip-unit(nth( $ar_gutter, $i ))*2)} - #{strip-unit(nth( $ar_gutter, $i ))}) * ((100vw - #{nth($ar_bp, $counter)}) / (#{strip-unit($two_k)} - #{strip-unit(nth( $ar_bp, $counter ))})));
       }
       .my-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        margin-top: nth( $ar_gutter, $i );
-        margin-bottom: nth( $ar_gutter, $i );
+        margin-top: calc(#{nth( $ar_gutter, $i )} + (#{strip-unit(nth( $ar_gutter, $i ))*2)} - #{strip-unit(nth( $ar_gutter, $i ))}) * ((100vw - #{nth($ar_bp, $counter)}) / (#{strip-unit($two_k)} - #{strip-unit(nth( $ar_bp, $counter ))})));
+        margin-bottom: calc(#{nth( $ar_gutter, $i )} + (#{strip-unit(nth( $ar_gutter, $i ))*2)} - #{strip-unit(nth( $ar_gutter, $i ))}) * ((100vw - #{nth($ar_bp, $counter)}) / (#{strip-unit($two_k)} - #{strip-unit(nth( $ar_bp, $counter ))})));
       }
 
     }

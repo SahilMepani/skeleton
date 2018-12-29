@@ -11,10 +11,13 @@
 }
 
 // https://codepen.io/MadeByMike/pen/vNrvdZ
-@mixin fluid($properties, $min-screen, $max-screen, $min-value, $max-value, $max-breakpoint: false) {
+@mixin fluid($properties, $min-screen, $max-screen, $min-value, $max-value, $default: true, $max-breakpoint: true) {
 	& {
-		@each $property in $properties {
-			#{$property}: $min-value;
+
+		@if ( $default ) {
+			@each $property in $properties {
+				#{$property}: $min-value;
+			}
 		}
 
 		@media screen and (min-width: $min-screen) {
@@ -26,7 +29,7 @@
 		@if ( $max-breakpoint ) {
 			@media screen and (min-width: $max-screen) {
 				@each $property in $properties {
-					#{$property}: $max-value;
+					#{$property}: rem-calc( $max-value );
 				}
 			}
 		}
@@ -45,6 +48,7 @@
 	}
 	@return calc(#{$a*100}vw #{$sign} #{$b});
 }
+
 
 @mixin mq-retina() {
 	@media only screen and (-webkit-min-device-pixel-ratio: 1.25),
@@ -230,7 +234,7 @@
 	}
 }
 
-@mixin list--unstyled {
+@mixin list-unstyled {
 	margin-left: 0;
 	> li {
 		list-style: none;

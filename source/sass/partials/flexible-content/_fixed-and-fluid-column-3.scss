@@ -8,7 +8,7 @@
 	}
 	@include breakpoint( $sm_max ) {
 		.fixed-col {
-			margin-bottom: 50px;
+			margin-bottom: rem-calc(50px);
 		}
 		.fluid-col {
 			@include bg-cover;
@@ -20,7 +20,7 @@
 		}
 	}
 	@include breakpoint( $md ) {
-		padding: 70px 0;
+		padding: rem-calc(70px) 0;
 		.flex {
 			@include display-flex;
 		}
@@ -31,7 +31,7 @@
 		.fixed-col {
 			@include flex( 0 1 auto );
 			margin-left: calc(50% - 360px);
-			padding: 0 5vw 0 15px;
+			padding: 0 5vw 0 rem-calc(15px);
 		}
 	}
 	@include breakpoint( ($md) ($md_max) ) {
@@ -40,9 +40,9 @@
 		}
 	}
 	@include breakpoint( $lg ) {
-		min-height: 600px;
+		min-height: rem-calc(600px);
 		.flex {
-			min-height: 600px;
+			min-height: rem-calc(600px);
 		}
 		.fluid-col {
 			img {
@@ -69,6 +69,11 @@
 	@include breakpoint( $xxxl ) {
 	  .fixed-col {
 			margin-left: calc(50% - 770px);
+		}
+	}
+	@include breakpoint( $two_k ) {
+	  .fixed-col {
+			margin-left: calc(50% - 40%);
 		}
 	}
 }

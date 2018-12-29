@@ -7,6 +7,9 @@ MISCELLANEOUS:
  ☐ Fluid property support.
  ☐ Differents options for hamburger icon, with menu text and without.
  ☐ Different dropdown effect for menu.
+ ☐ Javascript SCSS files - Add Rem unit
+ ☐ Base helpers gutter classes - Add rem units
+ ☐ Header - Everything except Desktop menu - Add rem units
 
 
  ✔ Tooltip @done (04-05-17 15:56)

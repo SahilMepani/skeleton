@@ -89,7 +89,7 @@
 			$copy    = get_sub_field('copy');
 			$mb      = get_sub_field('mb');
 		?>
-		<div class="alert alert--<?php echo $type; ?> <?php echo $mb; ?>">
+		<div class="alert alert-<?php echo $type; ?> <?php echo $mb; ?>">
 			<h5><?php echo $heading; ?></h5>
 			<?php echo $copy; ?>
 		</div>
@@ -103,7 +103,7 @@
 			$list = get_sub_field('list');
 			$mb   = get_sub_field('mb');
 		?>
-		<ul class="list--<?php echo $type; ?> <?php echo $mb; ?>">
+		<ul class="list-<?php echo $type; ?> <?php echo $mb; ?>">
 			<?php foreach( $list as $item ) { ?>
 				<li><?php echo $item['copy']; ?></li>
 			<?php } ?>

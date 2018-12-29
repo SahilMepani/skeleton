@@ -8,7 +8,7 @@
 	}
 	@include breakpoint( $sm_max ) {
 		.fixed-col {
-			margin-bottom: 50px;
+			margin-bottom: rem-calc(50px);
 		}
 		.fluid-col {
 			img {
@@ -18,7 +18,7 @@
 		}
 	}
 	@include breakpoint( $md ) {
-		padding: 70px 0;
+		padding: rem-calc(70px) 0;
 		.fluid-col {
 			float: left;
 			width: 50%;

@@ -118,7 +118,7 @@
 	.post-date {
 		color: #999;
 		display: block;
-		font-size: $base_font_size - 1;
+		font-size: $root_font_size - 1;
 		font-style: italic;
 		&:before {
 			content: '- ';

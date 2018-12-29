@@ -1,6 +1,6 @@
 .header__nav {
 	ul {
-		@include list--unstyled;
+		@include list-unstyled;
 	}
 	li {
 		margin-bottom: 0;
@@ -224,31 +224,31 @@ $desktop_parent_menu_link_bg_color: #eee;
 $desktop_parent_menu_link_color: #000;
 $desktop_parent_menu_link_hover_bg_color: #ddd;
 $desktop_parent_menu_link_hover_color: #000;
-$desktop_parent_menu_item_padding_y: 15px;
-$desktop_parent_menu_item_padding_x: 20px;
+$desktop_parent_menu_item_padding_y: rem-calc( 15px );
+$desktop_parent_menu_item_padding_x: rem-calc( 20px );
 $desktop_parent_menu_current_item_link_bg_color: $brand_color_primary;
 $desktop_parent_menu_current_item_link_color: #fff;
 $desktop_parent_menu_dropdown_icon_color: #999;
-$desktop_parent_menu_dropdown_icon_border: 5px;
-$desktop_parent_menu_space_between_text_and_arrow: 10px;
+$desktop_parent_menu_dropdown_icon_border: rem-calc( 5px );
+$desktop_parent_menu_space_between_text_and_arrow: rem-calc( 10px );
 /*----------  Sub Menu  ----------*/
-$desktop_sub_menu_width: 300px;
+$desktop_sub_menu_width: rem-calc( 300px );
 $desktop_sub_menu_link_bg_color: #ddd;
 $desktop_sub_menu_link_color: #333;
 $desktop_sub_menu_link_hover_bg_color: #ccc;
 $desktop_sub_menu_link_hover_color: $desktop_sub_menu_link_color; //if this is changed there is some transition bug
 $desktop_sub_menu_current_item_link_bg_color: #ccc;
 $desktop_sub_menu_current_item_link_color: transparent; //if this is changed there is some transition bug
-$desktop_sub_menu_font_size: $base_font_size;
-$desktop_sub_menu_link_padding_y: 8px;
+$desktop_sub_menu_font_size: $root_font_size;
+$desktop_sub_menu_link_padding_y: rem-calc( 8px );
 $desktop_sub_menu_link_padding_x: $desktop_parent_menu_item_padding_x; //usually this is same as parent menu
-$desktop_sub_menu_link_height: 36px; //req for animation, manually calculate usually font height(not size) + padding-top and bottom.
+$desktop_sub_menu_link_height: rem-calc( 36px ); //req for animation, manually calculate usually font height(not size) + padding-top and bottom.
 
 .header__nav__parent-menu {
 	@include breakpoint( $lg ) {
 	  > li {
 			float: left;
-			margin-right: 5px;
+			margin-right: rem-calc( 5px );
 			> a {
 				background-color: $desktop_parent_menu_link_bg_color;
 				color: $desktop_parent_menu_link_color;
@@ -275,7 +275,7 @@ $desktop_sub_menu_link_height: 36px; //req for animation, manually calculate usu
 					position: absolute;
 					top: 50%;
 					right: $desktop_parent_menu_item_padding_y;
-					margin-top: -2px;
+					margin-top: rem-calc( -2px );
 				}
 			}
 			&:hover, &:focus {

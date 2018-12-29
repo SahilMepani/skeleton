@@ -51,7 +51,7 @@
 						<div class="author-info">
 							<h5><?php the_author_posts_link(); ?></h5>
 							<p><?php the_author_meta('description'); ?></p>
-							<ul class="list-author-meta list-connections list--unstyled">
+							<ul class="list-author-meta list-connections list-unstyled">
 								<?php
 									$url = get_the_author_meta( 'user_url' );
 									if ( $url ) {

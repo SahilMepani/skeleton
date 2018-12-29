@@ -1,7 +1,7 @@
 /*===============================
 =            Globals            =
 ===============================*/
-$global_margin_bottom : calc(30px + (40 - 30) * ((100vw - 768px) / (1920 - 768))); /* p, table, ul, ol, dl, dd, pre, blockquote, address */
+$global_margin_bottom : 2rem; /* p, table, ul, ol, dl, dd, pre, blockquote, address */
 $global_line_height   : 1.7; /* p, pre, blockquote, address, dt, textarea */
 
 
@@ -31,13 +31,17 @@ $monospace : Menlo, Monaco, Consolas, "Courier New", monospace;
 
 
 /*============================
+=            Root            =
+============================*/
+$root_font_size : 16px; //only change this value if you need spacing classes at the multiple of this value.
+
+
+/*============================
 =            Body            =
 ============================*/
 $base_bg_color    : #fff;
 $base_color       : #444;
 $base_font_family : $lato;
-$base_font_size   : 16px; /* it equals to 1rem. Don't change this value. If you want to increase the size, use body selector */
-$body_font_size   : 18px;
 $base_line_height : 1;
 
 
@@ -49,7 +53,7 @@ $headings_font_family   : inherit;
 $headings_font_weight   : 700;
 $headings_line_height   : 1.4;
 $headings_margin_top    : $global_margin_bottom;
-$headings_margin_bottom : $global_margin_bottom;
+$headings_margin_bottom : $global_margin_bottom/2;
 
 
 /*=============================================
@@ -59,10 +63,10 @@ $input_bg_color          : #fff;
 $input_color             : #444;
 $input_line_height       : 1.2; /* used for btn mixin, so when input is next to btn they have same height */
 $input_min_width         : auto;
-$input_padding_x_xs      : 15px; /* left and right for mobile */
-$input_padding_x_md      : 15px; /* left and right for desktop */
-$input_padding_y_xs      : 20px; /* top and bottom for mobile  */
-$input_padding_y_md      : 20px; /* top and bottom for desktop  */
+$input_padding_x_xs      : 1rem; /* left and right for mobile */
+$input_padding_x_md      : 1rem; /* left and right for desktop */
+$input_padding_y_xs      : 1.3rem; /* top and bottom for mobile  */
+$input_padding_y_md      : 1.3rem; /* top and bottom for desktop  */
 $input_border            : 1px solid #666;
 $input_focus_border      : #000;
 $input_focus_outline     : false;
@@ -141,8 +145,9 @@ $lg      : 992px;
 $xl      : 1200px;
 $xxl     : 1400px;
 $xxxl    : 1600px;
-$k2      : 1920px;
-$k4      : 4000px;
+$two_k      : 1920px;
+$three_k      : 2560px;
+$four_k      : 4000px;
 $mac_13  : ($md) (max-height 800px);
 
 /* Max Width */
@@ -173,15 +178,15 @@ $ar_bp_classes: sm, md, lg; // breakpoint classes for loop
 /*===============================
 =            Gutters            =
 ===============================*/
-$gutter_1  : 10px;
-$gutter_2  : 20px;
-$gutter_3  : 30px;
-$gutter_4  : 40px;
-$gutter_5  : 50px;
-$gutter_6  : 60px;
-$gutter_7  : 70px;
-$gutter_8  : 80px;
-$gutter_9  : 90px;
-$gutter_10 : 100px;
+$gutter_1  : 1rem;
+$gutter_2  : 2rem;
+$gutter_3  : 3rem;
+$gutter_4  : 4rem;
+$gutter_5  : 5rem;
+$gutter_6  : 6rem;
+$gutter_7  : 7rem;
+$gutter_8  : 8rem;
+$gutter_9  : 9rem;
+$gutter_10 : 10rem;
 
 $ar_gutter : $gutter_1, $gutter_2, $gutter_3, $gutter_4, $gutter_5, $gutter_6, $gutter_7, $gutter_8, $gutter_9, $gutter_10;

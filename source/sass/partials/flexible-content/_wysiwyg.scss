@@ -1,7 +1,7 @@
 /*----------  Buttons  ----------*/
 .btns-row {
   > div {
-    margin-bottom: 10px;
+    margin-bottom: rem-calc( 10px );
   }
 }
 
@@ -15,10 +15,10 @@
   }
   .author {
     color: $brand_color_primary;
-    @include rem( font-size, 18px );
+    font-size: rem-calc( 18px );
     font-weight: 700;
     text-transform: uppercase;
-    padding-left: 30px;
+    padding-left: rem-calc( 30px );
     position: relative;
     &:before {
       content: '\2014';
@@ -30,14 +30,14 @@
   }
   @include breakpoint( $md ) {
     blockquote {
-      padding-left: 40px;
+      padding-left: rem-calc( 40px );
     }
   }
 }
 
 /*----------  Accordions  ----------*/
 .list-accordions {
-  @include list--unstyled;
+  @include list-unstyled;
   ::-moz-selection { background: transparent; color: $base_color; }
   ::selection { background: transparent; color: $base_color; }
   > li {
@@ -56,8 +56,8 @@
   .heading {
     line-height: 1;
     text-decoration: none;
-    padding: 0 40px 15px 0;
-    border-bottom: 1px solid #C8D0D6;
+    padding: rem-calc( 20px ) rem-calc( 40px ) rem-calc( 20px ) 0;
+    border-bottom: rem-calc( 1px ) solid #C8D0D6;
     margin-bottom: 0;
     position: relative;
     cursor: pointer;
@@ -65,14 +65,14 @@
     &:before {
       @include icon-font-properties;
       content: $i_cross;
-      @include rem( font-size, 24px );
+      font-size: rem-calc( 24px );
       color: $brand_color_primary;
       line-height: 1;
       display: block;
       position: absolute;
       top: 50%;
       right: 0;
-      margin: -20px 0 0;
+      margin: rem-calc( -12px ) 0 0;
       @include transition(.2s ease-out);
       @include rotate(-45deg);
     }
@@ -80,17 +80,17 @@
   .content-block {
     .inner-block {
       background-color: #f9f9f9;
-      padding: 20px 30px 40px; //fix jumping
+      padding: rem-calc( 20px ) rem-calc( 30px ) rem-calc( 40px ); //fix jumping
     }
   }
 }
 
 /*----------  List  ----------*/
-.list--ordered {
-  @include list--unstyled;
+.list-ordered {
+  @include list-unstyled;
   > li {
     counter-increment: counter;
-    padding-left: 25px;
+    padding-left: rem-calc( 25px );
     position: relative;
     &:before {
       content: counter( counter );
@@ -101,6 +101,6 @@
   }
 }
 
-.list--unstyled {
-  @include list--unstyled;
+.list-unstyled {
+  @include list-unstyled;
 }

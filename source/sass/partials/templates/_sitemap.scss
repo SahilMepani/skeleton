@@ -1,7 +1,7 @@
 #sitemap-tabs {
   border: 1px solid #ddd;
   .list-tabs {
-    @include list--unstyled;
+    @include list-unstyled;
     border-bottom: none;
     overflow: hidden;
     @include display-flex;

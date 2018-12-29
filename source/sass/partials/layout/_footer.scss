@@ -9,11 +9,11 @@
 // Footer menu
 .footer-menu {
 	float: right;
-	@include list--unstyled;
+	@include list-unstyled;
 	li {
 		list-style: none;
 		float: left;
-		margin: 0 0 0 20px;
+		margin: 0 0 0 rem-calc( 20px );
 		&.current-menu-item > a, &.current_page_parent > a {
 			color: #000;
 			text-decoration: underline;
@@ -38,10 +38,13 @@
 		cursor: pointer;
 		@include hide-text;
 		position: fixed;
-		right: 30px;
-		bottom: 30px;
+		right: rem-calc( 30px );
+		bottom: rem-calc( 30px );
 		&:before {
-			@include font-icon( $i_go_top, 40px, #999 );
+			@include icon-font-properties;
+			content: $i_go_top;
+			color: #999;
+			font-size: rem-calc( 40px );
 		}
 		&:hover {
 			&:before {

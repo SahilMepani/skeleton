@@ -36,8 +36,8 @@ html {
 	// {
 	// 	-webkit-font-smoothing: subpixel-antialiased;
 	// }
-	@include fluid( font-size, $min_375, $two_k, $root_font_size/2, $root_font_size );
-	@include fluid( font-size, $two_k, $four_k, $root_font_size, $root_font_size*2.5 );
+	@include fluid( font-size, $min_375, $two_k, $root_font_size/2, $root_font_size, false, true );
+	@include fluid( font-size, $two_k, $four_k, $root_font_size, $root_font_size*2.3, false, true );
 	@include scrollbars(10px, #888, #e9e9e9);
 }
 

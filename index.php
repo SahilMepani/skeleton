@@ -48,7 +48,7 @@
 		<?php
 			global $query_string;
 			global $wp_query;
-	    query_posts( $query_string . '&posts_per_page=6' );
+	    query_posts( $query_string . '&posts_per_page=6&post_status=publish' );
 	    $post_count = $wp_query->post_count;
 	    if ( is_category() ) {
 				$cat_id = get_query_var( 'cat' );

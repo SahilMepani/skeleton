@@ -63,11 +63,12 @@ $input_bg_color          : #fff;
 $input_color             : #444;
 $input_line_height       : 1.2; /* used for btn mixin, so when input is next to btn they have same height */
 $input_min_width         : auto;
-$input_padding_x_xs      : 1rem; /* left and right for mobile */
-$input_padding_x_md      : 1rem; /* left and right for desktop */
-$input_padding_y_xs      : 1.3rem; /* top and bottom for mobile  */
-$input_padding_y_md      : 1.3rem; /* top and bottom for desktop  */
-$input_border            : 1px solid #666;
+$input_padding_x_xs      : 15px; /* left and right for mobile */
+$input_padding_x_md      : 15px; /* left and right for desktop */
+$input_padding_y_xs      : 20px; /* top and bottom for mobile  */
+$input_padding_y_md      : 20px; /* top and bottom for desktop  */
+$input_border_width      : 1px;
+$input_border_color      : #666;
 $input_focus_border      : #000;
 $input_focus_outline     : false;
 $input_placeholder_color : #b0b0b0;

@@ -104,19 +104,23 @@
 	line-height: $input_line_height; //same as button
 	min-width: $input_min_width;
 	padding: $input_padding_x_xs $input_padding_y_xs;
-	border: $input_border;
+	border: $input_border_width solid $input_border_color;
 	border-radius: $input_border_radius;
 	@include transition( $input_transition );
 	@include experimental(appearance, none); //remove browser styling
 	@include input-placeholder( $input_placeholder_color );
 	&:focus {
 		border-color: $input_focus_border;
-		@if $input_focus_outline == false {
+		@if ( $input_focus_outline == false ) {
 			outline: none;
 		}
 	}
 	@include breakpoint( $md ) {
 		padding: $input_padding_x_md $input_padding_y_md;
+	}
+	@include breakpoint( $two_k ) {
+		padding: rem-calc($input_padding_x_md) rem-calc($input_padding_y_md);
+		border-width: rem-calc($input_border_width);
 	}
 	//required to disable auto zoom in iOS when font is less than 16px
 	@media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 767px) {

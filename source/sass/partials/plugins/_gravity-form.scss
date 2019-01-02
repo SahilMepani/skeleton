@@ -340,7 +340,7 @@ $gf_description_font_size: 16px;
 			font-size: 16px;
 			letter-spacing: 1px;
 			padding-left: 15px;
-			border: $input_border;
+			border: $input_border_width solid $input_border_color;
 			padding-right: 15px;
 			max-width: 100%;
 			width: 100%;
@@ -677,7 +677,7 @@ input[type="file"] {
 	input[type="file"], .gform_button_select_files {
 		@include btn;
 		@include btn-md;
-		border: $input_border;
+		border: $input_border_width solid $input_border_color;
 	}
 	//multiselect
 	input[type="file"] {

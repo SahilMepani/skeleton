@@ -8,6 +8,7 @@ function filter_post_by_cat() {
   $args = array(
     'post_type'      => $data['cpt'],
     'posts_per_page' => 6,
+    'post_status'    => 'publish'
   );
 
   if ( $data['catID'] != '-1' ) {
@@ -52,6 +53,7 @@ function load_more_post() {
     'post_type'      => $data['cpt'],
     'posts_per_page' => 6,
     'paged'          => $data['pageNumber'] + 1,
+    'post_status'    => 'publish'
   );
 
   if ( $data['catID'] != '-1' ) {
@@ -93,8 +95,9 @@ function filter_post_by_dual_cat() {
   $data = $_POST;
 
   $args = array(
-    'post_type' => $data['cpt'],
+    'post_type'      => $data['cpt'],
     'posts_per_page' => 6,
+    'post_status'    => 'publish'
   );
 
   // If first is NOT ALL and second is ALL
@@ -165,6 +168,7 @@ function load_more_dual_cpt() {
     'post_type'      => $data['cpt'],
     'posts_per_page' => 6,
     'paged'          => $data['pageNumber'] + 1,
+    'post_status'    => 'publish'
   );
 
   // If first is NOT ALL and second is ALL

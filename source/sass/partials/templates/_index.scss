@@ -6,6 +6,9 @@
 	@include breakpoint( $md ) {
 	  margin: 0 -15px;
 	}
+	@include breakpoint( $two_k ) {
+	  margin: 0 rem-calc( 15px );
+	}
 }
 
 .filters__item {
@@ -18,7 +21,13 @@
 	}
 	@include breakpoint( $sm ) {
 	  @include flex(1);
-	  padding: 0 rem-calc( 10px );
+	  padding: 0 10px;
+	}
+	@include breakpoint( $md ) {
+	  padding: 0 15px
+	}
+	@include breakpoint( $two_k ) {
+	  padding: 0 rem-calc( 15px );
 	}
 }
 

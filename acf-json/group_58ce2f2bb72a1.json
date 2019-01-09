@@ -82,8 +82,8 @@
             "key": "field_58ce2f85168a1",
             "label": "Section Padding Top",
             "name": "section_padding_top",
-            "type": "button_group",
-            "instructions": "",
+            "type": "select",
+            "instructions": "1rem is equal to 16px with screen width 1920px. It increases above and decreases below the mentioned screen size.",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -93,25 +93,35 @@
             },
             "choices": {
                 "pt-0": "0",
-                "pt-1": "15px",
-                "pt-2": "30px",
-                "pt-3": "50px",
-                "pt-4": "70px",
-                "pt-5": "90px",
-                "pt-6": "120px",
-                "pt-7": "150px"
+                "pt-1": "1rem",
+                "pt-2": "2rem",
+                "pt-3": "3rem",
+                "pt-4": "4rem",
+                "pt-5": "5rem",
+                "pt-6": "6rem",
+                "pt-7": "7rem",
+                "pt-8": "8rem",
+                "pt-9": "9rem",
+                "pt-10": "10rem",
+                "pt-11": "11rem",
+                "pt-12": "12rem"
             },
+            "default_value": [
+                "pt-0"
+            ],
             "allow_null": 0,
-            "default_value": "padding-top-4",
-            "layout": "horizontal",
-            "return_format": "value"
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
         },
         {
             "key": "field_58ce305e168a2",
             "label": "Section Padding Bottom",
             "name": "section_padding_bottom",
-            "type": "button_group",
-            "instructions": "",
+            "type": "select",
+            "instructions": "1rem is equal to 16px with screen width 1920px. It increases above and decreases below the mentioned screen size.",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -121,18 +131,28 @@
             },
             "choices": {
                 "pb-0": "0",
-                "pb-1": "15px",
-                "pb-2": "30px",
-                "pb-3": "50px",
-                "pb-4": "70px",
-                "pb-5": "90px",
-                "pb-6": "120px",
-                "pb-7": "150px"
+                "pb-1": "1rem",
+                "pb-2": "2rem",
+                "pb-3": "3rem",
+                "pb-4": "4rem",
+                "pb-5": "5rem",
+                "pb-6": "6rem",
+                "pb-7": "7rem",
+                "pb-8": "8rem",
+                "pb-9": "9rem",
+                "pb-10": "10rem",
+                "pb-11": "11rem",
+                "pb-12": "12rem"
             },
+            "default_value": [
+                "pb-0"
+            ],
             "allow_null": 0,
-            "default_value": "padding-bottom-4",
-            "layout": "horizontal",
-            "return_format": "value"
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
         }
     ],
     "location": [
@@ -152,5 +172,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1543481704
+    "modified": 1546688518
 }

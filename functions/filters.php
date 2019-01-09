@@ -17,6 +17,15 @@ add_action('login_head', 'custom_loginlogo');
 add_filter('show_admin_bar', '__return_false');
 
 
+/*===============================================================
+=            Wrap oEmbed resource/video inside a div            =
+===============================================================*/
+add_filter('embed_oembed_html', 'my_embed_oembed_html', 99, 4);
+function my_embed_oembed_html($html, $url, $attr, $post_id) {
+  return '<div class="embed-video-block">' . $html . '</div>';
+}
+
+
 /*======================================================================
 =            Redirect to result, if search query one result            =
 ======================================================================*/

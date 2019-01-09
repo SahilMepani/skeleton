@@ -36,10 +36,10 @@
 		position: relative;
 	}
 	input[type="text"] {
-		padding-right: rem-calc( 45px );
+		padding-right: 45px;
 	}
 	.submit-block {
-		width: rem-calc( 45px );
+		width: 45px;
 		position: absolute;
 		right: 0;
 		top: 0;
@@ -48,7 +48,7 @@
 			@include icon-font-properties;
 			content: $i_search;
 			color: #ccc;
-			font-size: rem-calc( 30px );
+			font-size: 30px;
 			position: absolute;
 			left: 50%;
 			top: 50%;
@@ -67,8 +67,8 @@
 		visibility: hidden;
 		opacity: 0;
 		position: absolute;
-		right: rem-calc( 15px );
-		top: rem-calc( 14px );
+		right: 14px;
+		top: 17px;
 		&.js-active {
 			visibility: visible;
 			opacity: 1;
@@ -81,14 +81,14 @@
 		top: 0;
 		bottom: 0;
 		display: block;
-		width: rem-calc( 45px );
+		width: 45px;
 		visibility: hidden;
 		opacity: 0;
 		&:before {
 			@include icon-font-properties;
 			content: $i_cross;
 			color: #999;
-			font-size: rem-calc( 24px );
+			font-size: 24px;
 			position: absolute;
 			left: 50%;
 			top: 50%;
@@ -101,6 +101,27 @@
 		&:hover {
 			&:before {
 				color: $brand_color_primary;
+			}
+		}
+	}
+	@include breakpoint( $two_k ) {
+		input[type="text"] {
+			padding-right: rem-calc(45px);
+		}
+		.submit-block {
+			width: rem-calc(45px);
+			&:before {
+				font-size: rem-calc(30px);
+			}
+		}
+		.loading-spinner {
+			right: rem-calc(14px);
+			top: rem-calc(17px);
+		}
+		.clear-search {
+			width: rem-calc(45px);
+			&:before {
+				font-size: rem-calc(24px);
 			}
 		}
 	}

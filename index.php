@@ -21,7 +21,7 @@
 				<h5>Filter</h5>
 				<div class="custom-select-block">
 					<select id="ajax-filter-cat">
-					  <option data-cpt="post" data-cpt-tax="category" data-term-id="-1"><?php _e('Show All Categories','vt'); ?></option>
+					  <option data-cpt="post" data-cpt-tax="category" data-term-id=""><?php _e('Show All Categories','vt'); ?></option>
 					  <?php
 					    $cats_args = array(
 					      'taxonomy' => 'category',

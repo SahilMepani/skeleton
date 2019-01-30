@@ -276,9 +276,9 @@ p:empty {
 	}
 }
 
-[class*="col-sm"], [class*="col-md"], [class*="col-lg"] {
-	@include breakpoint( $xs ) {
-		margin-bottom: $gutter_3;
+[class*="col-lg-"] {
+	@include breakpoint( $md_max ) {
+		margin-bottom: 5vw;
 		&:last-child {
 			margin-bottom: 0;
 		}
@@ -287,16 +287,16 @@ p:empty {
 
 [class*="col-md-"], [class*="col-lg-"] {
 	@include breakpoint( $sm_max ) {
-		margin-bottom: $gutter_3;
+		margin-bottom: 5vw;
 		&:last-child {
 			margin-bottom: 0;
 		}
 	}
 }
 
-[class*="col-lg-"] {
-	@include breakpoint( $md_max ) {
-		margin-bottom: $gutter_3;
+[class*="col-sm"], [class*="col-md"], [class*="col-lg"] {
+	@include breakpoint( $xs ) {
+		margin-bottom: $global_margin_bottom * 3;
 		&:last-child {
 			margin-bottom: 0;
 		}

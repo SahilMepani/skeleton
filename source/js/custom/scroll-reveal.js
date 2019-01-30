@@ -2,45 +2,45 @@
 // by default sreveal class has the fadeIn effect.
 
 var fadeInUp = {
-	origin: 'bottom',
-	distance: '30px'
-}
-
-var fadeInDown = {
 	origin: 'top',
 	distance: '30px'
 }
 
-var fadeInRight = {
-	origin: 'left',
+var fadeInDown = {
+	origin: 'bottom',
 	distance: '30px'
 }
 
-var fadeInLeft = {
+var fadeInRight = {
 	origin: 'right',
 	distance: '30px'
 }
 
+var fadeInLeft = {
+	origin: 'left',
+	distance: '30px'
+}
+
 var slideInUp = {
-	origin: 'bottom',
+	origin: 'top',
 	distance: '30px',
 	opacity: null
 }
 
 var slideInDown = {
-	origin: 'top',
+	origin: 'bottom',
 	distance: '30px',
 	opacity: null
 }
 
 var slideInRight = {
-	origin: 'left',
+	origin: 'right',
 	distance: '30px',
 	opacity: null
 }
 
 var slideInLeft = {
-	origin: 'right',
+	origin: 'left',
 	distance: '30px',
 	opacity: null
 }

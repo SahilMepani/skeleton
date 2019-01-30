@@ -18,6 +18,7 @@ START
  ☐ Create required pages using bulk page creator plugin (Settings/Bulk Page Creator)
  ☐ Set default post image sizes - Large will be the highest container size.
  ☐ Set typekit id in js file to load the fonts in editor
+ ☐ If CPT is used edit filters.php for custom admin options
 
 PAGE TEMPLATES
  ☐ Header

@@ -303,6 +303,21 @@ p:empty {
 	}
 }
 
+
+/*----------  AOS  ----------*/
+[data-aos] {
+  visibility: hidden;
+  &.animated {
+  	visibility: visible;
+  }
+}
+
+.no-mutationobserver [data-aos], .no-js [data-aos], .no-cssanimations [data-aos] {
+  visibility: visible !important;
+  @include animation( none !important);
+}
+
+
 /*----------  Scroll Reveal  ----------*/
 html.js:not(.is-mobile) [data-animation] {
   visibility: hidden;

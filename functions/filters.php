@@ -1,5 +1,41 @@
 <?php
 
+/*=============================================================
+=            Customize the sizes and srcset values            =
+=============================================================*/
+// https://viastudio.com/optimizing-your-theme-for-wordpress-4-4s-responsive-images/
+// Content Images
+// function silencio_content_image_sizes_attr($sizes, $size) {
+//   $width = $size[0];
+//   if (get_page_template_slug() === 'template-full_width.php') {
+//       if ($width > 910) {
+//           return '(max-width: 768px) 92vw, (max-width: 992px) 690px, (max-width: 1200px) 910px, 1110px';
+//       }
+//       if ($width < 910 && $width > 690) {
+//           return '(max-width: 768px) 92vw, (max-width: 992px) 690px, 910px';
+//       }
+//       return '(max-width: ' . $width . 'px) 92vw, ' . $width . 'px';
+//   }
+//   return '(max-width: ' . $width . 'px) 92vw, ' . $width . 'px';
+// }
+// add_filter('wp_calculate_image_sizes', 'silencio_content_image_sizes_attr', 10 , 2);
+
+
+// // Featured Images
+// function silencio_post_thumbnail_sizes_attr($attr, $attachment, $size) {
+//   //Calculate Image Sizes by type and breakpoint
+//   //Header Images
+//   if ($size === 'header-thumb') {
+//       $attr['sizes'] = '(max-width: 768px) 92vw, (max-width: 992px) 450px, (max-width: 1200px) 597px, 730px';
+//   //Blog Thumbnails
+//   } else if ($size === 'blog-thumb') {
+//       $attr['sizes'] = '(max-width: 992px) 200px, (max-width: 1200px) 127px, 160px';
+//   }
+//   return $attr;
+// }
+// add_filter('wp_get_attachment_image_attributes', 'silencio_post_thumbnail_sizes_attr', 10 , 3);
+
+
 /*===========================================
 =            Change Backend Logo            =
 ===========================================*/
@@ -22,7 +58,7 @@ add_filter('show_admin_bar', '__return_false');
 ===============================================================*/
 add_filter('embed_oembed_html', 'my_embed_oembed_html', 99, 4);
 function my_embed_oembed_html($html, $url, $attr, $post_id) {
-  return '<div class="embed-video-block">' . $html . '</div>';
+  return '<div class="embed-responsive embed-responsive-16by9">' . $html . '</div>';
 }
 
 

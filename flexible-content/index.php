@@ -6,15 +6,8 @@
 	$flexi_counter++;
 ?>
 
-	<?php get_template_part( 'flexible-content/blank' ); ?>
-	<?php get_template_part( 'flexible-content/wysiwyg' ); ?>
-	<?php get_template_part( 'flexible-content/fullscreen-slider' ); ?>
-	<?php get_template_part( 'flexible-content/post-cards' ); ?>
-	<?php get_template_part( 'flexible-content/post-cards-carousel' ); ?>
-	<?php get_template_part( 'flexible-content/fixed-and-fluid-column-1' ); ?>
-	<?php get_template_part( 'flexible-content/fixed-and-fluid-column-2' ); ?>
-	<?php get_template_part( 'flexible-content/fixed-and-fluid-column-3' ); ?>
-	<?php get_template_part( 'flexible-content/fixed-and-fluid-column-4' ); ?>
+	<?php $layout = str_replace( '_', '-', get_row_layout() ); // replace underscore to dash ?>
+	<?php get_template_part( 'flexible-content/' . $layout  ); ?>
 
 <?php
 	endwhile; //layout

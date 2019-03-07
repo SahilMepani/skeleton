@@ -1197,9 +1197,9 @@ img.mfp-img { width: auto; max-width: 100%; height: auto; display: block; line-h
 /*----------  Background Video  ----------*/
 .bg-video { position: absolute; left: 0; top: 0; -o-object-fit: fill; object-fit: cover; overflow: hidden; }
 
-.bg-video--fullscreen { min-width: 100%; min-height: 100%; }
+.bg-video--cover { min-width: 100%; min-height: 100%; }
 
-.bg-video--inline { max-width: 100%; }
+.bg-video--contain { max-width: 100%; }
 
 /*----------  Swiper Arrow Navigation  ----------*/
 /*----------  Slick Dots  ----------*/
@@ -1262,13 +1262,13 @@ p:empty { display: none; }
 @media (min-width: 992px) { .grid { margin-top: -15px; }
   .grid [class*="col-lg-"] { margin-top: 15px; margin-bottom: 15px; } }
 
-@media (min-width: 576px) { .grid-col-3 [class*="col-sm-"]:nth-child(3n+1) { clear: both; } }
+@media (min-width: 576px) { .grid-col-3 [class*="col-sm-"]:nth-child(3n + 1) { clear: both; } }
 
-@media (min-width: 768px) { .grid-col-3 [class*="col-md-"]:nth-child(3n+1) { clear: both; } }
+@media (min-width: 768px) { .grid-col-3 [class*="col-md-"]:nth-child(3n + 1) { clear: both; } }
 
-@media (min-width: 576px) { .grid-col-4 [class*="col-sm-"]:nth-child(4n+1) { clear: both; } }
+@media (min-width: 576px) { .grid-col-4 [class*="col-sm-"]:nth-child(4n + 1) { clear: both; } }
 
-@media (min-width: 768px) { .grid-col-4 [class*="col-md-"]:nth-child(4n+1) { clear: both; } }
+@media (min-width: 768px) { .grid-col-4 [class*="col-md-"]:nth-child(4n + 1) { clear: both; } }
 
 @media (max-width: 991.8px) { [class*="col-lg-"] { margin-bottom: 5vw; }
   [class*="col-lg-"]:last-child { margin-bottom: 0; } }
@@ -1280,18 +1280,16 @@ p:empty { display: none; }
   [class*="col-sm"]:last-child, [class*="col-md"]:last-child, [class*="col-lg"]:last-child { margin-bottom: 0; } }
 
 /*----------  AOS  ----------*/
-[data-aos] { visibility: hidden; }
+html.js.mutationobserver.cssanimations:not(.is-mobile) [data-aos] { visibility: hidden; }
 
-[data-aos].animated { visibility: visible; }
+html.js.mutationobserver.cssanimations:not(.is-mobile) [data-aos].animated { visibility: visible; }
 
-.no-mutationobserver [data-aos], .no-js [data-aos], .no-cssanimations [data-aos] { visibility: visible !important; -webkit-animation: none !important; -moz-animation: none !important; -ms-animation: none !important; -o-animation: none !important; animation: none !important; }
+html.is-mobile [data-aos], html.no-mutationobserver [data-aos], html.no-js [data-aos], html.no-cssanimations [data-aos] { -webkit-animation: none !important; -moz-animation: none !important; -ms-animation: none !important; -o-animation: none !important; animation: none !important; }
 
 /*----------  Scroll Reveal  ----------*/
-html.js:not(.is-mobile) [data-animation] { visibility: hidden; }
+html.js.mutationobserver.cssanimations:not(.is-mobile) [data-animation], html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal { visibility: hidden !important; }
 
-html.js:not(.is-mobile) .sreveal { visibility: hidden !important; }
-
-html.js:not(.is-mobile) .sreveal.animated { visibility: visible !important; }
+html.js.mutationobserver.cssanimations:not(.is-mobile) [data-animation].animated, html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal.animated { visibility: visible !important; }
 
 #header { background-color: #f9f9f9; padding-top: 0.625rem; padding-bottom: 0.625rem; }
 

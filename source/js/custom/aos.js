@@ -1,16 +1,10 @@
-if ( Modernizr.cssanimations ) {
- AOS.init({
-		duration: 1000,
-	  useClassNames: true,
-	  initClassName: false,
-	  animatedClassName: 'animated',
-	  once: true
-	});
-} else {
-	$( '[data-aos]' ).css( 'visibility', 'visible' );
-}
-
-
+AOS.init( {
+	duration: 1000,
+	useClassNames: true,
+	initClassName: false,
+	animatedClassName: 'animated',
+	once: true
+} );
 
 // You can also pass an optional settings object
 // below listed default settings

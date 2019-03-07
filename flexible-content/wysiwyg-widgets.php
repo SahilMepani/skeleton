@@ -6,10 +6,10 @@
 	<?php if ( get_row_layout() == 'heading' ) : ?>
 		<!-- Heading -->
 		<?php
-			$heading           = get_sub_field('heading');
-			$heading_type      = get_sub_field('heading_type');
-			$heading_style      = get_sub_field('heading_style');
-			$mb                = get_sub_field('mb');
+			$heading       = get_sub_field('heading');
+			$heading_type  = get_sub_field('heading_type');
+			$heading_style = get_sub_field('heading_style');
+			$mb            = get_sub_field('mb');
 		?>
 		<<?php echo $heading_type; ?> class="wysiwyg-widgets--heading <?php echo ( $heading_style ) ? $heading_style : ''; ?> <?php echo $mb; ?>">
 			<?php echo $heading; ?>

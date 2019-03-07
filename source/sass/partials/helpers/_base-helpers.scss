@@ -1,26 +1,26 @@
 .container {
 	&.container--small {
-		max-width: rem-calc( 800px );
+		max-width: rem-calc(800px);
 	}
 }
 
 /*----------  Background Video  ----------*/
 .bg-video {
 	position: absolute;
-  left: 0;
-  top: 0;
-  -o-object-fit: fill;
-  object-fit: cover;
-  overflow: hidden;
+	left: 0;
+	top: 0;
+	-o-object-fit: fill;
+	object-fit: cover;
+	overflow: hidden;
 }
 
-.bg-video--fullscreen {
-  min-width: 100%;
-  min-height: 100%;
+.bg-video--cover {
+	min-width: 100%;
+	min-height: 100%;
 }
 
-.bg-video--inline {
-  max-width: 100%;
+.bg-video--contain {
+	max-width: 100%;
 }
 
 // .container-fluid {
@@ -109,24 +109,24 @@
 /*----------  Alert  ----------*/
 .alert {
 	background-color: #e5e5e5;
-	padding: rem-calc( 20px );
+	padding: rem-calc(20px);
 	border: 1px solid #ddd;
 	margin-bottom: $global_margin_bottom;
 }
 
 .alert-info {
 	background-color: #ffffd9;
-	border: 1px solid darken( #ffffd9, 47% );
+	border: 1px solid darken(#ffffd9, 47%);
 }
 
 .alert-error {
 	background-color: #ffd9d9;
-	border: 1px solid darken( #ffd9d9, 10% );
+	border: 1px solid darken(#ffd9d9, 10%);
 }
 
 .alert-success {
 	background-color: #dbffd9;
-	border: 1px solid darken( #dbffd9, 20% );
+	border: 1px solid darken(#dbffd9, 20%);
 }
 
 /*----------  Miscellaneous  ----------*/
@@ -154,68 +154,70 @@ p:empty {
 	}
 }
 
-.gutters-5px { // used on .row
-  margin-right: -5px;
-  margin-left: -5px;
-  > .col, > [class*="col-"] {
-	  padding-right: 5px;
-	  padding-left: 5px;
+.gutters-5px {
+	// used on .row
+	margin-right: -5px;
+	margin-left: -5px;
+	> .col,
+	> [class*="col-"] {
+		padding-right: 5px;
+		padding-left: 5px;
 	}
 }
 
 .gutters-sm-20px {
-  @include breakpoint( $sm ) {
-    margin-left: -20px;
-    margin-right: -20px;
-    > .col {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-  }
+	@include breakpoint( $sm ) {
+		margin-left: -20px;
+		margin-right: -20px;
+		> .col {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+	}
 }
 
 .gutters-sm-25px {
-  @include breakpoint( $sm ) {
-    margin-left: -25px;
-    margin-right: -25px;
-    > .col {
-      padding-left: 25px;
-      padding-right: 25px;
-    }
-  }
+	@include breakpoint( $sm ) {
+		margin-left: -25px;
+		margin-right: -25px;
+		> .col {
+			padding-left: 25px;
+			padding-right: 25px;
+		}
+	}
 }
 
 .gutters-sm-30px {
-  @include breakpoint( $sm ) {
-    margin-left: -30px;
-    margin-right: -30px;
-    > .col {
-      padding-left: 30px;
-      padding-right: 30px;
-    }
-  }
+	@include breakpoint( $sm ) {
+		margin-left: -30px;
+		margin-right: -30px;
+		> .col {
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+	}
 }
 
 .gutters-sm-35px {
-  @include breakpoint( $sm ) {
-    margin-left: -35px;
-    margin-right: -35px;
-    > .col {
-      padding-left: 35px;
-      padding-right: 35px;
-    }
-  }
+	@include breakpoint( $sm ) {
+		margin-left: -35px;
+		margin-right: -35px;
+		> .col {
+			padding-left: 35px;
+			padding-right: 35px;
+		}
+	}
 }
 
 .gutters-sm-40px {
-  @include breakpoint( $sm ) {
-    margin-left: -40px;
-    margin-right: -40px;
-    > .col {
-      padding-left: 40px;
-      padding-right: 40px;
-    }
-  }
+	@include breakpoint( $sm ) {
+		margin-left: -40px;
+		margin-right: -40px;
+		> .col {
+			padding-left: 40px;
+			padding-right: 40px;
+		}
+	}
 }
 
 .grid {
@@ -245,14 +247,14 @@ p:empty {
 .grid-col-3 {
 	@include breakpoint( $sm ) {
 		[class*="col-sm-"] {
-			&:nth-child(3n+1) {
+			&:nth-child(3n + 1) {
 				clear: both;
 			}
 		}
 	}
 	@include breakpoint( $md ) {
 		[class*="col-md-"] {
-			&:nth-child(3n+1) {
+			&:nth-child(3n + 1) {
 				clear: both;
 			}
 		}
@@ -262,14 +264,14 @@ p:empty {
 .grid-col-4 {
 	@include breakpoint( $sm ) {
 		[class*="col-sm-"] {
-			&:nth-child(4n+1) {
+			&:nth-child(4n + 1) {
 				clear: both;
 			}
 		}
 	}
 	@include breakpoint( $md ) {
 		[class*="col-md-"] {
-			&:nth-child(4n+1) {
+			&:nth-child(4n + 1) {
 				clear: both;
 			}
 		}
@@ -285,7 +287,8 @@ p:empty {
 	}
 }
 
-[class*="col-md-"], [class*="col-lg-"] {
+[class*="col-md-"],
+[class*="col-lg-"] {
 	@include breakpoint( $sm_max ) {
 		margin-bottom: 5vw;
 		&:last-child {
@@ -294,7 +297,9 @@ p:empty {
 	}
 }
 
-[class*="col-sm"], [class*="col-md"], [class*="col-lg"] {
+[class*="col-sm"],
+[class*="col-md"],
+[class*="col-lg"] {
 	@include breakpoint( $xs ) {
 		margin-bottom: $global_margin_bottom * 3;
 		&:last-child {
@@ -303,27 +308,25 @@ p:empty {
 	}
 }
 
-
 /*----------  AOS  ----------*/
-[data-aos] {
+html.js.mutationobserver.cssanimations:not(.is-mobile) [data-aos] {
   visibility: hidden;
   &.animated {
   	visibility: visible;
   }
 }
 
-.no-mutationobserver [data-aos], .no-js [data-aos], .no-cssanimations [data-aos] {
-  visibility: visible !important;
+html.is-mobile [data-aos],
+html.no-mutationobserver [data-aos],
+html.no-js [data-aos],
+html.no-cssanimations [data-aos] {
   @include animation( none !important);
 }
 
 
 /*----------  Scroll Reveal  ----------*/
-html.js:not(.is-mobile) [data-animation] {
-  visibility: hidden;
-}
-
-html.js:not(.is-mobile) .sreveal {
+html.js.mutationobserver.cssanimations:not(.is-mobile) [data-animation],
+html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal {
 	// @include animation-name( none );
 	visibility: hidden !important;
 	&.animated {

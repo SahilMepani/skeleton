@@ -49,9 +49,10 @@ var zoomOut = {
 	scale: '2',
 }
 
+/*----------  Default Options & Init  ----------*/
 window.sr = ScrollReveal({
 	duration: 1000,
-	mobile: false,
+	mobile: false, // same logic is used to chech is-mobile in modernzer file.
 });
 
 // sr.reveal( '.list-partners > li', {
@@ -93,9 +94,9 @@ $( '[data-animation]' ).each( function() {
 	sr.reveal( el, settings );
 } );
 
-$('.sreveal').css('animation-name', 'none');
+$('html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal').css('animation-name', 'none');
 
-sr.reveal( '.sreveal', {
+sr.reveal( 'html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal', {
 	opacity: null,
 	duration: 0,
 	beforeReveal: function( el ) {

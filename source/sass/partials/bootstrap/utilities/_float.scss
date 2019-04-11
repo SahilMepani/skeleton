@@ -62,14 +62,23 @@
 .align-left, .alignleft {
   float: left;
   margin: 0 25px 10px 0;
+  @include breakpoint( $lg ) {
+    margin: 0 rem-calc(25px) rem-calc(10px) 0;
+  }
 }
 .align-right, .alignright {
   float: right;
   margin: 0 0 10px 25px;
+  @include breakpoint( $lg ) {
+    margin: 0 0 rem-calc(10px) rem-calc(25px);
+  }
 }
 .align-center, .aligncenter {
   clear: both;
   display: block;
   margin: 0 auto $global_margin_bottom auto;
+  @include breakpoint( $lg ) {
+    margin-bottom: $global_margin_bottom_lg;
+  }
 }
 /* img.align-left, img.alignleft, img.align-right, img.alignright, img.align-center, img.aligncenter {} */

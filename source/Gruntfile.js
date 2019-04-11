@@ -51,7 +51,7 @@ module.exports = function( grunt ) {
 		uglify: {
 			options: {
 				output: {
-					comments: 'all'
+					comments: 'false'
 				}
 			},
 			dist: {

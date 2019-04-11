@@ -9,24 +9,18 @@ require_once( get_template_directory() . '/functions/filters.php' );
 require_once( get_template_directory() . '/functions/acf.php' );
 require_once( get_template_directory() . '/functions/custom-post-types.php' );
 require_once( get_template_directory() . '/functions/admin-ajax.php' );
+// require_once( get_template_directory() . '/functions/amp.php' ); // only if amp plugin available
 // require_once( get_template_directory() . '/functions/twitter-feed/feed.php' );
 // require_once( get_template_directory() . '/functions/instagram-feed/feed.php' );
 // require_once( get_template_directory() . '/functions/pinterest-feed/feed.php' );
 // require_once( get_template_directory() . '/functions/post-like/post-like.php' );
-
+/*----------  Enable login captcha  ----------*/
 // function is_login_page() {
 // 	return in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'));
 // }
 // if ( is_login_page() ) {
 // 	require_once( get_template_directory() . '/functions/captcha.php' );
 // }
-
-
-/* =========================================
-=            Set content width            =
-========================================= */
-if ( !isset($content_width) )
-	$content_width = 1140; //highest content width
 
 
 /* ===========================================
@@ -41,7 +35,7 @@ function tse_scripts() {
 
 	/* wp_enqueue_script( 'identifier', 'url', 'dependency', version', '' ); */
 	wp_enqueue_style('skeleton-style', get_stylesheet_uri(), array(), '1.0');
-	wp_enqueue_script('modernizr', get_template_directory_uri() . '/js/vendor/modernizr-3.3.1.min.js');
+	wp_enqueue_script('modernizr', get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js');
 	wp_enqueue_script('plugins', get_template_directory_uri() . '/js/plugins.js', array('jquery'), '1.0', true);
 	wp_enqueue_script('custom', get_template_directory_uri() . '/js/custom.js', array('jquery', 'plugins'), '1.0', true);
 	/* First argument is the handle where it is used */
@@ -59,30 +53,34 @@ add_action('wp_enqueue_scripts', 'tse_scripts');
 /* Enable featured images */
 add_theme_support('post-thumbnails');
 
-/* Update default media sizes */
-update_option( 'medium_size_w', 600 );
-update_option( 'medium_size_h', 9999 );
-update_option( 'large_size_w', 1200 );
-update_option( 'large_size_h', 9999 );
+/* Disable default media sizes */
+update_option( 'thumbnail_size_w', 0 );
+update_option( 'thumbnail_size_h', 0 );
+update_option( 'medium_size_w', 0 );
+update_option( 'medium_size_h', 0 );
+update_option( 'large_size_w', 0 );
+update_option( 'large_size_h', 0 );
 
 /* Custom media sizes */
 //add_image_size( 'blog_featured_thumb', width, height, crop );
-add_image_size( 'w300', 300, 9999 ); // used for preview
 add_image_size( 'h200', 9999, 200 ); // used for preview
-add_image_size( 'w600h400_c', 600, 400, true );
-add_image_size( 'w300h300c', 300, 300, true );
-add_image_size( 'w800', 800, 9999 );
-add_image_size( 'w1250', 1250, 9999 );
+add_image_size( 'w200', 200, 9999 );
+add_image_size( 'w375', 375, 9999 );
+add_image_size( 'w414', 414, 9999 );
+add_image_size( 'w575', 575, 9999 );
+add_image_size( 'w768', 768, 9999 );
+add_image_size( 'w992', 992, 9999 );
+add_image_size( 'w1200', 1200, 9999 );
+add_image_size( 'w1600', 1600, 9999 );
 add_image_size( 'w1920', 1920, 9999 );
-add_image_size( 'w1600h900', 1600, 900 );
 add_image_size( 'w2560', 2560, 9999 );
-add_image_size( 'w2560h900', 2560, 900 );
+add_image_size( 'w3840', 3840, 9999 );
 add_image_size( 'w2560h1600', 2560, 1600 );
-
+add_image_size( 'ar16by9', 1920, 1080 );
 
 
 /*=========================================
-=            Register Sidebars            =
+=            Register sidebars            =
 =========================================*/
 // $sidebars = array('Blog');
 // $id = 1;
@@ -116,7 +114,6 @@ register_nav_menus(
 // wp_create_nav_menu('Footer');
 
 
-
 /* ======================================================
 =            Disable file editor in backend            =
 ====================================================== */
@@ -127,12 +124,6 @@ register_nav_menus(
 =            Disable all the updates            =
 ===============================================*/
 // define('DISALLOW_FILE_MODS', true);
-
-
-/*=============================================
-=            Add editor stylesheet            =
-=============================================*/
-add_editor_style();
 
 
 /*=====================================================
@@ -164,35 +155,6 @@ function editor_css() {
 }
 add_action('admin_head-post.php', 'editor_css');
 add_action('admin_head-post-new.php', 'editor_css');
-
-
-/*=======================================
-=            Blog pagination            =
-=======================================*/
-//http://wp.tutsplus.com/tutorials/wordpress-pagination-a-primer
-function tse_posts_pagination($pages) {
-	$total_pages = $pages;
-
-	if ($total_pages > 1) {
-
-		$current_page = max(1, get_query_var('paged'));
-
-		echo '<div class="posts-pagination">';
-
-		echo '<span class="index"> Page ' . $current_page . ' of ' . $total_pages . "</span>";
-
-		echo paginate_links(array(
-				'base' => get_pagenum_link(1) . '%_%',
-				'format' => 'page/%#%/',
-				'current' => $current_page,
-				'total' => $total_pages,
-				'type' => 'list', // plain, array, list
-				'prev_text' => '&lsaquo; Previous',
-				'next_text' => 'Next &rsaquo;',
-		));
-		echo '</div>';
-	}
-}
 
 
 /*==============================================
@@ -265,9 +227,52 @@ function tse_posts_pagination($pages) {
 // }
 
 
+/* =========================================
+=            Set content width            =
+========================================= */
+// if ( !isset($content_width) ) $content_width = 1140; // highest content width
+
+
+/*----------  REQUIRED  ----------*/
+
+/*=============================================
+=            Add editor stylesheet            =
+=============================================*/
+add_editor_style();
+
+
 /* ======================================================================
  * Image-URL-Default.php
  * Overrides default image-URL behavior
  * http://wordpress.org/support/topic/insert-image-default-to-no-link
  * ====================================================================== */
 update_option('image_default_link_type', 'none');
+
+
+/*=======================================
+=            Blog pagination            =
+=======================================*/
+//http://wp.tutsplus.com/tutorials/wordpress-pagination-a-primer
+function tse_posts_pagination($pages) {
+	$total_pages = $pages;
+
+	if ($total_pages > 1) {
+
+		$current_page = max(1, get_query_var('paged'));
+
+		echo '<div class="posts-pagination">';
+
+		echo '<span class="index"> Page ' . $current_page . ' of ' . $total_pages . "</span>";
+
+		echo paginate_links(array(
+				'base' => get_pagenum_link(1) . '%_%',
+				'format' => 'page/%#%/',
+				'current' => $current_page,
+				'total' => $total_pages,
+				'type' => 'list', // plain, array, list
+				'prev_text' => '&lsaquo; Previous',
+				'next_text' => 'Next &rsaquo;',
+		));
+		echo '</div>';
+	}
+}

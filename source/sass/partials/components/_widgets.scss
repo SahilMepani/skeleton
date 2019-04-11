@@ -41,6 +41,9 @@
 		bottom: 0;
 		z-index: 1;
 	}
+	@include breakpoint( $lg ) {
+	  margin-bottom: $global_margin_bottom_lg;
+	}
 }
 /*==========  End of Search  ==========*/
 

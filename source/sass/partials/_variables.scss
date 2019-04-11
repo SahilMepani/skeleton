@@ -1,18 +1,18 @@
-/*===============================
-=            Globals            =
-===============================*/
-$global_margin_bottom : 2rem; /* p, table, ul, ol, dl, dd, pre, blockquote, address */
-$global_line_height   : 1.7; /* p, pre, blockquote, address, dt, textarea */
-
-
-/*==============================
-=            Colors            =
-==============================*/
+// COLORS
 $red                   : #ff2500;
 $black                 : #2c2c2c;
+// END COLORS
+
 $brand_color_primary   : $red;
 $brand_color_secondary : $black;
 
+
+/*===============================
+=            Globals            =
+===============================*/
+$global_margin_bottom    : 30px; /* p, table, ul, ol, dl, dd, pre, blockquote, address */
+$global_margin_bottom_lg : 2vw; /* p, table, ul, ol, dl, dd, pre, blockquote, address */
+$global_line_height      : 1.66; /* p, pre, blockquote, address, dt, textarea */
 
 /*=============================
 =            Links            =
@@ -52,8 +52,10 @@ $headings_color         : inherit;
 $headings_font_family   : inherit;
 $headings_font_weight   : 700;
 $headings_line_height   : 1.4;
-$headings_margin_top    : $global_margin_bottom;
-$headings_margin_bottom : $global_margin_bottom/2;
+$headings_margin_top    : $global_margin_bottom*2;
+$headings_margin_bottom : $global_margin_bottom;
+$headings_margin_top_lg    : $global_margin_bottom_lg*2;
+$headings_margin_bottom_lg : $global_margin_bottom_lg;
 
 
 /*=============================================
@@ -152,11 +154,6 @@ $four_k  : 3840px;
 $mac_13  : ($md) (max-height 800px);
 
 /* Max Width */
-// $max_400 : max-width 400px;
-// $max_479 : max-width 479px;
-// $max_480 : max-width 480px;
-// $max_599 : max-width 599px;
-// $max_600 : max-width 600px;
 $xs      : max-width ($sm - .2);
 $xs_max  : $xs;
 $sm_max  : max-width ($md - .2);
@@ -169,25 +166,18 @@ $md_range : $md $md_max;
 $lg_range : $lg $lg_max;
 
 /* Arrays */
-$ar_bp: $sm, $md, $lg; // breakpoint variable array
-$ar_bp_classes: sm, md, lg; // breakpoint classes for loop
+// $ar_bp: $sm, $md, $lg; // breakpoint variable array
+// $ar_bp_classes: sm, md, lg; // breakpoint classes for loop
 
-// $ar_bp_max: $lg_max, $md_max, $sm_max, $xs_max; // breakpoint variable array, different order is used for specificty
-// $ar_bp_max_classes: lg-max, md-max, sm-max, xs-max; // breakpoint classes for loop
+// $ar_bp_max: $lg_max, $md_max, $sm_max, $xs; // breakpoint variable array, different order is used for specificty
+// $ar_bp_max_classes: lg-max, md-max, sm-max, xs; // breakpoint classes for loop
 
 
 /*===============================
 =            Gutters            =
 ===============================*/
-$gutter_1  : 1rem;
-$gutter_2  : 2rem;
-$gutter_3  : 3rem;
-$gutter_4  : 4rem;
-$gutter_5  : 5rem;
-$gutter_6  : 6rem;
-$gutter_7  : 7rem;
-$gutter_8  : 8rem;
-$gutter_9  : 9rem;
-$gutter_10 : 10rem;
-
-$ar_gutter : $gutter_1, $gutter_2, $gutter_3, $gutter_4, $gutter_5, $gutter_6, $gutter_7, $gutter_8, $gutter_9, $gutter_10;
+/* total array length needs to be 15 */
+$ar_gutter    : 15px, 30px, 30px, 50px, 50px, 50px, 70px, 70px, 70px, 70px, 70px, 70px, 90px, 90px, 90px;
+$ar_gutter_sm : $ar_gutter;
+$ar_gutter_md : 15px, 30px, 30px, 50px, 50px, 70px, 70px, 90px, 90px, 90px, 90px, 90px, 90px, 120px, 120px;
+$ar_gutter_lg : 1vw, 2vw, 3vw, 4vw, 5vw, 6vw, 7vw, 8vw, 9vw, 10vw, 11vw, 12vw, 13vw, 14vw, 15vw;

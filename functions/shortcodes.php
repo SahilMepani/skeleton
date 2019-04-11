@@ -15,7 +15,7 @@ add_shortcode( 'home_url', 'tse_home_url' );
 function tse_template_directory() {
 	return get_template_directory_uri();
 }
-add_shortcode( 'template_dir', 'tse_template_directory' );
+add_shortcode( 'tse_template_directory', 'tse_template_directory' );
 
 
 /*============================================
@@ -24,14 +24,14 @@ add_shortcode( 'template_dir', 'tse_template_directory' );
 function tse_images_directory() {
 	return get_template_directory_uri() . '/images';
 }
-add_shortcode( 'tse_images_dir', 'tse_images_directory' );
+add_shortcode( 'tse_images_directory', 'tse_images_directory' );
 
 
 /*========================================
 =            Button Shortcode            =
 ========================================*/
 //[button link="http://google.com" target=""]Go to Google[/button]
-function tse_button_bordered_red( $atts, $content = null ) {
+function tse_button_primary( $atts, $content = null ) {
 	extract( shortcode_atts(
 		array(
 			'link' => '#',
@@ -40,7 +40,7 @@ function tse_button_bordered_red( $atts, $content = null ) {
 	);
 	return '<a class="btn btn-lg btn-primary" href="'. $link . '" target="' . $target . '">' . do_shortcode($content) . '</a>';
 }
-add_shortcode('tse_button_primary', 'tse_button_bordered_red');
+add_shortcode('tse_button_primary', 'tse_button_primary');
 
 
 /*======================================
@@ -88,6 +88,7 @@ function tse_one_fourth_md( $atts, $content = null ) {
 	return '<div class="col-md-3">' . do_shortcode($content) . '</div>';
 }
 add_shortcode('tse_one_fourth_md', 'tse_one_fourth_md');
+
 
 /*====================================================
 =            Enable shortcodes in widgets            =

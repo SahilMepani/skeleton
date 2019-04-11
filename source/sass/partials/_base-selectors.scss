@@ -59,6 +59,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 h1, h2, h3, h4, h5, h6 {
 	margin: $headings_margin_top 0 $headings_margin_bottom 0;
+	@include breakpoint( $lg ) {
+		margin: $headings_margin_top_lg 0 $headings_margin_bottom_lg 0;
+	}
 	&:first-child {
 		margin-top: 0;
 	}
@@ -138,6 +141,9 @@ p, pre, blockquote, address, dd {
 
 p, table, ul, ol, dl, dd, pre, blockquote, address {
 	margin: 0 0 $global_margin_bottom;
+	@include breakpoint( $lg ) {
+		margin: 0 0 $global_margin_bottom_lg;
+	}
 }
 
 b, strong {
@@ -149,10 +155,14 @@ small {
 }
 
 hr {
-	border: none;
-	border-top: 1px solid #e5e5e5;
 	margin-top: $global_margin_bottom;
 	margin-bottom: $global_margin_bottom;
+	border: none;
+	border-top: 1px solid #e5e5e5;
+	@include breakpoint( $lg ) {
+		margin-top: $global_margin_bottom_lg;
+		margin-bottom: $global_margin_bottom_lg;
+	}
 }
 
 address {
@@ -245,13 +255,19 @@ ol {
 li {
 	line-height: $global_line_height;
 	margin-bottom: $global_margin_bottom / 2;
+	@include breakpoint( $lg ) {
+		margin-bottom: $global_margin_bottom_lg / 2;
+	}
 }
 
 dt {
 	font-family: $headings_font_family;
-	line-height: $global_line_height;
 	font-weight: 700;
-	margin: 0 0 $global_margin_bottom / 2;
+	line-height: $global_line_height;
+	margin: 0 0 ( $global_margin_bottom / 2 );
+	@include breakpoint( $lg ) {
+		margin: 0 0 ( $global_margin_bottom_lg / 2 );
+	}
 }
 
 /*----------  Form  ----------*/
@@ -263,8 +279,11 @@ form {
 		> li {
 			clear: both;
 			margin-bottom: $global_margin_bottom / 2;
+			@include breakpoint( $lg ) {
+				margin-bottom: $global_margin_bottom_lg / 2;
+			}
 			> label {
-				margin-right: rem-calc( 10px );
+				margin-right: rem-calc(10px);
 			}
 		}
 	}
@@ -280,8 +299,11 @@ fieldset {
 legend {
 	font-weight: 700;
 	display: block;
-	border: none;
 	margin-bottom: $global_margin_bottom / 2;
+	border: none;
+	@include breakpoint( $lg ) {
+		margin-bottom: $global_margin_bottom_lg / 2;
+	}
 }
 
 input[type="text"], input[type="tel"], input[type="url"], input[type="number"], input[type="password"], input[type="email"],  input[type="range"], input[type="file"], input[type="date"], input[type="search"], textarea, select {

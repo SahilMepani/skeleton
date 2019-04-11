@@ -31,15 +31,16 @@
 @import "partials/js/slick";
 @import "partials/js/magnific-popup";
 @import "partials/js/js-socials";
+@import "partials/js/aos";
 
 // Helper classes can be overwritten
 @import "partials/helpers/base-helpers";
 
-@import "partials/layout/header";
-@import "partials/layout/header-menu";
-@import "partials/layout/content";
-// @import "partials/layout/sidebar";
-@import "partials/layout/footer";
+@import "partials/components/header";
+@import "partials/components/header-menu";
+@import "partials/components/content";
+// @import "partials/components/sidebar";
+@import "partials/components/footer";
 
 // Flexible Content
 @import "partials/flexible-content/wysiwyg";
@@ -64,9 +65,9 @@
 // @import "partials/templates/projects";
 // @import "partials/templates/single";
 
-// WP modules
-// @import "partials/modules/widgets";
-// @import "partials/modules/comments";
+// WP components
+// @import "partials/components/widgets";
+// @import "partials/components/comments";
 
 // WP plugins
 @import "partials/plugins/gravity-form";

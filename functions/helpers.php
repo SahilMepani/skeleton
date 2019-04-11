@@ -25,6 +25,7 @@ function tse_validate_youtube_link( $link ) {
 	return $link;
 }
 
+
 /*====================================================================
 =            Custom excerpt function with length argument            =
 ====================================================================*/
@@ -40,12 +41,14 @@ function tse_get_the_excerpt( $limit ) {
 	return $excerpt;
 }
 
+
 /*================================
 =            Tiny URL            =
 ================================*/
 function tse_tiny_url($url) {
 	return file_get_contents('http://tinyurl.com/api-create.php?url=' . $url);
 }
+
 
 /*====================================
 =            Text Shorter            =
@@ -65,6 +68,7 @@ function tse_text_shorter($input, $length) {
 	$trimmed_text .= '...';
 	return $trimmed_text;
 }
+
 
 /*=================================================
 =            Return terms without link            =

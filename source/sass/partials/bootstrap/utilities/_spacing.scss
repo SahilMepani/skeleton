@@ -1,33 +1,14 @@
-/*----------  Custom Values  ----------*/
-.pt-0 {
-  padding-top: 0 !important;
-}
-.pb-0 {
-  padding-bottom: 0 !important;
-}
-.px-0 {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-.py-0 {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
-.mt-0 {
-  margin-top: 0 !important;
-}
-.mb-0 {
-  margin-bottom: 0 !important;
-}
-.mx-0 {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-.my-0 {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-}
+/* Global - Zero */
+.pt-0 { padding-top: 0; }
+.pb-0 { padding-bottom: 0; }
+.px-0 { padding-left: 0; padding-right: 0; }
+.py-0 { padding-top: 0; padding-bottom: 0; }
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.mx-0 { margin-left: 0; margin-right: 0; }
+.my-0 { margin-top: 0; margin-bottom: 0; }
 
+/* Global - Numbered */
 @for $i from 1 through length($ar_gutter) {
   .pt-#{$i} {
     padding-top: nth( $ar_gutter, $i );
@@ -59,184 +40,520 @@
   }
 }
 
-/* Min Width MQ */
-@for $counter from 1 through length($ar_bp) {
-  @include breakpoint( nth($ar_bp, $counter) ) {
+/* Min width - sm */
+@include breakpoint( $sm ) {
 
-    .pt-#{nth($ar_bp_classes, $counter)}-0 {
-      padding-top: 0 !important;
-    }
-    .pb-#{nth($ar_bp_classes, $counter)}-0 {
-      padding-bottom: 0 !important;
-    }
-    .px-#{nth($ar_bp_classes, $counter)}-0 {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-    }
-    .py-#{nth($ar_bp_classes, $counter)}-0 {
-      padding-top: 0 !important;
-      padding-bottom: 0 !important;
-    }
-    .mt-#{nth($ar_bp_classes, $counter)}-0 {
-      margin-top: 0 !important;
-    }
-    .mb-#{nth($ar_bp_classes, $counter)}-0 {
-      margin-bottom: 0 !important;
-    }
-    .mx-#{nth($ar_bp_classes, $counter)}-0 {
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-    }
-    .my-#{nth($ar_bp_classes, $counter)}-0 {
-      margin-top: 0 !important;
-      margin-bottom: 0 !important;
-    }
+  .pt-sm-0 { padding-top: 0; }
+  .pb-sm-0 { padding-bottom: 0; }
+  .px-sm-0 { padding-left: 0; padding-right: 0; }
+  .py-sm-0 { padding-top: 0; padding-bottom: 0; }
+  .mt-sm-0 { margin-top: 0; }
+  .mb-sm-0 { margin-bottom: 0; }
+  .mx-sm-0 { margin-left: 0; margin-right: 0; }
+  .my-sm-0 { margin-top: 0; margin-bottom: 0; }
 
-    @for $i from 1 through length($ar_gutter) {
-
-      .pt-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        padding-top: nth( $ar_gutter, $i );
-      }
-      .pb-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        padding-bottom: nth( $ar_gutter, $i );
-      }
-      .px-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        padding-left: nth( $ar_gutter, $i );
-        padding-right: nth( $ar_gutter, $i );
-      }
-      .py-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        padding-top: nth( $ar_gutter, $i );
-        padding-bottom: nth( $ar_gutter, $i );
-      }
-      .mt-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        margin-top: nth( $ar_gutter, $i );
-      }
-      .mb-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        margin-bottom: nth( $ar_gutter, $i );
-      }
-      .mx-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        margin-left: nth( $ar_gutter, $i );
-        margin-right: nth( $ar_gutter, $i );
-      }
-      .my-#{nth($ar_bp_classes, $counter)}-#{$i} {
-        margin-top: nth( $ar_gutter, $i );
-        margin-bottom: nth( $ar_gutter, $i );
-      }
-
+  @for $i from 1 through length($ar_gutter_sm) {
+    // Numbered
+    .pt-#{$i} {
+      padding-top: nth( $ar_gutter_sm, $i );
+    }
+    .pb-#{$i} {
+      padding-bottom: nth( $ar_gutter_sm, $i );
+    }
+    .px-#{$i} {
+      padding-left: nth( $ar_gutter_sm, $i );
+      padding-right: nth( $ar_gutter_sm, $i );
+    }
+    .py-#{$i} {
+      padding-top: nth( $ar_gutter_sm, $i );
+      padding-bottom: nth( $ar_gutter_sm, $i );
+    }
+    .mt-#{$i} {
+      margin-top: nth( $ar_gutter_sm, $i );
+    }
+    .mb-#{$i} {
+      margin-bottom: nth( $ar_gutter_sm, $i );
+    }
+    .mx-#{$i} {
+      margin-left: nth( $ar_gutter_sm, $i );
+      margin-right: nth( $ar_gutter_sm, $i );
+    }
+    .my-#{$i} {
+      margin-top: nth( $ar_gutter_sm, $i );
+      margin-bottom: nth( $ar_gutter_sm, $i );
+    }
+    .pt-sm-#{$i} {
+      padding-top: nth( $ar_gutter_sm, $i );
+    }
+    .pb-sm-#{$i} {
+      padding-bottom: nth( $ar_gutter_sm, $i );
+    }
+    .px-sm-#{$i} {
+      padding-left: nth( $ar_gutter_sm, $i );
+      padding-right: nth( $ar_gutter_sm, $i );
+    }
+    .py-sm-#{$i} {
+      padding-top: nth( $ar_gutter_sm, $i );
+      padding-bottom: nth( $ar_gutter_sm, $i );
+    }
+    .mt-sm-#{$i} {
+      margin-top: nth( $ar_gutter_sm, $i );
+    }
+    .mb-sm-#{$i} {
+      margin-bottom: nth( $ar_gutter_sm, $i );
+    }
+    .mx-sm-#{$i} {
+      margin-left: nth( $ar_gutter_sm, $i );
+      margin-right: nth( $ar_gutter_sm, $i );
+    }
+    .my-sm-#{$i} {
+      margin-top: nth( $ar_gutter_sm, $i );
+      margin-bottom: nth( $ar_gutter_sm, $i );
     }
   }
 }
 
-/* Max Width MQ */
-// @for $counter from 1 through length($ar_bp_max) {
-//   @include breakpoint( nth($ar_bp_max, $counter) ) {
-//     @for $i from 1 through length($ar_gutter) {
+/* Min width - md */
+@include breakpoint( $md ) {
+  .pt-md-0 { padding-top: 0; }
+  .pb-md-0 { padding-bottom: 0; }
+  .px-md-0 { padding-left: 0; padding-right: 0; }
+  .py-md-0 { padding-top: 0; padding-bottom: 0; }
+  .mt-md-0 { margin-top: 0; }
+  .mb-md-0 { margin-bottom: 0; }
+  .mx-md-0 { margin-left: 0; margin-right: 0; }
+  .my-md-0 { margin-top: 0; margin-bottom: 0; }
 
-//       .pt-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         padding-top: nth( $ar_gutter, $i ) !important;
-//       }
-//       .pb-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         padding-bottom: nth( $ar_gutter, $i ) !important;
-//       }
-//       .px-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         padding-left: nth( $ar_gutter, $i ) !important;
-//         padding-right: nth( $ar_gutter, $i ) !important;
-//       }
-//       .py-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         padding-top: nth( $ar_gutter, $i ) !important;
-//         padding-bottom: nth( $ar_gutter, $i ) !important;
-//       }
-//       .mt-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         margin-top: nth( $ar_gutter, $i ) !important;
-//       }
-//       .mb-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         margin-bottom: nth( $ar_gutter, $i ) !important;
-//       }
-//       .mx-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         margin-left: nth( $ar_gutter, $i ) !important;
-//         margin-right: nth( $ar_gutter, $i ) !important;
-//       }
-//       .my-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         margin-top: nth( $ar_gutter, $i ) !important;
-//         margin-bottom: nth( $ar_gutter, $i ) !important;
-//       }
+  @for $i from 1 through length($ar_gutter_md) {
 
-//     }
-//   }
-// }
+    // Numbered
+    .pt-#{$i} {
+      padding-top: nth( $ar_gutter_md, $i );
+    }
+    .pb-#{$i} {
+      padding-bottom: nth( $ar_gutter_md, $i );
+    }
+    .px-#{$i} {
+      padding-left: nth( $ar_gutter_md, $i );
+      padding-right: nth( $ar_gutter_md, $i );
+    }
+    .py-#{$i} {
+      padding-top: nth( $ar_gutter_md, $i );
+      padding-bottom: nth( $ar_gutter_md, $i );
+    }
+    .mt-#{$i} {
+      margin-top: nth( $ar_gutter_md, $i );
+    }
+    .mb-#{$i} {
+      margin-bottom: nth( $ar_gutter_md, $i );
+    }
+    .mx-#{$i} {
+      margin-left: nth( $ar_gutter_md, $i );
+      margin-right: nth( $ar_gutter_md, $i );
+    }
+    .my-#{$i} {
+      margin-top: nth( $ar_gutter_md, $i );
+      margin-bottom: nth( $ar_gutter_md, $i );
+    }
+    .pt-sm-#{$i} {
+      padding-top: nth( $ar_gutter_md, $i );
+    }
+    .pb-sm-#{$i} {
+      padding-bottom: nth( $ar_gutter_md, $i );
+    }
+    .px-sm-#{$i} {
+      padding-left: nth( $ar_gutter_md, $i );
+      padding-right: nth( $ar_gutter_md, $i );
+    }
+    .py-sm-#{$i} {
+      padding-top: nth( $ar_gutter_md, $i );
+      padding-bottom: nth( $ar_gutter_md, $i );
+    }
+    .mt-sm-#{$i} {
+      margin-top: nth( $ar_gutter_md, $i );
+    }
+    .mb-sm-#{$i} {
+      margin-bottom: nth( $ar_gutter_md, $i );
+    }
+    .mx-sm-#{$i} {
+      margin-left: nth( $ar_gutter_md, $i );
+      margin-right: nth( $ar_gutter_md, $i );
+    }
+    .my-sm-#{$i} {
+      margin-top: nth( $ar_gutter_md, $i );
+      margin-bottom: nth( $ar_gutter_md, $i );
+    }
+    .pt-md-#{$i} {
+      padding-top: nth( $ar_gutter_md, $i );
+    }
+    .pb-md-#{$i} {
+      padding-bottom: nth( $ar_gutter_md, $i );
+    }
+    .px-md-#{$i} {
+      padding-left: nth( $ar_gutter_md, $i );
+      padding-right: nth( $ar_gutter_md, $i );
+    }
+    .py-md-#{$i} {
+      padding-top: nth( $ar_gutter_md, $i );
+      padding-bottom: nth( $ar_gutter_md, $i );
+    }
+    .mt-md-#{$i} {
+      margin-top: nth( $ar_gutter_md, $i );
+    }
+    .mb-md-#{$i} {
+      margin-bottom: nth( $ar_gutter_md, $i );
+    }
+    .mx-md-#{$i} {
+      margin-left: nth( $ar_gutter_md, $i );
+      margin-right: nth( $ar_gutter_md, $i );
+    }
+    .my-md-#{$i} {
+      margin-top: nth( $ar_gutter_md, $i );
+      margin-bottom: nth( $ar_gutter_md, $i );
+    }
+  }
+}
 
-/* Change higher paddings small on tablets */
-// @include breakpoint( ($md) ($md_max) ) {
-//   @for $counter from 1 through length($ar_bp) {
-//     @for $i from 5 through length($ar_gutter) {
+/* Min width - lg */
+@include breakpoint( $lg ) {
+  .pt-lg-0 { padding-top: 0; }
+  .pb-lg-0 { padding-bottom: 0; }
+  .px-lg-0 { padding-left: 0; padding-right: 0; }
+  .py-lg-0 { padding-top: 0; padding-bottom: 0; }
+  .mt-lg-0 { margin-top: 0; }
+  .mb-lg-0 { margin-bottom: 0; }
+  .mx-lg-0 { margin-left: 0; margin-right: 0; }
+  .my-lg-0 { margin-top: 0; margin-bottom: 0; }
 
-//       .pt-#{$i}, .pt-#{nth($ar_bp_classes, $counter)}-#{$i}, .pt-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         padding-top: 70px !important;
-//       }
-//       .pb-#{$i}, .pb-#{nth($ar_bp_classes, $counter)}-#{$i}, .pb-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         padding-bottom: 70px !important;
-//       }
-//       .px-#{$i}, .px-#{nth($ar_bp_classes, $counter)}-#{$i}, .px-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         padding-left: 70px !important;
-//         padding-right: 70px !important;
-//       }
-//       .py-#{$i}, .py-#{nth($ar_bp_classes, $counter)}-#{$i}, .py-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         padding-top: 70px !important;
-//         padding-bottom: 70px !important;
-//       }
-//       .mt-#{$i}, .mt-#{nth($ar_bp_classes, $counter)}-#{$i}, .mt-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         margin-top: 70px !important;
-//       }
-//       .mb-#{$i}, .mb-#{nth($ar_bp_classes, $counter)}-#{$i}, .mb-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         margin-bottom: 70px !important;
-//       }
-//       .mx-#{$i}, .mx-#{nth($ar_bp_classes, $counter)}-#{$i}, .mx-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         margin-left: 70px !important;
-//         margin-right: 70px !important;
-//       }
-//       .my-#{$i}, .my-#{nth($ar_bp_classes, $counter)}-#{$i}, .my-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         margin-top: 70px !important;
-//         margin-bottom: 70px !important;
-//       }
+  @for $i from 1 through length($ar_gutter_lg) {
+    // Numbered
+    .pt-#{$i} {
+      padding-top: nth( $ar_gutter_lg, $i );
+    }
+    .pb-#{$i} {
+      padding-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .px-#{$i} {
+      padding-left: nth( $ar_gutter_lg, $i );
+      padding-right: nth( $ar_gutter_lg, $i );
+    }
+    .py-#{$i} {
+      padding-top: nth( $ar_gutter_lg, $i );
+      padding-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .mt-#{$i} {
+      margin-top: nth( $ar_gutter_lg, $i );
+    }
+    .mb-#{$i} {
+      margin-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .mx-#{$i} {
+      margin-left: nth( $ar_gutter_lg, $i );
+      margin-right: nth( $ar_gutter_lg, $i );
+    }
+    .my-#{$i} {
+      margin-top: nth( $ar_gutter_lg, $i );
+      margin-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .pt-sm-#{$i} {
+      padding-top: nth( $ar_gutter_lg, $i );
+    }
+    .pb-sm-#{$i} {
+      padding-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .px-sm-#{$i} {
+      padding-left: nth( $ar_gutter_lg, $i );
+      padding-right: nth( $ar_gutter_lg, $i );
+    }
+    .py-sm-#{$i} {
+      padding-top: nth( $ar_gutter_lg, $i );
+      padding-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .mt-sm-#{$i} {
+      margin-top: nth( $ar_gutter_lg, $i );
+    }
+    .mb-sm-#{$i} {
+      margin-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .mx-sm-#{$i} {
+      margin-left: nth( $ar_gutter_lg, $i );
+      margin-right: nth( $ar_gutter_lg, $i );
+    }
+    .my-sm-#{$i} {
+      margin-top: nth( $ar_gutter_lg, $i );
+      margin-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .pt-md-#{$i} {
+      padding-top: nth( $ar_gutter_lg, $i );
+    }
+    .pb-md-#{$i} {
+      padding-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .px-md-#{$i} {
+      padding-left: nth( $ar_gutter_lg, $i );
+      padding-right: nth( $ar_gutter_lg, $i );
+    }
+    .py-md-#{$i} {
+      padding-top: nth( $ar_gutter_lg, $i );
+      padding-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .mt-md-#{$i} {
+      margin-top: nth( $ar_gutter_lg, $i );
+    }
+    .mb-md-#{$i} {
+      margin-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .mx-md-#{$i} {
+      margin-left: nth( $ar_gutter_lg, $i );
+      margin-right: nth( $ar_gutter_lg, $i );
+    }
+    .my-md-#{$i} {
+      margin-top: nth( $ar_gutter_lg, $i );
+      margin-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .pt-lg-#{$i} {
+      padding-top: nth( $ar_gutter_lg, $i );
+    }
+    .pb-lg-#{$i} {
+      padding-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .px-lg-#{$i} {
+      padding-left: nth( $ar_gutter_lg, $i );
+      padding-right: nth( $ar_gutter_lg, $i );
+    }
+    .py-lg-#{$i} {
+      padding-top: nth( $ar_gutter_lg, $i );
+      padding-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .mt-lg-#{$i} {
+      margin-top: nth( $ar_gutter_lg, $i );
+    }
+    .mb-lg-#{$i} {
+      margin-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .mx-lg-#{$i} {
+      margin-left: nth( $ar_gutter_lg, $i );
+      margin-right: nth( $ar_gutter_lg, $i );
+    }
+    .my-lg-#{$i} {
+      margin-top: nth( $ar_gutter_lg, $i );
+      margin-bottom: nth( $ar_gutter_lg, $i );
+    }
+  }
+}
 
-//     }
-//   }
-// }
+/* Min width - xl */
+@include breakpoint( $xl ) {
+  .pt-xl-0 { padding-top: 0; }
+  .pb-xl-0 { padding-bottom: 0; }
+  .px-xl-0 { padding-left: 0; padding-right: 0; }
+  .py-xl-0 { padding-top: 0; padding-bottom: 0; }
+  .mt-xl-0 { margin-top: 0; }
+  .mb-xl-0 { margin-bottom: 0; }
+  .mx-xl-0 { margin-left: 0; margin-right: 0; }
+  .my-xl-0 { margin-top: 0; margin-bottom: 0; }
 
-/* Change higher paddings small on mobiles */
-// @include breakpoint( ($sm_max) ) {
-//   @for $counter from 1 through length($ar_bp) {
-//     @for $i from 5 through length($ar_gutter) {
+  @for $i from 1 through length($ar_gutter_lg) {
+    // Numbered
+    .pt-xl-#{$i} {
+      padding-top: nth( $ar_gutter_lg, $i );
+    }
+    .pb-xl-#{$i} {
+      padding-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .px-xl-#{$i} {
+      padding-left: nth( $ar_gutter_lg, $i );
+      padding-right: nth( $ar_gutter_lg, $i );
+    }
+    .py-xl-#{$i} {
+      padding-top: nth( $ar_gutter_lg, $i );
+      padding-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .mt-xl-#{$i} {
+      margin-top: nth( $ar_gutter_lg, $i );
+    }
+    .mb-xl-#{$i} {
+      margin-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .mx-xl-#{$i} {
+      margin-left: nth( $ar_gutter_lg, $i );
+      margin-right: nth( $ar_gutter_lg, $i );
+    }
+    .my-xl-#{$i} {
+      margin-top: nth( $ar_gutter_lg, $i );
+      margin-bottom: nth( $ar_gutter_lg, $i );
+    }
+  }
+}
 
-//       .pt-#{$i}, .pt-#{nth($ar_bp_classes, $counter)}-#{$i}, .pt-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         padding-top: 50px !important;
-//       }
-//       .pb-#{$i}, .pb-#{nth($ar_bp_classes, $counter)}-#{$i}, .pb-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         padding-bottom: 50px !important;
-//       }
-//       .px-#{$i}, .px-#{nth($ar_bp_classes, $counter)}-#{$i}, .px-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         padding-left: 50px !important;
-//         padding-right: 50px !important;
-//       }
-//       .py-#{$i}, .py-#{nth($ar_bp_classes, $counter)}-#{$i}, .py-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         padding-top: 50px !important;
-//         padding-bottom: 50px !important;
-//       }
-//       .mt-#{$i}, .mt-#{nth($ar_bp_classes, $counter)}-#{$i}, .mt-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         margin-top: 50px !important;
-//       }
-//       .mb-#{$i}, .mb-#{nth($ar_bp_classes, $counter)}-#{$i}, .mb-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         margin-bottom: 50px !important;
-//       }
-//       .mx-#{$i}, .mx-#{nth($ar_bp_classes, $counter)}-#{$i}, .mx-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         margin-left: 50px !important;
-//         margin-right: 50px !important;
-//       }
-//       .my-#{$i}, .my-#{nth($ar_bp_classes, $counter)}-#{$i}, .my-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
-//         margin-top: 50px !important;
-//         margin-bottom: 50px !important;
-//       }
+/* Max Width - lg_max */
+@include breakpoint( $lg_max ) {
+  .pt-lg-max-0 { padding-top: 0; }
+  .pb-lg-max-0 { padding-bottom: 0; }
+  .px-lg-max-0 { padding-left: 0; padding-right: 0; }
+  .py-lg-max-0 { padding-top: 0; padding-bottom: 0; }
+  .mt-lg-max-0 { margin-top: 0; }
+  .mb-lg-max-0 { margin-bottom: 0; }
+  .mx-lg-max-0 { margin-left: 0; margin-right: 0; }
+  .my-lg-max-0 { margin-top: 0; margin-bottom: 0; }
 
-//     }
-//   }
-// }
+  @for $i from 1 through length($ar_gutter_lg) {
+    .pt-lg-max-#{$i} {
+      padding-top: nth( $ar_gutter_lg, $i );
+    }
+    .pb-lg-max-#{$i} {
+      padding-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .px-lg-max-#{$i} {
+      padding-left: nth( $ar_gutter_lg, $i );
+      padding-right: nth( $ar_gutter_lg, $i );
+    }
+    .py-lg-max-#{$i} {
+      padding-top: nth( $ar_gutter_lg, $i );
+      padding-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .mt-lg-max-#{$i} {
+      margin-top: nth( $ar_gutter_lg, $i );
+    }
+    .mb-lg-max-#{$i} {
+      margin-bottom: nth( $ar_gutter_lg, $i );
+    }
+    .mx-lg-max-#{$i} {
+      margin-left: nth( $ar_gutter_lg, $i );
+      margin-right: nth( $ar_gutter_lg, $i );
+    }
+    .my-lg-max-#{$i} {
+      margin-top: nth( $ar_gutter_lg, $i );
+      margin-bottom: nth( $ar_gutter_lg, $i );
+    }
+  }
+}
+
+/* Max Width - md_max */
+@include breakpoint( $md_max ) {
+  .pt-md-max-0 { padding-top: 0; }
+  .pb-md-max-0 { padding-bottom: 0; }
+  .px-md-max-0 { padding-left: 0; padding-right: 0; }
+  .py-md-max-0 { padding-top: 0; padding-bottom: 0; }
+  .mt-md-max-0 { margin-top: 0; }
+  .mb-md-max-0 { margin-bottom: 0; }
+  .mx-md-max-0 { margin-left: 0; margin-right: 0; }
+  .my-md-max-0 { margin-top: 0; margin-bottom: 0; }
+
+  @for $i from 1 through length($ar_gutter_md) {
+    .pt-md-max-#{$i}, .pt-lg-max-#{$i} {
+      padding-top: nth( $ar_gutter_md, $i );
+    }
+    .pb-md-max-#{$i}, .pb-lg-max-#{$i} {
+      padding-bottom: nth( $ar_gutter_md, $i );
+    }
+    .px-md-max-#{$i}, .px-lg-max-#{$i} {
+      padding-left: nth( $ar_gutter_md, $i );
+      padding-right: nth( $ar_gutter_md, $i );
+    }
+    .py-md-max-#{$i}, .py-lg-max-#{$i} {
+      padding-top: nth( $ar_gutter_md, $i );
+      padding-bottom: nth( $ar_gutter_md, $i );
+    }
+    .mt-md-max-#{$i}, .mt-lg-max-#{$i} {
+      margin-top: nth( $ar_gutter_md, $i );
+    }
+    .mb-md-max-#{$i}, .mb-lg-max-#{$i} {
+      margin-bottom: nth( $ar_gutter_md, $i );
+    }
+    .mx-md-max-#{$i}, .mx-lg-max-#{$i} {
+      margin-left: nth( $ar_gutter_md, $i );
+      margin-right: nth( $ar_gutter_md, $i );
+    }
+    .my-md-max-#{$i}, .my-lg-max-#{$i} {
+      margin-top: nth( $ar_gutter_md, $i );
+      margin-bottom: nth( $ar_gutter_md, $i );
+    }
+  }
+}
+
+/* Max Width - sm_max */
+@include breakpoint( $sm_max ) {
+  .pt-sm-max-0 { padding-top: 0; }
+  .pb-sm-max-0 { padding-bottom: 0; }
+  .px-sm-max-0 { padding-left: 0; padding-right: 0; }
+  .py-sm-max-0 { padding-top: 0; padding-bottom: 0; }
+  .mt-sm-max-0 { margin-top: 0; }
+  .mb-sm-max-0 { margin-bottom: 0; }
+  .mx-sm-max-0 { margin-left: 0; margin-right: 0; }
+  .my-sm-max-0 { margin-top: 0; margin-bottom: 0; }
+
+  @for $i from 1 through length($ar_gutter_sm) {
+    .pt-sm-max-#{$i}, .pt-md-max-#{$i}, .pt-lg-max-#{$i} {
+      padding-top: nth( $ar_gutter_sm, $i );
+    }
+    .pb-sm-max-#{$i}, .pb-md-max-#{$i}, .pb-lg-max-#{$i} {
+      padding-bottom: nth( $ar_gutter_sm, $i );
+    }
+    .px-sm-max-#{$i}, .px-md-max-#{$i}, .px-lg-max-#{$i} {
+      padding-left: nth( $ar_gutter_sm, $i );
+      padding-right: nth( $ar_gutter_sm, $i );
+    }
+    .py-sm-max-#{$i}, .py-md-max-#{$i}, .py-lg-max-#{$i} {
+      padding-top: nth( $ar_gutter_sm, $i );
+      padding-bottom: nth( $ar_gutter_sm, $i );
+    }
+    .mt-sm-max-#{$i}, .mt-md-max-#{$i}, .mt-lg-max-#{$i} {
+      margin-top: nth( $ar_gutter_sm, $i );
+    }
+    .mb-sm-max-#{$i}, .mb-md-max-#{$i}, .mb-lg-max-#{$i} {
+      margin-bottom: nth( $ar_gutter_sm, $i );
+    }
+    .mx-sm-max-#{$i}, .mx-md-max-#{$i}, .mx-lg-max-#{$i} {
+      margin-left: nth( $ar_gutter_sm, $i );
+      margin-right: nth( $ar_gutter_sm, $i );
+    }
+    .my-sm-max-#{$i}, .my-md-max-#{$i}, .my-lg-max-#{$i} {
+      margin-top: nth( $ar_gutter_sm, $i );
+      margin-bottom: nth( $ar_gutter_sm, $i );
+    }
+  }
+}
+
+/* Max Width - xs */
+@include breakpoint( $xs ) {
+  .pt-xs-0 { padding-top: 0; }
+  .pb-xs-0 { padding-bottom: 0; }
+  .px-xs-0 { padding-left: 0; padding-right: 0; }
+  .py-xs-0 { padding-top: 0; padding-bottom: 0; }
+  .mt-xs-0 { margin-top: 0; }
+  .mb-xs-0 { margin-bottom: 0; }
+  .mx-xs-0 { margin-left: 0; margin-right: 0; }
+  .my-xs-0 { margin-top: 0; margin-bottom: 0; }
+
+  @for $i from 1 through length($ar_gutter_sm) {
+    .pt-xs-#{$i}, .pt-sm-max-#{$i}, .pt-md-max-#{$i}, .pt-lg-max-#{$i} {
+      padding-top: nth( $ar_gutter_sm, $i );
+    }
+    .pb-xs-#{$i}, .pb-sm-max-#{$i}, .pb-md-max-#{$i}, .pb-lg-max-#{$i} {
+      padding-bottom: nth( $ar_gutter_sm, $i );
+    }
+    .px-xs-#{$i}, .px-sm-max-#{$i}, .px-md-max-#{$i}, .px-lg-max-#{$i} {
+      padding-left: nth( $ar_gutter_sm, $i );
+      padding-right: nth( $ar_gutter_sm, $i );
+    }
+    .py-xs-#{$i}, .py-sm-max-#{$i}, .py-md-max-#{$i}, .py-lg-max-#{$i} {
+      padding-top: nth( $ar_gutter_sm, $i );
+      padding-bottom: nth( $ar_gutter_sm, $i );
+    }
+    .mt-xs-#{$i}, .mt-sm-max-#{$i}, .mt-md-max-#{$i}, .mt-lg-max-#{$i} {
+      margin-top: nth( $ar_gutter_sm, $i );
+    }
+    .mb-xs-#{$i}, .mb-sm-max-#{$i}, .mb-md-max-#{$i}, .mb-lg-max-#{$i} {
+      margin-bottom: nth( $ar_gutter_sm, $i );
+    }
+    .mx-xs-#{$i}, .mx-sm-max-#{$i}, .mx-md-max-#{$i}, .mx-lg-max-#{$i} {
+      margin-left: nth( $ar_gutter_sm, $i );
+      margin-right: nth( $ar_gutter_sm, $i );
+    }
+    .my-xs-#{$i}, .my-sm-max-#{$i}, .my-md-max-#{$i}, .my-lg-max-#{$i} {
+      margin-top: nth( $ar_gutter_sm, $i );
+      margin-bottom: nth( $ar_gutter_sm, $i );
+    }
+  }
+}

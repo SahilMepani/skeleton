@@ -1,7 +1,13 @@
 // ScrollReveal.debug = true; // can be used only with unminified code
 // by default sreveal class has the fadeIn effect.
 
-var fadeInUp = {
+/* Set init options */
+window.sr = ScrollReveal( {
+	duration: 1000,
+} );
+
+/* Define custom animations */
+var fadeInUp = { // it means fadeIn from Up
 	origin: 'top',
 	distance: '30px'
 }
@@ -49,52 +55,52 @@ var zoomOut = {
 	scale: '2',
 }
 
-/*----------  Default Options & Init  ----------*/
-window.sr = ScrollReveal({
-	duration: 1000,
-	mobile: false, // same logic is used to chech is-mobile in modernzer file.
-});
-
-// sr.reveal( '.list-partners > li', {
+/* Invoke stagger animation */
+// sr.reveal( 'html.js.mutationobserver.cssanimations:not(.is-mobile) .list-partners > li', {
 // 	origin: 'bottom',
 // 	distance: '30px',
 // 	interval: 100,
 // } );
 
-sr.reveal( '[data-animation="fadeIn"]' );
-sr.reveal( '[data-animation="fadeInUp"]', fadeInUp );
-sr.reveal( '[data-animation="fadeInDown"]', fadeInDown );
-sr.reveal( '[data-animation="fadeInRight"]', fadeInRight );
-sr.reveal( '[data-animation="fadeInLeft"]', fadeInLeft );
-sr.reveal( '[data-animation="slideInUp"]', slideInUp );
-sr.reveal( '[data-animation="slideInDown"]', slideInDown );
-sr.reveal( '[data-animation="slideInRight"]', slideInRight );
-sr.reveal( '[data-animation="slideInLeft"]', slideInLeft );
-sr.reveal( '[data-animation="zoomOut"]', zoomOut );
+/* Invoke custom animations */
+sr.reveal( '[data-sreveal="fadeIn"]' );
+sr.reveal( '[data-sreveal="fadeInUp"]', fadeInUp );
+sr.reveal( '[data-sreveal="fadeInDown"]', fadeInDown );
+sr.reveal( '[data-sreveal="fadeInRight"]', fadeInRight );
+sr.reveal( '[data-sreveal="fadeInLeft"]', fadeInLeft );
+sr.reveal( '[data-sreveal="slideInUp"]', slideInUp );
+sr.reveal( '[data-sreveal="slideInDown"]', slideInDown );
+sr.reveal( '[data-sreveal="slideInRight"]', slideInRight );
+sr.reveal( '[data-sreveal="slideInLeft"]', slideInLeft );
+sr.reveal( '[data-sreveal="zoomOut"]', zoomOut );
 
 
-$( '[data-animation]' ).each( function() {
+/* Enable data-attributes */
+$( '[data-sreveal]' ).each( function() {
 
-	var el = $(this);
+	var el = $( this );
 
-	var options = ['delay', 'distance', 'duration', 'easing', 'interval', 'opacity', 'origin', 'rotate', 'scale', 'desktop', 'mobile', 'reset', 'useDelay', 'viewFactor', 'viewOffset'];
+	// options can be used as postfix. For eg. data-sreveal-option.
+	// option with two words should be separated using '-'. For eg. viewFactor can be written as data-sreveal-view-factor.
+	var options = [ 'delay', 'distance', 'duration', 'easing', 'interval', 'opacity', 'origin', 'rotate', 'scale', 'desktop', 'mobile', 'reset', 'useDelay', 'viewFactor', 'viewOffset' ];
 
 	var settings = {};
 	var interval = 0;
 
-	$( options ).each( function(index, element) {
+	$( options ).each( function( index, element ) {
 
-		if ( el.data( 'animation-' + options[index] ) ) {
-			var option = options[index];
-			settings[option] = el.data( 'animation-' + option );
+		if ( el.data( 'animation-' + options[ index ] ) ) {
+			var option = options[ index ];
+			settings[ option ] = el.data( 'animation-' + option );
 		}
 
-	});
+	} );
 
 	sr.reveal( el, settings );
 } );
 
-$('html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal').css('animation-name', 'none');
+/* Disable animation, if not mobile */
+$( 'html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal' ).css( 'animation-name', 'none' );
 
 sr.reveal( 'html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal', {
 	opacity: null,
@@ -128,7 +134,7 @@ scale: 1,
 cleanup: true,
 container: document.documentElement,
 desktop: true,
-mobile: true,
+mobile: true, // we are using custom js to check the device and accordingly adding .is-mobile class and enable/disable the animation. No need to use this option. Edit css instead.
 reset: false, //enables/disables elements returning to their initialized position when they leave the viewport. When true elements reveal each time they enter the viewport instead of once.
 useDelay: 'always', // always, once, onload
 viewFactor: 0.0, // specifies what portion of an element must be within the viewport for it to be considered visible.  range between 0.0 and 1.0

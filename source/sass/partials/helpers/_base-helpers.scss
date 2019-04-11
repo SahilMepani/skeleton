@@ -4,6 +4,13 @@
 	}
 }
 
+/*===============================
+=            Default            =
+===============================*/
+h1 + h1, h1 + h2, h1 + h3, h1 + h4, h1 + h5, h1 + h6, h2 + h2, h2 + h1, h2 + h3, h2 + h4, h2 + h5, h2 + h6, h3 + h3, h3 + h1, h3 + h2, h3 + h4, h3 + h5, h3 + h6, h4 + h4, h4 + h1, h4 + h2, h4 + h3, h4 + h5, h4 + h6, h5 + h5, h5 + h1, h5 + h2, h5 + h3, h5 + h4, h4 + h6, h6 + h6, h6 + h1, h6 + h2, h6 + h3, h6 + h4, h6 + h5,  {
+	margin-top: 0;
+}
+
 /*----------  Background Video  ----------*/
 .bg-video {
 	position: absolute;
@@ -23,14 +30,125 @@
 	max-width: 100%;
 }
 
-// .container-fluid {
-//   &.px-md-5vw {
-//     @include breakpoint( $md ) {
-//       padding-left: 5vw;
-//       padding-right: 5vw;
-//     }
-//   }
-// }
+/*----------  Alert  ----------*/
+.alert {
+	background-color: #e5e5e5;
+	padding: rem-calc( 20px );
+	border: 1px solid #ddd;
+	margin-bottom: $global_margin_bottom;
+}
+
+.alert-info {
+	background-color: #ffffd9;
+	border: 1px solid darken(#ffffd9, 47%);
+}
+
+.alert-error {
+	background-color: #ffd9d9;
+	border: 1px solid darken(#ffd9d9, 10%);
+}
+
+.alert-success {
+	background-color: #dbffd9;
+	border: 1px solid darken(#dbffd9, 20%);
+}
+
+/*----------  Miscellaneous  ----------*/
+.custom-select-block {
+	@include custom-select-block;
+}
+
+.hr {
+	@extend hr;
+}
+
+p:empty {
+	display: none; //added by wp-editor
+}
+
+.btn {
+	@include btn;
+}
+
+/*----------  Bootstrap Grid  ----------*/
+.row {
+	margin-bottom: 50px;
+	&:last-child {
+		margin-bottom: 0;
+	}
+	@include breakpoint( $sm ) {
+	  margin-bottom: 70px;
+	}
+	@include breakpoint( $md ) {
+	  margin-bottom: 90px;
+	}
+	@include breakpoint( $lg ) {
+	  margin-bottom: 10vw;
+	}
+}
+
+[class*="col-xl-"] {
+	@include breakpoint( $lg_max ) {
+		margin-bottom: 10vw; // don't change, changing this will affect other sections
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+[class*="col-lg-"], [class*="col-xl-"] {
+	@include breakpoint( $md_max ) {
+		margin-bottom: 90px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+[class*="col-md-"], [class*="col-lg-"] {
+	@include breakpoint( $sm_max ) {
+		margin-bottom: 50px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+[class*="col-sm"], [class*="col-md"], [class*="col-lg"] {
+	@include breakpoint( $xs ) {
+		margin-bottom: 50px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+/*----------  AOS  ----------*/
+html.js.mutationobserver.cssanimations:not(.is-mobile) [data-aos] {
+  visibility: hidden;
+  &.animated {
+  	visibility: visible;
+  }
+}
+
+html.is-mobile [data-aos],
+html.no-mutationobserver [data-aos],
+html.no-js [data-aos],
+html.no-cssanimations [data-aos] {
+  @include animation( none !important);
+}
+
+
+/*----------  Scroll Reveal  ----------*/
+html.js.mutationobserver.cssanimations:not(.is-mobile) [data-sreveal],
+html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal {
+	// @include animation-name( none );
+	visibility: hidden !important;
+	&.animated {
+		visibility: visible !important;
+	}
+}
+
 
 /*----------  Swiper Arrow Navigation  ----------*/
 // .swiper-arrow-navigation {
@@ -105,231 +223,3 @@
 // 		border-radius: 50%;
 // 	}
 // }
-
-/*----------  Alert  ----------*/
-.alert {
-	background-color: #e5e5e5;
-	padding: rem-calc(20px);
-	border: 1px solid #ddd;
-	margin-bottom: $global_margin_bottom;
-}
-
-.alert-info {
-	background-color: #ffffd9;
-	border: 1px solid darken(#ffffd9, 47%);
-}
-
-.alert-error {
-	background-color: #ffd9d9;
-	border: 1px solid darken(#ffd9d9, 10%);
-}
-
-.alert-success {
-	background-color: #dbffd9;
-	border: 1px solid darken(#dbffd9, 20%);
-}
-
-/*----------  Miscellaneous  ----------*/
-.custom-select-block {
-	@include custom-select-block;
-}
-
-.hr {
-	@extend hr;
-}
-
-p:empty {
-	display: none; //added by wp-editor
-}
-
-.btn {
-	@include btn;
-}
-
-/*----------  Bootstrap Grid  ----------*/
-.row {
-	margin-bottom: $global_margin_bottom;
-	&:last-child {
-		margin-bottom: 0;
-	}
-}
-
-.gutters-5px {
-	// used on .row
-	margin-right: -5px;
-	margin-left: -5px;
-	> .col,
-	> [class*="col-"] {
-		padding-right: 5px;
-		padding-left: 5px;
-	}
-}
-
-.gutters-sm-20px {
-	@include breakpoint( $sm ) {
-		margin-left: -20px;
-		margin-right: -20px;
-		> .col {
-			padding-left: 20px;
-			padding-right: 20px;
-		}
-	}
-}
-
-.gutters-sm-25px {
-	@include breakpoint( $sm ) {
-		margin-left: -25px;
-		margin-right: -25px;
-		> .col {
-			padding-left: 25px;
-			padding-right: 25px;
-		}
-	}
-}
-
-.gutters-sm-30px {
-	@include breakpoint( $sm ) {
-		margin-left: -30px;
-		margin-right: -30px;
-		> .col {
-			padding-left: 30px;
-			padding-right: 30px;
-		}
-	}
-}
-
-.gutters-sm-35px {
-	@include breakpoint( $sm ) {
-		margin-left: -35px;
-		margin-right: -35px;
-		> .col {
-			padding-left: 35px;
-			padding-right: 35px;
-		}
-	}
-}
-
-.gutters-sm-40px {
-	@include breakpoint( $sm ) {
-		margin-left: -40px;
-		margin-right: -40px;
-		> .col {
-			padding-left: 40px;
-			padding-right: 40px;
-		}
-	}
-}
-
-.grid {
-	@include breakpoint( $sm ) {
-		margin-top: -15px;
-		[class*="col-sm-"] {
-			margin-top: 15px;
-			margin-bottom: 15px;
-		}
-	}
-	@include breakpoint( $md ) {
-		margin-top: -15px;
-		[class*="col-md-"] {
-			margin-top: 15px;
-			margin-bottom: 15px;
-		}
-	}
-	@include breakpoint( $lg ) {
-		margin-top: -15px;
-		[class*="col-lg-"] {
-			margin-top: 15px;
-			margin-bottom: 15px;
-		}
-	}
-}
-
-.grid-col-3 {
-	@include breakpoint( $sm ) {
-		[class*="col-sm-"] {
-			&:nth-child(3n + 1) {
-				clear: both;
-			}
-		}
-	}
-	@include breakpoint( $md ) {
-		[class*="col-md-"] {
-			&:nth-child(3n + 1) {
-				clear: both;
-			}
-		}
-	}
-}
-
-.grid-col-4 {
-	@include breakpoint( $sm ) {
-		[class*="col-sm-"] {
-			&:nth-child(4n + 1) {
-				clear: both;
-			}
-		}
-	}
-	@include breakpoint( $md ) {
-		[class*="col-md-"] {
-			&:nth-child(4n + 1) {
-				clear: both;
-			}
-		}
-	}
-}
-
-[class*="col-lg-"] {
-	@include breakpoint( $md_max ) {
-		margin-bottom: 5vw;
-		&:last-child {
-			margin-bottom: 0;
-		}
-	}
-}
-
-[class*="col-md-"],
-[class*="col-lg-"] {
-	@include breakpoint( $sm_max ) {
-		margin-bottom: 5vw;
-		&:last-child {
-			margin-bottom: 0;
-		}
-	}
-}
-
-[class*="col-sm"],
-[class*="col-md"],
-[class*="col-lg"] {
-	@include breakpoint( $xs ) {
-		margin-bottom: $global_margin_bottom * 3;
-		&:last-child {
-			margin-bottom: 0;
-		}
-	}
-}
-
-/*----------  AOS  ----------*/
-html.js.mutationobserver.cssanimations:not(.is-mobile) [data-aos] {
-  visibility: hidden;
-  &.animated {
-  	visibility: visible;
-  }
-}
-
-html.is-mobile [data-aos],
-html.no-mutationobserver [data-aos],
-html.no-js [data-aos],
-html.no-cssanimations [data-aos] {
-  @include animation( none !important);
-}
-
-
-/*----------  Scroll Reveal  ----------*/
-html.js.mutationobserver.cssanimations:not(.is-mobile) [data-animation],
-html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal {
-	// @include animation-name( none );
-	visibility: hidden !important;
-	&.animated {
-		visibility: visible !important;
-	}
-}

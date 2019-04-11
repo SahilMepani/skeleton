@@ -10,6 +10,9 @@
 			width: 100%;
 			height: 100%;
 		}
+		@include breakpoint( $lg ) {
+		  margin-bottom: $global_margin_bottom_lg;
+		}
 	}
 }
 
@@ -112,6 +115,9 @@
 	margin-bottom: $global_margin_bottom;
 	overflow: hidden;
 	box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #fff;
+	@include breakpoint( $lg ) {
+	  margin-bottom: $global_margin_bottom_lg;
+	}
 }
 .author-info {
 	overflow: hidden;

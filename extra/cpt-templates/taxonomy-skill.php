@@ -16,7 +16,7 @@
 			$paged = ( get_query_var('paged') ) ? get_query_var( 'paged' ) : 1;
 			$args = array(
 				'post_type'      => 'portfolio',
-				'posts_per_page' => 1,
+				'posts_per_page' => -1,
 				'tax_query' => array(
 					'relation' => 'AND',
 					array(

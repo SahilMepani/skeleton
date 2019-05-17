@@ -53,8 +53,51 @@
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  margin-right: rem-calc( -15px );
-  margin-left: rem-calc( -15px );
+}
+
+.row-sm {
+  @include breakpoint( $sm ) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+}
+
+.row-md {
+  @include breakpoint( $md ) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+}
+
+.row-lg {
+  @include breakpoint( $lg ) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+}
+
+.row-xl {
+  @include breakpoint( $xl ) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+}
+
+.row, .row-sm, .row-md, .row-lg, .row-xl {
+  margin-right: -15px;
+  margin-left: -15px;
   @include breakpoint( $two_k ) {
     margin-right: rem-calc( -15px );
     margin-left: rem-calc( -15px );
@@ -64,12 +107,10 @@
 .no-gutters {
   margin-right: 0;
   margin-left: 0;
-}
-
-.no-gutters > .col,
-.no-gutters > [class*="col-"] {
-  padding-right: 0;
-  padding-left: 0;
+  > .col, > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
 }
 
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col,

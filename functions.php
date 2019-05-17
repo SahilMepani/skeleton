@@ -9,6 +9,7 @@ require_once( get_template_directory() . '/functions/filters.php' );
 require_once( get_template_directory() . '/functions/acf.php' );
 require_once( get_template_directory() . '/functions/custom-post-types.php' );
 require_once( get_template_directory() . '/functions/admin-ajax.php' );
+require_once( get_template_directory() . '/functions/blocks.php' );
 // require_once( get_template_directory() . '/functions/amp.php' ); // only if amp plugin available
 // require_once( get_template_directory() . '/functions/twitter-feed/feed.php' );
 // require_once( get_template_directory() . '/functions/instagram-feed/feed.php' );
@@ -83,19 +84,16 @@ add_image_size( 'ar16by9', 1920, 1080 );
 =            Register sidebars            =
 =========================================*/
 // $sidebars = array('Blog');
-// $id = 1;
 // foreach ($sidebars as $sidebar) :
 //   register_sidebar(
 //     array(
 //       'name' => $sidebar,
-//       'id' => $id,
 //       'before_widget' => '<li id="%1$s" class="widget %2$s clearfix">',
 //       'after_widget' => '</li>',
 //       'before_title' => '<h4 class="widget-heading">',
 //       'after_title' => '</h4>',
 //     )
 //   );
-//   $id++;
 // endforeach;
 
 

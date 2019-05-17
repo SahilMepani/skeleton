@@ -59,7 +59,7 @@
 @import "partials/templates/styleguide.scss";
 // @import "partials/templates/search";
 // @import "partials/templates/404";
-// @import "partials/templates/sitemap";
+@import "partials/templates/sitemap";
 
 // Post & CPT
 // @import "partials/templates/projects";
@@ -68,6 +68,7 @@
 // WP components
 // @import "partials/components/widgets";
 // @import "partials/components/comments";
+// @import "partials/components/post_formats";
 
 // WP plugins
 @import "partials/plugins/gravity-form";

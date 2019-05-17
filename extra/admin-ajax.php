@@ -33,7 +33,7 @@ function filter_post_by_cat() {
     }
 
   endwhile;
-    wp_reset_query();
+    wp_reset_postdata();
   else :
     echo '<li class="padding-top-2"><h4 class="text-center">Nothing found.</h4></li>';
   endif;
@@ -80,7 +80,7 @@ function load_more_post() {
     }
 
   endwhile;
-    wp_reset_query();
+    wp_reset_postdata();
   endif;
 }
 
@@ -148,7 +148,7 @@ function filter_post_by_dual_cat() {
     }
 
   endwhile;
-    wp_reset_query();
+    wp_reset_postdata();
   else :
     echo '<li class="padding-top-2"><h4 class="text-center">Nothing Found.</h4></li>';
   endif;
@@ -220,7 +220,7 @@ function load_more_dual_cpt() {
     }
 
   endwhile;
-    wp_reset_query();
+    wp_reset_postdata();
   endif;
 }
 

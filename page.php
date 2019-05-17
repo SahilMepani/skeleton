@@ -2,16 +2,21 @@
 
 <div class="py-4">
 
+
 	<?php //if ( $post->post_content !== "" ) { ?>
 	<?php if ( have_posts() ) : the_post(); ?>
 
 		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-			<div class="container container--small mb-3">
+			<div class="container mb-3">
 				<h1 class="page-title"> <?php the_title(); ?> </h1>
 			</div> <!-- .container -->
 
-			<?php get_template_part( 'flexible-content/index' ); ?>
+			<div class="container">
+				<?php the_content(); ?>
+			</div> <!-- .container -->
+
+			<?php //get_template_part( 'flexible-content/index' ); ?>
 
 		</div> <!-- .type-post -->
 

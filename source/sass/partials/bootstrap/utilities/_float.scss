@@ -60,24 +60,39 @@
 
 /*----------  Custom Classes  ----------*/
 .align-left, .alignleft {
-  float: left;
-  margin: 0 25px 10px 0;
-  @include breakpoint( $lg ) {
-    margin: 0 rem-calc(25px) rem-calc(10px) 0;
+  @include breakpoint( $sm_max ) {
+    clear: both;
+    display: block;
+    margin: $global_margin_bottom auto $global_margin_bottom auto;
+  }
+  @include breakpoint( $md ) {
+    float: left;
+    margin: 0 25px $global_margin_bottom 0;
+  }
+  @include breakpoint( $xl ) {
+    margin: 0 2vw $global_margin_bottom_lg 0;
   }
 }
 .align-right, .alignright {
-  float: right;
-  margin: 0 0 10px 25px;
-  @include breakpoint( $lg ) {
-    margin: 0 0 rem-calc(10px) rem-calc(25px);
+  @include breakpoint( $sm_max ) {
+    clear: both;
+    display: block;
+    margin: $global_margin_bottom auto $global_margin_bottom auto;
+  }
+  @include breakpoint( $md ) {
+    float: right;
+    margin: 0 0 $global_margin_bottom 25px;
+  }
+  @include breakpoint( $xl ) {
+    margin: 0 0 $global_margin_bottom_lg 2vw;
   }
 }
 .align-center, .aligncenter {
   clear: both;
   display: block;
-  margin: 0 auto $global_margin_bottom auto;
+  margin: $global_margin_bottom auto $global_margin_bottom auto;
   @include breakpoint( $lg ) {
+    margin-top: $global_margin_bottom_lg;
     margin-bottom: $global_margin_bottom_lg;
   }
 }

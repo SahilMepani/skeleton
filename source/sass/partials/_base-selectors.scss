@@ -45,6 +45,7 @@ body {
 	background: $base_bg_color;
 	color: $base_color;
 	font-family: $base_font_family;
+	font-weight: $base_font_weight;
 	line-height: $base_line_height;
 	@include fluid( font-size, $min_375, $two_k, 18px, 20px );
 }

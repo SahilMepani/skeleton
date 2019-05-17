@@ -65,7 +65,7 @@
 // 	type: 'iframe',
 // 	removalDelay: 300,
 // 	mainClass: 'mfp-fade',
-// 	fixedContentPos: false // disable scrollbar
+// 	fixedContentPos: false, // disable scrollbar
 // iframe: {
 //   patterns: {
 //     youtube: {

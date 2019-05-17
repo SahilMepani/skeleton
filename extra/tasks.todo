@@ -1,4 +1,25 @@
-Upload an optimized version from <a href="https://tinypng.com" target="_blank">TinyPNG</a>
+ ☐ Shify keyframes to placeholder and mixin so we can only call the ones we need.
+ ☐ u/A filtering for device detection using the js plugin
+ ☐ Set all headings as mixins
+
+
+
+
+
+☐ Set all the fonts from google/typekit.
+☐ Set all the colors.
+☐ Set all the typography.
+☐ Set font weight and line-height for each heading.
+☐ Set all the font icons.
+Set the variables in avocode --- ✄ -----------------------:
+  replace method must include the property too. e.g font-size: 18px to font-size: h4
+  ☐ Colors
+  ☐  Font sizes
+  ☐  Font family
+
+
+
+    Upload an optimized version from <a href="https://tinypng.com" target="_blank">TinyPNG</a>
 
 BACKEND --- ✄ -----------------------:
  ☐ Make the backend custom styled like white label depending on the site color scheme.
@@ -7,6 +28,7 @@ GRAVITY FORMS --- ✄ -----------------------:
  ☐ Replace gravity forms columns to work with flex: 1
  ☐ Add gravity forms default classes support.
  ☐ Input paddings and other values to be fluid
+ ☐ Make it work with 4k screns
 
 MISCELLANEOUS --- ✄ -----------------------:
  ☐ Fluid property support.
@@ -30,3 +52,4 @@ MISCELLANEOUS --- ✄ -----------------------:
  ☐ Right arrow animation
  ☐ Left arrow animation
  ☐ Button animation which is commented on SMHS
+ ☐ WP Gallery support

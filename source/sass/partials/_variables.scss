@@ -1,7 +1,5 @@
-// COLORS
 $red                   : #ff2500;
 $black                 : #2c2c2c;
-// END COLORS
 
 $brand_color_primary   : $red;
 $brand_color_secondary : $black;
@@ -13,6 +11,7 @@ $brand_color_secondary : $black;
 $global_margin_bottom    : 30px; /* p, table, ul, ol, dl, dd, pre, blockquote, address */
 $global_margin_bottom_lg : 2vw; /* p, table, ul, ol, dl, dd, pre, blockquote, address */
 $global_line_height      : 1.66; /* p, pre, blockquote, address, dt, textarea */
+
 
 /*=============================
 =            Links            =
@@ -41,6 +40,7 @@ $root_font_size : 16px; // never change this value
 ============================*/
 $base_bg_color    : #fff;
 $base_color       : #444;
+$base_font_weight : 400;
 $base_font_family : $lato;
 $base_line_height : 1;
 
@@ -91,6 +91,9 @@ $i_radio_checked    : '\e609';
 $i_checkbox         : '\e607';
 $i_checkbox_checked : '\e046';
 $i_mail             : '\e613';
+$i_play             : '\e900';
+$i_play_circle      : '\e602';
+$i_tick             : '\e61d';
 /* Arrows */
 $i_chevron_down     : '\e615';
 $i_chevron_up       : '\e617';

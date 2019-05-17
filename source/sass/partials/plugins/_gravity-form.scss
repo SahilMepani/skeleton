@@ -224,6 +224,11 @@ $gf_description_font_size: 16px;
 	select {
 		width: 100%; //important make the dropdown icon sit inside the select
 	}
+  .gf-enhanced-select & { // add this class in gravity form
+    &:after {
+      display: none;
+    }
+  }
 }
 
 

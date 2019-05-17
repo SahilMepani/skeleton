@@ -1,4 +1,4 @@
-START
+START --- ✄ -----------------------:
  ☐ Remove the folders inside uploads directory if versatile wp-content is copied.
  ☐ Delete the files inside acf-json
  ☐ Delete .git, .sass-cache, .php folders
@@ -13,14 +13,14 @@ START
  ☐ Set Front & Posts Page, if required (Settings/Reading)
  ☐ Blog pages show at most - 5 (Settings/Reading)
  ☐ Disable comments & gravatar (Settings/Discussion)
- ☐ Set permalinks (Settings/Permalinks)
+ ☐ Set permalinks - Post Name (Settings/Permalinks)
  ☐ Activate required plugins
  ☐ Create required pages using bulk page creator plugin (Settings/Bulk Page Creator)
  ☐ Set default post image sizes - Large will be the highest container size.
  ☐ Set typekit id in js file to load the fonts in editor
  ☐ If CPT is used edit filters.php for custom admin options
 
-PAGE TEMPLATES
+PAGE TEMPLATES --- ✄ -----------------------:
  ☐ Header
  ☐ Footer
  ☐ Functions
@@ -37,7 +37,7 @@ PAGE TEMPLATES
  ☐ Sidebar
  ☐ Styleguide
 
-FINALIZE
+FINALIZE --- ✄ -----------------------:
  ☐ Change WP_DEBUG to false in config file.
  ☐ Redirect all cpt slug to plural if no archive and custom template used.
  ☐ Check console on all pages for JS errors
@@ -62,7 +62,7 @@ FINALIZE
  ☐ Add .htaccess code for speed optimization
  ☐ REMOVE sftp-config.json file
 
-RESPONSIVE:
+RESPONSIVE --- ✄ -----------------------:
  ☐ IE 11
  ☐ IE 11+
  ☐ Chrome

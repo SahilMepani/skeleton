@@ -168,6 +168,11 @@ $sm_range : $sm $sm_max;
 $md_range : $md $md_max;
 $lg_range : $lg $lg_max;
 
+
+/*----------  Base Scale Desktop  ----------*/
+$desktop_scale: $two_k;
+
+
 /* Arrays */
 // $ar_bp: $sm, $md, $lg; // breakpoint variable array
 // $ar_bp_classes: sm, md, lg; // breakpoint classes for loop

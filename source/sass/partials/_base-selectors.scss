@@ -36,8 +36,8 @@ html {
 	// {
 	// 	-webkit-font-smoothing: subpixel-antialiased;
 	// }
-	@include fluid( font-size, $min_375, $two_k, $root_font_size/2, $root_font_size, true, false );
-	@include fluid( font-size, $two_k, $four_k, $root_font_size, $root_font_size * 2.4, false, true );
+	@include fluid( font-size, $min_375, $desktop_scale, $root_font_size/2, $root_font_size, true, false );
+	@include fluid( font-size, $desktop_scale, $four_k, $root_font_size, $root_font_size * 2.4, false, true );
 	// @include scrollbars(10px, #888, #e9e9e9);
 }
 
@@ -47,7 +47,7 @@ body {
 	font-family: $base_font_family;
 	font-weight: $base_font_weight;
 	line-height: $base_line_height;
-	@include fluid( font-size, $min_375, $two_k, 18px, 20px );
+	@include fluid( font-size, $min_375, $desktop_scale, 18px, 20px );
 }
 
 /*----------  Headings  ----------*/
@@ -69,29 +69,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1, .h1 {
-	@include fluid( font-size, $min_375, $two_k, 30px, 60px );
+	@include fluid( font-size, $min_375, $desktop_scale, 30px, 60px );
 	line-height: 1.2;
 }
 
 h2, .h2 {
-	@include fluid( font-size, $min_375, $two_k, 24px, 45px );
+	@include fluid( font-size, $min_375, $desktop_scale, 24px, 45px );
 }
 
 h3, .h3 {
-	@include fluid( font-size, $min_375, $two_k, 20px, 32px );
+	@include fluid( font-size, $min_375, $desktop_scale, 20px, 32px );
 }
 
 h4, .h4 {
-	@include fluid( font-size, $min_375, $two_k, 30px, 60px );
+	@include fluid( font-size, $min_375, $desktop_scale, 30px, 60px );
 	font-weight: 300;
 }
 
 h5, .h5 {
-	@include fluid( font-size, $min_375, $two_k, 18px, 18px );
+	@include fluid( font-size, $min_375, $desktop_scale, 18px, 18px );
 }
 
 h6, .h6 {
-	@include fluid( font-size, $min_375, $two_k, 15px, 15px );
+	@include fluid( font-size, $min_375, $desktop_scale, 15px, 15px );
 }
 
 /*----------  Links/Buttons  ----------*/

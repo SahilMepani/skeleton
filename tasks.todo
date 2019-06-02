@@ -1,6 +1,7 @@
  ☐ Shify keyframes to placeholder and mixin so we can only call the ones we need.
  ☐ u/A filtering for device detection using the js plugin
  ☐ Set all headings as mixins
+ ☐ Desktop scale variables.
 
 
 

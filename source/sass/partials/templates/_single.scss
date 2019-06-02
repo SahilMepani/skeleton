@@ -1,15 +1,6 @@
 .type-post {
-	.embed-video-block {
-		position: relative;
-		padding-bottom: 56.25%;
+	.embed-responsive {
 		margin-bottom: $global_margin_bottom;
-		iframe {
-			position: absolute;
-			left: 0;
-			top: 0;
-			width: 100%;
-			height: 100%;
-		}
 		@include breakpoint( $lg ) {
 		  margin-bottom: $global_margin_bottom_lg;
 		}

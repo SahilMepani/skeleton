@@ -15,7 +15,7 @@
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  @include breakpoint( $two_k ) {
+  @include breakpoint( $desktop_scale ) {
     padding-right: rem-calc( 15px );
     padding-left: rem-calc( 15px );
   }
@@ -98,7 +98,7 @@
 .row, .row-sm, .row-md, .row-lg, .row-xl {
   margin-right: -15px;
   margin-left: -15px;
-  @include breakpoint( $two_k ) {
+  @include breakpoint( $desktop_scale ) {
     margin-right: rem-calc( -15px );
     margin-left: rem-calc( -15px );
   }
@@ -124,7 +124,7 @@
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
-  @include breakpoint( $two_k ) {
+  @include breakpoint( $desktop_scale ) {
     padding-right: rem-calc( 15px );
     padding-left: rem-calc( 15px );
   }

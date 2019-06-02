@@ -47,6 +47,20 @@ function tse_scripts() {
 
 add_action('wp_enqueue_scripts', 'tse_scripts');
 
+/* Add defer attribute to the scripts to set the resource priority to low */
+function mind_defer_scripts( $tag, $handle, $src ) {
+  $defer = array(
+    'plugins',
+    'custom',
+  );
+  if ( in_array( $handle, $defer ) ) {
+     return '<script src="' . $src . '" defer="defer" type="text/javascript"></script>' . "\n";
+  }
+
+    return $tag;
+}
+add_filter( 'script_loader_tag', 'mind_defer_scripts', 10, 3 );
+
 
 /* ===============================================
 =            Create/Edit media sizes            =
@@ -64,7 +78,7 @@ update_option( 'large_size_h', 0 );
 
 /* Custom media sizes */
 //add_image_size( 'blog_featured_thumb', width, height, crop );
-add_image_size( 'h200', 9999, 200 ); // used for preview
+add_image_size( 'h200', 9999, 200 ); // used for acf image preview
 add_image_size( 'w200', 200, 9999 );
 add_image_size( 'w375', 375, 9999 );
 add_image_size( 'w414', 414, 9999 );
@@ -72,12 +86,21 @@ add_image_size( 'w575', 575, 9999 );
 add_image_size( 'w768', 768, 9999 );
 add_image_size( 'w992', 992, 9999 );
 add_image_size( 'w1200', 1200, 9999 );
+add_image_size( 'w1400', 1400, 9999 );
 add_image_size( 'w1600', 1600, 9999 );
 add_image_size( 'w1920', 1920, 9999 );
 add_image_size( 'w2560', 2560, 9999 );
 add_image_size( 'w3840', 3840, 9999 );
 add_image_size( 'w2560h1600', 2560, 1600 );
 add_image_size( 'ar16by9', 1920, 1080 );
+add_image_size( 'w375@2x', 750, 9999 );
+add_image_size( 'w414@2x', 828, 9999 );
+add_image_size( 'w575@2x', 1150, 9999 );
+add_image_size( 'w768@2x', 1536, 9999 );
+add_image_size( 'w992@2x', 1984, 9999 );
+add_image_size( 'w1200@2x', 2400, 9999 );
+add_image_size( 'w1400@2x', 2800, 9999 );
+add_image_size( 'w1600@2x', 3200, 9999 );
 
 
 /*=========================================

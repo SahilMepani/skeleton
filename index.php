@@ -1,3 +1,66 @@
+<?php
+	if ( has_post_thumbnail() ) {
+		$featured_image_id       = get_post_thumbnail_id();
+		$featured_image_url_w768 = wp_get_attachment_image_src($featured_image_id, 'w768', true);
+		$featured_image_url_w768 = $featured_image_url_w768[0];
+		$featured_image_url_w992 = wp_get_attachment_image_src($featured_image_id, 'w992', true);
+		$featured_image_url_w992 = $featured_image_url_w992[0];
+		$featured_image_url_w1200 = wp_get_attachment_image_src($featured_image_id, 'w1200', true);
+		$featured_image_url_w1200 = $featured_image_url_w1200[0];
+		$featured_image_url_w1600 = wp_get_attachment_image_src($featured_image_id, 'w1600', true);
+		$featured_image_url_w1600 = $featured_image_url_w1600[0];
+		$featured_image_url_w1920 = wp_get_attachment_image_src($featured_image_id, 'w1920', true);
+		$featured_image_url_w1920 = $featured_image_url_w1920[0];
+		$featured_image_url_w2560 = wp_get_attachment_image_src($featured_image_id, 'w2560', true);
+		$featured_image_url_w2560 = $featured_image_url_w2560[0];
+		$featured_image_url_w3840 = wp_get_attachment_image_src($featured_image_id, 'w3840', true);
+		$featured_image_url_w3840 = $featured_image_url_w3840[0];
+?>
+		<style>
+		  @media only screen and (max-width: 767px) {
+		    .featured-img-section	{
+		      background-image: url(<?php echo $featured_image_url_w768; ?>);
+		    }
+		  }
+		  @media only screen and (min-width: 768px) {
+		    .featured-img-section	{
+		      background-image: url(<?php echo $featured_image_url_w992; ?>);
+		    }
+		  }
+		  @media only screen and (min-width: 992px) {
+		    .featured-img-section	{
+		      background-image: url(<?php echo $featured_image_url_w1200; ?>);
+		    }
+		  }
+		  @media only screen and (min-width: 1200px) {
+		    .featured-img-section	{
+		      background-image: url(<?php echo $featured_image_url_w1600; ?>);
+		    }
+		  }
+		  @media only screen and (min-width: 1600px) {
+		    .featured-img-section	{
+		      background-image: url(<?php echo $featured_image_url_w1920; ?>);
+		    }
+		  }
+		  @media only screen and (min-width: 1920px) {
+		    .featured-img-section	{
+		      background-image: url(<?php echo $featured_image_url_w1920; ?>);
+		    }
+		  }
+		  @media only screen and (min-width: 2560px) {
+		    .featured-img-section	{
+		      background-image: url(<?php echo $featured_image_url_w2560; ?>);
+		    }
+		  }
+		  @media only screen and (min-width: 3840px) {
+		    .featured-img-section	{
+		      background-image: url(<?php echo $featured_image_url_w3840; ?>);
+		    }
+		  }
+		</style>
+		<section class="featured-img-section"></section>
+<?php } ?>
+
 <?php get_header(); ?>
 
 <section class="py-xs-2 py-4">

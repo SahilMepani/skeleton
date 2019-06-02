@@ -1,26 +1,29 @@
 CSS:
-  Use BEM for CSS - http://getbem.com/introduction/
-  Any div that covers the entire width is called a section. e.g. content-section
-  Any div inside container that wraps elements is called a block. e.g content-block
-  Any div inside section and outside container is called a wrapper. e.g. content-wrapper
-  Any class/ID added using javascript should be prefixed using "js-" e.g. js-active, js-hidden
-  Avoid ID as much as possible.
-  Whenever possible use helper classes in html.
+☐ Use BEM for CSS - http://getbem.com/introduction/
+☐ Any div that covers the entire width is called a section. e.g. content-section
+☐ Any div inside container that wraps elements is called a block. e.g content-block
+☐ Any div inside section and outside container is called a wrapper. e.g. content-wrapper
+☐ Any class/ID added using javascript should be prefixed using "js-" e.g. js-active, js-hidden
+☐ Avoid ID as much as possible.
+☐ Whenever possible use helper classes in html.
+
 
 PHP:
 New image size in functions.php should be named as per the dimensions, for eg.
-   Size with width: 100px and height: 9999px(auto) should be named "w100". Auto dimension is ignored.
-   Size with width: 9999px(auto) and height: 400px and crop enabled should be named "h400_c". Again auto dimension is ignored
+☐ Size with width: 100px and height: 9999px(auto) should be named "w100". Auto dimension is ignored.
+☐ Size with width: 9999px(auto) and height: 400px and crop enabled should be named "h400c". Again auto dimension is ignored
+
 
 TRIVIA:
-  Stick posts won't work with ajax filters. It will not be at the top once the post/cpt are filtered.
+☐ Stick posts won't work with ajax filters. It will not be at the top once the post/cpt are filtered.
+
 
 FLEXIBLE CONTENT:
- ☐ No need to prefix the section field names for section options or developer options.
- ☐ Section options should be not be a part of section clone because sometimes we need left or top aligned tabs.
- ☐ Clone cannot be directly used as a standalone on any page. All clones fields slug will not have any prefix. Because it will be used inside the flexible-content loop which will load different fields so there is no conflict. If incase you want to use the clone section outside the flexible-content loop. We need to create another section cloning that clone and add a prefix to it so that there is no conflict with other sections on that page. All clone groups will be set to inactive.
- ☐ When cloned it will be displayed as a seamless.
- ☐ Don't add "section" postfix inside the Flexible Content.
+☐ No need to prefix the section field names for section options or developer options.
+☐ Section options should be not be a part of section clone because sometimes we need left or top aligned tabs.
+☐ Clone cannot be directly used as a standalone on any page. All clones fields slug will not have any prefix. Because it will be used inside the flexible-content loop which will load different fields so there is no conflict. If incase you want to use the clone section outside the flexible-content loop. We need to create another section cloning that clone and add a prefix to it so that there is no conflict with other sections on that page. All clone groups will be set to inactive.
+☐ When cloned it will be displayed as a seamless.
+☐ Don't add "section" postfix inside the Flexible Content.
  For e.g
  We create Hero Section - Clone Field Group
  It contains a field Background image and its slug is background_image. No prefix like hero_

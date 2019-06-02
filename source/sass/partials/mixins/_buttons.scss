@@ -53,35 +53,35 @@
 
 @mixin btn-xs {
 	padding: 5px 10px;
-	@include breakpoint( $desktop_scale ) {
+	@include breakpoint( $scale ) {
 	  padding: rem-calc( 5px ) rem-calc( 10px );
 	}
 }
 
 @mixin btn-sm {
 	padding: 10px 20px;
-	@include breakpoint( $desktop_scale ) {
+	@include breakpoint( $scale ) {
 	  padding: rem-calc( 10px ) rem-calc( 20px );
 	}
 }
 
 @mixin btn-md {
 	padding: 15px 20px;
-	@include breakpoint( $desktop_scale ) {
+	@include breakpoint( $scale ) {
 	  padding: rem-calc( 15px ) rem-calc( 20px );
 	}
 }
 
 @mixin btn-lg {
 	padding: 20px 30px;
-	@include breakpoint( $desktop_scale ) {
+	@include breakpoint( $scale ) {
 	  padding: rem-calc( 20px ) rem-calc( 30px );
 	}
 }
 
 @mixin btn-xlg {
 	padding: 25px 40px;
-	@include breakpoint( $desktop_scale ) {
+	@include breakpoint( $scale ) {
 	  padding: rem-calc( 25px ) rem-calc( 40px );
 	}
 }

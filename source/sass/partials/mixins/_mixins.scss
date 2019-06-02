@@ -121,7 +121,7 @@
 	@include breakpoint( $md ) {
 		padding: $input_padding_x_md $input_padding_y_md;
 	}
-	@include breakpoint( $desktop_scale ) {
+	@include breakpoint( $scale ) {
 		padding: rem-calc($input_padding_x_md) rem-calc($input_padding_y_md);
 		border-width: rem-calc($input_border_width);
 	}

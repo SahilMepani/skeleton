@@ -21,13 +21,13 @@ h1 + h1, h1 + h2, h1 + h3, h1 + h4, h1 + h5, h1 + h6, h2 + h2, h2 + h1, h2 + h3,
 	overflow: hidden;
 }
 
-.bg-video--cover {
-	min-width: 100%;
-	min-height: 100%;
+.bg-video--fullscreen, .bg-video--cover {
+  min-width: 100%;
+  min-height: 100%;
 }
 
-.bg-video--contain {
-	max-width: 100%;
+.bg-video--inline, .bg-video--contain {
+  max-width: 100%;
 }
 
 /*----------  Alert  ----------*/

@@ -32,7 +32,7 @@
 			left: 15px; // same as padding right
 			top: 50%;
 			@include translateY(-50%);
-			@include transition(.2s ease-out);
+			transition: .2s ease-out;
 		}
 	}
 	@include breakpoint( $lg ) {
@@ -106,10 +106,10 @@ $mobile_sub_menu_link_padding_x: $mobile_parent_menu_item_padding_x; //usually t
 		z-index: 99;
 		overflow: auto;
 		@include translateX(-100%);
-		@include transition( 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946) );
+		transition: 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946);
 		&.js-active {
 			@include translateX(0);
-			@include box-shadow( 0 0 10px rgba(120,120,120,.3));
+			box-shadow: 0 0 10px rgba(120,120,120,.3);
 		}
 		ul {
 			list-style: none;

@@ -15,7 +15,7 @@
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  @include breakpoint( $scale ) {
+  @include breakpoint( $desktop ) {
     padding-right: rem-calc( 15px );
     padding-left: rem-calc( 15px );
   }
@@ -98,13 +98,13 @@
 .row, .row-sm, .row-md, .row-lg, .row-xl {
   margin-right: -15px;
   margin-left: -15px;
-  @include breakpoint( $scale ) {
+  @include breakpoint( $desktop ) {
     margin-right: rem-calc( -15px );
     margin-left: rem-calc( -15px );
   }
 }
 
-.no-gutters {
+.gutterless {
   margin-right: 0;
   margin-left: 0;
   > .col, > [class*="col-"] {
@@ -124,7 +124,7 @@
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
-  @include breakpoint( $scale ) {
+  @include breakpoint( $desktop ) {
     padding-right: rem-calc( 15px );
     padding-left: rem-calc( 15px );
   }

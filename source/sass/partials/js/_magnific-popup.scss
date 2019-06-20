@@ -566,12 +566,12 @@ button {
   /* start state */
   .mfp-content {
     opacity: 0;
-    @include transition(all 0.2s ease-in-out);
+    transition:all 0.2s ease-in-ou;
     @include scale(0.8);
   }
   &.mfp-bg {
     opacity: 0;
-    @include transition( all 0.3s ease-out );
+    transition: all 0.3s ease-out;
   }
   /* animate in */
   &.mfp-ready {
@@ -600,12 +600,12 @@ button {
   /* start state */
   .mfp-content {
     opacity: 0;
-    @include transition(all 0.3s ease-in-out);
+    transition:all 0.3s ease-in-ou;
     @include scale(1.3);
   }
   &.mfp-bg {
     opacity: 0;
-    @include transition(all 0.3s ease-out);
+    transition:all 0.3s ease-ou;
   }
   /* animate in */
   &.mfp-ready {
@@ -634,13 +634,13 @@ button {
   /* start state */
   .mfp-content {
     opacity: 0;
-    @include transition(all 0.5s);
+    transition:all 0.5;
     @include scale(0);
     @include rotate(500deg);
   }
   &.mfp-bg {
     opacity: 0;
-    @include transition(all 0.5s);
+    transition:all 0.5;
   }
   /* animate in */
   &.mfp-ready {
@@ -672,12 +672,12 @@ button {
   .mfp-content {
     vertical-align: top;
     opacity: 0;
-    @include transition(all 0.2s);
+    transition:all 0.2;
     @include translateY(-100px);
   }
   &.mfp-bg {
     opacity: 0;
-    @include transition(all 0.2s);
+    transition:all 0.2;
   }
   /* animate in */
   &.mfp-ready {
@@ -706,14 +706,14 @@ button {
   /* start state */
   .mfp-content {
     opacity: 0;
-    @include transition( all 0.3s ease-in-out );
+    transition: all 0.3s ease-in-out;
     @include transform-style(preserve-3d);
     @include perspective( 2000px );
     @include rotateY(-60deg);
   }
   &.mfp-bg {
     opacity: 0;
-    @include transition( all 0.5s );
+    transition: all 0.5s;
   }
   /* animate in */
   &.mfp-ready {
@@ -742,11 +742,11 @@ button {
   /* start state */
   .mfp-content {
     opacity: 0;
-    @include transition( all 0.15s ease-out );
+    transition: all 0.15s ease-out;
   }
   &.mfp-bg {
     opacity: 0;
-    @include transition( all 0.15s ease-out );
+    transition: all 0.15s ease-out;
   }
   /* animate in */
   &.mfp-ready {

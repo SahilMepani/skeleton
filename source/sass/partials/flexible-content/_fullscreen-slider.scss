@@ -101,7 +101,7 @@
       cursor: pointer;
     }
   }
-  @include breakpoint( $scale ) {
+  @include breakpoint( $desktop ) {
     .slick-arrow {
       width: rem-calc( 50px );
       height: rem-calc( 50px );

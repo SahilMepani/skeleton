@@ -38,7 +38,7 @@
 					content: $i_arrow_left;
 					position: absolute;
 					left: 0;
-					@include transition( 100ms transform linear );
+					transition: 100ms transform linear;
 				}
 				&:hover {
 					&:before {
@@ -57,7 +57,7 @@
 					content: $i_arrow_right;
 					position: absolute;
 					right: 0;
-					@include transition( 100ms transform linear );
+					transition: 100ms transform linear;
 				}
 				&:hover {
 					&:after {

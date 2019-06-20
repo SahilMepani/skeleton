@@ -109,7 +109,7 @@
 	padding: $input_padding_x_xs $input_padding_y_xs;
 	border: $input_border_width solid $input_border_color;
 	border-radius: $input_border_radius;
-	@include transition( $input_transition );
+	transition:  $input_transition ;
 	@include experimental(appearance, none); //remove browser styling
 	@include input-placeholder( $input_placeholder_color );
 	&:focus {
@@ -121,7 +121,7 @@
 	@include breakpoint( $md ) {
 		padding: $input_padding_x_md $input_padding_y_md;
 	}
-	@include breakpoint( $scale ) {
+	@include breakpoint( $desktop ) {
 		padding: rem-calc($input_padding_x_md) rem-calc($input_padding_y_md);
 		border-width: rem-calc($input_border_width);
 	}
@@ -160,7 +160,7 @@
 	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
 	padding-bottom: 1px;
 	position: relative;
-	@include transition(.2s);
+	transition: .2s;
 	&:after {
 		background-color: $border_color;
 		content: '';
@@ -170,7 +170,7 @@
 		position: absolute;
 		bottom: 0;
 		@include scale(0);
-		@include transition(.25s ease-out);
+		transition: .25s ease-out;
 	}
 	&:hover {
 		color: $text_color;

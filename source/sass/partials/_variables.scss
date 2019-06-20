@@ -32,7 +32,7 @@ $monospace : Menlo, Monaco, Consolas, "Courier New", monospace;
 /*============================
 =            Root            =
 ============================*/
-$root_font_size : 16px; // never change this value
+$root_font_size : 10px; // never change this value
 
 
 /*============================
@@ -65,11 +65,11 @@ $input_bg_color          : #fff;
 $input_color             : #444;
 $input_line_height       : 1.2; /* used for btn mixin, so when input is next to btn they have same height */
 $input_min_width         : auto;
-$input_padding_x_xs      : 15px; /* left and right for mobile */
-$input_padding_x_md      : 15px; /* left and right for desktop */
-$input_padding_y_xs      : 20px; /* top and bottom for mobile  */
-$input_padding_y_md      : 20px; /* top and bottom for desktop  */
-$input_border_width      : 1px;
+$input_padding_x_xs      : rem-calc(15px); /* left and right for mobile */
+$input_padding_x_md      : rem-calc(15px); /* left and right for desktop */
+$input_padding_y_xs      : rem-calc(20px); /* top and bottom for mobile  */
+$input_padding_y_md      : rem-calc(20px); /* top and bottom for desktop  */
+$input_border_width      : rem-calc(1px);
 $input_border_color      : #666;
 $input_focus_border      : #000;
 $input_focus_outline     : false;
@@ -157,11 +157,12 @@ $four_k  : 3840px;
 $mac_13  : ($md) (max-height 800px);
 
 /* Max Width */
-$xs      : max-width ($sm - .2);
+$xs      : max-width ($sm - 1);
 $xs_max  : $xs;
-$sm_max  : max-width ($md - .2);
-$md_max  : max-width ($lg - .2);
-$lg_max  : max-width ($xl - .2);
+$sm_max  : max-width ($md - 1);
+$md_max  : max-width ($lg - 1);
+$lg_max  : max-width ($xl - 1);
+$xl_max  : max-width ($lg - 1);
 
 /* Range */
 $sm_range : $sm $sm_max;
@@ -170,22 +171,22 @@ $lg_range : $lg $lg_max;
 
 
 /*----------  Base Scale Desktop  ----------*/
-$scale: $two_k;
-
+$mobile: $min_375;
+$desktop: $two_k;
 
 /* Arrays */
-// $ar_bp: $sm, $md, $lg; // breakpoint variable array
-// $ar_bp_classes: sm, md, lg; // breakpoint classes for loop
-
-// $ar_bp_max: $lg_max, $md_max, $sm_max, $xs; // breakpoint variable array, different order is used for specificty
-// $ar_bp_max_classes: lg-max, md-max, sm-max, xs; // breakpoint classes for loop
+// breakpoint variable array, length must match below variable.
+$ar_bp             : $xs, $sm, $md, $lg, $xl, $xxl, $desktop;
+// breakpoint classes for loop, length must match below variable.
+$ar_bp_classes     : xs, sm, md, lg, xl, xxl, desktop;
+// breakpoint variable array, different order used for specificty
+$ar_bp_max         : $desktop, $xl_max, $lg_max, $md_max, $sm_max, $xs;
+// breakpoint classes for loop
+$ar_bp_max_classes : desktop, xl-max, lg-max, md-max, sm-max, xs;
 
 
 /*===============================
 =            Gutters            =
 ===============================*/
 /* total array length needs to be 15 */
-$ar_gutter    : 15px, 30px, 30px, 50px, 50px, 50px, 70px, 70px, 70px, 70px, 70px, 70px, 90px, 90px, 90px;
-$ar_gutter_sm : $ar_gutter;
-$ar_gutter_md : 15px, 30px, 30px, 50px, 50px, 70px, 70px, 90px, 90px, 90px, 90px, 90px, 90px, 120px, 120px;
-$ar_gutter_lg : 1vw, 2vw, 3vw, 4vw, 5vw, 6vw, 7vw, 8vw, 9vw, 10vw, 11vw, 12vw, 13vw, 14vw, 15vw;
+$ar_gutter : 1rem, 2rem, 3rem, 4rem, 5rem, 6rem, 7rem, 8rem, 9rem, 10rem, 11rem, 12rem, 13rem, 14rem, 15rem, 16rem, 17rem, 18rem, 19rem, 20rem;

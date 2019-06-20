@@ -9,52 +9,26 @@
 /*----------  Custom Classes  ----------*/
 .hidden, .hide { display: none !important; }
 
-.hidden-xs {
-  @include breakpoint( $xs ) {
-    display: none !important;
+.show { display: block !important; }
+
+@for $counter from 1 through length($ar_bp) {
+  @include breakpoint( nth($ar_bp, $counter) ) {
+    .hidden-#{nth($ar_bp_classes, $counter)} {
+      display: none !important;
+    }
+    .show-#{nth($ar_bp_classes, $counter)} {
+      display: block !important;
+    }
   }
 }
 
-.hidden-sm {
-  @include breakpoint( $sm ) {
-    display: none !important;
-  }
-}
-
-.hidden-md {
-  @include breakpoint( $md ) {
-    display: none !important;
-  }
-}
-
-.hidden-lg {
-  @include breakpoint( $lg ) {
-    display: none !important;
-  }
-}
-
-.block, .show { display: block !important; }
-
-.show-xs {
-  @include breakpoint( $xs ) {
-    display: block !important;
-  }
-}
-
-.show-sm {
-  @include breakpoint( $sm ) {
-    display: block !important;
-  }
-}
-
-.show-md {
-  @include breakpoint( $md ) {
-    display: block !important;
-  }
-}
-
-.show-lg {
-  @include breakpoint( $lg ) {
-    display: block !important;
+@for $counter from 1 through length($ar_bp_max) {
+  @include breakpoint( nth($ar_bp_max, $counter) ) {
+    .hidden-#{nth($ar_bp_max_classes, $counter)} {
+      display: none !important;
+    }
+    .show-#{nth($ar_bp_max_classes, $counter)} {
+      display: block !important;
+    }
   }
 }

@@ -53,7 +53,7 @@
 .text-family-base { font-family: $base_font_family; }
 .text-lead, .text-big {
   font-size: 20px;
-  @include breakpoint( $scale ) {
+  @include breakpoint( $desktop ) {
     @include rem( font-size, 20px )
   }
 }

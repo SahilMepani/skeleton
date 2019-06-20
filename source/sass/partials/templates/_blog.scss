@@ -28,8 +28,9 @@
 			}
 		}
 		&:hover, &:focus {
-			@include transition( .4s cubic-bezier(.33,0,.2,1));
+			transition: .4s cubic-bezier(.33,0,.2,1);
 			-webkit-backface-visibility: hidden;
+			backface-visibility: hidden;
 		}
 	}
 	@include breakpoint( $sm ) {

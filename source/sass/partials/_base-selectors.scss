@@ -36,8 +36,9 @@ html {
 	// {
 	// 	-webkit-font-smoothing: subpixel-antialiased;
 	// }
-	@include fluid( font-size, $min_375, $scale, $root_font_size/2, $root_font_size, true, false );
-	@include fluid( font-size, $scale, $four_k, $root_font_size, $root_font_size * 2.4, false, false );
+	@include fluid( font-size, $sm, $md, $root_font_size, $root_font_size, true, false );
+	@include fluid( font-size, $md, $two_k, $root_font_size, $root_font_size, false, false );
+	@include fluid( font-size, $two_k, $four_k, $root_font_size, $root_font_size * 2.4, false, false );
 	// @include scrollbars(10px, #888, #e9e9e9);
 }
 
@@ -47,7 +48,7 @@ body {
 	font-family: $base_font_family;
 	font-weight: $base_font_weight;
 	line-height: $base_line_height;
-	@include fluid( font-size, $min_375, $scale, 18px, 20px );
+	@include fluid( font-size, $min_375, $desktop, 18px, 20px );
 }
 
 /*----------  Headings  ----------*/
@@ -69,29 +70,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1, .h1 {
-	@include fluid( font-size, $min_375, $scale, 30px, 60px );
+	@include fluid( font-size, $min_375, $desktop, 30px, 60px );
 	line-height: 1.2;
 }
 
 h2, .h2 {
-	@include fluid( font-size, $min_375, $scale, 24px, 45px );
+	@include fluid( font-size, $min_375, $desktop, 24px, 45px );
 }
 
 h3, .h3 {
-	@include fluid( font-size, $min_375, $scale, 20px, 32px );
+	@include fluid( font-size, $min_375, $desktop, 20px, 32px );
 }
 
 h4, .h4 {
-	@include fluid( font-size, $min_375, $scale, 30px, 60px );
+	@include fluid( font-size, $min_375, $desktop, 30px, 60px );
 	font-weight: 300;
 }
 
 h5, .h5 {
-	@include fluid( font-size, $min_375, $scale, 18px, 18px );
+	@include fluid( font-size, $min_375, $desktop, 18px, 18px );
 }
 
 h6, .h6 {
-	@include fluid( font-size, $min_375, $scale, 15px, 15px );
+	@include fluid( font-size, $min_375, $desktop, 15px, 15px );
 }
 
 /*----------  Links/Buttons  ----------*/
@@ -121,11 +122,11 @@ textarea {
 }
 
 a, button, input[type="submit"], input[type="button"], input[type="reset"] {
-	@include transition-property(background, color, border-color);
-	@include transition-duration(.2s);
+	transition-property: background, color, border-color;
+	transition-duration: .2s;
 	border-radius: 0;
 	&:hover, &:focus {
-		@include transition-duration(.1s);
+		transition-duration: .1s;
 	}
 }
 

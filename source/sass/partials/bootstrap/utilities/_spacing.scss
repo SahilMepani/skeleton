@@ -6,6 +6,7 @@
 .mt-0 { margin-top: 0 !important; }
 .mb-0 { margin-bottom: 0 !important; }
 .mx-0 { margin-left: 0 !important; margin-right: 0 !important; }
+.mx-auto { margin-left: auto !important; margin-right: auto !important; }
 .my-0 { margin-top: 0 !important; margin-bottom: 0 !important; }
 
 /*----------  Global - Numbered  ----------*/
@@ -72,6 +73,10 @@
       margin-left: 0 !important;
       margin-right: 0 !important;
     }
+    .mx-#{nth($ar_bp_classes, $counter)}-auto {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
     .my-#{nth($ar_bp_classes, $counter)}-0 {
       margin-top: 0 !important;
       margin-bottom: 0 !important;
@@ -120,6 +125,39 @@
 @for $counter from 1 through length($ar_bp_max) {
   @include breakpoint( nth($ar_bp_max, $counter) ) {
     @for $i from 1 through length($ar_gutter) {
+
+      .pt-#{nth($ar_bp_max_classes, $counter)}-0 {
+        padding-top: 0;
+      }
+      .pb-#{nth($ar_bp_max_classes, $counter)}-0 {
+        padding-bottom: 0;
+      }
+      .px-#{nth($ar_bp_max_classes, $counter)}-0 {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .py-#{nth($ar_bp_max_classes, $counter)}-0 {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .mt-#{nth($ar_bp_max_classes, $counter)}-0 {
+        margin-top: 0 !important;
+      }
+      .mb-#{nth($ar_bp_max_classes, $counter)}-0 {
+        margin-bottom: 0 !important;
+      }
+      .mx-#{nth($ar_bp_max_classes, $counter)}-0 {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      .mx-#{nth($ar_bp_max_classes, $counter)}-auto {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+      .my-#{nth($ar_bp_max_classes, $counter)}-0 {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
 
       .pt-#{nth($ar_bp_max_classes, $counter)}-#{$i} {
         padding-top: nth( $ar_gutter, $i ) !important;

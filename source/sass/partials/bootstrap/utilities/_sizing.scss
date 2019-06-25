@@ -14,6 +14,40 @@
   width: 100% !important;
 }
 
+@for $counter from 1 through length($ar_bp) {
+  @include breakpoint( nth($ar_bp, $counter) ) {
+    .w-#{nth($ar_bp_classes, $counter)}-25 {
+      width: 25% !important;
+    }
+    .w-#{nth($ar_bp_classes, $counter)}-50 {
+      width: 50% !important;
+    }
+    .w-#{nth($ar_bp_classes, $counter)}-75 {
+      width: 75% !important;
+    }
+    .w-#{nth($ar_bp_classes, $counter)}-100 {
+      width: 100% !important;
+    }
+  }
+}
+
+@for $counter from 1 through length($ar_bp_max) {
+  @include breakpoint( nth($ar_bp_max, $counter) ) {
+    .w-#{nth($ar_bp_max_classes, $counter)}-25 {
+      width: 25% !important;
+    }
+    .w-#{nth($ar_bp_max_classes, $counter)}-50 {
+      width: 50% !important;
+    }
+    .w-#{nth($ar_bp_max_classes, $counter)}-75 {
+      width: 75% !important;
+    }
+    .w-#{nth($ar_bp_max_classes, $counter)}-100 {
+      width: 100% !important;
+    }
+  }
+}
+
 .h-25 {
   height: 25% !important;
 }

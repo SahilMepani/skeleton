@@ -486,7 +486,7 @@ remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0 );
 /*=========================================================
 =            Disable default image compression            =
 =========================================================*/
-function tse_wp_generate_image_sizes_quality() {
-	return 100;
-}
-add_filter( 'jpeg_quality', 'tse_wp_generate_image_sizes_quality');
+// function tse_wp_generate_image_sizes_quality() {
+// 	return 100;
+// }
+// add_filter( 'jpeg_quality', 'tse_wp_generate_image_sizes_quality');

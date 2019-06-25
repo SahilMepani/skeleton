@@ -72,57 +72,57 @@ p:empty {
 }
 
 /*----------  Bootstrap Grid  ----------*/
-.row {
-	margin-bottom: 50px;
-	&:last-child {
-		margin-bottom: 0;
-	}
-	@include breakpoint( $sm ) {
-	  margin-bottom: 70px;
-	}
-	@include breakpoint( $md ) {
-	  margin-bottom: 90px;
-	}
-	@include breakpoint( $lg ) {
-	  margin-bottom: 10vw;
-	}
-}
+// .row {
+// 	margin-bottom: 50px;
+// 	&:last-child {
+// 		margin-bottom: 0;
+// 	}
+// 	@include breakpoint( $sm ) {
+// 	  margin-bottom: 70px;
+// 	}
+// 	@include breakpoint( $md ) {
+// 	  margin-bottom: 90px;
+// 	}
+// 	@include breakpoint( $lg ) {
+// 	  margin-bottom: 10vw;
+// 	}
+// }
 
-[class*="col-xl-"] {
-	@include breakpoint( $lg_max ) {
-		margin-bottom: 10vw; // don't change, changing this will affect other sections
-		&:last-child {
-			margin-bottom: 0;
-		}
-	}
-}
+// [class*="col-xl-"] {
+// 	@include breakpoint( $lg_max ) {
+// 		margin-bottom: 10vw; // don't change, changing this will affect other sections
+// 		&:last-child {
+// 			margin-bottom: 0;
+// 		}
+// 	}
+// }
 
-[class*="col-lg-"], [class*="col-xl-"] {
-	@include breakpoint( $md_max ) {
-		margin-bottom: 90px;
-		&:last-child {
-			margin-bottom: 0;
-		}
-	}
-}
+// [class*="col-lg-"], [class*="col-xl-"] {
+// 	@include breakpoint( $md_max ) {
+// 		margin-bottom: 90px;
+// 		&:last-child {
+// 			margin-bottom: 0;
+// 		}
+// 	}
+// }
 
-[class*="col-md-"], [class*="col-lg-"] {
-	@include breakpoint( $sm_max ) {
-		margin-bottom: 50px;
-		&:last-child {
-			margin-bottom: 0;
-		}
-	}
-}
+// [class*="col-md-"], [class*="col-lg-"] {
+// 	@include breakpoint( $sm_max ) {
+// 		margin-bottom: 50px;
+// 		&:last-child {
+// 			margin-bottom: 0;
+// 		}
+// 	}
+// }
 
-[class*="col-sm"], [class*="col-md"], [class*="col-lg"] {
-	@include breakpoint( $xs ) {
-		margin-bottom: 50px;
-		&:last-child {
-			margin-bottom: 0;
-		}
-	}
-}
+// [class*="col-sm"], [class*="col-md"], [class*="col-lg"] {
+// 	@include breakpoint( $xs ) {
+// 		margin-bottom: 50px;
+// 		&:last-child {
+// 			margin-bottom: 0;
+// 		}
+// 	}
+// }
 
 /*----------  AOS  ----------*/
 html.js.mutationobserver.cssanimations:not(.is-mobile) [data-aos] {

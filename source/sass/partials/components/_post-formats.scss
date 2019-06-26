@@ -10,18 +10,18 @@
 
 .gallery-icon img {
 	background: #fff;
-	padding: 5px;
-	border: 1px solid #ddd !important; /* Overwrite default css */
-	box-shadow: 0 0 2px rgba(0,0,0,.15);
+	padding: rem-calc(5px);
+	border: rem-calc(1px) solid #ddd !important; /* Overwrite default css */
+	box-shadow: 0 0 rem-calc(2px) rgba(0,0,0,.15);
 }
 
 .gallery-caption {
 	background: #f1f1f1;
 	display: block;
 	width: 80%;
-	padding: 5px;
-	border: 1px solid #eee; /* Overwrite default css */
-	margin: 5px auto 0 !important;
+	padding: rem-calc(5px);
+	border: rem-calc(1px) solid #eee; /* Overwrite default css */
+	margin: rem-calc(5px) auto 0 !important;
 }
 
 .gallery-images-count {
@@ -30,13 +30,13 @@
 
 // Images
 .size-small, .size-medium, .size-large, .size-full {
-	// padding: 5px; // Center the Image, Required
+	// padding: rem-calc(5px); // Center the Image, Required
 }
 
 .wp-caption {
-	border: 1px solid #ddd;
+	border: rem-calc(1px) solid #ddd;
 	margin-bottom: $global_margin_bottom;
-	box-shadow: 0 0 2px rgba(0,0,0,.15);
+	box-shadow: 0 0 rem-calc(2px) rgba(0,0,0,.15);
 	a {
 		display: block; // Containing the Image
 	}
@@ -47,7 +47,7 @@
 .wp-caption-text {
 	font-style: italic;
 	text-align: center;
-	margin: 10px !important; // Overwrite .content p
+	margin: rem-calc(10px) !important; // Overwrite .content p
 }
 
 /* Format Status */
@@ -56,15 +56,15 @@
 
 // Aside
 .format-aside .excerpt {
-	padding-left: 20px;
-	border-left: 10px solid #eee;
+	padding-left: rem-calc(20px);
+	border-left: rem-calc(10px) solid #eee;
 }
 
 
 // Chat
 .format-chat .excerpt {
 	background: #eee;
-	padding: 20px;
+	padding: rem-calc(20px);
 }
 
 
@@ -76,8 +76,8 @@
 
 // Video
 .format-video embed, .format-video video {
-	padding: 4px;
-	border: 1px solid #ddd;
-	margin-bottom: 10px;
-	box-shadow: 0 0 2px rgba(0,0,0,.15);
+	padding: rem-calc(4px);
+	border: rem-calc(1px) solid #ddd;
+	margin-bottom: rem-calc(10px);
+	box-shadow: 0 0 rem-calc(2px) rgba(0,0,0,.15);
 }

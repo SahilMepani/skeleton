@@ -3,7 +3,7 @@
 	@include flex-wrap(wrap);
 	@include justify-content(center);
 	@include align-items(center);
-	height: 450px;
+	height: rem-calc(450px);
 	.content-block {
 		@include breakpoint( $lg ) {
 		  width: 80%;

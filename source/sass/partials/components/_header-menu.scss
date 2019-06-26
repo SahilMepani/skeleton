@@ -22,14 +22,14 @@
 		text-decoration: none;
 		float: right;
 		display: block;
-		padding: 14px 15px 14px 50px;
+		padding: rem-calc(14px) rem-calc(15px) rem-calc(14px) rem-calc(50px);
 		border: none;
 		position: relative;
 		&:before {
 			content: $i_menu;
-			font-size: 24px;
+			font-size: rem-calc(24px);
 			position: absolute;
-			left: 15px; // same as padding right
+			left: rem-calc(15px); // same as padding right
 			top: 50%;
 			@include translateY(-50%);
 			transition: .2s ease-out;
@@ -45,14 +45,14 @@
 	  background: none;
 		text-decoration: none;
 		border: none;
-		padding: 10px;
+		padding: rem-calc(10px);
 		position: absolute;
 		right: 0;
 		top: 0;
 		&:before {
 			content: $i_cross;
 			color: #000;
-			font-size: 24px;
+			font-size: rem-calc(24px);
 		}
 		&:hover, &:active {
 			background-color: #fff;
@@ -71,12 +71,12 @@
 ==============================*/
 $mobile_sidebar_bg_color: #ddd;
 /*----------  Parent Menu  ----------*/
-$mobile_parent_menu_item_border_bottom: 1px solid rgba(0,0,0,.1);
+$mobile_parent_menu_item_border_bottom: rem-calc(1px) solid rgba(0,0,0,.1);
 $mobile_parent_menu_link_bg_color: transparent;
 $mobile_parent_menu_link_color: #000;
 $mobile_parent_menu_link_hover_bg_color: rgba(0,0,0,.1);
 $mobile_parent_menu_link_hover_color: #000;
-$mobile_parent_menu_item_padding_y: 13px;
+$mobile_parent_menu_item_padding_y: 1.3rem;
 $mobile_parent_menu_item_padding_x: 20px;
 $mobile_parent_menu_current_item_link_bg_color: $primary;
 $mobile_parent_menu_current_item_link_color: #fff;
@@ -91,14 +91,14 @@ $mobile_sub_menu_link_bg_color: transparent;
 $mobile_sub_menu_link_hover_bg_color: rgba(0,0,0,.05);
 $mobile_sub_menu_link_color: #666;
 $mobile_sub_menu_link_hover_color: #000;
-$mobile_sub_menu_link_padding_y: 13px;
+$mobile_sub_menu_link_padding_y: rem-calc(13px);
 $mobile_sub_menu_link_padding_x: $mobile_parent_menu_item_padding_x; //usually this is same as parent menu
 
 .header__nav {
 	@include media-breakpoint-down( md ) {
 		background-color: $mobile_sidebar_bg_color;
 		width: 100%;
-		padding: 50px 0 40px;
+		padding: rem-calc(50px) 0 rem-calc(40px);
 		position: fixed;
 		top: 0;
 		right: 0;
@@ -109,7 +109,7 @@ $mobile_sub_menu_link_padding_x: $mobile_parent_menu_item_padding_x; //usually t
 		transition: 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946);
 		&.js-active {
 			@include translateX(0);
-			box-shadow: 0 0 10px rgba(120,120,120,.3);
+			box-shadow: 0 0 rem-calc(10px) rgba(120,120,120,.3);
 		}
 		ul {
 			list-style: none;
@@ -128,9 +128,9 @@ $mobile_sub_menu_link_padding_x: $mobile_parent_menu_item_padding_x; //usually t
 			> a {
 				background-color: $mobile_parent_menu_link_bg_color;
 				color: $mobile_parent_menu_link_color;
-				font-size: 14px;
+				font-size: rem-calc(14px);
 				font-weight: 700;
-				letter-spacing: 2px;
+				letter-spacing: rem-calc(2px);
 				display: block;
 				padding: $mobile_parent_menu_item_padding_y $mobile_parent_menu_item_padding_x;
 				text-transform: uppercase;
@@ -158,22 +158,22 @@ $mobile_sub_menu_link_padding_x: $mobile_parent_menu_item_padding_x; //usually t
 				position: relative;
 				span {
 					background: $mobile_parent_menu_dropdown_bg_color;
-					width: 45px;
+					width: rem-calc(45px);
 					position: absolute;
 					top: 0;
 					right: 0;
 					bottom: 0;
 					&:after {
 						content: '';
-						border: 8px solid transparent;
-						border-left-width: 6px;
-						border-right-width: 6px;
+						border: rem-calc(8px) solid transparent;
+						border-left-width: rem-calc(6px);
+						border-right-width: rem-calc(6px);
 						border-top-color: $mobile_parent_menu_dropdown_icon_color;
 						position: absolute;
 						top: 50%;
 						left: 50%;
-						margin-top: -4px;
-						margin-left: -6px;
+						margin-top: rem-calc(-4px);
+						margin-left: rem-calc(-6px);
 					}
 					&:hover {
 						background: $mobile_parent_menu_dropdown_hover_bg_color;
@@ -200,9 +200,9 @@ $mobile_sub_menu_link_padding_x: $mobile_parent_menu_item_padding_x; //usually t
 			> a {
 				background-color: $mobile_sub_menu_link_bg_color;
 				color: $mobile_sub_menu_link_color;
-				font-size: 14px;
+				font-size: rem-calc(14px);
 				font-weight: 700;
-				letter-spacing: 1px;
+				letter-spacing: rem-calc(1px);
 				text-transform: uppercase;
 				display: block;
 				padding: $mobile_sub_menu_link_padding_y $mobile_sub_menu_link_padding_x $mobile_sub_menu_link_padding_y ($mobile_sub_menu_link_padding_x + 15px);

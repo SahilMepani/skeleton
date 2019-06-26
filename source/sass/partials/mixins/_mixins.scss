@@ -142,7 +142,7 @@
 	select {
 		background: transparent;
 		width: 100%; //make dropdown sit on top of select
-		padding-right: 40px;
+		padding-right: rem-calc(40px);
 		@include experimental(appearance, none); //remove browser styling
 	}
 	select::-ms-expand {
@@ -151,10 +151,10 @@
 	&:after {
 		@include icon-font-properties;
 		content: $i_dropdown;
-		font-size: 18px;
+		font-size: rem-calc(18px);
 		display: block;
 		position: absolute;
-		right: 15px;
+		right: rem-calc(15px);
 		top: 50%;
 		z-index: -1;
 		@include translateY(-50%);
@@ -163,7 +163,7 @@
 
 @mixin animate-underline-on-hover( $border_color, $text_color ) {
 	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
-	padding-bottom: 1px;
+	padding-bottom: rem-calc(1px);
 	position: relative;
 	transition: .2s;
 	&:after {
@@ -171,7 +171,7 @@
 		content: '';
 		left: 0;
 		right: 0;
-		height: 1px;
+		height: rem-calc(1px);
 		position: absolute;
 		bottom: 0;
 		@include scale(0);
@@ -207,14 +207,14 @@
 @mixin pagination-links {
 	background: #fff;
 	color: #666;
-	font-size: 12px;
+	font-size: rem-calc(12px);
 	line-height: 1;
 	text-decoration: none;
 	text-align: center;
 	display: block;
-	min-width: 35px;
-	padding: 10px;
-	box-shadow: 0 0 1px rgba(0,0,0,.3);
+	min-width: rem-calc(35px);
+	padding: rem-calc(10px);
+	box-shadow: 0 0 rem-calc(1px) rgba(0,0,0,.3);
 }
 
 /// Mixin to customize scrollbars

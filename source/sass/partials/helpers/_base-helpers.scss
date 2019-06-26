@@ -67,15 +67,15 @@ p:empty {
 
 /*----------  Bootstrap Grid  ----------*/
 // .row {
-// 	margin-bottom: 50px;
+// 	margin-bottom: rem-calc(50px);
 // 	&:last-child {
 // 		margin-bottom: 0;
 // 	}
 // 	@include breakpoint( $sm ) {
-// 	  margin-bottom: 70px;
+// 	  margin-bottom: rem-calc(70px);
 // 	}
 // 	@include breakpoint( $md ) {
-// 	  margin-bottom: 90px;
+// 	  margin-bottom: rem-calc(90px);
 // 	}
 // 	@include breakpoint( $lg ) {
 // 	  margin-bottom: 10vw;
@@ -93,7 +93,7 @@ p:empty {
 
 // [class*="col-lg-"], [class*="col-xl-"] {
 // 	@include media-breakpoint-down( md ) {
-// 		margin-bottom: 90px;
+// 		margin-bottom: rem-calc(90px);
 // 		&:last-child {
 // 			margin-bottom: 0;
 // 		}
@@ -102,7 +102,7 @@ p:empty {
 
 // [class*="col-md-"], [class*="col-lg-"] {
 // 	@include media-breakpoint-down( sm ) {
-// 		margin-bottom: 50px;
+// 		margin-bottom: rem-calc(50px);
 // 		&:last-child {
 // 			margin-bottom: 0;
 // 		}
@@ -111,7 +111,7 @@ p:empty {
 
 // [class*="col-sm"], [class*="col-md"], [class*="col-lg"] {
 // 	@include media-breakpoint-down( xs ) {
-// 		margin-bottom: 50px;
+// 		margin-bottom: rem-calc(50px);
 // 		&:last-child {
 // 			margin-bottom: 0;
 // 		}
@@ -119,30 +119,30 @@ p:empty {
 // }
 
 /*----------  AOS  ----------*/
-html.js.mutationobserver.cssanimations:not(.is-mobile) [data-aos] {
-  visibility: hidden;
-  &.animated {
-  	visibility: visible;
-  }
-}
+// html.js.mutationobserver.cssanimations:not(.is-mobile) [data-aos] {
+//   visibility: hidden;
+//   &.animated {
+//   	visibility: visible;
+//   }
+// }
 
-html.is-mobile [data-aos],
-html.no-mutationobserver [data-aos],
-html.no-js [data-aos],
-html.no-cssanimations [data-aos] {
-  @include animation( none !important);
-}
+// html.is-mobile [data-aos],
+// html.no-mutationobserver [data-aos],
+// html.no-js [data-aos],
+// html.no-cssanimations [data-aos] {
+//   @include animation( none !important);
+// }
 
 
 /*----------  Scroll Reveal  ----------*/
-html.js.mutationobserver.cssanimations:not(.is-mobile) [data-sreveal],
-html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal {
-	// @include animation-name( none );
-	visibility: hidden !important;
-	&.animated {
-		visibility: visible !important;
-	}
-}
+// html.js.mutationobserver.cssanimations:not(.is-mobile) [data-sreveal],
+// html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal {
+// 	// @include animation-name( none );
+// 	visibility: hidden !important;
+// 	&.animated {
+// 		visibility: visible !important;
+// 	}
+// }
 
 
 /*----------  Swiper Arrow Navigation  ----------*/
@@ -159,7 +159,7 @@ html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal {
 // 			@include icon-font-properties;
 // 			content: '';
 // 			display: block;
-// 			font-size: 36px;
+// 			font-size: rem-calc(36px);
 // 		}
 // 		&:hover {
 // 			&:after {
@@ -168,7 +168,7 @@ html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal {
 // 		}
 // 	}
 // 	.btn-next {
-// 		right: 15px;
+// 		right: rem-calc(15px);
 // 		&:before {
 // 			left: 0;
 // 			@include translateX( -100% );
@@ -178,7 +178,7 @@ html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal {
 // 		}
 // 	}
 // 	.btn-prev {
-// 		left: 15px;
+// 		left: rem-calc(15px);
 // 		&:before {
 // 			right: 0;
 // 			@include translateX( 100% );
@@ -190,31 +190,31 @@ html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal {
 // 	@include breakpoint( $sm ) {
 // 		.btn {
 // 			&:after {
-// 				font-size: 60px;
+// 				font-size: rem-calc(60px);
 // 			}
 // 		}
 // 	}
 // }
 
 /*----------  Slick Dots  ----------*/
-// .slick-dots {
-// 	@include list-unstyled;
-// 	li {
-// 		display: inline-block;
-// 		margin: 0 10px 0 0;
-// 		position: relative;
-// 		&.slick-active {
-// 			button {
-// 				background-color: #fff;
-// 			}
-// 		}
-// 	}
-// 	button {
-// 		@include btn;
-// 		@include hide-text;
-// 		background-color: rgba(255,255,255,.5);
-// 		width: 10px;
-// 		height: 10px;
-// 		border-radius: 50%;
-// 	}
-// }
+.slick-dots {
+	@include list-unstyled;
+	li {
+		display: inline-block;
+		margin: 0 rem-calc(10px) 0 0;
+		position: relative;
+		&.slick-active {
+			button {
+				background-color: #fff;
+			}
+		}
+	}
+	button {
+		@include btn;
+		@include hide-text;
+		background-color: rgba(255,255,255,.5);
+		width: rem-calc(10px);
+		height: rem-calc(10px);
+		border-radius: 50%;
+	}
+}

@@ -71,10 +71,10 @@
 	width: 100%;
 	.index {
 		font-weight: 700;
-		line-height: 32px;
+		line-height: rem-calc(32px);
 		float: left;
-		margin-right: 20px;
-		margin-bottom: 10px;
+		margin-right: rem-calc(20px);
+		margin-bottom: rem-calc(10px);
 	}
 	ul {
 		list-style: none;
@@ -84,7 +84,7 @@
 	}
 	li {
 		float: left;
-		margin: 0 6px 6px 0;
+		margin: 0 rem-calc(6px) rem-calc(6px) 0;
 		&:last-child {
 			margin-right: 0;
 		}

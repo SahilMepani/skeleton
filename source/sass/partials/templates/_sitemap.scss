@@ -22,28 +22,28 @@
     a { //same as accordion title
       color: #fff;
       display: block;
-      font-size: 13px;
+      font-size: rem-calc(13px);
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      padding: 24px 25px;
+      letter-spacing: rem-calc(2px);
+      padding: rem-calc(24px) rem-calc(25px);
     }
   }
   .tab-content {
     background-color: #fff;
-    padding: 30px 5vw;
+    padding: rem-calc(30px) 5vw;
     @include breakpoint( $sm ) {
-      padding: 50px;
+      padding: rem-calc(50px);
     }
   }
   .list-sitemap {
     li {
-      margin-bottom: 10px;
+      margin-bottom: rem-calc(10px);
     }
     a {
       display: inline-block;
-      padding-bottom: 1px;
-      border-bottom: 1px solid transparent;
+      padding-bottom: rem-calc(1px);
+      border-bottom: rem-calc(1px) solid transparent;
       &:hover {
         color: $black;
         border-bottom-color: $black;
@@ -62,7 +62,7 @@
     .r-tabs-accordion-title {
       background-color: #666;
       display: block;
-      margin-bottom: 1px;
+      margin-bottom: rem-calc(1px);
       text-align: center;
       &:last-child {
         margin-bottom: 0;
@@ -79,11 +79,11 @@
       a {
         color: #fff;
         display: block;
-        font-size: 13px;
+        font-size: rem-calc(13px);
         font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 2px;
-        padding: 24px 25px;
+        letter-spacing: rem-calc(2px);
+        padding: rem-calc(24px) rem-calc(25px);
       }
     }
   }
@@ -102,7 +102,7 @@
 }
 
 .r-tabs .r-tabs-panel {
-  padding: 15px;
+  padding: rem-calc(15px);
   display: none;
 }
 

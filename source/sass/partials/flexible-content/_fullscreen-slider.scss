@@ -27,7 +27,7 @@
   }
   .section-heading {
   	color: #fff;
-		font-size: 60px;
+		font-size: rem-calc(60px);
 		text-align: center;
   }
 }
@@ -37,8 +37,8 @@
     @include btn;
     @include hide-text();
     background: rgba(0,0,0,.5);
-    width: 50px;
-    height: 50px;
+    width: rem-calc(50px);
+    height: rem-calc(50px);
     position: absolute;
     top: 50%;
     @include translateY(-50%);
@@ -46,7 +46,7 @@
     &:before {
       content: '';
       @include icon-font-properties;
-      font-size: 26px;
+      font-size: rem-calc(26px);
       color: #fff;
       position: absolute;
       left: 50%;
@@ -74,7 +74,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 30px;
+    bottom: rem-calc(30px);
     ul {
       @include list-unstyled;
       @include display-flex;
@@ -82,7 +82,7 @@
       margin-bottom: 0;
     }
     li {
-      padding: 0 10px;
+      padding: 0 rem-calc(10px);
       margin-bottom: 0;
       &.slick-active {
         button {
@@ -93,31 +93,12 @@
     button {
       @include hide-text;
       background-color: rgba(0,0,0,.5);
-      width: 15px;
-      height: 15px;
+      width: rem-calc(15px);
+      height: rem-calc(15px);
       border-radius: 50%;
       border: none;
       padding: 0;
       cursor: pointer;
-    }
-  }
-  @include breakpoint( $desktop ) {
-    .slick-arrow {
-      width: rem-calc( 50px );
-      height: rem-calc( 50px );
-      &:before {
-        font-size: rem-calc( 26px );
-      }
-    }
-    .slick-slider-dots {
-      bottom: rem-calc( 30px );
-      li {
-        padding: 0 rem-calc( 10px );
-      }
-      button {
-        width: rem-calc( 15px );
-        height: rem-calc( 15px );
-      }
     }
   }
 }

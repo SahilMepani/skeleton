@@ -1,8 +1,8 @@
 .jssocials-share { // block
 	display: inline-block;
-	margin: 0 5px 10px 0;
+	margin: 0 rem-calc(5px) rem-calc(10px) 0;
 	i {
-		margin-right: 10px;
+		margin-right: rem-calc(10px);
 		&:before {
 			@include icon-font-properties;
 		}
@@ -51,9 +51,9 @@
 	text-align: center;
 	text-decoration: none;
 	line-height: 1;
-	font-size: 14px;
+	font-size: rem-calc(14px);
 	display: block;
-	padding: 10px;
+	padding: rem-calc(10px);
 	&:hover, &:active {
 		background-color: $body_color;
 		color: #fff;

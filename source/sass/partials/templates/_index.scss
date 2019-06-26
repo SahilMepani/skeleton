@@ -1,10 +1,10 @@
 .filters {
 	@include breakpoint( $sm ) {
 	  @include display-flex;
-	  margin: 0 -10px;
+	  margin: 0 rem-calc(-10px);
 	}
 	@include breakpoint( $md ) {
-	  margin: 0 -15px;
+	  margin: 0 rem-calc(-15px);
 	}
 	@include breakpoint( $desktop ) {
 	  margin: 0 rem-calc( 15px );
@@ -21,13 +21,10 @@
 	}
 	@include breakpoint( $sm ) {
 	  @include flex(1);
-	  padding: 0 10px;
+	  padding: 0 rem-calc(10px);
 	}
 	@include breakpoint( $md ) {
-	  padding: 0 15px
-	}
-	@include breakpoint( $desktop ) {
-	  padding: 0 rem-calc( 15px );
+	  padding: 0 rem-calc(15px);
 	}
 }
 
@@ -36,10 +33,10 @@
 		position: relative;
 	}
 	input[type="text"] {
-		padding-right: 45px;
+		padding-right: rem-calc(45px);
 	}
 	.submit-block {
-		width: 45px;
+		width: rem-calc(45px);
 		position: absolute;
 		right: 0;
 		top: 0;
@@ -48,7 +45,7 @@
 			@include icon-font-properties;
 			content: $i_search;
 			color: #ccc;
-			font-size: 30px;
+			font-size: rem-calc(30px);
 			position: absolute;
 			left: 50%;
 			top: 50%;
@@ -67,8 +64,8 @@
 		visibility: hidden;
 		opacity: 0;
 		position: absolute;
-		right: 14px;
-		top: 17px;
+		right: rem-calc(14px);
+		top: rem-calc(17px);
 		&.js-active {
 			visibility: visible;
 			opacity: 1;
@@ -81,14 +78,14 @@
 		top: 0;
 		bottom: 0;
 		display: block;
-		width: 45px;
+		width: rem-calc(45px);
 		visibility: hidden;
 		opacity: 0;
 		&:before {
 			@include icon-font-properties;
 			content: $i_cross;
 			color: #999;
-			font-size: 24px;
+			font-size: rem-calc(24px);
 			position: absolute;
 			left: 50%;
 			top: 50%;

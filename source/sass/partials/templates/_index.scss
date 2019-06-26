@@ -6,9 +6,6 @@
 	@include breakpoint( $md ) {
 	  margin: 0 rem-calc(-15px);
 	}
-	@include breakpoint( $desktop ) {
-	  margin: 0 rem-calc( 15px );
-	}
 }
 
 .filters__item {
@@ -98,27 +95,6 @@
 		&:hover {
 			&:before {
 				color: $primary;
-			}
-		}
-	}
-	@include breakpoint( $desktop ) {
-		input[type="text"] {
-			padding-right: rem-calc(45px);
-		}
-		.submit-block {
-			width: rem-calc(45px);
-			&:before {
-				font-size: rem-calc(30px);
-			}
-		}
-		.loading-spinner {
-			right: rem-calc(14px);
-			top: rem-calc(17px);
-		}
-		.clear-search {
-			width: rem-calc(45px);
-			&:before {
-				font-size: rem-calc(24px);
 			}
 		}
 	}

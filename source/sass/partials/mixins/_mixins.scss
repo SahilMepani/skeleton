@@ -126,10 +126,6 @@
 	@include breakpoint( $md ) {
 		padding: $input_padding_x_md $input_padding_y_md;
 	}
-	@include breakpoint( $desktop ) {
-		padding: rem-calc($input_padding_x_md) rem-calc($input_padding_y_md);
-		border-width: rem-calc($input_border_width);
-	}
 	//required to disable auto zoom in iOS when font is less than 16px
 	@media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 767px) {
 		font-size: 16px !important;

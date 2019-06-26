@@ -13,9 +13,9 @@
         background-color: lighten(#666,7%);
       }
       &.r-tabs-state-active {
-        background-color: $brand_color_primary;
+        background-color: $primary;
         &:hover {
-          background-color: $brand_color_primary;
+          background-color: $primary;
         }
       }
     }
@@ -71,9 +71,9 @@
         background-color: lighten(#666,7%);
       }
       &.r-tabs-state-active {
-        background-color: $brand_color_primary;
+        background-color: $primary;
         &:hover {
-          background-color: $brand_color_primary;
+          background-color: $primary;
         }
       }
       a {

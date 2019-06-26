@@ -1,76 +1,22 @@
-.w-25 {
-  width: 25% !important;
-}
+// Width and height
 
-.w-50 {
-  width: 50% !important;
-}
-
-.w-75 {
-  width: 75% !important;
-}
-
-.w-100 {
-  width: 100% !important;
-}
-
-@for $counter from 1 through length($ar_bp) {
-  @include breakpoint( nth($ar_bp, $counter) ) {
-    .w-#{nth($ar_bp_classes, $counter)}-25 {
-      width: 25% !important;
-    }
-    .w-#{nth($ar_bp_classes, $counter)}-50 {
-      width: 50% !important;
-    }
-    .w-#{nth($ar_bp_classes, $counter)}-75 {
-      width: 75% !important;
-    }
-    .w-#{nth($ar_bp_classes, $counter)}-100 {
-      width: 100% !important;
-    }
+@each $prop, $abbrev in (width: w, height: h) {
+  @each $size, $length in $sizes {
+    .#{$abbrev}-#{$size} { #{$prop}: $length !important; }
   }
 }
 
-@for $counter from 1 through length($ar_bp_max) {
-  @include breakpoint( nth($ar_bp_max, $counter) ) {
-    .w-#{nth($ar_bp_max_classes, $counter)}-25 {
-      width: 25% !important;
-    }
-    .w-#{nth($ar_bp_max_classes, $counter)}-50 {
-      width: 50% !important;
-    }
-    .w-#{nth($ar_bp_max_classes, $counter)}-75 {
-      width: 75% !important;
-    }
-    .w-#{nth($ar_bp_max_classes, $counter)}-100 {
-      width: 100% !important;
-    }
-  }
-}
+.mw-100 { max-width: 100% !important; }
+.mh-100 { max-height: 100% !important; }
 
-.h-25 {
-  height: 25% !important;
-}
+// Viewport additional helpers
 
-.h-50 {
-  height: 50% !important;
-}
+.min-vw-100 { min-width: 100vw !important; }
+.min-vh-100 { min-height: 100vh !important; }
 
-.h-75 {
-  height: 75% !important;
-}
+.vw-100 { width: 100vw !important; }
+.vh-100 { height: 100vh !important; }
 
-.h-100 {
-  height: 100% !important;
-}
-
-.mw-100 {
-  max-width: 100% !important;
-}
-
-.mh-100 {
-  max-height: 100% !important;
-}
 
 /*----------  Custom Classes  ----------*/
 .mw-none {

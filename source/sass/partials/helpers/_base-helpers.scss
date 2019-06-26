@@ -1,9 +1,3 @@
-.container {
-	&.container--small {
-		max-width: rem-calc(800px);
-	}
-}
-
 /*===============================
 =            Default            =
 ===============================*/
@@ -89,7 +83,7 @@ p:empty {
 // }
 
 // [class*="col-xl-"] {
-// 	@include breakpoint( $lg_max ) {
+// 	@include media-breakpoint-down( lg ) {
 // 		margin-bottom: 10vw; // don't change, changing this will affect other sections
 // 		&:last-child {
 // 			margin-bottom: 0;
@@ -98,7 +92,7 @@ p:empty {
 // }
 
 // [class*="col-lg-"], [class*="col-xl-"] {
-// 	@include breakpoint( $md_max ) {
+// 	@include media-breakpoint-down( md ) {
 // 		margin-bottom: 90px;
 // 		&:last-child {
 // 			margin-bottom: 0;
@@ -107,7 +101,7 @@ p:empty {
 // }
 
 // [class*="col-md-"], [class*="col-lg-"] {
-// 	@include breakpoint( $sm_max ) {
+// 	@include media-breakpoint-down( sm ) {
 // 		margin-bottom: 50px;
 // 		&:last-child {
 // 			margin-bottom: 0;
@@ -116,7 +110,7 @@ p:empty {
 // }
 
 // [class*="col-sm"], [class*="col-md"], [class*="col-lg"] {
-// 	@include breakpoint( $xs ) {
+// 	@include media-breakpoint-down( xs ) {
 // 		margin-bottom: 50px;
 // 		&:last-child {
 // 			margin-bottom: 0;
@@ -154,7 +148,7 @@ html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal {
 /*----------  Swiper Arrow Navigation  ----------*/
 // .swiper-arrow-navigation {
 // 	.btn {
-// 		color: $brand_color_primary;
+// 		color: $primary;
 // 		position: absolute;
 // 		@include transition( .2s ease-in-out );
 // 		&.swiper-button-disabled {

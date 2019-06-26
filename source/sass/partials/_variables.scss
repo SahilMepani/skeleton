@@ -1,74 +1,65 @@
-$red                   : #ff2500;
-$black                 : #2c2c2c;
-
-$brand_color_primary   : $red;
-$brand_color_secondary : $black;
+// Globals
+$global_margin_bottom : 3rem; // p, table, ul, ol, dl, dd, pre, blockquote, address
+$global_line_height   : 1.66; // p, pre, blockquote, address, dt, textarea
 
 
-/*===============================
-=            Globals            =
-===============================*/
-$global_margin_bottom    : 30px; /* p, table, ul, ol, dl, dd, pre, blockquote, address */
-$global_margin_bottom_lg : 2vw; /* p, table, ul, ol, dl, dd, pre, blockquote, address */
-$global_line_height      : 1.66; /* p, pre, blockquote, address, dt, textarea */
+// Colors
+$white     : #fff;
+$black     : #000;
+$red       : #ff2500;
+$primary   : $red;
+$secondary : $black;
 
 
-/*=============================
-=            Links            =
-=============================*/
+// Links
 $base_link_color            : $red;
 $base_link_hover_color      : $black;
 $base_link_decoration       : none;
 $base_link_hover_decoration : none;
 
 
-/*===================================
-=            Font Family            =
-===================================*/
+// Font family
 $lato      : Lato, sans-serif;
 $monospace : Menlo, Monaco, Consolas, "Courier New", monospace;
 
 
-/*============================
-=            Root            =
-============================*/
+// Root font size
 $root_font_size : 10px; // never change this value
 
 
-/*============================
-=            Body            =
-============================*/
-$base_bg_color    : #fff;
-$base_color       : #444;
-$base_font_weight : 400;
-$base_font_family : $lato;
-$base_line_height : 1;
+// Body
+$body_bg_color    : #fff;
+$body_color       : #444;
+$body_font_weight : 400;
+$body_font_family : $lato;
+$body_line_height : 1;
 
 
-/*================================
-=            Headings            =
-================================*/
+$font-weight-lighter : lighter;
+$font-weight-light   : 300;
+$font-weight-normal  : 400;
+$font-weight-bold    : 700;
+$font-weight-bolder  : bolder;
+
+
+// Headings
 $headings_color         : inherit;
 $headings_font_family   : inherit;
 $headings_font_weight   : 700;
 $headings_line_height   : 1.4;
 $headings_margin_top    : $global_margin_bottom*2;
 $headings_margin_bottom : $global_margin_bottom;
-$headings_margin_top_lg    : $global_margin_bottom_lg*2;
-$headings_margin_bottom_lg : $global_margin_bottom_lg;
 
 
-/*=============================================
-=            Inputs & GravityForms            =
-=============================================*/
+// Inputs
 $input_bg_color          : #fff;
 $input_color             : #444;
-$input_line_height       : 1.2; /* used for btn mixin, so when input is next to btn they have same height */
+$input_line_height       : 1.2; // used for btn mixin, so when input is next to btn they have same height
 $input_min_width         : auto;
-$input_padding_x_xs      : rem-calc(15px); /* left and right for mobile */
-$input_padding_x_md      : rem-calc(15px); /* left and right for desktop */
-$input_padding_y_xs      : rem-calc(20px); /* top and bottom for mobile  */
-$input_padding_y_md      : rem-calc(20px); /* top and bottom for desktop  */
+$input_padding_x_xs      : rem-calc(15px); // left and right for mobile
+$input_padding_x_md      : rem-calc(15px); // left and right for desktop
+$input_padding_y_xs      : rem-calc(20px); // top and bottom for mobile
+$input_padding_y_md      : rem-calc(20px); // top and bottom for desktop
 $input_border_width      : rem-calc(1px);
 $input_border_color      : #666;
 $input_focus_border      : #000;
@@ -78,10 +69,7 @@ $input_border_radius     : 0;
 $input_transition        : none;
 
 
-/*=============================
-=            Icons            =
-=============================*/
-/* Defaults */
+// Icons,
 $i_menu             : '\e62f';
 $i_search           : '\e612';
 $i_cross            : '\e62e';
@@ -94,7 +82,7 @@ $i_mail             : '\e613';
 $i_play             : '\e900';
 $i_play_circle      : '\e602';
 $i_tick             : '\e61d';
-/* Arrows */
+// Arrows
 $i_chevron_down     : '\e615';
 $i_chevron_up       : '\e617';
 $i_chevron_left     : '\e616';
@@ -105,7 +93,7 @@ $i_arrow_left       : '\e094';
 $i_arrow_right      : '\e095';
 $i_dropdown         : $i_chevron_down;
 $i_go_top           : '\e61c';
-/* Social */
+// Socials
 $i_facebook         : '\e907';
 $i_twitter          : '\e631';
 $i_instagram        : '\e905';
@@ -113,36 +101,42 @@ $i_gplus            : '\e627';
 $i_youtube          : '\e634';
 $i_pinterest        : '\e62d';
 $i_linkedin         : '\e62b';
-/* Project Specific */
+// Project specific
 
 
-/*======================================
-=            Text Selection            =
-======================================*/
+// Text selection
 $text_selection_bg_color : #F7EA6F;
 $text_selection_color    : #2c2c2c;
 
 
-/*===============================
-=            Z-index            =
-===============================*/
-$zindex-dropdown:          1000 !default;
-$zindex-sticky:            1020 !default;
-$zindex-fixed:             1030 !default;
-$zindex-modal-backdrop:    1040 !default;
-$zindex-modal:             1050 !default;
-$zindex-popover:           1060 !default;
-$zindex-tooltip:           1070 !default;
+// This variable affects the `.pt-*` and `.mb-*` classes etc.
+$spacers : (
+	0 : 0,
+	1 : 1rem,
+	2 : 2rem,
+	3 : 3rem,
+	4 : 4rem,
+	5 : 5rem,
+	6 : 6rem,
+	7 : 7rem,
+	8 : 8rem,
+	9 : 9rem,
+	10 : 10rem,
+	11 : 11rem,
+	12 : 12rem,
+	13 : 13rem,
+	14 : 14rem,
+	15 : 15rem,
+	16 : 16rem,
+	17 : 17rem,
+	18 : 18rem,
+	19 : 19rem,
+	20 : 20rem,
+);
 
 
-/*===================================
-=            Breakpoints            =
-===================================*/
-/* Orientation */
-$portrait: orientation portrait;
-$landscape: orientation landscape;
-
-/* Min Width */
+// Breakpoints - Min width
+$xs      : 0; // do not change
 $min_375 : 375px;
 $min_414 : 414px;
 $sm      : 576px;
@@ -156,37 +150,83 @@ $three_k : 2560px;
 $four_k  : 3840px;
 $mac_13  : ($md) (max-height 800px);
 
-/* Max Width */
-$xs      : max-width ($sm - 1);
-$xs_max  : $xs;
-$sm_max  : max-width ($md - 1);
-$md_max  : max-width ($lg - 1);
-$lg_max  : max-width ($xl - 1);
-$xl_max  : max-width ($lg - 1);
 
-/* Range */
-$sm_range : $sm $sm_max;
-$md_range : $md $md_max;
-$lg_range : $lg $lg_max;
+// It changes depending on the project, used on html
+$mobile: $min_375; // mobile design layout size
+$desktop: $two_k; // desktop design layout size
 
 
-/*----------  Base Scale Desktop  ----------*/
-$mobile: $min_375;
-$desktop: $two_k;
-
-/* Arrays */
-// breakpoint variable array, length must match below variable.
-$ar_bp             : $xs, $sm, $md, $lg, $xl, $xxl, $desktop;
-// breakpoint classes for loop, length must match below variable.
-$ar_bp_classes     : xs, sm, md, lg, xl, xxl, desktop;
-// breakpoint variable array, different order used for specificty
-$ar_bp_max         : $desktop, $xl_max, $lg_max, $md_max, $sm_max, $xs;
-// breakpoint classes for loop
-$ar_bp_max_classes : desktop, xl-max, lg-max, md-max, sm-max, xs;
+// Breakpoints - Map
+$grid-breakpoints : (
+	xs  : $xs,
+	sm  : $sm,
+	md  : $md,
+	lg  : $lg,
+	xl  : $xl,
+	xxl : $xxl,
+);
 
 
-/*===============================
-=            Gutters            =
-===============================*/
-/* total array length needs to be 15 */
-$ar_gutter : 1rem, 2rem, 3rem, 4rem, 5rem, 6rem, 7rem, 8rem, 9rem, 10rem, 11rem, 12rem, 13rem, 14rem, 15rem, 16rem, 17rem, 18rem, 19rem, 20rem;
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+$enable-grid-classes : true;
+$grid-columns        : 12;
+$grid-gutter-width   : 1.5rem; // it gets divided by half per column
+
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+$container-max-widths: (
+	sm : 540px,
+	md : 720px,
+	lg : 960px,
+	xl : 1140px,
+);
+
+
+// Embed aspect ratio
+$embed-responsive-aspect-ratios: (
+  (21 9),
+  (16 9),
+  (4 3),
+  (1 1),
+);
+
+
+// This variable affects the `.h-*` and `.w-*` classes.
+$sizes: (
+	25   : 25%,
+	50   : 50%,
+	75   : 75%,
+	100  : 100%,
+	auto : auto
+);
+
+
+// Breakpoints - Orientation
+$portrait: orientation portrait;
+$landscape: orientation landscape;
+
+
+// Z-index
+$zindex-dropdown       : 1000;
+$zindex-sticky         : 1020;
+$zindex-fixed          : 1030;
+$zindex-modal-backdrop : 1040;
+$zindex-modal          : 1050;
+$zindex-popover        : 1060;
+$zindex-tooltip        : 1070;
+
+
+// Utilities
+$displays  : none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex;
+$overflows : auto, hidden;
+$positions : static, relative, absolute, fixed, sticky;
+
+
+// Printing
+$enable-print-styles  : true;
+$print-page-size      : a3;
+$print-body-min-width : map-get($grid-breakpoints, "lg");

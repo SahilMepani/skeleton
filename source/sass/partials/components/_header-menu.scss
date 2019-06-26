@@ -16,7 +16,7 @@
 }
 
 .header__nav-toggle {
-	@include breakpoint( $md_max ) {
+	@include media-breakpoint-down( md ) {
 		background: red;
 		color: #fff;
 		text-decoration: none;
@@ -41,7 +41,7 @@
 }
 
 .header__nav-close {
-	@include breakpoint( $md_max ) {
+	@include media-breakpoint-down( md ) {
 	  background: none;
 		text-decoration: none;
 		border: none;
@@ -78,7 +78,7 @@ $mobile_parent_menu_link_hover_bg_color: rgba(0,0,0,.1);
 $mobile_parent_menu_link_hover_color: #000;
 $mobile_parent_menu_item_padding_y: 13px;
 $mobile_parent_menu_item_padding_x: 20px;
-$mobile_parent_menu_current_item_link_bg_color: $brand_color_primary;
+$mobile_parent_menu_current_item_link_bg_color: $primary;
 $mobile_parent_menu_current_item_link_color: #fff;
 $mobile_parent_menu_dropdown_bg_color: #fff;
 $mobile_parent_menu_dropdown_icon_color: #000;
@@ -95,7 +95,7 @@ $mobile_sub_menu_link_padding_y: 13px;
 $mobile_sub_menu_link_padding_x: $mobile_parent_menu_item_padding_x; //usually this is same as parent menu
 
 .header__nav {
-	@include breakpoint( $md_max ) {
+	@include media-breakpoint-down( md ) {
 		background-color: $mobile_sidebar_bg_color;
 		width: 100%;
 		padding: 50px 0 40px;
@@ -122,7 +122,7 @@ $mobile_sub_menu_link_padding_x: $mobile_parent_menu_item_padding_x; //usually t
 }
 
 .header__nav__parent-menu {
-	@include breakpoint( $md_max ) {
+	@include media-breakpoint-down( md ) {
 	  > li {
 			border-bottom: $mobile_parent_menu_item_border_bottom;
 			> a {
@@ -147,7 +147,7 @@ $mobile_sub_menu_link_padding_x: $mobile_parent_menu_item_padding_x; //usually t
 		}
 		> li.menu-item-has-children {
 			position: relative;
-			&:hover, &:focus {
+			&:hover {
 				> a {
 
 				}
@@ -188,7 +188,7 @@ $mobile_sub_menu_link_padding_x: $mobile_parent_menu_item_padding_x; //usually t
 }
 
 .header__nav .sub-menu {
-	@include breakpoint( $md_max ) {
+	@include media-breakpoint-down( md ) {
 	  background: $mobile_sub_menu_bg_color;
 	  height: 0;
 	  visibility: hidden;
@@ -207,7 +207,7 @@ $mobile_sub_menu_link_padding_x: $mobile_parent_menu_item_padding_x; //usually t
 				display: block;
 				padding: $mobile_sub_menu_link_padding_y $mobile_sub_menu_link_padding_x $mobile_sub_menu_link_padding_y ($mobile_sub_menu_link_padding_x + 15px);
 				text-decoration: none;
-				&:hover, &:focus {
+				&:hover {
 					background: $mobile_sub_menu_link_hover_bg_color;
 					color: $mobile_sub_menu_link_hover_color;
 				}
@@ -226,7 +226,7 @@ $desktop_parent_menu_link_hover_bg_color: #ddd;
 $desktop_parent_menu_link_hover_color: #000;
 $desktop_parent_menu_item_padding_y: rem-calc( 15px );
 $desktop_parent_menu_item_padding_x: rem-calc( 20px );
-$desktop_parent_menu_current_item_link_bg_color: $brand_color_primary;
+$desktop_parent_menu_current_item_link_bg_color: $primary;
 $desktop_parent_menu_current_item_link_color: #fff;
 $desktop_parent_menu_dropdown_icon_color: #999;
 $desktop_parent_menu_dropdown_icon_border: rem-calc( 5px );
@@ -254,7 +254,7 @@ $desktop_sub_menu_link_height: rem-calc( 36px ); //req for animation, manually c
 				color: $desktop_parent_menu_link_color;
 				display: block;
 				padding: $desktop_parent_menu_item_padding_y $desktop_parent_menu_item_padding_x;
-				&:hover, &:focus {
+				&:hover {
 					background-color: $desktop_parent_menu_link_hover_bg_color;
 					color: $desktop_parent_menu_link_hover_color;
 				}
@@ -278,7 +278,7 @@ $desktop_sub_menu_link_height: rem-calc( 36px ); //req for animation, manually c
 					margin-top: rem-calc( -2px );
 				}
 			}
-			&:hover, &:focus {
+			&:hover {
 				> a {
 					color: $desktop_parent_menu_link_hover_color;
 				}
@@ -290,7 +290,7 @@ $desktop_sub_menu_link_height: rem-calc( 36px ); //req for animation, manually c
 							height: $desktop_sub_menu_link_height;
 							padding-top: $desktop_sub_menu_link_padding_y;
 							padding-bottom: $desktop_sub_menu_link_padding_y;
-							&:hover, &:focus {
+							&:hover {
 								background-color: $desktop_sub_menu_link_hover_bg_color;
 								color: $desktop_sub_menu_link_hover_color;
 							}

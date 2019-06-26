@@ -27,7 +27,7 @@
 				@include scale(1.1);
 			}
 		}
-		&:hover, &:focus {
+		&:hover {
 			transition: .4s cubic-bezier(.33,0,.2,1);
 			-webkit-backface-visibility: hidden;
 			backface-visibility: hidden;
@@ -43,9 +43,9 @@
 	line-height: 1.3;
 	margin-bottom: rem-calc( 5px );
 	a {
-		color: $base_color;
-		&:hover, &:focus {
-			color: $brand_color_primary;
+		color: $body_color;
+		&:hover {
+			color: $primary;
 		}
 	}
 }
@@ -58,7 +58,7 @@
 	overflow: hidden;
 	a {
 		color: #999;
-		&:hover, &:focus {
+		&:hover {
 			color: $base_link_color;
 			text-decoration: underline;
 		}

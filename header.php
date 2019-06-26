@@ -5,9 +5,9 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title><?php wp_title( '-', true, 'right' ); ?></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="shortcut icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/favicon.png">
-	<!-- remove below link if google font is not used -->
+	<!-- remove below link if google fonts are not used -->
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="profile" href="http://gmpg.org/xfn/11" />
   <?php if ( is_singular() && pings_open( get_queried_object() ) ) : ?>

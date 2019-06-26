@@ -31,7 +31,7 @@
 }
 
 .scroll-to-top {
-	@include breakpoint( $xs ) {
+	@include media-breakpoint-down( xs ) {
 	  display: none !important;
 	}
 	@include breakpoint( $sm ) {

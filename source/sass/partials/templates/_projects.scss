@@ -35,7 +35,7 @@
     }
     &.js-active {
       a {
-        background-color: $brand_color_primary;
+        background-color: $primary;
         color: #fff;
         text-decoration: none;
       }
@@ -49,11 +49,11 @@
     padding: 10px 20px;
     text-transform: uppercase;
     text-decoration: none;
-    &:hover, &:focus {
+    &:hover {
       color: red;
     }
     &.active {
-      background-color: $brand_color_primary;
+      background-color: $primary;
       color: #fff;
       text-decoration: none;
     }
@@ -72,7 +72,7 @@
     margin-bottom: 12px;
   }
   .post-link {
-    color: $base_color;
+    color: $body_color;
     display: block;
   }
   aside.thumbnail {

@@ -75,24 +75,22 @@
 @import "partials/plugins/tribe-events/tribe_base";
 // @import "partials/plugins/yoast-breadcrumbs";
 
-// Bootstrap Content
-@import "partials/bootstrap/content/typography.scss";
-@import "partials/bootstrap/content/images.scss";
-@import "partials/bootstrap/content/figures.scss";
 
 // Bootstrap Utilities
+@import "partials/bootstrap/utilities/align.scss";
+@import "partials/bootstrap/utilities/background.scss";
 @import "partials/bootstrap/utilities/clearfix.scss";
 @import "partials/bootstrap/utilities/display.scss";
 @import "partials/bootstrap/utilities/embed.scss";
 @import "partials/bootstrap/utilities/flex.scss";
 @import "partials/bootstrap/utilities/float.scss";
-@import "partials/bootstrap/utilities/image-replacement.scss";
+@import "partials/bootstrap/utilities/overflow.scss";
 @import "partials/bootstrap/utilities/position.scss";
 @import "partials/bootstrap/utilities/screenreaders.scss";
 @import "partials/bootstrap/utilities/sizing.scss";
 @import "partials/bootstrap/utilities/spacing.scss";
+@import "partials/bootstrap/utilities/stretched-links.scss";
 @import "partials/bootstrap/utilities/text.scss";
-@import "partials/bootstrap/utilities/vertical-align.scss";
 @import "partials/bootstrap/utilities/visibility.scss";
 
 // Helpers
@@ -101,7 +99,7 @@
 @import "partials/helpers/buttons";
 // @import "partials/helpers/icons";
 @import "partials/helpers/helpers";
-@import "partials/helpers/keyframes";
+// @import "partials/helpers/keyframes";
 // @import "partials/helpers/base64";
 
 // Last minute changes

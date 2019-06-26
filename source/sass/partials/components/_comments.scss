@@ -55,11 +55,11 @@
 			top: 10px;
 			right: 10px;
 			a {
-				color: lighten($base_color, 20%);
+				color: lighten($body_color, 20%);
 				&.comment-edit-link {
 					color: $base_link_color;
 				}
-				&:hover, &:focus {
+				&:hover {
 					text-decoration: underline;
 				}
 			}
@@ -70,7 +70,7 @@
 		.reply {
 			margin-bottom: 5px;
 			a {
-					&:hover, &:focus {
+					&:hover {
 						text-decoration: underline;
 					}
 			}
@@ -93,7 +93,7 @@
 		}
 	}
 	//Breakpoint
-	@include breakpoint( $sm_max ) {
+	@include media-breakpoint-down( sm ) {
 		li.comment, li.trackback, li.pingback {
 			ul.children, #respond {
 				margin-left: -64px;
@@ -123,7 +123,7 @@
 #reply-title {
 	font-size: 20px;
 	margin-bottom: 5px;
-	@include breakpoint( $sm_max ) {
+	@include media-breakpoint-down( $md ) {
 		small {
 			display: block;
 		}
@@ -172,7 +172,7 @@
 	}
 	.comment-notes, .form-allowed-tags {
 		//p.comment-notes
-		color: lighten($base_color, 20%);
+		color: lighten($body_color, 20%);
 		font-size: 13px;
 	}
 	.comment-form-comment {

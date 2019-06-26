@@ -21,7 +21,7 @@
 				font-size: 24px;
 				display: block; // cross browser fix
 			}
-			&:hover, &:focus {
+			&:hover {
 				color: #fff;
 				text-decoration: none;
 			}
@@ -73,7 +73,7 @@
 // 				font-size: 48px;
 // 				display: block; // cross browser fix
 // 			}
-// 			&:hover, &:focus {
+// 			&:hover {
 // 				text-decoration: none;
 // 				.tooltip {
 // 					visibility: visible;
@@ -87,7 +87,7 @@
 // 				opacity: 0;
 // 				background-color: #333;
 // 				color: #fff;
-// 				font: 20px $base_font_family; //must use font shorthand to overwrite above
+// 				font: 20px $body_font_family; //must use font shorthand to overwrite above
 // 				text-align: center;
 // 				padding: 10px 20px;
 // 				position: absolute;

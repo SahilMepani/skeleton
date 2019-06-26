@@ -10,7 +10,7 @@
 		margin-bottom: rem-calc(30px);
 	}
 	a {
-		color: $base_color;
+		color: $body_color;
 		box-shadow: 0 0 rem-calc(5px) rgba(0,0,0,.1);
 		&:focus {
 			outline: none;
@@ -61,7 +61,7 @@
       margin-bottom: 0;
       &.slick-active {
         button {
-          background-color: $brand_color_primary;
+          background-color: $primary;
         }
       }
     }

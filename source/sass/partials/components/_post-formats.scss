@@ -6,9 +6,6 @@
 
 .gallery-item {
 	margin: 0 0 $global_margin_bottom !important; /* Overwrite default css */
-	@include breakpoint( $lg ) {
-	  margin-bottom: $global_margin_bottom_lg !important;
-	}
 }
 
 .gallery-icon img {
@@ -42,9 +39,6 @@
 	box-shadow: 0 0 2px rgba(0,0,0,.15);
 	a {
 		display: block; // Containing the Image
-	}
-	@include breakpoint( $lg ) {
-	  margin-bottom: $global_margin_bottom_lg;
 	}
 }
 

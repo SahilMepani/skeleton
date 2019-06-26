@@ -6,7 +6,7 @@
 	.fixed-col {
 		padding: 0 5vw;
 	}
-	@include breakpoint( $sm_max ) {
+	@include media-breakpoint-down( sm ) {
 		.fixed-col {
 			margin-bottom: rem-calc(50px);
 		}
@@ -30,7 +30,7 @@
 			width: 50%;
 		}
 	}
-	@include breakpoint( ($md) ($md_max) ) {
+	@include media-breakpoint-only( md ) {
 		.fluid-col {
 			background: none !important;
 		}

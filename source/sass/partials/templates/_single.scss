@@ -26,7 +26,7 @@
 			color: #2c2c2c;
 			text-decoration: none;
 			&:hover {
-				color: $brand_color_primary;
+				color: $primary;
 			}
 		}
 		.old-post {
@@ -92,7 +92,7 @@
 		border: 1px solid #e7e7e7;
 		margin-left: 4px;
 	}
-	a:hover, &:focus, .current {
+	a:hover, .current {
 		background: $base_link_color;
 		color: #fff;
 	}
@@ -106,9 +106,6 @@
 	margin-bottom: $global_margin_bottom;
 	overflow: hidden;
 	box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #fff;
-	@include breakpoint( $lg ) {
-	  margin-bottom: $global_margin_bottom_lg;
-	}
 }
 .author-info {
 	overflow: hidden;

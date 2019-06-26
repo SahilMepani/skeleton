@@ -12,7 +12,7 @@
     position: relative;
     &:after {
       content: '/';
-      color: $base_color;
+      color: $body_color;
       position: absolute;
       right: 4px;
     }

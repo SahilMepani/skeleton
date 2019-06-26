@@ -100,7 +100,7 @@
 		}
 		&:hover {
 			&:before {
-				color: $brand_color_primary;
+				color: $primary;
 			}
 		}
 	}
@@ -170,8 +170,8 @@
 		}
 		a {
 			color: #999;
-			&:hover, &:focus {
-				color: $brand_color_primary;
+			&:hover {
+				color: $primary;
 				text-decoration: underline;
 			}
 		}
@@ -183,19 +183,19 @@
 		margin-bottom: rem-calc( 10px );
 		a {
 			color: $headings_color;
-			&:hover, &:focus {
-				color: $brand_color_primary;
+			&:hover {
+				color: $primary;
 				text-decoration: underline;
 			}
 		}
 	}
 	.more-link {
-		color: $brand_color_primary;
+		color: $primary;
 		font-weight: 700;
 		border-bottom: rem-calc( 1px ) solid transparent;
 		&:hover {
-			color: $base_color;
-			border-bottom-color: $base_color;
+			color: $body_color;
+			border-bottom-color: $body_color;
 		}
 	}
 	@include breakpoint( $md ) {

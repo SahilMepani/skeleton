@@ -41,9 +41,6 @@
 		bottom: 0;
 		z-index: 1;
 	}
-	@include breakpoint( $lg ) {
-	  margin-bottom: $global_margin_bottom_lg;
-	}
 }
 /*==========  End of Search  ==========*/
 
@@ -92,12 +89,12 @@
 		padding: 9px;
 	}
 	#today {
-		background-color: $brand_color_primary;
+		background-color: $primary;
 		color: #fff;
 	}
 	#prev, #next {
 		a {
-			background-color: $brand_color_primary;
+			background-color: $primary;
 			color: #fff;
 			padding: 5px 10px;
 			&:hover {

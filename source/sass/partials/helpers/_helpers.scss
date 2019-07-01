@@ -2,9 +2,9 @@
   background-color: #f9f9f9;
 }
 
-/*===============================
-=            Default            =
-===============================*/
+/*================================
+=            Required            =
+================================*/
 
 /*----------  Miscellaneous  ----------*/
 .img-responsive, .alignnone, .alignleft, .alignright, .aligncenter, .wp-post-image {
@@ -24,15 +24,6 @@
 .limit-content {
   @include rem(max-width, 1000px);
   margin: 0 auto;
-}
-
-/*----------  Background  ----------*/
-.bg-cover {
-  @include bg-cover;
-}
-
-.bg-overlay {
-  @include bg-overlay;
 }
 
 

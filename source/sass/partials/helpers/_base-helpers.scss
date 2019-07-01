@@ -1,29 +1,8 @@
-/*===============================
-=            Default            =
-===============================*/
+/*----------  Default  ----------*/
 h1 + h1, h1 + h2, h1 + h3, h1 + h4, h1 + h5, h1 + h6, h2 + h2, h2 + h1, h2 + h3, h2 + h4, h2 + h5, h2 + h6, h3 + h3, h3 + h1, h3 + h2, h3 + h4, h3 + h5, h3 + h6, h4 + h4, h4 + h1, h4 + h2, h4 + h3, h4 + h5, h4 + h6, h5 + h5, h5 + h1, h5 + h2, h5 + h3, h5 + h4, h4 + h6, h6 + h6, h6 + h1, h6 + h2, h6 + h3, h6 + h4, h6 + h5,  {
 	margin-top: 0;
 }
 
-/*----------  Background Video  ----------*/
-.bg-video {
-	position: absolute;
-	left: 0;
-	top: 0;
-	-o-object-fit: fill;
-	object-fit: cover;
-	overflow: hidden;
-}
-
-.bg-video--fullscreen, .bg-video--cover {
-  min-width: 100%;
-  min-height: 100%;
-}
-
-.bg-video--inline, .bg-video--contain {
-  max-width: 100%;
-  min-width: 100%;
-}
 
 /*----------  Alert  ----------*/
 .alert {
@@ -58,7 +37,7 @@ h1 + h1, h1 + h2, h1 + h3, h1 + h4, h1 + h5, h1 + h6, h2 + h2, h2 + h1, h2 + h3,
 }
 
 p:empty {
-	display: none; //added by wp-editor
+	display: none; // added by wp-editor
 }
 
 .btn {
@@ -197,24 +176,24 @@ p:empty {
 // }
 
 /*----------  Slick Dots  ----------*/
-.slick-dots {
-	@include list-unstyled;
-	li {
-		display: inline-block;
-		margin: 0 rem-calc(10px) 0 0;
-		position: relative;
-		&.slick-active {
-			button {
-				background-color: #fff;
-			}
-		}
-	}
-	button {
-		@include btn;
-		@include hide-text;
-		background-color: rgba(255,255,255,.5);
-		width: rem-calc(10px);
-		height: rem-calc(10px);
-		border-radius: 50%;
-	}
-}
+// .slick-dots {
+// 	@include list-unstyled;
+// 	li {
+// 		display: inline-block;
+// 		margin: 0 rem-calc(10px) 0 0;
+// 		position: relative;
+// 		&.slick-active {
+// 			button {
+// 				background-color: #fff;
+// 			}
+// 		}
+// 	}
+// 	button {
+// 		@include btn;
+// 		@include hide-text;
+// 		background-color: rgba(255,255,255,.5);
+// 		width: rem-calc(10px);
+// 		height: rem-calc(10px);
+// 		border-radius: 50%;
+// 	}
+// }

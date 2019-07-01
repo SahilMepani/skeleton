@@ -24,8 +24,8 @@
 @import "partials/normalize";
 @import "partials/base-selectors";
 
-// Bootstrap Grid
-@import "partials/bootstrap/grid.scss";
+// Grid
+@import "partials/grid.scss";
 
 // Javascript
 @import "partials/js/slick";
@@ -76,22 +76,22 @@
 // @import "partials/plugins/yoast-breadcrumbs";
 
 
-// Bootstrap Utilities
-@import "partials/bootstrap/utilities/align.scss";
-@import "partials/bootstrap/utilities/background.scss";
-@import "partials/bootstrap/utilities/clearfix.scss";
-@import "partials/bootstrap/utilities/display.scss";
-@import "partials/bootstrap/utilities/embed.scss";
-@import "partials/bootstrap/utilities/flex.scss";
-@import "partials/bootstrap/utilities/float.scss";
-@import "partials/bootstrap/utilities/overflow.scss";
-@import "partials/bootstrap/utilities/position.scss";
-@import "partials/bootstrap/utilities/screenreaders.scss";
-@import "partials/bootstrap/utilities/sizing.scss";
-@import "partials/bootstrap/utilities/spacing.scss";
-@import "partials/bootstrap/utilities/stretched-links.scss";
-@import "partials/bootstrap/utilities/text.scss";
-@import "partials/bootstrap/utilities/visibility.scss";
+// Utilities
+@import "partials/utilities/align.scss";
+@import "partials/utilities/background.scss";
+@import "partials/utilities/clearfix.scss";
+@import "partials/utilities/display.scss";
+@import "partials/utilities/embed.scss";
+@import "partials/utilities/flex.scss";
+@import "partials/utilities/float.scss";
+@import "partials/utilities/overflow.scss";
+@import "partials/utilities/position.scss";
+@import "partials/utilities/screenreaders.scss";
+@import "partials/utilities/sizing.scss";
+@import "partials/utilities/spacing.scss";
+@import "partials/utilities/stretched-links.scss";
+@import "partials/utilities/text.scss";
+@import "partials/utilities/visibility.scss";
 
 // Helpers
 @import "partials/helpers/table";

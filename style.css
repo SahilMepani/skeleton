@@ -1258,17 +1258,8 @@ body[data-aos-delay='3000'] [data-aos], [data-aos][data-aos][data-aos-delay='300
 
 body[data-aos-delay='3000'] [data-aos].animated, [data-aos][data-aos][data-aos-delay='3000'].animated { animation-delay: 3000ms; }
 
-/*===============================
-=            Default            =
-===============================*/
+/*----------  Default  ----------*/
 h1 + h1, h1 + h2, h1 + h3, h1 + h4, h1 + h5, h1 + h6, h2 + h2, h2 + h1, h2 + h3, h2 + h4, h2 + h5, h2 + h6, h3 + h3, h3 + h1, h3 + h2, h3 + h4, h3 + h5, h3 + h6, h4 + h4, h4 + h1, h4 + h2, h4 + h3, h4 + h5, h4 + h6, h5 + h5, h5 + h1, h5 + h2, h5 + h3, h5 + h4, h4 + h6, h6 + h6, h6 + h1, h6 + h2, h6 + h3, h6 + h4, h6 + h5 { margin-top: 0; }
-
-/*----------  Background Video  ----------*/
-.bg-video { position: absolute; left: 0; top: 0; -o-object-fit: fill; object-fit: cover; overflow: hidden; }
-
-.bg-video--fullscreen, .bg-video--cover { min-width: 100%; min-height: 100%; }
-
-.bg-video--inline, .bg-video--contain { max-width: 100%; min-width: 100%; }
 
 /*----------  Alert  ----------*/
 .alert, .gforms_confirmation_message, .validation_error, .gform_confirmation_message { background-color: #e5e5e5; padding: 2rem; border: 1px solid #ddd; margin-bottom: 3rem; }
@@ -1301,20 +1292,6 @@ p:empty { display: none; }
 /*----------  Scroll Reveal  ----------*/
 /*----------  Swiper Arrow Navigation  ----------*/
 /*----------  Slick Dots  ----------*/
-.slick-dots { margin-left: 0; }
-
-.slick-dots > li { list-style: none; }
-
-.slick-dots li { display: inline-block; margin: 0 1rem 0 0; position: relative; }
-
-.slick-dots li.slick-active button { background-color: #fff; }
-
-.slick-dots button { background: transparent; font-weight: 400; line-height: 1.2; text-align: center; text-decoration: none; vertical-align: middle; display: inline-block; border: none; padding: 0; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-clip: padding-box; transition-property: background, color, border-color; transition-duration: .2s; font: 0/0 a; color: transparent; text-shadow: none; background-color: transparent; border: 0; background-color: rgba(255, 255, 255, 0.5); width: 1rem; height: 1rem; border-radius: 50%; }
-
-.slick-dots button:hover { transition-duration: .1s; text-decoration: none; }
-
-.slick-dots button:focus { outline: none; }
-
 #header { background-color: #f9f9f9; padding-top: 1rem; padding-bottom: 1rem; }
 
 .header__logo { width: 15.1rem; height: 2.5rem; position: relative; float: left; margin-top: 1.5rem !important; margin-bottom: 0; }
@@ -2259,6 +2236,20 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 .bg-white { background-color: #fff !important; }
 
 .bg-transparent { background-color: transparent !important; }
+
+.bg-video { position: absolute; left: 0; top: 0; -o-object-fit: fill; object-fit: cover; overflow: hidden; }
+
+.bg-video-fullscreen, .bg-video-cover { min-width: 100%; min-height: 100%; }
+
+.bg-video-inline, .bg-video-contain { max-width: 100%; min-width: 100%; }
+
+.bg-cover { background-repeat: no-repeat; background-position: center; background-size: cover; }
+
+.bg-overlay { position: relative; }
+
+.bg-overlay:before { content: ''; display: block; position: absolute; left: 0; right: 0; top: 0; bottom: 0; }
+
+.bg-contain { background-size: contain; }
 
 .clearfix:before, .clearfix:after { content: " "; display: table; }
 
@@ -5049,9 +5040,9 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 
 .bg-grey { background-color: #f9f9f9; }
 
-/*===============================
-=            Default            =
-===============================*/
+/*================================
+=            Required            =
+================================*/
 /*----------  Miscellaneous  ----------*/
 .img-responsive, .alignnone, .alignleft, .alignright, .aligncenter, .wp-post-image { width: auto; height: auto; }
 
@@ -5062,13 +5053,6 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 .list-unstyled > li { list-style: none; }
 
 .limit-content { max-width: 100rem; margin: 0 auto; }
-
-/*----------  Background  ----------*/
-.bg-cover { background-repeat: no-repeat; background-position: center; background-size: cover; }
-
-.bg-overlay { position: relative; }
-
-.bg-overlay:before { content: ''; display: block; position: absolute; left: 0; right: 0; top: 0; bottom: 0; }
 
 /*----------  Icon fonts  ----------*/
 .i-font-before:before { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }

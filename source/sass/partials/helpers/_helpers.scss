@@ -40,14 +40,3 @@
 }
 
 /*----------  Text/Fonts  ----------*/
-.color-base { color: $body_color; }
-.color-primary { color: $primary !important; }
-.color-secondary { color: $secondary !important; }
-
-.text-underline { text-decoration: underline; }
-.text-family-heading { font-family: $headings_font_family; }
-.text-family-base { font-family: $body_font_family; }
-.text-lead, .text-big {
-  font-size: rem-calc(20px);
-}
-.text-small { @extend small; }

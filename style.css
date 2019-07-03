@@ -119,9 +119,13 @@ template { display: none; }
 /** Add the correct display in IE 10. */
 [hidden] { display: none; }
 
-@font-face { font-family: 'icomoon'; src: url("fonts/icomoon.eot?hus9j8"); src: url("fonts/icomoon.eot?hus9j8#iefix") format("embedded-opentype"), url("fonts/icomoon.ttf?hus9j8") format("truetype"), url("fonts/icomoon.woff?hus9j8") format("woff"), url("fonts/icomoon.svg?hus9j8#icomoon") format("svg"); font-weight: normal; font-style: normal; }
+.i-font { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-[class^="i-"], [class*=" i-"] { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+.i-font-before:before { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+.i-font-after:after { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+@font-face { font-family: 'icomoon'; src: url("fonts/icomoon.eot?hus9j8"); src: url("fonts/icomoon.eot?hus9j8#iefix") format("embedded-opentype"), url("fonts/icomoon.ttf?hus9j8") format("truetype"), url("fonts/icomoon.woff?hus9j8") format("woff"), url("fonts/icomoon.svg?hus9j8#icomoon") format("svg"); font-weight: normal; font-style: normal; }
 
 .i-location_searching:before { content: "\e90a"; }
 
@@ -846,7 +850,7 @@ button::-moz-focus-inner { padding: 0; border: 0; }
 
 .mfp-arrow:hover, .mfp-arrow:focus { opacity: 1; }
 
-.mfp-arrow:before { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; display: block; content: '\e616'; color: #fff; font-size: 4.8rem; position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
+.mfp-arrow:before { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; display: block; content: '\e616'; color: #fff; font-size: 4.8rem; position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
 
 .mfp-arrow-left { left: 0; }
 
@@ -995,7 +999,7 @@ img.mfp-img { width: auto; max-width: 100%; height: auto; display: block; line-h
 
 .jssocials-share i { margin-right: 1rem; }
 
-.jssocials-share i:before { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+.jssocials-share i:before { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
 .jssocials-share-email i:before { content: ""; }
 
@@ -1385,7 +1389,7 @@ h1 + h1, h1 + h2, h1 + h3, h1 + h4, h1 + h5, h1 + h6, h2 + h2, h2 + h1, h2 + h3,
 
 .custom-select-block select::-ms-expand { display: none; }
 
-.custom-select-block:after { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; font-size: 1.8rem; display: block; position: absolute; right: 1.5rem; top: 50%; z-index: -1; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%); }
+.custom-select-block:after { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; font-size: 1.8rem; display: block; position: absolute; right: 1.5rem; top: 50%; z-index: -1; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%); }
 
 p:empty { display: none; }
 
@@ -1492,7 +1496,7 @@ p:empty { display: none; }
 @media (max-width: 575.98px) { .scroll-to-top { display: none !important; } }
 
 @media (min-width: 576px) { .scroll-to-top { cursor: pointer; font: 0/0 a; color: transparent; text-shadow: none; background-color: transparent; border: 0; position: fixed; right: 3rem; bottom: 3rem; }
-  .scroll-to-top:before { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; color: #999; font-size: 4rem; } }
+  .scroll-to-top:before { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; color: #999; font-size: 4rem; } }
 
 /*----------  Buttons  ----------*/
 .btns-row > div { margin-bottom: 1rem; }
@@ -1521,7 +1525,7 @@ p:empty { display: none; }
 
 .list-accordions .heading { line-height: 1; text-decoration: none; padding: 2rem 4rem 2rem 0; border-bottom: 0.1rem solid #C8D0D6; margin-bottom: 0; position: relative; cursor: pointer; transition: .2s ease-out; }
 
-.list-accordions .heading:before { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; font-size: 2.4rem; color: #ff2500; line-height: 1; display: block; position: absolute; top: 50%; right: 0; margin: -1.2rem 0 0; transition: .2s ease-out; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); }
+.list-accordions .heading:before { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; font-size: 2.4rem; color: #ff2500; line-height: 1; display: block; position: absolute; top: 50%; right: 0; margin: -1.2rem 0 0; transition: .2s ease-out; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); }
 
 .list-accordions .content-block .inner-block { background-color: #f9f9f9; padding: 2rem 3rem 4rem; }
 
@@ -1552,7 +1556,7 @@ p:empty { display: none; }
 
 .fullscreen-slider-section .slick-arrow:focus { outline: none; }
 
-.fullscreen-slider-section .slick-arrow:before { content: ''; font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-size: 2.6rem; color: #fff; position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
+.fullscreen-slider-section .slick-arrow:before { content: ''; font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-size: 2.6rem; color: #fff; position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
 
 .fullscreen-slider-section .slick-arrow:hover { background: #000; }
 
@@ -1730,7 +1734,7 @@ p:empty { display: none; }
 
 .filters__item--search .submit-block { width: 4.5rem; position: absolute; right: 0; top: 0; bottom: 0; }
 
-.filters__item--search .submit-block:before { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; color: #ccc; font-size: 3rem; position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
+.filters__item--search .submit-block:before { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; color: #ccc; font-size: 3rem; position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
 
 .filters__item--search .submit-block input[type="submit"] { background: transparent; width: 100%; position: absolute; right: 0; top: 0; bottom: 0; }
 
@@ -1744,7 +1748,7 @@ p:empty { display: none; }
 
 .filters__item--search .clear-search:focus { outline: none; }
 
-.filters__item--search .clear-search:before { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; color: #999; font-size: 2.4rem; position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
+.filters__item--search .clear-search:before { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; color: #999; font-size: 2.4rem; position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
 
 .filters__item--search .clear-search.js-active { visibility: visible; opacity: 1; }
 
@@ -1900,7 +1904,7 @@ p:empty { display: none; }
 
 .name_prefix_select select::-ms-expand { display: none; }
 
-.name_prefix_select:after { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; font-size: 1.8rem; display: block; position: absolute; right: 1.5rem; top: 50%; z-index: -1; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%); }
+.name_prefix_select:after { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; font-size: 1.8rem; display: block; position: absolute; right: 1.5rem; top: 50%; z-index: -1; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%); }
 
 /*========================================
 =            Radio & Checkbox            =
@@ -1931,7 +1935,7 @@ p:empty { display: none; }
 
 .ginput_container_select select::-ms-expand { display: none; }
 
-.ginput_container_select:after { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; font-size: 1.8rem; display: block; position: absolute; right: 1.5rem; top: 50%; z-index: -1; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%); }
+.ginput_container_select:after { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; font-size: 1.8rem; display: block; position: absolute; right: 1.5rem; top: 50%; z-index: -1; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%); }
 
 .ginput_container_select select { width: 100%; }
 
@@ -1977,11 +1981,11 @@ p:empty { display: none; }
 
 .gform_wrapper .chosen-search { padding: 0.8rem 0.5rem; margin: 0; position: relative; }
 
-.gform_wrapper .chosen-search:after { content: ""; font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #000; font-size: 21px; right: 1.5rem; margin-top: -1rem; }
+.gform_wrapper .chosen-search:after { content: ""; font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #000; font-size: 21px; right: 1.5rem; margin-top: -1rem; }
 
 .gform_wrapper .chosen-search input { width: 100%; min-width: auto; padding: 1rem 3.5rem 1rem 1rem; border: #000; }
 
-@media (max-width: 991.98px) { .gform_wrapper:after { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; font-size: 1.8rem; display: block; position: absolute; right: 1.5rem; top: 50%; z-index: 1; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%); }
+@media (max-width: 991.98px) { .gform_wrapper:after { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; font-size: 1.8rem; display: block; position: absolute; right: 1.5rem; top: 50%; z-index: 1; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%); }
   .gform_wrapper .chosen-select { font-size: 1.6rem; letter-spacing: 0.1rem; padding-left: 1.5rem; border: rem-calc(1px) solid #666; padding-right: 1.5rem; max-width: 100%; width: 100%; text-transform: capitalize; } }
 
 .gform_wrapper .chosen-container { text-align: left; position: relative; }
@@ -2029,7 +2033,7 @@ p:empty { display: none; }
 =============================================*/
 .gform_wrapper .chosen-choices .search-field { margin-bottom: 0; position: relative; }
 
-.gform_wrapper .chosen-choices .search-field:before { content: ""; font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #000; font-size: 24px; display: block; position: absolute; right: 1rem; top: 50%; z-index: 10; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%); }
+.gform_wrapper .chosen-choices .search-field:before { content: ""; font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #000; font-size: 24px; display: block; position: absolute; right: 1rem; top: 50%; z-index: 10; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%); }
 
 .gform_wrapper .chosen-choices .search-field input { width: 100% !important; }
 
@@ -2043,7 +2047,7 @@ p:empty { display: none; }
 
 .gform_wrapper .chosen-choices .search-choice-close:hover:after { color: red; }
 
-.gform_wrapper .chosen-choices .search-choice-close:after { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; color: #000; font-size: 2rem; line-height: 2rem; position: relative; top: -0.2rem; }
+.gform_wrapper .chosen-choices .search-choice-close:after { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; color: #000; font-size: 2rem; line-height: 2rem; position: relative; top: -0.2rem; }
 
 /*===================================
 =            Date & Time            =
@@ -2071,7 +2075,7 @@ p:empty { display: none; }
 
 .ginput_container_date input[type="text"] { width: 100%; }
 
-.ginput_container_date:before { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; color: #000; position: absolute; right: 1.5rem; top: 50%; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%); }
+.ginput_container_date:before { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; color: #000; position: absolute; right: 1.5rem; top: 50%; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%); }
 
 .ui-datepicker { background-color: #fff; padding: 0.5rem; border: 0.1rem solid rgba(0, 0, 0, 0.2); }
 
@@ -2106,7 +2110,7 @@ table.ui-datepicker-calendar tbody td.ui-datepicker-today a { background-color: 
 
 .gform_wrapper .ginput_complex .address_country select::-ms-expand { display: none; }
 
-.gform_wrapper .ginput_complex .address_country:after { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; font-size: 1.8rem; display: block; position: absolute; right: 1.5rem; top: 50%; z-index: -1; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%); }
+.gform_wrapper .ginput_complex .address_country:after { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: ""; font-size: 1.8rem; display: block; position: absolute; right: 1.5rem; top: 50%; z-index: -1; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%); }
 
 @media (min-width: 768px) { .gf-address-col-2 .ginput_complex, .gf-address-col-3 .ginput_complex { margin-left: -1rem; margin-right: -1rem; }
   .gf-address-col-2 .ginput_complex .address_country:after, .gf-address-col-3 .ginput_complex .address_country:after { right: 2.5rem; }
@@ -2247,7 +2251,7 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 
 .gfield.gf-list-enhanced .gfield_checkbox label, .gfield.gf-list-enhanced .gfield_radio label { line-height: 1.3; display: inline-block; padding: 1rem 1.5rem 1rem 3rem; margin-bottom: 0; margin-left: 0; }
 
-.gfield.gf-list-enhanced .gfield_checkbox label:before, .gfield.gf-list-enhanced .gfield_radio label:before { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-size: 2.1rem; position: absolute; left: 0; top: 50%; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%); }
+.gfield.gf-list-enhanced .gfield_checkbox label:before, .gfield.gf-list-enhanced .gfield_radio label:before { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-size: 2.1rem; position: absolute; left: 0; top: 50%; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%); }
 
 .gfield.gf-list-enhanced .gfield_checkbox input[type="radio"], .gfield.gf-list-enhanced .gfield_checkbox input[type="checkbox"], .gfield.gf-list-enhanced .gfield_radio input[type="radio"], .gfield.gf-list-enhanced .gfield_radio input[type="checkbox"] { display: none; }
 
@@ -5128,7 +5132,7 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 
 .list-social-icons li a { font: 0/0 a; color: transparent; text-shadow: none; background-color: transparent; border: 0; color: rgba(255, 255, 255, 0.4); text-align: center; text-decoration: none; display: block; height: 100%; position: relative; }
 
-.list-social-icons li a:before { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-size: 2.4rem; display: block; }
+.list-social-icons li a:before { font-family: 'icomoon' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-size: 2.4rem; display: block; }
 
 .list-social-icons li a:hover { color: #fff; text-decoration: none; }
 
@@ -5166,21 +5170,10 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 
 .btn-disabled { cursor: default; pointer-events: none; opacity: .3; }
 
-.bg-grey { background-color: #f9f9f9; }
-
 /*================================
 =            Required            =
 ================================*/
 /*----------  Miscellaneous  ----------*/
-.img-responsive, .alignnone, .alignleft, .alignright, .aligncenter, .wp-post-image { width: auto; height: auto; }
-
-.img-fluid { max-width: 100%; height: auto; }
-
 .list-unstyled { margin-left: 0; }
 
 .list-unstyled > li { list-style: none; }
-
-/*----------  Icon fonts  ----------*/
-.icon-font-before:before { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-
-.icon-font-after:after { font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }

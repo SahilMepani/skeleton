@@ -1,35 +1,8 @@
-.bg-grey {
-  background-color: #f9f9f9;
-}
-
 /*================================
 =            Required            =
 ================================*/
 
 /*----------  Miscellaneous  ----------*/
-.img-responsive, .alignnone, .alignleft, .alignright, .aligncenter, .wp-post-image {
-  width: auto;
-  height: auto;
-}
-
-.img-fluid {
-  max-width: 100%;
-  height: auto;
-}
-
 .list-unstyled {
   @include list-unstyled;
-}
-
-
-/*----------  Icon fonts  ----------*/
-.icon-font-before {
-  &:before {
-    @include icon-font-properties;
-  }
-}
-.icon-font-after {
-  &:after {
-    @include icon-font-properties;
-  }
 }

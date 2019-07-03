@@ -33,11 +33,24 @@ function my_acf_admin_head() {
 	?>
 	<style type="text/css">
 		.acf-flexible-content .layout .acf-fc-layout-handle {
-			background-color: #00a0d2 ;
+			background-color: #00a0d2;
+			border:  1px solid #00a0d2;
 			color: #fff;
 		}
 		.acf-button-group {
 			flex-wrap: wrap;
+		}
+		.acf-icon.-collapse.small {
+			display: block;
+			color: #000;
+		}
+		.acf-icon.-collapse.small:hover {
+			color: #fff;
+		}
+		.acf-row.-collapsed .acf-icon.-collapse.small {
+			background-color:  #f33;
+			border:  1px solid #f33;
+			color:  #fff;
 		}
 		.alert {
 			background-color: #e5e5e5;

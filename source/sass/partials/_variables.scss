@@ -168,15 +168,13 @@ $grid-breakpoints : (
 
 
 // Grid columns
-//
 // Set the number of columns and specify the width of the gutters.
 $enable-grid-classes : true;
 $grid-columns        : 12;
-$grid-gutter-width   : 1.5rem; // it gets divided by half per column
+$grid-gutter-width   : 3rem; // gets divided by half per column
 
 
 // Grid containers
-//
 // Define the maximum width of `.container` for different screen sizes.
 $container-max-widths: (
 	sm : 540px,

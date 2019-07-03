@@ -21,22 +21,15 @@
   @include list-unstyled;
 }
 
-.limit-content {
-  @include rem(max-width, 1000px);
-  margin: 0 auto;
-}
-
 
 /*----------  Icon fonts  ----------*/
-.i-font-before {
+.icon-font-before {
   &:before {
     @include icon-font-properties;
   }
 }
-.i-font-after {
+.icon-font-after {
   &:after {
     @include icon-font-properties;
   }
 }
-
-/*----------  Text/Fonts  ----------*/

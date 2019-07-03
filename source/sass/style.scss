@@ -22,6 +22,7 @@
 
 // Reset and default styles
 @import "partials/normalize";
+@import "partials/helpers/icons";
 @import "partials/base-selectors";
 
 // Grid
@@ -33,7 +34,7 @@
 @import "partials/js/js-socials";
 @import "partials/js/aos";
 
-// Helper classes can be overwritten
+// Helpers
 @import "partials/helpers/base-helpers";
 
 @import "partials/components/header";
@@ -77,9 +78,11 @@
 
 
 // Utilities
+@import "partials/utilities/align.scss";
 @import "partials/utilities/alert.scss";
 @import "partials/utilities/background.scss";
 @import "partials/utilities/clearfix.scss";
+@import "partials/utilities/colors.scss";
 @import "partials/utilities/display.scss";
 @import "partials/utilities/embed.scss";
 @import "partials/utilities/flex.scss";
@@ -91,17 +94,14 @@
 @import "partials/utilities/spacing.scss";
 @import "partials/utilities/stretched-links.scss";
 @import "partials/utilities/text.scss";
-@import "partials/utilities/vertical-align.scss";
 @import "partials/utilities/visibility.scss";
 
 // Helpers
 @import "partials/helpers/table";
 @import "partials/helpers/list";
 @import "partials/helpers/buttons";
-// @import "partials/helpers/icons";
 @import "partials/helpers/helpers";
 // @import "partials/helpers/keyframes";
-// @import "partials/helpers/base64";
 
 // Last minute changes
 // @import "partials/shame";

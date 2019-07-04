@@ -1,204 +1,23 @@
+@import "fluid-typography";
+@import "mq";
+@import "input";
 @import "buttons";
 @import "icons";
 @import "gradients";
 @import "images";
 @import "rem";
 @import "keyframes";
+@import "animations";
+@import "scrollbars";
+@import "background";
+
+// Bootstrap
 @import "breakpoints";
 @import "grid";
 @import "grid-framework";
 @import "screenreaders";
 @import "text-truncate";
 @import "text-hide";
-
-/* Fluid Typography */
-@function strip-unit($value) {
-  @return $value / ($value * 0 + 1);
-}
-
-// https://codepen.io/MadeByMike/pen/vNrvdZ
-@mixin fluid($properties, $min-screen, $max-screen, $min-value, $max-value, $default: true, $max-breakpoint: true) {
-	& {
-
-		@if ( $default ) {
-			@each $property in $properties {
-				#{$property}: $min-value;
-			}
-		}
-
-		@media screen and (min-width: $min-screen) {
-			@each $property in $properties {
-				#{$property}: calc-interpolation($min-screen, $min-value, $max-screen, $max-value);
-			}
-		}
-
-		@if ( $max-breakpoint ) {
-			@media screen and (min-width: $max-screen) {
-				@each $property in $properties {
-					#{$property}: rem-calc( $max-value );
-				}
-			}
-		}
-	}
-}
-
-// Requires the calc-interpolation function which can also be used independently
-@function calc-interpolation($min-screen, $min-value, $max-screen, $max-value) {
-	$a: ($max-value - $min-value) / ($max-screen - $min-screen);
-	$b: $min-value - $a * $min-screen;
-
-	$sign: "+";
-	@if ($b < 0) {
-		$sign: "-";
-		$b: abs($b);
-	}
-	@return calc(#{$a*100}vw #{$sign} #{$b});
-}
-
-
-@mixin mq-retina() {
-	@media only screen and (-webkit-min-device-pixel-ratio: 1.25),
-	only screen and ( min--moz-device-pixel-ratio: 1.25),
-	only screen and ( -o-min-device-pixel-ratio: 1.25/1),
-	only screen and ( min-device-pixel-ratio: 1.25),
-	only screen and ( min-resolution: 200dpi),
-	only screen and ( min-resolution: 1.25dppx) {
-		@content;
-	}
-}
-
-@mixin mq-non-retina() {
-	@media not screen and (-webkit-min-device-pixel-ratio: 1.25),
-	not screen and ( min--moz-device-pixel-ratio: 1.25),
-	not screen and ( -o-min-device-pixel-ratio: 1.25/1),
-	not screen and ( min-device-pixel-ratio: 1.25),
-	not screen and ( max-resolution: 200dpi),
-	not screen and ( max-resolution: 1.25dppx) {
-		@content;
-	}
-}
-
-@mixin mq-target-ie-10-11 {
-	@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-		@content;
-	}
-}
-
-@mixin stagger-animation( $animation, $child, $interval: 100 ) {
-	$delay: $interval;
-	visibility: visible;
-	@include animation-duration( 1s );
-	@include animation-fill-mode( both );
-	@include animation-name( $animation );
-	@for $i from 1 through $child {
-		$delay: $delay + $interval;
-	  &:nth-child(#{$i}) {
-			@include animation-delay( unquote($delay + 'ms') );
-	  }
-	}
-}
-
-@mixin input-placeholder( $color ) {
-	&:-moz-placeholder            { color: $color; } // Firefox 4-18
-	&::-moz-placeholder           { color: $color; } // Firefox 19+
-	&:-ms-input-placeholder       { color: $color; } // Internet Explorer 10+
-	&::-webkit-input-placeholder  { color: $color; } // Safari and Chrome
-	&::placeholder  { color: $color; } // Safari and Chrome
-}
-
-@mixin input-text {
-	background: $input_bg_color;
-	color: $input_color;
-	line-height: $input_line_height; //same as button
-	min-width: $input_min_width;
-	padding: $input_padding_x_xs $input_padding_y_xs;
-	border: $input_border_width solid $input_border_color;
-	border-radius: $input_border_radius;
-	transition:  $input_transition ;
-	@include experimental(appearance, none); //remove browser styling
-	@include input-placeholder( $input_placeholder_color );
-	&:focus {
-		border-color: $input_focus_border;
-		@if ( $input_focus_outline == false ) {
-			outline: none;
-		}
-	}
-	@include breakpoint( $md ) {
-		padding: $input_padding_x_md $input_padding_y_md;
-	}
-	//required to disable auto zoom in iOS when font is less than 16px
-	@media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 767px) {
-		font-size: 16px !important;
-	}
-}
-
-@mixin custom-select-block { //add to select wrapper
-	background: none; //make dropdown icon visible
-	position: relative;
-	select {
-		background: transparent;
-		width: 100%; //make dropdown sit on top of select
-		padding-right: rem-calc(40px);
-		@include experimental(appearance, none); //remove browser styling
-	}
-	select::-ms-expand {
-		display: none;
-	}
-	&:after {
-		@include icon-font-properties;
-		content: $i_dropdown;
-		font-size: rem-calc(18px);
-		display: block;
-		position: absolute;
-		right: rem-calc(15px);
-		top: 50%;
-		z-index: -1;
-		@include translateY(-50%);
-	}
-}
-
-@mixin animate-underline-on-hover( $border_color, $text_color ) {
-	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
-	padding-bottom: rem-calc(1px);
-	position: relative;
-	transition: .2s;
-	&:after {
-		background-color: $border_color;
-		content: '';
-		left: 0;
-		right: 0;
-		height: rem-calc(1px);
-		position: absolute;
-		bottom: 0;
-		@include scale(0);
-		transition: .25s ease-out;
-	}
-	&:hover {
-		color: $text_color;
-		&:after {
-			@include scale(1);
-		}
-	}
-}
-
-@mixin bg-cover {
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
-}
-
-@mixin bg-overlay {
-	position: relative;
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
-}
 
 @mixin pagination-links {
 	background: #fff;
@@ -211,35 +30,6 @@
 	min-width: rem-calc(35px);
 	padding: rem-calc(10px);
 	box-shadow: 0 0 rem-calc(1px) rgba(0,0,0,.3);
-}
-
-/// Mixin to customize scrollbars
-/// Beware, this does not work in all browsers
-/// @author Hugo Giraudel
-/// @param {Length} $size - Horizontal scrollbar's height and vertical scrollbar's width
-/// @param {Color} $foreground-color - Scrollbar's color
-/// @param {Color} $background-color [mix($primary, white, 75%)] - Scrollbar's color
-/// @example scss - Scrollbar styling
-///   @include scrollbars(.5em, slategray);
-@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, #888, 50%)) {
-	::-webkit-scrollbar {
-			width:  $size;
-			height: $size;
-	}
-
-	::-webkit-scrollbar-thumb {
-			background: $foreground-color;
-	}
-
-	::-webkit-scrollbar-track {
-			background: $background-color;
-	}
-
-	// For Internet Explorer
-	body {
-		scrollbar-face-color: $foreground-color;
-		scrollbar-track-color: $background-color;
-	}
 }
 
 @mixin list-unstyled {
@@ -260,18 +50,4 @@
 	}
 }
 
-@mixin hide-text {
-	font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  background-color: transparent;
-  border: 0;
-}
 
-@mixin truncate-text {
-	//Requires the element to be block or inline-block
-	display: block;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
-}

@@ -317,7 +317,7 @@ $gf_description_font_size: rem-calc(16px);
 		margin: 0;
 		position: relative;
 		&:after {
-			@include font-icon( $i_search, 21px, $secondary );
+			@include icon-font( $i_search, 21px, $secondary );
 			right: rem-calc(15px);
 			margin-top: rem-calc(-10px);
 		}
@@ -438,7 +438,7 @@ $gf_description_font_size: rem-calc(16px);
 			position: relative;
 			//dropdown icon
 			&:before {
-				@include font-icon( $i_search, 24px, $secondary );
+				@include icon-font( $i_search, 24px, $secondary );
 				display: block;
 				position: absolute;
 				right: rem-calc(10px);

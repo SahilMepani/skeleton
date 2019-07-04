@@ -11,7 +11,7 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-@mixin font-icon( $char, $size: null, $color: null, $properties: true ) {
+@mixin icon-font( $char, $size: null, $color: null, $properties: true ) {
 	content: '#{$char}';
 	@if $properties == true {
 		@include icon-font-properties;

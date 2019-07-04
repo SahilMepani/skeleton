@@ -1,0 +1,58 @@
+@mixin input-placeholder( $color ) {
+	&:-moz-placeholder            { color: $color; } // Firefox 4-18
+	&::-moz-placeholder           { color: $color; } // Firefox 19+
+	&:-ms-input-placeholder       { color: $color; } // Internet Explorer 10+
+	&::-webkit-input-placeholder  { color: $color; } // Safari and Chrome
+	&::placeholder  { color: $color; } // Safari and Chrome
+}
+
+@mixin input-text {
+	background: $input_bg_color;
+	color: $input_color;
+	line-height: $input_line_height; //same as button
+	min-width: $input_min_width;
+	padding: $input_padding_x_xs $input_padding_y_xs;
+	border: $input_border_width solid $input_border_color;
+	border-radius: $input_border_radius;
+	transition:  $input_transition ;
+	@include experimental(appearance, none); //remove browser styling
+	@include input-placeholder( $input_placeholder_color );
+	&:focus {
+		border-color: $input_focus_border;
+		@if ( $input_focus_outline == false ) {
+			outline: none;
+		}
+	}
+	@include breakpoint( $md ) {
+		padding: $input_padding_x_md $input_padding_y_md;
+	}
+	//required to disable auto zoom in iOS when font is less than 16px
+	@media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 767px) {
+		font-size: 16px !important;
+	}
+}
+
+@mixin custom-select-block { //add to select wrapper
+	background: none; //make dropdown icon visible
+	position: relative;
+	select {
+		background: transparent;
+		width: 100%; //make dropdown sit on top of select
+		padding-right: rem-calc(40px);
+		@include experimental(appearance, none); //remove browser styling
+	}
+	select::-ms-expand {
+		display: none;
+	}
+	&:after {
+		@include icon-font-properties;
+		content: $i_dropdown;
+		font-size: rem-calc(18px);
+		display: block;
+		position: absolute;
+		right: rem-calc(15px);
+		top: 50%;
+		z-index: -1;
+		@include translateY(-50%);
+	}
+}

@@ -1,7 +1,7 @@
 @mixin btn {
 	background: transparent;
 	font-weight: 400;
-	line-height: $input_line_height;
+	// line-height: $input_line_height;
 	text-align: center;
 	text-decoration: none;
 	vertical-align: middle;
@@ -74,14 +74,14 @@
 @mixin btn-input-clone( $bg_color ) {
 	background-color: $bg_color;
 	font-size: 1rem;
-	line-height: $input_line_height;
+	// line-height: $input_line_height;
 	text-transform: uppercase;
-	padding-top: $input_padding_x_xs;
-	padding-bottom: $input_padding_x_xs;
+	// padding-top: $input_padding_x_xs;
+	// padding-bottom: $input_padding_x_xs;
 	border: rem-calc( 1px ) solid $bg_color;
 	@include breakpoint( $md ) {
-	  padding-top: $input_padding_x_md;
-		padding-bottom: $input_padding_x_md;
+	  // padding-top: $input_padding_x_md;
+		// padding-bottom: $input_padding_x_md;
 	}
 }
 

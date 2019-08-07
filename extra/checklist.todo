@@ -62,15 +62,28 @@ FINALIZE --- ✄ -----------------------:
  ☐ Add .htaccess code for speed optimization
  ☐ REMOVE sftp-config.json file
 
-RESPONSIVE --- ✄ -----------------------:
- ☐ IE 11
- ☐ IE 11+
- ☐ Chrome
- ☐ Safari
- ☐ Firefox
- ☐ iOS - Mobile(iphone 6, 7, X), iPad
- ☐ Android - Mobile
- ☐ Mac
+RESPONSIVE & Cross Browser --- ✄ -----------------------:
+  WINDOWS --- ✄ -----------------------:
+   ☐ IE 11+
+   ☐ Chrome
+   ☐ Safari
+   ☐ Firefox
+   ☐ Opera
+  MAC --- ✄ -----------------------:
+   ☐ Safari
+   ☐ Chrome
+   ☐ Firefox
+   ☐ Opera
+  iOS (Safari & Chrome) --- ✄ -----------------------:
+   ☐ iPhone 6
+   ☐ iphone 7
+   ☐ iphone X
+   ☐ iPad
+  Android --- ✄ -----------------------:
+   ☐ Chrome
+   ☐ Firefox
+   ☐ Opera
+   ☐ UC Browser
 
  ☐ Remove all the theme files from server and upload it the newest copy. This is because after all the checklist most of the files are deleted from local copy but not from server.
 

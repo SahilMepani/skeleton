@@ -1,5 +1,7 @@
 /*----------  Custom  ----------*/
 .slick-slide {
+	display: none;
+	margin-bottom: 0;
 	&:focus {
 		outline: none;
 	}
@@ -8,11 +10,6 @@
 			outline: none;
 		}
 	}
-}
-
-.slick-initialized,
-.slick-slide:first-child {
-  display: block;
 }
 
 .slick-cloned { // custom css it will fix the inifinite loop last slider flickering issue

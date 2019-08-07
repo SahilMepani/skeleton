@@ -29,10 +29,10 @@
 			</a>
 		</h3>
 
-		<button class="header__nav-toggle i-font-before"><?php _e( 'Menu', 'skeleton' ); ?></button>
+		<button class="header__nav-toggle icon-font-before"><?php _e( 'Menu', 'skeleton' ); ?></button>
 
 		<nav class="header__nav" class="clearfix">
-			<button class="header__nav-close i-font-before"></button>
+			<button class="header__nav-close icon-font-before"></button>
 			<?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => '', 'menu_class' => 'header__nav__parent-menu' ) ); ?>
 		</nav> <!-- #header-menu -->
 

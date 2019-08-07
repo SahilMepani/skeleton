@@ -3,7 +3,6 @@ h1 + h1, h1 + h2, h1 + h3, h1 + h4, h1 + h5, h1 + h6, h2 + h2, h2 + h1, h2 + h3,
 	margin-top: 0;
 }
 
-/*----------  Miscellaneous  ----------*/
 .custom-select-block {
 	@include custom-select-block;
 }
@@ -19,59 +18,6 @@ p:empty {
 .btn {
 	@include btn;
 }
-
-/*----------  Bootstrap Grid  ----------*/
-// .row {
-// 	margin-bottom: rem-calc(50px);
-// 	&:last-child {
-// 		margin-bottom: 0;
-// 	}
-// 	@include breakpoint( $sm ) {
-// 	  margin-bottom: rem-calc(70px);
-// 	}
-// 	@include breakpoint( $md ) {
-// 	  margin-bottom: rem-calc(90px);
-// 	}
-// 	@include breakpoint( $lg ) {
-// 	  margin-bottom: 10vw;
-// 	}
-// }
-
-// [class*="col-xl-"] {
-// 	@include media-breakpoint-down( lg ) {
-// 		margin-bottom: 10vw; // don't change, changing this will affect other sections
-// 		&:last-child {
-// 			margin-bottom: 0;
-// 		}
-// 	}
-// }
-
-// [class*="col-lg-"], [class*="col-xl-"] {
-// 	@include media-breakpoint-down( md ) {
-// 		margin-bottom: rem-calc(90px);
-// 		&:last-child {
-// 			margin-bottom: 0;
-// 		}
-// 	}
-// }
-
-// [class*="col-md-"], [class*="col-lg-"] {
-// 	@include media-breakpoint-down( sm ) {
-// 		margin-bottom: rem-calc(50px);
-// 		&:last-child {
-// 			margin-bottom: 0;
-// 		}
-// 	}
-// }
-
-// [class*="col-sm"], [class*="col-md"], [class*="col-lg"] {
-// 	@include media-breakpoint-down( xs ) {
-// 		margin-bottom: rem-calc(50px);
-// 		&:last-child {
-// 			margin-bottom: 0;
-// 		}
-// 	}
-// }
 
 /*----------  AOS  ----------*/
 // html.js.mutationobserver.cssanimations:not(.is-mobile) [data-aos] {
@@ -171,5 +117,59 @@ p:empty {
 // 		width: rem-calc(10px);
 // 		height: rem-calc(10px);
 // 		border-radius: 50%;
+// 	}
+// }
+
+
+/*----------  Bootstrap Grid  ----------*/
+// .row {
+// 	margin-bottom: rem-calc(50px);
+// 	&:last-child {
+// 		margin-bottom: 0;
+// 	}
+// 	@include breakpoint( $sm ) {
+// 	  margin-bottom: rem-calc(70px);
+// 	}
+// 	@include breakpoint( $md ) {
+// 	  margin-bottom: rem-calc(90px);
+// 	}
+// 	@include breakpoint( $lg ) {
+// 	  margin-bottom: 10vw;
+// 	}
+// }
+
+// [class*="col-xl-"] {
+// 	@include media-breakpoint-down( lg ) {
+// 		margin-bottom: 10vw; // don't change, changing this will affect other sections
+// 		&:last-child {
+// 			margin-bottom: 0;
+// 		}
+// 	}
+// }
+
+// [class*="col-lg-"], [class*="col-xl-"] {
+// 	@include media-breakpoint-down( md ) {
+// 		margin-bottom: rem-calc(90px);
+// 		&:last-child {
+// 			margin-bottom: 0;
+// 		}
+// 	}
+// }
+
+// [class*="col-md-"], [class*="col-lg-"] {
+// 	@include media-breakpoint-down( sm ) {
+// 		margin-bottom: rem-calc(50px);
+// 		&:last-child {
+// 			margin-bottom: 0;
+// 		}
+// 	}
+// }
+
+// [class*="col-sm"], [class*="col-md"], [class*="col-lg"] {
+// 	@include media-breakpoint-down( xs ) {
+// 		margin-bottom: rem-calc(50px);
+// 		&:last-child {
+// 			margin-bottom: 0;
+// 		}
 // 	}
 // }

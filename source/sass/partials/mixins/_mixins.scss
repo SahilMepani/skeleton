@@ -32,13 +32,6 @@
 	box-shadow: 0 0 rem-calc(1px) rgba(0,0,0,.3);
 }
 
-@mixin list-unstyled {
-	margin-left: 0;
-	> li {
-		list-style: none;
-	}
-}
-
 @mixin clearfix {
 	&:before,
 	&:after {

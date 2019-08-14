@@ -909,7 +909,7 @@ table.gfield_list {
 
 /* Two Colums */
 @include breakpoint( $md ) {
-	.gfield.gf-list-inline-2 {
+	.gfield.gf-list-col-2 {
 		.gfield_checkbox, .gfield_radio {
 			margin: 0 rem-calc(-15px);
 			> li {
@@ -927,7 +927,7 @@ table.gfield_list {
 /*----------  Covered  ----------*/
 .gfield.gf-list-enhanced {
 	@include breakpoint( $md ) {
-		&.gf-list-inline-2 {
+		&.gf-list-col-2 {
 			.gfield_checkbox, .gfield_radio {
 				label {
 					&:before {

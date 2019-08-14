@@ -2214,12 +2214,12 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
   .gfield.gf-list-inline .gfield_checkbox > li:last-child, .gfield.gf-list-inline .gfield_radio > li:last-child { margin-right: 0 !important; } }
 
 /* Two Colums */
-@media (min-width: 768px) { .gfield.gf-list-inline-2 .gfield_checkbox, .gfield.gf-list-inline-2 .gfield_radio { margin: 0 -1.5rem; }
-  .gfield.gf-list-inline-2 .gfield_checkbox > li, .gfield.gf-list-inline-2 .gfield_radio > li { float: left; width: 50%; padding: 0 1.5rem; }
-  .gfield.gf-list-inline-2 .gfield_checkbox > li:nth-child(2n+1), .gfield.gf-list-inline-2 .gfield_radio > li:nth-child(2n+1) { clear: both; } }
+@media (min-width: 768px) { .gfield.gf-list-col-2 .gfield_checkbox, .gfield.gf-list-col-2 .gfield_radio { margin: 0 -1.5rem; }
+  .gfield.gf-list-col-2 .gfield_checkbox > li, .gfield.gf-list-col-2 .gfield_radio > li { float: left; width: 50%; padding: 0 1.5rem; }
+  .gfield.gf-list-col-2 .gfield_checkbox > li:nth-child(2n+1), .gfield.gf-list-col-2 .gfield_radio > li:nth-child(2n+1) { clear: both; } }
 
 /*----------  Covered  ----------*/
-@media (min-width: 768px) { .gfield.gf-list-enhanced.gf-list-inline-2 .gfield_checkbox label:before, .gfield.gf-list-enhanced.gf-list-inline-2 .gfield_radio label:before { left: 1.5rem; } }
+@media (min-width: 768px) { .gfield.gf-list-enhanced.gf-list-col-2 .gfield_checkbox label:before, .gfield.gf-list-enhanced.gf-list-col-2 .gfield_radio label:before { left: 1.5rem; } }
 
 .gfield.gf-list-enhanced .gfield_checkbox > li, .gfield.gf-list-enhanced .gfield_radio > li { position: relative; margin-bottom: 0; }
 

@@ -24,7 +24,17 @@
 .vh-100 { height: 100vh !important; }
 
 
-/*----------  Custom Classes  ----------*/
-.mw-none {
-  max-width: none;
+// Custom
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .minw#{$infix}-100 {
+			min-width: 100%;
+		}
+		.mw#{$infix}-none {
+		  max-width: none;
+		}
+
+  }
 }

@@ -5,6 +5,12 @@
   .position-#{$position} { position: $position !important; }
 }
 
+// Custom
+@each $position in $positions {
+  .#{$position} { position: $position !important; }
+}
+// End Custom
+
 // Shorthand
 
 .fixed-top {

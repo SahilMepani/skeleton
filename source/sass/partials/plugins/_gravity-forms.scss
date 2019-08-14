@@ -1,4 +1,4 @@
-// Learn more at http://www.rocketgenius.com/gravity-forms-css-targeting-specific-elements/
+// Learn more at https://docs.gravityforms.com/css-targeting-examples/
 
 // description
 $gf_field_description_color     : #999;
@@ -234,11 +234,11 @@ $gf_field_label_font_size : rem-calc( 14px );
 	select {
 		width: 100%; //important make the dropdown icon sit inside the select
 	}
-  .gf-enhanced-select & { // add this class in gravity form
-    &:after {
-      display: none;
-    }
-  }
+	.gf-enhanced-select & { // add this class in gravity form
+		&:after {
+			display: none;
+		}
+	}
 }
 
 
@@ -340,7 +340,7 @@ $gf_field_label_font_size : rem-calc( 14px );
 	}
 	@include media-breakpoint-down( md ) {
 		 //iOS fix, chosen plugin not used by default
-	 	&:after {
+		&:after {
 			@include icon-font-properties;
 			content: $i_dropdown;
 			font-size: rem-calc(18px);
@@ -355,7 +355,7 @@ $gf_field_label_font_size : rem-calc( 14px );
 			font-size: rem-calc(16px);
 			letter-spacing: rem-calc(1px);
 			padding-left: rem-calc(15px);
-			// border: $input_border_width solid $input_border_color;
+			border: $input_border_width solid $input_border_color;
 			padding-right: rem-calc(15px);
 			max-width: 100%;
 			width: 100%;
@@ -376,7 +376,7 @@ $gf_field_label_font_size : rem-calc( 14px );
 	}
 	//contain the selected value (a)
 	.chosen-single {
-		// @include input-text;
+		@include input-text;
 		text-decoration: none;
 		white-space: nowrap;
 		display: block;
@@ -463,12 +463,12 @@ $gf_field_label_font_size : rem-calc( 14px );
 		//selected values (li)
 		.search-choice {
 			background-color: #f5f5f5;
-			// padding: rem-calc(10px) $input_padding_y_xs;
+			// padding: rem-calc(10px) $input_py;
 			border: rem-calc(1px) solid #e8e8e8;
 			margin-bottom: rem-calc(5px);
 			position: relative;
 			@include breakpoint( $md ) {
-				// padding: rem-calc(10px) $input_padding_y_md;
+				// padding: rem-calc(10px) $input_py_md;
 			}
 		}
 		//deselect values
@@ -692,7 +692,7 @@ input[type="file"] {
 	input[type="file"], .gform_button_select_files {
 		@include btn;
 		@include btn-md;
-		// border: $input_border_width solid $input_border_color;
+		border: $input_border_width solid $input_border_color;
 	}
 	//multiselect
 	input[type="file"] {
@@ -713,31 +713,31 @@ input[type="file"] {
 	}
 	//allowed file types
 	[id^="extensions_message"] {
-    display: block;
-    color: $gf_field_description_color;
-    font-size: .8rem;
-    margin: rem-calc(5px) 0 0;
-  }
+		display: block;
+		color: $gf_field_description_color;
+		font-size: .8rem;
+		margin: rem-calc(5px) 0 0;
+	}
 	//rejected files
 	.validation_message {
-    background-color: transparent;
-    padding: 0;
-    margin-bottom: rem-calc(10px);
-    ul {
-      margin: 0;
-    }
-    li {
-      background-color: red;
-      padding: rem-calc(10px);
-      margin: rem-calc(2px);
-      // border-bottom: 1px solid #888;
-    }
-  }
+		background-color: transparent;
+		padding: 0;
+		margin-bottom: rem-calc(10px);
+		ul {
+			margin: 0;
+		}
+		li {
+			background-color: red;
+			padding: rem-calc(10px);
+			margin: rem-calc(2px);
+			// border-bottom: 1px solid #888;
+		}
+	}
 }
 
 .gform_drop_area {
 	display: inline-block;
-	// @include input-text;
+	@include input-text;
 	input[type="button"] {
 		@include btn;
 		@include btn-secondary;
@@ -894,7 +894,7 @@ table.gfield_list {
 =============================================*/
 /*----------  Inline  ----------*/
 @include breakpoint( $md ) {
-  .gfield.gf-list-inline {
+	.gfield.gf-list-inline {
 		.gfield_checkbox, .gfield_radio {
 			> li {
 				float: left;
@@ -909,7 +909,7 @@ table.gfield_list {
 
 /* Two Colums */
 @include breakpoint( $md ) {
-  .gfield.gf-list-inline-2 {
+	.gfield.gf-list-inline-2 {
 		.gfield_checkbox, .gfield_radio {
 			margin: 0 rem-calc(-15px);
 			> li {
@@ -927,7 +927,7 @@ table.gfield_list {
 /*----------  Covered  ----------*/
 .gfield.gf-list-enhanced {
 	@include breakpoint( $md ) {
-	  &.gf-list-inline-2 {
+		&.gf-list-inline-2 {
 			.gfield_checkbox, .gfield_radio {
 				label {
 					&:before {
@@ -1060,7 +1060,7 @@ table.gfield_list {
 			display: none;
 		}
 		// Breakpoint
-		@include media-breakpoint-down( xs ) {
+		@include media-breakpoint-down( sm ) {
 			.gfield.gf-col-2, .gfield.gf-col-3 { // gfield required specificity
 				&:nth-last-child(2) {
 					margin-bottom: 0;
@@ -1070,16 +1070,12 @@ table.gfield_list {
 		@include breakpoint( $md ) {
 			margin-left: rem-calc(-10px);
 			margin-right: rem-calc(-10px);
-			.gfield.gf-col-2, .gfield.gf-col-3 { // gfield required specificity
-				float: left;
-				padding: 0 rem-calc(10px);
-				margin-bottom: 0;
-			}
-			.gfield.gf-col-2 {
-				width: 50%;
-			}
-			.gfield.gf-col-3 { // gfield required specificity
-				width: 33.333333%;
+			> ul {
+				@include display-flex;
+				.gfield {
+					@include flex( 1 1 100% );
+					padding: 0 rem-calc(10px);
+				}
 			}
 		}
 	}
@@ -1101,11 +1097,11 @@ table.gfield_list {
 		@include breakpoint( $md ) {
 			margin-left: rem-calc(-15px);
 			margin-right: rem-calc(-15px);
-		  .gf-block-col-2 {
-		  	float: left;
-		  	width: 50%;
-		  	padding: 0 rem-calc(15px);
-		  }
+			.gf-block-col-2 {
+				float: left;
+				width: 50%;
+				padding: 0 rem-calc(15px);
+			}
 		}
 	}
 }
@@ -1233,3 +1229,61 @@ table.gfield_list {
 //     }
 //   }
 // }
+
+.gform_wrapper {
+	.gf_left_half, .gf_right_half, .gf_left_third, .gf_middle_third, .gf_right_third, .gf_first_quarter, .gf_second_quarter, .gf_third_quarter, .gf_fourth_quarter, .gf_inline {
+		display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+	}
+	.gf_left_half, .gf_right_half {
+		width: 50%;
+	}
+	.gf_left_third, .gf_middle_third, .gf_right_third {
+		width: 33.333333%;
+	}
+	.gf_first_quarter, .gf_second_quarter, .gf_third_quarter, .gf_fourth_quarter {
+		width: 25%;
+	}
+	.gf_left_half, .gf_left_third, .gf_first_quarter {
+		clear: both;
+	}
+	.gf_left_half, .gf_left_third, .gf_middle_third, .gf_first_quarter, .gf_second_quarter, .gf_third_quarter {
+		padding-right: rem-calc(10px);
+	}
+	.gf_right_half, .gf_middle_third, .gf_right_third, .gf_second_quarter, .gf_third_quarter, .gf_fourth_quarter {
+		padding-left: rem-calc(10px);
+	}
+	.gf_inline {
+		width: auto;
+		min-width: auto;
+		padding-right: rem-calc(20px);
+	}
+	.gf_list_2col, .gf_list_3col, .gf_list_4col, .gf_list_5col, .gf_list_inline {
+		.gfield_checkbox li, .gfield_radio li {
+			display: -moz-inline-stack;
+	    display: inline-block;
+			padding-right: rem-calc(20px);
+		}
+	}
+	.gf_list_2col {
+		.gfield_checkbox li, .gfield_radio li {
+			width: 50%;
+		}
+	}
+	.gf_list_3col {
+		.gfield_checkbox li, .gfield_radio li {
+			width: 33.333333%;
+		}
+	}
+	.gf_list_4col {
+		.gfield_checkbox li, .gfield_radio li {
+			width: 25%;
+		}
+	}
+	.gf_list_5col {
+		.gfield_checkbox li, .gfield_radio li {
+			width: 20%;
+		}
+	}
+}

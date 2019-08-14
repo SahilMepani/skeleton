@@ -277,7 +277,7 @@ legend {
 }
 
 input[type="text"], input[type="tel"], input[type="url"], input[type="number"], input[type="password"], input[type="email"],  input[type="range"], input[type="file"], input[type="date"], input[type="search"], textarea, select {
-	// @include input-text;
+	@include input-text;
 	max-width: 100%;
 }
 

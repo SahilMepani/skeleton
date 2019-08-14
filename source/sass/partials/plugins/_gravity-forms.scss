@@ -1230,11 +1230,12 @@ table.gfield_list {
 //   }
 // }
 
+
+// Gravity form ready classes
 .gform_wrapper {
 	.gf_left_half, .gf_right_half, .gf_left_third, .gf_middle_third, .gf_right_third, .gf_first_quarter, .gf_second_quarter, .gf_third_quarter, .gf_fourth_quarter, .gf_inline {
-		display: -moz-inline-stack;
-    display: inline-block;
-    vertical-align: top;
+		display: inline-block;
+		vertical-align: top;
 	}
 	.gf_left_half, .gf_right_half {
 		width: 50%;
@@ -1261,8 +1262,7 @@ table.gfield_list {
 	}
 	.gf_list_2col, .gf_list_3col, .gf_list_4col, .gf_list_5col, .gf_list_inline {
 		.gfield_checkbox li, .gfield_radio li {
-			display: -moz-inline-stack;
-	    display: inline-block;
+			display: inline-block;
 			padding-right: rem-calc(20px);
 		}
 	}
@@ -1285,5 +1285,45 @@ table.gfield_list {
 		.gfield_checkbox li, .gfield_radio li {
 			width: 20%;
 		}
+	}
+	.gf_list_height_25 {
+		.gfield_checkbox li, .gfield_radio li {
+			height: rem-calc(25px);
+		}
+	}
+	.gf_list_height_50 {
+		.gfield_checkbox li, .gfield_radio li {
+			height: rem-calc(50px);
+		}
+	}
+	.gf_list_height_75 {
+		.gfield_checkbox li, .gfield_radio li {
+			height: rem-calc(75px);
+		}
+	}
+	.gf_list_height_100 {
+		.gfield_checkbox li, .gfield_radio li {
+			height: rem-calc(100px);
+		}
+	}
+	.gf_list_height_125 {
+		.gfield_checkbox li, .gfield_radio li {
+			height: rem-calc(125px);
+		}
+	}
+	.gf_list_height_150 {
+		.gfield_checkbox li, .gfield_radio li {
+			height: rem-calc(150px);
+		}
+	}
+	.gf_scroll_text {
+		height: rem-calc(240px);
+		padding: rem-calc(20px);
+		border: 1px solid #ddd;
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
+	.gf_hide_ampm .gfield_time_ampm, .gf_hide_charleft .charleft {
+		display: none !important;
 	}
 }

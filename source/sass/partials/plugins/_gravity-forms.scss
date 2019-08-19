@@ -1384,7 +1384,7 @@ $padding: rem-calc(10px);
 	.gf_scroll_text {
 		height: rem-calc(240px);
 		padding: $padding * 2;
-		border: 1px solid #ddd;
+		border: rem-calc(1px) solid #ddd;
 		overflow-y: scroll;
 		overflow-x: hidden;
 	}

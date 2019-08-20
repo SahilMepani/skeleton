@@ -29,6 +29,9 @@
   @include media-breakpoint-up($breakpoint) {
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
+    .maxw#{$infix}-100 {
+      max-width: 100%;
+    }
     .minw#{$infix}-100 {
 			min-width: 100%;
 		}

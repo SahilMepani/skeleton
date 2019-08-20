@@ -16,13 +16,13 @@
 // Responsive alignment
 
 @each $breakpoint in map-keys($grid-breakpoints) {
-  @include media-breakpoint-up($breakpoint) {
-    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+	@include media-breakpoint-up($breakpoint) {
+		$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
-    .text#{$infix}-left   { text-align: left !important; }
-    .text#{$infix}-right  { text-align: right !important; }
-    .text#{$infix}-center { text-align: center !important; }
-  }
+		.text#{$infix}-left   { text-align: left !important; }
+		.text#{$infix}-right  { text-align: right !important; }
+		.text#{$infix}-center { text-align: center !important; }
+	}
 }
 
 // Transformation
@@ -30,6 +30,7 @@
 .text-lowercase  { text-transform: lowercase !important; }
 .text-uppercase  { text-transform: uppercase !important; }
 .text-capitalize { text-transform: capitalize !important; }
+
 
 // Weight and italics
 
@@ -52,14 +53,14 @@
 // Misc
 
 .text-hide {
-  @include text-hide($ignore-warning: true);
+	@include text-hide($ignore-warning: true);
 }
 
 .text-decoration-none { text-decoration: none !important; }
 
 .text-break {
-  word-break: break-word !important; // IE & < Edge 18
-  overflow-wrap: break-word !important;
+	word-break: break-word !important; // IE & < Edge 18
+	overflow-wrap: break-word !important;
 }
 
 // Reset
@@ -68,12 +69,29 @@
 
 
 // Custom
-.font-family-body { font-family: $body_font_family !important; }
-.font-family-heading { font-family: $headings_font_family !important; }
+.ff-body { font-family: $body_font_family !important; }
+.ff-heading { font-family: $headings_font_family !important; }
 
-.text-decoration-underline, .text-underline { text-decoration: underline !important; }
+.underline { text-decoration: underline !important; }
 
 .text-lead, .text-big {
-  font-size: rem-calc(20px) !important;
+	font-size: rem-calc(20px) !important;
 }
 .text-small { @extend small; }
+
+.lowercase  { text-transform: lowercase !important; }
+.uppercase  { text-transform: uppercase !important; }
+.capitalize { text-transform: capitalize !important; }
+
+.fw-light   { font-weight: $font-weight-light !important; }
+.fw-lighter { font-weight: $font-weight-lighter !important; }
+.fw-normal  { font-weight: $font-weight-normal !important; }
+.fw-bold    { font-weight: $font-weight-bold !important; }
+.fw-bolder  { font-weight: $font-weight-bolder !important; }
+.italic { font-style: italic !important; }
+
+.lh-1 { line-height: 1; }
+
+.ls-1 {	letter-spacing: rem-calc(1px); }
+.ls-2 {	letter-spacing: rem-calc(2px); }
+.ls-3 {	letter-spacing: rem-calc(3px); }

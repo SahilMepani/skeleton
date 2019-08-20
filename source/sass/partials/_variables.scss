@@ -4,10 +4,11 @@
 $root_font_size : 10px; // never change this value
 
 
-// Colors
+// Project specific
+$red       : #ff2500;
+// Required colors
 $white     : #fff;
 $black     : #000;
-$red       : #ff2500;
 $primary   : $red;
 $secondary : $black;
 
@@ -82,7 +83,7 @@ $i_gplus            : '\e627';
 $i_youtube          : '\e634';
 $i_pinterest        : '\e62d';
 $i_linkedin         : '\e62b';
-// Project specific
+// Add project specific here
 
 
 // Text selection
@@ -150,9 +151,10 @@ $four_k  : 3840px;
 $mac_13  : ($md) (max-height 800px);
 
 
-// It changes depending on the project, used on html
+// Changes depending on the project design, used on html element
 $mobile: $min_375; // mobile design layout size
 $desktop: $two_k; // desktop design layout size
+$scaling: $two_k; // scaling starts from here
 
 
 // Breakpoints - Map
@@ -180,6 +182,7 @@ $container-max-widths: (
 	md : 720px,
 	lg : 960px,
 	xl : 1140px,
+	// xxl : 80%; // fluid design
 );
 
 
@@ -210,16 +213,6 @@ $portrait: orientation portrait;
 $landscape: orientation landscape;
 
 
-// Z-index
-$zindex-dropdown       : 1000;
-$zindex-sticky         : 1020;
-$zindex-fixed          : 1030;
-$zindex-modal-backdrop : 1040;
-$zindex-modal          : 1050;
-$zindex-popover        : 1060;
-$zindex-tooltip        : 1070;
-
-
 // Utilities
 $displays  : none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex;
 $overflows : auto, hidden;
@@ -230,3 +223,13 @@ $positions : static, relative, absolute, fixed, sticky;
 $enable-print-styles  : true;
 $print-page-size      : a3;
 $print-body-min-width : map-get($grid-breakpoints, "lg");
+
+
+// Z-index
+$zindex-dropdown       : 1000;
+$zindex-sticky         : 1020;
+$zindex-fixed          : 1030;
+$zindex-modal-backdrop : 1040;
+$zindex-modal          : 1050;
+$zindex-popover        : 1060;
+$zindex-tooltip        : 1070;

@@ -248,13 +248,7 @@ template { display: none; }
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { font-family: Lato, sans-serif; -webkit-tap-highlight-color: transparent; -ms-text-size-adjust: 100%; -ms-overflow-style: scrollbar; -webkit-text-size-adjust: 100%; }
-
-html { font-size: 10px; }
-
-@media screen and (min-width: 375px) { html { font-size: calc(0vw + 10px); } }
-
-@media screen and (min-width: 768px) { html { font-size: calc(0vw + 10px); } }
+html { font-family: Lato, sans-serif; font-size: 10px; -webkit-tap-highlight-color: transparent; -ms-text-size-adjust: 100%; -ms-overflow-style: scrollbar; -webkit-text-size-adjust: 100%; }
 
 @media screen and (min-width: 1920px) { html { font-size: calc(0.7291666667vw - 4px); } }
 
@@ -378,7 +372,7 @@ li { line-height: 1.66; margin-bottom: 1.5rem; }
 dt { font-family: inherit; font-weight: 700; line-height: 1.66; margin: 0 0 1.5rem; }
 
 /*----------  Form  ----------*/
-form ul { margin-left: 0; list-style: none; }
+form ul > li { list-style: none; }
 
 form > ul > li { clear: both; margin-bottom: 1.5rem; }
 
@@ -1406,7 +1400,7 @@ p:empty { display: none; }
 
 .header__logo a { text-indent: -119988px; overflow: hidden; text-align: left; display: block; height: 100%; position: absolute; top: 0; left: 0; width: 100%; }
 
-.header__nav ul { margin-left: 0; list-style: none; }
+.header__nav ul > li { list-style: none; }
 
 .header__nav li { margin-bottom: 0; }
 
@@ -1477,7 +1471,9 @@ p:empty { display: none; }
 
 #site-content { -webkit-flex: 1 0 auto; flex: 1 0 auto; }
 
-.footer-menu { float: right; margin-left: 0; list-style: none; }
+.footer-menu { float: right; }
+
+.footer-menu > li { list-style: none; }
 
 .footer-menu li { list-style: none; float: left; margin: 0 0 0 2rem; }
 
@@ -1503,7 +1499,7 @@ p:empty { display: none; }
 @media (min-width: 768px) { .blockquote-block blockquote { padding-left: 4rem; } }
 
 /*----------  Accordions  ----------*/
-.list-accordions { margin-left: 0; list-style: none; }
+.list-accordions > li { list-style: none; }
 
 .list-accordions ::-moz-selection { background: transparent; color: #444; }
 
@@ -1520,13 +1516,13 @@ p:empty { display: none; }
 .list-accordions .content-block .inner-block { background-color: #f9f9f9; padding: 2rem 3rem 4rem; }
 
 /*----------  List  ----------*/
-.list-ordered { margin-left: 0; list-style: none; }
+.list-ordered > li { list-style: none; }
 
 .list-ordered > li { counter-increment: counter; padding-left: 2.5rem; position: relative; }
 
 .list-ordered > li:before { content: counter(counter); position: absolute; left: 0; top: 0; }
 
-.list-unstyled { margin-left: 0; list-style: none; }
+.list-unstyled > li { list-style: none; }
 
 .fullscreen-slider .slick-slide { background-repeat: no-repeat; background-position: center; background-size: cover; width: 100vw; min-height: 100vh; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; position: relative; overflow: hidden; }
 
@@ -1556,7 +1552,9 @@ p:empty { display: none; }
 
 .fullscreen-slider-section .slick-slider-dots { text-align: center; position: absolute; left: 0; right: 0; bottom: 3rem; }
 
-.fullscreen-slider-section .slick-slider-dots ul { margin-left: 0; list-style: none; display: -webkit-flex; display: flex; -webkit-justify-content: center; justify-content: center; margin-bottom: 0; }
+.fullscreen-slider-section .slick-slider-dots ul { display: -webkit-flex; display: flex; -webkit-justify-content: center; justify-content: center; margin-bottom: 0; }
+
+.fullscreen-slider-section .slick-slider-dots ul > li { list-style: none; }
 
 .fullscreen-slider-section .slick-slider-dots li { padding: 0 1rem; margin-bottom: 0; }
 
@@ -1565,7 +1563,9 @@ p:empty { display: none; }
 .fullscreen-slider-section .slick-slider-dots button { text-indent: -119988px; overflow: hidden; text-align: left; background-color: rgba(0, 0, 0, 0.5); width: 1.5rem; height: 1.5rem; border-radius: 50%; border: none; padding: 0; cursor: pointer; }
 
 /*----------  Post Cards  ----------*/
-.list-post-cards { margin-left: 0; list-style: none; display: -webkit-flex; display: flex; margin: 0 -1.5rem; }
+.list-post-cards { display: -webkit-flex; display: flex; margin: 0 -1.5rem; }
+
+.list-post-cards > li { list-style: none; }
 
 .list-post-cards .card { display: -webkit-flex; display: flex; max-width: 100%; padding: 0 1.5rem; margin-bottom: 3rem; }
 
@@ -1588,7 +1588,9 @@ p:empty { display: none; }
 
 .post-cards-carousel-section .slick-slider-dots { text-align: center; position: absolute; left: 0; right: 0; bottom: 3rem; }
 
-.post-cards-carousel-section .slick-slider-dots ul { margin-left: 0; list-style: none; display: -webkit-flex; display: flex; -webkit-justify-content: center; justify-content: center; margin-bottom: 0; }
+.post-cards-carousel-section .slick-slider-dots ul { display: -webkit-flex; display: flex; -webkit-justify-content: center; justify-content: center; margin-bottom: 0; }
+
+.post-cards-carousel-section .slick-slider-dots ul > li { list-style: none; }
 
 .post-cards-carousel-section .slick-slider-dots li { padding: 0 0.5rem; margin-bottom: 0; }
 
@@ -1782,7 +1784,9 @@ p:empty { display: none; }
 
 #sitemap-tabs { border: 1px solid #ddd; }
 
-#sitemap-tabs .list-tabs { margin-left: 0; list-style: none; border-bottom: none; overflow: hidden; display: -webkit-flex; display: flex; }
+#sitemap-tabs .list-tabs { border-bottom: none; overflow: hidden; display: -webkit-flex; display: flex; }
+
+#sitemap-tabs .list-tabs > li { list-style: none; }
 
 #sitemap-tabs .list-tabs > li { background-color: #666; -webkit-flex: 1 1 auto; flex: 1 1 auto; text-align: center; }
 
@@ -1830,7 +1834,7 @@ p:empty { display: none; }
 
 .gform_heading { margin-bottom: 1.5rem; }
 
-.gform_body .gform_fields { margin-left: 0; list-style: none; }
+.gform_body .gform_fields > li { list-style: none; }
 
 .gform_body .gfield { margin-bottom: 4rem; }
 
@@ -2255,7 +2259,9 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 =============================================*/
 .gform_body .gf-row { padding: 0; }
 
-.gform_body .gf-row ul { margin-left: 0; list-style: none; margin-top: 0; }
+.gform_body .gf-row ul { margin-top: 0; }
+
+.gform_body .gf-row ul > li { list-style: none; }
 
 .gform_body .gf-row ul:before, .gform_body .gf-row ul:after { content: " "; display: table; }
 
@@ -2271,7 +2277,9 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
   .gform_body .gf-row > ul { display: -webkit-flex; display: flex; }
   .gform_body .gf-row > ul .gfield { -webkit-flex: 1 1 100%; flex: 1 1 100%; padding: 0 1rem; } }
 
-.gform_body .gf-block-row { margin-left: 0; list-style: none; margin-top: 0; }
+.gform_body .gf-block-row { margin-top: 0; }
+
+.gform_body .gf-block-row > li { list-style: none; }
 
 .gform_body .gf-block-row:before, .gform_body .gf-block-row:after { content: " "; display: table; }
 
@@ -2302,47 +2310,79 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 
 .gf-display-label .gfield_label { display: block !important; }
 
-.gform_wrapper .gf_left_half, .gform_wrapper .gf_right_half, .gform_wrapper .gf_left_third, .gform_wrapper .gf_middle_third, .gform_wrapper .gf_right_third, .gform_wrapper .gf_first_quarter, .gform_wrapper .gf_second_quarter, .gform_wrapper .gf_third_quarter, .gform_wrapper .gf_fourth_quarter, .gform_wrapper .gf_inline { display: inline-block; vertical-align: top; }
+.gform_wrapper .gf_left_half, .gform_wrapper .gf_right_half, .gform_wrapper .gf_left_third, .gform_wrapper .gf_middle_third, .gform_wrapper .gf_right_third, .gform_wrapper .gf_first_quarter, .gform_wrapper .gf_second_quarter, .gform_wrapper .gf_third_quarter, .gform_wrapper .gf_fourth_quarter, .gform_wrapper .gf_inline, .gform_wrapper .gf-left-half, .gform_wrapper .gf-right-half, .gform_wrapper .gf-left-third, .gform_wrapper .gf-middle-third, .gform_wrapper .gf-right-third, .gform_wrapper .gf-first-quarter, .gform_wrapper .gf-second-quarter, .gform_wrapper .gf-third-quarter, .gform_wrapper .gf-fourth-quarter, .gform_wrapper .gf-inline { display: inline-block; vertical-align: top; }
 
-.gform_wrapper .gf_left_half, .gform_wrapper .gf_right_half { width: 50%; }
+.gform_wrapper .gf_left_half, .gform_wrapper .gf_right_half, .gform_wrapper .gf-left-half, .gform_wrapper .gf-right-half { width: 100%; }
 
-.gform_wrapper .gf_left_third, .gform_wrapper .gf_middle_third, .gform_wrapper .gf_right_third { width: 33.333333%; }
+@media (min-width: 576px) { .gform_wrapper .gf_left_half, .gform_wrapper .gf_right_half, .gform_wrapper .gf-left-half, .gform_wrapper .gf-right-half { width: 50%; } }
 
-.gform_wrapper .gf_first_quarter, .gform_wrapper .gf_second_quarter, .gform_wrapper .gf_third_quarter, .gform_wrapper .gf_fourth_quarter { width: 25%; }
+.gform_wrapper .gf_left_third, .gform_wrapper .gf_middle_third, .gform_wrapper .gf_right_third, .gform_wrapper .gf-left-third, .gform_wrapper .gf-middle-third, .gform_wrapper .gf-right-third { width: 100%; }
 
-.gform_wrapper .gf_left_half, .gform_wrapper .gf_left_third, .gform_wrapper .gf_first_quarter { clear: both; }
+@media (min-width: 768px) { .gform_wrapper .gf_left_third, .gform_wrapper .gf_middle_third, .gform_wrapper .gf_right_third, .gform_wrapper .gf-left-third, .gform_wrapper .gf-middle-third, .gform_wrapper .gf-right-third { width: 33.333333%; } }
 
-.gform_wrapper .gf_left_half, .gform_wrapper .gf_left_third, .gform_wrapper .gf_middle_third, .gform_wrapper .gf_first_quarter, .gform_wrapper .gf_second_quarter, .gform_wrapper .gf_third_quarter { padding-right: 1rem; }
+.gform_wrapper .gf_first_quarter, .gform_wrapper .gf_second_quarter, .gform_wrapper .gf_third_quarter, .gform_wrapper .gf_fourth_quarter, .gform_wrapper .gf-first-quarter, .gform_wrapper .gf-second-quarter, .gform_wrapper .gf-third-quarter, .gform_wrapper .gf-fourth-quarter { width: 100%; }
 
-.gform_wrapper .gf_right_half, .gform_wrapper .gf_middle_third, .gform_wrapper .gf_right_third, .gform_wrapper .gf_second_quarter, .gform_wrapper .gf_third_quarter, .gform_wrapper .gf_fourth_quarter { padding-left: 1rem; }
+@media (min-width: 576px) { .gform_wrapper .gf_first_quarter, .gform_wrapper .gf_second_quarter, .gform_wrapper .gf_third_quarter, .gform_wrapper .gf_fourth_quarter, .gform_wrapper .gf-first-quarter, .gform_wrapper .gf-second-quarter, .gform_wrapper .gf-third-quarter, .gform_wrapper .gf-fourth-quarter { width: 50%; } }
 
-.gform_wrapper .gf_inline { width: auto; min-width: auto; padding-right: 2rem; }
+@media (min-width: 768px) { .gform_wrapper .gf_first_quarter, .gform_wrapper .gf_second_quarter, .gform_wrapper .gf_third_quarter, .gform_wrapper .gf_fourth_quarter, .gform_wrapper .gf-first-quarter, .gform_wrapper .gf-second-quarter, .gform_wrapper .gf-third-quarter, .gform_wrapper .gf-fourth-quarter { width: 25%; } }
 
-.gform_wrapper .gf_list_2col .gfield_checkbox li, .gform_wrapper .gf_list_2col .gfield_radio li, .gform_wrapper .gf_list_3col .gfield_checkbox li, .gform_wrapper .gf_list_3col .gfield_radio li, .gform_wrapper .gf_list_4col .gfield_checkbox li, .gform_wrapper .gf_list_4col .gfield_radio li, .gform_wrapper .gf_list_5col .gfield_checkbox li, .gform_wrapper .gf_list_5col .gfield_radio li, .gform_wrapper .gf_list_inline .gfield_checkbox li, .gform_wrapper .gf_list_inline .gfield_radio li { display: inline-block; padding-right: 2rem; }
+.gform_wrapper .gf_left_half, .gform_wrapper .gf_left_third, .gform_wrapper .gf_first_quarter, .gform_wrapper .gf-left-half, .gform_wrapper .gf-left-third, .gform_wrapper .gf-first-quarter { clear: both; }
 
-.gform_wrapper .gf_list_2col .gfield_checkbox li, .gform_wrapper .gf_list_2col .gfield_radio li { width: 50%; }
+@media (min-width: 576px) { .gform_wrapper .gf_left_half, .gform_wrapper .gf-left-half { padding-right: 1rem; } }
 
-.gform_wrapper .gf_list_3col .gfield_checkbox li, .gform_wrapper .gf_list_3col .gfield_radio li { width: 33.333333%; }
+@media (min-width: 768px) { .gform_wrapper .gf_left_third, .gform_wrapper .gf_middle_third, .gform_wrapper .gf-left-third, .gform_wrapper .gf-middle-third { padding-right: 1rem; } }
 
-.gform_wrapper .gf_list_4col .gfield_checkbox li, .gform_wrapper .gf_list_4col .gfield_radio li { width: 25%; }
+@media (min-width: 576px) { .gform_wrapper .gf_first_quarter, .gform_wrapper .gf_second_quarter, .gform_wrapper .gf-first-quarter, .gform_wrapper .gf-second-quarter { padding-right: 1rem; } }
 
-.gform_wrapper .gf_list_5col .gfield_checkbox li, .gform_wrapper .gf_list_5col .gfield_radio li { width: 20%; }
+@media (min-width: 768px) { .gform_wrapper .gf_third_quarter, .gform_wrapper .gf-third-quarter { padding-right: 1rem; } }
 
-.gform_wrapper .gf_list_height_25 .gfield_checkbox li, .gform_wrapper .gf_list_height_25 .gfield_radio li { height: 2.5rem; }
+@media (min-width: 576px) { .gform_wrapper .gf_right_half, .gform_wrapper .gf-right-half { padding-left: 1rem; } }
 
-.gform_wrapper .gf_list_height_50 .gfield_checkbox li, .gform_wrapper .gf_list_height_50 .gfield_radio li { height: 5rem; }
+@media (min-width: 768px) { .gform_wrapper .gf_middle_third, .gform_wrapper .gf_right_third, .gform_wrapper .gf-middle-third, .gform_wrapper .gf-right-third { padding-left: 1rem; } }
 
-.gform_wrapper .gf_list_height_75 .gfield_checkbox li, .gform_wrapper .gf_list_height_75 .gfield_radio li { height: 7.5rem; }
+@media (min-width: 576px) { .gform_wrapper .gf_second_quarter, .gform_wrapper .gf_fourth_quarter, .gform_wrapper .gf-second-quarter, .gform_wrapper .gf-fourth-quarter { padding-left: 1rem; } }
 
-.gform_wrapper .gf_list_height_100 .gfield_checkbox li, .gform_wrapper .gf_list_height_100 .gfield_radio li { height: 10rem; }
+@media (min-width: 768px) { .gform_wrapper .gf_third_quarter, .gform_wrapper .gf-third-quarter { padding-left: 1rem; } }
 
-.gform_wrapper .gf_list_height_125 .gfield_checkbox li, .gform_wrapper .gf_list_height_125 .gfield_radio li { height: 12.5rem; }
+.gform_wrapper .gf_inline, .gform_wrapper .gf-inline { width: auto; min-width: auto; padding-right: 2rem; }
 
-.gform_wrapper .gf_list_height_150 .gfield_checkbox li, .gform_wrapper .gf_list_height_150 .gfield_radio li { height: 15rem; }
+.gform_wrapper .gf_list_2col .gfield_checkbox li, .gform_wrapper .gf_list_2col .gfield_radio li, .gform_wrapper .gf_list_2col .gfield-checkbox li, .gform_wrapper .gf_list_2col .gfield-radio li, .gform_wrapper .gf_list_3col .gfield_checkbox li, .gform_wrapper .gf_list_3col .gfield_radio li, .gform_wrapper .gf_list_3col .gfield-checkbox li, .gform_wrapper .gf_list_3col .gfield-radio li, .gform_wrapper .gf_list_4col .gfield_checkbox li, .gform_wrapper .gf_list_4col .gfield_radio li, .gform_wrapper .gf_list_4col .gfield-checkbox li, .gform_wrapper .gf_list_4col .gfield-radio li, .gform_wrapper .gf_list_5col .gfield_checkbox li, .gform_wrapper .gf_list_5col .gfield_radio li, .gform_wrapper .gf_list_5col .gfield-checkbox li, .gform_wrapper .gf_list_5col .gfield-radio li, .gform_wrapper .gf_list_inline .gfield_checkbox li, .gform_wrapper .gf_list_inline .gfield_radio li, .gform_wrapper .gf_list_inline .gfield-checkbox li, .gform_wrapper .gf_list_inline .gfield-radio li, .gform_wrapper .gf-list-2col .gfield_checkbox li, .gform_wrapper .gf-list-2col .gfield_radio li, .gform_wrapper .gf-list-2col .gfield-checkbox li, .gform_wrapper .gf-list-2col .gfield-radio li, .gform_wrapper .gf-list-3col .gfield_checkbox li, .gform_wrapper .gf-list-3col .gfield_radio li, .gform_wrapper .gf-list-3col .gfield-checkbox li, .gform_wrapper .gf-list-3col .gfield-radio li, .gform_wrapper .gf-list-4col .gfield_checkbox li, .gform_wrapper .gf-list-4col .gfield_radio li, .gform_wrapper .gf-list-4col .gfield-checkbox li, .gform_wrapper .gf-list-4col .gfield-radio li, .gform_wrapper .gf-list-5col .gfield_checkbox li, .gform_wrapper .gf-list-5col .gfield_radio li, .gform_wrapper .gf-list-5col .gfield-checkbox li, .gform_wrapper .gf-list-5col .gfield-radio li, .gform_wrapper .gf-list-inline .gfield_checkbox li, .gform_wrapper .gf-list-inline .gfield_radio li, .gform_wrapper .gf-list-inline .gfield-checkbox li, .gform_wrapper .gf-list-inline .gfield-radio li { display: inline-block; padding-right: 2rem; }
 
-.gform_wrapper .gf_scroll_text { height: 24rem; padding: 2rem; border: 1px solid #ddd; overflow-y: scroll; overflow-x: hidden; }
+.gform_wrapper .gf_list_2col .gfield_checkbox li, .gform_wrapper .gf_list_2col .gfield_radio li, .gform_wrapper .gf_list_2col .gfield-checkbox li, .gform_wrapper .gf_list_2col .gfield-radio li, .gform_wrapper .gf-list-2col .gfield_checkbox li, .gform_wrapper .gf-list-2col .gfield_radio li, .gform_wrapper .gf-list-2col .gfield-checkbox li, .gform_wrapper .gf-list-2col .gfield-radio li { width: 100%; }
 
-.gform_wrapper .gf_hide_ampm .gfield_time_ampm, .gform_wrapper .gf_hide_charleft .charleft { display: none !important; }
+@media (min-width: 576px) { .gform_wrapper .gf_list_2col .gfield_checkbox li, .gform_wrapper .gf_list_2col .gfield_radio li, .gform_wrapper .gf_list_2col .gfield-checkbox li, .gform_wrapper .gf_list_2col .gfield-radio li, .gform_wrapper .gf-list-2col .gfield_checkbox li, .gform_wrapper .gf-list-2col .gfield_radio li, .gform_wrapper .gf-list-2col .gfield-checkbox li, .gform_wrapper .gf-list-2col .gfield-radio li { width: 50%; } }
+
+.gform_wrapper .gf_list_3col .gfield_checkbox li, .gform_wrapper .gf_list_3col .gfield_radio li, .gform_wrapper .gf_list_3col .gfield-checkbox li, .gform_wrapper .gf_list_3col .gfield-radio li, .gform_wrapper .gf-list-3col .gfield_checkbox li, .gform_wrapper .gf-list-3col .gfield_radio li, .gform_wrapper .gf-list-3col .gfield-checkbox li, .gform_wrapper .gf-list-3col .gfield-radio li { width: 100%; }
+
+@media (min-width: 768px) { .gform_wrapper .gf_list_3col .gfield_checkbox li, .gform_wrapper .gf_list_3col .gfield_radio li, .gform_wrapper .gf_list_3col .gfield-checkbox li, .gform_wrapper .gf_list_3col .gfield-radio li, .gform_wrapper .gf-list-3col .gfield_checkbox li, .gform_wrapper .gf-list-3col .gfield_radio li, .gform_wrapper .gf-list-3col .gfield-checkbox li, .gform_wrapper .gf-list-3col .gfield-radio li { width: 33.333333%; } }
+
+.gform_wrapper .gf_list_4col .gfield_checkbox li, .gform_wrapper .gf_list_4col .gfield_radio li, .gform_wrapper .gf_list_4col .gfield-checkbox li, .gform_wrapper .gf_list_4col .gfield-radio li, .gform_wrapper .gf-list-4col .gfield_checkbox li, .gform_wrapper .gf-list-4col .gfield_radio li, .gform_wrapper .gf-list-4col .gfield-checkbox li, .gform_wrapper .gf-list-4col .gfield-radio li { width: 100%; }
+
+@media (min-width: 576px) { .gform_wrapper .gf_list_4col .gfield_checkbox li, .gform_wrapper .gf_list_4col .gfield_radio li, .gform_wrapper .gf_list_4col .gfield-checkbox li, .gform_wrapper .gf_list_4col .gfield-radio li, .gform_wrapper .gf-list-4col .gfield_checkbox li, .gform_wrapper .gf-list-4col .gfield_radio li, .gform_wrapper .gf-list-4col .gfield-checkbox li, .gform_wrapper .gf-list-4col .gfield-radio li { width: 50%; } }
+
+@media (min-width: 768px) { .gform_wrapper .gf_list_4col .gfield_checkbox li, .gform_wrapper .gf_list_4col .gfield_radio li, .gform_wrapper .gf_list_4col .gfield-checkbox li, .gform_wrapper .gf_list_4col .gfield-radio li, .gform_wrapper .gf-list-4col .gfield_checkbox li, .gform_wrapper .gf-list-4col .gfield_radio li, .gform_wrapper .gf-list-4col .gfield-checkbox li, .gform_wrapper .gf-list-4col .gfield-radio li { width: 25%; } }
+
+.gform_wrapper .gf_list_5col .gfield_checkbox li, .gform_wrapper .gf_list_5col .gfield_radio li, .gform_wrapper .gf_list_5col .gfield-checkbox li, .gform_wrapper .gf_list_5col .gfield-radio li, .gform_wrapper .gf-list-5col .gfield_checkbox li, .gform_wrapper .gf-list-5col .gfield_radio li, .gform_wrapper .gf-list-5col .gfield-checkbox li, .gform_wrapper .gf-list-5col .gfield-radio li { width: 100%; }
+
+@media (min-width: 576px) { .gform_wrapper .gf_list_5col .gfield_checkbox li, .gform_wrapper .gf_list_5col .gfield_radio li, .gform_wrapper .gf_list_5col .gfield-checkbox li, .gform_wrapper .gf_list_5col .gfield-radio li, .gform_wrapper .gf-list-5col .gfield_checkbox li, .gform_wrapper .gf-list-5col .gfield_radio li, .gform_wrapper .gf-list-5col .gfield-checkbox li, .gform_wrapper .gf-list-5col .gfield-radio li { width: 50%; } }
+
+@media (min-width: 768px) { .gform_wrapper .gf_list_5col .gfield_checkbox li, .gform_wrapper .gf_list_5col .gfield_radio li, .gform_wrapper .gf_list_5col .gfield-checkbox li, .gform_wrapper .gf_list_5col .gfield-radio li, .gform_wrapper .gf-list-5col .gfield_checkbox li, .gform_wrapper .gf-list-5col .gfield_radio li, .gform_wrapper .gf-list-5col .gfield-checkbox li, .gform_wrapper .gf-list-5col .gfield-radio li { width: 20%; } }
+
+.gform_wrapper .gf_list_height_25 .gfield-checkbox li, .gform_wrapper .gf_list_height_25 .gfield-radio li, .gform_wrapper .gf_list_height_25 .gfield-checkbox li, .gform_wrapper .gf_list_height_25 .gfield-radio li, .gform_wrapper .gf-list-height-25 .gfield-checkbox li, .gform_wrapper .gf-list-height-25 .gfield-radio li, .gform_wrapper .gf-list-height-25 .gfield-checkbox li, .gform_wrapper .gf-list-height-25 .gfield-radio li { height: 2.5rem; }
+
+.gform_wrapper .gf_list_height_50 .gfield-checkbox li, .gform_wrapper .gf_list_height_50 .gfield-radio li, .gform_wrapper .gf_list_height_50 .gfield-checkbox li, .gform_wrapper .gf_list_height_50 .gfield-radio li, .gform_wrapper .gf-list-height-50 .gfield-checkbox li, .gform_wrapper .gf-list-height-50 .gfield-radio li, .gform_wrapper .gf-list-height-50 .gfield-checkbox li, .gform_wrapper .gf-list-height-50 .gfield-radio li { height: 5rem; }
+
+.gform_wrapper .gf_list_height_75 .gfield_checkbox li, .gform_wrapper .gf_list_height_75 .gfield_radio li, .gform_wrapper .gf_list_height_75 .gfield-checkbox li, .gform_wrapper .gf_list_height_75 .gfield-radio li, .gform_wrapper .gf-list-height-75 .gfield_checkbox li, .gform_wrapper .gf-list-height-75 .gfield_radio li, .gform_wrapper .gf-list-height-75 .gfield-checkbox li, .gform_wrapper .gf-list-height-75 .gfield-radio li { height: 7.5rem; }
+
+.gform_wrapper .gf_list_height_100 .gfield_checkbox li, .gform_wrapper .gf_list_height_100 .gfield_radio li, .gform_wrapper .gf_list_height_100 .gfield-checkbox li, .gform_wrapper .gf_list_height_100 .gfield-radio li, .gform_wrapper .gf-list-height-100 .gfield_checkbox li, .gform_wrapper .gf-list-height-100 .gfield_radio li, .gform_wrapper .gf-list-height-100 .gfield-checkbox li, .gform_wrapper .gf-list-height-100 .gfield-radio li { height: 10rem; }
+
+.gform_wrapper .gf_list_height_125 .gfield_checkbox li, .gform_wrapper .gf_list_height_125 .gfield_radio li, .gform_wrapper .gf_list_height_125 .gfield-checkbox li, .gform_wrapper .gf_list_height_125 .gfield-radio li, .gform_wrapper .gf_list_height_125 .gfield_checkbox li, .gform_wrapper .gf_list_height_125 .gfield_radio li, .gform_wrapper .gf_list_height_125 .gfield-checkbox li, .gform_wrapper .gf_list_height_125 .gfield-radio li { height: 12.5rem; }
+
+.gform_wrapper .gf_list_height_150 .gfield_checkbox li, .gform_wrapper .gf_list_height_150 .gfield_radio li, .gform_wrapper .gf_list_height_150 .gfield-checkbox li, .gform_wrapper .gf_list_height_150 .gfield-radio li, .gform_wrapper .gf-list-height-150 .gfield_checkbox li, .gform_wrapper .gf-list-height-150 .gfield_radio li, .gform_wrapper .gf-list-height-150 .gfield-checkbox li, .gform_wrapper .gf-list-height-150 .gfield-radio li { height: 15rem; }
+
+.gform_wrapper .gf_scroll_text, .gform_wrapper .gf-scroll-text { height: 24rem; padding: 2rem; border: 0.1rem solid #ddd; overflow-y: scroll; overflow-x: hidden; }
+
+.gform_wrapper .gf_hide_ampm .gfield_time_ampm, .gform_wrapper .gf_hide_charleft .charleft, .gform_wrapper .gf-hide-ampm .gfield-time-ampm, .gform_wrapper .gf-hide-charleft .charleft { display: none !important; }
 
 .align-baseline { vertical-align: baseline !important; }
 
@@ -2918,23 +2958,30 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 
 .vh-100 { height: 100vh !important; }
 
+.maxw-100 { max-width: 100%; }
+
 .minw-100 { min-width: 100%; }
 
 .mw-none { max-width: none; }
 
-@media (min-width: 576px) { .minw-sm-100 { min-width: 100%; }
+@media (min-width: 576px) { .maxw-sm-100 { max-width: 100%; }
+  .minw-sm-100 { min-width: 100%; }
   .mw-sm-none { max-width: none; } }
 
-@media (min-width: 768px) { .minw-md-100 { min-width: 100%; }
+@media (min-width: 768px) { .maxw-md-100 { max-width: 100%; }
+  .minw-md-100 { min-width: 100%; }
   .mw-md-none { max-width: none; } }
 
-@media (min-width: 992px) { .minw-lg-100 { min-width: 100%; }
+@media (min-width: 992px) { .maxw-lg-100 { max-width: 100%; }
+  .minw-lg-100 { min-width: 100%; }
   .mw-lg-none { max-width: none; } }
 
-@media (min-width: 1200px) { .minw-xl-100 { min-width: 100%; }
+@media (min-width: 1200px) { .maxw-xl-100 { max-width: 100%; }
+  .minw-xl-100 { min-width: 100%; }
   .mw-xl-none { max-width: none; } }
 
-@media (min-width: 1400px) { .minw-xxl-100 { min-width: 100%; }
+@media (min-width: 1400px) { .maxw-xxl-100 { max-width: 100%; }
+  .minw-xxl-100 { min-width: 100%; }
   .mw-xxl-none { max-width: none; } }
 
 .m-0 { margin: 0 !important; }
@@ -6269,13 +6316,39 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 
 .text-reset { color: inherit !important; }
 
-.font-family-body { font-family: Lato, sans-serif !important; }
+.ff-body { font-family: Lato, sans-serif !important; }
 
-.font-family-heading { font-family: inherit !important; }
+.ff-heading { font-family: inherit !important; }
 
-.text-decoration-underline, .text-underline { text-decoration: underline !important; }
+.underline { text-decoration: underline !important; }
 
 .text-lead, .text-big { font-size: 2rem !important; }
+
+.lowercase { text-transform: lowercase !important; }
+
+.uppercase { text-transform: uppercase !important; }
+
+.capitalize { text-transform: capitalize !important; }
+
+.fw-light { font-weight: 300 !important; }
+
+.fw-lighter { font-weight: lighter !important; }
+
+.fw-normal { font-weight: 400 !important; }
+
+.fw-bold { font-weight: 700 !important; }
+
+.fw-bolder { font-weight: bolder !important; }
+
+.italic { font-style: italic !important; }
+
+.lh-1 { line-height: 1; }
+
+.ls-1 { letter-spacing: 0.1rem; }
+
+.ls-2 { letter-spacing: 0.2rem; }
+
+.ls-3 { letter-spacing: 0.3rem; }
 
 .visible { visibility: visible !important; }
 
@@ -6353,12 +6426,4 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 .btn-disabled { cursor: default; pointer-events: none; opacity: .3; }
 
 /*----------  Required  ----------*/
-.lh-1 { line-height: 1; }
-
-.ls-1 { letter-spacing: 0.1rem; }
-
-.ls-2 { letter-spacing: 0.2rem; }
-
-.ls-3 { letter-spacing: 0.3rem; }
-
 .list-unstyled > li { list-style: normal; }

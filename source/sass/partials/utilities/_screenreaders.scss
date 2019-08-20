@@ -9,3 +9,9 @@
 .sr-only-focusable {
   @include sr-only-focusable();
 }
+
+
+// Custom
+.screen-reader-text {
+	@include sr-only();
+}

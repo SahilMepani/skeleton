@@ -88,7 +88,7 @@ p:empty {
 // 			content: $i_arrow_left;
 // 		}
 // 	}
-// 	@include breakpoint( $sm ) {
+// 	@include media-breakpoint-up( sm ) {
 // 		.btn {
 // 			&:after {
 // 				font-size: rem-calc(60px);
@@ -127,7 +127,7 @@ p:empty {
 // 	&:last-child {
 // 		margin-bottom: 0;
 // 	}
-// 	@include breakpoint( $sm ) {
+// 	@include media-breakpoint-up( sm ) {
 // 	  margin-bottom: rem-calc(70px);
 // 	}
 // 	@include breakpoint( $md ) {

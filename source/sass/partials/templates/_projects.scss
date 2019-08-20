@@ -152,7 +152,7 @@
       @include flex(1 0 auto);
     }
   }
-  @include breakpoint( $sm ) {
+  @include media-breakpoint-up( sm ) {
     .col {
       @include flex(0 0 33.333333%);
     }

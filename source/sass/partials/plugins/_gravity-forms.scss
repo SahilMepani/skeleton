@@ -1242,7 +1242,7 @@ $padding: rem-calc(10px);
 	.gf_left_half, .gf_right_half,
 	.gf-left-half, .gf-right-half {
 		width: 100%;
-		@include breakpoint( $sm ) {
+		@include media-breakpoint-up( sm ) {
 		  width: 50%;
 		}
 	}
@@ -1256,7 +1256,7 @@ $padding: rem-calc(10px);
 	.gf_first_quarter, .gf_second_quarter, .gf_third_quarter, .gf_fourth_quarter,
 	.gf-first-quarter, .gf-second-quarter, .gf-third-quarter, .gf-fourth-quarter {
 		width: 100%;
-		@include breakpoint( $sm ) {
+		@include media-breakpoint-up( sm ) {
 		  width: 50%;
 		}
 		@include breakpoint( $md ) {
@@ -1269,7 +1269,7 @@ $padding: rem-calc(10px);
 	}
 	.gf_left_half,
 	.gf-left-half {
-		@include breakpoint( $sm ) {
+		@include media-breakpoint-up( sm ) {
 		  padding-right: $padding;
 		}
 	}
@@ -1281,7 +1281,7 @@ $padding: rem-calc(10px);
 	}
 	.gf_first_quarter, .gf_second_quarter,
 	.gf-first-quarter, .gf-second-quarter {
-		@include breakpoint( $sm ) {
+		@include media-breakpoint-up( sm ) {
 		  padding-right: $padding;
 		}
 	}
@@ -1293,7 +1293,7 @@ $padding: rem-calc(10px);
 	}
 	.gf_right_half,
 	.gf-right-half {
-		@include breakpoint( $sm ) {
+		@include media-breakpoint-up( sm ) {
 		  padding-left: $padding;
 		}
 	}
@@ -1305,7 +1305,7 @@ $padding: rem-calc(10px);
 	}
 	.gf_second_quarter, .gf_fourth_quarter,
 	.gf-second-quarter, .gf-fourth-quarter {
-		@include breakpoint( $sm ) {
+		@include media-breakpoint-up( sm ) {
 		  padding-left: $padding;
 		}
 	}
@@ -1334,7 +1334,7 @@ $padding: rem-calc(10px);
 		.gfield_checkbox li, .gfield_radio li,
 		.gfield-checkbox li, .gfield-radio li {
 			width: 100%;
-			@include breakpoint( $sm ) {
+			@include media-breakpoint-up( sm ) {
 			  width: 50%;
 			}
 		}
@@ -1354,7 +1354,7 @@ $padding: rem-calc(10px);
 		.gfield_checkbox li, .gfield_radio li,
 		.gfield-checkbox li, .gfield-radio li {
 			width: 100%;
-			@include breakpoint( $sm ) {
+			@include media-breakpoint-up( sm ) {
 			  width: 50%;
 			}
 			@include breakpoint( $md ) {
@@ -1367,7 +1367,7 @@ $padding: rem-calc(10px);
 		.gfield_checkbox li, .gfield_radio li,
 		.gfield-checkbox li, .gfield-radio li {
 			width: 100%;
-			@include breakpoint( $sm ) {
+			@include media-breakpoint-up( sm ) {
 			  width: 50%;
 			}
 			@include breakpoint( $md ) {

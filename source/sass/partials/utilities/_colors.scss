@@ -1,4 +1,8 @@
 // Custom
 .color-body { color: $body_color !important; }
+.color-white { color: $white !important; }
+.color-black { color: $black !important; }
+.color-white-50 { color: rgba($white, .5) !important; }
+.color-black-50 { color: rgba($black, .5) !important; }
 .color-primary { color: $primary !important; }
 .color-secondary { color: $secondary !important; }

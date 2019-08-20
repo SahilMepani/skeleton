@@ -34,7 +34,7 @@
 	@include media-breakpoint-down( xs ) {
 	  display: none !important;
 	}
-	@include breakpoint( $sm ) {
+	@include media-breakpoint-up( sm ) {
 		cursor: pointer;
 		@include hide-text;
 		position: fixed;

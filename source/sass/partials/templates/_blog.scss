@@ -33,7 +33,7 @@
 			backface-visibility: hidden;
 		}
 	}
-	@include breakpoint( $sm ) {
+	@include media-breakpoint-up( sm ) {
 		text-align: left;
 	}
 }

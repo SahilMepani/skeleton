@@ -32,7 +32,7 @@
   .tab-content {
     background-color: #fff;
     padding: rem-calc(30px) 5vw;
-    @include breakpoint( $sm ) {
+    @include media-breakpoint-up( sm ) {
       padding: rem-calc(50px);
     }
   }

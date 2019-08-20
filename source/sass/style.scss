@@ -1,9 +1,9 @@
 /*!
 * Theme Name: Skeleton
 * Theme URI: http://www.yourdomain.com
-* Description: A Custom theme
+* Description: Responsive custom theme
 * Version: 1.0
-* Author: Three Sixty Eight Team
+* Author: ThreeSixtyEight Team
 * Author URI: www.threesixtyeight.com
 * License: GPL
 * License URI: http://wordpress.org/about/gpl/
@@ -29,38 +29,38 @@
 @import "partials/grid.scss";
 
 // Javascript
-@import "partials/js/slick";
-@import "partials/js/magnific-popup";
-@import "partials/js/js-socials";
-@import "partials/js/aos";
+// @import "partials/js/slick";
+// @import "partials/js/magnific-popup";
+// @import "partials/js/js-socials";
+// @import "partials/js/aos";
 
 // Helpers
 @import "partials/helpers/base-helpers";
 
 @import "partials/components/header";
 @import "partials/components/header-menu";
-@import "partials/components/content";
+// @import "partials/components/content";
 // @import "partials/components/sidebar";
 @import "partials/components/footer";
 
 // Flexible Content
-@import "partials/flexible-content/wysiwyg";
-@import "partials/flexible-content/fullscreen-slider";
-@import "partials/flexible-content/post-cards";
-@import "partials/flexible-content/fixed-and-fluid-column-1";
-@import "partials/flexible-content/fixed-and-fluid-column-2";
-@import "partials/flexible-content/fixed-and-fluid-column-3";
-@import "partials/flexible-content/fixed-and-fluid-column-4";
+// @import "partials/flexible-content/wysiwyg";
+// @import "partials/flexible-content/fullscreen-slider";
+// @import "partials/flexible-content/post-cards";
+// @import "partials/flexible-content/fixed-and-fluid-column-1";
+// @import "partials/flexible-content/fixed-and-fluid-column-2";
+// @import "partials/flexible-content/fixed-and-fluid-column-3";
+// @import "partials/flexible-content/fixed-and-fluid-column-4";
 
 // Page templates
-// @import "partials/templates/front-page";
+@import "partials/templates/front-page";
 // @import "partials/templates/page";
 // @import "partials/templates/contact";
-@import "partials/templates/index.scss";
-@import "partials/templates/styleguide.scss";
+// @import "partials/templates/index.scss";
+// @import "partials/templates/styleguide.scss";
 // @import "partials/templates/search";
 // @import "partials/templates/404";
-@import "partials/templates/sitemap";
+// @import "partials/templates/sitemap";
 
 // Post & CPT
 // @import "partials/templates/projects";
@@ -72,9 +72,8 @@
 // @import "partials/components/post_formats";
 
 // WP plugins
-@import "partials/plugins/gravity-forms";
-@import "partials/plugins/gravity-forms-default";
-@import "partials/plugins/tribe-events/tribe_base";
+// @import "partials/plugins/gravity-forms";
+// @import "partials/plugins/tribe-events/tribe_base";
 // @import "partials/plugins/yoast-breadcrumbs";
 
 
@@ -97,6 +96,7 @@
 @import "partials/utilities/stretched-links.scss";
 @import "partials/utilities/text.scss";
 @import "partials/utilities/visibility.scss";
+@import "partials/utilities/custom.scss";
 
 // Helpers
 @import "partials/helpers/table";
@@ -112,4 +112,4 @@
 // @import "partials/ie";
 
 // Print
-// @import "partials/print";
+@import "partials/print";

@@ -252,7 +252,7 @@ $gf_field_label_font_size : rem-calc( 14px );
 	option {
 		padding: rem-calc(10px);
 	}
-	@include breakpoint( $md ) {
+	@include media-breakpoint-up( md ) {
 		option {
 			padding: rem-calc(10px);
 		}
@@ -291,7 +291,7 @@ $gf_field_label_font_size : rem-calc( 14px );
 				}
 			}
 		}
-		@include breakpoint( $md ) {
+		@include media-breakpoint-up( md ) {
 			padding: rem-calc(10px);
 		}
 	}
@@ -467,7 +467,7 @@ $gf_field_label_font_size : rem-calc( 14px );
 			border: rem-calc(1px) solid #e8e8e8;
 			margin-bottom: rem-calc(5px);
 			position: relative;
-			@include breakpoint( $md ) {
+			@include media-breakpoint-up( md ) {
 				// padding: rem-calc(10px) $input_py_md;
 			}
 		}
@@ -636,7 +636,7 @@ table.ui-datepicker-calendar {
 	}
 }
 
-@include breakpoint( $md ) {
+@include media-breakpoint-up( md ) {
 	.gf-address-col-2, .gf-address-col-3 {
 		//contain all the input & label
 		.ginput_complex {
@@ -893,7 +893,7 @@ table.gfield_list {
 =            Custom Checkbox/Radio            =
 =============================================*/
 /*----------  Inline  ----------*/
-@include breakpoint( $md ) {
+@include media-breakpoint-up( md ) {
 	.gfield.gf-list-inline {
 		.gfield_checkbox, .gfield_radio {
 			> li {
@@ -908,7 +908,7 @@ table.gfield_list {
 }
 
 /* Two Colums */
-@include breakpoint( $md ) {
+@include media-breakpoint-up( md ) {
 	.gfield.gf-list-col-2 {
 		.gfield_checkbox, .gfield_radio {
 			margin: 0 rem-calc(-15px);
@@ -926,7 +926,7 @@ table.gfield_list {
 
 /*----------  Covered  ----------*/
 .gfield.gf-list-enhanced {
-	@include breakpoint( $md ) {
+	@include media-breakpoint-up( md ) {
 		&.gf-list-col-2 {
 			.gfield_checkbox, .gfield_radio {
 				label {
@@ -1067,7 +1067,7 @@ table.gfield_list {
 				}
 			}
 		}
-		@include breakpoint( $md ) {
+		@include media-breakpoint-up( md ) {
 			margin-left: rem-calc(-10px);
 			margin-right: rem-calc(-10px);
 			> ul {
@@ -1094,7 +1094,7 @@ table.gfield_list {
 		.gfield_html {
 			margin-bottom: 0;
 		}
-		@include breakpoint( $md ) {
+		@include media-breakpoint-up( md ) {
 			margin-left: rem-calc(-15px);
 			margin-right: rem-calc(-15px);
 			.gf-block-col-2 {
@@ -1139,7 +1139,7 @@ table.gfield_list {
 			display: none !important;
 		}
 	}
-	@include breakpoint( $md ) {
+	@include media-breakpoint-up( md ) {
 		.gfield.gf-label-inline {
 			@include display-flex;
 			@include align-items( center );
@@ -1249,7 +1249,7 @@ $padding: rem-calc(10px);
 	.gf_left_third, .gf_middle_third, .gf_right_third,
 	.gf-left-third, .gf-middle-third, .gf-right-third {
 		width: 100%;
-		@include breakpoint( $md ) {
+		@include media-breakpoint-up( md ) {
 		  width: 33.333333%;
 		}
 	}
@@ -1259,7 +1259,7 @@ $padding: rem-calc(10px);
 		@include media-breakpoint-up( sm ) {
 		  width: 50%;
 		}
-		@include breakpoint( $md ) {
+		@include media-breakpoint-up( md ) {
 		  width: 25%;
 		}
 	}
@@ -1275,7 +1275,7 @@ $padding: rem-calc(10px);
 	}
 	.gf_left_third, .gf_middle_third,
 	.gf-left-third, .gf-middle-third {
-		@include breakpoint( $md ) {
+		@include media-breakpoint-up( md ) {
 		  padding-right: $padding;
 		}
 	}
@@ -1287,7 +1287,7 @@ $padding: rem-calc(10px);
 	}
 	.gf_third_quarter,
 	.gf-third-quarter {
-		@include breakpoint( $md ) {
+		@include media-breakpoint-up( md ) {
 		  padding-right: $padding;
 		}
 	}
@@ -1299,7 +1299,7 @@ $padding: rem-calc(10px);
 	}
 	.gf_middle_third, .gf_right_third,
 	.gf-middle-third, .gf-right-third {
-		@include breakpoint( $md ) {
+		@include media-breakpoint-up( md ) {
 		  padding-left: $padding;
 		}
 	}
@@ -1311,7 +1311,7 @@ $padding: rem-calc(10px);
 	}
 	.gf_third_quarter,
 	.gf-third-quarter {
-		@include breakpoint( $md ) {
+		@include media-breakpoint-up( md ) {
 		  padding-left: $padding;
 		}
 	}
@@ -1344,7 +1344,7 @@ $padding: rem-calc(10px);
 		.gfield_checkbox li, .gfield_radio li,
 		.gfield-checkbox li, .gfield-radio li {
 			width: 100%;
-			@include breakpoint( $md ) {
+			@include media-breakpoint-up( md ) {
 			  width: 33.333333%;
 			}
 		}
@@ -1357,7 +1357,7 @@ $padding: rem-calc(10px);
 			@include media-breakpoint-up( sm ) {
 			  width: 50%;
 			}
-			@include breakpoint( $md ) {
+			@include media-breakpoint-up( md ) {
 			  width: 25%;
 			}
 		}
@@ -1370,7 +1370,7 @@ $padding: rem-calc(10px);
 			@include media-breakpoint-up( sm ) {
 			  width: 50%;
 			}
-			@include breakpoint( $md ) {
+			@include media-breakpoint-up( md ) {
 			  width: 20%;
 			}
 		}

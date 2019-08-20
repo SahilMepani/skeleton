@@ -130,10 +130,10 @@ p:empty {
 // 	@include media-breakpoint-up( sm ) {
 // 	  margin-bottom: rem-calc(70px);
 // 	}
-// 	@include breakpoint( $md ) {
+// 	@include media-breakpoint-up( md ) {
 // 	  margin-bottom: rem-calc(90px);
 // 	}
-// 	@include breakpoint( $lg ) {
+// 	@include media-breakpoint-up( lg ) {
 // 	  margin-bottom: 10vw;
 // 	}
 // }

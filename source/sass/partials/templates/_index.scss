@@ -3,7 +3,7 @@
 	  @include display-flex;
 	  margin: 0 rem-calc(-10px);
 	}
-	@include breakpoint( $md ) {
+	@include media-breakpoint-up( md ) {
 	  margin: 0 rem-calc(-15px);
 	}
 }
@@ -20,7 +20,7 @@
 	  @include flex(1);
 	  padding: 0 rem-calc(10px);
 	}
-	@include breakpoint( $md ) {
+	@include media-breakpoint-up( md ) {
 	  padding: 0 rem-calc(15px);
 	}
 }
@@ -171,7 +171,7 @@
 			border-bottom-color: $body_color;
 		}
 	}
-	@include breakpoint( $md ) {
+	@include media-breakpoint-up( md ) {
   	@include display-flex;
   	padding: rem-calc( 50px );
 	  .img-block {

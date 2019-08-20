@@ -10,7 +10,7 @@
 		display: block;
 		height: 100%;
 	}
-	@include breakpoint( $lg ) {
+	@include media-breakpoint-up( lg ) {
 	  float: right;
 	}
 }
@@ -35,7 +35,7 @@
 			transition: .2s ease-out;
 		}
 	}
-	@include breakpoint( $lg ) {
+	@include media-breakpoint-up( lg ) {
 		display: none;
 	}
 }
@@ -61,7 +61,7 @@
 			}
 		}
 	}
-	@include breakpoint( $lg ) {
+	@include media-breakpoint-up( lg ) {
 		display: none;
 	}
 }
@@ -245,7 +245,7 @@ $desktop_sub_menu_link_padding_x: $desktop_parent_menu_item_padding_x; //usually
 $desktop_sub_menu_link_height: rem-calc( 36px ); //req for animation, manually calculate usually font height(not size) + padding-top and bottom.
 
 .header__nav__parent-menu {
-	@include breakpoint( $lg ) {
+	@include media-breakpoint-up( lg ) {
 	  > li {
 			float: left;
 			margin-right: rem-calc( 5px );
@@ -303,7 +303,7 @@ $desktop_sub_menu_link_height: rem-calc( 36px ); //req for animation, manually c
 }
 
 .header__nav .sub-menu {
-	@include breakpoint( $lg ) {
+	@include media-breakpoint-up( lg ) {
 	  width: $desktop_sub_menu_width;
 		position: absolute;
 		top: 100%;

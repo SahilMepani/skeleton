@@ -19,7 +19,7 @@
 			}
 		}
 	}
-	@include breakpoint( $md ) {
+	@include media-breakpoint-up( md ) {
 		padding: rem-calc(70px) 0;
 		.flex {
 			@include display-flex;
@@ -39,7 +39,7 @@
 			background: none !important;
 		}
 	}
-	@include breakpoint( $lg ) {
+	@include media-breakpoint-up( lg ) {
 		min-height: rem-calc(600px);
 		.flex {
 			min-height: rem-calc(600px);
@@ -56,7 +56,7 @@
 			margin-left: calc(50% - 480px);
 		}
 	}
-	@include breakpoint( $xl ) {
+	@include media-breakpoint-up( xl ) {
 	  .fixed-col {
 			margin-left: calc(50% - 570px);
 		}

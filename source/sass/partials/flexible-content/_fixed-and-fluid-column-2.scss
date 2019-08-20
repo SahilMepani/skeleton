@@ -17,7 +17,7 @@
 			}
 		}
 	}
-	@include breakpoint( $md ) {
+	@include media-breakpoint-up( md ) {
 		padding: rem-calc(70px) 0;
 		.fluid-col {
 			float: left;
@@ -34,7 +34,7 @@
 			background: none !important;
 		}
 	}
-	@include breakpoint( $lg ) {
+	@include media-breakpoint-up( lg ) {
 		@include display-flex;
 		@include flex-direction( column );
 		padding: 0;

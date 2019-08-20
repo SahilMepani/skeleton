@@ -28,7 +28,7 @@
       @include translateY(-50%);
     }
   }
-  @include breakpoint( $md ) {
+  @include media-breakpoint-up( md ) {
     blockquote {
       padding-left: rem-calc( 40px );
     }

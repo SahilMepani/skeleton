@@ -1,7 +1,7 @@
 .type-post {
 	.embed-responsive {
 		margin-bottom: $global_margin_bottom;
-		@include breakpoint( $lg ) {
+		@include media-breakpoint-up( lg ) {
 		  margin-bottom: $global_margin_bottom_lg;
 		}
 	}

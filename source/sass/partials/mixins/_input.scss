@@ -42,7 +42,7 @@ $input_transition        : none;
 			outline: none;
 		}
 	}
-	@include breakpoint( $md ) {
+	@include media-breakpoint-up( md ) {
 		padding: $input_px_md $input_py_md;
 	}
 	//required to disable auto zoom in iOS when font is less than 16px

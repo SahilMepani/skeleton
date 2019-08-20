@@ -12,69 +12,37 @@
 @import "compass/utilities";
 @import "compass/css3";
 @import "animation/core";
-// @import "node_modules/breakpoint-sass/stylesheets/breakpoint";
 
 // Required in same order
 @import "partials/variables";
-
-// Mixins
 @import "partials/mixins/mixins";
-
-// Reset and default styles
 @import "partials/normalize";
-@import "partials/helpers/icons";
 @import "partials/base-selectors";
-
-// Grid
 @import "partials/grid.scss";
 
 // Javascript
-// @import "partials/js/slick";
-// @import "partials/js/magnific-popup";
-// @import "partials/js/js-socials";
-// @import "partials/js/aos";
+
 
 // Helpers
 @import "partials/helpers/base-helpers";
-
 @import "partials/components/header";
 @import "partials/components/header-menu";
-// @import "partials/components/content";
-// @import "partials/components/sidebar";
 @import "partials/components/footer";
 
 // Flexible Content
-// @import "partials/flexible-content/wysiwyg";
-// @import "partials/flexible-content/fullscreen-slider";
-// @import "partials/flexible-content/post-cards";
-// @import "partials/flexible-content/fixed-and-fluid-column-1";
-// @import "partials/flexible-content/fixed-and-fluid-column-2";
-// @import "partials/flexible-content/fixed-and-fluid-column-3";
-// @import "partials/flexible-content/fixed-and-fluid-column-4";
+
 
 // Page templates
-@import "partials/templates/front-page";
-// @import "partials/templates/page";
-// @import "partials/templates/contact";
-// @import "partials/templates/index.scss";
-// @import "partials/templates/styleguide.scss";
-// @import "partials/templates/search";
-// @import "partials/templates/404";
-// @import "partials/templates/sitemap";
-
-// Post & CPT
-// @import "partials/templates/projects";
-// @import "partials/templates/single";
+@import "partials/templates/page";
+@import "partials/templates/index.scss";
+@import "partials/templates/search";
+@import "partials/templates/404";
+@import "partials/templates/single";
 
 // WP components
-// @import "partials/components/widgets";
-// @import "partials/components/comments";
-// @import "partials/components/post_formats";
+
 
 // WP plugins
-// @import "partials/plugins/gravity-forms";
-// @import "partials/plugins/tribe-events/tribe_base";
-// @import "partials/plugins/yoast-breadcrumbs";
 
 
 // Utilities
@@ -103,13 +71,12 @@
 @import "partials/helpers/list";
 @import "partials/helpers/buttons";
 @import "partials/helpers/helpers";
-// @import "partials/helpers/keyframes";
 
 // Last minute changes
-// @import "partials/shame";
+@import "partials/shame";
 
 // IE specific
-// @import "partials/ie";
+@import "partials/ie";
 
 // Print
 @import "partials/print";

@@ -4,23 +4,8 @@
 =            Require files            =
 ===================================== */
 require_once( get_template_directory() . '/functions/shortcodes.php' );
-require_once( get_template_directory() . '/functions/helpers.php' );
 require_once( get_template_directory() . '/functions/filters.php' );
 require_once( get_template_directory() . '/functions/acf.php' );
-require_once( get_template_directory() . '/functions/custom-post-types.php' );
-require_once( get_template_directory() . '/functions/admin-ajax.php' );
-// require_once( get_template_directory() . '/functions/amp.php' ); // only if amp plugin available
-// require_once( get_template_directory() . '/functions/twitter-feed/feed.php' );
-// require_once( get_template_directory() . '/functions/instagram-feed/feed.php' );
-// require_once( get_template_directory() . '/functions/pinterest-feed/feed.php' );
-// require_once( get_template_directory() . '/functions/post-like/post-like.php' );
-/*----------  Enable login captcha  ----------*/
-// function is_login_page() {
-// 	return in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'));
-// }
-// if ( is_login_page() ) {
-// 	require_once( get_template_directory() . '/functions/captcha.php' );
-// }
 
 
 /* ===========================================
@@ -46,17 +31,17 @@ function tse_scripts() {
 
 add_action('wp_enqueue_scripts', 'tse_scripts');
 
+
 /* Add defer attribute to the scripts to set the resource priority to low */
 function mind_defer_scripts( $tag, $handle, $src ) {
-  $defer = array(
-    'plugins',
-    'custom',
-  );
-  if ( in_array( $handle, $defer ) ) {
-     return '<script src="' . $src . '" defer="defer" type="text/javascript"></script>' . "\n";
-  }
-
-    return $tag;
+	$defer = array(
+		'plugins',
+		'custom',
+	);
+	if ( in_array( $handle, $defer ) ) {
+		 return '<script src="' . $src . '" defer="defer" type="text/javascript"></script>' . "\n";
+	}
+		return $tag;
 }
 add_filter( 'script_loader_tag', 'mind_defer_scripts', 10, 3 );
 
@@ -102,23 +87,6 @@ add_image_size( 'w1400@2x', 2800, 9999 );
 add_image_size( 'w1600@2x', 3200, 9999 );
 
 
-/*=========================================
-=            Register sidebars            =
-=========================================*/
-// $sidebars = array('Blog');
-// foreach ($sidebars as $sidebar) :
-//   register_sidebar(
-//     array(
-//       'name' => $sidebar,
-//       'before_widget' => '<li id="%1$s" class="widget %2$s clearfix">',
-//       'after_widget' => '</li>',
-//       'before_title' => '<h4 class="widget-heading">',
-//       'after_title' => '</h4>',
-//     )
-//   );
-// endforeach;
-
-
 /*======================================
 =            Register menus            =
 ======================================*/
@@ -128,34 +96,6 @@ register_nav_menus(
 		'footer-menu' => 'Footer Menu',
 	)
 );
-
-/* ----------  Create menus  ---------- */
-// wp_create_nav_menu('Header');
-// wp_create_nav_menu('Footer');
-
-
-/* ======================================================
-=            Disable file editor in backend            =
-====================================================== */
-// define('DISALLOW_FILE_EDIT', TRUE);
-
-
-/*===============================================
-=            Disable all the updates            =
-===============================================*/
-// define('DISALLOW_FILE_MODS', true);
-
-
-/*=====================================================
-=            Enable Typekit font in editor            =
-=====================================================*/
-/* Dont forget to add the typekit ID in the below file */
-
-// function tse_mce_external_plugins($plugin_array) {
-//   $plugin_array['typekit'] = get_template_directory_uri() . '/js/typekit.tinymce.js';
-//   return $plugin_array;
-// }
-// add_filter("mce_external_plugins", "tse_mce_external_plugins");
 
 
 /* =================================================
@@ -175,82 +115,6 @@ function editor_css() {
 }
 add_action('admin_head-post.php', 'editor_css');
 add_action('admin_head-post-new.php', 'editor_css');
-
-
-/*==============================================
-=            Single/Page pagination            =
-==============================================*/
-/* http://bavotasan.com/2012/a-better-wp_link_pages-for-wordpress/
- * The formatted output of a list of pages.
- *
- * Displays page links for paginated posts (i.e. includes the "nextpage".
- * Quicktag one or more times). This tag must be within The Loop.
- *
- * @param string|array $args Optional. Overwrite the defaults.
- * @return string Formatted output in HTML.
- */
-
-// function tse_wp_link_pages($args = '') {
-//   $defaults = array(
-//       'before' => '<div class="single-pagination">' . '<span class="index">Pages:</span>',
-//       'after' => '</div>',
-//       'text_before' => '',
-//       'text_after' => '',
-//       'next_or_number' => 'number',
-//       'nextpagelink' => 'Next page',
-//       'previouspagelink' => 'Previous page',
-//       'pagelink' => '%',
-//       'echo' => 1
-//   );
-//   $r = wp_parse_args($args, $defaults);
-//   $r = apply_filters('wp_link_pages_args', $r);
-//   extract($r, EXTR_SKIP);
-//   global $page, $numpages, $multipage, $more, $pagenow;
-//   $output = '';
-//   if ($multipage) {
-//     if ('number' == $next_or_number) {
-//       $output .= $before;
-//       for ($i = 1; $i < ( $numpages + 1 ); $i = $i + 1) {
-//         $j = str_replace('%', $i, $pagelink);
-//         $output .= ' ';
-//         if ($i != $page || ( (!$more ) && ( $page == 1 ) ))
-//           $output .= _wp_link_page($i);
-//         else
-//           $output .= '<span class="current">';
-//         $output .= $text_before . $j . $text_after;
-//         if ($i != $page || ( (!$more ) && ( $page == 1 ) ))
-//           $output .= '</a>';
-//         else
-//           $output .= '</span>';
-//       }
-//       $output .= $after;
-//     } else {
-//       if ($more) {
-//         $output .= $before;
-//         $i = $page - 1;
-//         if ($i && $more) {
-//           $output .= _wp_link_page($i);
-//           $output .= $text_before . $previouspagelink . $text_after . '</a>';
-//         }
-//         $i = $page + 1;
-//         if ($i <= $numpages && $more) {
-//           $output .= _wp_link_page($i);
-//           $output .= $text_before . $nextpagelink . $text_after . '</a>';
-//         }
-//         $output .= $after;
-//       }
-//     }
-//   }
-//   if ($echo)
-//     echo $output;
-//   return $output;
-// }
-
-
-/* =========================================
-=            Set content width            =
-========================================= */
-// if ( !isset($content_width) ) $content_width = 1140; // highest content width
 
 
 /*----------  REQUIRED  ----------*/

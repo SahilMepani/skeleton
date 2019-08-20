@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<ul class="mb-0">
+<ul class="mb-0 list-unstyled">
 	<li class="mb-3 first:mb-0">Hello World</li>
 	<li class="mb-3">Hello World</li>
 	<li class="mb-3">Hello World</li>

@@ -9,7 +9,6 @@ require_once( get_template_directory() . '/functions/filters.php' );
 require_once( get_template_directory() . '/functions/acf.php' );
 require_once( get_template_directory() . '/functions/custom-post-types.php' );
 require_once( get_template_directory() . '/functions/admin-ajax.php' );
-require_once( get_template_directory() . '/functions/blocks.php' );
 // require_once( get_template_directory() . '/functions/amp.php' ); // only if amp plugin available
 // require_once( get_template_directory() . '/functions/twitter-feed/feed.php' );
 // require_once( get_template_directory() . '/functions/instagram-feed/feed.php' );

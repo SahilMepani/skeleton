@@ -43,13 +43,8 @@ add_action('login_head', 'custom_loginlogo');
 // remove_action( 'wp_head', 'wp_oembed_add_host_js' );
 
 // // Remove all embeds rewrite rules.
-// add_filter( 'rewrite_rules_array', 'disable_embeds_rewrites' ); //generates error
+// add_filter( 'rewrite_rules_array', 'disable_embeds_rewrites' ); // generates error
 
-
-/*==============================================
-=            Auto update all plugins            =
-==============================================*/
-// add_filter('auto_update_plugin', '__return_true');
 
 
 /*===================================================================
@@ -301,10 +296,32 @@ add_action('template_redirect', 'tse_redirect_single_post');*/
 }
 add_filter('pre_get_posts','searchfilter');*/
 
+
 /*==========================================================
 =            Email Address Encoder Plugin - ACF fields            =
 ==========================================================*/
 // add_filter('acf/load_value', 'eae_encode_emails');
+
+
+
+/*=========================================================
+=            Add attributes to enqueue scripts            =
+=========================================================*/
+// function add_script_attribute($tag, $handle) {
+// 	if ( 'modernizr' !== $handle )
+// 			return $tag;
+// 	return str_replace( ' src', ' async="async" src', $tag );
+// }
+// add_filter('script_loader_tag', 'add_script_attribute', 10, 2);
+
+
+/*=========================================================
+=            Disable default image compression            =
+=========================================================*/
+// function tse_wp_generate_image_sizes_quality() {
+// 	return 100;
+// }
+// add_filter( 'jpeg_quality', 'tse_wp_generate_image_sizes_quality');
 
 
 /*----------  REQUIRED  ----------*/
@@ -470,23 +487,3 @@ remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0); // remove the next a
 remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
 
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0 );
-
-
-/*=========================================================
-=            Add attributes to enqueue scripts            =
-=========================================================*/
-// function add_script_attribute($tag, $handle) {
-// 	if ( 'modernizr' !== $handle )
-// 			return $tag;
-// 	return str_replace( ' src', ' async="async" src', $tag );
-// }
-// add_filter('script_loader_tag', 'add_script_attribute', 10, 2);
-
-
-/*=========================================================
-=            Disable default image compression            =
-=========================================================*/
-// function tse_wp_generate_image_sizes_quality() {
-// 	return 100;
-// }
-// add_filter( 'jpeg_quality', 'tse_wp_generate_image_sizes_quality');

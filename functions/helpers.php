@@ -54,11 +54,11 @@ function tse_tiny_url($url) {
 =            Text Shorter            =
 ====================================*/
 function tse_text_shorter($input, $length) {
-	//no need to trim, already shorter than trim length
+	// no need to trim, already shorter than trim length
 	if (strlen($input) <= $length) {
 		return $input;
 	}
-	//find last space within length
+	// find last space within length
 	$last_space = strrpos(substr($input, 0, $length), ' ');
 	if (!$last_space)
 		$last_space = $length;

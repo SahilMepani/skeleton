@@ -372,6 +372,8 @@ li { line-height: 1.66; margin-bottom: 1.5rem; }
 dt { font-family: inherit; font-weight: 700; line-height: 1.66; margin: 0 0 1.5rem; }
 
 /*----------  Form  ----------*/
+form ul { margin-left: 0; }
+
 form ul > li { list-style: none; }
 
 form > ul > li { clear: both; margin-bottom: 1.5rem; }
@@ -763,6 +765,8 @@ p:empty { display: none; }
 
 .header__logo a { text-indent: -119988px; overflow: hidden; text-align: left; display: block; height: 100%; position: absolute; top: 0; left: 0; width: 100%; }
 
+.header__nav ul { margin-left: 0; }
+
 .header__nav ul > li { list-style: none; }
 
 .header__nav li { margin-bottom: 0; }
@@ -830,7 +834,7 @@ p:empty { display: none; }
   .header__nav .sub-menu > li > a { visibility: hidden; background-color: #ddd; color: transparent; display: block; height: 0; padding: 0 2rem; }
   .header__nav .sub-menu > li.current-menu-item > a { background-color: #ccc; color: transparent; } }
 
-.footer-menu { float: right; }
+.footer-menu { float: right; margin-left: 0; }
 
 .footer-menu > li { list-style: none; }
 
@@ -4980,7 +4984,7 @@ p:empty { display: none; }
 
 .underline { text-decoration: underline !important; }
 
-.text-lead, .text-big { font-size: 2rem !important; }
+.lead, .text-big { font-size: 2rem !important; }
 
 .lowercase { text-transform: lowercase !important; }
 
@@ -5090,7 +5094,9 @@ p:empty { display: none; }
 .btn-disabled { cursor: default; pointer-events: none; opacity: .3; }
 
 /*----------  Required  ----------*/
-.list-unstyled > li { list-style: normal; }
+.list-unstyled { margin-left: 0; }
+
+.list-unstyled > li { list-style: none; }
 
 @media print { *, *::before, *::after { text-shadow: none !important; box-shadow: none !important; }
   a:not(.btn) { text-decoration: underline; }

@@ -78,7 +78,7 @@
 
 .underline { text-decoration: underline !important; }
 
-.text-lead, .text-big {
+.lead, .text-big {
 	font-size: rem-calc(20px) !important;
 }
 .text-small { @extend small; }

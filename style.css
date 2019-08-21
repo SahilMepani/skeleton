@@ -5107,6 +5107,8 @@ p:empty { display: none; }
 
 .invisible { visibility: hidden !important; }
 
+.display { color: red; }
+
 .table-striped tbody tr:nth-child(odd), .table-mixed tbody tr:nth-child(odd) { background-color: #f9f9f9; }
 
 .table-bordered th, .table-mixed th, .table-bordered td, .table-mixed td { border: 1px solid #e5e5e5; }

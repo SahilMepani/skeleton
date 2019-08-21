@@ -18,13 +18,16 @@
 @import "partials/mixins/mixins";
 @import "partials/normalize";
 @import "partials/base-selectors";
+
+// Javascript plugins
+
+
+// Base
+@import "partials/base-styles";
 @import "partials/grid.scss";
 
-// Javascript
-
-
-// Helpers
-@import "partials/helpers/base-helpers";
+// Components
+@import "partials/components/content";
 @import "partials/components/header";
 @import "partials/components/header-menu";
 @import "partials/components/footer";
@@ -39,14 +42,14 @@
 @import "partials/templates/404";
 @import "partials/templates/single";
 
-// Components
-@import "partials/components/content";
-@import "partials/components/header";
-@import "partials/components/header-menu";
-@import "partials/components/footer";
-
 // WP plugins
 
+
+// Helpers
+@import "partials/helpers/table";
+@import "partials/helpers/list";
+@import "partials/helpers/buttons";
+@import "partials/helpers/helpers";
 
 // Utilities
 @import "partials/utilities/align.scss";
@@ -68,12 +71,6 @@
 @import "partials/utilities/text.scss";
 @import "partials/utilities/visibility.scss";
 @import "partials/utilities/custom.scss";
-
-// Helpers
-@import "partials/helpers/table";
-@import "partials/helpers/list";
-@import "partials/helpers/buttons";
-@import "partials/helpers/helpers";
 
 // Last minute changes
 @import "partials/shame";

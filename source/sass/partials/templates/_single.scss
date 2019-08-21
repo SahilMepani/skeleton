@@ -1,16 +1,13 @@
 .type-post {
 	.embed-responsive {
 		margin-bottom: $global_margin_bottom;
-		@include media-breakpoint-up( lg ) {
-		  margin-bottom: $global_margin_bottom_lg;
-		}
 	}
 }
 
 // Single Navigation - Prev/Next
 .post-nav {
 	display: none;
-	@include breakpoint( min-width 601px ) {
+	@include media-breakpoint-up( sm ) {
 		clear: both;
 		display: block;
 		background: #fff;

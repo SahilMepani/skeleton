@@ -39,8 +39,11 @@
 @import "partials/templates/404";
 @import "partials/templates/single";
 
-// WP components
-
+// Components
+@import "partials/components/content";
+@import "partials/components/header";
+@import "partials/components/header-menu";
+@import "partials/components/footer";
 
 // WP plugins
 

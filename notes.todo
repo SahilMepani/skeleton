@@ -31,7 +31,7 @@
   ☐ Any class/ID added using javascript should be prefixed using "js-" e.g. js-active, js-hidden
 
   Rules:
-  ☐ All px values should be wrapped inside rem-calc() function
+  ☐ All px values to be wrapped inside rem-calc() function. It will throw error if used inside calc() only at that time we manually calculate the rem value at the base of $root-font-size value which is always set to 10px. For eg. if your value is 30px it will convert to 30/10 = 3rem
   ☐ Avoid ID as much as possible.
   ☐ Whenever possible use utility/helper classes in html.
 

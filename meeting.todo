@@ -1,0 +1,7 @@
+# Notes --- ✄ -----------------------:
+ ☐ All the spacing will be at the interval of 5px because of utility classes
+ ☐ If we need pixel perfect spacing we need to get to extra line-height in design
+ ☐ Anything outside the container gets overlayed on smaller screens, generally the slider arrows
+ ☐ Changing font-size at later stage breaks the heirarchy
+ ☐ Changing from mobile to desktop or vice versa has to be gradual.
+ ☐ How happy are designer at the scale of 1 to 10 and what they feel should be improved and missed in this project. This question should be asked after every project and same question goes for developer.

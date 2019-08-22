@@ -82,7 +82,7 @@ $gf-field-label-font-size : rem-calc( 14px );
 		}
 		//standard field label (label)
 		.gfield_label {
-			@extend %gf_label;
+			@extend %gf-label;
 		}
 		//wraps the sub-fields in fields like the name, address, etc. (div)
 		.ginput_complex {

@@ -19,11 +19,16 @@
 @import "partials/normalize";
 @import "partials/base-selectors";
 
+<<<<<<< HEAD
 // Javascript plugins
 @import "partials/js/slick";
 @import "partials/js/magnific-popup";
 @import "partials/js/js-socials";
 @import "partials/js/aos";
+=======
+// JS plugins
+
+>>>>>>> 4e0744311d3f4853d6fd444862e90504733a12ab
 
 // Base
 @import "partials/base-styles";
@@ -48,7 +53,12 @@
 @import "partials/flexible-content/fixed-and-fluid-column-3";
 @import "partials/flexible-content/fixed-and-fluid-column-4";
 
+<<<<<<< HEAD
 // Page templates
+=======
+// Templates
+@import "partials/templates/page";
+>>>>>>> 4e0744311d3f4853d6fd444862e90504733a12ab
 @import "partials/templates/index.scss";
 @import "partials/templates/front-page";
 @import "partials/templates/page";

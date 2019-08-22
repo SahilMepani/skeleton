@@ -1,0 +1,101 @@
+START --- ✄ -----------------------:
+ ☐ Remove the folders inside uploads directory if versatile wp-content is copied.
+ ☐ Delete the files inside acf-json
+ ☐ Delete .git, .sass-cache, .php folders
+ ☐ Change WP_DEBUG to true in config file.
+ ☐ Update Wordpress & plugins
+ ☐ Edit sass/style.scss and add the theme info
+ ☐ Activate Theme
+ ☐ Remove/Change tagline and title
+ ☐ Create theme screenshot
+ ☐ Create favicon.png & favicon.ico
+ ☐ Disable search engine (Settings/Reading)
+ ☐ Set Front & Posts Page, if required (Settings/Reading)
+ ☐ Blog pages show at most - 5 (Settings/Reading)
+ ☐ Disable comments & gravatar (Settings/Discussion)
+ ☐ Set permalinks - Post Name (Settings/Permalinks)
+ ☐ Activate required plugins
+ ☐ Create required pages using bulk page creator plugin (Settings/Bulk Page Creator)
+ ☐ Set default post image sizes - Large will be the highest container size.
+ ☐ Set typekit id in js file to load the fonts in editor
+ ☐ If CPT is used edit filters.php for custom admin options
+
+PAGE TEMPLATES --- ✄ -----------------------:
+ ☐ Header
+ ☐ Footer
+ ☐ Functions
+ ☐ Index
+ ☐ Page
+ ☐ Custom Templates
+ ☐ Custom Post Types
+ ☐ Single
+ ☐ Author
+ ☐ Category
+ ☐ Sitemap
+ ☐ Search
+ ☐ 404
+ ☐ Sidebar
+ ☐ Styleguide
+
+FINALIZE --- ✄ -----------------------:
+ ☐ Change WP_DEBUG to false in config file.
+ ☐ Redirect all cpt slug to plural if no archive and custom template used.
+ ☐ Check console on all pages for JS errors
+ ☐ Check all columns nth-child are clearing for next row
+ ☐ Config set to production and compressed mode.
+ ☐ Allow search engines
+ ☐ If comments enabled. enable gravatar
+ ☐ Clean functions.php
+ ☐ Unwanted Icomoon icons
+ ☐ Delete unwanted partials
+ ☐ Optimize all theme files one by one
+ ☐ Clean style.css
+ ☐ Delete unwanted theme files
+ ☐ Copy style.css to editor-style.css - Make sure the body font matches and appropriate fonts are loaded.
+ ☐ Check editor formatting and make sure it loads as front-end as close as possible
+ ☐ Rebuld thumbnails
+ ☐ Optimize database using WP Optimize plugin
+ ☐ Optimize uploads & images directory
+ ☐ Remove unwanted plugins
+ ☐ Remove unwanted options from admin menu, add admin columns if required
+ ☐ Blog home link inside singe.php file
+ ☐ Add .htaccess code for speed optimization
+ ☐ REMOVE sftp-config.json file
+
+RESPONSIVE & Cross Browser --- ✄ -----------------------:
+  WINDOWS --- ✄ -----------------------:
+   ☐ IE 11+
+   ☐ Chrome
+   ☐ Safari
+   ☐ Firefox
+   ☐ Opera
+  MAC --- ✄ -----------------------:
+   ☐ Safari
+   ☐ Chrome
+   ☐ Firefox
+   ☐ Opera
+  iOS (Safari & Chrome) --- ✄ -----------------------:
+   ☐ iPhone 6
+   ☐ iphone 7
+   ☐ iphone X
+   ☐ iPad
+  Android --- ✄ -----------------------:
+   ☐ Chrome
+   ☐ Firefox
+   ☐ Opera
+   ☐ UC Browser
+
+ ☐ Remove all the theme files from server and upload it the newest copy. This is because after all the checklist most of the files are deleted from local copy but not from server.
+
+
+ http://wiki.threesixtyeight.is/article/launch-check-list/
+
+ - Add iThemes Security Plugin
+- Change /wp-admin to /manage
+- Update password to random secure
+- Add Google Analytics
+- Make sure each page is editable from backend
+- Remove WP Edit from backend (Appearence -> Editor)
+- Is business on Google Places?
+- Add Schema http://www.wordstream.com/blog/ws/2014/03/20/
+- Add .htaccess template file (GZIP, etc)

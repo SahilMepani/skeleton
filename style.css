@@ -327,7 +327,7 @@ audio, canvas, iframe, img, svg, video { vertical-align: middle; }
 
 .slick-loading .slick-track { visibility: hidden; }
 
-.slick-slide { float: left; height: 100%; min-height: 1px; display: none; }
+.slick-slide { float: left; height: 100%; min-height: 0.1rem; display: none; }
 
 [dir="rtl"] .slick-slide { float: right; }
 
@@ -341,16 +341,15 @@ audio, canvas, iframe, img, svg, video { vertical-align: middle; }
 
 .slick-loading .slick-slide { visibility: hidden; }
 
-.slick-vertical .slick-slide { display: block; height: auto; border: 1px solid transparent; }
+.slick-vertical .slick-slide { display: block; height: auto; border: 0.1rem solid transparent; }
 
 .slick-arrow.slick-hidden { display: none; }
 
-/* Magnific Popup CSS */
 .mfp-bg { top: 0; left: 0; width: 100%; height: 100%; z-index: 1042; overflow: hidden; position: fixed; background: #0b0b0b; opacity: 0.8; }
 
 .mfp-wrap { top: 0; left: 0; width: 100%; height: 100%; z-index: 1043; position: fixed; outline: none !important; -webkit-backface-visibility: hidden; }
 
-.mfp-container { text-align: center; position: absolute; width: 100%; height: 100%; left: 0; top: 0; padding: 0 8px; box-sizing: border-box; }
+.mfp-container { text-align: center; position: absolute; width: 100%; height: 100%; left: 0; top: 0; padding: 0 0.8rem; box-sizing: border-box; }
 
 .mfp-container:before { content: ''; display: inline-block; height: 100%; vertical-align: middle; }
 
@@ -416,29 +415,29 @@ button::-moz-focus-inner { padding: 0; border: 0; }
 
 .mfp-arrow-right:before { content: '\e617'; }
 
-.mfp-iframe-holder { padding-top: 40px; padding-bottom: 40px; }
+.mfp-iframe-holder { padding-top: 4rem; padding-bottom: 4rem; }
 
-.mfp-iframe-holder .mfp-content { line-height: 0; width: 100%; max-width: 900px; }
+.mfp-iframe-holder .mfp-content { line-height: 0; width: 100%; max-width: 90rem; }
 
 .mfp-iframe-holder .mfp-close { top: -4rem; }
 
 .mfp-iframe-scaler { width: 100%; height: 0; overflow: hidden; padding-top: 56.25%; }
 
-.mfp-iframe-scaler iframe { position: absolute; display: block; top: 0; left: 0; width: 100%; height: 100%; box-shadow: 0 0 8px rgba(0, 0, 0, 0.6); background: #000; }
+.mfp-iframe-scaler iframe { position: absolute; display: block; top: 0; left: 0; width: 100%; height: 100%; box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.6); background: #000; }
 
 /* Main image in popup */
-img.mfp-img { width: auto; max-width: 100%; height: auto; display: block; line-height: 0; box-sizing: border-box; padding: 40px 0 40px; margin: 0 auto; }
+img.mfp-img { width: auto; max-width: 100%; height: auto; display: block; line-height: 0; box-sizing: border-box; padding: 4rem 0 4rem; margin: 0 auto; }
 
 /* The shadow behind the image */
 .mfp-figure { line-height: 0; }
 
-.mfp-figure:after { content: ''; position: absolute; left: 0; top: 40px; bottom: 40px; display: block; right: 0; width: auto; height: auto; z-index: -1; box-shadow: 0 0 8px rgba(0, 0, 0, 0.6); background: #444; }
+.mfp-figure:after { content: ''; position: absolute; left: 0; top: 4rem; bottom: 4rem; display: block; right: 0; width: auto; height: auto; z-index: -1; box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.6); background: #444; }
 
 .mfp-figure small, .mfp-figure .text-small { color: #BDBDBD; display: block; font-size: 1.2rem; line-height: 1.4rem; }
 
 .mfp-figure figure { margin: 0; }
 
-.mfp-bottom-bar { margin-top: -36px; position: absolute; top: 100%; left: 0; width: 100%; cursor: auto; }
+.mfp-bottom-bar { margin-top: 0rem; position: absolute; top: 100%; left: 0; width: 100%; cursor: auto; }
 
 .mfp-title { text-align: left; line-height: 1.8rem; color: #F3F3F3; word-wrap: break-word; padding-right: 3.6rem; }
 
@@ -459,7 +458,7 @@ img.mfp-img { width: auto; max-width: 100%; height: auto; display: block; line-h
 @media all and (max-width: 900px) { .mfp-arrow { -webkit-transform: scale(0.75); transform: scale(0.75); }
   .mfp-arrow-left { -webkit-transform-origin: 0; transform-origin: 0; }
   .mfp-arrow-right { -webkit-transform-origin: 100%; transform-origin: 100%; }
-  .mfp-container { padding-left: 6px; padding-right: 6px; } }
+  .mfp-container { padding-left: 0.6rem; padding-right: 0.6rem; } }
 
 /* ====== Zoom effect ====== */
 .mfp-zoom-in { /* start state */ /* animate in */ /* animate out */ }

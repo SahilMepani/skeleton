@@ -28,7 +28,8 @@
 @mixin btn-red {
 	background: $primary;
 	color: #fff;
-	&:hover, &:active {
+	&:hover,
+	&:active {
 		background: darken($primary,7%);
 		color: #fff;
 	}
@@ -37,7 +38,8 @@
 @mixin btn-black {
 	background: $black;
 	color: #fff;
-	&:hover, &:active {
+	&:hover,
+	&:active {
 		background: darken($black,7%);
 		color: #fff;
 	}

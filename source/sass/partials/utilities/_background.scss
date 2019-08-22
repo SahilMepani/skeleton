@@ -8,12 +8,14 @@
 	overflow: hidden;
 }
 
-.bg-video-fullscreen, .bg-video-cover {
+.bg-video-fullscreen,
+.bg-video-cover {
   min-width: 100%;
   min-height: 100%;
 }
 
-.bg-video-inline, .bg-video-contain {
+.bg-video-inline,
+.bg-video-contain {
   max-width: 100%;
   min-width: 100%;
 }

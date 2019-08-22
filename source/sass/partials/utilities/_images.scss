@@ -4,7 +4,12 @@
 }
 
 // Custom
-.img-responsive, .alignnone, .alignleft, .alignright, .aligncenter, .wp-post-image {
+.img-responsive,
+.alignnone,
+.alignleft,
+.alignright,
+.aligncenter,
+.wp-post-image {
 	// align classes are set by wp on images inisde editor.
   width: auto;
   height: auto;

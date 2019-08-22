@@ -54,7 +54,8 @@
 			color: #000;
 			font-size: rem-calc(24px);
 		}
-		&:hover, &:active {
+		&:hover,
+		&:active {
 			background-color: #fff;
 			&:before {
 				color: red;
@@ -141,7 +142,9 @@ $mobile-sub-menu-link-padding-x: $mobile-parent-menu-item-padding-x; //usually t
 				}
 			}
 		}
-		> li.current-page-ancestor > a, > li.current-menu-parent > a, > li.current-menu-item > a {
+		> li.current-page-ancestor > a,
+		> li.current-menu-parent > a,
+		> li.current-menu-item > a {
 			background: $mobile-parent-menu-current-item-link-bg-color;
 			color: $mobile-parent-menu-current-item-link-color;
 		}
@@ -260,7 +263,9 @@ $desktop-sub-menu-link-height: rem-calc( 36px ); //req for animation, manually c
 				}
 			}
 		}
-		> li.current-page-ancestor > a, > li.current-menu-parent > a, > li.current-menu-item > a {
+		> li.current-page-ancestor > a,
+		> li.current-menu-parent > a,
+		> li.current-menu-item > a {
 			background-color: $desktop-parent-menu-current-item-link-bg-color;
 			color: $desktop-parent-menu-current-item-link-color;
 		}

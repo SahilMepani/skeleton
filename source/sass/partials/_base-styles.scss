@@ -1,5 +1,40 @@
 /*----------  Required  ----------*/
-h1 + h1, h1 + h2, h1 + h3, h1 + h4, h1 + h5, h1 + h6, h2 + h2, h2 + h1, h2 + h3, h2 + h4, h2 + h5, h2 + h6, h3 + h3, h3 + h1, h3 + h2, h3 + h4, h3 + h5, h3 + h6, h4 + h4, h4 + h1, h4 + h2, h4 + h3, h4 + h5, h4 + h6, h5 + h5, h5 + h1, h5 + h2, h5 + h3, h5 + h4, h4 + h6, h6 + h6, h6 + h1, h6 + h2, h6 + h3, h6 + h4, h6 + h5,  {
+h1 + h1,
+h1 + h2,
+h1 + h3,
+h1 + h4,
+h1 + h5,
+h1 + h6,
+h2 + h2,
+h2 + h1,
+h2 + h3,
+h2 + h4,
+h2 + h5,
+h2 + h6,
+h3 + h3,
+h3 + h1,
+h3 + h2,
+h3 + h4,
+h3 + h5,
+h3 + h6,
+h4 + h4,
+h4 + h1,
+h4 + h2,
+h4 + h3,
+h4 + h5,
+h4 + h6,
+h5 + h5,
+h5 + h1,
+h5 + h2,
+h5 + h3,
+h5 + h4,
+h4 + h6,
+h6 + h6,
+h6 + h1,
+h6 + h2,
+h6 + h3,
+h6 + h4,
+h6 + h5 {
 	margin-top: 0;
 }
 
@@ -11,8 +46,8 @@ h1 + h1, h1 + h2, h1 + h3, h1 + h4, h1 + h5, h1 + h6, h2 + h2, h2 + h1, h2 + h3,
 	@extend hr;
 }
 
-p:empty {
-	display: none; // added by wp-editor
+p:empty { // added by wp-editor
+	display: none;
 }
 
 .btn {
@@ -117,59 +152,5 @@ p:empty {
 // 		width: rem-calc(10px);
 // 		height: rem-calc(10px);
 // 		border-radius: 50%;
-// 	}
-// }
-
-
-/*----------  Bootstrap Grid  ----------*/
-// .row {
-// 	margin-bottom: rem-calc(50px);
-// 	&:last-child {
-// 		margin-bottom: 0;
-// 	}
-// 	@include media-breakpoint-up( sm ) {
-// 	  margin-bottom: rem-calc(70px);
-// 	}
-// 	@include media-breakpoint-up( md ) {
-// 	  margin-bottom: rem-calc(90px);
-// 	}
-// 	@include media-breakpoint-up( lg ) {
-// 	  margin-bottom: 10vw;
-// 	}
-// }
-
-// [class*="col-xl-"] {
-// 	@include media-breakpoint-down( lg ) {
-// 		margin-bottom: 10vw; // don't change, changing this will affect other sections
-// 		&:last-child {
-// 			margin-bottom: 0;
-// 		}
-// 	}
-// }
-
-// [class*="col-lg-"], [class*="col-xl-"] {
-// 	@include media-breakpoint-down( md ) {
-// 		margin-bottom: rem-calc(90px);
-// 		&:last-child {
-// 			margin-bottom: 0;
-// 		}
-// 	}
-// }
-
-// [class*="col-md-"], [class*="col-lg-"] {
-// 	@include media-breakpoint-down( sm ) {
-// 		margin-bottom: rem-calc(50px);
-// 		&:last-child {
-// 			margin-bottom: 0;
-// 		}
-// 	}
-// }
-
-// [class*="col-sm"], [class*="col-md"], [class*="col-lg"] {
-// 	@include media-breakpoint-down( xs ) {
-// 		margin-bottom: rem-calc(50px);
-// 		&:last-child {
-// 			margin-bottom: 0;
-// 		}
 // 	}
 // }

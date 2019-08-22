@@ -14,7 +14,8 @@
 		list-style: none;
 		float: left;
 		margin: 0 0 0 rem-calc( 20px );
-		&.current-menu-item > a, &.current_page_parent > a {
+		&.current-menu-item > a,
+		&.current_page_parent > a {
 			color: #000;
 			text-decoration: underline;
 		}

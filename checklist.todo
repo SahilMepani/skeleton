@@ -1,0 +1,71 @@
+# WP INSTALLATION --- ✄ -----------------------:
+  ☐ In wp-config.php file in root
+    ☐ Change $table_prefix to 'tse_';
+    ☐ Change WP_DEBUG variable to true
+    ☐ Add define( 'WP_POST_REVISIONS', 3 );
+  ☐ Create a user "threesixtyeight" with password "$$3hree6ixty8ight$$" and email "dev@threesixtyeight.com"
+
+# START --- ✄ -----------------------:
+  ☐ Create a user "threesixtyeight" with password "3hree6ixty8ight" and email "dev@threesixtyeight.com"
+  ☐ Change WP_DEBUG variable to true in wp-config.php file in root
+  ☐ Delete .git, .sass-cache, .php folders in theme, if present
+  ☐ Add theme info in sass/style.scss file. Theme name should match the project name
+  ☐ Activate the theme
+  ☐ Change site title and tagline in Settings -> General
+  ☐ Create pages "Home" and "Blog".
+  ☐ Go to Settings -> Reading
+      ☐ Select "A static page" and select page "Home" for "Homepage" and page "Blog" for "Posts page"
+      ☐ Check "Discourage search engine..."
+      ☐ Set "5" for "Blog pages show at most"
+  ☐ Go to Settings -> Permalinks and select "Custom structure" and set "/%postname%/" without quotes
+  ☐ Go to Settings -> Discussions and
+      ☐ If comments not allowed, Uncheck "Allow people to post comments on new articles"
+      ☐ If comments not allowed, Uncheck "Show Avatars"
+  ☐ Create a screenshot.png (1200 x 900) file from screenshot.psd inside theme
+  ☐ Create favicon.png and favicon.ico file.
+      You may use https://www.favicon-generator.org/ - Generate only 16x16 favicon.ico
+  ☐ Update WordPress and installed plugins
+  ☐ Activate required plugins
+  ☐ Create all the pages from sitemap with heirarchy and required URL structure
+
+# FINALIZE --- ✄ -----------------------:
+  ☐ Redirect all CPT slug to plural URL and use custom template to list all CPT posts for eg. url.com/resource should be redirect to url.com/resources
+  ☐ Make sure all the content is editable from backend, if not please mention
+  ☐ Change WP_DEBUG variable to false in wp-config.php file in root
+  ☐ Go to Settings -> Reading and Uncheck "Discourage search engine..."
+  ☐ Copy code from style.css file to editor-style.css. Make sure the body font matches and appropriate fonts are loaded. If typekit fonts are used we need to a js plugin to display typekit fonts in WP editor. __REMIND TO ADD STEPS__
+  ☐ Check for any console errors on every page
+  ☐ Rebuild all the thunbnails
+  ☐ Optimize wp-content/uploads directory
+  ☐ Optimize database using "WP Optimize" plugin. Please take a backup
+  ☐ Remove unwanted icons
+  ☐ Remove unwanted/extra code from each file one by one
+  ☐ Remove unwanted plugins
+  ☐ Hide unwanted options from admin menu sidebar using "Admin menu editor" plugin
+
+  RESPONSIVE & CROSS BROWSER TESTING --- ✄ -----------------------
+  WINDOWS --- ✄ -----------------------
+  ☐ IE 11+
+  ☐ Chrome
+  ☐ Safari
+  ☐ Firefox
+  ☐ Opera
+  MAC --- ✄ -----------------------
+  ☐ Safari
+  ☐ Chrome
+  ☐ Firefox
+  ☐ Opera
+  iOS (6,7,X,iPad) --- ✄ -----------------------
+  ☐ Safari
+  ☐ Chrome
+  Android --- ✄ -----------------------
+  ☐ Chrome
+  ☐ Firefox
+  ☐ Opera
+  ☐ UC Browser
+
+# PRODUCTION --- ✄ -----------------------:
+  ☐ Add iThemes security plugin and activate it
+  ☐ Change backend url from /wp-admin to /manage
+
+http://wiki.threesixtyeight.is/article/launch-check-list/

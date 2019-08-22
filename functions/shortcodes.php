@@ -1,36 +1,9 @@
 <?php
 
-/*================================
-=            Home URL            =
-================================*/
-function tse_home_url() {
-	return home_url();
-}
-add_shortcode( 'home_url', 'tse_home_url' );
-
-
-/*==============================================
-=            Template directory URL            =
-==============================================*/
-function tse_template_directory() {
-	return get_template_directory_uri();
-}
-add_shortcode( 'tse_template_directory', 'tse_template_directory' );
-
-
-/*============================================
-=            Images directory URL            =
-============================================*/
-function tse_images_directory() {
-	return get_template_directory_uri() . '/images';
-}
-add_shortcode( 'tse_images_directory', 'tse_images_directory' );
-
-
 /*========================================
 =            Button Shortcode            =
 ========================================*/
-//[button link="http://google.com" target=""]Go to Google[/button]
+// Usage: [button link="http://google.com" target=""]Go to Google[/button]
 function tse_button_primary( $atts, $content = null ) {
 	extract( shortcode_atts(
 		array(
@@ -43,51 +16,81 @@ function tse_button_primary( $atts, $content = null ) {
 add_shortcode('tse_button_primary', 'tse_button_primary');
 
 
-/*======================================
-=            Bootstrap Grid            =
-======================================*/
+/*----------  Required  ----------*/
 
-/*----------  Row  ----------*/
+/*================================
+=            Home URL            =
+================================*/
+function tse_home_url() {
+	return home_url();
+}
+add_shortcode( 'home_url', 'tse_home_url' );
+
+
+/*==============================================
+=            Template directory URL            =
+==============================================*/
+// Usage: [tse_template_dir]
+function tse_template_directory() {
+	return get_template_directory_uri();
+}
+add_shortcode( 'tse_template_dir', 'tse_template_directory' );
+
+
+/*============================================
+=            Images directory URL            =
+============================================*/
+// Usage: [tse_image_dir]
+function tse_images_directory() {
+	return get_template_directory_uri() . '/images';
+}
+add_shortcode( 'tse_image_dir', 'tse_images_directory' );
+
+
+/*===============================
+=            Columns            =
+===============================*/
+// Usage: [tse_row]
 function tse_row( $atts, $content = null ) {
 	return '<div class="row">' . do_shortcode($content) . '</div>';
 }
 add_shortcode('tse_row', 'tse_row');
 
-/*----------  One Half - SM  ----------*/
-function tse_one_half_sm( $atts, $content = null ) {
+// Usage: [tse_one_half]
+function tse_sm_one_half( $atts, $content = null ) {
 	return '<div class="col-sm-6">' . do_shortcode($content) . '</div>';
 }
-add_shortcode('tse_one_half', 'tse_one_half_sm');
+add_shortcode('tse_one_half', 'tse_sm_one_half');
 
-/*----------  One Third - SM  ----------*/
-function tse_one_third_sm( $atts, $content = null ) {
+// Usage: [tse_one_third]
+function tse_sm_one_third( $atts, $content = null ) {
 	return '<div class="col-sm-4">' . do_shortcode($content) . '</div>';
 }
-add_shortcode('tse_one_third', 'tse_one_third_sm');
+add_shortcode('tse_one_third', 'tse_sm_one_third');
 
-/*----------  One Fourth - SM  ----------*/
-function tse_one_fourth_sm( $atts, $content = null ) {
+// Usage: [tse_one_fourth]
+function tse_sm_one_fourth( $atts, $content = null ) {
 	return '<div class="col-sm-3">' . do_shortcode($content) . '</div>';
 }
-add_shortcode('tse_one_fourth', 'tse_one_fourth_sm');
+add_shortcode('tse_one_fourth', 'tse_sm_one_fourth');
 
-/*----------  One Hal - MD  ----------*/
-function tse_one_half_md( $atts, $content = null ) {
+// Usage: [tse_md_one_half]
+function tse_md_one_half( $atts, $content = null ) {
 	return '<div class="col-md-6">' . do_shortcode($content) . '</div>';
 }
-add_shortcode('tse_one_half_md', 'tse_one_half_md');
+add_shortcode('tse_md_one_half', 'tse_md_one_half');
 
-/*----------  One Third - MD  ----------*/
-function tse_one_third_md( $atts, $content = null ) {
+// Usage: [tse_md_one_third]
+function tse_one_third( $atts, $content = null ) {
 	return '<div class="col-md-4">' . do_shortcode($content) . '</div>';
 }
-add_shortcode('tse_one_third_md', 'tse_one_third_md');
+add_shortcode('tse_md_one_third', 'tse_md_one_third');
 
-/*----------  One Fourth - MD  ----------*/
-function tse_one_fourth_md( $atts, $content = null ) {
+// Usage: [tse_md_one_fourth]
+function tse_one_fourth( $atts, $content = null ) {
 	return '<div class="col-md-3">' . do_shortcode($content) . '</div>';
 }
-add_shortcode('tse_one_fourth_md', 'tse_one_fourth_md');
+add_shortcode('tse_md_one_fourth', 'tse_md_one_fourth');
 
 
 /*====================================================

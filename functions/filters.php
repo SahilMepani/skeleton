@@ -6,28 +6,6 @@
 // add_filter('show_admin_bar', '__return_false');
 
 
-/*----------  REQUIRED  ----------*/
-
-/*===============================================================
-=            Wrap oEmbed resource/video inside a div            =
-===============================================================*/
-add_filter('embed_oembed_html', 'my_embed_oembed_html', 99, 4);
-function my_embed_oembed_html($html, $url, $attr, $post_id) {
-	return '<div class="embed-responsive embed-responsive-16by9">' . $html . '</div>';
-}
-
-
-/*==================================================
-=            Add SVG support in backend            =
-==================================================*/
-function wpcontent_svg_mime_type($mimes = array()) {
-	$mimes['svg']  = 'image/svg+xml';
-	$mimes['svgz'] = 'image/svg+xml';
-	return $mimes;
-}
-add_filter('upload_mimes', 'wpcontent_svg_mime_type');
-
-
 /*=============================================================
 =            Change Gravity Form submission loader            =
 =============================================================*/
@@ -35,6 +13,45 @@ function tse_custom_gforms_spinner($src) {
 	return get_stylesheet_directory_uri() . '/images/gf-submission.gif';
 }
 add_filter('gform_ajax_spinner_url', 'tse_custom_gforms_spinner');
+
+
+/*----------  REQUIRED - Do not edit  ----------*/
+
+/*=====================================
+=            Defer scripts            =
+=====================================*/
+// Add defer attribute to the scripts to set the resource priority to low
+function tse_defer_scripts( $tag, $handle, $src ) {
+	$defer = array(
+		'plugins',
+		'custom',
+	);
+	if ( in_array( $handle, $defer ) ) {
+		 return '<script src="' . $src . '" defer="defer" type="text/javascript"></script>' . "\n";
+	}
+		return $tag;
+}
+add_filter( 'script_loader_tag', 'tse_defer_scripts', 10, 3 );
+
+
+/*===============================================================
+=            Wrap oEmbed resource/video inside a div            =
+===============================================================*/
+function tse_embed_oembed_html($html, $url, $attr, $post_id) {
+	return '<div class="embed-responsive embed-responsive-16by9">' . $html . '</div>';
+}
+add_filter('embed_oembed_html', 'tse_embed_oembed_html', 99, 4);
+
+
+/*==================================================
+=            Add SVG support in backend            =
+==================================================*/
+function tse_support_svg($mimes = array()) {
+	$mimes['svg']  = 'image/svg+xml';
+	$mimes['svgz'] = 'image/svg+xml';
+	return $mimes;
+}
+add_filter('upload_mimes', 'tse_support_svg');
 
 
 /*==================================================
@@ -63,7 +80,7 @@ add_filter('body_class', 'tse_add_slug_body_class');
 /*============================================================
 =            Prevent WP Editor from removing span            =
 ============================================================*/
-function myextensionTinyMCE($init) {
+function tse_no_delete_span($init) {
 	// Command separated string of extended elements
 	$ext = 'span[id|name|class|style]';
 
@@ -77,16 +94,16 @@ function myextensionTinyMCE($init) {
 	// Super important: return $init!
 	return $init;
 }
-add_filter('tiny_mce_before_init', 'myextensionTinyMCE');
+add_filter('tiny_mce_before_init', 'tse_no_delete_span');
 
 
 /*===========================================
 =            Custom login errors            =
 ===========================================*/
-function no_wordpress_errors() {
+function tse_custom_wordpress_errors() {
 	return 'Something is wrong!';
 }
-add_filter('login_errors', 'no_wordpress_errors');
+add_filter('login_errors', 'tse_custom_wordpress_errors');
 
 
 /*=====================================================
@@ -106,66 +123,4 @@ function tse_get_the_excerpt_more( $more ) {
 }
 add_filter('excerpt_more', 'tse_get_the_excerpt_more');
 
-
-/*====================================
-=            Remove Emoji            =
-====================================*/
-function disable_emojis() {
-	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-	remove_action( 'wp_print_styles', 'print_emoji_styles' );
-	remove_action( 'admin_print_styles', 'print_emoji_styles' );
-	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
-	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
-	add_filter( 'tiny_mce_plugins', 'disable_emojis_tinymce' );
-	add_filter( 'wp_resource_hints', 'disable_emojis_remove_dns_prefetch', 10, 2 );
-}
-add_action( 'init', 'disable_emojis' );
-
-
-/*=======================================================
-=            Remove the tinymce emoji plugin            =
-=======================================================*/
-function disable_emojis_tinymce( $plugins ) {
-	if ( is_array( $plugins ) ) {
-		return array_diff( $plugins, array( 'wpemoji' ) );
-	} else {
-		return array();
-	}
-}
-
-/*============================================================================
-=            Remove emoji CDN hostname from DNS prefetching hints            =
-============================================================================*/
-function disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
-if ( 'dns-prefetch' == $relation_type ) {
-	/** This filter is documented in wp-includes/formatting.php */
-	$emoji_svg_url = apply_filters( 'emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/' );
-
-	$urls = array_diff( $urls, array( $emoji_svg_url ) );
-}
-	return $urls;
-}
-
-
-/*=============================================
-=            Remove junk from head            =
-=============================================*/
-remove_action('wp_head', 'rsd_link'); // remove really simple discovery link
-
-remove_action('wp_head', 'wp_generator'); // remove wordpress version
-
-remove_action('wp_head', 'feed_links', 2); // remove rss feed links (make sure you add them in yourself if youre using feedblitz or an rss service)
-remove_action('wp_head', 'feed_links_extra', 3); // removes all extra rss feed links
-
-remove_action('wp_head', 'index_rel_link'); // remove link to index page
-
-remove_action('wp_head', 'wlwmanifest_link'); // remove wlwmanifest.xml (needed to support windows live writer)
-
-remove_action('wp_head', 'start_post_rel_link', 10, 0); // remove random post link
-remove_action('wp_head', 'parent_post_rel_link', 10, 0); // remove parent post link
-remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0); // remove the next and previous post links
-remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
-
-remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0 );
+?>

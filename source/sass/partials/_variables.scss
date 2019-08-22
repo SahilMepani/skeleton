@@ -152,9 +152,9 @@ $mac_13  : ($md) (max-height 800px);
 
 
 // Changes depending on the project design, used on html element
-$mobile: $min_375; // mobile design layout size
-$desktop: $two_k; // desktop design layout size
-$scaling: $two_k; // scaling starts from here
+$mobile: $min_375; // mobile canvas size, mostly remains same
+$desktop: $two_k; // desktop canvas size
+$scaling: $two_k; // scaling starts from here, do not change if unsure
 
 
 // Breakpoints - Map
@@ -165,6 +165,7 @@ $grid-breakpoints : (
 	lg  : $lg,
 	xl  : $xl,
 	xxl : $xxl,
+	// add more if required
 );
 
 

@@ -31,7 +31,7 @@
 }
 
 @mixin frame-bootstrap-hover {
-	border-color: $base_link_color;
+	border-color: $base-link-color;
 	box-shadow: 0 rem-calc(1px) rem-calc(4px) rgba( 0, 102, 214, .25 );
 }
 

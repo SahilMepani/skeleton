@@ -21,7 +21,7 @@
 <header id="header" class="clearfix">
 	<div class="container-fluid">
 
-		<h3 class="header__logo">
+		<h3 class="header-logo">
 			<a href="<?php echo esc_url( home_url() ); ?>" title="<?php esc_attr_e( get_bloginfo( 'name' ) ); ?>">
         <?php bloginfo('name'); ?>
         <span><?php bloginfo('description'); ?></span>
@@ -29,11 +29,11 @@
 			</a>
 		</h3>
 
-		<button class="header__nav-toggle icon-font-before"><?php _e( 'Menu', 'skeleton' ); ?></button>
+		<button class="header-nav-toggle icon-font-before"><?php _e( 'Menu', 'skeleton' ); ?></button>
 
-		<nav class="header__nav" class="clearfix">
-			<button class="header__nav-close icon-font-before"></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => '', 'menu_class' => 'header__nav__parent-menu' ) ); ?>
+		<nav class="header-nav" class="clearfix">
+			<button class="header-nav-close icon-font-before"></button>
+			<?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => '', 'menu_class' => 'header-nav-parent-menu' ) ); ?>
 		</nav> <!-- #header-menu -->
 
 	</div> <!-- .container-fluid -->

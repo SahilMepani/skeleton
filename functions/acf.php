@@ -30,7 +30,7 @@ function my_acf_admin_head() {
 			background-color: #e5e5e5;
 			padding: 15px;
 			border: 1px solid #ddd;
-			margin-bottom: $global_margin_bottom;
+			margin-bottom: $global-margin-bottom;
 		}
 		.alert-info {
 			background-color: #ffffd9;

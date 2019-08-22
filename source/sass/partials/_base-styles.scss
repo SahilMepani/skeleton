@@ -20,14 +20,14 @@ p:empty {
 }
 
 /*----------  AOS  ----------*/
-// html.js.mutationobserver.cssanimations:not(.is-mobile) [data-aos] {
+// html.js.mutationobserver.cssanimations:not(.js-mobile) [data-aos] {
 //   visibility: hidden;
 //   &.animated {
 //   	visibility: visible;
 //   }
 // }
 
-// html.is-mobile [data-aos],
+// html.js-mobile [data-aos],
 // html.no-mutationobserver [data-aos],
 // html.no-js [data-aos],
 // html.no-cssanimations [data-aos] {
@@ -36,8 +36,8 @@ p:empty {
 
 
 /*----------  Scroll Reveal  ----------*/
-// html.js.mutationobserver.cssanimations:not(.is-mobile) [data-sreveal],
-// html.js.mutationobserver.cssanimations:not(.is-mobile) .sreveal {
+// html.js.mutationobserver.cssanimations:not(.js-mobile) [data-sreveal],
+// html.js.mutationobserver.cssanimations:not(.js-mobile) .sreveal {
 // 	// @include animation-name( none );
 // 	visibility: hidden !important;
 // 	&.animated {
@@ -75,7 +75,7 @@ p:empty {
 // 			@include translateX( -100% );
 // 		}
 // 		&:after {
-// 			content: $i_arrow_right;
+// 			content: $i-arrow-right;
 // 		}
 // 	}
 // 	.btn-prev {
@@ -85,7 +85,7 @@ p:empty {
 // 			@include translateX( 100% );
 // 		}
 // 		&:after {
-// 			content: $i_arrow_left;
+// 			content: $i-arrow-left;
 // 		}
 // 	}
 // 	@include media-breakpoint-up( sm ) {

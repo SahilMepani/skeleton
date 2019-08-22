@@ -1,5 +1,5 @@
-::-moz-selection { background: $text_selection_bg_color; color: $text_selection_color; text-shadow: none; }
-::selection { background: $text_selection_bg_color; color: $text_selection_color; text-shadow: none; }
+::-moz-selection { background: $text-selection-bg-color; color: $text-selection-color; text-shadow: none; }
+::selection { background: $text-selection-bg-color; color: $text-selection-color; text-shadow: none; }
 
 *,
 *::before,
@@ -8,14 +8,14 @@
 }
 
 html {
-	font-family: $body_font_family;
-	font-size: $root_font_size;
+	font-family: $body-font-family;
+	font-size: $root-font-size;
 	-webkit-tap-highlight-color: transparent;
 	-ms-text-size-adjust: 100%;
 	-ms-overflow-style: scrollbar;
 	-webkit-text-size-adjust: 100%;
-	// @include fluid( font-size, $mobile, $scaling, $root_font_size, $root_font_size, false, false ); // scale down
-	@include fluid( font-size, $scaling, $four_k, $root_font_size, $root_font_size * 2.4, false, false );
+	// @include fluid( font-size, $mobile, $scaling, $root-font-size, $root-font-size, false, false ); // scale down
+	@include fluid( font-size, $scaling, $four-k, $root-font-size, $root-font-size * 2.4, false, false );
 	// min-width: $container; if non-responsive
 	// -webkit-font-smoothing: antialiased;
 	//www.intridea.com/blog/2014/5/8/better-font-smoothing-in-chrome-on-mac-os-x
@@ -31,62 +31,62 @@ html {
 }
 
 body {
-	background: $body_bg_color;
-	color: $body_color;
-	font-size: $body_font_size;
-	font-family: $body_font_family;
-	font-weight: $body_font_weight;
-	line-height: $body_line_height;
+	background: $body-bg-color;
+	color: $body-color;
+	font-size: $body-font-size;
+	font-family: $body-font-family;
+	font-weight: $body-font-weight;
+	line-height: $body-line-height;
 }
 
 /*----------  Headings  ----------*/
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-	font-family: $headings_font_family;
-	color: $headings_color;
-	font-weight: $headings_font_weight;
-	line-height: $headings_line_height;
+	font-family: $headings-font-family;
+	color: $headings-color;
+	font-weight: $headings-font-weight;
+	line-height: $headings-line-height;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	margin: $headings_margin_top 0 $headings_margin_bottom 0;
+	margin: $headings-margin-top 0 $headings-margin-bottom 0;
 	&:first-child {
 		margin-top: 0;
 	}
 }
 
 h1, .h1 {
-	@include fluid( font-size, $min_375, $desktop, 30px, 60px );
+	@include fluid( font-size, $min-375, $desktop, 30px, 60px );
 	line-height: 1.2;
 }
 
 h2, .h2 {
-	@include fluid( font-size, $min_375, $desktop, 24px, 45px );
+	@include fluid( font-size, $min-375, $desktop, 24px, 45px );
 }
 
 h3, .h3 {
-	@include fluid( font-size, $min_375, $desktop, 20px, 32px );
+	@include fluid( font-size, $min-375, $desktop, 20px, 32px );
 }
 
 h4, .h4 {
-	@include fluid( font-size, $min_375, $desktop, 30px, 60px );
+	@include fluid( font-size, $min-375, $desktop, 30px, 60px );
 	font-weight: 300;
 }
 
 h5, .h5 {
-	@include fluid( font-size, $min_375, $desktop, 18px, 18px );
+	@include fluid( font-size, $min-375, $desktop, 18px, 18px );
 }
 
 h6, .h6 {
-	@include fluid( font-size, $min_375, $desktop, 15px, 15px );
+	@include fluid( font-size, $min-375, $desktop, 15px, 15px );
 }
 
 /*----------  Links/Buttons  ----------*/
 a {
-	color: $base_link_color;
-	text-decoration: $base_link_decoration;
+	color: $base-link-color;
+	text-decoration: $base-link-decoration;
 	&:hover {
-		color: $base_link_hover_color;
-		text-decoration: $base_link_hover_decoration;
+		color: $base-link-hover-color;
+		text-decoration: $base-link-hover-decoration;
 	}
 	&:focus {
 		outline: rem-calc(5px) auto -webkit-focus-ring-color;
@@ -103,7 +103,7 @@ input,
 optgroup,
 select,
 textarea {
-	font-family: $body_font_family;
+	font-family: $body-font-family;
 }
 
 a, button, input[type="submit"], input[type="button"], input[type="reset"] {
@@ -125,11 +125,11 @@ p, table, ul, ol, dl, dd, pre, blockquote, address, h1, h2, h3, h4, h5, h6 {
 }
 
 p, pre, blockquote, address, dd {
-	line-height: $global_line_height;
+	line-height: $global-line-height;
 }
 
 p, table, ul, ol, dl, dd, pre, blockquote, address {
-	margin: 0 0 $global_margin_bottom;
+	margin: 0 0 $global-margin-bottom;
 }
 
 b, strong {
@@ -141,9 +141,9 @@ small {
 }
 
 hr {
-	margin-top: $global_margin_bottom;
-	margin-bottom: $global_margin_bottom;
-	border: none;
+	margin-top: $global-margin-bottom;
+	margin-bottom: $global-margin-bottom;
+	border: 0;
 	border-top: 1px solid #e5e5e5;
 }
 
@@ -174,7 +174,7 @@ table {
 	max-width: 100%;
 	border-collapse: collapse;
 	caption {
-		font-family: $headings_font_family;
+		font-family: $headings-font-family;
 	  text-align: left;
 		padding-top: rem-calc( 10px );
 		padding-bottom: rem-calc( 10px );
@@ -235,15 +235,15 @@ ol {
 }
 
 li {
-	line-height: $global_line_height;
-	margin-bottom: $global_margin_bottom / 2;
+	line-height: $global-line-height;
+	margin-bottom: $global-margin-bottom / 2;
 }
 
 dt {
-	font-family: $headings_font_family;
+	font-family: $headings-font-family;
 	font-weight: 700;
-	line-height: $global_line_height;
-	margin: 0 0 ( $global_margin_bottom / 2 );
+	line-height: $global-line-height;
+	margin: 0 0 ( $global-margin-bottom / 2 );
 }
 
 /*----------  Form  ----------*/
@@ -254,7 +254,7 @@ form {
 	> ul {
 		> li {
 			clear: both;
-			margin-bottom: $global_margin_bottom / 2;
+			margin-bottom: $global-margin-bottom / 2;
 			> label {
 				margin-right: rem-calc(10px);
 			}
@@ -272,8 +272,8 @@ fieldset {
 legend {
 	font-weight: 700;
 	display: block;
-	margin-bottom: $global_margin_bottom / 2;
-	border: none;
+	margin-bottom: $global-margin-bottom / 2;
+	border: 0;
 }
 
 input[type="text"], input[type="tel"], input[type="url"], input[type="number"], input[type="password"], input[type="email"],  input[type="range"], input[type="file"], input[type="date"], input[type="search"], textarea, select {
@@ -294,7 +294,7 @@ input[type="date"] {
 }
 
 textarea {
-	line-height: $global_line_height;
+	line-height: $global-line-height;
 	height: rem-calc( 150px );
 	resize: vertical;
 }

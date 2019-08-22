@@ -30,21 +30,21 @@
 	.i-facebook {
 		a {
 			&:before {
-				content: $i_facebook;
+				content: $i-facebook;
 			}
 		}
 	}
 	.i-twitter {
 		a {
 			&:before {
-				content: $i_twitter;
+				content: $i-twitter;
 			}
 		}
 	}
 	.i-instagram {
 		a {
 			&:before {
-				content: $i_instagram;
+				content: $i-instagram;
 			}
 		}
 	}
@@ -87,7 +87,7 @@
 // 				opacity: 0;
 // 				background-color: #333;
 // 				color: #fff;
-// 				font: rem-calc(20px) $body_font_family; //must use font shorthand to overwrite above
+// 				font: rem-calc(20px) $body-font-family; //must use font shorthand to overwrite above
 // 				text-align: center;
 // 				padding: rem-calc(10px) rem-calc(20px);
 // 				position: absolute;
@@ -111,42 +111,42 @@
 // 	.i-facebook {
 // 		a {
 // 			&:before {
-// 				content: $i_facebook;
+// 				content: $i-facebook;
 // 			}
 // 		}
 // 	}
 // 	.i-twitter {
 // 		a {
 // 			&:before {
-// 				content: $i_twitter;
+// 				content: $i-twitter;
 // 			}
 // 		}
 // 	}
 // 	.i-instagram {
 // 		a {
 // 			&:before {
-// 				content: $i_instagram;
+// 				content: $i-instagram;
 // 			}
 // 		}
 // 	}
 // 	.i-linkedin {
 // 		a {
 // 			&:before {
-// 				content: $i_linkedin;
+// 				content: $i-linkedin;
 // 			}
 // 		}
 // 	}
 // 	.i-gplus {
 // 		a {
 // 			&:before {
-// 				content: $i_gplus;
+// 				content: $i-gplus;
 // 			}
 // 		}
 // 	}
 // 	.i-pinterest {
 // 		a {
 // 			&:before {
-// 				content: $i_pinterest;
+// 				content: $i-pinterest;
 // 			}
 // 		}
 // 	}

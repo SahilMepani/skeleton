@@ -56,7 +56,7 @@
 
 // Hover color
 .hover\:text-body:hover {
-	color: $body_color !important;
+	color: $body-color !important;
 }
 .hover\:text-white:hover {
 	color: $white !important;
@@ -76,7 +76,7 @@
 
 // Focus color
 .focus\:text-body:focus {
-	color: $body_color !important;
+	color: $body-color !important;
 }
 .focus\:text-white:focus {
 	color: $white !important;
@@ -96,7 +96,7 @@
 
 // Active color
 .active\:text-body:active {
-	color: $body_color !important;
+	color: $body-color !important;
 }
 .active\:text-white:active {
 	color: $white !important;

@@ -1,7 +1,7 @@
 // Can't use rem-calc function in this file
 // Bootstrap last updated 13-08-2019
 // Root font size
-$root_font_size : 10px; // never change this value
+$root-font-size : 10px; // never change this value
 
 
 // Project specific
@@ -14,10 +14,10 @@ $secondary : $black;
 
 
 // Links
-$base_link_color            : $red;
-$base_link_hover_color      : $black;
-$base_link_decoration       : none;
-$base_link_hover_decoration : none;
+$base-link-color            : $red;
+$base-link-hover-color      : $black;
+$base-link-decoration       : none;
+$base-link-hover-decoration : none;
 
 
 // Font family
@@ -26,69 +26,69 @@ $monospace : Menlo, Monaco, Consolas, "Courier New", monospace;
 
 
 // Body
-$body_bg_color    : #fff;
-$body_color       : #444;
-$body_font_size   : 1.6rem;
-$body_font_weight : 400;
-$body_font_family : $lato;
-$body_line_height : 1;
+$body-bg-color    : #fff;
+$body-color       : #444;
+$body-font-size   : 1.6rem;
+$body-font-weight : 400;
+$body-font-family : $lato;
+$body-line-height : 1;
 
 
 // Spacing
-$global_margin_bottom : 3rem; // p, table, ul, ol, dl, dd, pre, blockquote, address
-$global_line_height   : 1.66; // p, pre, blockquote, address, dt, textarea
+$global-margin-bottom : 3rem; // p, table, ul, ol, dl, dd, pre, blockquote, address
+$global-line-height   : 1.66; // p, pre, blockquote, address, dt, textarea
 
 
 // Headings
-$headings_color         : inherit;
-$headings_font_family   : inherit;
-$headings_font_weight   : 700;
-$headings_line_height   : 1.4;
-$headings_margin_top    : $global_margin_bottom*2;
-$headings_margin_bottom : $global_margin_bottom;
+$headings-color         : inherit;
+$headings-font-family   : inherit;
+$headings-font-weight   : 700;
+$headings-line-height   : 1.4;
+$headings-margin-top    : $global-margin-bottom*2;
+$headings-margin-bottom : $global-margin-bottom;
 
 // Input
 // variables are set in input mixin file because it requires rem-values
 
 
 // Icons,
-$i_menu             : '\e62f';
-$i_search           : '\e612';
-$i_cross            : '\e62e';
-$i_calendar         : '\e60d';
-$i_radio            : '\e608';
-$i_radio_checked    : '\e609';
-$i_checkbox         : '\e607';
-$i_checkbox_checked : '\e046';
-$i_mail             : '\e613';
-$i_play             : '\e900';
-$i_play_circle      : '\e602';
-$i_tick             : '\e61d';
+$i-menu             : '\e62f';
+$i-search           : '\e612';
+$i-cross            : '\e62e';
+$i-calendar         : '\e60d';
+$i-radio            : '\e608';
+$i-radio-checked    : '\e609';
+$i-checkbox         : '\e607';
+$i-checkbox-checked : '\e046';
+$i-mail             : '\e613';
+$i-play             : '\e900';
+$i-play-circle      : '\e602';
+$i-tick             : '\e61d';
 // Arrows
-$i_chevron_down     : '\e615';
-$i_chevron_up       : '\e617';
-$i_chevron_left     : '\e616';
-$i_chevron_right    : '\e617';
-$i_arrow_down       : '\e097';
-$i_arrow_up         : '\e096';
-$i_arrow_left       : '\e094';
-$i_arrow_right      : '\e095';
-$i_dropdown         : $i_chevron_down;
-$i_go_top           : '\e61c';
+$i-chevron-down     : '\e615';
+$i-chevron-up       : '\e617';
+$i-chevron-left     : '\e616';
+$i-chevron-right    : '\e617';
+$i-arrow-down       : '\e097';
+$i-arrow-up         : '\e096';
+$i-arrow-left       : '\e094';
+$i-arrow-right      : '\e095';
+$i-dropdown         : $i-chevron-down;
+$i-go-top           : '\e61c';
 // Socials
-$i_facebook         : '\e907';
-$i_twitter          : '\e631';
-$i_instagram        : '\e905';
-$i_gplus            : '\e627';
-$i_youtube          : '\e634';
-$i_pinterest        : '\e62d';
-$i_linkedin         : '\e62b';
+$i-facebook         : '\e907';
+$i-twitter          : '\e631';
+$i-instagram        : '\e905';
+$i-gplus            : '\e627';
+$i-youtube          : '\e634';
+$i-pinterest        : '\e62d';
+$i-linkedin         : '\e62b';
 // Add project specific here
 
 
 // Text selection
-$text_selection_bg_color : #F7EA6F;
-$text_selection_color    : #2c2c2c;
+$text-selection-bg-color : #F7EA6F;
+$text-selection-color    : #2c2c2c;
 
 
 // Font weights
@@ -137,24 +137,24 @@ $spacers : (
 
 // Breakpoints - Min width
 $xs      : 0; // do not change
-$min_375 : 375px;
-$min_414 : 414px;
+$min-375 : 375px;
+$min-414 : 414px;
 $sm      : 576px;
 $md      : 768px;
 $lg      : 992px;
 $xl      : 1200px;
 $xxl     : 1400px;
 $xxxl    : 1600px;
-$two_k   : 1920px;
-$three_k : 2560px;
-$four_k  : 3840px;
-$mac_13  : ($md) (max-height 800px);
+$two-k   : 1920px;
+$three-k : 2560px;
+$four-k  : 3840px;
+$mac-13  : ($md) (max-height 800px);
 
 
 // Changes depending on the project design, used on html element
-$mobile: $min_375; // mobile canvas size, mostly remains same
-$desktop: $two_k; // desktop canvas size
-$scaling: $two_k; // scaling starts from here, do not change if unsure
+$mobile: $min-375; // mobile canvas size, mostly remains same
+$desktop: $two-k; // desktop canvas size
+$scaling: $two-k; // scaling starts from here, do not change if unsure
 
 
 // Breakpoints - Map

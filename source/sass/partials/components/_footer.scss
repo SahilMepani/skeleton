@@ -42,7 +42,7 @@
 		bottom: rem-calc( 30px );
 		&:before {
 			@include icon-font-properties;
-			content: $i_go_top;
+			content: $i-go-top;
 			color: #999;
 			font-size: rem-calc( 40px );
 		}

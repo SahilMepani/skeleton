@@ -1,5 +1,5 @@
 # WP INSTALLATION --- ✄ -----------------------:
-  ☐ In wp-config.php file in root
+  ☐ Edit wp-config.php file in root
     ☐ Change $table_prefix to 'tse_';
     ☐ Change WP_DEBUG variable to true
     ☐ Add define( 'WP_POST_REVISIONS', 3 );

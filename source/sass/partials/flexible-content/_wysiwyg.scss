@@ -1,0 +1,102 @@
+// Buttons
+.btns-row {
+  > div {
+    margin-bottom: rem-calc( 10px );
+  }
+}
+
+// Blockquote
+.blockquote-block {
+  blockquote {
+    font-weight: 400;
+    font-style: italic;
+    padding-left: 5vw;
+    border-left: 5px solid lighten( $primary, 20% );
+  }
+  .author {
+    color: $primary;
+    font-size: rem-calc( 18px );
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-left: rem-calc( 30px );
+    position: relative;
+    &:before {
+      content: '\2014';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      @include translateY(-50%);
+    }
+  }
+  @include media-breakpoint-up( md ) {
+    blockquote {
+      padding-left: rem-calc( 40px );
+    }
+  }
+}
+
+// Accordions
+.list-accordions {
+  @include list-unstyled;
+  ::-moz-selection { background: transparent; color: $body_color; }
+  ::selection { background: transparent; color: $body_color; }
+  > li {
+    text-align: left;
+    margin-bottom: 0;
+    position: relative; //  Avoid Jumping
+    overflow: hidden;
+    &.js-active {
+      .heading {
+        &:before {
+          @include rotate(0);
+        }
+      }
+    }
+  }
+  .heading {
+    line-height: 1;
+    text-decoration: none;
+    padding: rem-calc( 20px ) rem-calc( 40px ) rem-calc( 20px ) 0;
+    border-bottom: rem-calc( 1px ) solid #C8D0D6;
+    margin-bottom: 0;
+    position: relative;
+    cursor: pointer;
+    transition: .2s ease-out;
+    &:before {
+      @include icon-font-properties;
+      content: $i_cross;
+      font-size: rem-calc( 24px );
+      color: $primary;
+      line-height: 1;
+      display: block;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      margin: rem-calc( -12px ) 0 0;
+      transition: .2s ease-out;
+      @include rotate(-45deg);
+    }
+  }
+  .content-block {
+    .inner-block {
+      background-color: #f9f9f9;
+      padding: rem-calc( 20px ) rem-calc( 30px ) rem-calc( 40px ); //fix jumping
+    }
+  }
+}
+
+// List
+.list-ordered {
+  @include list-unstyled;
+  > li {
+    counter-increment: counter;
+    padding-left: rem-calc( 25px );
+    position: relative;
+    &:before {
+      content: counter( counter );
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}

@@ -20,7 +20,10 @@
 @import "partials/base-selectors";
 
 // Javascript plugins
-
+@import "partials/js/slick";
+@import "partials/js/magnific-popup";
+@import "partials/js/js-socials";
+@import "partials/js/aos";
 
 // Base
 @import "partials/base-styles";
@@ -30,26 +33,42 @@
 @import "partials/components/content";
 @import "partials/components/header";
 @import "partials/components/header-menu";
+@import "partials/components/sidebar";
 @import "partials/components/footer";
+@import "partials/components/widgets";
+@import "partials/components/comments";
+@import "partials/components/post-formats";
 
 // Flexible Content
-
+@import "partials/flexible-content/wysiwyg";
+@import "partials/flexible-content/fullscreen-slider";
+@import "partials/flexible-content/post-cards";
+@import "partials/flexible-content/fixed-and-fluid-column-1";
+@import "partials/flexible-content/fixed-and-fluid-column-2";
+@import "partials/flexible-content/fixed-and-fluid-column-3";
+@import "partials/flexible-content/fixed-and-fluid-column-4";
 
 // Page templates
-@import "partials/templates/page";
 @import "partials/templates/index.scss";
+@import "partials/templates/front-page";
+@import "partials/templates/page";
+@import "partials/templates/single";
+@import "partials/templates/projects";
 @import "partials/templates/search";
 @import "partials/templates/404";
-@import "partials/templates/single";
+@import "partials/templates/sitemap";
 
 // WP plugins
-
+@import "partials/plugins/gravity-forms";
+@import "partials/plugins/tribe-events/tribe_base";
+@import "partials/plugins/yoast-breadcrumbs";
 
 // Helpers
 @import "partials/helpers/table";
 @import "partials/helpers/list";
 @import "partials/helpers/buttons";
 @import "partials/helpers/helpers";
+@import "partials/helpers/keyframes";
 
 // Utilities
 @import "partials/utilities/align.scss";

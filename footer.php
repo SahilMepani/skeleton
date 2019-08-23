@@ -1,6 +1,6 @@
 </section> <!-- #site-content -->
 
-<footer class="site-footer" class="clearfix">
+<footer class="site-footer clearfix">
 <div class="container">
 
 	<?php //wp_nav_menu( array( 'theme_location' => 'footer-menu', 'menu_class' => 'footer-menu' ) ); ?>

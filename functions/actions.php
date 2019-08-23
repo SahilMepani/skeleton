@@ -5,7 +5,7 @@
 =========================================== */
 function tse_enqueue_scripts() {
 	/* Load google fonts */
-	wp_enqueue_style('google-fonts', '//fonts.googleapis.com/css?family=Lato:400,400i,600,600i,700,700i&subset=latin,latin-ext', 'all');
+	wp_enqueue_style('google-fonts', '//fonts.googleapis.com/css?family=Montserrat&display=swap', 'all');
 
 	/* Do not load in backend */
 	if (is_admin()) return;

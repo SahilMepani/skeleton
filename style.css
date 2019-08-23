@@ -124,11 +124,11 @@ template { display: none; }
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { font-family: Lato, sans-serif; font-size: 10px; -webkit-tap-highlight-color: transparent; -ms-text-size-adjust: 100%; -ms-overflow-style: scrollbar; -webkit-text-size-adjust: 100%; }
+html { font-family: "Montserrat", sans-serif; font-size: 10px; -webkit-tap-highlight-color: transparent; -ms-text-size-adjust: 100%; -ms-overflow-style: scrollbar; -webkit-text-size-adjust: 100%; }
 
 @media screen and (min-width: 1920px) { html { font-size: calc(0.7291666667vw - 4px); } }
 
-body { background: #fff; color: #444; font-size: 1.6rem; font-family: Lato, sans-serif; font-weight: 400; line-height: 1; }
+body { background: #fff; color: #222; font-size: 1.8rem; font-family: "Montserrat", sans-serif; font-weight: 400; line-height: 1; }
 
 /*----------  Headings  ----------*/
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { font-family: inherit; color: inherit; font-weight: 700; line-height: 1.4; }
@@ -186,7 +186,7 @@ a:focus { outline: 0.5rem auto -webkit-focus-ring-color; outline-offset: -0.2rem
 
 button { outline: none; }
 
-button, input, optgroup, select, textarea { font-family: Lato, sans-serif; }
+button, input, optgroup, select, textarea { font-family: "Montserrat", sans-serif; }
 
 a, button, input[type="submit"], input[type="button"], input[type="reset"] { transition-property: background, color, border-color; transition-duration: .2s; border-radius: 0; -webkit-text-decoration-skip-ink: auto; -webkit-text-decoration-skip: objects; }
 
@@ -209,7 +209,7 @@ address { font-style: normal; }
 
 output { display: block; padding-top: 3rem; line-height: 1.42857143; color: #555; }
 
-code { background-color: #f9f9f9; color: green; font-weight: 400; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; display: inline-block; padding: 0.5rem; border: 1px solid #eee; }
+code { background-color: #f9f9f9; color: green; font-weight: 400; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; display: inline-block; padding: 0.5rem 1rem; border: 0.1rem solid #eee; }
 
 /*----------  Table  ----------*/
 table { width: 100%; max-width: 100%; border-collapse: collapse; }
@@ -568,9 +568,9 @@ img.mfp-img { width: auto; max-width: 100%; height: auto; display: block; line-h
 
 .jssocials-share-pinterest i:before { content: ""; }
 
-.jssocials-share-link { background-color: #444; color: #fff; text-align: center; text-decoration: none; line-height: 1; font-size: 1.4rem; display: block; padding: 1rem; }
+.jssocials-share-link { background-color: #222; color: #fff; text-align: center; text-decoration: none; line-height: 1; font-size: 1.4rem; display: block; padding: 1rem; }
 
-.jssocials-share-link:hover, .jssocials-share-link:active { background-color: #444; color: #fff; }
+.jssocials-share-link:hover, .jssocials-share-link:active { background-color: #222; color: #fff; }
 
 .jssocials-share-count-box.jssocials-share-no-count { display: none; }
 
@@ -1457,7 +1457,7 @@ p:empty { display: none; }
 
 .comments-list li.comment .comment-meta, .comments-list li.trackback .comment-meta, .comments-list li.pingback .comment-meta { font-size: 0.8rem; text-align: right; position: absolute; top: 1rem; right: 1rem; }
 
-.comments-list li.comment .comment-meta a, .comments-list li.trackback .comment-meta a, .comments-list li.pingback .comment-meta a { color: #777777; }
+.comments-list li.comment .comment-meta a, .comments-list li.trackback .comment-meta a, .comments-list li.pingback .comment-meta a { color: #555555; }
 
 .comments-list li.comment .comment-meta a.comment-edit-link, .comments-list li.trackback .comment-meta a.comment-edit-link, .comments-list li.pingback .comment-meta a.comment-edit-link { color: #ff2500; }
 
@@ -1533,7 +1533,7 @@ p:empty { display: none; }
 
 #commentform input[type="submit"]:hover, #commentform input[type="submit"]:active { background: #db2000; color: #fff; }
 
-#commentform .comment-notes, #commentform .form-allowed-tags { color: #777777; font-size: 1.3rem; }
+#commentform .comment-notes, #commentform .form-allowed-tags { color: #555555; font-size: 1.3rem; }
 
 #commentform .comment-form-comment { margin-bottom: 1rem; }
 
@@ -1586,9 +1586,9 @@ p:empty { display: none; }
 
 .list-accordions > li { list-style: none; }
 
-.list-accordions ::-moz-selection { background: transparent; color: #444; }
+.list-accordions ::-moz-selection { background: transparent; color: #222; }
 
-.list-accordions ::selection { background: transparent; color: #444; }
+.list-accordions ::selection { background: transparent; color: #222; }
 
 .list-accordions > li { text-align: left; margin-bottom: 0; position: relative; overflow: hidden; }
 
@@ -1652,7 +1652,7 @@ p:empty { display: none; }
 
 .list-post-cards .card { display: -webkit-flex; display: flex; max-width: 100%; padding: 0 1.5rem; margin-bottom: 3rem; }
 
-.list-post-cards a { color: #444; box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1); }
+.list-post-cards a { color: #222; box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1); }
 
 .list-post-cards a:focus { outline: none; }
 
@@ -1848,7 +1848,7 @@ p:empty { display: none; }
 
 .type-post--blog .more-link { color: #ff2500; font-weight: 700; border-bottom: 0.1rem solid transparent; }
 
-.type-post--blog .more-link:hover { color: #444; border-bottom-color: #444; }
+.type-post--blog .more-link:hover { color: #222; border-bottom-color: #222; }
 
 @media (min-width: 768px) { .type-post--blog { display: -webkit-flex; display: flex; padding: 5rem; }
   .type-post--blog .img-block { -webkit-flex: 0 0 35%; flex: 0 0 35%; padding-right: 4rem; margin-bottom: 0; } }
@@ -1923,7 +1923,7 @@ p:empty { display: none; }
 
 .blog-grid .col { padding-left: 1.2rem; padding-right: 1.2rem; margin-top: 1.2rem; margin-bottom: 1.2rem; }
 
-.blog-grid .post-link { color: #444; display: block; }
+.blog-grid .post-link { color: #222; display: block; }
 
 .blog-grid aside.thumbnail { background-size: cover; background-repeat: no-repeat; background-position: center; padding-bottom: 66.666666%; }
 
@@ -2504,7 +2504,7 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 
 #breadcrumbs a { display: inline-block; text-decoration: none; padding-right: 1.7rem; position: relative; }
 
-#breadcrumbs a:after { content: '/'; color: #444; position: absolute; right: 0.4rem; }
+#breadcrumbs a:after { content: '/'; color: #222; position: absolute; right: 0.4rem; }
 
 #breadcrumbs strong, #breadcrumbs .breadcrumb_last { font-weight: 700; }
 
@@ -7984,7 +7984,7 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 
 .clear-right { clear: right !important; }
 
-.color-body { color: #444 !important; }
+.color-body { color: #222 !important; }
 
 .color-white { color: #fff !important; }
 
@@ -8534,7 +8534,7 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
   .last\:pb-xxl-0:last-child, .last\:py-xxl-0:last-child { padding-bottom: 0 !important; }
   .last\:pl-xxl-0:last-child, .last\:px-xxl-0:last-child { padding-left: 0 !important; } }
 
-.hover\:text-body:hover { color: #444 !important; }
+.hover\:text-body:hover { color: #222 !important; }
 
 .hover\:text-white:hover { color: #fff !important; }
 
@@ -8546,7 +8546,7 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 
 .hover\:text-black-50:hover { color: rgba(0, 0, 0, 0.5) !important; }
 
-.focus\:text-body:focus { color: #444 !important; }
+.focus\:text-body:focus { color: #222 !important; }
 
 .focus\:text-white:focus { color: #fff !important; }
 
@@ -8558,7 +8558,7 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 
 .focus\:text-black-50:focus { color: rgba(0, 0, 0, 0.5) !important; }
 
-.active\:text-body:active { color: #444 !important; }
+.active\:text-body:active { color: #222 !important; }
 
 .active\:text-white:active { color: #fff !important; }
 
@@ -12049,7 +12049,7 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 
 .text-white { color: #fff !important; }
 
-.text-body { color: #444 !important; }
+.text-body { color: #222 !important; }
 
 .text-black-50 { color: rgba(0, 0, 0, 0.5) !important; }
 
@@ -12069,7 +12069,7 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 
 .text-secondary { color: #000 !important; }
 
-.ff-body { font-family: Lato, sans-serif !important; }
+.ff-body { font-family: "Montserrat", sans-serif !important; }
 
 .ff-heading { font-family: inherit !important; }
 

@@ -16,9 +16,9 @@
 	<?php wp_head(); ?>
 </head>
 
-<body id="site-wrapper" <?php body_class(); ?>>
+<body class="site-wrapper" <?php body_class(); ?>>
 
-<header id="header" class="clearfix">
+<header class="site-header clearfix">
 	<div class="container-fluid">
 
 		<h3 class="header-logo">
@@ -34,9 +34,9 @@
 		<nav class="header-nav" class="clearfix">
 			<button class="header-nav-close icon-font-before"></button>
 			<?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => '', 'menu_class' => 'header-nav-parent-menu' ) ); ?>
-		</nav> <!-- #header-menu -->
+		</nav> <!-- .header-nav -->
 
 	</div> <!-- .container-fluid -->
-</header> <!-- #header -->
+</header> <!-- .site-header -->
 
-<section id="site-content">
+<section class="site-content">

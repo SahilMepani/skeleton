@@ -214,11 +214,10 @@ output {
 
 code {
 	background-color: #f6f8fa;
-	color: green;
 	font-weight: 400;
 	font-family: $monospace;
 	display: inline-block;
-	padding: rem-calc( 15px ) rem-calc( 15px );
+	padding: rem-calc( 5px );
 }
 
 /*----------  Table  ----------*/

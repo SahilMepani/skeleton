@@ -15,6 +15,11 @@
 
         <ul class="list-unstyled">
           <li><a href="#wp-installation">WP Installation</a></li>
+          <ul>
+            <li><a href="#local">Local</a></li>
+            <li><a href="#development">Development</a></li>
+            <li><a href="#production">Production</a></li>
+          </ul>
           <li><a href="#theme-installation">Theme Installation</a></li>
           <li><a href="#css-styleguide">CSS Styleguide</a></li>
         </ul> <!-- .list-unstyled -->
@@ -24,29 +29,55 @@
 
     <div class="col-sm-8 content-col">
       <h3 id="wp-installation">WP Installation</h3>
+
+      <p>We work with 3 different WP installations. Local, Development and Production. When the site is coded and ready, we migrate the local copy to development for internal QC and client reivew. If there are any changes, we make them locally and push them to development. After QC is completed, we move the local copy to production.</p>
+
+      <h5 id="local">Local Installation</h5>
       <ol>
+        <li>Download latest WordPress - <a href="https://wordpress.org/latest.zip">Download link</a></li>
         <li>Edit wp-config.php file in root directory</li>
         <ul>
-          <li>Set <b>$table_prefix</b> to <b>tse_</b></li>
-          <li>Set <b>WP_DEBUG</b> variable to <b>true</b></li>
-          <li>Add <b>define( 'WP_POST_REVISIONS', 3 );</b></li>
+          <li>Set $table_prefix to tse_</li>
+          <li>Set WP_DEBUG variable to true</li>
+          <li>Add define( 'WP_POST_REVISIONS', 3 );</li>
         </ul>
-        <li>Create a user "<b>threesixtyeight</b>" with password "<b>$$3hree6ixty8ight$$</b>" and email "<b>dev@threesixtyeight.com</b>"</li>
-        <li>Create pages "<b>Home</b>" and "<b>Blog</b>"</li>
-        <li>Go to <b>Settings => General</b> and update "<b>Site Title</b>" and "<b>Tagline</b>" <small>(ask manager)</small></li>
-        <li>Go to <b>Settings => Reading</b></li>
+        <li>Start WordPress installation</li>
+          <ul>
+            <li>Update WP database details</li>
+            <li>Update "Site Title" <small>(ask manager)</small></li>
+            <li>Create a user "threesixtyeight" with password "$$3hree6ixty8ight$$" and email "dev@threesixtyeight.com"</li>
+            <li>Uncheck "Allow search engine..."</li>
+          </ul>
+        <li>Create pages "Home" and "Blog"</li>
+        <li>Go to Settings => General and update "Tagline" <small>(ask manager)</small></li>
+        <li>Go to Settings => Reading</li>
         <ul>
-          <li>Select "<b>A static page</b>" and select page <b>home for "Homepage"</b> and page <b>blog for "Posts page"</b></li>
-          <li>Check "<b>Discourage search engine...</b>"</li>
-          <li>Set "<b>Blog pages show at most</b>" to "<b>5</b>"</li>
+          <li>Select "A static page" and select page home for "Homepage" and page blog for "Posts page"</li>
+          <li>Set "Blog pages show at most" to "5"</li>
         </ul>
-        <li>Go to <b>Settings => Permalinks</b> and select "<b>Custom structure</b>" and set its value to "<b>/%postname%/</b>" without quotes</li>
-        <li>Go to <b>Settings => Discussions</b></li>
+        <li>Go to Settings => Permalinks and select "Custom structure" and set its value to "/%postname%/" without quotes</li>
+        <li>Go to Settings => Discussions</li>
         <ul>
-          <li>If comments not allowed, Uncheck "<b>Allow people to post comments on new articles</b>"</li>
-          <li>If comments not allowed, Uncheck "<b>Show Avatars</b>"</li>
+          <li>If comments not allowed, Uncheck "Allow people to post comments on new articles"</li>
+          <li>If comments not allowed, Uncheck "Show Avatars"</li>
         </ul>
-        <li>Install and activate the following plugins:</li>
+        <li>Install and activate the following plugins with licence code:</li>
+          <ul>
+            <li><a href="https://drive.google.com/open?id=1mnHwgKTWIWu6wZTWzajsrVnKXKfnv9R_" target="_blank">All plugins download link</a></li>
+            <li>Admin Menu Editor - <a href="https://wordpress.org/plugins/admin-menu-editor/" target="_blank">Plugin page</a></li>
+            <li>Advanced Custom Field Pro - <a href="https://drive.google.com/open?id=1ffGYPATxigIHQcN_eeHmrtkYrk1zkrvc" target="_blank">Download link</a> <br /><small><code>b3JkZXJfaWQ9MzQxNzV8dHlwZT1kZXZlbG9wZXJ8ZGF0ZT0yMDE0LTA3LTA5IDIyOjMyOjAw</code></small></li>
+            <li>All in one migration - <a href="https://drive.google.com/open?id=11qcKb-10IbI3UVKtpV76-x_J6IhuhZOc" target="_blank">Download link</a> <br /><small><code>1d090987-fae0-4172-a8cd-cc7689dfe3d5</code></small></li>
+            <li>Classic Editor - <a href="https://wordpress.org/plugins/classic-editor/" target="_blank">Plugin page</a></li>
+            <li>Duplicate Post - <a href="https://wordpress.org/plugins/duplicate-post/" target="_blank">Plugin page</a></li>
+            <li>Enhanced Media Library - <a href="https://wordpress.org/plugins/enhanced-media-library/" target="_blank">Plugin page</a></li>
+            <li>Gravity Forms - <a href="https://drive.google.com/open?id=1KaBtpGtUL7mZam_EPt415UW0XpIMIMPJ" target="_blank">Download link</a> <br /> <small><code>c20f6083662ea51a3d85ddddab0e6d36</code></small></li>
+            <li>Redirection - <a href="https://wordpress.org/plugins/redirection/" target="_blank">Plugin page</a></li>
+            <li>Regenerate Thumbnails - <a href="https://wordpress.org/plugins/regenerate-thumbnails/" target="_blank">Plugin page</a></li>
+            <li>SearchWP - <a href="https://drive.google.com/open?id=1AAayYivM5aqzhrQTC_4dle7IjdjiLEC3" target="_blank">Download link</a> <br /> <small><code>8d1c00c38a2e1a0919a5d5d3392b608e</code></small></li>
+            <li>Yoast SEO - <a href="https://wordpress.org/plugins/wordpress-seo/" target="_blank">Plugin page</a></li>
+            <li>WP Migrate DB Pro - <a href="https://drive.google.com/open?id=1YKMpXI16Ilc93EWZGZvCtaNShHfXNLbZ" target="_blank">Download link</a> <br /> <small><code>a5684f4b-bd85-453e-8fb2-3feb32d64b7c</code></small></li>
+          </ul>
+          <p>Plugins downloaded directly needs to be updated once installed</p>
       </ol>
 
       <hr />
@@ -69,14 +100,36 @@
         <li>Go to Appearance => Themes and activate the theme</li>
         <li>Create favicon.png and favicon.ico files <small>(ask designer)</small></li>
         <li>Make the Initial Commit</li>
-        <li>Create all the pages from sitemap with heirarchy and required URL structure <small>(ask manager)</small></li>
+        <li class="text-highlight">Create all the pages from sitemap with heirarchy and required URL structure <small>(ask manager)</small></li>
       </ol>
 
       <hr />
       <div class="mb-5"></div> <!-- .mb-5 -->
 
 
-      <h3 id="pre-launch">CSS/SASS Styleguide</h3>
+      <h3 id="git">Git</h3>
+
+      <ol>
+        <li>Create a new repo on bitbucket matching the project name</li>
+        <li>Get your local Git repository on Bitbucket</li>
+        <ul>
+          <li>Switch to your repository's directory <br />
+            <small><code>cd /path/to/your/repo</code></small>
+          </li>
+          <li>Connect your existing repository to Bitbucket <br />
+            <small>
+              <code>git remote add origin git@bitbucket.org:sahilmepani/fsfs.git</code>
+              <code>git push -u origin master</code>
+            </small>
+          </li>
+        </ul>
+      </ol>
+
+      <hr />
+      <div class="mb-5"></div> <!-- .mb-5 -->
+
+
+      <h3 id="css-styleguide">CSS/SASS Styleguide</h3>
       <h4 class="mb-4">Terminology</h4>
 
       <h5>Rule Declaration</h5>
@@ -250,7 +303,7 @@
       <div class="mb-5"></div> <!-- .mb-5 -->
 
 
-      <h3 id="pre-launch">JS Styleguide</h3>
+      <h3 id="js-styleguide">JS Styleguide</h3>
       <hr />
       <div class="mb-5"></div> <!-- .mb-5 -->
 

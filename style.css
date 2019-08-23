@@ -193,7 +193,7 @@ a:hover, button:hover, input[type="submit"]:hover, input[type="button"]:hover, i
 /*----------  Content  ----------*/
 p:last-child, table:last-child, ul:last-child, ol:last-child, dl:last-child, dd:last-child, pre:last-child, blockquote:last-child, address:last-child, h1:last-child, h2:last-child, h3:last-child, h4:last-child, h5:last-child, h6:last-child { margin-bottom: 0; }
 
-p, pre, blockquote, address, dd { line-height: 1.66; }
+p, pre, blockquote, address, dd { line-height: 1.7; }
 
 p, table, ul, ol, dl, dd, pre, blockquote, address { margin: 0 0 3rem; }
 
@@ -207,7 +207,7 @@ address { font-style: normal; }
 
 output { display: block; padding-top: 3rem; line-height: 1.42857143; color: #555; }
 
-code { background-color: #f6f8fa; font-weight: 400; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; display: inline-block; padding: 0.5rem; }
+code { background-color: #f6f8fa; font-size: 1.6rem; font-weight: 400; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; display: inline-block; padding: 0.5rem; }
 
 /*----------  Table  ----------*/
 table { width: 100%; max-width: 100%; border-collapse: collapse; }
@@ -241,9 +241,9 @@ ul { list-style-type: disc; }
 
 ol { list-style-type: decimal; }
 
-li { line-height: 1.66; margin-bottom: 1.5rem; }
+li { line-height: 1.7; margin-bottom: 1.5rem; }
 
-dt { font-family: inherit; font-weight: 700; line-height: 1.66; margin: 0 0 1.5rem; }
+dt { font-family: inherit; font-weight: 700; line-height: 1.7; margin: 0 0 1.5rem; }
 
 /*----------  Form  ----------*/
 form ul { margin-left: 0; }
@@ -282,7 +282,7 @@ input[type="search"] { -webkit-appearance: none; }
 
 input[type="date"] { line-height: 3.2rem; }
 
-textarea { line-height: 1.66; height: 15rem; resize: vertical; }
+textarea { line-height: 1.7; height: 15rem; resize: vertical; }
 
 input[type="checkbox"], input[type="radio"] { margin: 0; margin-top: 0.4rem; margin-right: 0.5rem; line-height: normal; }
 

@@ -16,6 +16,8 @@
 				<ul class="list-unstyled">
 					<li><a href="#wp-installation">WP Installation</a></li>
 					<li><a href="#theme-installation">Theme Installation</a></li>
+					<li><a href="#pre-launch">Pre Launch</a></li>
+					<li><a href="#post-launch">Post Launch</a></li>
 				</ul> <!-- .list-unstyled -->
 
 			</div> <!-- .sidebar-inner-block -->
@@ -32,7 +34,7 @@
 		    </ul>
 			  <li>Create a user "<b>threesixtyeight</b>" with password "<b>$$3hree6ixty8ight$$</b>" and email "<b>dev@threesixtyeight.com</b>"</li>
 			  <li>Create pages "<b>Home</b>" and "<b>Blog</b>"</li>
-			  <li>Go to <b>Settings => General</b> and update "<b>Site Title</b>" and "<b>Tagline</b>"</li>
+			  <li>Go to <b>Settings => General</b> and update "<b>Site Title</b>" and "<b>Tagline</b>" <small>(ask manager)</small></li>
 			 	<li>Go to <b>Settings => Reading</b></li>
 			 	<ul>
 			 		<li>Select "<b>A static page</b>" and select page <b>home for "Homepage"</b> and page <b>blog for "Posts page"</b></li>
@@ -48,6 +50,8 @@
 			  <li>Install and activate the following plugins:</li>
 			</ol>
 			<div class="mb-5"></div> <!-- .mb-5 -->
+
+
 			<h3 id="theme-installation">Theme Installation</h3>
 			<ol>
 				<li>Clone the skeleton theme
@@ -58,16 +62,32 @@
 						<b>HTTP</b>: <br /> <code>git clone https://sahilmepani@bitbucket.org/threesixtyeight/skeleton-reloaded.git</code>
 					</div> <!-- .mt-1 -->
 				</li>
-				<li>Rename the theme folder name to match the project name <small>(ask manager)</small></li>
-				<li>Delete .git, .sass-cache, .php folders in the theme directory, if present</li>
+				<li>Rename the theme folder to match the project name <small>(ask manager)</small></li>
 				<li>Update theme info in sass/style.scss file. Theme name should match the project name</li>
 				<li>Create a screenshot.png (1200 x 900) file in the theme directory <small>(ask designer)</small></li>
-				<li>Go to Appearance => Themes and Activate the theme</li>
+				<li>Go to Appearance => Themes and activate the theme</li>
 				<li>Create favicon.png and favicon.ico files <small>(ask designer)</small></li>
 				<li>Make the Initial Commit</li>
-			  <li>Create all the pages from sitemap with heirarchy and required URL structure</li>
+			  <li>Create all the pages from sitemap with heirarchy and required URL structure <small>(ask manager)</small></li>
 			</ol>
 			<div class="mb-5"></div> <!-- .mb-5 -->
+
+
+			<h3 id="pre-launch">CSS/SASS Styleguide</h3>
+			<div class="mb-5"></div> <!-- .mb-5 -->
+
+
+			<h3 id="pre-launch">JS Styleguide</h3>
+			<div class="mb-5"></div> <!-- .mb-5 -->
+
+
+			<h3 id="pre-launch">Pre Launch</h3>
+			<div class="mb-5"></div> <!-- .mb-5 -->
+
+
+			<h3 id="post-launch">Post Launch</h3>
+			<div class="mb-5"></div> <!-- .mb-5 -->
+
 		</div> <!-- .col-sm-8 content-col -->
 
 	</div> <!-- .row -->

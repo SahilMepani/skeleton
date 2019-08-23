@@ -191,7 +191,7 @@ strong {
 }
 
 small {
-	font-size: .75rem;
+	font-size: rem-calc( 14px );
 }
 
 hr {
@@ -213,13 +213,12 @@ output {
 }
 
 code {
-	background-color: #f9f9f9;
+	background-color: #f6f8fa;
 	color: green;
 	font-weight: 400;
 	font-family: $monospace;
 	display: inline-block;
-	padding: rem-calc( 5px ) rem-calc( 10px );
-	border: rem-calc( 1px ) solid #eee;
+	padding: rem-calc( 15px ) rem-calc( 15px );
 }
 
 /*----------  Table  ----------*/

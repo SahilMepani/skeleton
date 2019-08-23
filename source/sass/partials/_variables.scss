@@ -45,7 +45,7 @@ $headings-font-family   : inherit;
 $headings-font-weight   : 700;
 $headings-line-height   : 1.4;
 $headings-margin-top    : $global-margin-bottom*2;
-$headings-margin-bottom : $global-margin-bottom;
+$headings-margin-bottom : 2rem;
 
 // Input
 // variables are set in input mixin file because it requires rem-values

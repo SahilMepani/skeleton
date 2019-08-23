@@ -133,7 +133,7 @@ body { background: #fff; color: #222; font-size: 1.6rem; font-family: "Montserra
 /*----------  Headings  ----------*/
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { font-family: inherit; color: inherit; font-weight: 700; line-height: 1.4; }
 
-h1, h2, h3, h4, h5, h6 { margin: 6rem 0 3rem 0; }
+h1, h2, h3, h4, h5, h6 { margin: 6rem 0 2rem 0; }
 
 h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child { margin-top: 0; }
 
@@ -157,13 +157,11 @@ h3, .h3 { font-size: 20px; }
 
 @media screen and (min-width: 1920px) { h3, .h3 { font-size: 3.2rem; } }
 
-h4, .h4 { font-weight: 300; }
+h4, .h4 { font-size: 18px; }
 
-h4, .h4 { font-size: 30px; }
+@media screen and (min-width: 375px) { h4, .h4 { font-size: calc(0.3883495146vw + 16.5436893204px); } }
 
-@media screen and (min-width: 375px) { h4, .h4 { font-size: calc(1.9417475728vw + 22.7184466019px); } }
-
-@media screen and (min-width: 1920px) { h4, .h4 { font-size: 6rem; } }
+@media screen and (min-width: 1920px) { h4, .h4 { font-size: 2.4rem; } }
 
 h5, .h5 { font-size: 18px; }
 
@@ -209,7 +207,7 @@ address { font-style: normal; }
 
 output { display: block; padding-top: 3rem; line-height: 1.42857143; color: #555; }
 
-code { background-color: #f6f8fa; color: green; font-weight: 400; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; display: inline-block; padding: 1.5rem 1.5rem; }
+code { background-color: #f6f8fa; font-weight: 400; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; display: inline-block; padding: 0.5rem; }
 
 /*----------  Table  ----------*/
 table { width: 100%; max-width: 100%; border-collapse: collapse; }
@@ -2578,6 +2576,8 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 @media (min-width: 768px) { .btn-input-clone { padding-top: 1.5rem; padding-bottom: 1.5rem; } }
 
 .btn-disabled { cursor: default; pointer-events: none; opacity: .3; }
+
+.text-highlight { background-color: #F7EA6F; color: #2c2c2c; }
 
 /*----------  Required  ----------*/
 .list-unstyled { margin-left: 0; }

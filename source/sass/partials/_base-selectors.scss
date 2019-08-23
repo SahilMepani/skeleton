@@ -88,8 +88,7 @@ h3,
 
 h4,
 .h4 {
-	@include fluid( font-size, $min-375, $desktop, 30px, 60px );
-	font-weight: 300;
+	@include fluid( font-size, $min-375, $desktop, 18px, 24px );
 }
 
 h5,
@@ -214,11 +213,10 @@ output {
 
 code {
 	background-color: #f6f8fa;
-	color: green;
 	font-weight: 400;
 	font-family: $monospace;
 	display: inline-block;
-	padding: rem-calc( 15px ) rem-calc( 15px );
+	padding: rem-calc( 5px );
 }
 
 /*----------  Table  ----------*/

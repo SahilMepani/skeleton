@@ -1,6 +1,6 @@
 </section> <!-- #site-content -->
 
-<footer id="footer" class="clearfix">
+<footer class="site-footer clearfix">
 <div class="container">
 
 	<?php //wp_nav_menu( array( 'theme_location' => 'footer-menu', 'menu_class' => 'footer-menu' ) ); ?>
@@ -9,7 +9,7 @@
 </div> <!-- .container -->
 </footer> <!-- #footer -->
 
-<a href="#site-wrapper" class="scroll-to-top scroll-to"></a>
+<a href="#" class="scroll-to-top scroll-to"></a>
 
 <?php wp_footer(); ?>
 </body>

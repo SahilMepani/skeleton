@@ -1265,11 +1265,11 @@ p:empty { display: none; }
   .offset-xxl-10 { margin-left: 83.3333333333%; }
   .offset-xxl-11 { margin-left: 91.6666666667%; } }
 
-#site-wrapper { display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column; min-height: 100vh; }
+.site-wrapper { display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column; min-height: 100vh; }
 
-#site-content { -webkit-flex: 1 0 auto; flex: 1 0 auto; }
+.site-content { -webkit-flex: 1 0 auto; flex: 1 0 auto; }
 
-#header { background-color: #f9f9f9; padding-top: 1rem; padding-bottom: 1rem; }
+.site-header { background-color: #f9f9f9; padding-top: 1rem; padding-bottom: 1rem; }
 
 .header-logo { width: 15.1rem; height: 2.5rem; position: relative; float: left; margin-top: 1.5rem !important; margin-bottom: 0; }
 

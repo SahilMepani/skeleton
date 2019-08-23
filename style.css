@@ -201,7 +201,7 @@ p, table, ul, ol, dl, dd, pre, blockquote, address { margin: 0 0 3rem; }
 
 b, strong { font-weight: 700; }
 
-small, .text-small { font-size: .75rem; }
+small, .text-small { font-size: 1.4rem; }
 
 hr, .hr { margin-top: 3rem; margin-bottom: 3rem; border: 0; border-top: 1px solid #e5e5e5; }
 
@@ -209,7 +209,7 @@ address { font-style: normal; }
 
 output { display: block; padding-top: 3rem; line-height: 1.42857143; color: #555; }
 
-code { background-color: #f9f9f9; color: green; font-weight: 400; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; display: inline-block; padding: 0.5rem 1rem; border: 0.1rem solid #eee; }
+code { background-color: #f6f8fa; color: green; font-weight: 400; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; display: inline-block; padding: 1.5rem 1.5rem; }
 
 /*----------  Table  ----------*/
 table { width: 100%; max-width: 100%; border-collapse: collapse; }

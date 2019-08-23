@@ -218,8 +218,8 @@ code {
 	font-weight: 400;
 	font-family: $monospace;
 	display: inline-block;
-	padding: rem-calc( 5px );
-	border: 1px solid #eee;
+	padding: rem-calc( 5px ) rem-calc( 10px );
+	border: rem-calc( 1px ) solid #eee;
 }
 
 /*----------  Table  ----------*/

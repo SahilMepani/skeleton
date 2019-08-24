@@ -14,6 +14,7 @@
         </div> <!-- .search-block -->
 
         <ul class="list-unstyled">
+          <li><a href="#">Dev Handoff</a></li>
           <li><a href="#wp-installation">WP Installation</a></li>
           <ul>
             <li><a href="#local">Local</a></li>
@@ -21,18 +22,39 @@
             <li><a href="#production">Production</a></li>
           </ul>
           <li><a href="#theme-installation">Theme Installation</a></li>
-          <li><a href="#css-styleguide">CSS Styleguide</a></li>
+          <li><a href="#css-styleguide">CSS/SASS Styleguide</a></li>
+          <ul>
+            <li><a href="#terminology">Terminology</a></li>
+            <li><a href="#css">CSS</a></li>
+            <li><a href="#sass">SASS</a></li>
+          </ul>
+          <li><a href="#">Pre Launch</a></li>
+          <li><a href="#">Post Launch</a></li>
         </ul> <!-- .list-unstyled -->
 
       </div> <!-- .sidebar-inner-block -->
     </div> <!-- .col-sm-4 -->
 
     <div class="col-sm-8 content-col">
+
+      <h3 id="post-launch">Dev Handoff</h3>
+
+      <ul>
+        <li>Upload the design to avocode before the handoff</li>
+        <li>Install the browser extension "Loom" to record handoff</li>
+        <li>Designer please record the handoff using loom and forward the video link to developer</li>
+        <li>You may add notes to avocode during the handoff</li>
+      </ul>
+
+      <hr />
+      <div class="mb-5"></div> <!-- .mb-5 -->
+
+
       <h3 id="wp-installation">WP Installation</h3>
 
-      <p>We work with 3 different WP installations. Local, Development and Production. When the site is coded and ready, we migrate the local copy to development for internal QC and client reivew. If there are any changes, we make them locally and push them to development. After QC is completed, we move the local copy to production.</p>
+      <p>Work with 3 different WP installations. Local, Development and Production. When the site is coded and ready, migrate the local to development for internal QC and client reivew. If there are any bugs, fix them locally and push them to development. If there are any changes to database/content. First pull the database from development to local, make the changes locally and push back the database to development. After QC is completed, push the development to production.</p>
 
-      <h5 id="local">Local Installation</h5>
+      <h5 id="local">Local</h5>
       <ol>
         <li>Download latest WordPress - <a href="https://wordpress.org/latest.zip">Download link</a></li>
         <li>Edit wp-config.php file in root directory</li>
@@ -79,6 +101,14 @@
           </ul>
           <p>Plugins downloaded directly needs to be updated once installed</p>
       </ol>
+
+      <h5 id="development">Development</h5>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque unde incidunt eum, molestias, voluptatem eligendi numquam itaque aut deserunt, temporibus et debitis! Blanditiis reiciendis nesciunt at commodi voluptate recusandae eum.</p>
+
+      <h5 id="production">Production</h5>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque unde incidunt eum, molestias, voluptatem eligendi numquam itaque aut deserunt, temporibus et debitis! Blanditiis reiciendis nesciunt at commodi voluptate recusandae eum.</p>
 
       <hr />
       <div class="mb-5"></div> <!-- .mb-5 -->
@@ -130,7 +160,7 @@
 
 
       <h3 id="css-styleguide">CSS/SASS Styleguide</h3>
-      <h4 class="mb-4">Terminology</h4>
+      <h4 id="terminology" class="mb-4">Terminology</h4>
 
       <h5>Rule Declaration</h5>
       <p>A "rule declaration" is the name given to a selector (or a group of selectors) with an accompanying group of properties. Here's an example:</p>
@@ -168,7 +198,7 @@
 </pre>
 </code>
 
-      <h4 id="css-styleguide" class="mb-4">CSS</h4>
+      <h4 id="css" class="mb-4">CSS</h4>
 
       <h5>Formatting</h5>
       <ul>
@@ -255,7 +285,7 @@
 </pre>
 </code>
 
-      <h4 class="mb-4">SASS</h4>
+      <h4 id="sass" class="mb-4">SASS</h4>
 
       <h5>Syntax</h5>
 
@@ -298,6 +328,34 @@
 
       <p>If you must use an ID selector in the first place (and you should really try not to), they should never be nested. If you find yourself doing this, you need to revisit your markup, or figure out why such strong specificity is needed. If you are writing well formed HTML and CSS, you should never <b>need</b> to do this.</p>
 
+      <p>Nested selectors, if necessary, go last, and nothing goes after them. Add whitespace between your rule declarations and nested selectors, as well as between adjacent nested selectors. Apply the same guidelines as above to your nested selectors.</p>
+<p class="mb-1"><b>Bad</b></p>
+<code class="d-block p-1 mb-2">
+<pre>
+.btn {
+  background: green;
+  .icon {
+    margin-right: 10px;
+  }
+  font-weight: bold;
+  @include transition(background 0.5s ease);
+}
+</pre>
+</code>
+<p class="mb-1"><b>Good</b></p>
+<code class="d-block p-1 mb-4">
+<pre>
+.btn {
+  background: green;
+  font-weight: bold;
+  @include transition(background 0.5s ease);
+
+  .icon {
+    margin-right: 10px;
+  }
+}
+</pre>
+</code>
 
       <hr />
       <div class="mb-5"></div> <!-- .mb-5 -->

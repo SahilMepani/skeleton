@@ -30,6 +30,7 @@
           </ul>
           <li><a href="#">Pre Launch</a></li>
           <li><a href="#">Post Launch</a></li>
+          <li><a href="#">Theme Usage</a></li>
         </ul> <!-- .list-unstyled -->
 
       </div> <!-- .sidebar-inner-block -->
@@ -41,10 +42,21 @@
 
       <ul>
         <li>Upload the design to avocode</li>
-        <li>Ready the assets link</li>
         <li>Install the browser extension "Loom" to record handoff</li>
-        <li>Designer please record the handoff using loom and forward the video link to developer</li>
+        <li>Designer will record the handoff and forward the video link to developer <small>(sometimes due to connectivity issue, the conversation doesn't go through. But it is vital to have the designer's explanation)</small></li>
         <li>You may add notes to avocode during the handoff</li>
+        <li>Organize the assets into folders and forward the download/GDrive link</li>
+        <ul>
+          <li>Trim the whitespace around all the images. If required, it can be created using CSS</li>
+          <li>Icons must use fills. <a href="https://icomoon.io/">Icomoon app</a> ignores strokes. <a href="https://icomoon.io/docs.html">Learn here</a> on how to convert strokes and text to fills</li>
+        </ul>
+        <li>Styleguide should minimum include the following for both a mobile and desktop</li>
+        <ul>
+          <li>Typography: <br /> Headings(h1 to h6), paragraph, blockquote, links and any other custom font styles</li>
+          <li>Form Inputs</li>
+          <li>Buttons</li>
+          <li>Components with hover state</li>
+        </ul>
       </ul>
 
       <hr />
@@ -53,9 +65,10 @@
 
       <h3 id="wp-installation">WP Installation</h3>
 
-      <p>Work with 3 different WP installations. Local, Development and Production. When the site is coded and ready, migrate the local to development for internal QC and client reivew. If there are any bugs, fix them locally and push them to development. If there are any changes to database/content. First pull the database from development to local, make the changes locally and push back the database to development. After QC is completed, push the development to production.</p>
+      <p>Work with 3 different WP installations. Local, Development and Production.</p>
 
-      <h5 id="local">Local</h5>
+      <h5 id="local">Local WP (development branch)</h5>
+      <p>Start coding the site locally on development branch</p>
       <ol>
         <li>Download latest WordPress - <a href="https://wordpress.org/latest.zip">Download link</a></li>
         <li>Edit wp-config.php file in root directory</li>
@@ -98,18 +111,20 @@
             <li>Regenerate Thumbnails - <a href="https://wordpress.org/plugins/regenerate-thumbnails/" target="_blank">Plugin page</a></li>
             <li>SearchWP - <a href="https://drive.google.com/open?id=1AAayYivM5aqzhrQTC_4dle7IjdjiLEC3" target="_blank">Download link</a> <br /> <small><code>8d1c00c38a2e1a0919a5d5d3392b608e</code></small></li>
             <li>Yoast SEO - <a href="https://wordpress.org/plugins/wordpress-seo/" target="_blank">Plugin page</a></li>
-            <li>WP Migrate DB Pro - <a href="https://drive.google.com/open?id=1YKMpXI16Ilc93EWZGZvCtaNShHfXNLbZ" target="_blank">Download link</a> <br /> <small><code>a5684f4b-bd85-453e-8fb2-3feb32d64b7c</code></small></li>
+            <li id="wp-migrate-db-pro">WP Migrate DB Pro - <a href="https://drive.google.com/open?id=1YKMpXI16Ilc93EWZGZvCtaNShHfXNLbZ" target="_blank">Download link</a> <br /> <small><code>a5684f4b-bd85-453e-8fb2-3feb32d64b7c</code></small></li>
           </ul>
           <p>Plugins downloaded directly needs to be updated once installed</p>
       </ol>
 
-      <h5 id="development">Development</h5>
+      <h5 id="development">Development WP (development branch)</h5>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque unde incidunt eum, molestias, voluptatem eligendi numquam itaque aut deserunt, temporibus et debitis! Blanditiis reiciendis nesciunt at commodi voluptate recusandae eum.</p>
+      <p>When the site is coded and ready, migrate the local WP to development WP for internal QC and client review. If there are any bugs, fix them on local WP and push them to development WP. If there are any changes to content/media. First pull the database from development WP to local WP, make the changes on local WP and push back the database to development WP. It is vital that the local WP and development WP are always in sync</p>
 
-      <h5 id="production">Production</h5>
+      <p><a href="#wp-migrate-db-pro">WP Migrate DB Pro</a> plugin is used to push and pull database</p>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque unde incidunt eum, molestias, voluptatem eligendi numquam itaque aut deserunt, temporibus et debitis! Blanditiis reiciendis nesciunt at commodi voluptate recusandae eum.</p>
+      <h5 id="production">Production WP (master branch)</h5>
+
+      <p>After QC is completed, push the development WP to production WP. Also, merge the development branch with master branch <br /><code>git checkout master</code><br /><code>git merge development</code></p>
 
       <hr />
       <div class="mb-5"></div> <!-- .mb-5 -->
@@ -118,22 +133,23 @@
       <h3 id="theme-installation">Theme Installation</h3>
       <ol>
         <li>Switch to themes directory <br />
-          <code>cd /path/to/your/repo</code>
+          <code>cd /path/to/your/wp-content/themes</code>
         </li>
         <li>Clone the skeleton theme
           <div class="mt-1">
-            <b>SSH</b>: <br /> <code class="p-1 d-block">git clone git@bitbucket.org:threesixtyeight/skeleton-reloaded.git</code>
+            <b>SSH</b>: <br /> <code>git clone git@bitbucket.org:threesixtyeight/skeleton-reloaded.git</code>
           </div> <!-- .mt-1 -->
           <div class="mt-1">
-            <b>HTTP</b>: <br /> <code class="p-1 d-block">git clone https://sahilmepani@bitbucket.org/threesixtyeight/skeleton-reloaded.git</code>
+            <b>HTTP</b>: <br /> <code>git clone https://sahilmepani@bitbucket.org/threesixtyeight/skeleton-reloaded.git</code>
           </div> <!-- .mt-1 -->
         </li>
+        <li>Repo has three branches, "master", "development" "blocks". Master is used for production. Development is used for development. Blocks is used as a library and will be deleted once the site is ready for production</li>
         <li>Rename the theme folder to match the project name <small>(ask manager)</small></li>
         <li>Update theme info in sass/style.scss file. Theme name should match the project name</li>
         <li>Create a screenshot.png (1200 x 900) file in the theme directory <small>(ask designer)</small></li>
-        <li>Go to Appearance => Themes and activate the theme</li>
         <li>Create favicon.png and favicon.ico files <small>(ask designer)</small></li>
         <li>Make the Initial Commit</li>
+        <li>Go to Appearance => Themes and activate the theme</li>
         <li class="text-highlight">Create all the pages from sitemap with heirarchy and required URL structure <small>(ask manager)</small></li>
       </ol>
 
@@ -148,11 +164,10 @@
         <li>Get your local Git repository on Bitbucket</li>
         <ul>
           <li>Switch to your repository's directory <br />
-            <small><code>cd /path/to/your/repo</code></small>
+            <code>cd /path/to/your/repo</code>
           </li>
           <li>Connect your existing repository to Bitbucket <br />
-            <small>
-              <code>git remote add origin git@bitbucket.org:sahilmepani/fsfs.git</code>
+              <code>git remote add origin git@bitbucket.org:threesixtyeight/skeleton-reloaded.git</code>
               <code>git push -u origin master</code>
             </small>
           </li>

@@ -207,11 +207,7 @@ address { font-style: normal; }
 
 output { display: block; padding-top: 3rem; line-height: 1.42857143; color: #555; }
 
-<<<<<<< HEAD
 code { background-color: #f6f8fa; font-size: 1.6rem; font-weight: 400; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; display: inline-block; padding: 0.5rem; }
-=======
-code { background-color: #f6f8fa; font-weight: 400; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; display: inline-block; padding: 0.5rem; }
->>>>>>> master
 
 /*----------  Table  ----------*/
 table { width: 100%; max-width: 100%; border-collapse: collapse; }
@@ -1270,7 +1266,6 @@ p:empty { display: none; }
   .offset-xxl-11 { margin-left: 91.6666666667%; } }
 
 .site-wrapper { display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column; min-height: 100vh; }
-<<<<<<< HEAD
 
 .site-content { -webkit-flex: 1 0 auto; flex: 1 0 auto; }
 
@@ -2137,12 +2132,6 @@ p:empty { display: none; }
 .gform_wrapper .chosen-single:-moz-placeholder { color: #b0b0b0; }
 
 .gform_wrapper .chosen-single::-moz-placeholder { color: #b0b0b0; }
-=======
-
-.site-content { -webkit-flex: 1 0 auto; flex: 1 0 auto; }
-
-.site-header { background-color: #f9f9f9; padding-top: 1rem; padding-bottom: 1rem; }
->>>>>>> master
 
 .gform_wrapper .chosen-single:-ms-input-placeholder { color: #b0b0b0; }
 
@@ -7963,7 +7952,7 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 
 .align-text-top { vertical-align: text-top !important; }
 
-.alert, .gforms_confirmation_message, .validation_error, .gform_confirmation_message { background-color: #e5e5e5; padding: 2rem; border: 0.1rem solid #ddd; margin-bottom: 3rem; }
+.alert, .gforms_confirmation_message, .validation_error, .gform_confirmation_message { background-color: #e5e5e5; border: 0.1rem solid #ddd; }
 
 .alert-info, .validation_error { background-color: #ffffd9; border: 0.1rem solid #e8e800; }
 

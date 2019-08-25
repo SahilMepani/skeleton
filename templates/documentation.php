@@ -40,7 +40,8 @@
       <h3 id="post-launch">Dev Handoff</h3>
 
       <ul>
-        <li>Upload the design to avocode before the handoff</li>
+        <li>Upload the design to avocode</li>
+        <li>Ready the assets link</li>
         <li>Install the browser extension "Loom" to record handoff</li>
         <li>Designer please record the handoff using loom and forward the video link to developer</li>
         <li>You may add notes to avocode during the handoff</li>
@@ -116,6 +117,9 @@
 
       <h3 id="theme-installation">Theme Installation</h3>
       <ol>
+        <li>Switch to themes directory <br />
+          <code>cd /path/to/your/repo</code>
+        </li>
         <li>Clone the skeleton theme
           <div class="mt-1">
             <b>SSH</b>: <br /> <code class="p-1 d-block">git clone git@bitbucket.org:threesixtyeight/skeleton-reloaded.git</code>

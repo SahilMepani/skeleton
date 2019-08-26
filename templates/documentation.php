@@ -68,7 +68,6 @@
       <p>Work with 3 different WP installations. Local, Development and Production.</p>
 
       <h5 id="local">Local WP (development branch)</h5>
-      <p>Start coding the site locally on development branch</p>
       <ol>
         <li>Download latest WordPress - <a href="https://wordpress.org/latest.zip">Download link</a></li>
         <li>Edit wp-config.php file in root directory</li>
@@ -121,9 +120,9 @@
 
       <h5 id="development">Development WP (development branch)</h5>
 
-      <p>When the site is coded and ready, migrate the local WP to development WP for internal QC and client review. If there are any bugs, fix them on local WP and push them to development WP. If there are any changes to content/media. First pull the database from development WP to local WP, make the changes on local WP and push back the database to development WP. It is vital that the local WP and development WP are always in sync</p>
+      <p>Once the site is coded and ready, migrate the local WP to development WP for internal QC and client review. If there are any bugs, fix them on local WP and push them to development WP. If there are any changes to content/media. First pull the database from development WP to local WP, make the changes on local WP and push back the database to development WP. It is vital that the local WP and development WP are always in sync</p>
 
-      <p><a href="#wp-migrate-db-pro">WP Migrate DB Pro</a> plugin is used to push and pull database</p>
+      <p><a href="#wp-migrate-db-pro">WP Migrate DB Pro</a> plugin is used to push and pull database and <a href="https://deploybot.com" target="_blank">DeployBot</a> for uploading theme/repo files</p>
 
       <h5 id="production">Production WP (master branch)</h5>
 
@@ -170,7 +169,7 @@
             <code>cd /path/to/your/repo</code>
           </li>
           <li>Connect your existing repository to Bitbucket <br />
-              <code>git remote add origin git@bitbucket.org:threesixtyeight/skeleton-reloaded.git</code>
+              <code>git remote add origin git@bitbucket.org:threesixtyeight/your-repo-name.git</code>
               <code>git push -u origin master</code>
             </small>
           </li>

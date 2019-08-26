@@ -41,7 +41,7 @@
       <h3 id="post-launch">Dev Handoff</h3>
 
       <ul>
-        <li>Upload the design to avocode</li>
+        <li>Upload the design to avocode before the handoff</li>
         <li>Install the browser extension "Loom" to record handoff</li>
         <li>Designer will record the handoff and forward the video link to developer <small>(sometimes due to connectivity issue, the conversation doesn't go through. But it is vital to have the designer's explanation)</small></li>
         <li>You may add notes to avocode during the handoff</li>
@@ -145,7 +145,7 @@
             <b>HTTP</b>: <br /> <code>git clone https://sahilmepani@bitbucket.org/threesixtyeight/skeleton-reloaded.git</code>
           </div> <!-- .mt-1 -->
         </li>
-        <li>Repo has three branches, "master", "development" "blocks". Master is used for production. Development is used for development. Blocks is used as a library and will be deleted once the site is ready for production</li>
+        <li>Repo has three branches, "master", "development" and "blocks". Master is used for production. Development is used for development. Blocks is used as a library and will be deleted once the site is ready for production</li>
         <li>Rename the theme folder to match the project name <small>(ask manager)</small></li>
         <li>Update theme info in sass/style.scss file. Theme name should match the project name</li>
         <li>Create a screenshot.png (1200 x 900) file in the theme directory <small>(ask designer)</small></li>

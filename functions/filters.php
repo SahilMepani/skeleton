@@ -117,7 +117,6 @@ add_filter('gform_ajax_spinner_url', 'tse_custom_gforms_spinner');
 /* ==========================================================
 	=            Custom wp login logo and link            =
 	========================================================== */
-
 /*function my_login_logo() {
 	?>
 	<style type="text/css">
@@ -131,19 +130,16 @@ add_filter('gform_ajax_spinner_url', 'tse_custom_gforms_spinner');
 	</style>
 	<?php
 }*/
-
 // add_action('login_enqueue_scripts', 'my_login_logo');
 
 // function my_login_logo_url() {
 //   return tse_home_url();
 // }
-
 // add_filter('login_headerurl', 'my_login_logo_url');
 
 // function my_login_logo_url_title() {
 //   return 'Skeleton';
 // }
-
 // add_filter('login_headertitle', 'my_login_logo_url_title');
 
 

@@ -209,7 +209,7 @@ address { font-style: normal; }
 
 output { display: block; padding-top: 3rem; line-height: 1.42857143; color: #555; }
 
-code { background-color: #f6f8fa; font-weight: 400; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; display: inline-block; padding: 0.5rem; }
+code { background-color: #f6f8fa; font-size: 1.6rem; font-weight: 400; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; display: inline-block; padding: 0.5rem; }
 
 /*----------  Table  ----------*/
 table { width: 100%; max-width: 100%; border-collapse: collapse; }
@@ -931,7 +931,7 @@ p:empty { display: none; }
 
 .align-text-top { vertical-align: text-top !important; }
 
-.alert { background-color: #e5e5e5; padding: 2rem; border: 0.1rem solid #ddd; margin-bottom: 3rem; }
+.alert { background-color: #e5e5e5; border: 0.1rem solid #ddd; }
 
 .alert-info { background-color: #ffffd9; border: 0.1rem solid #e8e800; }
 

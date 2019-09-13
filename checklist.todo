@@ -35,7 +35,7 @@
   ☐ Go to Settings -> Reading and Uncheck "Discourage search engine..."
   ☐ Copy code from style.css file to editor-style.css. Make sure the body font matches and appropriate fonts are loaded. If typekit fonts are used we need to a js plugin to display typekit fonts in WP editor. __REMIND TO ADD STEPS__
   ☐ Check for any console errors on every page
-  ☐ Rebuild all the thunbnails
+  ☐ Rebuild all the thumbnails
   ☐ Optimize wp-content/uploads directory
   ☐ Optimize database using "WP Optimize" plugin. Please take a backup
   ☐ Remove unwanted icons

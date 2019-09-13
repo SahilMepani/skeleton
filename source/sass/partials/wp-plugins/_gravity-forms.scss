@@ -784,16 +784,20 @@ table.gfield_list {
 
 // Comfirmation and validation
 .gforms_confirmation_message {
-	@extend .alert;
-	@extend .alert-success;
+	background-color: #dbffd9;
+	padding: rem-calc( 15px );
+	margin-bottom: $global-margin-bottom;
+	border: rem-calc(1px) solid darken(#dbffd9, 20%);
 	text-align: center;
 	line-height: 1.4;
 }
 
 // Combined validation error
 .validation_error {
-	@extend .alert;
-	@extend .alert-info;
+	background-color: #ffffd9;
+	padding: rem-calc( 15px );
+	margin-bottom: $global-margin-bottom;
+	border: rem-calc(1px) solid darken(#ffffd9, 47%);
 	text-align: center;
 	line-height: 1.4;
 }
@@ -816,8 +820,10 @@ table.gfield_list {
 
 // Displays on same page upon successful completion of the form
 .gform_confirmation_message {
-	@extend .alert;
-	@extend .alert-success;
+	background-color: #dbffd9;
+	padding: rem-calc( 15px );
+	margin-bottom: $global-margin-bottom;
+	border: rem-calc(1px) solid darken(#dbffd9, 20%);
 	text-align: center;
 	line-height: 1.4;
 	&:last-child {

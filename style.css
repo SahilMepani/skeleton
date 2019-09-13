@@ -343,7 +343,8 @@ audio, canvas, iframe, img, svg, video { vertical-align: middle; }
 
 .slick-arrow.slick-hidden { display: none; }
 
-.mfp-bg { top: 0; left: 0; width: 100%; height: 100%; z-index: 1042; overflow: hidden; position: fixed; background: #0b0b0b; opacity: 0.8; }
+/* Magnific Popup CSS */
+.mfp-bg { top: 0; left: 0; width: 100%; height: 100%; z-index: 1042; overflow: hidden; position: fixed; background: #000; opacity: 0.95; }
 
 .mfp-wrap { top: 0; left: 0; width: 100%; height: 100%; z-index: 1043; position: fixed; outline: none !important; -webkit-backface-visibility: hidden; }
 
@@ -415,7 +416,7 @@ button::-moz-focus-inner { padding: 0; border: 0; }
 
 .mfp-iframe-holder { padding-top: 4rem; padding-bottom: 4rem; }
 
-.mfp-iframe-holder .mfp-content { line-height: 0; width: 100%; max-width: 90rem; }
+.mfp-iframe-holder .mfp-content { line-height: 0; width: 100%; max-width: 900px; }
 
 .mfp-iframe-holder .mfp-close { top: -4rem; }
 
@@ -2316,13 +2317,13 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 
 .gform_footer .gform_save_link:hover, .gform_footer .gform_save_link:active { background: #000; color: #fff; }
 
-.gforms_confirmation_message { text-align: center; line-height: 1.4; }
+.gforms_confirmation_message { background-color: #dbffd9; padding: 1.5rem; margin-bottom: 3rem; border: 0.1rem solid #7aff73; text-align: center; line-height: 1.4; }
 
-.validation_error { text-align: center; line-height: 1.4; }
+.validation_error { background-color: #ffffd9; padding: 1.5rem; margin-bottom: 3rem; border: 0.1rem solid #e8e800; text-align: center; line-height: 1.4; }
 
 .validation_message { background-color: red; color: #fff !important; font-style: normal !important; font-size: 1.4rem !important; clear: both; display: inline-block; padding: 0.3rem 0.5rem; margin-top: 0 !important; margin-bottom: 0.5rem; position: relative; top: 0.5rem; }
 
-.gform_confirmation_message { text-align: center; line-height: 1.4; }
+.gform_confirmation_message { background-color: #dbffd9; padding: 1.5rem; margin-bottom: 3rem; border: 0.1rem solid #7aff73; text-align: center; line-height: 1.4; }
 
 .gform_confirmation_message:last-child { margin-bottom: 0; }
 
@@ -7952,13 +7953,11 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 
 .align-text-top { vertical-align: text-top !important; }
 
-.alert, .gforms_confirmation_message, .validation_error, .gform_confirmation_message { background-color: #e5e5e5; border: 0.1rem solid #ddd; }
-
-.alert-info, .validation_error { background-color: #ffffd9; border: 0.1rem solid #e8e800; }
+.alert-info { background-color: #ffffd9; border: 0.1rem solid #e8e800; }
 
 .alert-error { background-color: #ffd9d9; border: 0.1rem solid #ffa6a6; }
 
-.alert-success, .gforms_confirmation_message, .gform_confirmation_message { background-color: #dbffd9; border: 0.1rem solid #7aff73; }
+.alert-success { background-color: #dbffd9; border: 0.1rem solid #7aff73; }
 
 .bg-video { position: absolute; left: 0; top: 0; -o-object-fit: fill; object-fit: cover; overflow: hidden; }
 

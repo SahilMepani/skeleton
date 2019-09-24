@@ -1,40 +1,40 @@
 # GENERAL --- ✄ -----------------------:
-  ☐ All custom functions should have the "tse_" prefix
-  ☐ Shortcode
-  ☐ Helper functions
+	☐ All custom functions should have the "tse_" prefix
+	☐ Shortcode
+	☐ Helper functions
 
 --- ✄ -----------------------
 
 
 # ACF --- ✄ -----------------------:
-  Image/Gallery field:
-  ☐ Use H200 as the preview size
-  ☐ Provide minimum width and aspect ratio information or fixed size
+	Image/Gallery field:
+	☐ Use H200 as the preview size
+	☐ Provide minimum width and aspect ratio information or fixed size
 
-  Flexible Content (FC) field:
-  ☐ All FCs should be a clone and clone settings set to "inactive" and label without "section" postfix
-  ☐ All FCs files should match the FCs field names
-  ☐ Do not postfix a FC label/name with "section" and set display settings to "seamless"
-  ☐ Divide a FC in two tabs(top aligned). Section Options & Developer Options(this is also a clone). Section options tab will be part of layout/section and developer options tab will be a part of the clone
-  ☐ No need to enable "prefix field labels" or "prefix field names" toggle in FC as all fields are unique to their FC.
+	Flexible Content (FC) field:
+	☐ All FCs should be a clone and clone settings set to "inactive" and label without "section" postfix
+	☐ All FCs files should match the FCs field names
+	☐ Do not postfix a FC label/name with "section" and set display settings to "seamless"
+	☐ Divide a FC in two tabs(top aligned). Section Options & Developer Options(this is also a clone). Section options tab will be part of layout/section and developer options tab will be a part of the clone
+	☐ No need to enable "prefix field labels" or "prefix field names" toggle in FC as all fields are unique to their FC.
 
-  Clones:
-  ☐ Any "field group" used as a clone, should have a "clone" at the end of title
-  ☐ Any clone field used outside of FC will need a name prefix as it will conflict with other fields (create another "field group" cloning that clone)
+	Clones:
+	☐ Any "field group" used as a clone, should have a "clone" at the end of title
+	☐ Any clone field used outside of FC will need a name prefix as it will conflict with other fields (create another "field group" cloning that clone)
 
 --- ✄ -----------------------
 
 
 # CSS --- ✄ -----------------------:
-  Naming Convention:
-  ☐ Any div that covers the entire width should be called a section. e.g. content-section
-  ☐ Any div inside container that wrap elements should be called a block. e.g content-block
-  ☐ Any div inside section that wrap container should be called a wrapper. e.g. content-wrapper
-  ☐ Any class/ID added using javascript should be prefixed using "js-" e.g. js-active, js-hidden
+Naming Convention:
+	☐ Any div that covers the entire width should be called a section. e.g. content-section
+	☐ Any div inside container that wrap elements should be called a block. e.g content-block
+	☐ Any div inside section that wrap container should be called a wrapper. e.g. content-wrapper
+	☐ Any class/ID added using javascript should be prefixed using "js-" e.g. js-active, js-hidden
 
-  Rules:
-  ☐ All px values to be wrapped inside rem-calc() function. It will throw error if used inside calc() only at that time we manually calculate the rem value at the base of $root-font-size value which is always set to 10px. For eg. if your value is 30px it will convert to 30/10 = 3rem
-  ☐ Avoid ID as much as possible.
-  ☐ Whenever possible use utility/helper classes in html.
+Rules:
+	☐ All px values to be wrapped inside rem-calc() function. Manually calculate the rem value at the base of $root-font-size value which is always set to 10px if you want to use inside calc() or it will throw error. For eg. if your value is 30px it will convert to 30/10 = 3rem
+	☐ Avoid ID as much as possible.
+	☐ Whenever possible use utility/helper classes in html rather than writing custom css.
 
 --- ✄ -----------------------

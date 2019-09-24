@@ -51,7 +51,7 @@ add_image_size( 'w1920', 1920, 9999 );
 add_image_size( 'w2560', 2560, 9999 );
 add_image_size( 'w3840', 3840, 9999 );
 add_image_size( 'w2560h1600', 2560, 1600 );
-add_image_size( 'ar16by9', 1920, 1080 );
+add_image_size( 'ar16by9', 1920, 1080 ); // aspect ratio
 add_image_size( 'w375@2x', 750, 9999 );
 add_image_size( 'w414@2x', 828, 9999 );
 add_image_size( 'w576@2x', 1152, 9999 );

@@ -154,7 +154,7 @@ $mac-13  : ($md) (max-height 800px);
 // Changes depending on the project design, used on html element
 $mobile: $min-375; // mobile canvas size, mostly remains same
 $desktop: $two-k; // desktop canvas size
-$scaling: $two-k; // scaling starts from here, do not change if unsure
+$scaling: $two-k; // scaling starts from here, do not change if not sure, it cannot be smaller than $desktop
 
 
 // Breakpoints - Map

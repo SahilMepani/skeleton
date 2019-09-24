@@ -15,7 +15,7 @@ html {
 	-ms-overflow-style: scrollbar;
 	-webkit-text-size-adjust: 100%;
 	// @include fluid( font-size, $mobile, $scaling, $root-font-size, $root-font-size, false, false ); // scale down
-	@include fluid( font-size, $scaling, $four-k, $root-font-size, $root-font-size * 2.4, false, false );
+	@include fluid( font-size, $scaling, $four-k, $root-font-size, $root-font-size * 2.4, true, false );
 	// min-width: $container; if non-responsive
 	// -webkit-font-smoothing: antialiased;
 	//www.intridea.com/blog/2014/5/8/better-font-smoothing-in-chrome-on-mac-os-x

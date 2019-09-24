@@ -1,19 +1,19 @@
-// Inputs
-$_input-bg-color          : #fff;
-$_input-color             : #444;
-$_input-line-height       : 1.2; // used for btn mixin, so when input is next to btn they have same height
-$_input-min-width         : auto;
-$_input-px                : rem-calc(15px); // left and right
-$_input-px-md             : rem-calc(15px); // left and right for md breakpoint
-$_input-py                : rem-calc(20px); // top and bottom
-$_input-py-md             : rem-calc(20px); // top and bottom for md breakpoint
-$_input-border-width      : rem-calc(1px);
-$_input-border-color      : #666;
-$_input-focus-border      : #000;
-$_input-focus-outline     : false;
-$_input-placeholder-color : #b0b0b0;
-$_input-border-radius     : 0;
-$_input-transition        : none;
+// Inputs - used on multiple files
+$input-bg-color          : #fff;
+$input-color             : #444;
+$input-line-height       : 1.2; // used for btn mixin, so when input is next to btn they have same height
+$input-min-width         : auto;
+$input-px                : rem-calc(15px); // left and right
+$input-px-md             : rem-calc(15px); // left and right for md breakpoint
+$input-py                : rem-calc(20px); // top and bottom
+$input-py-md             : rem-calc(20px); // top and bottom for md breakpoint
+$input-border-width      : rem-calc(1px);
+$input-border-color      : #666;
+$input-focus-border      : #000;
+$input-focus-outline     : false;
+$input-placeholder-color : #b0b0b0;
+$input-border-radius     : 0;
+$input-transition        : none;
 
 
 @mixin input-placeholder( $color ) {
@@ -26,24 +26,24 @@ $_input-transition        : none;
 
 
 @mixin input-text {
-	background: $_input-bg-color;
-	color: $_input-color;
-	line-height: $_input-line-height; //same as button
-	min-width: $_input-min-width;
-	padding: $_input-px $_input-py;
-	border: $_input-border-width solid $_input-border-color;
-	border-radius: $_input-border-radius;
-	transition:  $_input-transition ;
+	background: $input-bg-color;
+	color: $input-color;
+	line-height: $input-line-height; //same as button
+	min-width: $input-min-width;
+	padding: $input-px $input-py;
+	border: $input-border-width solid $input-border-color;
+	border-radius: $input-border-radius;
+	transition:  $input-transition ;
 	@include experimental(appearance, none); //remove browser styling
-	@include input-placeholder( $_input-placeholder-color );
+	@include input-placeholder( $input-placeholder-color );
 	&:focus {
-		border-color: $_input-focus-border;
-		@if ( $_input-focus-outline == false ) {
+		border-color: $input-focus-border;
+		@if ( $input-focus-outline == false ) {
 			outline: none;
 		}
 	}
 	@include media-breakpoint-up( md ) {
-		padding: $_input-px-md $_input-py-md;
+		padding: $input-px-md $input-py-md;
 	}
 	//required to disable auto zoom in iOS when font is less than 16px
 	@media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 767px) {

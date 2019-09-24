@@ -148,16 +148,28 @@
         <li>Clone the skeleton theme
           <div class="mt-1">
             <b>SSH</b>: <br /> <code>git clone git@bitbucket.org:threesixtyeight/skeleton-reloaded.git</code>
-          </div> <!-- .mt-1 -->
-          <div class="mt-1">
+          </div>
+          <div class="mt-1 mb-1">
             <b>HTTP</b>: <br /> <code>git clone https://sahilmepani@bitbucket.org/threesixtyeight/skeleton-reloaded.git</code>
-          </div> <!-- .mt-1 -->
+          </div>
+          <p>Repo has three branches, "master", "development" and "blocks". Master is used for production. Development is used for development. Blocks is used as a library and will be deleted once the site is ready for production</p>
         </li>
-        <li>Repo has three branches, "master", "development" and "blocks". Master is used for production. Development is used for development. Blocks is used as a library and will be deleted once the site is ready for production</li>
         <li>Rename the theme folder to match the project name <small>(ask manager)</small></li>
-        <li>Update theme info in sass/style.scss file. Theme name should match the project name</li>
         <li>Create a screenshot.png (1200 x 900) file in the theme directory <small>(ask designer)</small></li>
         <li>Create favicon.png and favicon.ico files <small>(ask designer)</small></li>
+        <li>Run <code>node -v</code> anywhere to check if you have Node.js installed in your system. If not, download from <a href="https://nodejs.org/en/" target="_blank">Node.js</a>. </li>
+        <li>Install grunt <br /> <code>npm install grunt</code></li>
+        <li>Go to theme source folder <br /> <code>cd /path/to/your/wp-content/themes/skeleton/source</code></li>
+        <li>Run the following command to install all the necessary packages to run grunt tasks <br /> <code>npm install</code></li>
+        <li>
+          Run the following command for grunt to compile all the scss/js files <br />
+          <div class="mb-1">
+            <code>cd /path/to/your/wp-content/themes/skeleton/source</code> <br />
+            <code>grunt</code>
+          </div>
+          <p>All the scss files are created inside the source/sass folder and its sub-folders. All the js files are divided into two folders source/js/plugins and source/js/custom. Grunt will compile all the source/sass/.scss files into a single file style.css and source/js/plugins/.js files into js/plugins.js file and source/js/custom/.js files into js/custom.js
+        </li>
+        <li>Update theme info in sass/style.scss file. Theme name should match the project name</li>
         <li>Make the Initial Commit</li>
         <li>Go to Appearance => Themes and activate the theme</li>
         <li class="text-highlight">Create all the pages from sitemap with heirarchy and required URL structure <small>(ask manager)</small></li>
@@ -392,7 +404,7 @@
 <h4 id="sass" class="mb-4">Custom Mixins</h4>
 
 <div class="alert alert-info p-1">
-  <p>Rem units are relative to the font-size set on body element</p>
+  <p>The rem unit, which stands for "root em" is relative to the font-size of html element</p>
 </div> <!-- .alert alert-info -->
 
 <h5>rem-calc() function</h5>
@@ -452,7 +464,7 @@ h6 {
   // px units are converted to rem units, similar to rem-calc()
   // start scaling font-size from $min-value(18px) on a device with width of $min-screen(375px) to $max-value(36px) on a device with width of $max-screeen(1920px)
   // scaling happens propotionately between the screen sizes. For eg. If $min-screen is 100px and $max-screen is 200px and the $min-value is 10px and $max-value is 20px. For every 1px change in screen size the font-size will be increase by 0.1px and for every 10px change in screen size the font-size be increase by 1px
-  // above $max-screen(1920px) the font-size will scale depending on the font-size set on body element
+  // above $max-screen(1920px) the font-size will scale depending on the font-size set on html element
 }
 </pre>
 </code>

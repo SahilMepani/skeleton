@@ -21,11 +21,15 @@
             <li><a href="#development">2.2 Development</a></li>
             <li><a href="#production">2.3 Production</a></li>
           </ul>
-          <li><a href="#skeleton-theme">3. Skeleton Theme</a></li>
+          <li><a href="#skeleton-setup">3. Skeleton Setup</a></li>
           <ul>
             <li><a href="#skeleton-installation">3.1 Installation</a></li>
-            <li><a href="#skeleton-repo">3.2 Bitbucket Repo</a></li>
-            <li><a href="#skeleton-usage">3.3 Usage</a></li>
+            <li><a href="#skeleton-repo">3.2 Creating Repo</a></li>
+          </ul>
+          <li><a href="#skeleton-sass">3. Skeleton SASS</a></li>
+          <ul>
+            <li><a href="#skeleton-installation">3.1 Installation</a></li>
+            <li><a href="#skeleton-repo">3.2 Creating Repo</a></li>
           </ul>
           <li><a href="#css-styleguide">4. CSS/SASS Styleguide</a></li>
           <ul>
@@ -48,7 +52,7 @@
       <ul>
         <li>Upload the design to avocode before the handoff</li>
         <li>Install the browser extension "Loom" to record handoff</li>
-        <li>Designer will record the handoff and forward the video link to developer <small>(sometimes due to connectivity issue, the conversation doesn't go through. But it is vital to have the designer's explanation)</small></li>
+        <li>Designer should record the handoff and forward the video link to developer <small>(sometimes due to connectivity issue, the conversation doesn't go through. But it is vital to have the designer's explanation which can only be recorded if they do the recording)</small></li>
         <li>You may add notes to avocode during the handoff</li>
         <li>Organize the assets into folders and forward the download/GDrive link</li>
         <ul>
@@ -137,7 +141,7 @@
       <div class="mb-5"></div> <!-- .mb-5 -->
 
 
-      <h3 id="skeleton-theme">3. Skeleton Theme</h3>
+      <h3 id="skeleton-setup">3. Skeleton Setup</h3>
 
       <h5 id="skeleton-installation">3.1 Installation</h5>
 
@@ -157,7 +161,7 @@
         <li>Rename the theme folder to match the project name <small>(ask manager)</small></li>
         <li>Create a screenshot.png (1200 x 900) file in the theme directory <small>(ask designer)</small></li>
         <li>Create favicon.png and favicon.ico files <small>(ask designer)</small></li>
-        <li>Run <code>node -v</code> anywhere to check if you have Node.js installed in your system. If not, download from <a href="https://nodejs.org/en/" target="_blank">Node.js</a>. </li>
+        <li>Run <code>node -v</code> anywhere to check if you have Node.js installed in your system. If not, download from <a href="https://nodejs.org/en/" target="_blank">Node.js</a> and install </li>
         <li>Install grunt <br /> <code>npm install grunt</code></li>
         <li>Go to theme source folder <br /> <code>cd /path/to/your/wp-content/themes/skeleton/source</code></li>
         <li>Run the following command to install all the necessary packages to run grunt tasks <br /> <code>npm install</code></li>
@@ -167,7 +171,7 @@
             <code>cd /path/to/your/wp-content/themes/skeleton/source</code> <br />
             <code>grunt</code>
           </div>
-          <p>All the scss files are created inside the source/sass folder and its sub-folders. All the js files are divided into two folders source/js/plugins and source/js/custom. Grunt will compile all the source/sass/.scss files into a single file style.css and source/js/plugins/.js files into js/plugins.js file and source/js/custom/.js files into js/custom.js
+          <p>All the scss files are created inside the source/sass/partials/ folder and its sub-folders. All the js files are divided into two folders source/js/plugins and source/js/custom. Grunt will compile all the source/sass/partials/.scss files into a single file style.css and source/js/plugins/.js files into js/plugins.js file and source/js/custom/.js files into js/custom.js
         </li>
         <li>Update theme info in sass/style.scss file. Theme name should match the project name</li>
         <li>Make the Initial Commit</li>
@@ -175,7 +179,7 @@
         <li class="text-highlight">Create all the pages from sitemap with heirarchy and required URL structure <small>(ask manager)</small></li>
       </ol>
 
-      <h5 id="skeleton-repo">3.2 Bitbucket Repo</h5>
+      <h5 id="skeleton-repo">3.2 Creating Repo</h5>
 
       <ol>
         <li>Create a new repo on bitbucket matching the project name</li>
@@ -192,15 +196,45 @@
         </ul>
       </ol>
 
+      <hr />
+      <div class="mb-5"></div> <!-- .mb-5 -->
+
+
+      <h3 id="skeleton-sass">Skeleton SASS</h3>
+
+      <p>All sass files are stored inside source/sass/partials folder and its subfolders except the style.scss file</p>
+
+      <ul>
+        <li><b>styles.scss</b> - contains the theme information and imports all the partials which needs to be compiled</li>
+        <li><b>partials/variables.scss</b> - setup the variables as per the styleguide and designs. Includes colors, breakpoints, sizes, spacing and many other utility classes variables too.</li>
+        <li><b>partials/<a href="https://necolas.github.io/normalize.css/" target="_blank">normalize.scss</a></b> - makes browsers render all elements more consistently and in line with modern standards.</li>
+        <li><b>partials/base-selectors.scss</b> - contains all the basic html selectors. Edit the headings styles as per the styleguide</li>
+        <li><b>partials/base-styles.scss</b> - contains helpers classes which needs to compiled early so they can overridden if required</li>
+        <li><b>partials/<a href="https://getbootstrap.com/docs/4.3/layout/grid/" target="_blank">grid.scss</a></b> - contains all the grid system classes from Bootstrap</li>
+        <li><b>partials/ie.scss</b> - contains ie specific styles</li>
+        <li><b>partials/print.scss</b> - contains print styles</li>
+        <li><b>partials/shame.scss</b> - contains last minute styles which needs to be moved to specific scss file</li>
+        <li><b>partials/mixins/</b>- contains mixin files which are used to generate grid, breakpoints and other classes. Please go through their code to understand their function</li>
+      </ul>
+
       <h5 id="skeleton-usage">3.3 Usage</h5>
 
       <ol>
-        <li>Update variables.scss - Video link</li>
-        <li>Update headings styles in base-selectors.scss file - Video link</li>
+        <li>Update variables.scss</li>
+        <li>Update headings styles in base-selectors.scss file</li>
       </ol>
 
       <hr />
       <div class="mb-5"></div> <!-- .mb-5 -->
+
+
+      <hr />
+      <div class="mb-5"></div> <!-- .mb-5 -->
+
+
+      <h3 id="skeleton-setup">3. Skeleton Setup</h3>
+
+      <h5 id="skeleton-installation">3.1 Installation</h5>
 
 
       <h3 id="css-styleguide">CSS/SASS Styleguide</h3>

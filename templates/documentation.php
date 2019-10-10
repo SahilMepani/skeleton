@@ -89,7 +89,7 @@
           <ul>
             <li>Update WP database details</li>
             <li>Update "Site Title" <small>(ask manager)</small></li>
-            <li>Create a user "threesixtyeight" with password "$$3hree6ixty8ight$$" and email "dev@threesixtyeight.com"</li>
+            <li>Create a TSE user</li>
             <li>Uncheck "Allow search engine..."</li>
           </ul>
         <li>Create pages "Home" and "Blog"</li>
@@ -149,14 +149,10 @@
         <li>Switch to themes directory <br />
           <code>cd /path/to/your/wp-content/themes</code>
         </li>
-        <li>Clone the skeleton theme
+        <li>Download the skeleton theme and not clone
           <div class="mt-1">
-            <b>SSH</b>: <br /> <code>git clone git@bitbucket.org:threesixtyeight/skeleton-reloaded.git</code>
+            <code>https://bitbucket.org/threesixtyeight/skeleton-reloaded/src/master/</code>
           </div>
-          <div class="mt-1 mb-1">
-            <b>HTTP</b>: <br /> <code>git clone https://sahilmepani@bitbucket.org/threesixtyeight/skeleton-reloaded.git</code>
-          </div>
-          <p>Repo has three branches, "master", "development" and "blocks". Master is used for production. Development is used for development. Blocks is used as a library and will be deleted once the site is ready for production</p>
         </li>
         <li>Rename the theme folder to match the project name <small>(ask manager)</small></li>
         <li>Create a screenshot.png (1200 x 900) file in the theme directory <small>(ask designer)</small></li>

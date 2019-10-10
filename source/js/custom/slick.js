@@ -52,21 +52,21 @@ function postCardsCarousel() {
 			appendDots: $( this ).parent( '.container' ).siblings( '.slick-slider-dots' ),
 			arrows: false,
 			responsive: [ {
-					breakpoint: 768,
+					breakpoint: 767,
 					settings: {
 						slidesToShow: 2,
 						slidesToScroll: 2,
 					}
       },
 				{
-					breakpoint: 992,
+					breakpoint: 991,
 					settings: {
 						slidesToShow: 3,
 						slidesToScroll: 3,
 					}
       },
 				{
-					breakpoint: 1500,
+					breakpoint: 1499,
 					settings: {
 						slidesToShow: 4,
 						slidesToScroll: 4,

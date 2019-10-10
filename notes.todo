@@ -38,3 +38,6 @@ Rules:
 	☐ Whenever possible use utility/helper classes in html rather than writing custom css.
 
 --- ✄ -----------------------
+
+
+	☐	Remove the headings font and line height varialbe. We will have manually write for headings in base selectors. Each headings should have its own font-weight, line-height, letter-spacing and size defined. This is because we don't the styles from h3 class but still usign h2 line-height. Headings cannot have anything global except margin-bottom

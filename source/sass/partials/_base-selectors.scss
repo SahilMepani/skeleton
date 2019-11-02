@@ -4,12 +4,13 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  box-sizing: inherit; // from html
 }
 
 html {
 	font-family: $body-font-family;
 	font-size: $root-font-size;
+	box-sizing: border-box;
 	-webkit-tap-highlight-color: transparent;
 	-ms-text-size-adjust: 100%;
 	-ms-overflow-style: scrollbar;

@@ -9,10 +9,10 @@
 /*=============================================================
 =            Change Gravity Form submission loader            =
 =============================================================*/
-function tse_custom_gforms_spinner($src) {
-	return get_stylesheet_directory_uri() . '/images/gf-submission.gif';
+add_filter( 'gform_ajax_spinner_url', 'spinner_url', 10, 2 );
+function spinner_url( $image_src, $form ) {
+    return  'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // relative to you theme images folder
 }
-add_filter('gform_ajax_spinner_url', 'tse_custom_gforms_spinner');
 
 
 /*===================================================================

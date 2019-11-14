@@ -201,13 +201,13 @@
       <p>All sass files are stored inside source/sass/partials folder and its subfolders except the style.scss file</p>
 
       <ul>
-        <li><b>styles.scss</b> - contains the theme information and imports all the partials which needs to be compiled</li>
+        <li><b>styles.scss</b> - contains the theme information and imports all the partials which needs to be compiled into style.css</li>
         <li><b>partials/variables.scss</b> - setup the variables as per the styleguide and designs. Includes colors, breakpoints, sizes, spacing and many other utility classes variables too.</li>
-        <li><b>partials/<a href="https://necolas.github.io/normalize.css/" target="_blank">normalize.scss</a></b> - makes browsers render all elements more consistently and in line with modern standards.</li>
+        <li><b>partials/normalize.scss</b> - makes browsers render all elements more consistently and in line with modern standards. <a href="https://necolas.github.io/normalize.css/" target="_blank">Learn More</a></li>
         <li><b>partials/base-selectors.scss</b> - contains all the basic html selectors. Edit the headings styles as per the styleguide</li>
         <li><b>partials/base-styles.scss</b> - contains helpers classes which needs to compiled early so they can overridden if required</li>
-        <li><b>partials/<a href="https://getbootstrap.com/docs/4.3/layout/grid/" target="_blank">grid.scss</a></b> - contains all the grid system classes from Bootstrap</li>
-        <li><b>partials/ie.scss</b> - contains ie specific styles</li>
+        <li><b>partials/grid.scss</b> - contains all the grid system classes from Bootstrap. <a href="https://getbootstrap.com/docs/4.3/layout/grid/" target="_blank">Learn More</a></li>
+        <li><b>partials/ie.scss</b> - contains IE specific styles</li>
         <li><b>partials/print.scss</b> - contains print styles</li>
         <li><b>partials/shame.scss</b> - contains last minute styles which needs to be moved to specific scss file</li>
         <li><b>partials/mixins/</b>- contains mixin files which are used to generate grid, breakpoints and other classes. Please go through their code to understand their function</li>

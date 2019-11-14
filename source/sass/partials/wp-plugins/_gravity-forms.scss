@@ -837,7 +837,26 @@ table.gfield_list {
 
 //form submission loading
 .gform_ajax_spinner {
-	margin-left: rem-calc(10px);
+	display: inline-block;
+	margin-left: 20px;
+	border: 4px solid #eee;
+	border-left: 4px solid #745c97;
+	animation: gf-ajax-spinner 1.1s infinite linear;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	@include translateY(-50%);
+}
+@keyframes gf-ajax-spinner {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 
@@ -858,7 +877,7 @@ table.gfield_list {
 }
 
 .gform-full-width { // add to form
-	input[type="text"], input[type="number"], input[type="file"], input[type="tel"], input[type="url"], select, textarea, .gform_drop_area, .gfield_list {
+	input[type="text"], input[type="number"], input[type="file"], input[type="tel"], input[type="url"], input[type="email"], select, textarea, .gform_drop_area, .gfield_list {
 		width: 100%;
 	}
 	.gfield_list {
@@ -1090,7 +1109,9 @@ table.gfield_list {
 	.gfield.gf-label-hide .gfield_label,
 	.gfield.gf-sublabel-hide .ginput_complex label, // labels in multi-field sections like the name fields, address fields, etc
 	.gfield.gf-sublabel-hide .ginput_container_date label, //MM,DD,YYYY
-	.gfield.gf-sublabel-hide .ginput_container_time label { //HH,MM,AM
+	.gfield.gf-sublabel-hide .ginput_container_time label //HH,MM,AM
+	.gfield.hide-label .gfield_label,
+	.gfield_visibility_hidden {
 		visibility: hidden;
 		opacity: 0;
 		font-size: 0;

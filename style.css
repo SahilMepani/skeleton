@@ -216,7 +216,7 @@ code { background-color: #f6f8fa; font-size: 1.6rem; font-weight: 400; font-fami
 /*----------  Table  ----------*/
 table { width: 100%; max-width: 100%; border-collapse: collapse; }
 
-table caption { font-family: inherit; text-align: left; padding-top: 1rem; padding-bottom: 1rem; caption-side: bottom; }
+table caption { font-family: inherit; text-align: left; padding-top: 1rem; padding-bottom: 1rem; caption-side: top; }
 
 table tbody tr:last-child { border-bottom: none; }
 
@@ -304,7 +304,7 @@ img, iframe { max-width: 100%; }
 audio, canvas, iframe, img, svg, video { vertical-align: middle; }
 
 /*----------  Required  ----------*/
-h1 + h1, h1 + h2, h1 + h3, h1 + h4, h1 + h5, h1 + h6, h2 + h2, h2 + h1, h2 + h3, h2 + h4, h2 + h5, h2 + h6, h3 + h3, h3 + h1, h3 + h2, h3 + h4, h3 + h5, h3 + h6, h4 + h4, h4 + h1, h4 + h2, h4 + h3, h4 + h5, h4 + h6, h5 + h5, h5 + h1, h5 + h2, h5 + h3, h5 + h4, h4 + h6, h6 + h6, h6 + h1, h6 + h2, h6 + h3, h6 + h4, h6 + h5 { margin-top: 0; }
+h1 + h1, h1 + h2, h1 + h3, h1 + h4, h1 + h5, h1 + h6, h2 + h1, h2 + h2, h2 + h3, h2 + h4, h2 + h5, h2 + h6, h3 + h1, h3 + h2, h3 + h3, h3 + h4, h3 + h5, h3 + h6, h4 + h1, h4 + h2, h4 + h3, h4 + h4, h4 + h5, h4 + h6, h5 + h1, h5 + h2, h5 + h3, h5 + h4, h5 + h5, h5 + h6, h6 + h1, h6 + h2, h6 + h3, h6 + h4, h6 + h5, h6 + h6 { margin-top: 0; }
 
 .custom-select-block { background: none; position: relative; }
 
@@ -933,7 +933,7 @@ p:empty { display: none; }
 
 .align-text-top { vertical-align: text-top !important; }
 
-.alert { background-color: #e5e5e5; border: 0.1rem solid #ddd; }
+.alert { background-color: #ddd; border: 0.1rem solid #656565; }
 
 .alert-info { background-color: #ffffd9; border: 0.1rem solid #e8e800; }
 

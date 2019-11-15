@@ -1,4 +1,10 @@
 // Custom
+.alert {
+	background-color: #ddd;
+	border: rem-calc(1px) solid darken(#ddd, 47%);
+	padding: rem-calc( 15px );
+}
+
 .alert-info {
 	background-color: #ffffd9;
 	border: rem-calc(1px) solid darken(#ffffd9, 47%);

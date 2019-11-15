@@ -357,28 +357,24 @@
 
   <div class="col">
     <h5>Left <code>&lt;img class="align-left"&gt;</code></h5>
-    <img src="http://placehold.it/150/f15500/ffffff&text=368" class="align-left">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, culpa, officiis, recusandae minus qui autem labore eveniet ullam praesentium maxime vel eos nam! Voluptatem, iste, suscipit sit quidem veritatis vitae animi fugit numquam doloribus nemo non fugiat quibusdam laboriosam a quis deleniti minima cum repudiandae sint officiis maxime necessitatibus voluptas.</p>
+    <div class="mb-2">
+      <img src="http://placehold.it/150/ff2500/ffffff&text=368" class="align-left">
+    </div> <!-- .mb-2 -->
   </div> <!-- .col -->
 
   <div class="col">
     <h5>Right <code>&lt;img class="align-right"&gt;</code></h5>
-    <img src="http://placehold.it/150/f15500/ffffff&text=368" class="align-right">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, culpa, oRightficiis, recusandae minus qui autem labore eveniet ullam praesentium maxime vel eos nam! Voluptatem, iste, suscipit sit quidem veritatis vitae animi fugit numquam doloribus nemo non fugiat quibusdam laboriosam a quis deleniti minima cum repudiandae sint officiis maxime necessitatibus voluptas.</p>
+    <div class="mb-2">
+      <img src="http://placehold.it/150/ff2500/ffffff&text=368" class="align-right">
+    </div> <!-- .mb-2 -->
   </div> <!-- .col -->
 
 </div> <!-- .row -->
 
 <h5>Center <code>&lt;img class="align-center"&gt;</code></h5>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, quos, deserunt obcaecati sapiente vero repellendus vel alias doloremque nam magnam quidem dolore consequuntur. Inventore, illum.</p>
-
-<img src="http://placehold.it/150/f15500/ffffff&text=368" class="align-center">
-
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, quos, deserunt obcaecati sapiente vero repellendus vel alias doloremque nam magnam quidem dolore consequuntur. Inventore, illum.</p>
-
-<h5>Image with Frame <code>&lt;img class="img-thumbnail"&gt;</code></h5>
-
-<p><img src="http://placehold.it/150/f15500/ffffff&text=368" class="img-thumbnail"></p>
+<div class="mb-2">
+  <img src="http://placehold.it/150/ff2500/ffffff&text=368" class="alignright">
+</div> <!-- .mb-2 -->
 
 <hr class="hr">
 

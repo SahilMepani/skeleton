@@ -37,3 +37,7 @@
 .btn-disabled {
 	@include btn-disabled;
 }
+
+.btn-block {
+	display: block;
+}

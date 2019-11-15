@@ -916,6 +916,8 @@ p:empty { display: none; }
 
 .btn-disabled { cursor: default; pointer-events: none; opacity: .3; }
 
+.btn-block { display: block; }
+
 /*----------  Required  ----------*/
 .list-unstyled { margin-left: 0; }
 

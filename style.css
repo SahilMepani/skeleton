@@ -2593,6 +2593,8 @@ table.gfield_list th { text-transform: uppercase; font-size: 1.4rem; letter-spac
 
 .btn-disabled { cursor: default; pointer-events: none; opacity: .3; }
 
+.btn-block { display: block; }
+
 .text-highlight { background-color: #F7EA6F; color: #2c2c2c; }
 
 /*----------  Required  ----------*/

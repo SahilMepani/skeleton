@@ -21,11 +21,6 @@
   }
 }
 
-.table-mixed {
-	@extend .table-striped;
-	@extend .table-bordered;
-}
-
 .table-responsive {
   @each $breakpoint in map-keys($grid-breakpoints) {
     $next: breakpoint-next($breakpoint, $grid-breakpoints);

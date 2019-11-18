@@ -25,19 +25,19 @@
 
       <p>We can interchange heading tag with different heading class. For example. <code class="alert-info">&lt;h5 class="h1"&gt;</code> It will use h5 tag but h1 styling will be applied. Generally useful for SEO.</p>
 
-      <h4 class="mb-3">Custom Sizes</h4>
-
-      <code class="mb-1">&lt;p class="text-big"&gt;</code>
-      <div class="text-big mb-3">
-        <p>This para is big in font-size. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, magnam.</p>
-      </div> <!-- .text-left -->
+      <h4 class="mb-3">Paragraphs</h4>
 
       <code class="mb-1">&lt;p&gt;</code>
       <div class="mb-3">
         <p>This para has default font-size. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, magnam.</p>
       </div> <!-- .text-left -->
 
-      <code class="mb-1">&lt;p class="text-small"&gt;</code>
+      <code class="mb-1">&lt;div class="text-big"&gt;</code>
+      <div class="text-big mb-3">
+        <p>This para is big in font-size. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, magnam.</p>
+      </div> <!-- .text-left -->
+
+      <code class="mb-1">&lt;div class="text-small"&gt;</code>
       <div class="text-small mb-3">
         <p>This para is small in font-size. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, magnam.</p>
       </div> <!-- .text-left -->
@@ -497,7 +497,7 @@
 
 <hr class="mb-9">
 
-<?php //gravity_form(1, $display_title=false, $display_description=false, $display_inactive=false, $field_values=null, $ajax=true, $tabindex=10); ?>
+<?php gravity_form(1, $display_title=false, $display_description=false, $display_inactive=false, $field_values=null, $ajax=true, $tabindex=10); ?>
 
 </div> <!-- .container-fluid -->
 

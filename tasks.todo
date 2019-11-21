@@ -1,4 +1,4 @@
- ☐ Gravity form datepicker styling
+☐ Gravity form datepicker styling
 
 ADD LATER:
 <?php echo wp_get_attachment_image($desktop_image['id'], 'w375c', '', array( "class" => "mobile image-responsive" )); ?>
@@ -64,3 +64,17 @@ MISCELLANEOUS --- ✄ -----------------------:
  ☐ Left arrow animation
  ☐ Button animation which is commented on SMHS
  ☐ WP Gallery support
+
+
+
+
+ # CONTENT EDITOR --- ✄ -----------------------:
+  ☐ Project name
+  ☐ Site title and tagline
+  ☐ Sitemap with URL structure
+  ☐ Blog will have comments or not
+
+# DESIGNERS --- ✄ -----------------------:
+  ☐ Favicon.png and favicon.ico (16x16) or (32x32)
+  ☐ Screenshot.png (1200 x 900)
+  ☐ Styleguide

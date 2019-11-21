@@ -334,16 +334,18 @@ $gf-field-label-font-size : rem-calc( 14px );
 	}
 	@include media-breakpoint-down( md ) {
 		 // iOS fix, chosen plugin not used by default
-		&:after {
-			@include icon-font-properties;
-			content: $i-dropdown;
-			font-size: rem-calc(18px);
-			display: block;
-			position: absolute;
-			right: rem-calc(15px);
-			top: 50%;
-			z-index: 1;
-			@include translateY(-50%);
+		.chosen-single {
+			&:after {
+				@include icon-font-properties;
+				content: $i-dropdown;
+				font-size: rem-calc(18px);
+				display: block;
+				position: absolute;
+				right: rem-calc(15px);
+				top: 50%;
+				z-index: 1;
+				@include translateY(-50%);
+			}
 		}
 		.chosen-select {
 			font-size: rem-calc(16px);
@@ -553,7 +555,7 @@ $gf-field-label-font-size : rem-calc( 14px );
 	padding: rem-calc(5px);
 	border: rem-calc(1px) solid rgba($secondary,.2);
 	position: absolute;
-	width: 300px;
+	width: rem-calc( 300px );
 	max-width: 100%;
 }
 
@@ -563,13 +565,13 @@ $gf-field-label-font-size : rem-calc( 14px );
 		text-align: center;
 	}
 	[data-view*="prev"] {
-		width: 50px;
+		width: rem-calc( 50px );
 	}
 	[data-view*="current"] {
 		@include flex( 1 1 auto );
 	}
 	[data-view*="next"] {
-		width: 50px;
+		width: rem-calc( 50px );
 	}
 }
 
@@ -869,13 +871,12 @@ table.gfield_list {
 //form submission loading
 .gform_ajax_spinner {
 	display: inline-block;
-	margin-left: 20px;
-	border: 4px solid #eee;
-	border-left: 4px solid #745c97;
+	border: rem-calc( 4px ) solid #eee;
+	border-left: rem-calc( 4px ) solid #745c97;
 	animation: gf-ajax-spinner 1.1s infinite linear;
 	border-radius: 50%;
-	width: 40px;
-	height: 40px;
+	width: rem-calc( 40px );
+	height: rem-calc( 40px );
 	position: absolute;
 	right: 0;
 	top: 50%;

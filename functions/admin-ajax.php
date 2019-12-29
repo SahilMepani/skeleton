@@ -52,5 +52,7 @@ function filter_post() {
   endif;
 }
 
-add_action('wp_ajax_nopriv_filter_post_ajax', 'filter_post');
+// function must start with wp_ajax_
 add_action('wp_ajax_filter_post_ajax', 'filter_post');
+// for logout uers, no privilages, function must start with wp_ajax_nopriv_
+add_action('wp_ajax_nopriv_filter_post_ajax', 'filter_post');

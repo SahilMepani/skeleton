@@ -10,12 +10,12 @@ function tse_enqueue_scripts() {
 	/* Do not load in backend */
 	if (is_admin()) return;
 
-	/* wp_enqueue_script( 'identifier', 'url', 'dependency', version', '' ); */
-	wp_enqueue_style('skeleton-style', get_stylesheet_uri(), array(), '1.1');
+	/* wp_enqueue_script( 'identifier', 'url', 'dependency', version', load_in_footer_boolean ); */
+	wp_enqueue_style('skeleton-style', get_stylesheet_uri(), array(), time());
 	wp_enqueue_script('modernizr', get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js');
 	wp_enqueue_script('ua-parser', get_template_directory_uri() . '/js/vendor/ua-parser-0.7.20.min.js');
-	wp_enqueue_script('plugins', get_template_directory_uri() . '/js/plugins.js', array('jquery'), '1.1', true);
-	wp_enqueue_script('custom', get_template_directory_uri() . '/js/custom.js', array('jquery', 'plugins'), '1.1', true);
+	wp_enqueue_script('plugins', get_template_directory_uri() . '/js/plugins.js', array('jquery'), time(), true);
+	wp_enqueue_script('custom', get_template_directory_uri() . '/js/custom.js', array('jquery', 'plugins'), time(), true);
 	/* First argument is the handle where it is used */
 	wp_localize_script('custom', 'localize_var', array(
 		'adminUrl' => admin_url('admin-ajax.php'),

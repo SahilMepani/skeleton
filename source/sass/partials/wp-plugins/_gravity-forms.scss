@@ -1069,6 +1069,10 @@ table.gfield_list {
       @include clearfix;
       margin-top: 0;
     }
+    > ul {
+      margin-left: rem-calc( -10px );
+      margin-right: rem-calc( -10px );
+    }
     input[type='text'], textarea, select {
       width: 100%;
     }
@@ -1093,14 +1097,18 @@ table.gfield_list {
         .gfield {
           @include flex( 1 1 100% );
           padding: 0 rem-calc(10px);
+          margin-bottom: 0;
+          &.gf-col-3 {
+            @include flex( 0 0 25% );
+          }
           &.gf-col-4 {
-            @include flex( 1 0 25% );
+            @include flex( 0 0 33.333333% );
           }
           &.gf-col-6 {
-            @include flex( 1 0 50% );
+            @include flex( 0 0 50% );
           }
           &.gf-col-8 {
-            @include flex( 1 0 75% );
+            @include flex( 0 0 75% );
           }
         }
       }

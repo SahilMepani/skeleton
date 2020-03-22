@@ -9,7 +9,7 @@
 			margin-right: 0;
 		}
 		a {
-			@include hide-text;
+			@include text-hide;
 			color: rgba(255,255,255,.4);
 			text-align: center;
 			text-decoration: none;

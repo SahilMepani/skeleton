@@ -55,7 +55,7 @@
 			font-size: rem-calc(24px);
 		}
 		&:hover,
-		&:active {
+		&:focus {
 			background-color: #fff;
 			&:before {
 				color: red;
@@ -112,13 +112,6 @@ $mobile-sub-menu-link-padding-x: $mobile-parent-menu-item-padding-x; //usually t
 			@include translateX(0);
 			box-shadow: 0 0 rem-calc(10px) rgba(120,120,120,.3);
 		}
-		ul {
-			list-style: none;
-			margin: 0;
-		}
-		li {
-			margin-bottom: 0;
-		}
 	}
 }
 
@@ -136,7 +129,7 @@ $mobile-sub-menu-link-padding-x: $mobile-parent-menu-item-padding-x; //usually t
 				padding: $mobile-parent-menu-item-padding-y $mobile-parent-menu-item-padding-x;
 				text-transform: uppercase;
 				text-decoration: none;
-				&:hover {
+				&:hover, &:focus {
 					background: $mobile-parent-menu-link-hover-bg-color;
 					color: $mobile-parent-menu-link-hover-color;
 				}
@@ -150,7 +143,7 @@ $mobile-sub-menu-link-padding-x: $mobile-parent-menu-item-padding-x; //usually t
 		}
 		> li.menu-item-has-children {
 			position: relative;
-			&:hover {
+			&:hover, &:focus {
 				> a {
 
 				}
@@ -178,7 +171,7 @@ $mobile-sub-menu-link-padding-x: $mobile-parent-menu-item-padding-x; //usually t
 						margin-top: rem-calc(-4px);
 						margin-left: rem-calc(-6px);
 					}
-					&:hover {
+					&:hover, &:focus {
 						background: $mobile-parent-menu-dropdown-hover-bg-color;
 						&:after {
 							border-top-color: $mobile-parent-menu-dropdown-hover-icon-color;
@@ -210,7 +203,7 @@ $mobile-sub-menu-link-padding-x: $mobile-parent-menu-item-padding-x; //usually t
 				display: block;
 				padding: $mobile-sub-menu-link-padding-y $mobile-sub-menu-link-padding-x $mobile-sub-menu-link-padding-y ($mobile-sub-menu-link-padding-x + 15px);
 				text-decoration: none;
-				&:hover {
+				&:hover, &:focus {
 					background: $mobile-sub-menu-link-hover-bg-color;
 					color: $mobile-sub-menu-link-hover-color;
 				}
@@ -257,7 +250,7 @@ $desktop-sub-menu-link-height: rem-calc( 36px ); //req for animation, manually c
 				color: $desktop-parent-menu-link-color;
 				display: block;
 				padding: $desktop-parent-menu-item-padding-y $desktop-parent-menu-item-padding-x;
-				&:hover {
+				&:hover, &:focus {
 					background-color: $desktop-parent-menu-link-hover-bg-color;
 					color: $desktop-parent-menu-link-hover-color;
 				}
@@ -283,7 +276,7 @@ $desktop-sub-menu-link-height: rem-calc( 36px ); //req for animation, manually c
 					margin-top: rem-calc( -2px );
 				}
 			}
-			&:hover {
+			&:hover, &:focus {
 				> a {
 					color: $desktop-parent-menu-link-hover-color;
 				}
@@ -295,7 +288,7 @@ $desktop-sub-menu-link-height: rem-calc( 36px ); //req for animation, manually c
 							height: $desktop-sub-menu-link-height;
 							padding-top: $desktop-sub-menu-link-padding-y;
 							padding-bottom: $desktop-sub-menu-link-padding-y;
-							&:hover {
+							&:hover, &:focus {
 								background-color: $desktop-sub-menu-link-hover-bg-color;
 								color: $desktop-sub-menu-link-hover-color;
 							}

@@ -7,6 +7,11 @@
   box-sizing: inherit; // from html
 }
 
+/* suppress focus ring on form controls for mouse users, using what-input js */
+[data-whatintent='mouse'] *:focus {
+  outline: none;
+}
+
 html {
 	font-family: $body-font-family;
 	font-size: $root-font-size;
@@ -56,20 +61,6 @@ h6,
 .h6 {
 	font-family: $headings-font-family;
 	color: $headings-color;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
 	margin: $headings-margin-top 0 $headings-margin-bottom 0;
 	&:first-child {
 		margin-top: 0;
@@ -127,13 +118,14 @@ a {
 		text-decoration: $base-link-hover-decoration;
 	}
 	&:focus {
-		outline: rem-calc(5px) auto -webkit-focus-ring-color;
-		outline-offset: rem-calc(-2px);
+		outline: rem-calc(3px) solid dodgerblue;
 	}
 }
 
 button {
-	outline: none;
+	&:focus {
+		outline: rem-calc(3px) solid dodgerblue;
+	}
 }
 
 button,

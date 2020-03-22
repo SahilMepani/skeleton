@@ -18,7 +18,7 @@
 
 <body class="site-wrapper" <?php body_class(); ?>>
 
-<header class="site-header clearfix">
+<header class="site-header clearfix" role="banner">
 	<div class="container-fluid">
 
 		<h3 class="header-logo">
@@ -29,9 +29,9 @@
 			</a>
 		</h3>
 
-		<button class="header-nav-toggle icon-font-before"><?php _e( 'Menu', 'skeleton' ); ?></button>
+		<button class="header-nav-toggle icon-font-before"><?php _e( 'Menu', 'tse' ); ?></button>
 
-		<nav class="header-nav" class="clearfix">
+		<nav class="header-nav cleafix" role="navigation" aria-label="<?php _e( 'Primary Menu', 'tse' ); ?>">
 			<button class="header-nav-close icon-font-before"></button>
 			<?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => '', 'menu_class' => 'header-nav-parent-menu' ) ); ?>
 		</nav> <!-- .header-nav -->
@@ -39,4 +39,4 @@
 	</div> <!-- .container-fluid -->
 </header> <!-- .site-header -->
 
-<section class="site-content">
+<section class="site-content" role="main">

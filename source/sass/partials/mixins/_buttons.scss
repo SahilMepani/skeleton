@@ -20,9 +20,6 @@
 		transition-duration: .1s;
 		text-decoration: none;
 	}
-	&:focus {
-		outline: none;
-	}
 }
 
 @mixin btn-red {

@@ -1,4 +1,10 @@
 // Custom
+@each $color, $value in $colors {
+	.bg-#{$color} {
+		background-color: $value !important;
+	}
+};
+
 .bg-video {
 	position: absolute;
 	left: 0;

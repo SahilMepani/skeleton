@@ -1,4 +1,9 @@
 /*----------  Required  ----------*/
+/* suppress focus ring on form controls for mouse and touch users, using what-input js */
+[data-whatintent='mouse'] *:focus, [data-whatintent='touch'] *:focus {
+  outline: none;
+}
+
 h1 + h1,
 h1 + h2,
 h1 + h3,

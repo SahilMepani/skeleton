@@ -6,12 +6,22 @@ $root-font-size : 10px; // never change this value
 
 // Project specific
 $red       : #ff2500;
-
 // Required colors
-$white     : #fff;
-$black     : #000;
-$primary   : $red;
-$secondary : $black;
+$white      : #fff;
+$black      : #000;
+$primary    : $red;
+$secondary  : $black;
+$body-color : #222;
+
+// Colors
+$colors: (
+	red       : $red,
+	white     : $white,
+	black     : $black,
+	primary   : $primary,
+	secondary : $secondary,
+	body      : $body-color,
+);
 
 
 // Links
@@ -28,7 +38,6 @@ $monospace  : Menlo, Monaco, Consolas, "Courier New", monospace;
 
 // Body
 $body-bg-color    : #fff;
-$body-color       : #222;
 $body-font-size   : 1.6rem;
 $body-font-weight : 400;
 $body-font-family : $montserrat;
@@ -172,16 +181,17 @@ $grid-breakpoints : (
 // Set the number of columns and specify the width of the gutters.
 $enable-grid-classes : true;
 $grid-columns        : 12;
-$grid-gutter-width   : 3rem; // gets divided by half per column
+$grid-gutter-width   : 3rem; // gets divided by half per column for columns
 
 
 // Grid containers
 // Define the maximum width of `.container` for different screen sizes.
+// Changed the value to rem to scale on higher size screens
 $container-max-widths: (
-	sm : 540px,
-	md : 720px,
-	lg : 960px,
-	xl : 1140px,
+	sm : 54rem,
+	md : 72rem,
+	lg : 96rem,
+	xl : 114rem,
 	// xxl : 80%, // fluid design
 );
 
@@ -197,12 +207,22 @@ $embed-responsive-aspect-ratios: (
 
 // This variable affects the `.h-*` and `.w-*` classes.
 $sizes: (
+	20   : 20%,
 	25   : 25%,
+	30   : 30%,
+	35   : 35%,
+	40   : 40%,
+	45   : 45%,
 	50   : 50%,
+	55   : 55%,
+	60   : 60%,
 	65   : 65%,
 	70   : 70%,
 	75   : 75%,
 	80   : 80%,
+	85   : 85%,
+	90   : 90%,
+	95   : 95%,
 	100  : 100%,
 	auto : auto
 );

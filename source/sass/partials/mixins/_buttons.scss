@@ -26,7 +26,7 @@
 	background: $primary;
 	color: #fff;
 	&:hover,
-	&:active {
+	&:focus {
 		background: darken($primary,7%);
 		color: #fff;
 	}
@@ -36,7 +36,7 @@
 	background: $black;
 	color: #fff;
 	&:hover,
-	&:active {
+	&:focus {
 		background: darken($black,7%);
 		color: #fff;
 	}

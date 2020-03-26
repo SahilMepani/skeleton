@@ -1,3 +1,13 @@
+// make the slider slides of equal height
+.equal-height-slick-slides {
+	.slick-track {
+		@include display-flex;
+	}
+	.slick-slide {
+		height: auto;
+	}
+}
+
 .text-highlight {
 	background-color: $text-selection-bg-color;
 	color: $text-selection-color;

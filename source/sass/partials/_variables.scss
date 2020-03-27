@@ -41,7 +41,6 @@ $body-bg-color    : #fff;
 $body-font-size   : 1.6rem;
 $body-font-weight : 400;
 $body-font-family : $montserrat;
-$body-line-height : 1;
 
 
 // Spacing
@@ -176,12 +175,12 @@ $grid-breakpoints : (
 	// add more if required
 );
 
-
 // Grid columns
 // Set the number of columns and specify the width of the gutters.
 $enable-grid-classes : true;
 $grid-columns        : 12;
 $grid-gutter-width   : 3rem; // gets divided by half per column for columns
+$container-padding   : 3rem; // each x-side
 
 
 // Grid containers
@@ -194,6 +193,12 @@ $container-max-widths: (
 	xl : 114rem,
 	// xxl : 80%, // fluid design
 );
+
+$container-sm-max-width  : map-get($container-max-widths, 'sm');
+$container-md-max-width  : map-get($container-max-widths, 'md');
+$container-lg-max-width  : map-get($container-max-widths, 'lg');
+$container-xl-max-width  : map-get($container-max-widths, 'xl');
+// $container-xxl-max-width : map-get($container-max-widths, 'xxl');
 
 
 // Embed aspect ratio

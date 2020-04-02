@@ -81,7 +81,7 @@
         <li>Download latest WordPress - <a href="https://wordpress.org/latest.zip">Download link</a></li>
         <li>Edit wp-config.php file in root directory</li>
         <ul>
-          <li>Set $table_prefix to tse_</li>
+          <li><strike>Set $table_prefix to tse_</strike> <a href="https://www.wordfence.com/blog/2016/12/wordpress-table-prefix/" target="_blank" noopener noreferrer>Changing It Does Nothing to Improve Security</a></li>
           <li>Set WP_DEBUG variable to true</li>
           <li>Add define( 'WP_POST_REVISIONS', 3 );</li>
         </ul>
@@ -89,7 +89,7 @@
           <ul>
             <li>Update WP database details</li>
             <li>Update "Site Title" <small>(ask manager)</small></li>
-            <li>Create a TSE user</li>
+            <li>Create the TSE user</li>
             <li>Uncheck "Allow search engine..."</li>
           </ul>
         <li>Create pages "Home" and "Blog"</li>
@@ -167,7 +167,7 @@
             <code>cd /path/to/your/wp-content/themes/skeleton/source</code> <br />
             <code>grunt</code>
           </div>
-          <p>All the scss files are created inside the source/sass/partials/ folder and its sub-folders. All the js files are divided into two folders source/js/plugins and source/js/custom. Grunt will compile all the source/sass/partials/.scss files into a single file style.css and source/js/plugins/.js files into js/plugins.js file and source/js/custom/.js files into js/custom.js
+          <p>All the scss files are created inside the source/sass/partials/ folder and its sub-folders. All the js files are divided into two folders source/js/plugins and source/js/custom. Grunt will compile all the source/sass/partials/.scss files into a single file named style.css and source/js/plugins/.js files into js/plugins.js file and source/js/custom/.js files into js/custom.js file.
         </li>
         <li>Update theme info in sass/style.scss file. Theme name should match the project name</li>
         <li>Make the Initial Commit</li>

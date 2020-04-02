@@ -1,8 +1,7 @@
-#Ignore sass cache folder
-**/.sass-cache
+#Ignore folder
 .phpintel
-**/.sass-cache/*
 .sass-cache
+.vscode
 *.css.map
 Thumbs.db
 source/bower_components

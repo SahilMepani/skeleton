@@ -194,7 +194,7 @@ $container-max-widths: (
 	lg : 93vw,
 	xl : 93vw,
 	xxl : 93vw,
-	xxxl : 155rem, // max-width value needs to be less than the (breakpoint value - $container-padding)
+	xxxl : 155rem, // max-width value needs to be less than the (breakpoint value(xxxl) - $container-padding)
 	// this and $grid-breakpoints "map size" should match
 );
 

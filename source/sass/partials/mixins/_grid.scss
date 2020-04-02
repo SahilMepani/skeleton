@@ -2,7 +2,7 @@
 //
 // Generate semantic grid columns with these mixins.
 
-@mixin make-container($padding: $container-width) {
+@mixin make-container($padding: $container-padding) {
   width: 100%;
   // custom
   padding-right: $padding;

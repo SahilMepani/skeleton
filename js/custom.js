@@ -40,8 +40,6 @@ $('body').on('click', '.list-accordions .heading', function(e) {
   }
 });
 
-const age = 12;
-
 /*= ======================================
 =            Invidual Toggle            =
 ======================================= */

@@ -1,6 +1,7 @@
 var compass = require( 'compass-importer' )
+const sass = require( 'node-sass' );
 
-module.exports = function( grunt ) {
+module.exports = function ( grunt ) {
 
 	grunt.initConfig( {
 
@@ -23,9 +24,10 @@ module.exports = function( grunt ) {
 
 		sass: {
 			options: {
-				sourcemap   : false,
-				outputStyle : 'compact', // must be compact or expanded to avoid merge conflict in git.
-				importer    : compass
+				sourceMap: true,
+				implementation: sass,
+				outputStyle: 'compact', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
+				importer: compass
 			},
 			dist: {
 				files: {
@@ -39,12 +41,12 @@ module.exports = function( grunt ) {
 				separator: ';\n'
 			},
 			plugin: {
-				src  : 'js/plugins/*.js',
-				dest : '../js/plugins.js',
+				src: 'js/plugins/*.js',
+				dest: '../js/plugins.js',
 			},
 			custom: {
-				src  : 'js/custom/*.js',
-				dest : '../js/custom.js',
+				src: 'js/custom/*.js',
+				dest: '../js/custom.js',
 			},
 		},
 
@@ -56,10 +58,10 @@ module.exports = function( grunt ) {
 			},
 			dist: {
 				files: [ {
-					expand : true,
-					src    : [ '../js/plugins.js', '../js/custom.js' ],
-					dest   : '../js/',
-		    } ]
+					expand: true,
+					src: [ '../js/plugins.js', '../js/custom.js' ],
+					dest: '../js/',
+				} ]
 			}
 		}
 

@@ -1,70 +1,70 @@
 .header-nav {
-	ul {
-		@include list-unstyled;
-	}
-	li {
-		margin-bottom: 0;
-	}
-	a {
-		text-decoration: none;
-		display: block;
-		height: 100%;
-	}
-	@include media-breakpoint-up( lg ) {
-	  float: right;
-	}
+  ul {
+    @include list-unstyled;
+  }
+  li {
+    margin-bottom: 0;
+  }
+  a {
+    text-decoration: none;
+    display: block;
+    height: 100%;
+  }
+  @include media-breakpoint-up( lg ) {
+    float: right;
+  }
 }
 
 .header-nav-toggle {
-	@include media-breakpoint-down( md ) {
-		background: red;
-		color: #fff;
-		text-decoration: none;
-		float: right;
-		display: block;
-		padding: rem-calc(14px) rem-calc(15px) rem-calc(14px) rem-calc(50px);
-		border: 0;
-		position: relative;
-		&:before {
-			content: $i-menu;
-			font-size: rem-calc(24px);
-			position: absolute;
-			left: rem-calc(15px); // same as padding right
-			top: 50%;
-			@include translateY(-50%);
-			transition: .2s ease-out;
-		}
-	}
-	@include media-breakpoint-up( lg ) {
-		display: none;
-	}
+  @include media-breakpoint-down( md ) {
+    background: red;
+    color: #fff;
+    text-decoration: none;
+    float: right;
+    display: block;
+    padding: rem-calc(14px) rem-calc(15px) rem-calc(14px) rem-calc(50px);
+    border: 0;
+    position: relative;
+    &:before {
+      content: $i-menu;
+      font-size: rem-calc(24px);
+      position: absolute;
+      left: rem-calc(15px); // same as padding right
+      top: 50%;
+      @include translateY(-50%);
+      transition: .2s ease-out;
+    }
+  }
+  @include media-breakpoint-up( lg ) {
+    display: none;
+  }
 }
 
 .header-nav-close {
-	@include media-breakpoint-down( md ) {
-	  background: none;
-		text-decoration: none;
-		border: 0;
-		padding: rem-calc(10px);
-		position: absolute;
-		right: 0;
-		top: 0;
-		&:before {
-			content: $i-cross;
-			color: #000;
-			font-size: rem-calc(24px);
-		}
-		&:hover,
-		&:focus {
-			background-color: #fff;
-			&:before {
-				color: red;
-			}
-		}
-	}
-	@include media-breakpoint-up( lg ) {
-		display: none;
-	}
+  @include media-breakpoint-down( md ) {
+    background: none;
+    text-decoration: none;
+    border: 0;
+    padding: rem-calc(10px);
+    position: absolute;
+    right: 0;
+    top: 0;
+    &:before {
+      content: $i-cross;
+      color: #000;
+      font-size: rem-calc(24px);
+    }
+    &:hover,
+    &:focus {
+      background-color: #fff;
+      &:before {
+        color: red;
+      }
+    }
+  }
+  @include media-breakpoint-up( lg ) {
+    display: none;
+  }
 }
 
 /*==============================
@@ -96,120 +96,120 @@ $mobile-sub-menu-link-padding-y: rem-calc(13px);
 $mobile-sub-menu-link-padding-x: $mobile-parent-menu-item-padding-x; //usually this is same as parent menu
 
 .header-nav {
-	@include media-breakpoint-down( md ) {
-		background-color: $mobile-sidebar-bg-color;
-		width: 100%;
-		padding: rem-calc(50px) 0 rem-calc(40px);
-		position: fixed;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		z-index: 99;
-		overflow: auto;
-		@include translateX(-100%);
-		transition: 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946);
-		&.js-active {
-			@include translateX(0);
-			box-shadow: 0 0 rem-calc(10px) rgba(120,120,120,.3);
-		}
-	}
+  @include media-breakpoint-down( md ) {
+    background-color: $mobile-sidebar-bg-color;
+    width: 100%;
+    padding: rem-calc(50px) 0 rem-calc(40px);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    overflow: auto;
+    @include translateX(-100%);
+    transition: 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946);
+    &.js-active {
+      @include translateX(0);
+      box-shadow: 0 0 rem-calc(10px) rgba(120,120,120,.3);
+    }
+  }
 }
 
 .header-nav-parent-menu {
-	@include media-breakpoint-down( md ) {
-	  > li {
-			border-bottom: $mobile-parent-menu-item-border-bottom;
-			> a {
-				background-color: $mobile-parent-menu-link-bg-color;
-				color: $mobile-parent-menu-link-color;
-				font-size: rem-calc(14px);
-				font-weight: 700;
-				letter-spacing: rem-calc(2px);
-				display: block;
-				padding: $mobile-parent-menu-item-padding-y $mobile-parent-menu-item-padding-x;
-				text-transform: uppercase;
-				text-decoration: none;
-				&:hover, &:focus {
-					background: $mobile-parent-menu-link-hover-bg-color;
-					color: $mobile-parent-menu-link-hover-color;
-				}
-			}
-		}
-		> li.current-page-ancestor > a,
-		> li.current-menu-parent > a,
-		> li.current-menu-item > a {
-			background: $mobile-parent-menu-current-item-link-bg-color;
-			color: $mobile-parent-menu-current-item-link-color;
-		}
-		> li.menu-item-has-children {
-			position: relative;
-			&:hover, &:focus {
-				> a {
+  @include media-breakpoint-down( md ) {
+    > li {
+      border-bottom: $mobile-parent-menu-item-border-bottom;
+      > a {
+        background-color: $mobile-parent-menu-link-bg-color;
+        color: $mobile-parent-menu-link-color;
+        font-size: rem-calc(14px);
+        font-weight: 700;
+        letter-spacing: rem-calc(2px);
+        display: block;
+        padding: $mobile-parent-menu-item-padding-y $mobile-parent-menu-item-padding-x;
+        text-transform: uppercase;
+        text-decoration: none;
+        &:hover, &:focus {
+          background: $mobile-parent-menu-link-hover-bg-color;
+          color: $mobile-parent-menu-link-hover-color;
+        }
+      }
+    }
+    > li.current-page-ancestor > a,
+    > li.current-menu-parent > a,
+    > li.current-menu-item > a {
+      background: $mobile-parent-menu-current-item-link-bg-color;
+      color: $mobile-parent-menu-current-item-link-color;
+    }
+    > li.menu-item-has-children {
+      position: relative;
+      &:hover, &:focus {
+        > a {
 
-				}
-			}
-		}
-		.menu-item-has-children {
-			> a {
-				position: relative;
-				span {
-					background: $mobile-parent-menu-dropdown-bg-color;
-					width: rem-calc(45px);
-					position: absolute;
-					top: 0;
-					right: 0;
-					bottom: 0;
-					&:after {
-						content: '';
-						border: rem-calc(8px) solid transparent;
-						border-left-width: rem-calc(6px);
-						border-right-width: rem-calc(6px);
-						border-top-color: $mobile-parent-menu-dropdown-icon-color;
-						position: absolute;
-						top: 50%;
-						left: 50%;
-						margin-top: rem-calc(-4px);
-						margin-left: rem-calc(-6px);
-					}
-					&:hover, &:focus {
-						background: $mobile-parent-menu-dropdown-hover-bg-color;
-						&:after {
-							border-top-color: $mobile-parent-menu-dropdown-hover-icon-color;
-						}
-					}
-				}
-			}
-		}
-	}
+        }
+      }
+    }
+    .menu-item-has-children {
+      > a {
+        position: relative;
+        span {
+          background: $mobile-parent-menu-dropdown-bg-color;
+          width: rem-calc(45px);
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          &:after {
+            content: '';
+            border: rem-calc(8px) solid transparent;
+            border-left-width: rem-calc(6px);
+            border-right-width: rem-calc(6px);
+            border-top-color: $mobile-parent-menu-dropdown-icon-color;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: rem-calc(-4px);
+            margin-left: rem-calc(-6px);
+          }
+          &:hover, &:focus {
+            background: $mobile-parent-menu-dropdown-hover-bg-color;
+            &:after {
+              border-top-color: $mobile-parent-menu-dropdown-hover-icon-color;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .header-nav .sub-menu {
-	@include media-breakpoint-down( md ) {
-	  background: $mobile-sub-menu-bg-color;
-	  height: 0;
-	  visibility: hidden;
-	  &.js-active {
-	  	height: auto;
-	  	visibility: visible;
-	  }
-		> li {
-			> a {
-				background-color: $mobile-sub-menu-link-bg-color;
-				color: $mobile-sub-menu-link-color;
-				font-size: rem-calc(14px);
-				font-weight: 700;
-				letter-spacing: rem-calc(1px);
-				text-transform: uppercase;
-				display: block;
-				padding: $mobile-sub-menu-link-padding-y $mobile-sub-menu-link-padding-x $mobile-sub-menu-link-padding-y ($mobile-sub-menu-link-padding-x + 15px);
-				text-decoration: none;
-				&:hover, &:focus {
-					background: $mobile-sub-menu-link-hover-bg-color;
-					color: $mobile-sub-menu-link-hover-color;
-				}
-			}
-		}
-	}
+  @include media-breakpoint-down( md ) {
+    background: $mobile-sub-menu-bg-color;
+    height: 0;
+    visibility: hidden;
+    &.js-active {
+      height: auto;
+      visibility: visible;
+    }
+    > li {
+      > a {
+        background-color: $mobile-sub-menu-link-bg-color;
+        color: $mobile-sub-menu-link-color;
+        font-size: rem-calc(14px);
+        font-weight: 700;
+        letter-spacing: rem-calc(1px);
+        text-transform: uppercase;
+        display: block;
+        padding: $mobile-sub-menu-link-padding-y $mobile-sub-menu-link-padding-x $mobile-sub-menu-link-padding-y ($mobile-sub-menu-link-padding-x + 15px);
+        text-decoration: none;
+        &:hover, &:focus {
+          background: $mobile-sub-menu-link-hover-bg-color;
+          color: $mobile-sub-menu-link-hover-color;
+        }
+      }
+    }
+  }
 }
 
 /*===============================
@@ -241,86 +241,86 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; //usually
 $desktop-sub-menu-link-height: rem-calc( 36px ); //req for animation, manually calculate usually font height(not size) + padding-top and bottom.
 
 .header-nav-parent-menu {
-	@include media-breakpoint-up( lg ) {
-	  > li {
-			float: left;
-			margin-right: rem-calc( 5px );
-			> a {
-				background-color: $desktop-parent-menu-link-bg-color;
-				color: $desktop-parent-menu-link-color;
-				display: block;
-				padding: $desktop-parent-menu-item-padding-y $desktop-parent-menu-item-padding-x;
-				&:hover, &:focus {
-					background-color: $desktop-parent-menu-link-hover-bg-color;
-					color: $desktop-parent-menu-link-hover-color;
-				}
-			}
-		}
-		> li.current-page-ancestor > a,
-		> li.current-menu-parent > a,
-		> li.current-menu-item > a {
-			background-color: $desktop-parent-menu-current-item-link-bg-color;
-			color: $desktop-parent-menu-current-item-link-color;
-		}
-		> li.menu-item-has-children {
-			position: relative;
-			> a {
-				padding-right: $desktop-parent-menu-item-padding-y + $desktop-parent-menu-dropdown-icon-border + $desktop-parent-menu-dropdown-icon-border + $desktop-parent-menu-space-between-text-and-arrow; //dropdown icon
-				&:after {
-					content: '';
-					border: $desktop-parent-menu-dropdown-icon-border solid transparent;
-					border-top-color: $desktop-parent-menu-dropdown-icon-color;
-					position: absolute;
-					top: 50%;
-					right: $desktop-parent-menu-item-padding-y;
-					margin-top: rem-calc( -2px );
-				}
-			}
-			&:hover, &:focus {
-				> a {
-					color: $desktop-parent-menu-link-hover-color;
-				}
-				.sub-menu {
-					> li {
-						> a {
-							visibility: visible;
-							color: $desktop-sub-menu-link-color;
-							height: $desktop-sub-menu-link-height;
-							padding-top: $desktop-sub-menu-link-padding-y;
-							padding-bottom: $desktop-sub-menu-link-padding-y;
-							&:hover, &:focus {
-								background-color: $desktop-sub-menu-link-hover-bg-color;
-								color: $desktop-sub-menu-link-hover-color;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+  @include media-breakpoint-up( lg ) {
+    > li {
+      float: left;
+      margin-right: rem-calc( 5px );
+      > a {
+        background-color: $desktop-parent-menu-link-bg-color;
+        color: $desktop-parent-menu-link-color;
+        display: block;
+        padding: $desktop-parent-menu-item-padding-y $desktop-parent-menu-item-padding-x;
+        &:hover, &:focus {
+          background-color: $desktop-parent-menu-link-hover-bg-color;
+          color: $desktop-parent-menu-link-hover-color;
+        }
+      }
+    }
+    > li.current-page-ancestor > a,
+    > li.current-menu-parent > a,
+    > li.current-menu-item > a {
+      background-color: $desktop-parent-menu-current-item-link-bg-color;
+      color: $desktop-parent-menu-current-item-link-color;
+    }
+    > li.menu-item-has-children {
+      position: relative;
+      > a {
+        padding-right: $desktop-parent-menu-item-padding-y + $desktop-parent-menu-dropdown-icon-border + $desktop-parent-menu-dropdown-icon-border + $desktop-parent-menu-space-between-text-and-arrow; //dropdown icon
+        &:after {
+          content: '';
+          border: $desktop-parent-menu-dropdown-icon-border solid transparent;
+          border-top-color: $desktop-parent-menu-dropdown-icon-color;
+          position: absolute;
+          top: 50%;
+          right: $desktop-parent-menu-item-padding-y;
+          margin-top: rem-calc( -2px );
+        }
+      }
+      &:hover, &:focus {
+        > a {
+          color: $desktop-parent-menu-link-hover-color;
+        }
+        .sub-menu {
+          > li {
+            > a {
+              visibility: visible;
+              color: $desktop-sub-menu-link-color;
+              height: $desktop-sub-menu-link-height;
+              padding-top: $desktop-sub-menu-link-padding-y;
+              padding-bottom: $desktop-sub-menu-link-padding-y;
+              &:hover, &:focus {
+                background-color: $desktop-sub-menu-link-hover-bg-color;
+                color: $desktop-sub-menu-link-hover-color;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .header-nav .sub-menu {
-	@include media-breakpoint-up( lg ) {
-	  width: $desktop-sub-menu-width;
-		position: absolute;
-		top: 100%;
-		left: 0;
-		z-index: 99;
-		> li {
-			line-height: 1.3;
-			> a {
-				visibility: hidden;
-				background-color: $desktop-sub-menu-link-bg-color;
-				color: transparent;
-				display: block;
-				height: 0;
-				padding: 0 $desktop-sub-menu-link-padding-x;
-			}
-		}
-		> li.current-menu-item > a {
-			background-color: $desktop-sub-menu-current-item-link-bg-color;
-			color: $desktop-sub-menu-current-item-link-color;
-		}
-	}
+  @include media-breakpoint-up( lg ) {
+    width: $desktop-sub-menu-width;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 99;
+    > li {
+      line-height: 1.3;
+      > a {
+        visibility: hidden;
+        background-color: $desktop-sub-menu-link-bg-color;
+        color: transparent;
+        display: block;
+        height: 0;
+        padding: 0 $desktop-sub-menu-link-padding-x;
+      }
+    }
+    > li.current-menu-item > a {
+      background-color: $desktop-sub-menu-current-item-link-bg-color;
+      color: $desktop-sub-menu-current-item-link-color;
+    }
+  }
 }

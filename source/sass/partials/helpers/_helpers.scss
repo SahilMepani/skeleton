@@ -1,32 +1,32 @@
 .equal-height-slick-slides {
-	// make the slider slides of equal height
-	.slick-track {
-		@include display-flex;
-	}
-	.slick-slide {
-		height: auto;
-	}
+  // make the slider slides of equal height
+  .slick-track {
+    @include display-flex;
+  }
+  .slick-slide {
+    height: auto;
+  }
 }
 
 .img-cover {
-	// make the image cover its container
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: auto;
-	height: 100%;
-	@include translate(-50%,-50%);
+  // make the image cover its container
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  @include translate(-50%,-50%);
 }
 
 .text-highlight {
-	background-color: $text-selection-bg-color;
-	color: $text-selection-color;
+  background-color: $text-selection-bg-color;
+  color: $text-selection-color;
 }
 
 /*----------  Required  ----------*/
 .list-unstyled {
-	margin-left: 0;
+  margin-left: 0;
   > li {
-  	list-style: none;
+    list-style: none;
   }
 }

@@ -19,7 +19,7 @@ $set_venue_apart = apply_filters( 'tribe_events_single_event_the_meta_group_venu
 
 <div class="single-event-details-block">
   <div class="row">
-  	<div class="col-sm-6">
+    <div class="col-sm-6">
      <?php tribe_get_template_part( 'modules/meta/details' ); ?>
     </div> <!-- .col-sm-6 -->
     <div class="col-sm-6">

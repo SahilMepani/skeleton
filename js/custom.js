@@ -103,12 +103,12 @@ var formSearchPost = $( '#ajax-search-post' );
 =            Ajax More Post            =
 ======================================*/
 btnMorePost.on( 'click', function( e ) {
-	e.preventDefault();
+  e.preventDefault();
 
-	$( this ).addClass( 'btn-disabled' );
-	$( '.loading-dots' ).addClass( 'js-active' );
+  $( this ).addClass( 'btn-disabled' );
+  $( '.loading-dots' ).addClass( 'js-active' );
 
-	filter_post( $( this ), 'filter_more' );
+  filter_post( $( this ), 'filter_more' );
 } );
 
 
@@ -116,21 +116,21 @@ btnMorePost.on( 'click', function( e ) {
 =            Ajax Search Post            =
 ========================================*/
 formSearchPost.submit( function( e ) {
-	e.preventDefault();
+  e.preventDefault();
 
-	$( '#ajax-submit-block' ).addClass( 'hidden' );
-	$( '#alert-no-data' ).addClass( 'hide' );
-	$( '#ajax-search-clear' ).removeClass( 'js-active' );
-	$( this ).find( '.loading-spinner' ).addClass( 'js-active' );
+  $( '#ajax-submit-block' ).addClass( 'hidden' );
+  $( '#alert-no-data' ).addClass( 'hide' );
+  $( '#ajax-search-clear' ).removeClass( 'js-active' );
+  $( this ).find( '.loading-spinner' ).addClass( 'js-active' );
 
-	$( '#ajax-list-post > li' ).remove();
-	$( '.loading-dots' ).addClass( 'js-active' );
-	btnMorePost.hide();
+  $( '#ajax-list-post > li' ).remove();
+  $( '.loading-dots' ).addClass( 'js-active' );
+  btnMorePost.hide();
 
-	var searchValue = formSearchPost.find( '.input-search' ).val();
-	$( '#filter-search' ).val( searchValue );
+  var searchValue = formSearchPost.find( '.input-search' ).val();
+  $( '#filter-search' ).val( searchValue );
 
-	filter_post( $( this ), 'filter_search' );
+  filter_post( $( this ), 'filter_search' );
 } );
 
 
@@ -138,14 +138,14 @@ formSearchPost.submit( function( e ) {
 =            Ajax Search Clear            =
 =========================================*/
 $( '#ajax-search-clear' ).click( function( e ) {
-	e.preventDefault();
+  e.preventDefault();
 
-	$( '#alert-no-data' ).addClass( 'hide' );
+  $( '#alert-no-data' ).addClass( 'hide' );
 
-	formSearchPost.find( '.input-search' ).val( '' );
-	$( '#filter-search' ).val( '' );
+  formSearchPost.find( '.input-search' ).val( '' );
+  $( '#filter-search' ).val( '' );
 
-	formSearchPost.trigger( 'submit' );
+  formSearchPost.trigger( 'submit' );
 } );
 
 
@@ -153,17 +153,17 @@ $( '#ajax-search-clear' ).click( function( e ) {
 =            Ajax Filter Cat            =
 =======================================*/
 $( '#ajax-filter-cat' ).on( 'change', function( e ) {
-	e.preventDefault();
+  e.preventDefault();
 
-	$( '#alert-no-data' ).addClass( 'hide' );
-	$( '#ajax-list-post > li' ).remove();
-	$( '.loading-dots' ).addClass( 'js-active' );
-	btnMorePost.hide();
+  $( '#alert-no-data' ).addClass( 'hide' );
+  $( '#ajax-list-post > li' ).remove();
+  $( '.loading-dots' ).addClass( 'js-active' );
+  btnMorePost.hide();
 
-	var selectedCat = $( 'option:selected' ).data( 'term-id' );
-	$( '#filter-cat-id' ).val( selectedCat );
+  var selectedCat = $( 'option:selected' ).data( 'term-id' );
+  $( '#filter-cat-id' ).val( selectedCat );
 
-	filter_post( $( 'option:selected', this ), 'filter_cat' );
+  filter_post( $( 'option:selected', this ), 'filter_cat' );
 } );
 
 
@@ -172,125 +172,125 @@ $( '#ajax-filter-cat' ).on( 'change', function( e ) {
 ========================================*/
 function filter_post( $this, trigger ) {
 
-	var cpt = $this.attr( 'data-cpt' );
-	var cptTax = $this.attr( 'data-cpt-tax' );
-	var catID = $( '#filter-cat-id' ).val();
-	var authorID = $( '#filter-author-id' ).val();
-	var tagID = $( '#filter-tag-id' ).val();
-	var search = $( '#filter-search' ).val();
+  var cpt = $this.attr( 'data-cpt' );
+  var cptTax = $this.attr( 'data-cpt-tax' );
+  var catID = $( '#filter-cat-id' ).val();
+  var authorID = $( '#filter-author-id' ).val();
+  var tagID = $( '#filter-tag-id' ).val();
+  var search = $( '#filter-search' ).val();
 
-	if ( trigger == 'filter_search' || trigger == 'filter_cat' ) {
+  if ( trigger == 'filter_search' || trigger == 'filter_cat' ) {
 
-		// when user clicks load more, pagenum get sets to +1, so we need to reset it back to 1 to load first set of posts.
-		$( '#filter-pagenum' ).val( 1 );
-		// set page number variable empty
-		var pageNumber = '';
+    // when user clicks load more, pagenum get sets to +1, so we need to reset it back to 1 to load first set of posts.
+    $( '#filter-pagenum' ).val( 1 );
+    // set page number variable empty
+    var pageNumber = '';
 
-	} else if ( trigger == 'filter_more' ) {
+  } else if ( trigger == 'filter_more' ) {
 
-		var pageNumber = $( '#filter-pagenum' ).val();
+    var pageNumber = $( '#filter-pagenum' ).val();
 
-	}
+  }
 
-	$.ajax( {
-		type: 'POST',
-		dataType: 'html',
-		url: localize_var.adminUrl,
-		data: {
-			action: 'filter_post_ajax',
-			cpt: cpt,
-			cptTax: cptTax,
-			catID: catID,
-			authorID: authorID,
-			tagID: tagID,
-			search: search,
-			pageNumber: pageNumber,
-		},
-		success: function( data ) {
+  $.ajax( {
+    type: 'POST',
+    dataType: 'html',
+    url: localize_var.adminUrl,
+    data: {
+      action: 'filter_post_ajax',
+      cpt: cpt,
+      cptTax: cptTax,
+      catID: catID,
+      authorID: authorID,
+      tagID: tagID,
+      search: search,
+      pageNumber: pageNumber,
+    },
+    success: function( data ) {
 
-			var $data = $( data );
+      var $data = $( data );
 
-			if ( $.trim( data ) != '' && $.trim( data ) != 0 ) {
+      if ( $.trim( data ) != '' && $.trim( data ) != 0 ) {
 
-				$( '.loading-dots' ).removeClass( 'js-active' );
+        $( '.loading-dots' ).removeClass( 'js-active' );
 
-				/*----------- Filter More -----------*/
-				if ( trigger == 'filter_more' ) {
+        /*----------- Filter More -----------*/
+        if ( trigger == 'filter_more' ) {
 
-					$( '#filter-pagenum' ).val( parseInt( pageNumber ) + 1 );
+          $( '#filter-pagenum' ).val( parseInt( pageNumber ) + 1 );
 
-					$( '#ajax-list-post' ).append( $data );
+          $( '#ajax-list-post' ).append( $data );
 
-					$( '.loading-dots' ).removeClass( 'js-active' );
+          $( '.loading-dots' ).removeClass( 'js-active' );
 
-				}
+        }
 
-				/*----------  Filter Search  ----------*/
-				if ( trigger == 'filter_search' ) {
+        /*----------  Filter Search  ----------*/
+        if ( trigger == 'filter_search' ) {
 
-					setTimeout( function() {
-						if ( search != '' ) {
-							$( '#ajax-search-clear' ).addClass( 'js-active' );
-						} else {
-							$( '#ajax-submit-block' ).removeClass( 'hidden' );
-						}
-						$( '.loading-spinner' ).removeClass( 'js-active' );
-						$( '#ajax-list-post' ).append( $data );
-						$( '#ajax-list-post' ).fadeIn( 400 );
-						btnMorePost.fadeIn( 400 );
-					}, 300 );
+          setTimeout( function() {
+            if ( search != '' ) {
+              $( '#ajax-search-clear' ).addClass( 'js-active' );
+            } else {
+              $( '#ajax-submit-block' ).removeClass( 'hidden' );
+            }
+            $( '.loading-spinner' ).removeClass( 'js-active' );
+            $( '#ajax-list-post' ).append( $data );
+            $( '#ajax-list-post' ).fadeIn( 400 );
+            btnMorePost.fadeIn( 400 );
+          }, 300 );
 
-				}
+        }
 
-				/*----------  Filter Cat  ----------*/
-				if ( trigger == 'filter_cat' ) {
+        /*----------  Filter Cat  ----------*/
+        if ( trigger == 'filter_cat' ) {
 
-					$( '#ajax-list-post > li' ).remove();
+          $( '#ajax-list-post > li' ).remove();
 
-					setTimeout( function() {
-						$( '#ajax-list-post' ).append( $data );
-						$( '#ajax-list-post' ).fadeIn( 400 );
-						btnMorePost.fadeIn( 400 );
-					}, 300 );
+          setTimeout( function() {
+            $( '#ajax-list-post' ).append( $data );
+            $( '#ajax-list-post' ).fadeIn( 400 );
+            btnMorePost.fadeIn( 400 );
+          }, 300 );
 
-				}
+        }
 
-				// console.log( $data.length );
+        // console.log( $data.length );
 
-				if ( $data.length < 6 ) {
-					btnMorePost.addClass( 'btn-disabled' );
-				} else {
-					btnMorePost.removeClass( 'btn-disabled' );
-				}
+        if ( $data.length < 6 ) {
+          btnMorePost.addClass( 'btn-disabled' );
+        } else {
+          btnMorePost.removeClass( 'btn-disabled' );
+        }
 
-			} else {
+      } else {
 
-				if ( $( '.loading-spinner' ).hasClass( 'js-active' ) ) {
-					$( '#ajax-search-clear' ).addClass( 'js-active' );
-				}
-				$( '.loading-spinner' ).removeClass( 'js-active' );
-				$( '#alert-no-data' ).removeClass( 'hide' );
-				$( '.loading-dots' ).removeClass( 'js-active' );
-				btnMorePost.hide();
+        if ( $( '.loading-spinner' ).hasClass( 'js-active' ) ) {
+          $( '#ajax-search-clear' ).addClass( 'js-active' );
+        }
+        $( '.loading-spinner' ).removeClass( 'js-active' );
+        $( '#alert-no-data' ).removeClass( 'hide' );
+        $( '.loading-dots' ).removeClass( 'js-active' );
+        btnMorePost.hide();
 
-			} // trim
+      } // trim
 
-		} //success
+    } //success
 
-	} ); //ajax
-	return false;
+  } ); //ajax
+  return false;
 };
 if ( Modernizr.cssanimations && Modernizr.mutationobserver ) {
-	Visibility.onVisible( function() {
-		AOS.init( {
-			offset: 0,
-			duration: 1000,
-			useClassNames: true,
-			initClassName: false,
-			animatedClassName: 'animated',
-			once: true,
-		} );
-	} );
+  Visibility.onVisible( function() {
+    AOS.init( {
+      offset: 0,
+      duration: 1000,
+      useClassNames: true,
+      initClassName: false,
+      animatedClassName: 'animated',
+      once: true,
+    } );
+  } );
 }
 
 // You can also pass an optional settings object
@@ -321,22 +321,22 @@ if ( Modernizr.cssanimations && Modernizr.mutationobserver ) {
 //   Cookies.set('2016', '1', { expires: 1 });
 // };
 $( '.header-nav-toggle' ).click( function( e ) {
-	$( this ).toggleClass( 'js-active' );
-	$( '.header-nav' ).toggleClass( 'js-active' );
-	e.preventDefault();
+  $( this ).toggleClass( 'js-active' );
+  $( '.header-nav' ).toggleClass( 'js-active' );
+  e.preventDefault();
 } );
 
 $( '.header-nav-close' ).click( function( e ) {
-	$( '.header-nav-toggle' ).toggleClass( 'js-active' );
-	$( '.header-nav' ).toggleClass( 'js-active' );
-	e.preventDefault();
+  $( '.header-nav-toggle' ).toggleClass( 'js-active' );
+  $( '.header-nav' ).toggleClass( 'js-active' );
+  e.preventDefault();
 } );
 
 /* Add dropdown arrow for mobile parent menu */
 $( '.header-nav-parent-menu > li.menu-item-has-children > a' ).append( '<span></span>' );
 $( '.header-nav-parent-menu > li.menu-item-has-children > a span' ).on( 'click', function( e ) {
-	e.preventDefault();
-	$( this ).parent( 'a' ).siblings( '.sub-menu' ).toggleClass( 'js-active' );
+  e.preventDefault();
+  $( this ).parent( 'a' ).siblings( '.sub-menu' ).toggleClass( 'js-active' );
 } );;
 /*==============================================
 =            Magnific Popup - Basic            =
@@ -432,13 +432,13 @@ $( '.header-nav-parent-menu > li.menu-item-has-children > a span' ).on( 'click',
 ====================================================*/
 // all the popup should have a same class
 /*$( '.list-members' ).magnificPopup( {
-	delegate: 'a',
-	mainClass: 'mfp-move-from-top',
-	removalDelay: 500, // delay removal by X to allow out-animation
-	midClick: true,
-	gallery: {
-		enabled: true
-	}
+  delegate: 'a',
+  mainClass: 'mfp-move-from-top',
+  removalDelay: 500, // delay removal by X to allow out-animation
+  midClick: true,
+  gallery: {
+    enabled: true
+  }
 } );*/
 
 
@@ -546,25 +546,25 @@ $( '.header-nav-parent-menu > li.menu-item-has-children > a span' ).on( 'click',
 =            General scroll to any            =
 =============================================*/
 $( '.scroll-to' ).click( function( e ) {
-	e.preventDefault();
-	$( 'html,body' ).animate( {
-		scrollTop: $( this.hash ).offset().top
-	}, 500 );
+  e.preventDefault();
+  $( 'html,body' ).animate( {
+    scrollTop: $( this.hash ).offset().top
+  }, 500 );
 } );
 
 /*=====================================
 =            Scroll to top            =
 =====================================*/
 var scrollToTop = debounce( function() {
-	// if width is greater
-	if ( $( this ).width() > 767 ) {
-		// if scrollTop offset is greater
-		if ( $( this ).scrollTop() > 200 ) {
-			$( '.scroll-to-top' ).fadeIn( 200 );
-		} else {
-			$( '.scroll-to-top' ).fadeOut( 200 );
-		}
-	}
+  // if width is greater
+  if ( $( this ).width() > 767 ) {
+    // if scrollTop offset is greater
+    if ( $( this ).scrollTop() > 200 ) {
+      $( '.scroll-to-top' ).fadeIn( 200 );
+    } else {
+      $( '.scroll-to-top' ).fadeOut( 200 );
+    }
+  }
 }, 200 );
 
 // run on page load
@@ -574,80 +574,80 @@ scrollToTop();
 window.addEventListener( 'scroll', scrollToTop );;
 /*----------  Fullscreen Slider  ----------*/
 function fullscreenSlider() {
-	$( '.fullscreen-slider' ).each( function() {
+  $( '.fullscreen-slider' ).each( function() {
 
-		$( this ).slick( {
-			touchThreshold: 30,
-			mobileFirst: true,
-			speed: 500,
-			dots: true,
-			appendDots: $( this ).parent().find( '.slick-slider-dots' ),
-		} );
+    $( this ).slick( {
+      touchThreshold: 30,
+      mobileFirst: true,
+      speed: 500,
+      dots: true,
+      appendDots: $( this ).parent().find( '.slick-slider-dots' ),
+    } );
 
-		$( this ).on( 'beforeChange', function( event, slick, currentSlide, nextSlide ) {
-			if ( $( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( currentSlide ).find( 'video' ).length ) {
-				$( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( currentSlide ).find( 'video' )[ 0 ].currentTime = 0;
-			}
-			if ( $( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( nextSlide ).find( 'video' ).length ) {
-				$( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( nextSlide ).find( 'video' )[ 0 ].currentTime = 0;
-			}
-		} );
+    $( this ).on( 'beforeChange', function( event, slick, currentSlide, nextSlide ) {
+      if ( $( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( currentSlide ).find( 'video' ).length ) {
+        $( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( currentSlide ).find( 'video' )[ 0 ].currentTime = 0;
+      }
+      if ( $( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( nextSlide ).find( 'video' ).length ) {
+        $( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( nextSlide ).find( 'video' )[ 0 ].currentTime = 0;
+      }
+    } );
 
-		$( this ).on( 'afterChange', function( event, slick, currentSlide ) {
-			if ( $( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( currentSlide ).find( 'video' ).length ) {
-				$( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( currentSlide ).find( 'video' )[ 0 ].play();
-			}
-		} );
+    $( this ).on( 'afterChange', function( event, slick, currentSlide ) {
+      if ( $( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( currentSlide ).find( 'video' ).length ) {
+        $( this ).find( '.slick-slide:not(.slick-cloned)' ).eq( currentSlide ).find( 'video' )[ 0 ].play();
+      }
+    } );
 
-		// play the first video when the first slide comes inview.
-		$( this ).one( 'inview', function( event, isInView ) {
-			if ( isInView ) {
-				if ( $( this ).find( '.slick-slide' ).eq( 0 ).find( 'video' ).length ) {
-					$( this ).find( '.slick-slide' ).eq( 0 ).find( 'video' )[ 0 ].play();
-				}
-			}
-		} );
+    // play the first video when the first slide comes inview.
+    $( this ).one( 'inview', function( event, isInView ) {
+      if ( isInView ) {
+        if ( $( this ).find( '.slick-slide' ).eq( 0 ).find( 'video' ).length ) {
+          $( this ).find( '.slick-slide' ).eq( 0 ).find( 'video' )[ 0 ].play();
+        }
+      }
+    } );
 
-	} );
+  } );
 }
 fullscreenSlider();
 
 
 /*----------  Post Cards Carousel  ----------*/
 function postCardsCarousel() {
-	$( '.post-cards-carousel' ).each( function() {
-		$( this ).slick( {
-			touchThreshold: 30,
-			mobileFirst: true,
-			speed: 500,
-			slidesToShow: 1,
-			slidesToScroll: 1,
-			dots: true,
-			appendDots: $( this ).parent( '.container' ).siblings( '.slick-slider-dots' ),
-			arrows: false,
-			responsive: [ {
-					breakpoint: 767,
-					settings: {
-						slidesToShow: 2,
-						slidesToScroll: 2,
-					}
+  $( '.post-cards-carousel' ).each( function() {
+    $( this ).slick( {
+      touchThreshold: 30,
+      mobileFirst: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dots: true,
+      appendDots: $( this ).parent( '.container' ).siblings( '.slick-slider-dots' ),
+      arrows: false,
+      responsive: [ {
+          breakpoint: 767,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+          }
       },
-				{
-					breakpoint: 991,
-					settings: {
-						slidesToShow: 3,
-						slidesToScroll: 3,
-					}
+        {
+          breakpoint: 991,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+          }
       },
-				{
-					breakpoint: 1499,
-					settings: {
-						slidesToShow: 4,
-						slidesToScroll: 4,
-					}
+        {
+          breakpoint: 1499,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 4,
+          }
       } ]
-		} );
-	} );
+    } );
+  } );
 }
 postCardsCarousel();;
 } ); // Document Ready
@@ -658,6 +658,6 @@ postCardsCarousel();;
 =================================*/
 /* Polyfill for vh,vw units on iphone4,5 */
 window.viewportUnitsBuggyfill.init( {
-	refreshDebounceWait: 50,
-	hacks: window.viewportUnitsBuggyfillHacks
+  refreshDebounceWait: 50,
+  hacks: window.viewportUnitsBuggyfillHacks
 } );

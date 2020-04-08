@@ -15,12 +15,12 @@ $body-color : #222;
 
 // Colors
 $colors: (
-	red       : $red,
-	white     : $white,
-	black     : $black,
-	primary   : $primary,
-	secondary : $secondary,
-	body      : $body-color,
+  red       : $red,
+  white     : $white,
+  black     : $black,
+  primary   : $primary,
+  secondary : $secondary,
+  body      : $body-color,
 );
 
 
@@ -108,37 +108,37 @@ $font-weight-bolder  : bolder;
 
 // This variable affects the `.pt-*` and `.mb-*` classes etc.
 $spacers : (
-	0      : 0,
-	0-#{5} : 0.5rem,
-	1      : 1rem,
-	1-#{5} : 1.5rem,
-	2      : 2rem,
-	2-#{5} : 2.5rem,
-	3      : 3rem,
-	3-#{5} : 3.5rem,
-	4      : 4rem,
-	4-#{5} : 4.5rem,
-	5      : 5rem,
-	5-#{5} : 5.5rem,
-	6      : 6rem,
-	6-#{5} : 6.5rem,
-	7      : 7rem,
-	7-#{5} : 7.5rem,
-	8      : 8rem,
-	8-#{5} : 8.5rem,
-	9      : 9rem,
-	9-#{5} : 9.5rem,
-	10     : 10rem,
-	11     : 11rem,
-	12     : 12rem,
-	13     : 13rem,
-	14     : 14rem,
-	15     : 15rem,
-	16     : 16rem,
-	17     : 17rem,
-	18     : 18rem,
-	19     : 19rem,
-	20     : 20rem,
+  0      : 0,
+  0-#{5} : 0.5rem,
+  1      : 1rem,
+  1-#{5} : 1.5rem,
+  2      : 2rem,
+  2-#{5} : 2.5rem,
+  3      : 3rem,
+  3-#{5} : 3.5rem,
+  4      : 4rem,
+  4-#{5} : 4.5rem,
+  5      : 5rem,
+  5-#{5} : 5.5rem,
+  6      : 6rem,
+  6-#{5} : 6.5rem,
+  7      : 7rem,
+  7-#{5} : 7.5rem,
+  8      : 8rem,
+  8-#{5} : 8.5rem,
+  9      : 9rem,
+  9-#{5} : 9.5rem,
+  10     : 10rem,
+  11     : 11rem,
+  12     : 12rem,
+  13     : 13rem,
+  14     : 14rem,
+  15     : 15rem,
+  16     : 16rem,
+  17     : 17rem,
+  18     : 18rem,
+  19     : 19rem,
+  20     : 20rem,
 );
 
 
@@ -166,15 +166,15 @@ $scaling: $two-k; // scaling starts from here, do not change if not sure, it can
 
 // Breakpoints - Map
 $grid-breakpoints : (
-	xs  : $xs,
-	sm  : $sm,
-	md  : $md,
-	lg  : $lg,
-	xl  : $xl,
-	xxl : $xxl,
-	xxxl : $xxxl,
-	// this and $container-max-widths "map size" should match
-	// add more if required
+  xs  : $xs,
+  sm  : $sm,
+  md  : $md,
+  lg  : $lg,
+  xl  : $xl,
+  xxl : $xxl,
+  xxxl : $xxxl,
+  // this and $container-max-widths "map size" should match
+  // add more if required
 );
 
 // Grid columns
@@ -189,13 +189,13 @@ $container-padding   : 3rem; // each x-side
 // Define the maximum width of `.container` for different screen sizes.
 // Changed the value to rem to scale on higher size screens
 $container-max-widths: (
-	sm : 95vw,
-	md : 95vw,
-	lg : 93vw,
-	xl : 93vw,
-	xxl : 93vw,
-	xxxl : 155rem, // max-width value needs to be less than the (breakpoint value(xxxl) - $container-padding)
-	// this and $grid-breakpoints "map size" should match
+  sm : 95vw,
+  md : 95vw,
+  lg : 93vw,
+  xl : 93vw,
+  xxl : 93vw,
+  xxxl : 155rem, // max-width value needs to be less than the (breakpoint value(xxxl) - $container-padding)
+  // this and $grid-breakpoints "map size" should match
 );
 
 $container-sm-max-width  : map-get($container-max-widths, 'sm');
@@ -217,24 +217,24 @@ $embed-responsive-aspect-ratios: (
 
 // This variable affects the `.h-*` and `.w-*` classes.
 $sizes: (
-	20   : 20%,
-	25   : 25%,
-	30   : 30%,
-	35   : 35%,
-	40   : 40%,
-	45   : 45%,
-	50   : 50%,
-	55   : 55%,
-	60   : 60%,
-	65   : 65%,
-	70   : 70%,
-	75   : 75%,
-	80   : 80%,
-	85   : 85%,
-	90   : 90%,
-	95   : 95%,
-	100  : 100%,
-	auto : auto
+  20   : 20%,
+  25   : 25%,
+  30   : 30%,
+  35   : 35%,
+  40   : 40%,
+  45   : 45%,
+  50   : 50%,
+  55   : 55%,
+  60   : 60%,
+  65   : 65%,
+  70   : 70%,
+  75   : 75%,
+  80   : 80%,
+  85   : 85%,
+  90   : 90%,
+  95   : 95%,
+  100  : 100%,
+  auto : auto
 );
 
 

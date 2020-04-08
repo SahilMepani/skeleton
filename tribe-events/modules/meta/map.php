@@ -11,9 +11,8 @@
 $map = tribe_get_embedded_map();
 
 if ( empty( $map ) ) {
-	return;
+  return;
 }
 
 echo $map;
 ?>
-

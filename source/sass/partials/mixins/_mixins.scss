@@ -20,34 +20,32 @@
 @import "text-hide";
 
 @mixin pagination-links {
-	background: #fff;
-	color: #666;
-	font-size: rem-calc(12px);
-	line-height: 1;
-	text-decoration: none;
-	text-align: center;
-	display: block;
-	min-width: rem-calc(35px);
-	padding: rem-calc(10px);
-	box-shadow: 0 0 rem-calc(1px) rgba(0,0,0,.3);
+  background: #fff;
+  color: #666;
+  font-size: rem-calc(12px);
+  line-height: 1;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  min-width: rem-calc(35px);
+  padding: rem-calc(10px);
+  box-shadow: 0 0 rem-calc(1px) rgba(0,0,0,.3);
 }
 
 @mixin clearfix {
-	&:before,
-	&:after {
-		content: " ";
-		display: table;
-	}
-	&:after {
-		clear: both;
-	}
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
 }
 
 @mixin list-unstyled {
-	margin-left: 0;
-	> li {
-		list-style: none;
-	}
+  margin-left: 0;
+  > li {
+    list-style: none;
+  }
 }
-
-

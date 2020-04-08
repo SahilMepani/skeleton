@@ -1,199 +1,199 @@
 .filters {
-	@include media-breakpoint-up( sm ) {
-	  @include display-flex;
-	  margin: 0 rem-calc(-10px);
-	}
-	@include media-breakpoint-up( md ) {
-	  margin: 0 rem-calc(-15px);
-	}
+  @include media-breakpoint-up( sm ) {
+    @include display-flex;
+    margin: 0 rem-calc(-10px);
+  }
+  @include media-breakpoint-up( md ) {
+    margin: 0 rem-calc(-15px);
+  }
 }
 
 .filters__item {
-	margin-bottom: rem-calc( 15px );
-	&:last-child {
-		margin-bottom: 0;
-	}
-	.heading {
-		margin-bottom: rem-calc( 7px );
-	}
-	@include media-breakpoint-up( sm ) {
-	  @include flex(1);
-	  padding: 0 rem-calc(10px);
-	}
-	@include media-breakpoint-up( md ) {
-	  padding: 0 rem-calc(15px);
-	}
+  margin-bottom: rem-calc( 15px );
+  &:last-child {
+    margin-bottom: 0;
+  }
+  .heading {
+    margin-bottom: rem-calc( 7px );
+  }
+  @include media-breakpoint-up( sm ) {
+    @include flex(1);
+    padding: 0 rem-calc(10px);
+  }
+  @include media-breakpoint-up( md ) {
+    padding: 0 rem-calc(15px);
+  }
 }
 
 .filters__item--search {
-	form {
-		position: relative;
-	}
-	input[type="text"] {
-		padding-right: rem-calc(45px);
-	}
-	.submit-block {
-		width: rem-calc(45px);
-		position: absolute;
-		right: 0;
-		top: 0;
-		bottom: 0;
-		&:before {
-			@include icon-font-properties;
-			content: $i-search;
-			color: #ccc;
-			font-size: rem-calc(30px);
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			@include translate(-50%, -50%);
-		}
-		input[type="submit"] {
-			background: transparent;
-			width: 100%;
-			position: absolute;
-			right: 0;
-			top: 0;
-			bottom: 0;
-		}
-	}
-	.loading-spinner {
-		visibility: hidden;
-		opacity: 0;
-		position: absolute;
-		right: rem-calc(14px);
-		top: rem-calc(17px);
-		&.js-active {
-			visibility: visible;
-			opacity: 1;
-		}
-	}
-	.clear-search {
-		@include btn;
-		position: absolute;
-		right: 0;
-		top: 0;
-		bottom: 0;
-		display: block;
-		width: rem-calc(45px);
-		visibility: hidden;
-		opacity: 0;
-		&:before {
-			@include icon-font-properties;
-			content: $i-cross;
-			color: #999;
-			font-size: rem-calc(24px);
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			@include translate(-50%, -50%);
-		}
-		&.js-active {
-			visibility: visible;
-			opacity: 1;
-		}
-		&:hover {
-			&:before {
-				color: $primary;
-			}
-		}
-	}
+  form {
+    position: relative;
+  }
+  input[type="text"] {
+    padding-right: rem-calc(45px);
+  }
+  .submit-block {
+    width: rem-calc(45px);
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    &:before {
+      @include icon-font-properties;
+      content: $i-search;
+      color: #ccc;
+      font-size: rem-calc(30px);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      @include translate(-50%, -50%);
+    }
+    input[type="submit"] {
+      background: transparent;
+      width: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+  }
+  .loading-spinner {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    right: rem-calc(14px);
+    top: rem-calc(17px);
+    &.js-active {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+  .clear-search {
+    @include btn;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: block;
+    width: rem-calc(45px);
+    visibility: hidden;
+    opacity: 0;
+    &:before {
+      @include icon-font-properties;
+      content: $i-cross;
+      color: #999;
+      font-size: rem-calc(24px);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      @include translate(-50%, -50%);
+    }
+    &.js-active {
+      visibility: visible;
+      opacity: 1;
+    }
+    &:hover {
+      &:before {
+        color: $primary;
+      }
+    }
+  }
 }
 
 .list-blog-post {
-	list-style: none;
-	margin-left: 0;
+  list-style: none;
+  margin-left: 0;
 }
 
 .type-post--blog {
-	clear: both;
-	padding: 5vw;
-	border: rem-calc( 1px ) solid #eee;
-	margin: 0 auto rem-calc( 40px );
-	&.sticky {
-		background: #f5f5f5;
-	}
-	.img-block {
-		margin: 0 0 rem-calc( 20px );
-		overflow: hidden;
-		a {
-			display: inline-block;
-			height: 100%;
-			overflow: hidden;
-			img {
-				height: auto;
-				vertical-align: top;
-				transition: .4s cubic-bezier(.33,0,.2,1);
-				-webkit-backface-visibility: hidden;
-			}
-			&:hover {
-				img {
-					@include scale(1.1);
-				}
-			}
-		}
-	}
-	.meta-block {
-		color: #999;
-		margin-bottom: rem-calc( 20px );
-		line-height: 1.4;
-		overflow: hidden;
-		.author {
-			text-transform: capitalize;
-		}
-		a {
-			color: #999;
-			&:hover {
-				color: $primary;
-				text-decoration: underline;
-			}
-		}
-	}
-	.title {
-		font-size: rem-calc( 22px );
-		font-weight: 700;
-		line-height: 1.3;
-		margin-bottom: rem-calc( 10px );
-		a {
-			color: $headings-color;
-			&:hover {
-				color: $primary;
-				text-decoration: underline;
-			}
-		}
-	}
-	.more-link {
-		color: $primary;
-		font-weight: 700;
-		border-bottom: rem-calc( 1px ) solid transparent;
-		&:hover {
-			color: $body-color;
-			border-bottom-color: $body-color;
-		}
-	}
-	@include media-breakpoint-up( md ) {
-  	@include display-flex;
-  	padding: rem-calc( 50px );
-	  .img-block {
-			@include flex(0 0 35%);
-			padding-right: rem-calc( 40px );
-			margin-bottom: 0;
-			@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-			  /* IE10 and IE11 rule sets go here */
-			  max-width: 35%;
-			  a {
-			  	max-width: 100%;
-			  }
-			}
-	  }
-	  .content-block {
-			@include flex(1 1 auto);
-	  }
-	}
+  clear: both;
+  padding: 5vw;
+  border: rem-calc( 1px ) solid #eee;
+  margin: 0 auto rem-calc( 40px );
+  &.sticky {
+    background: #f5f5f5;
+  }
+  .img-block {
+    margin: 0 0 rem-calc( 20px );
+    overflow: hidden;
+    a {
+      display: inline-block;
+      height: 100%;
+      overflow: hidden;
+      img {
+        height: auto;
+        vertical-align: top;
+        transition: .4s cubic-bezier(.33,0,.2,1);
+        -webkit-backface-visibility: hidden;
+      }
+      &:hover {
+        img {
+          @include scale(1.1);
+        }
+      }
+    }
+  }
+  .meta-block {
+    color: #999;
+    margin-bottom: rem-calc( 20px );
+    line-height: 1.4;
+    overflow: hidden;
+    .author {
+      text-transform: capitalize;
+    }
+    a {
+      color: #999;
+      &:hover {
+        color: $primary;
+        text-decoration: underline;
+      }
+    }
+  }
+  .title {
+    font-size: rem-calc( 22px );
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: rem-calc( 10px );
+    a {
+      color: $headings-color;
+      &:hover {
+        color: $primary;
+        text-decoration: underline;
+      }
+    }
+  }
+  .more-link {
+    color: $primary;
+    font-weight: 700;
+    border-bottom: rem-calc( 1px ) solid transparent;
+    &:hover {
+      color: $body-color;
+      border-bottom-color: $body-color;
+    }
+  }
+  @include media-breakpoint-up( md ) {
+    @include display-flex;
+    padding: rem-calc( 50px );
+    .img-block {
+      @include flex(0 0 35%);
+      padding-right: rem-calc( 40px );
+      margin-bottom: 0;
+      @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+        /* IE10 and IE11 rule sets go here */
+        max-width: 35%;
+        a {
+          max-width: 100%;
+        }
+      }
+    }
+    .content-block {
+      @include flex(1 1 auto);
+    }
+  }
 }
 
 .btn-more-post {
-	&.btn-disabled {
+  &.btn-disabled {
     cursor: default;
     pointer-events: none;
     opacity: .3;

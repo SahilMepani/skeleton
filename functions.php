@@ -66,10 +66,10 @@ add_image_size( 'w1600@2x', 3200, 9999 );
 =            Register menus            =
 ======================================*/
 register_nav_menus(
-	array(
-		'header-menu' => 'Header Menu',
-		'footer-menu' => 'Footer Menu',
-	)
+  array(
+    'header-menu' => 'Header Menu',
+    'footer-menu' => 'Footer Menu',
+  )
 );
 
 /*=========================================
@@ -203,25 +203,25 @@ update_option('image_default_link_type', 'none');
 =======================================*/
 // http://wp.tutsplus.com/tutorials/wordpress-pagination-a-primer
 function tse_posts_pagination( $pages ) {
-	$total_pages = $pages;
+  $total_pages = $pages;
 
-	if ( $total_pages > 1 ) {
+  if ( $total_pages > 1 ) {
 
-		$current_page = max( 1, get_query_var( 'paged' ) );
+    $current_page = max( 1, get_query_var( 'paged' ) );
 
-		echo '<div class="posts-pagination">';
+    echo '<div class="posts-pagination">';
 
-		echo '<span class="index"> Page ' . $current_page . ' of ' . $total_pages . "</span>";
+    echo '<span class="index"> Page ' . $current_page . ' of ' . $total_pages . "</span>";
 
-		echo paginate_links(array(
-				'base'      => get_pagenum_link( 1 ) . '%_%',
-				'format'    => 'page/%#%/',
-				'current'   => $current_page,
-				'total'     => $total_pages,
-				'type'      => 'list', // plain, array, list
-				'prev_text' => '&lsaquo; Previous',
-				'next_text' => 'Next &rsaquo;',
-		));
-		echo '</div>';
-	}
+    echo paginate_links(array(
+        'base'      => get_pagenum_link( 1 ) . '%_%',
+        'format'    => 'page/%#%/',
+        'current'   => $current_page,
+        'total'     => $total_pages,
+        'type'      => 'list', // plain, array, list
+        'prev_text' => '&lsaquo; Previous',
+        'next_text' => 'Next &rsaquo;',
+    ));
+    echo '</div>';
+  }
 }

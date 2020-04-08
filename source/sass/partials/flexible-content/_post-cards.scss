@@ -1,46 +1,46 @@
 // Post cards
 .list-post-cards {
-	@include list-unstyled;
-	@include display-flex;
-	margin: 0 rem-calc(-15px);
-	.card {
-		@include display-flex;
-		max-width: 100%;
-		padding: 0 rem-calc(15px);
-		margin-bottom: rem-calc(30px);
-	}
-	a {
-		color: $body-color;
-		box-shadow: 0 0 rem-calc(5px) rgba(0,0,0,.1);
-		&:focus {
-			outline: none;
-		}
-	}
-	.img-block {
-		@include bg-cover;
-		padding-bottom: 56.25%;
-	}
-	.content-block {
-		padding: rem-calc(20px);
-	}
+  @include list-unstyled;
+  @include display-flex;
+  margin: 0 rem-calc(-15px);
+  .card {
+    @include display-flex;
+    max-width: 100%;
+    padding: 0 rem-calc(15px);
+    margin-bottom: rem-calc(30px);
+  }
+  a {
+    color: $body-color;
+    box-shadow: 0 0 rem-calc(5px) rgba(0,0,0,.1);
+    &:focus {
+      outline: none;
+    }
+  }
+  .img-block {
+    @include bg-cover;
+    padding-bottom: 56.25%;
+  }
+  .content-block {
+    padding: rem-calc(20px);
+  }
 }
 
 .post-cards-grid {
-	@include flex-wrap( wrap );
-	@include justify-content( center );
-	.card {
-		@include flex(0 0 rem-calc(350px));
-	}
+  @include flex-wrap( wrap );
+  @include justify-content( center );
+  .card {
+    @include flex(0 0 rem-calc(350px));
+  }
 }
 
 // Carousel
 .post-cards-carousel {
-	.slick-track {
-		@include display-flex;
-	}
-	.slick-slide {
-		height: auto;
-	}
+  .slick-track {
+    @include display-flex;
+  }
+  .slick-slide {
+    height: auto;
+  }
 }
 
 .post-cards-carousel-section {

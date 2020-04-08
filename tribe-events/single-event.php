@@ -11,7 +11,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
+  die( '-1' );
 }
 
 $events_label_singular = tribe_get_event_label_singular();
@@ -32,49 +32,49 @@ $event_id = get_the_ID();
 
 <?php while ( have_posts() ) : the_post(); ?>
 
-	<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?>>
+  <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?>>
 
-		<?php if ( has_post_thumbnail() ) { ?>
-		  <aside class="single-event-featured-thumb-block">
-		    <a href="<?php the_permalink(); ?>" class="" title="Read more about <?php the_title_attribute(); ?>">
-		      <?php the_post_thumbnail( 'medium_crop' ); ?>
-		    </a>
-		  </aside> <!-- .event-featured-thumb-block -->
-		<?php } ?>
+    <?php if ( has_post_thumbnail() ) { ?>
+      <aside class="single-event-featured-thumb-block">
+        <a href="<?php the_permalink(); ?>" class="" title="Read more about <?php the_title_attribute(); ?>">
+          <?php the_post_thumbnail( 'medium_crop' ); ?>
+        </a>
+      </aside> <!-- .event-featured-thumb-block -->
+    <?php } ?>
 
-		<header class="single-event-header">
-		  <h1 class="single-event-title h2"><?php the_title(); ?></h1>
+    <header class="single-event-header">
+      <h1 class="single-event-title h2"><?php the_title(); ?></h1>
 
-		  <p class="single-lecture-title"><?php echo tribe_get_organizer( $organizer ) ?></p>
+      <p class="single-lecture-title"><?php echo tribe_get_organizer( $organizer ) ?></p>
 
-		  <div class="single-event-meta">
-		    <p class="single-event-datetime"><?php echo tribe_events_event_schedule_details( $event_id ); ?></p>
-		    <!-- <p class="single-event-time">NOON-1:00PM</p> -->
-		    <p class="single-event-location italic"><?php echo tribe_get_venue() ?></p>
-		  </div> <!-- .single-event-meta -->
+      <div class="single-event-meta">
+        <p class="single-event-datetime"><?php echo tribe_events_event_schedule_details( $event_id ); ?></p>
+        <!-- <p class="single-event-time">NOON-1:00PM</p> -->
+        <p class="single-event-location italic"><?php echo tribe_get_venue() ?></p>
+      </div> <!-- .single-event-meta -->
 
-			<?php do_action( 'tribe_events_single_event_after_the_content' ) ?>
-		</header> <!-- .single-event-header -->
+      <?php do_action( 'tribe_events_single_event_after_the_content' ) ?>
+    </header> <!-- .single-event-header -->
 
-		<div class="clear margin-bottom-sm">
+    <div class="clear margin-bottom-sm">
       <?php do_action( 'tribe_events_single_event_before_the_content' ) ?>
-			<?php the_content(); ?>
+      <?php the_content(); ?>
     </div> <!-- .clear -->
 
-	</article>
+  </article>
 
 <?php endwhile; ?>
 
 
 <?php while ( have_posts() ) :  the_post(); ?>
-	<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+  <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-		<!-- Event meta -->
-		<?php do_action( 'tribe_events_single_event_before_the_meta' ) ?>
-		<?php tribe_get_template_part( 'modules/meta' ); ?>
-		<?php do_action( 'tribe_events_single_event_after_the_meta' ) ?>
-	</div> <!-- #post-x -->
-	<?php if ( get_post_type() == Tribe__Events__Main::POSTTYPE && tribe_get_option( 'showComments', false ) ) comments_template() ?>
+    <!-- Event meta -->
+    <?php do_action( 'tribe_events_single_event_before_the_meta' ) ?>
+    <?php tribe_get_template_part( 'modules/meta' ); ?>
+    <?php do_action( 'tribe_events_single_event_after_the_meta' ) ?>
+  </div> <!-- #post-x -->
+  <?php if ( get_post_type() == Tribe__Events__Main::POSTTYPE && tribe_get_option( 'showComments', false ) ) comments_template() ?>
 <?php endwhile; ?>
 
 

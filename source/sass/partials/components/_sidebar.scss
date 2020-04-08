@@ -1,39 +1,39 @@
 .sidebar {
-	position: relative;
-	a {
-		&:hover {
+  position: relative;
+  a {
+    &:hover {
 
-		}
-	}
-	ul {
-		@include list-unstyled;
-	}
-	.widget-heading {
-		font-weight: 700;
-		font-size: rem-calc(14px);
-		line-height: 1.2;
-		text-transform: uppercase;
-	}
-	li.widget {
-		clear: both;
-		padding-bottom: rem-calc(20px);
-		border-bottom: rem-calc(1px) solid #e5e5e5;
-		margin-bottom: rem-calc(20px);
-		@include clearfix;
-		&:last-child {
-			padding-bottom: 0;
-			border-bottom: none;
-			margin-bottom: 0;
-		}
-		li {
-			margin-bottom: rem-calc(10px);
-			&:last-child {
-				margin-bottom: 0;
-			}
-			a {
-				line-height: 1.4;
-				padding-right: rem-calc(5px);
-			}
-		}
-	}
+    }
+  }
+  ul {
+    @include list-unstyled;
+  }
+  .widget-heading {
+    font-weight: 700;
+    font-size: rem-calc(14px);
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+  li.widget {
+    clear: both;
+    padding-bottom: rem-calc(20px);
+    border-bottom: rem-calc(1px) solid #e5e5e5;
+    margin-bottom: rem-calc(20px);
+    @include clearfix;
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    li {
+      margin-bottom: rem-calc(10px);
+      &:last-child {
+        margin-bottom: 0;
+      }
+      a {
+        line-height: 1.4;
+        padding-right: rem-calc(5px);
+      }
+    }
+  }
 }

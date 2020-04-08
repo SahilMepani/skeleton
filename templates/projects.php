@@ -6,75 +6,75 @@
 
   <div class="project-filters-block margin-bottom-3">
 
-  	<div class="custom-select-block hidden-sm hidden-md hidden-lg">
-	    <label for="ajax-first-select-post-categories" class="sr-only"><?php _e('Select Tax One','vt'); ?></label>
-	    <select id="ajax-first-select-post-categories">
-	      <option data-cpt="project" data-first-cpt-tax="tax-one" data-first-cat-id="-1"><?php _e('All Tax One','vt'); ?></option>
-	      <?php
-	        $cats_args = array(
-	          'taxonomy' => 'tax-one',
-	        );
-	        $cats = get_categories( $cats_args );
-	        foreach ( $cats as $cat ) :
-	      ?>
-	        <option data-cpt="project" data-first-cpt-tax="tax-one" data-first-cat-id="<?php echo $cat->term_id; ?>">
-	          <?php echo $cat->name; ?>
-	        </option>
-	      <?php endforeach; ?>
-	    </select>
-	  </div> <!-- .custom-select-block -->
+    <div class="custom-select-block hidden-sm hidden-md hidden-lg">
+      <label for="ajax-first-select-post-categories" class="sr-only"><?php _e('Select Tax One','vt'); ?></label>
+      <select id="ajax-first-select-post-categories">
+        <option data-cpt="project" data-first-cpt-tax="tax-one" data-first-cat-id="-1"><?php _e('All Tax One','vt'); ?></option>
+        <?php
+          $cats_args = array(
+            'taxonomy' => 'tax-one',
+          );
+          $cats = get_categories( $cats_args );
+          foreach ( $cats as $cat ) :
+        ?>
+          <option data-cpt="project" data-first-cpt-tax="tax-one" data-first-cat-id="<?php echo $cat->term_id; ?>">
+            <?php echo $cat->name; ?>
+          </option>
+        <?php endforeach; ?>
+      </select>
+    </div> <!-- .custom-select-block -->
 
-	  <div class="custom-select-block hidden-sm hidden-md hidden-lg">
-	    <label for="ajax-second-select-post-categories" class="sr-only"><?php _e('Select Tax Two','vt'); ?></label>
-	    <select id="ajax-second-select-post-categories">
-	      <option data-cpt="project" data-second-cpt-tax="tax-two" data-second-cat-id="-1"><?php _e('All Tax Two','vt'); ?></option>
-	      <?php
-	        $cats_args = array(
-	          'taxonomy' => 'tax-two',
-	        );
-	        $cats = get_categories( $cats_args );
-	        foreach ( $cats as $cat ) :
-	      ?>
-	        <option data-cpt="project" data-second-cpt-tax="tax-two" data-second-cat-id="<?php echo $cat->term_id; ?>">
-	          <?php echo $cat->name; ?>
-	        </option>
-	      <?php endforeach; ?>
-	    </select>
-	  </div> <!-- .custom-select-block -->
+    <div class="custom-select-block hidden-sm hidden-md hidden-lg">
+      <label for="ajax-second-select-post-categories" class="sr-only"><?php _e('Select Tax Two','vt'); ?></label>
+      <select id="ajax-second-select-post-categories">
+        <option data-cpt="project" data-second-cpt-tax="tax-two" data-second-cat-id="-1"><?php _e('All Tax Two','vt'); ?></option>
+        <?php
+          $cats_args = array(
+            'taxonomy' => 'tax-two',
+          );
+          $cats = get_categories( $cats_args );
+          foreach ( $cats as $cat ) :
+        ?>
+          <option data-cpt="project" data-second-cpt-tax="tax-two" data-second-cat-id="<?php echo $cat->term_id; ?>">
+            <?php echo $cat->name; ?>
+          </option>
+        <?php endforeach; ?>
+      </select>
+    </div> <!-- .custom-select-block -->
 
-	  <ul id="ajax-first-list-post-categories" class="list-tax-one-filters list-filters hidden-xs">
-	    <li class="js-active">
-	      <a href="javascript:void(0);" data-cpt="project" data-first-cpt-tax="tax-one" data-first-cat-id="-1"><?php _e('ALL','vt'); ?></a>
-	    </li>
-	    <?php
-	      $cats_args = array(
-	        'taxonomy' => 'tax-one',
-	      );
-	      $cats = get_categories( $cats_args );
-	      foreach ( $cats as $cat ) {
-	    ?>
-	      <li>
-	        <a href="javascript:void(0);" data-cpt="project" data-first-cpt-tax="tax-one" data-first-cat-id="<?php echo $cat->term_id; ?>"><?php echo $cat->name; ?></a>
-	      </li>
-	    <?php } ?>
-	  </ul> <!-- .list-tax-one-filters -->
+    <ul id="ajax-first-list-post-categories" class="list-tax-one-filters list-filters hidden-xs">
+      <li class="js-active">
+        <a href="javascript:void(0);" data-cpt="project" data-first-cpt-tax="tax-one" data-first-cat-id="-1"><?php _e('ALL','vt'); ?></a>
+      </li>
+      <?php
+        $cats_args = array(
+          'taxonomy' => 'tax-one',
+        );
+        $cats = get_categories( $cats_args );
+        foreach ( $cats as $cat ) {
+      ?>
+        <li>
+          <a href="javascript:void(0);" data-cpt="project" data-first-cpt-tax="tax-one" data-first-cat-id="<?php echo $cat->term_id; ?>"><?php echo $cat->name; ?></a>
+        </li>
+      <?php } ?>
+    </ul> <!-- .list-tax-one-filters -->
 
-	  <ul id="ajax-second-list-post-categories" class="list-tax-two-filters list-filters hidden-xs">
-	    <li class="js-active">
-	      <a href="javascript:void(0);" data-cpt="project" data-second-cpt-tax="tax-two" data-second-cat-id="-1"><?php _e('ALL','vt'); ?></a>
-	    </li>
-	    <?php
-	      $cats_args = array(
-	        'taxonomy' => 'tax-two',
-	      );
-	      $cats = get_categories( $cats_args );
-	      foreach ( $cats as $cat ) {
-	    ?>
-	      <li>
-	        <a href="javascript:void(0);" data-cpt="project" data-second-cpt-tax="tax-two" data-second-cat-id="<?php echo $cat->term_id; ?>"><?php echo $cat->name; ?></a>
-	      </li>
-	    <?php } ?>
-	  </ul> <!-- .customer-success-type-filters -->
+    <ul id="ajax-second-list-post-categories" class="list-tax-two-filters list-filters hidden-xs">
+      <li class="js-active">
+        <a href="javascript:void(0);" data-cpt="project" data-second-cpt-tax="tax-two" data-second-cat-id="-1"><?php _e('ALL','vt'); ?></a>
+      </li>
+      <?php
+        $cats_args = array(
+          'taxonomy' => 'tax-two',
+        );
+        $cats = get_categories( $cats_args );
+        foreach ( $cats as $cat ) {
+      ?>
+        <li>
+          <a href="javascript:void(0);" data-cpt="project" data-second-cpt-tax="tax-two" data-second-cat-id="<?php echo $cat->term_id; ?>"><?php echo $cat->name; ?></a>
+        </li>
+      <?php } ?>
+    </ul> <!-- .customer-success-type-filters -->
 
   </div> <!-- .project-filters-block -->
 

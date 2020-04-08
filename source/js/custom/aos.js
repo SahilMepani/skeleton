@@ -1,14 +1,14 @@
 if ( Modernizr.cssanimations && Modernizr.mutationobserver ) {
-	Visibility.onVisible( function() {
-		AOS.init( {
-			offset: 0,
-			duration: 1000,
-			useClassNames: true,
-			initClassName: false,
-			animatedClassName: 'animated',
-			once: true,
-		} );
-	} );
+  Visibility.onVisible( function() {
+    AOS.init( {
+      offset: 0,
+      duration: 1000,
+      useClassNames: true,
+      initClassName: false,
+      animatedClassName: 'animated',
+      once: true,
+    } );
+  } );
 }
 
 // You can also pass an optional settings object

@@ -44,13 +44,13 @@
   ☐ Hide unwanted options from admin menu sidebar using "Admin menu editor" plugin
 
   RESPONSIVE & CROSS BROWSER TESTING --- ✄ -----------------------
-  WINDOWS --- ✄ -----------------------
+# WINDOWS --- ✄ -----------------------:
   ☐ IE 11+
   ☐ Chrome
   ☐ Safari
   ☐ Firefox
   ☐ Opera
-  MAC --- ✄ -----------------------
+# MAC --- ✄ -----------------------:
   ☐ Safari
   ☐ Chrome
   ☐ Firefox
@@ -68,4 +68,3 @@
   ☐ Add iThemes security plugin and activate it
   ☐ Change backend url from /wp-admin to /manage
 http://wiki.threesixtyeight.is/article/launch-check-list/
-

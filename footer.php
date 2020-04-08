@@ -1,4 +1,4 @@
-</section> <!-- #site-content -->
+</main> <!-- #site-content -->
 
 <footer class="site-footer clearfix">
 <div class="container">

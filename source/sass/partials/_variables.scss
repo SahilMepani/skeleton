@@ -8,10 +8,10 @@ $root-font-size : 10px; // never change this value
 $red       : #ff2500;
 // Required colors
 $white      : #fff;
-$black      : #000;
+$black      : #222;
 $primary    : $red;
 $secondary  : $black;
-$body-color : #222;
+$body-color : $black;
 
 // Colors
 $colors: (

@@ -1,53 +1,53 @@
 .list-social-icons {
-	@include display-flex;
-	@include justify-content( center );
-	margin: 0;
-	list-style: none;
-	li {
-		margin: 0 rem-calc(10px) 0 0;
-		&:last-child {
-			margin-right: 0;
-		}
-		a {
-			@include hide-text;
-			color: rgba(255,255,255,.4);
-			text-align: center;
-			text-decoration: none;
-			display: block;
-			height: 100%;
-			position: relative;
-			&:before {
-				@include icon-font-properties;
-				font-size: rem-calc(24px);
-				display: block; // cross browser fix
-			}
-			&:hover {
-				color: #fff;
-				text-decoration: none;
-			}
-		}
-	}
-	.i-facebook {
-		a {
-			&:before {
-				content: $i-facebook;
-			}
-		}
-	}
-	.i-twitter {
-		a {
-			&:before {
-				content: $i-twitter;
-			}
-		}
-	}
-	.i-instagram {
-		a {
-			&:before {
-				content: $i-instagram;
-			}
-		}
-	}
+  @include display-flex;
+  @include justify-content( center );
+  margin: 0;
+  list-style: none;
+  li {
+    margin: 0 rem-calc(10px) 0 0;
+    &:last-child {
+      margin-right: 0;
+    }
+    a {
+      @include text-hide;
+      color: rgba(255,255,255,.4);
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      height: 100%;
+      position: relative;
+      &:before {
+        @include icon-font-properties;
+        font-size: rem-calc(24px);
+        display: block; // cross browser fix
+      }
+      &:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+  .i-facebook {
+    a {
+      &:before {
+        content: $i-facebook;
+      }
+    }
+  }
+  .i-twitter {
+    a {
+      &:before {
+        content: $i-twitter;
+      }
+    }
+  }
+  .i-instagram {
+    a {
+      &:before {
+        content: $i-instagram;
+      }
+    }
+  }
 }
 
 

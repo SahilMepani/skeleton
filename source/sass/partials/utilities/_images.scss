@@ -1,16 +1,15 @@
-.img-fluid {
-  max-width: 100%;
+.img-fluid, .img-responsive {
+	width: auto;
   height: auto;
 }
 
 // Custom
-.img-responsive,
+// align classes are set by wp on images inside editor.
 .alignnone,
 .alignleft,
 .alignright,
 .aligncenter,
 .wp-post-image {
-	// align classes are set by wp on images inisde editor.
   width: auto;
   height: auto;
 }

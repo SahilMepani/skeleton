@@ -1,37 +1,37 @@
 @mixin stagger-animation( $animation, $child, $interval: 100 ) {
-	$delay: $interval;
-	visibility: visible;
-	@include animation-duration( 1s );
-	@include animation-fill-mode( both );
-	@include animation-name( $animation );
-	@for $i from 1 through $child {
-		$delay: $delay + $interval;
-	  &:nth-child(#{$i}) {
-			@include animation-delay( unquote($delay + 'ms') );
-	  }
-	}
+  $delay: $interval;
+  visibility: visible;
+  @include animation-duration( 1s );
+  @include animation-fill-mode( both );
+  @include animation-name( $animation );
+  @for $i from 1 through $child {
+    $delay: $delay + $interval;
+    &:nth-child(#{$i}) {
+      @include animation-delay( unquote($delay + 'ms') );
+    }
+  }
 }
 
 @mixin animate-underline-on-hover( $border-color, $text-color ) {
-	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
-	padding-bottom: rem-calc(1px);
-	position: relative;
-	transition: .2s;
-	&:after {
-		background-color: $border-color;
-		content: '';
-		left: 0;
-		right: 0;
-		height: rem-calc(1px);
-		position: absolute;
-		bottom: 0;
-		@include scale(0);
-		transition: .25s ease-out;
-	}
-	&:hover {
-		color: $text-color;
-		&:after {
-			@include scale(1);
-		}
-	}
+  /* If text is wrapped in two lines, it stops working so avoid using it for larger text */
+  padding-bottom: rem-calc(1px);
+  position: relative;
+  transition: .2s;
+  &:after {
+    background-color: $border-color;
+    content: '';
+    left: 0;
+    right: 0;
+    height: rem-calc(1px);
+    position: absolute;
+    bottom: 0;
+    @include scale(0);
+    transition: .25s ease-out;
+  }
+  &:hover {
+    color: $text-color;
+    &:after {
+      @include scale(1);
+    }
+  }
 }

@@ -1,11 +1,17 @@
 // Custom
+@each $color, $value in $colors {
+  .bg-#{$color} {
+    background-color: $value !important;
+  }
+};
+
 .bg-video {
-	position: absolute;
-	left: 0;
-	top: 0;
-	-o-object-fit: fill;
-	object-fit: cover;
-	overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -o-object-fit: fill;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .bg-video-fullscreen,
@@ -29,5 +35,13 @@
 }
 
 .bg-contain {
-	background-size: contain;
+  background-size: contain;
+}
+
+.bg-grey {
+  background-color: #eee;
+}
+
+.bg-dark-grey {
+  background-color: #ddd;
 }

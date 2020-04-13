@@ -38,3 +38,39 @@
   ☐ Add iThemes security plugin and activate it
   ☐ Change backend url from /wp-admin to /manage
 http://wiki.threesixtyeight.is/article/launch-check-list/
+
+
+WP Engine Development:
+☐ Add Site - Click
+☐ Site Name: - Input
+    Name of the project in Camelcase. If two words separated by space
+☐ Site group - Input
+    Select the name of the lead developer
+☐ Add Development - Click
+☐ Name the environment: - Input
+    Name of the environment with dev suffix. It will also become the URL. If that name is not available change the "dev" to "devs".
+☐ Create Environment - Click
+☐ Utilities - Click
+☐ Enable Password Protected for Development
+    User is always the "EnviromnentName/Subdomain"
+    Password will be the "{EnviromnentName}" + "368"
+☐ STP Users (Development) - Click
+    Username will be the "enviromnent name"
+    Password will be "{{ Regular 368 }}"
+☐ WP Admin
+    Click on reset password and change it to the {{ Regular 368 }} password
+☐ Use Local to push site to WP Engine
+☐ Reset File permission in Utilities -> Reset Permissions or else the SFTP users will not be able to upload files
+
+DeployBot:
+☐ Connect a repository - Click
+☐ Select "sahilmepani"
+☐ Choose repository
+☐ Select Yellow color and Submit and it will initialize the connection
+☐ Click on repo
+☐ Create environment and server
+☐ Name - Development & Color label: Yellow
+☐ Deployment Mode: Automatic
+☐ Select Branch Development or else master
+☐ Triggers - Notify Slack & Select channel "deploybot"
+☐ Deployment Option: Click on SFTP and enter server details

@@ -1493,6 +1493,10 @@ p:empty { display: none; }
 
 @supports (position: sticky) { .sticky-top { position: sticky; top: 0; z-index: 1020; } }
 
+.pos-abs-xy-center { position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
+
+.pos-abs-cover { position: absolute; left: 0; right: 0; top: 0; bottom: 0; }
+
 .first\:m-0:first-child { margin: 0 !important; }
 
 .first\:mt-0:first-child, .first\:my-0:first-child { margin-top: 0 !important; }

@@ -2,7 +2,7 @@
 // Screenreaders
 //
 
-.sr-only, .screen-reader-text {
+.sr-only {
   @include sr-only();
 }
 

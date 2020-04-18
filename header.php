@@ -21,9 +21,9 @@
 <header class="site-header clearfix" role="banner">
   <div class="container-fluid">
 
-    <h3 class="header-logo">
+    <div class="header-logo">
       <a href="<?php echo esc_url( home_url() ); ?>" title="<?php esc_attr_e( get_bloginfo( 'name' ) ); ?>" aria-label="Go to Home" <?php echo (is_front_page()) ? 'aria-current="page"' : ''; ?>></a>
-    </h3>
+    </div>
 
     <button class="header-nav-toggle icon-font-before" aria-label="<?php _e( 'show primary navigation', 'tse' ); ?>" aria-haspopup="true" aria-expanded="false" aria-controls="siteMenu"><?php _e( 'Menu', 'tse' ); ?></button>
 
@@ -33,7 +33,7 @@
 				'theme_location' => 'header-menu',
 				'container' => 'false',
 				'menu_class' => 'header-nav-parent-menu',
-				'items_wrap'	=> '<ul id="%1$s" class="%2$s" id="siteMenu">%3$s</ul>',
+				'items_wrap'	=> '<ul id="siteMenu" class="%2$s">%3$s</ul>',
 				)
 			); ?>
 		</nav> <!-- .header-nav -->

@@ -9,7 +9,7 @@
 </div> <!-- .container -->
 </footer> <!-- #footer -->
 
-<a href="#" class="scroll-to-top scroll-to"></a>
+<a href="#" class="scroll-to-top scroll-to" aria-label="<?php _e( 'Scroll to Top', 'tse' ); ?>"></a>
 
 <?php wp_footer(); ?>
 </body>

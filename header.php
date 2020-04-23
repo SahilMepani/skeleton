@@ -16,7 +16,7 @@
   <?php wp_head(); ?>
 </head>
 
-<body class="site-wrapper" <?php body_class(); ?>>
+<body class="site-wrapper <?php body_class(); ?>">
 
 <header class="site-header clearfix" role="banner">
   <div class="container-fluid">

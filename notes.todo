@@ -40,4 +40,4 @@ Rules:
 --- ✄ -----------------------
 
 
-  ☐	Remove the headings font and line height varialbe. We will have manually write for headings in base selectors. Each headings should have its own font-weight, line-height, letter-spacing and size defined. This is because we don't the styles from h3 class but still usign h2 line-height. Headings cannot have anything global except margin-bottom
+  ☐	Remove the headings font and line height variable. We will have manually write for headings in base selectors. Each headings should have its own font-weight, line-height, letter-spacing and size defined. This is because we don't know the styles from h3 class but still using h2 line-height. Headings cannot have anything global except margin-bottom

@@ -568,7 +568,7 @@ button {
   /* start state */
   .mfp-content {
     opacity: 0;
-    transition:all 0.2s ease-in-ou;
+    transition:all 0.2s ease-in-out;
     @include scale(0.8);
   }
   &.mfp-bg {
@@ -636,13 +636,13 @@ button {
   /* start state */
   .mfp-content {
     opacity: 0;
-    transition:all 0.5;
+    transition:all 0.5s;
     @include scale(0);
     @include rotate(500deg);
   }
   &.mfp-bg {
     opacity: 0;
-    transition:all 0.5;
+    transition:all 0.5s;
   }
   /* animate in */
   &.mfp-ready {
@@ -674,12 +674,12 @@ button {
   .mfp-content {
     vertical-align: top;
     opacity: 0;
-    transition:all 0.2;
+    transition:all 0.2s;
     @include translateY(-100px);
   }
   &.mfp-bg {
     opacity: 0;
-    transition:all 0.2;
+    transition:all 0.2s;
   }
   /* animate in */
   &.mfp-ready {

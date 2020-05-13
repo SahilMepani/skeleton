@@ -80,7 +80,7 @@ WP Engine Development:
     Name of the environment with dev suffix. It will also become the URL. If that name is not available change the "dev" to "devs".
 ☐ Create Environment - Click
 ☐ Utilities - Click
-☐ Enable Password Protected for Development
+☐ Enable Password Protected for Development (Block Traffic/Unblock)
     User is always the "EnviromnentName/Subdomain"
     Password will be the "{EnviromnentName}" + "368"
 ☐ STP Users (Development) - Click

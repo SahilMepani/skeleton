@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?3f9ktl');
-  src:  url('fonts/icomoon.eot?3f9ktl#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?3f9ktl') format('truetype'),
-    url('fonts/icomoon.woff?3f9ktl') format('woff'),
-    url('fonts/icomoon.svg?3f9ktl#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?kvs3f1');
+  src:  url('fonts/icomoon.eot?kvs3f1#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?kvs3f1') format('truetype'),
+    url('fonts/icomoon.woff?kvs3f1') format('woff'),
+    url('fonts/icomoon.svg?kvs3f1#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -73,9 +73,6 @@
 .icon-menu:before {
   content: "\e915";
 }
-.icon-x:before {
-  content: "\e918";
-}
 .icon-calendar1:before {
   content: "\e919";
 }
@@ -93,15 +90,6 @@
 }
 .icon-chevron-with-circle-up:before {
   content: "\e91e";
-}
-.icon-facebook-with-circle:before {
-  content: "\e923";
-}
-.icon-google-with-circle:before {
-  content: "\e924";
-}
-.icon-instagram-with-circle:before {
-  content: "\e925";
 }
 .icon-pinterest-with-circle:before {
   content: "\e926";

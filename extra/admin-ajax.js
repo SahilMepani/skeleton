@@ -114,7 +114,7 @@ jQuery( document ).ready( function( $ ) {
 
 					var $data = $( data );
 
-					if ( $.trim( data ) != '' && $.trim( data ) != 0 ) {
+					if ( $.trim( $data ) != '' && $.trim( $data ) != 0 ) {
 
 						$( '#filter-pagenum' ).val( parseInt( pageNumber ) + 1 );
 

@@ -50,21 +50,21 @@
       <h3 id="post-launch">1. Dev Handoff</h3>
 
       <ul>
-        <li>Upload the design to avocode before the handoff</li>
-        <li>Install the browser extension "Loom" to record handoff</li>
-        <li>Designer should record the handoff and forward the video link to developer <small>(sometimes due to connectivity issue, the conversation doesn't go through. But it is vital to have the designer's explanation which can only be recorded if they do the recording)</small></li>
-        <li>You may add notes to avocode during the handoff</li>
-        <li>Organize the assets into folders and forward the download/GDrive link</li>
+        <li>Upload the design to avocode and forward the link to XD design a day before the handoff</li>
+        <li>Organize the assets in Gdrive folders and forward the link</li>
         <ul>
-          <li>Trim the whitespace around all the images. If required, it can be created using CSS</li>
-          <li>Icons must use fills. <a href="https://icomoon.io/">Icomoon app</a> ignores strokes. <a href="https://icomoon.io/docs.html">Learn here</a> on how to convert strokes and text to fills</li>
+          <li>While exporting assets please trim the whitespace around all the images. If required, it can be coded using CSS</li>
+          <li>Icons must use fills. <a href="https://icomoon.io/">Icomoon app</a> ignores strokes. <a href="https://icomoon.io/docs.html">Learn here</a> on how to convert strokes and text to fills - Optional</li>
         </ul>
-        <li>Styleguide should minimum include the following for both a mobile and desktop</li>
+        <li>Styleguide should minimum include the following</li>
         <ul>
-          <li>Typography: <br /> Headings(h1 to h6), paragraph, blockquote, links and any other custom font styles</li>
-          <li>Form Inputs</li>
+          <li>Colors</li>
+          <li>Font Family</li>
+          <li>Typography (IMPORTANT): Each set for desktop and mobile. <br /> Headings(h1 to h6), paragraph, blockquote, links and any other custom font styles/sizes can be defined as display-1, display-2, etc</li>
+          <li>Icons</li>
           <li>Buttons</li>
-          <li>Components with hover state</li>
+          <li>Form Inputs</li>
+          <li>Components with hover/active states. It can also be included in individual design</li>
         </ul>
       </ul>
 
@@ -78,22 +78,12 @@
 
       <h5 id="local">2.1 Local WP (development branch)</h5>
       <ol>
-        <li>Download latest WordPress - <a href="https://wordpress.org/latest.zip">Download link</a></li>
-        <li>Edit wp-config.php file in root directory</li>
-        <ul>
-          <li><strike>Set $table_prefix to tse_</strike> <a href="https://www.wordfence.com/blog/2016/12/wordpress-table-prefix/" target="_blank" noopener noreferrer>Changing It Does Nothing to Improve Security</a></li>
-          <li>Set WP_DEBUG variable to true</li>
-          <li>Add define( 'WP_POST_REVISIONS', 3 );</li>
-        </ul>
-        <li>Start WordPress installation</li>
-          <ul>
-            <li>Update WP database details</li>
-            <li>Update "Site Title" <small>(ask manager)</small></li>
-            <li>Create the TSE user</li>
-            <li>Uncheck "Allow search engine..."</li>
-          </ul>
-        <li>Create pages "Home" and "Blog"</li>
+        <li>Use "LOCAL APP" to install WordPress</li>
+        <li>Create the "threesixtyeight" username with password(you know) with dev@threesixtyeight.com email</li>
+        <li>Uncheck "Allow search engine..."</li>
+        <li>Update "Site Title" <small>(ask manager)</small></li>
         <li>Go to Settings => General and update "Tagline" <small>(ask manager)</small></li>
+        <li>Create pages "Home" and "Blog"</li>
         <li>Go to Settings => Reading</li>
         <ul>
           <li>Select "A static page" and select page home for "Homepage" and page blog for "Posts page"</li>
@@ -124,7 +114,7 @@
             <li id="wp-migrate-db-pro">WP Migrate DB Pro Media Files - <a href="https://drive.google.com/open?id=1IYPn1PngeL6aSvzGquDlGZS9liYUj1o9" target="_blank">Download link</a> <br /> <small><code>a5684f4b-bd85-453e-8fb2-3feb32d64b7c</code></small></li>
             <li id="wp-migrate-db-pro">WP Migrate DB Pro Theme and Plugin files - <a href="https://drive.google.com/open?id=1ZWi7OkPZ5s-7JkxkVQ4RrlK0ADLjfQ-E" target="_blank">Download link</a> <br /> <small><code>a5684f4b-bd85-453e-8fb2-3feb32d64b7c</code></small></li>
           </ul>
-          <p>Plugins downloaded directly needs to be updated once installed</p>
+          <p>Plugins downloaded from drive needs to be updated once installed</p>
       </ol>
 
       <h5 id="development">2.2 Development WP (development branch)</h5>
@@ -159,8 +149,9 @@
         <li>Create favicon.png and favicon.ico files <small>(ask designer)</small></li>
         <li>Run <code>node -v</code> anywhere to check if you have Node.js installed in your system. If not, download from <a href="https://nodejs.org/en/" target="_blank">Node.js</a> and install </li>
         <li>Install grunt <br /> <code>npm install grunt</code></li>
-        <li>Go to theme source folder <br /> <code>cd /path/to/your/wp-content/themes/skeleton/source</code></li>
+        <li>Go to theme source folder <br /> <code>cd /path/to/your/wp-content/themes/theme-name/source</code></li>
         <li>Run the following command to install all the necessary packages to run grunt tasks <br /> <code>npm install</code></li>
+        <li>Update theme info in sass/style.scss file. Theme name should match the project name</li>
         <li>
           Run the following command for grunt to compile all the scss/js files <br />
           <div class="mb-1">
@@ -169,7 +160,6 @@
           </div>
           <p>All the scss files are created inside the source/sass/partials/ folder and its sub-folders. All the js files are divided into two folders source/js/plugins and source/js/custom. Grunt will compile all the source/sass/partials/.scss files into a single file named style.css and source/js/plugins/.js files into js/plugins.js file and source/js/custom/.js files into js/custom.js file.
         </li>
-        <li>Update theme info in sass/style.scss file. Theme name should match the project name</li>
         <li>Make the Initial Commit</li>
         <li>Go to Appearance => Themes and activate the theme</li>
         <li class="text-highlight">Create all the pages from sitemap with heirarchy and required URL structure <small>(ask manager)</small></li>
@@ -181,8 +171,8 @@
         <li>Create a new repo on bitbucket matching the project name</li>
         <li>Get your local Git repository on Bitbucket</li>
         <ul>
-          <li>Switch to your repository's directory <br />
-            <code>cd /path/to/your/repo</code>
+          <li>Switch to your theme folder <br />
+            <code>cd /path/to/your/folder/theme</code>
           </li>
           <li>Connect your existing repository to Bitbucket <br />
               <code>git remote add origin git@bitbucket.org:threesixtyeight/your-repo-name.git</code>
@@ -438,7 +428,7 @@
 </div> <!-- .alert alert-info -->
 
 <h5>rem-calc() function</h5>
-<p>Convert px units to rem. Divide the px value by $root-font-size. It is very important to wrap all the px values inside the rem-calc function for the scaling to work</p>
+<p>Convert px units to rem. Divide the px value by $root-font-size. It is very important to wrap all the px values inside the rem-calc function for the scaling to work on 3K or higher screens</p>
 <h6 class="mt-0">Usage</h6>
 <code class="d-block p-1 mb-4">
 <pre>

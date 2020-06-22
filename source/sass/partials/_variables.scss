@@ -133,12 +133,12 @@ $spacers : (
   12     : 12rem,
   13     : 13rem,
   14     : 14rem,
-  15     : 15rem,
-  16     : 16rem,
-  17     : 17rem,
-  18     : 18rem,
-  19     : 19rem,
-  20     : 20rem,
+  // 15     : 15rem,
+  // 16     : 16rem,
+  // 17     : 17rem,
+  // 18     : 18rem,
+  // 19     : 19rem,
+  // 20     : 20rem,
 );
 
 
@@ -195,7 +195,7 @@ $container-max-widths: (
   xl : 93vw,
   xxl : 93vw,
   xxxl : 155rem, // max-width value needs to be less than the (breakpoint value(xxxl) - $container-padding)
-  // this and $grid-breakpoints "map size" should match
+  // this object and $grid-breakpoints "map size" object should match
 );
 
 $container-sm-max-width  : map-get($container-max-widths, 'sm');

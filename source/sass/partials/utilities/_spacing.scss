@@ -5,7 +5,10 @@
 
     @each $prop, $abbrev in (margin: m, padding: p) {
       @each $size, $length in $spacers {
-        .#{$abbrev}#{$infix}-#{$size} { #{$prop}: $length !important; }
+
+        .#{$abbrev}#{$infix}-#{$size} {
+          #{$prop}: $length !important;
+        }
         .#{$abbrev}t#{$infix}-#{$size},
         .#{$abbrev}y#{$infix}-#{$size} {
           #{$prop}-top: $length !important;
@@ -22,6 +25,29 @@
         .#{$abbrev}x#{$infix}-#{$size} {
           #{$prop}-left: $length !important;
         }
+
+        /* ================================================= */
+				// Custom, vw units
+				.#{$abbrev}#{$infix}-#{$size}vw {
+					#{$prop}: $length + unquote("vw") !important;
+				}
+				.#{$abbrev}t#{$infix}-#{$size}vw,
+				.#{$abbrev}y#{$infix}-#{$size}vw {
+					#{$prop}-top: $length + unquote("vw") !important;
+				}
+				.#{$abbrev}r#{$infix}-#{$size}vw,
+				.#{$abbrev}x#{$infix}-#{$size}vw {
+					#{$prop}-right: $length + unquote("vw") !important;
+				}
+				.#{$abbrev}b#{$infix}-#{$size}vw,
+				.#{$abbrev}y#{$infix}-#{$size}vw {
+					#{$prop}-bottom: $length + unquote("vw") !important;
+				}
+				.#{$abbrev}l#{$infix}-#{$size}vw,
+				.#{$abbrev}x#{$infix}-#{$size}vw {
+					#{$prop}-left: $length + unquote("vw") !important;
+				}
+
       }
     }
 

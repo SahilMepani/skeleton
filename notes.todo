@@ -41,3 +41,16 @@ Rules:
 
 
   ☐	Remove the headings font and line height variable. We will have manually write for headings in base selectors. Each headings should have its own font-weight, line-height, letter-spacing and size defined. This is because we don't know the styles from h3 class but still using h2 line-height. Headings cannot have anything global except margin-bottom
+
+
+/* ================================================= */
+// Remember this classes
+.row-col-auto
+.row-col-3/4/5 etc
+.col  : same width columns
+.col-auto
+.g : gutter classes on rows
+.table-borderless
+.table-sm
+.align-middle, .align-top, .align-bottom on table element
+.flex-fill

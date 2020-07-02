@@ -26,26 +26,26 @@
           #{$prop}-left: $length !important;
         }
 
-        /* ================================================= */
 				// Custom, vw units
+        /* ================================================= */
 				.#{$abbrev}#{$infix}-#{$size}vw {
-					#{$prop}: $length + unquote("vw") !important;
+					#{$prop}: $size + unquote("vw") !important;
 				}
 				.#{$abbrev}t#{$infix}-#{$size}vw,
 				.#{$abbrev}y#{$infix}-#{$size}vw {
-					#{$prop}-top: $length + unquote("vw") !important;
+					#{$prop}-top: $size + unquote("vw") !important;
 				}
 				.#{$abbrev}r#{$infix}-#{$size}vw,
 				.#{$abbrev}x#{$infix}-#{$size}vw {
-					#{$prop}-right: $length + unquote("vw") !important;
+					#{$prop}-right: $size + unquote("vw") !important;
 				}
 				.#{$abbrev}b#{$infix}-#{$size}vw,
 				.#{$abbrev}y#{$infix}-#{$size}vw {
-					#{$prop}-bottom: $length + unquote("vw") !important;
+					#{$prop}-bottom: $size + unquote("vw") !important;
 				}
 				.#{$abbrev}l#{$infix}-#{$size}vw,
 				.#{$abbrev}x#{$infix}-#{$size}vw {
-					#{$prop}-left: $length + unquote("vw") !important;
+					#{$prop}-left: $size + unquote("vw") !important;
 				}
 
       }

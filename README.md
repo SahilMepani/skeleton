@@ -3,7 +3,6 @@ Starter theme to help you jump start coding custom WordPress themes
 
 ## Setup
 1. Download the master branch **DO NOT CLONE**
-1. If present, **delete .git, .sass-cache, .php folders**
 2. Rename the theme folder to match the project name
 3. Create a theme screenshot.png file using screenshot.psd
 4. Create favicon.png and favicon.ico files at the root

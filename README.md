@@ -2,7 +2,7 @@
 Starter theme to help you jump start coding custom WordPress themes
 
 ## Setup
-1. Download the master branch. **DO NOT CLONE**
+1. Download the **MASTER** branch. **DO NOT CLONE**
 2. Rename the theme folder to match the project name
 3. Create a theme screenshot.png file using screenshot.psd
 4. Create favicon.png and favicon.ico files at the root
@@ -16,3 +16,7 @@ Starter theme to help you jump start coding custom WordPress themes
 `cd /path/to/your/wp-content/themes/theme-name/source` <br>
 `grunt`<br>
 All the sass files are created inside the source/sass/partials/ folder and its sub-folders. All the js files are divided into two folders source/js/plugins and source/js/custom. Grunt will compile all the source/sass/partials/.scss files into a file named style.css and source/js/plugins/.js files into js/plugins.js file and source/js/custom/.js files into js/custom.js file
+
+
+### Blocks Branch
+This branch contains additional files and codes. Checkout its readme file

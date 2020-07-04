@@ -42,14 +42,6 @@
   }
 }
 
-@mixin btn-primary {
-  @include btn-red;
-}
-
-@mixin btn-secondary {
-  @include btn-black;
-}
-
 @mixin btn-xs {
   padding: rem-calc( 5px ) rem-calc( 10px );
 }
@@ -60,14 +52,6 @@
 
 @mixin btn-md {
   padding: rem-calc( 15px ) rem-calc( 20px );
-}
-
-@mixin btn-lg {
-  padding: rem-calc( 20px ) rem-calc( 30px );
-}
-
-@mixin btn-xlg {
-  padding: rem-calc( 25px ) rem-calc( 40px );
 }
 
 @mixin btn-input-clone( $bg-color ) {

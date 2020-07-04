@@ -2,7 +2,7 @@
 * Theme Name: Skeleton
 * Theme URI: http://www.yourdomain.com
 * Description: Responsive custom theme
-* Text Domain: skeleton
+* Text Domain: tse
 * Version: 1.0
 * Author: ThreeSixtyEight Team
 * Author URI: www.threesixtyeight.com
@@ -13,7 +13,6 @@
 @import "compass/utilities";
 @import "compass/css3";
 @import "animation/core";
-@import "node_modules/breakpoint-sass/stylesheets/breakpoint";
 
 // Required in same order
 @import "partials/variables";
@@ -27,26 +26,19 @@
 
 // Components
 @import "partials/components/content";
-@import "partials/components/header";
-@import "partials/components/header-menu";
-@import "partials/components/footer";
+// @import "partials/components/header";
+// @import "partials/components/footer";
 
 // Templates
-@import "partials/templates/index";
-@import "partials/templates/page";
-@import "partials/templates/single";
-@import "partials/templates/search";
-@import "partials/templates/404";
+
 
 // Helpers
 @import "partials/helpers/table";
-@import "partials/helpers/list";
 @import "partials/helpers/buttons";
 @import "partials/helpers/helpers";
 // @import "partials/helpers/keyframes";
 
 // Utilities
-@import "partials/utilities/align.scss";
 @import "partials/utilities/alert.scss";
 @import "partials/utilities/background.scss";
 @import "partials/utilities/clearfix.scss";
@@ -54,7 +46,8 @@
 @import "partials/utilities/display.scss";
 @import "partials/utilities/embed.scss";
 @import "partials/utilities/flex.scss";
-@import "partials/utilities/float.scss";
+// @import "partials/utilities/float.scss";
+@import "partials/utilities/images.scss";
 @import "partials/utilities/overflow.scss";
 @import "partials/utilities/position.scss";
 // @import "partials/utilities/pseudo-class.scss";
@@ -63,15 +56,16 @@
 @import "partials/utilities/spacing.scss";
 @import "partials/utilities/stretched-links.scss";
 @import "partials/utilities/text.scss";
+@import "partials/utilities/vertical-align.scss";
 @import "partials/utilities/visibility.scss";
 @import "partials/utilities/icons.scss";
 @import "partials/utilities/custom.scss";
 
 // Last minute changes
-@import "partials/shame";
+// @import "partials/shame";
 
 // IE specific
-@import "partials/ie";
+// @import "partials/ie";
 
 // Print
 @import "partials/print";

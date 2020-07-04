@@ -1,16 +1,16 @@
 .table-striped {
-	tbody {
-		tr:nth-child(odd) {
-			background-color: #f9f9f9;
-		}
-	}
+  tbody {
+    tr:nth-child(odd) {
+      background-color: #f9f9f9;
+    }
+  }
 }
 
 .table-bordered {
-	th,
+  th,
   td {
-		border: 1px solid #e5e5e5;
-	}
+    border: 1px solid #e5e5e5;
+  }
 }
 
 .table-hover {

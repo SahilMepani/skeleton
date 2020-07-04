@@ -66,32 +66,3 @@
 // Reset
 
 .text-reset { color: inherit !important; }
-
-
-// Custom
-.text-black { color: $black !important; }
-.text-primary { color: $primary !important; }
-.text-secondary { color: $secondary !important; }
-
-.ff-body { font-family: $body-font-family !important; }
-.ff-heading { font-family: $headings-font-family !important; }
-
-.underline { text-decoration: underline !important; }
-
-.lead, .text-big {
-  font-size: rem-calc(20px) !important;
-}
-.text-small { @extend small; }
-
-.lowercase  { text-transform: lowercase !important; }
-.uppercase  { text-transform: uppercase !important; }
-.capitalize { text-transform: capitalize !important; }
-
-.fw-light   { font-weight: $font-weight-light !important; }
-.fw-lighter { font-weight: $font-weight-lighter !important; }
-.fw-normal  { font-weight: $font-weight-normal !important; }
-.fw-bold    { font-weight: $font-weight-bold !important; }
-.fw-bolder  { font-weight: $font-weight-bolder !important; }
-.italic { font-style: italic !important; }
-
-.lh-1 { line-height: 1 !important; }

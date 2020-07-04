@@ -1,12 +1,4 @@
-# WP INSTALLATION --- ✄ -----------------------:
-  ☐ Edit wp-config.php file in root
-    ☐ Change $table_prefix to 'tse_';
-    ☐ Change WP_DEBUG variable to true
-    ☐ Add define( 'WP_POST_REVISIONS', 3 );
-  ☐ Create a user "threesixtyeight" with password "$$3hree6ixty8ight$$" and email "dev@threesixtyeight.com"
-
 # START --- ✄ -----------------------:
-  ☐ Create a user "threesixtyeight" with password "3hree6ixty8ight" and email "dev@threesixtyeight.com"
   ☐ Change WP_DEBUG variable to true in wp-config.php file in root
   ☐ Delete .git, .sass-cache, .php folders in theme, if present
   ☐ Add theme info in sass/style.scss file. Theme name should match the project name

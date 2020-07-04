@@ -17,9 +17,7 @@
 
 		<p>2) <strong>If you typed in a URL</strong>... make sure your spelling is correct. Then try reloading the page.</p>
 
-		<p>3) <strong>Look for</strong> it in our <a href="<?php echo home_url(); ?>/sitemap" title="sitemap">sitemap</a>.</p>
-
-		<p>4) <strong>Return to</strong> <a href="<?php echo home_url(); ?>" title="<?php esc_attr_e( get_bloginfo( 'name' ) ); ?>">our homepage</a> (and please contact us to say what went wrong, so we can fix it, pronto).</p>
+		<p>3) <strong>Return to</strong> <a href="<?php echo home_url(); ?>" title="<?php esc_attr_e( get_bloginfo( 'name' ) ); ?>">our homepage</a> (and please contact us to say what went wrong, so we can fix it, pronto).</p>
 
 	</section> <!-- .main-content -->
 

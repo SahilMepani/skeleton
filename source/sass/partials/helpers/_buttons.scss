@@ -1,13 +1,9 @@
+.btn-red {
+  @include btn-red;
+}
+
 .btn-black {
   @include btn-black;
-}
-
-.btn-primary {
-  @include btn-primary;
-}
-
-.btn-secondary {
-  @include btn-secondary;
 }
 
 .btn-xs {
@@ -22,22 +18,10 @@
   @include btn-md;
 }
 
-.btn-lg {
-  @include btn-lg;
-}
-
-.btn-xlg {
-  @include btn-xlg;
-}
-
 .btn-input-clone {
   @include btn-input-clone( transparent );
 }
 
 .btn-disabled {
   @include btn-disabled;
-}
-
-.btn-block {
-  display: block;
 }

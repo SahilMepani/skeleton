@@ -1,4 +1,5 @@
 // Custom
+////////////////////////////////////////////////
 @each $color, $value in $colors {
   .bg-#{$color} {
     background-color: $value !important;
@@ -36,12 +37,4 @@
 
 .bg-contain {
   background-size: contain;
-}
-
-.bg-grey {
-  background-color: #eee;
-}
-
-.bg-dark-grey {
-  background-color: #ddd;
 }

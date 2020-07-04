@@ -37,6 +37,9 @@
 		}
 		.maxw#{$infix}-none {
 		  max-width: none;
+    }
+    .w#{$infix}-auto {
+		  width: auto;
 		}
 
   }

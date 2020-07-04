@@ -744,6 +744,12 @@ p:empty { display: none; }
 
 .list-unstyled > li { list-style: none; }
 
+.alignnone { margin-top: 1rem; }
+
+.wp-caption.alignleft { float: left; margin-top: 0; }
+
+.wp-caption.alignright { float: right; margin-top: 0; }
+
 .alert { background-color: #ddd; border: 0.1rem solid #656565; padding: 1.5rem; }
 
 .alert-info { background-color: #ffffd9; border: 0.1rem solid #e8e800; }

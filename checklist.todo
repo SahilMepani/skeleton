@@ -15,10 +15,7 @@
       ☐ If comments not allowed, Uncheck "Show Avatars"
   ☐ Create a screenshot.png (1200 x 900) file from screenshot.psd inside theme
   ☐ Create favicon.png and favicon.ico file.
-      You may use https://www.favicon-generator.org/ - Generate only 16x16 favicon.ico
-  ☐ Update WordPress and installed plugins
-  ☐ Activate required plugins
-  ☐ Create all the pages from sitemap with heirarchy and required URL structure
+    You may use https://www.favicon-generator.org/ - Generate only 16x16 favicon.ico
 
 # FINALIZE --- ✄ -----------------------:
   ☐ Redirect all CPT slug to plural URL and use custom template to list all CPT posts for eg. url.com/resource should be redirect to url.com/resources

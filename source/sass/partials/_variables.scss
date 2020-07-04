@@ -4,8 +4,9 @@
 $root-font-size : 10px; // never change this value
 
 
-// Project specific
-$red       : #ff2500;
+// Colors
+////////////////////////////////////////////////
+$red        : #ff2500;
 // Required colors
 $white      : #fff;
 $black      : #222;
@@ -13,7 +14,10 @@ $primary    : $red;
 $secondary  : $black;
 $body-color : $black;
 
-// Colors
+
+// Colors Map
+// use to create 'text-colorname' and 'bg-colorname' classes
+////////////////////////////////////////////////
 $colors: (
   red       : $red,
   white     : $white,
@@ -25,6 +29,7 @@ $colors: (
 
 
 // Links
+////////////////////////////////////////////////
 $base-link-color            : $red;
 $base-link-hover-color      : $black;
 $base-link-decoration       : none;
@@ -32,11 +37,13 @@ $base-link-hover-decoration : none;
 
 
 // Font family
+////////////////////////////////////////////////
 $montserrat : 'Montserrat', 'Lato', sans-serif;
 $monospace  : Menlo, Monaco, Consolas, "Courier New", monospace;
 
 
 // Body
+////////////////////////////////////////////////
 $body-bg-color    : #fff;
 $body-font-size   : 1.6rem;
 $body-font-weight : 400;
@@ -44,11 +51,13 @@ $body-font-family : $montserrat;
 
 
 // Spacing
+////////////////////////////////////////////////
 $global-margin-bottom : 3rem; // p, table, ul, ol, dl, dd, pre, blockquote, address
 $global-line-height   : 1.7; // p, pre, blockquote, address, dt, textarea
 
 
 // Headings
+////////////////////////////////////////////////
 $headings-color         : inherit;
 $headings-font-family   : inherit;
 $headings-margin-top    : $global-margin-bottom*2;
@@ -58,7 +67,8 @@ $headings-margin-bottom : 2rem;
 // variables are set in input mixin file because it requires rem-values
 
 
-// Icons,
+// Icons
+////////////////////////////////////////////////
 $i-menu             : '\e62f';
 $i-search           : '\e612';
 $i-cross            : '\e62e';
@@ -94,11 +104,13 @@ $i-linkedin         : '\e62b';
 
 
 // Text selection
+////////////////////////////////////////////////
 $text-selection-bg-color : #F7EA6F;
 $text-selection-color    : #2c2c2c;
 
 
 // Font weights
+////////////////////////////////////////////////
 $font-weight-lighter : lighter;
 $font-weight-light   : 300;
 $font-weight-normal  : 400;
@@ -107,6 +119,7 @@ $font-weight-bolder  : bolder;
 
 
 // This variable affects the `.pt-*` and `.mb-*` classes etc.
+////////////////////////////////////////////////
 $spacers : (
   0      : 0,
   0-#{5} : 0.5rem,
@@ -143,6 +156,7 @@ $spacers : (
 
 
 // Breakpoints - Min width
+////////////////////////////////////////////////
 $xs      : 0; // do not change
 $min-375 : 375px;
 $min-414 : 414px;
@@ -159,12 +173,15 @@ $mac-13  : ($md) (max-height 800px);
 
 
 // Changes depending on the project design, used on html element
+////////////////////////////////////////////////
 $mobile: $min-375; // mobile canvas size, mostly remains same
 $desktop: $two-k; // desktop canvas size
 $scaling: $two-k; // scaling starts from here, do not change if not sure, it cannot be smaller than $desktop
 
 
 // Breakpoints - Map
+// this and $container-max-widths "map size" should match
+////////////////////////////////////////////////
 $grid-breakpoints : (
   xs  : $xs,
   sm  : $sm,
@@ -172,13 +189,13 @@ $grid-breakpoints : (
   lg  : $lg,
   xl  : $xl,
   xxl : $xxl,
-  xxxl : $xxxl,
-  // this and $container-max-widths "map size" should match
+  // xxxl : $xxxl,
   // add more if required
 );
 
 // Grid columns
 // Set the number of columns and specify the width of the gutters.
+////////////////////////////////////////////////
 $enable-grid-classes : true;
 $grid-columns        : 12;
 $grid-gutter-width   : 3rem; // gets divided by half per column for columns
@@ -188,14 +205,17 @@ $container-padding   : 3rem; // each x-side
 // Grid containers
 // Define the maximum width of `.container` for different screen sizes.
 // Changed the value to rem to scale on higher size screens
+// this and $grid-breakpoints "map size" should match
+////////////////////////////////////////////////
 $container-max-widths: (
-  sm   : 95vw,
-  md   : 95vw,
-  lg   : 93vw,
-  xl   : 93vw,
-  xxl  : 93vw,
-  xxxl : 155rem, // max-width value needs to be less than the (breakpoint value(xxxl) - $container-padding)
-  // this and $grid-breakpoints "map size" should match
+  xs  : 100vw,
+  sm  : 95vw,
+  md  : 95vw,
+  lg  : 93vw,
+  xl  : 93vw,
+  xxl : 93vw,
+  // max-width value needs to be less than the (breakpoint value(xxxl) - $container-padding)
+  // xxxl : 155rem,
 );
 
 $container-sm-max-width  : map-get($container-max-widths, 'sm');
@@ -207,6 +227,7 @@ $container-xxxl-max-width : map-get($container-max-widths, 'xxxl');
 
 
 // Embed aspect ratio
+////////////////////////////////////////////////
 $embed-responsive-aspect-ratios: (
   (21 9),
   (16 9),
@@ -215,47 +236,52 @@ $embed-responsive-aspect-ratios: (
 );
 
 
-// This variable affects the `.h-*` and `.w-*` classes.
+// This variable affects the `.w-*` classes.
+////////////////////////////////////////////////
 $sizes: (
-  20   : 20%,
-  25   : 25%,
-  30   : 30%,
-  35   : 35%,
-  40   : 40%,
-  45   : 45%,
+  // 20   : 20%,
+  // 25   : 25%,
+  // 30   : 30%,
+  // 35   : 35%,
+  // 40   : 40%,
+  // 45   : 45%,
   50   : 50%,
   55   : 55%,
   60   : 60%,
   65   : 65%,
   70   : 70%,
   75   : 75%,
-  80   : 80%,
-  85   : 85%,
-  90   : 90%,
-  95   : 95%,
+  // 80   : 80%,
+  // 85   : 85%,
+  // 90   : 90%,
+  // 95   : 95%,
   100  : 100%,
   auto : auto
 );
 
 
 // Breakpoints - Orientation
+////////////////////////////////////////////////
 $portrait: orientation portrait;
 $landscape: orientation landscape;
 
 
 // Utilities
+////////////////////////////////////////////////
 $displays  : none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex;
 $overflows : auto, hidden;
 $positions : static, relative, absolute, fixed, sticky;
 
 
 // Printing
+////////////////////////////////////////////////
 $enable-print-styles  : true;
 $print-page-size      : a3;
 $print-body-min-width : map-get($grid-breakpoints, "lg");
 
 
 // Z-index
+////////////////////////////////////////////////
 $zindex-dropdown       : 1000;
 $zindex-sticky         : 1020;
 $zindex-fixed          : 1030;

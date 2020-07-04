@@ -2,7 +2,8 @@
 Starter theme to help you jump start coding custom WordPress themes
 
 ## Setup
-1. Clone the theme
+1. Download the theme **DO NOT CLONE**
+1. **Delete .git, .sass-cache, .php folders**
 2. Rename the theme folder to match the project name
 3. Create a screenshot.png file of 1200 x 900 in the theme root
 4. Create favicon.png and favicon.ico files in the theme root

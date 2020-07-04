@@ -1,7 +1,5 @@
 # START --- ✄ -----------------------:
   ☐ Change WP_DEBUG variable to true in wp-config.php file in root
-  ☐ Delete .git, .sass-cache, .php folders in theme, if present
-  ☐ Add theme info in sass/style.scss file. Theme name should match the project name
   ☐ Activate the theme
   ☐ Change site title and tagline in Settings -> General
   ☐ Create pages "Home" and "Blog".
@@ -13,8 +11,6 @@
   ☐ Go to Settings -> Discussions and
       ☐ If comments not allowed, Uncheck "Allow people to post comments on new articles"
       ☐ If comments not allowed, Uncheck "Show Avatars"
-  ☐ Create a screenshot.png (1200 x 900) file from screenshot.psd inside theme
-  ☐ Create favicon.png and favicon.ico file.
     You may use https://www.favicon-generator.org/ - Generate only 16x16 favicon.ico
 
 # FINALIZE --- ✄ -----------------------:

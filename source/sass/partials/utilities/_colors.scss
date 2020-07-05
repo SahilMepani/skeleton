@@ -1,4 +1,5 @@
 // Custom
+////////////////////////////////////////////////
 @each $color, $value in $colors {
   .text-#{$color}, .color-#{$color} {
     color: $value !important;

@@ -28,25 +28,25 @@
 
         // Custom, vw units
         /* ================================================= */
-        .#{$abbrev}#{$infix}-#{$size}vw {
-          #{$prop}: $size + unquote("vw") !important;
-        }
-        .#{$abbrev}t#{$infix}-#{$size}vw,
-        .#{$abbrev}y#{$infix}-#{$size}vw {
-          #{$prop}-top: $size + unquote("vw") !important;
-        }
-        .#{$abbrev}r#{$infix}-#{$size}vw,
-        .#{$abbrev}x#{$infix}-#{$size}vw {
-          #{$prop}-right: $size + unquote("vw") !important;
-        }
-        .#{$abbrev}b#{$infix}-#{$size}vw,
-        .#{$abbrev}y#{$infix}-#{$size}vw {
-          #{$prop}-bottom: $size + unquote("vw") !important;
-        }
-        .#{$abbrev}l#{$infix}-#{$size}vw,
-        .#{$abbrev}x#{$infix}-#{$size}vw {
-          #{$prop}-left: $size + unquote("vw") !important;
-        }
+        // .#{$abbrev}#{$infix}-#{$size}vw {
+        //   #{$prop}: $size + unquote("vw") !important;
+        // }
+        // .#{$abbrev}t#{$infix}-#{$size}vw,
+        // .#{$abbrev}y#{$infix}-#{$size}vw {
+        //   #{$prop}-top: $size + unquote("vw") !important;
+        // }
+        // .#{$abbrev}r#{$infix}-#{$size}vw,
+        // .#{$abbrev}x#{$infix}-#{$size}vw {
+        //   #{$prop}-right: $size + unquote("vw") !important;
+        // }
+        // .#{$abbrev}b#{$infix}-#{$size}vw,
+        // .#{$abbrev}y#{$infix}-#{$size}vw {
+        //   #{$prop}-bottom: $size + unquote("vw") !important;
+        // }
+        // .#{$abbrev}l#{$infix}-#{$size}vw,
+        // .#{$abbrev}x#{$infix}-#{$size}vw {
+        //   #{$prop}-left: $size + unquote("vw") !important;
+        // }
 
       }
     }

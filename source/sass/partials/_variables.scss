@@ -166,6 +166,7 @@ $scaling: $two-k; // scaling starts from here, do not change if not sure, it can
 
 // Breakpoints - Map
 $grid-breakpoints : (
+  // this and $container-max-widths "map size" should match
   xs  : $xs,
   sm  : $sm,
   md  : $md,
@@ -173,7 +174,6 @@ $grid-breakpoints : (
   xl  : $xl,
   xxl : $xxl,
   xxxl : $xxxl,
-  // this and $container-max-widths "map size" should match
   // add more if required
 );
 
@@ -188,14 +188,16 @@ $container-padding   : 3rem; // each x-side
 // Grid containers
 // Define the maximum width of `.container` for different screen sizes.
 // Changed the value to rem to scale on higher size screens
+// this object and $grid-breakpoints "map size" object should match
 $container-max-widths: (
-  sm : 95vw,
-  md : 95vw,
-  lg : 93vw,
-  xl : 93vw,
-  xxl : 93vw,
-  xxxl : 155rem, // max-width value needs to be less than the (breakpoint value(xxxl) - $container-padding)
-  // this object and $grid-breakpoints "map size" object should match
+  xs   : 100vw,
+  sm   : 95vw,
+  md   : 95vw,
+  lg   : 93vw,
+  xl   : 93vw,
+  xxl  : 93vw,
+  // max-width value needs to be less than the (breakpoint value(xxxl) - $container-padding)
+  xxxl : 155rem,
 );
 
 $container-sm-max-width  : map-get($container-max-widths, 'sm');
@@ -217,22 +219,22 @@ $embed-responsive-aspect-ratios: (
 
 // This variable affects the `.h-*` and `.w-*` classes.
 $sizes: (
-  20   : 20%,
-  25   : 25%,
-  30   : 30%,
-  35   : 35%,
-  40   : 40%,
-  45   : 45%,
+  // 20   : 20%,
+  // 25   : 25%,
+  // 30   : 30%,
+  // 35   : 35%,
+  // 40   : 40%,
+  // 45   : 45%,
   50   : 50%,
   55   : 55%,
   60   : 60%,
   65   : 65%,
   70   : 70%,
   75   : 75%,
-  80   : 80%,
-  85   : 85%,
-  90   : 90%,
-  95   : 95%,
+  // 80   : 80%,
+  // 85   : 85%,
+  // 90   : 90%,
+  // 95   : 95%,
   100  : 100%,
   auto : auto
 );

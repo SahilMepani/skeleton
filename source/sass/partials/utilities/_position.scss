@@ -5,12 +5,6 @@
   .position-#{$position} { position: $position !important; }
 }
 
-// Custom
-@each $position in $positions {
-  .#{$position} { position: $position !important; }
-}
-// End Custom
-
 // Shorthand
 
 .fixed-top {
@@ -35,20 +29,4 @@
     top: 0;
     z-index: $zindex-sticky;
   }
-}
-
-// Custom
-.pos-abs-xy-center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  @include translate( -50%, -50% );
-}
-
-.pos-abs-cover {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
 }

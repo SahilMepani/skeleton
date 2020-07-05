@@ -6,35 +6,35 @@
   }
 };
 
-.bg-video {
-  position: absolute;
-  left: 0;
-  top: 0;
-  -o-object-fit: fill;
-  object-fit: cover;
-  overflow: hidden;
-}
-
-.bg-video-fullscreen,
-.bg-video-cover {
-  min-width: 100%;
-  min-height: 100%;
-}
-
-.bg-video-inline,
-.bg-video-contain {
-  max-width: 100%;
-  min-width: 100%;
-}
-
 .bg-cover {
   @include bg-cover;
-}
-
-.bg-overlay {
-  @include bg-overlay;
 }
 
 .bg-contain {
   background-size: contain;
 }
+
+// .bg-video {
+//   position: absolute;
+//   left: 0;
+//   top: 0;
+//   -o-object-fit: fill;
+//   object-fit: cover;
+//   overflow: hidden;
+// }
+
+// .bg-video-fullscreen,
+// .bg-video-cover {
+//   min-width: 100%;
+//   min-height: 100%;
+// }
+
+// .bg-video-inline,
+// .bg-video-contain {
+//   max-width: 100%;
+//   min-width: 100%;
+// }
+
+// .bg-overlay {
+//   @include bg-overlay;
+// }

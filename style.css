@@ -723,17 +723,7 @@ p:empty { display: none; }
 
 .bg-body { background-color: #222 !important; }
 
-.bg-video { position: absolute; left: 0; top: 0; -o-object-fit: fill; object-fit: cover; overflow: hidden; }
-
-.bg-video-fullscreen, .bg-video-cover { min-width: 100%; min-height: 100%; }
-
-.bg-video-inline, .bg-video-contain { max-width: 100%; min-width: 100%; }
-
 .bg-cover { background-repeat: no-repeat; background-position: center; background-size: cover; }
-
-.bg-overlay { position: relative; }
-
-.bg-overlay:before { content: ''; display: block; position: absolute; left: 0; right: 0; top: 0; bottom: 0; }
 
 .bg-contain { background-size: contain; }
 
@@ -836,20 +826,6 @@ p:empty { display: none; }
   .d-print-table-cell { display: table-cell !important; }
   .d-print-flex { display: flex !important; }
   .d-print-inline-flex { display: inline-flex !important; } }
-
-.embed-responsive { position: relative; display: block; width: 100%; padding: 0; overflow: hidden; }
-
-.embed-responsive::before { display: block; content: ""; }
-
-.embed-responsive .embed-responsive-item, .embed-responsive iframe, .embed-responsive embed, .embed-responsive object, .embed-responsive video { position: absolute; top: 0; bottom: 0; left: 0; width: 100%; height: 100%; border: 0; }
-
-.embed-responsive-21by9::before { padding-top: 42.8571428571%; }
-
-.embed-responsive-16by9::before { padding-top: 56.25%; }
-
-.embed-responsive-4by3::before { padding-top: 75%; }
-
-.embed-responsive-1by1::before { padding-top: 100%; }
 
 .flex-row { flex-direction: row !important; }
 

@@ -19,4 +19,4 @@ All the sass files are created inside the source/sass/partials/ folder and its s
 
 
 ## Blocks Branch
-Contains additional files and code. Checkout its readme file
+Contains additional files and code. It can be used to copy paste files or code to your theme should you need it. Checkout its readme file

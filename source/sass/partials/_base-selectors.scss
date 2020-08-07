@@ -113,13 +113,13 @@ a {
     text-decoration: $base-link-hover-decoration;
   }
   &:focus {
-    outline: rem-calc(3px) dashed dodgerblue;
+    outline: none;
   }
 }
 
 button {
   &:focus {
-    outline: rem-calc(3px) dashed dodgerblue;
+    outline: none;
   }
 }
 

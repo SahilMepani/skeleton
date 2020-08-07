@@ -1,7 +1,7 @@
 /*----------  Required  ----------*/
-/* suppress focus ring on form controls for mouse and touch users, using what-input js */
-[data-whatintent='mouse'] *:focus, [data-whatintent='touch'] *:focus {
-  outline: none;
+/* show focus ring on form controls only when keyboard tabbing is used, using what-input js */
+[data-whatintent='keyboard'] *:focus {
+  outline: rem-calc(3px) dashed dodgerblue;
 }
 
 h1 + h1,

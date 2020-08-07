@@ -62,6 +62,7 @@ $input-transition: none;
   background-position: calc(100% - 20px) 50%, calc(100% - 13px) 50%;
   background-size: 7px 7px, 7px 7px;
   background-repeat: no-repeat;
+  // background: none; // make dropdown icon visible, if after is enabled, disable all the above bg rules
   position: relative;
   select {
     background: transparent;

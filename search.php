@@ -1,81 +1,107 @@
 <?php get_header(); ?>
 
-<div class="content-section">
-  <div class="main-content container">
+<div class="container py-5 py-md-10">
 
-    <div class="template-alert">
-      <p>Search results for <b>"<?php echo $s ?>"</b></p>
-    </div> <!-- .template-alert -->
+  <h5 class="text-body mb-4">Showing Results for "<span class="text-capitalize"><?php echo $s ?></span>"</h5>
 
-    <?php
-      query_posts( $query_string . '&post_type=page&posts_per_page=-1' );
-      if ( have_posts() ) :
-    ?>
-
-    <h4 class="search-type-heading">Pages</h4>
-
-    <?php while ( have_posts() ) : the_post(); ?>
-
-      <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix type-post'); ?>>
-
-        <header>
-          <h2 class="page-title">
-             <a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?> </a>
-          </h2>
-        </header>
-
-        <p class="excerpt"><?php echo tse_get_the_excerpt(55); ?> </p>
-        <a href="<?php the_permalink(); ?>" class="btn btn-sm btn-more">Read More</a>
-
-      </article> <!-- .type-post -->
+  <div class="row mx-md-n3">
 
     <?php
-      endwhile; endif;
-      wp_reset_query();
+      $swp_query = new SWP_Query(
+        array(
+          's'              => $s, // search query
+          'post_type'      => 'page',
+          'posts_per_page' => -1,
+          'field'          => 'ID',
+        )
+      );
+      $post_count = $swp_query->post_count;
+      // print_r($swp_query);
     ?>
+
+    <?php if ( ! empty( $swp_query->posts ) ) { ?>
+
+      <div class="col-md-6 col-xl-4 px-md-3 mb-4">
+        <h5 class="text-uppercase">Pages (<?php echo $post_count; ?>)</h5>
+        <ul class="list-unstyled">
+          <?php foreach( $swp_query->posts as $post ) : setup_postdata( $post ); ?>
+            <li class="mb-0-5">
+              <h6 class="mb-0"></h6>
+              <a href="<?php the_permalink(); ?>" class="text-body" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?> </a>
+            </li>
+          <?php endforeach; wp_reset_postdata(); ?>
+        </ul>
+      </div> <!-- .col-6 -->
+
+    <?php } ?>
 
     <?php
-      query_posts( $query_string . '&post_type=post&posts_per_page=-1' );
-      if ( have_posts() ) :
+      $swp_query = new SWP_Query(
+        array(
+          's'              => $s, // search query
+          'post_type'      => 'seminar',
+          'posts_per_page' => -1,
+          'field'          => 'ID',
+        )
+      );
+      $post_count = $swp_query->post_count;
+      // print_r($swp_query);
     ?>
 
-    <h4 class="search-type-heading">Posts</h4>
+    <?php if ( ! empty( $swp_query->posts ) ) { ?>
 
-    <?php while ( have_posts() ) : the_post(); ?>
+      <div class="col-md-6 col-xl-4 px-md-3 mb-4">
+        <h5 class="text-uppercase">Seminars (<?php echo $post_count; ?>)</h5>
+        <ul class="list-unstyled">
+          <?php foreach( $swp_query->posts as $post ) : setup_postdata( $post ); ?>
+            <li class="mb-0-5">
+              <h6 class="mb-0"></h6>
+              <a href="<?php the_permalink(); ?>" class="text-body" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?> </a>
+            </li>
+          <?php endforeach; wp_reset_postdata(); ?>
+        </ul>
+      </div> <!-- .col-6 -->
 
-      <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?>>
-
-        <header>
-          <h2 class="post-title">
-            <a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?> </a>
-          </h2>
-          <div class="post-meta">
-            Published by <?php the_author_link(); ?> on
-            <time pubdate><?php the_time('F j, Y'); ?></time> under <?php the_category(' / '); ?>
-          </div> <!-- .post-meta -->
-        </header>
-
-        <div class="entry">
-          <?php if ( has_post_thumbnail() ) { ?>
-            <aside class="featured-thumb-block">
-              <a href="<?php the_permalink(); ?>" class="featured preload" title="<?php the_title_attribute(); ?>">
-                <?php the_post_thumbnail( 'post_featured_thumb' ); ?>
-              </a>
-            </aside> <!-- .featured-thumb-block -->
-          <?php } ?>
-          <p class="excerpt"> <?php echo tse_get_the_excerpt(55); ?> </p>
-          <a href="<?php the_permalink(); ?>" class="btn btn-sm btn-more">Read More</a>
-        </div> <!-- Entry -->
-
-      </article> <!-- .type-post -->
+    <?php } ?>
 
     <?php
-      endwhile;
-      endif;
-      wp_reset_query();
+      $swp_query = new SWP_Query(
+        array(
+          's'              => $s, // search query
+          'post_type'      => 'instructor',
+          'posts_per_page' => -1,
+          'field'          => 'ID',
+        )
+      );
+      $post_count = $swp_query->post_count;
+      // print_r($swp_query);
     ?>
 
-  </section> <!-- .main-content.container -->
-</div> <!-- .content-section -->
+    <?php if ( ! empty( $swp_query->posts ) ) { ?>
+
+      <div class="col-md-6 col-xl-4 px-md-3 mb-4">
+        <h5 class="text-uppercase">Instructors (<?php echo $post_count; ?>)</h5>
+        <ul class="list-unstyled">
+          <?php foreach( $swp_query->posts as $post ) : setup_postdata( $post ); ?>
+            <li class="mb-0-5">
+              <h6 class="mb-0"></h6>
+              <a href="<?php the_permalink(); ?>" class="text-body" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?> </a>
+            </li>
+          <?php endforeach; wp_reset_postdata(); ?>
+        </ul>
+      </div> <!-- .col-6 -->
+
+    <?php } ?>
+
+  </div> <!-- .row -->
+
+  <h5 class="text-body mt-4 mt-md-2 mb-2">Not what you're looking for?</h5>
+
+  <form method="get" action="<?php echo home_url(); ?>/" class="d-flex w-md-60 w-xl-50">
+    <input type="text" name="s" placeholder="Try another search" class="w-100" />
+    <input type="submit" value="Submit" class="btn btn-md btn-blue" />
+  </form>
+
+</div> <!-- .container -->
 
 <?php get_footer(); ?>

@@ -15,6 +15,8 @@
   ☐ Remove unwanted plugins
   ☐ Hide unwanted options from admin menu sidebar using "Admin menu editor" plugin
   ☐ Make the WP JPG resize quality filter percent to 70 if not planning to use Image Optimize plugin
+  ☐ If aos added. Remove unwanted delay and duration CSS
+  ☐ Remove unwanted keyframes
 
   RESPONSIVE & CROSS BROWSER TESTING --- ✄ -----------------------
   WINDOWS --- ✄ -----------------------

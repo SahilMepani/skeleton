@@ -10,96 +10,12 @@
 =            Change Gravity Form submission loader            =
 =============================================================*/
 add_filter( 'gform_ajax_spinner_url', 'spinner_url', 10, 2 );
-function spinner_url( $image_src, $form ) { 
+function spinner_url( $image_src, $form ) {
   return  'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // relative to you theme images folder
 }
 
 
-/*===================================================================
-=            Display a custom taxonomy dropdown in admin            =
-===================================================================*/
-// add_action('restrict_manage_posts', 'tse_filter_post_type_by_taxonomy');
-// function tse_filter_post_type_by_taxonomy() {
-// 	global $typenow;
-// 	$post_type = 'project'; // change to your post type
-// 	$taxonomy  = 'tax-one'; // change to your taxonomy
-// 	if ($typenow == $post_type) {
-// 		$selected      = isset($_GET[$taxonomy]) ? $_GET[$taxonomy] : '';
-// 		$info_taxonomy = get_taxonomy($taxonomy);
-// 		wp_dropdown_categories(array(
-// 			'show_option_all' => __("Show All {$info_taxonomy->label}"),
-// 			'taxonomy'        => $taxonomy,
-// 			'name'            => $taxonomy,
-// 			'orderby'         => 'name',
-// 			'selected'        => $selected,
-// 			'show_count'      => true,
-// 			'hide_empty'      => true,
-// 		));
-// 	};
-// }
 
-
-/*=========================================================
-=            Filter posts by taxonomy in admin            =
-=========================================================*/
-// add_filter('parse_query', 'tse_convert_id_to_term_in_query');
-// function tse_convert_id_to_term_in_query($query) {
-// 	global $pagenow;
-// 	$post_type = 'project'; // change to your post type
-// 	$taxonomy  = 'tax-one'; // change to your taxonomy
-// 	$q_vars    = &$query->query_vars;
-// 	if ( $pagenow == 'edit.php' && isset($q_vars['post_type']) && $q_vars['post_type'] == $post_type && isset($q_vars[$taxonomy]) && is_numeric($q_vars[$taxonomy]) && $q_vars[$taxonomy] != 0 ) {
-// 		$term = get_term_by('id', $q_vars[$taxonomy], $taxonomy);
-// 		$q_vars[$taxonomy] = $term->slug;
-// 	}
-// }
-
-
-
-/*==========================================================
-=            Filter post by meta field in admin            =
-==========================================================*/
-
-// //Adding Column
-// //We can change the function name as we want
-// add_filter( 'manage_post-type_posts_columns', 'post_type_filter_posts_columns' );
-// function post_type_filter_posts_columns( $columns ) {
-//   $columns['meta_field'] = 'Meta Field';
-//   return $columns;
-// }
-
-
-// //Adding content to the column
-// add_action( 'manage_post-type_posts_custom_column', 'post_type_column', 10, 2);
-// function post_type_column( $column, $post_id ) {
-
-//  // Rank Column
-//   if ( 'meta_field' === $column ) {
-//     $meta_field = get_post_meta( $post_id, 'meta_field', true );
-//     echo @$meta_field;
-//   }
-// }
-
-// //Filter posts by the column
-// add_filter( 'manage_edit-post-type_sortable_columns', 'post_type_sortable_columns');
-// function post_type_sortable_columns( $columns ) {
-//   $columns['meta_field'] = 'meta_field';
-//   return $columns;
-// }
-
-// //Ordering by meta value
-// add_action( 'pre_get_posts', 'meta_field_orderby' );
-// function meta_field_orderby( $query ) {
-//   if( ! is_admin() )
-//       return;
-
-//   $orderby = $query->get( 'orderby');
-
-//   if( 'meta_field' == $orderby ) {
-//       $query->set('meta_key','meta_field');
-//       $query->set('orderby','meta_value'); //use meta_value_num if it is numeric
-//   }
-// }
 
 
 /*========================================================

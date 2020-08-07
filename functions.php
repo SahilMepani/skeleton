@@ -6,6 +6,7 @@ require_once( get_template_directory() . '/functions/actions.php' );
 require_once( get_template_directory() . '/functions/acf.php' );
 require_once( get_template_directory() . '/functions/helpers.php' );
 // require_once( get_template_directory() . '/functions/custom-post-types.php' );
+// require_once( get_template_directory() . '/functions/custom-admin-columns.php' );
 // require_once( get_template_directory() . '/functions/admin-ajax.php' );
 // require_once( get_template_directory() . '/functions/amp.php' ); // only if amp plugin available
 // require_once( get_template_directory() . '/functions/twitter-feed/feed.php' );
@@ -40,6 +41,7 @@ update_option( 'large_size_h', 0 );
 add_image_size( 'h200', 9999, 200 ); // used for image acf preview
 add_image_size( 'w200', 200, 9999 );
 add_image_size( 'w414', 414, 9999 );
+add_image_size( 'w576', 576, 9999 );
 add_image_size( 'w768', 768, 9999 );
 add_image_size( 'w992', 992, 9999 );
 add_image_size( 'w1200', 1200, 9999 );

@@ -1,6 +1,7 @@
 # Skeleton WP theme
 Starter theme to help you jump start coding custom WordPress themes
 
+## Master Branch
 ## Setup
 1. Download the **MASTER** branch. **DO NOT CLONE**
 2. Rename the theme folder to match the project name

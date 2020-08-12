@@ -1146,7 +1146,7 @@ table.gfield_list {
   .gfield.gf-label-hide .gfield_label, .gfield.gf-sublabel-hide .ginput_complex label, // labels in multi-field sections like the name fields, address fields, etc
   .gfield.gf-sublabel-hide .ginput_container_date label, //MM,DD,YYYY
   .gfield.gf-sublabel-hide .ginput_container_time label //HH,MM,AM
-  .gfield.hide-label .gfield_label, .gfield_visibility_hidden {
+  .gfield.hide-label .gfield_label, .gfield_visibility_hidden, .hidden_label > .gfield-label {
     visibility: hidden;
     opacity: 0;
     font-size: 0;

@@ -107,6 +107,13 @@ $font-weight-bolder  : bolder;
 
 
 // This variable affects the `.pt-*` and `.mb-*` classes etc.
+$viewport-spacers : (
+  // 3: 3vw,
+  // 4: 4vw,
+);
+
+
+// This variable affects the `.pt-*` and `.mb-*` classes etc.
 $spacers : (
   0      : 0,
   0-#{5} : 0.5rem,

@@ -4,6 +4,7 @@ require_once( get_template_directory() . '/functions/acf.php' );
 require_once( get_template_directory() . '/functions/actions.php' );
 require_once( get_template_directory() . '/functions/filters.php' );
 require_once( get_template_directory() . '/functions/register-acf-blocks.php' );
+require_once( get_template_directory() . '/functions/block-editor-settings.php' );
 
 
 /* ===============================================

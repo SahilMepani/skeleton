@@ -36,3 +36,10 @@ function tse_register_acf_blocks() {
   ));
 
 }
+
+
+// Check if function exists and hook into setup
+////////////////////////////////////////////////
+if ( function_exists( 'acf_register_block_type' ) ) {
+  add_action( 'acf/init', 'tse_register_acf_blocks' );
+}

@@ -6,6 +6,7 @@ require_once( get_template_directory() . '/functions/actions.php' );
 require_once( get_template_directory() . '/functions/acf.php' );
 require_once( get_template_directory() . '/functions/helpers.php' );
 require_once( get_template_directory() . '/functions/register-acf-blocks.php' );
+require_once( get_template_directory() . '/functions/block-editor-settings.php' );
 // require_once( get_template_directory() . '/functions/custom-post-types.php' );
 // require_once( get_template_directory() . '/functions/custom-admin-columns.php' );
 // require_once( get_template_directory() . '/functions/admin-ajax.php' );

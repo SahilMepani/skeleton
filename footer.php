@@ -14,3 +14,8 @@
 <?php wp_footer(); ?>
 </body>
 </html>
+
+Story CPT
+Editor CPT
+Issue - Category shared by story and editor
+Theme, location and Other - category for story

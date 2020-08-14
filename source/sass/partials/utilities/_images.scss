@@ -5,6 +5,31 @@
 
 // Custom
 ////////////////////////////////////////////////
+.img-cover-parent {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-cover {
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  @include translate(-50%,-50%);
+  overflow: hidden;
+}
+
+.img-cover-h {
+  width: auto;
+  height: 100%;
+  max-width: none;
+}
+
+.img-cover-w {
+  width: 100%;
+  height: auto;
+}
+
 // align classes are set by wp on images inside editor.
 .alignnone,
 .alignleft,

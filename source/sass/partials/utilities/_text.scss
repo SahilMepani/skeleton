@@ -45,7 +45,7 @@
 
 .text-white { color: $white !important; }
 
-.text-body { color: $body-color !important; }
+.text-body { color: $body-font-color !important; }
 
 .text-black-50 { color: rgba($black, .5) !important; }
 .text-white-50 { color: rgba($white, .5) !important; }
@@ -70,6 +70,18 @@
 
 // Custom
 ////////////////////////////////////////////////
+@each $color, $value in $colors {
+  .text-#{$color}, .color-#{$color} {
+    color: $value !important;
+  }
+};
+
+
+.lead, .text-big {
+  font-size: rem-calc(20px) !important;
+}
+.text-small { @extend small; }
+
 // .text-black { color: $black !important; }
 // .text-primary { color: $primary !important; }
 // .text-secondary { color: $secondary !important; }
@@ -78,11 +90,6 @@
 // .ff-heading { font-family: $headings-font-family !important; }
 
 // .underline { text-decoration: underline !important; }
-
-.lead, .text-big {
-  font-size: rem-calc(20px) !important;
-}
-.text-small { @extend small; }
 
 // .lh-1 { line-height: 1 !important; }
 // .lh-1-1 { line-height: 1.1 !important; }

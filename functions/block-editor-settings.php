@@ -81,6 +81,18 @@ function tse_editor_css() {
     .edit-post-layout.is-sidebar-opened .edit-post-plugin-sidebar__sidebar-layout, .edit-post-layout.is-sidebar-opened .edit-post-sidebar, .edit-post-toggle-publish-panel {
       width: 25vw !important;
     }
+    /* Main column width */
+    .wp-block {
+      max-width: 100%;
+    }
+    /* Width of "wide" blocks */
+    .wp-block[data-align="wide"] {
+        max-width: rem-calc( 1080px );
+    }
+    /* Width of "full-wide" blocks */
+    .wp-block[data-align="full"] {
+        max-width: none;
+    }
   </style>
   <?php
 }

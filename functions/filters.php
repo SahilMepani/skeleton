@@ -1,10 +1,10 @@
 <?php
+////////////////////////////////////////////////
+//! REQUIRED - Do not edit below
+////////////////////////////////////////////////
 
-/*----------  REQUIRED - Do not edit  ----------*/
-
-/*=====================================
-=            Defer scripts            =
-=====================================*/
+// Defer scripts
+////////////////////////////////////////////////
 // Add defer attribute to the scripts to set the resource priority to low
 function tse_defer_scripts( $tag, $handle, $src ) {
   $defer = array(
@@ -19,18 +19,16 @@ function tse_defer_scripts( $tag, $handle, $src ) {
 add_filter( 'script_loader_tag', 'tse_defer_scripts', 10, 3 );
 
 
-/*===============================================================
-=            Wrap oEmbed resource/video inside a div            =
-===============================================================*/
+// Wrap oEmbed resource/video inside a div
+////////////////////////////////////////////////
 function tse_embed_oembed_html($html, $url, $attr, $post_id) {
   return '<div class="embed-responsive embed-responsive-16by9">' . $html . '</div>';
 }
 add_filter('embed_oembed_html', 'tse_embed_oembed_html', 99, 4);
 
 
-/*==================================================
-=            Add SVG support in backend            =
-==================================================*/
+// Add SVG support in backend
+////////////////////////////////////////////////
 function tse_support_svg($mimes = array()) {
   $mimes['svg']  = 'image/svg+xml';
   $mimes['svgz'] = 'image/svg+xml';
@@ -39,9 +37,8 @@ function tse_support_svg($mimes = array()) {
 add_filter('upload_mimes', 'tse_support_svg');
 
 
-/*==================================================
-=            Add body classes to editor            =
-==================================================*/
+// Add body classes to editor
+////////////////////////////////////////////////
 function tse_mce_settings($initArray) {
   $initArray['body_class'] = 'post';
   return $initArray;
@@ -49,9 +46,8 @@ function tse_mce_settings($initArray) {
 add_filter('tiny_mce_before_init', 'tse_mce_settings');
 
 
-/*===================================================
-=            Add page slug to body class            =
-===================================================*/
+// Add page slug to body class
+////////////////////////////////////////////////
 function tse_add_slug_body_class($classes) {
   global $post;
   if (isset($post)) {
@@ -62,9 +58,8 @@ function tse_add_slug_body_class($classes) {
 add_filter('body_class', 'tse_add_slug_body_class');
 
 
-/*============================================================
-=            Prevent WP Editor from removing span            =
-============================================================*/
+// Prevent WP Editor from removing span
+////////////////////////////////////////////////
 function tse_no_delete_span($init) {
   // Command separated string of extended elements
   $ext = 'span[id|name|class|style]';
@@ -82,27 +77,24 @@ function tse_no_delete_span($init) {
 add_filter('tiny_mce_before_init', 'tse_no_delete_span');
 
 
-/*===========================================
-=            Custom login errors            =
-===========================================*/
+// Custom login errors
+////////////////////////////////////////////////
 function tse_custom_wordpress_errors() {
   return 'Something is wrong!';
 }
 add_filter('login_errors', 'tse_custom_wordpress_errors');
 
 
-/*=====================================================
-=            Change default excerpt length            =
-=====================================================*/
+// Change default excerpt length
+////////////////////////////////////////////////
 function tse_get_the_excerpt_length() {
   return 150; // Default Length
 }
 add_filter('excerpt_length', 'tse_get_the_excerpt_length');
 
 
-/*==========================================================
-=            Add ellipsis at the end of excerpt            =
-==========================================================*/
+// Add ellipsis at the end of excerpt
+////////////////////////////////////////////////
 function tse_get_the_excerpt_more( $more ) {
   return '... ';
 }

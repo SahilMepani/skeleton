@@ -1,8 +1,9 @@
 <?php
 
-require_once( get_template_directory() . '/functions/filters.php' );
-require_once( get_template_directory() . '/functions/actions.php' );
 require_once( get_template_directory() . '/functions/acf.php' );
+require_once( get_template_directory() . '/functions/actions.php' );
+require_once( get_template_directory() . '/functions/filters.php' );
+require_once( get_template_directory() . '/functions/register-acf-blocks.php' );
 
 
 /* ===============================================
@@ -45,45 +46,13 @@ register_nav_menus(
 );
 
 
-/*----------  REQUIRED - Do not edit  ----------*/
+//*! ----------  REQUIRED - Do not edit  ----------*/
 
-/*=============================================
-=            Add editor stylesheet            =
-=============================================*/
+// Add editor stylesheet
+////////////////////////////////////////////////
 add_editor_style();
 
-
-/*============================================================
-=            Overrides default image-URL behavior            =
-============================================================*/
+// Overrides default image-URL behavior
+////////////////////////////////////////////////
 // http://wordpress.org/support/topic/insert-image-default-to-no-link
 update_option('image_default_link_type', 'none');
-
-
-/*=======================================
-=            Blog pagination            =
-=======================================*/
-// http://wp.tutsplus.com/tutorials/wordpress-pagination-a-primer
-function tse_posts_pagination( $pages ) {
-  $total_pages = $pages;
-
-  if ( $total_pages > 1 ) {
-
-    $current_page = max( 1, get_query_var( 'paged' ) );
-
-    echo '<div class="posts-pagination">';
-
-    echo '<span class="index"> Page ' . $current_page . ' of ' . $total_pages . "</span>";
-
-    echo paginate_links(array(
-        'base'      => get_pagenum_link( 1 ) . '%_%',
-        'format'    => 'page/%#%/',
-        'current'   => $current_page,
-        'total'     => $total_pages,
-        'type'      => 'list', // plain, array, list
-        'prev_text' => '&lsaquo; Previous',
-        'next_text' => 'Next &rsaquo;',
-    ));
-    echo '</div>';
-  }
-}

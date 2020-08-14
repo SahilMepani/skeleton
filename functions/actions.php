@@ -23,25 +23,6 @@ function tse_enqueue_scripts() {
 add_action('wp_enqueue_scripts', 'tse_enqueue_scripts');
 
 
-/*=================================================
-=            Load custom css in editor            =
-=================================================*/
-// change the font styles as per project
-function editor_css() {
-  ?>
-  <style type="text/css">
-    #editorcontainer #content, #wp_mce_fullscreen, textarea.wp-editor-area {
-      font-family: 'Lato', sans-serif; /* this font should be imported editor-style.css */
-      font-size: 16px;
-      line-height: 1.7;
-    }
-  </style>
-  <?php
-}
-add_action('admin_head-post.php', 'editor_css');
-add_action('admin_head-post-new.php', 'editor_css');
-
-
 /*=============================================
 =            Remove junk from head            =
 =============================================*/

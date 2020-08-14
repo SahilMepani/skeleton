@@ -115,7 +115,7 @@ add_action( 'enqueue_block_editor_assets', 'tse_gutenberg_scripts' );
 
 
 // -- Load custom css in editor
-function editor_css() {
+function tse_editor_css() {
   ?>
     <style type="text/css">
     /* change the root font size as all selector values are rem unit */
@@ -139,18 +139,30 @@ function editor_css() {
     .edit-post-layout.is-sidebar-opened .edit-post-plugin-sidebar__sidebar-layout, .edit-post-layout.is-sidebar-opened .edit-post-sidebar, .edit-post-toggle-publish-panel {
         width: 25vw !important;
     }
+    /* Main column width */
+    .wp-block {
+      max-width: 100%;
+    }
+    /* Width of "wide" blocks */
+    .wp-block[data-align="wide"] {
+        max-width: rem-calc( 1080px );
+    }
+    /* Width of "full-wide" blocks */
+    .wp-block[data-align="full"] {
+        max-width: none;
+    }
   </style>
     <?php
 }
-add_action( 'admin_head-post.php', 'editor_css' );
-add_action( 'admin_head-post-new.php', 'editor_css' );
+add_action( 'admin_head-post.php', 'tse_editor_css' );
+add_action( 'admin_head-post-new.php', 'tse_editor_css' );
 
 
 // -- Remove Gutenberg Block Library CSS from loading on the frontend
-function smartwp_remove_wp_block_library_css() {
+function tse_remove_wp_block_library_css() {
   wp_dequeue_style( 'wp-block-library' );
   wp_dequeue_style( 'wp-block-library-theme' );
 }
-add_action( 'wp_enqueue_scripts', 'smartwp_remove_wp_block_library_css' );
+add_action( 'wp_enqueue_scripts', 'tse_remove_wp_block_library_css' );
 
 ?>

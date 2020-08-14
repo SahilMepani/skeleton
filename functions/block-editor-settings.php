@@ -56,7 +56,7 @@ add_action( 'enqueue_block_editor_assets', 'tse_gutenberg_scripts' );
 
 
 // -- Load custom css in editor
-function editor_css() {
+function tse_editor_css() {
   ?>
   <style type="text/css">
     /* change the root font size as all selector values are rem unit */
@@ -84,15 +84,15 @@ function editor_css() {
   </style>
   <?php
 }
-add_action('admin_head-post.php', 'editor_css');
-add_action('admin_head-post-new.php', 'editor_css');
+add_action('admin_head-post.php', 'tse_editor_css');
+add_action('admin_head-post-new.php', 'tse_editor_css');
 
 
 // -- Remove Gutenberg Block Library CSS from loading on the frontend
-function smartwp_remove_wp_block_library_css() {
+function tse_remove_wp_block_library_css() {
  wp_dequeue_style( 'wp-block-library' );
  wp_dequeue_style( 'wp-block-library-theme' );
 }
-add_action( 'wp_enqueue_scripts', 'smartwp_remove_wp_block_library_css' );
+add_action( 'wp_enqueue_scripts', 'tse_remove_wp_block_library_css' );
 
 ?>

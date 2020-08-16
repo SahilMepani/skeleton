@@ -4,21 +4,8 @@
   font-family: 'icomoon';
   font-weight: normal;
   font-style: normal;
-  src: url('fonts/icomoon.eot');
-  src: url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+  src:
+  url('fonts/icomoon.ttf') format('truetype'),
     url('fonts/icomoon.woff') format('woff'),
-    url('fonts/icomoon.ttf') format('truetype'),
     url('fonts/icomoon.svg#icomoon') format('svg');
-}
-
-.icon-font-before {
-  &:before {
-    @include icon-font-properties;
-  }
-}
-
-.icon-font-after {
-  &:after {
-    @include icon-font-properties;
-  }
 }

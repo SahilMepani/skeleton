@@ -9,14 +9,9 @@
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-@mixin icon-font( $char, $size: null, $color: null, $properties: true ) {
-  content: '#{$char}';
-  @if $properties == true {
-    @include icon-font-properties;
+  &::before, &::after {
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
   }
-  color: $color;
-  font-size: $size;
-  @content;
 }

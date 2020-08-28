@@ -4,6 +4,8 @@ $custom-breakpoints : (
   lg   : $lg,
 );
 
+// AOS delay
+////////////////////////////////////////////////
 [data-aos] {
   @for $i from 0 through 20 {
 
@@ -16,7 +18,8 @@ $custom-breakpoints : (
   }
 }
 
-
+// AOS responsive delay
+////////////////////////////////////////////////
 @each $breakpoint in map-keys($custom-breakpoints) {
   @include media-breakpoint-up($breakpoint) {
     $infix: breakpoint-infix($breakpoint, $custom-breakpoints);

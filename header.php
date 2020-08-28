@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
-  <!-- HTML Boilerplte v6.01 -->
+  <!-- HTML Boilerplte v8.00 -->
   <meta charset="<?php bloginfo( 'charset' ); ?>" />
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title><?php wp_title( '-', true, 'right' ); ?></title>

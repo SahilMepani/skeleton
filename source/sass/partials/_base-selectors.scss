@@ -29,7 +29,10 @@ html {
   // {
   // 	-webkit-font-smoothing: subpixel-antialiased;
   // }
-  // @include scrollbars(10px, #888, #e9e9e9); // add custom scrollbar
+  // add custom scrollbar
+  // &.no-touchevents {
+    // @include scrollbars(10px, $blue, #e9e9e9);
+  // }
 }
 
 body {

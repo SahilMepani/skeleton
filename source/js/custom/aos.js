@@ -1,7 +1,7 @@
 if ( Modernizr.cssanimations && Modernizr.mutationobserver ) {
   Visibility.onVisible( function() {
     AOS.init( {
-      offset: 0,
+      offset: 120,
       duration: 1000,
       useClassNames: true,
       initClassName: false,

@@ -10,25 +10,45 @@
   overflow: hidden;
 }
 
-.img-cover {
+.img-cover, .img-cover-fullscreen {
   object-fit: cover;
   position: absolute;
   top: 50%;
   left: 50%;
   @include translate(-50%,-50%);
-  overflow: hidden;
 }
 
-.img-cover-h {
-  width: auto;
-  height: 100%;
+.img-cover-fullscreen {
+  min-width: 100%;
+  min-height: 100%;
   max-width: none;
 }
 
-.img-cover-w {
-  width: 100%;
-  height: auto;
+.js-img-cover-h {
+  width: auto !important;
+  height: 100% !important;
+  max-width: none !important;
 }
+
+.js-img-cover-w {
+  width: 100% !important;
+  height: auto !important;
+}
+
+// @each $breakpoint in map-keys($grid-breakpoints) {
+//   @include media-breakpoint-up($breakpoint) {
+//     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+//     .img-cover#{$infix}-h {
+//       width: auto;
+//       height: 100%;
+//       max-width: none;
+//     }
+//     .img-cover#{$infix}-w {
+//       width: 100%;
+//       height: auto;
+//     }
+//   }
+// }
 
 // align classes are set by wp on images inside editor.
 .alignnone,

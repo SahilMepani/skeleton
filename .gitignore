@@ -11,5 +11,3 @@ sftp-config.json
 sftp-config-live.json
 sftp-config-dev.json
 /nbproject/private/
-style.css
-editor-style.css

@@ -6,6 +6,10 @@
   }
 };
 
+.bg-cover {
+  @include bg-cover;
+}
+
 // .bg-video {
 //   position: absolute;
 //   left: 0;
@@ -26,10 +30,6 @@
 //   max-width: 100%;
 //   min-width: 100%;
 // }
-
-.bg-cover {
-  @include bg-cover;
-}
 
 // .bg-overlay {
 //   @include bg-overlay;

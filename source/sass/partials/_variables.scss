@@ -38,6 +38,8 @@ $monospace  : Menlo, Monaco, Consolas, "Courier New", monospace;
 
 // Body
 $body-bg-color    : #fff;
+$body-text-color  : $body-color;
+$body-font-color  : $body-text-color; // part of bootstrap
 $body-font-size   : 1.6rem;
 $body-font-weight : 400;
 $body-font-family : $montserrat;
@@ -140,7 +142,7 @@ $spacers : (
   12     : 12rem,
   13     : 13rem,
   14     : 14rem,
-  // 15     : 15rem,
+  15     : 15rem,
   // 16     : 16rem,
   // 17     : 17rem,
   // 18     : 18rem,
@@ -227,16 +229,16 @@ $embed-responsive-aspect-ratios: (
 // This variable affects the `.h-*` and `.w-*` classes.
 $sizes: (
   // 20   : 20%,
-  // 25   : 25%,
+  25   : 25%,
   // 30   : 30%,
   // 35   : 35%,
   // 40   : 40%,
   // 45   : 45%,
   50   : 50%,
-  55   : 55%,
-  60   : 60%,
-  65   : 65%,
-  70   : 70%,
+  // 55   : 55%,
+  // 60   : 60%,
+  // 65   : 65%,
+  // 70   : 70%,
   75   : 75%,
   // 80   : 80%,
   // 85   : 85%,

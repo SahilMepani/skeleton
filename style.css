@@ -190,15 +190,17 @@ a { color: #ff2500; text-decoration: none; }
 
 a:hover { color: #222; text-decoration: none; }
 
-a:focus { outline: 0.3rem dashed dodgerblue; }
+a:focus { outline: none; }
 
-button:focus { outline: 0.3rem dashed dodgerblue; }
+button:focus { outline: none; }
 
 button, input, optgroup, select, textarea { font-family: "Montserrat", "Lato", sans-serif; }
 
 a, button, input[type="submit"], input[type="button"], input[type="reset"] { transition-property: background, color, border-color; transition-duration: .2s; border-radius: 0; -webkit-text-decoration-skip-ink: auto; -webkit-text-decoration-skip: objects; }
 
 a:hover, button:hover, input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover { transition-duration: .1s; }
+
+a:focus, button:focus, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus { outline: none; }
 
 /*----------  Content  ----------*/
 p:last-child, table:last-child, ul:last-child, ol:last-child, dl:last-child, dd:last-child, pre:last-child, blockquote:last-child, address:last-child, h1:last-child, h2:last-child, h3:last-child, h4:last-child, h5:last-child, h6:last-child { margin-bottom: 0; }
@@ -310,8 +312,8 @@ img, iframe { max-width: 100%; }
 audio, canvas, iframe, img, svg, video { vertical-align: middle; }
 
 /*----------  Required  ----------*/
-/* suppress focus ring on form controls for mouse and touch users, using what-input js */
-[data-whatintent='mouse'] *:focus, [data-whatintent='touch'] *:focus { outline: none; }
+/* show focus ring on form controls only when keyboard tabbing is used, using what-input js */
+[data-whatintent='keyboard'] *:focus { outline: 0.3rem dashed dodgerblue; }
 
 h1 + h1, h1 + h2, h1 + h3, h1 + h4, h1 + h5, h1 + h6, h2 + h1, h2 + h2, h2 + h3, h2 + h4, h2 + h5, h2 + h6, h3 + h1, h3 + h2, h3 + h3, h3 + h4, h3 + h5, h3 + h6, h4 + h1, h4 + h2, h4 + h3, h4 + h4, h4 + h5, h4 + h6, h5 + h1, h5 + h2, h5 + h3, h5 + h4, h5 + h5, h5 + h6, h6 + h1, h6 + h2, h6 + h3, h6 + h4, h6 + h5, h6 + h6 { margin-top: 0; }
 
@@ -3471,11 +3473,11 @@ p:empty { display: none; }
 
 .invisible { visibility: hidden !important; }
 
-@font-face { font-family: 'icomoon'; font-weight: normal; font-style: normal; src: url("fonts/icomoon.eot"); src: url("fonts/icomoon.eot?#iefix") format("embedded-opentype"), url("fonts/icomoon.woff") format("woff"), url("fonts/icomoon.ttf") format("truetype"), url("fonts/icomoon.svg#icomoon") format("svg"); }
+@font-face { font-family: 'icomoon'; font-weight: normal; font-style: normal; src: url("fonts/icomoon.ttf") format("truetype"), url("fonts/icomoon.woff") format("woff"), url("fonts/icomoon.svg#icomoon") format("svg"); }
 
-.icon-font-before:before { font-family: 'icomoon' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+.i-font { font-family: 'icomoon' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-.icon-font-after:after { font-family: 'icomoon' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+.i-font::before, .i-font::after { stroke-width: 0; stroke: currentColor; fill: currentColor; }
 
 @media print { *, *::before, *::after { text-shadow: none !important; box-shadow: none !important; }
   a:not(.btn) { text-decoration: underline; }

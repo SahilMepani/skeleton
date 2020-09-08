@@ -4,7 +4,7 @@
   @include media-breakpoint-up($breakpoint) {
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
-    @each $prop, $abbrev in (width: w) { // remove height: h as it never used
+    @each $prop, $abbrev in (width: w, height: h) {
       @each $size, $length in $sizes {
         .#{$abbrev}#{$infix}-#{$size} { #{$prop}: $length !important; }
       }

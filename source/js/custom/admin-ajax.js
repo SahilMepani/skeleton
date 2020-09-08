@@ -123,6 +123,11 @@ function filter_post( $this, trigger ) {
 
           $( '#ajax-list-post' ).append( $data );
 
+          // scroll to newly appended data object
+          // $( 'html,body' ).animate( {
+          //   scrollTop: $( $data ).offset().top - $( '.site-header' ).outerHeight()
+          // }, 1000, 'swing' );
+
           $( '.loading-dots' ).removeClass( 'js-active' );
 
         }

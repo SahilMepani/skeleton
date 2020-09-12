@@ -9,9 +9,6 @@ add_theme_support( 'disable-custom-colors' );
 // -- Enable editor styles
 add_theme_support('editor-styles');
 
-// -- Enqueue editor style
-add_editor_style( 'editor-styles.css' );
-
 // -- Enable responsive embedded content
 add_theme_support( 'responsive-embeds' );
 

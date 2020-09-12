@@ -76,3 +76,9 @@ function postCardsCarousel() {
   } );
 }
 postCardsCarousel();
+
+// Initialize dynamic block preview (backend editor).
+// if ( window.acf ) {
+//   window.acf.addAction( 'render_block_preview', fullscreenSlider );
+//   window.acf.addAction( 'render_block_preview', postCardsCarousel );
+// }

@@ -13,28 +13,8 @@
   <?php if ( is_singular() && pings_open( get_queried_object() ) ) : ?>
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
   <?php endif; ?>
-  <script>
-    // imgCover on image load
-    function imgCover( img ) {
-      const imgParent = img.parentElement;
-      const imgAspectRatio = img.naturalWidth / img.naturalHeight;
-      const imgParentAspectRatio = imgParent.offsetWidth / imgParent.offsetHeight;
-
-      // console.log( img );
-      // console.log( 'imgWidth :' + img.naturalWidth );
-      // console.log( 'imgHeight :' + img.naturalHeight );
-      // console.log( 'imgAspectRatio :' + imgAspectRatio );
-      // console.log( 'imgParentAspectRatio :' + imgParentAspectRatio );
-
-      if ( imgAspectRatio >= imgParentAspectRatio ) {
-        img.classList.remove('js-img-cover-w')
-        img.classList.add('js-img-cover-h');
-      } else {
-        img.classList.remove('js-img-cover-h')
-        img.classList.add('js-img-cover-w');
-      }
-    }
-  </script>
+  <!-- required to load in head for it too run asap and to be called separately in gutenberg editor -->
+  <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/img-cover.js"></script>
   <?php wp_head(); ?>
 </head>
 

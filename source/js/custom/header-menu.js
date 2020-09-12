@@ -1,12 +1,14 @@
-$( '.header-nav-toggle' ).click( function( e ) {
+$( '.mobile-header-nav-toggle' ).click( function ( e ) {
   $( this ).toggleClass( 'js-active' );
-  $( '.header-nav' ).toggleClass( 'js-active' );
+  $( '.mobile-header-nav' ).toggleClass( 'js-active' );
+  $( 'body' ).toggleClass( 'js-popup-active' );
   e.preventDefault();
 } );
 
 $( '.header-nav-close' ).click( function( e ) {
   $( '.header-nav-toggle' ).toggleClass( 'js-active' );
   $( '.header-nav' ).toggleClass( 'js-active' );
+  $( 'body' ).removeClass( 'js-popup-active' );
   e.preventDefault();
 } );
 

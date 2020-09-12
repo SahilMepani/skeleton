@@ -42,6 +42,12 @@ body {
   font-family: $body-font-family;
   font-weight: $body-font-weight;
   line-height: 1;
+  // &.site-wrapper { // prevent breaking the gutenberg editor
+  //   overflow-x: hidden;
+  // }
+  // &.js-popup-active {
+  //   overflow-y: hidden;
+  // }
 }
 
 /*----------  Headings  ----------*/

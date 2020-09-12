@@ -6,4 +6,5 @@ const debounceImgCover = debounce(
     images.forEach( img => imgCover( img ) );
   }, 200
 );
-window.addEventListener( 'resize orientation', debounceImgCover );
+window.addEventListener( 'resize', debounceImgCover );
+window.addEventListener( 'orientationchange', debounceImgCover );

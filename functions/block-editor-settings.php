@@ -105,11 +105,12 @@ function tse_gutenberg_scripts() {
     true
   );
   // editor js
-  wp_enqueue_script(
+  // https://developer.wordpress.org/block-editor/developers/filters/block-filters/#using-a-blacklist
+  wp_enqueue_script (
     'tse-editor',
-    get_stylesheet_directory_uri(). '/js/editor.js',
-    array( 'wp-blocks', 'wp-dom' ),
-    filemtime( get_stylesheet_directory(). '/js/editor.js' ),
+    get_stylesheet_directory_uri() . '/js/editor.js',
+    array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
+    filemtime( get_stylesheet_directory() . '/js/editor.js' ),
     true
   );
   // typekit fonts

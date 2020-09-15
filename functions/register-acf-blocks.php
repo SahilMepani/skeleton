@@ -32,6 +32,7 @@ function tse_register_acf_blocks() {
     'post_types'        => array( 'page' ),
     'supports'          => array(
       'align' => false,
+      'customClassName' => false
     ),
   ));
 

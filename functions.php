@@ -31,22 +31,20 @@ require_once( get_template_directory() . '/functions/block-editor-settings.php' 
 // Enable featured images
 add_theme_support('post-thumbnails');
 
-// Disable default media sizes
-update_option( 'thumbnail_size_w', 0 );
-update_option( 'thumbnail_size_h', 0 );
-update_option( 'medium_size_w', 0 );
-update_option( 'medium_size_h', 0 );
-update_option( 'large_size_w', 0 );
-update_option( 'large_size_h', 0 );
+// Update default media sizes
+update_option( 'thumbnail_size_w', 200 );
+// update_option( 'thumbnail_size_h', 0 );
+update_option( 'medium_size_w', 768 );
+update_option( 'large_size_w', 992 );
 
 // Custom media sizes
 // add_image_size( 'blog_featured_thumb', width, height, crop );
 add_image_size( 'h200', 9999, 200 ); // used for image acf preview
-add_image_size( 'w200', 200, 9999 );
+// add_image_size( 'w200', 200, 9999 ); added as a thumbnail size
 add_image_size( 'w414', 414, 9999 );
 add_image_size( 'w576', 576, 9999 );
-add_image_size( 'w768', 768, 9999 );
-add_image_size( 'w992', 992, 9999 );
+// add_image_size( 'w768', 768, 9999 ); added as a medium size
+// add_image_size( 'w992', 992, 9999 ); added as a large size
 add_image_size( 'w1200', 1200, 9999 );
 add_image_size( 'w1400', 1400, 9999 );
 add_image_size( 'w1600', 1600, 9999 );

@@ -1,3 +1,4 @@
+// Media queries constant
 const smMQ   = window.matchMedia( '(min-width: 575px)' );
 const mdMQ   = window.matchMedia( '(min-width: 768px)' );
 const lgMQ   = window.matchMedia( '(min-width: 992px)' );

@@ -216,16 +216,6 @@ function tse_embed_oembed_html($html, $url, $attr, $post_id) {
 add_filter('embed_oembed_html', 'tse_embed_oembed_html', 99, 4);
 
 
-// Add SVG support in backend
-////////////////////////////////////////////////
-function tse_support_svg($mimes = array()) {
-  $mimes['svg']  = 'image/svg+xml';
-  $mimes['svgz'] = 'image/svg+xml';
-  return $mimes;
-}
-add_filter('upload_mimes', 'tse_support_svg');
-
-
 // Add body classes to editor
 ////////////////////////////////////////////////
 function tse_mce_settings($initArray) {

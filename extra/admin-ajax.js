@@ -94,9 +94,9 @@ jQuery( document ).ready( function( $ ) {
 
 	function load_more_post( $this ) {
 
-		var cpt = $this.attr( 'data-cpt' );
-		var cptTax = $this.attr( 'data-cpt-tax' );
-		var catID = $( '#filter-cat-id' ).val();
+		var cpt        = $this.attr( 'data-cpt' );
+		var cptTax     = $this.attr( 'data-cpt-tax' );
+		var catID      = $( '#filter-cat-id' ).val();
 		var pageNumber = $( '#filter-pagenum' ).val();
 
 		$.ajax( {

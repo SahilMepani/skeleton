@@ -35,7 +35,7 @@ function filter_post_by_cat() {
   endwhile;
     wp_reset_postdata();
   else :
-    echo '<li class="padding-top-2"><h4 class="text-center">Nothing found.</h4></li>';
+    echo '<li class="pt-2"><h4 class="text-center">Nothing found.</h4></li>';
   endif;
 }
 

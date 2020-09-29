@@ -180,12 +180,9 @@ function spinner_url( $image_src, $form ) {
 // add_filter('script_loader_tag', 'add_script_attribute', 10, 2);
 
 
-// Disable default image compression
-////////////////////////////////////////////////
-// function tse_wp_generate_image_sizes_quality() {
-// 	return 100;
-// }
-// add_filter( 'jpeg_quality', 'tse_wp_generate_image_sizes_quality');
+// Disable image compression in WordPress
+// WordPress sets it to 82% by default
+// add_filter('jpeg_quality', function($arg){return 100;});
 
 
 ////////////////////////////////////////////////

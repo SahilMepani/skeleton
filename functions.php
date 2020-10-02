@@ -27,7 +27,7 @@ add_image_size( 'w576', 576, 9999 );
 // add_image_size( 'w768', 768, 9999 ); added as a medium size
 // add_image_size( 'w992', 992, 9999 ); added as a large size
 add_image_size( 'w1200', 1200, 9999 );
-add_image_size( 'w1400', 1400, 9999 );
+// add_image_size( 'w1400', 1400, 9999 );
 add_image_size( 'w1600', 1600, 9999 );
 add_image_size( 'w1920', 1920, 9999 );
 add_image_size( 'w2560', 2560, 9999 );

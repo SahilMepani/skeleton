@@ -33,9 +33,11 @@ add_theme_support('post-thumbnails');
 
 // Update default media sizes
 update_option( 'thumbnail_size_w', 200 );
-// update_option( 'thumbnail_size_h', 0 );
 update_option( 'medium_size_w', 768 );
 update_option( 'large_size_w', 992 );
+update_option( 'thumbnail_size_h', 0 );
+update_option( 'medium_size_h', 0 );
+update_option( 'large_size_h', 0 );
 
 // Custom media sizes
 // add_image_size( 'blog_featured_thumb', width, height, crop );
@@ -45,7 +47,7 @@ add_image_size( 'w576', 576, 9999 );
 // add_image_size( 'w768', 768, 9999 ); added as a medium size
 // add_image_size( 'w992', 992, 9999 ); added as a large size
 add_image_size( 'w1200', 1200, 9999 );
-add_image_size( 'w1400', 1400, 9999 );
+// add_image_size( 'w1400', 1400, 9999 );
 add_image_size( 'w1600', 1600, 9999 );
 add_image_size( 'w1920', 1920, 9999 );
 add_image_size( 'w2560', 2560, 9999 );

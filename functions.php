@@ -15,9 +15,11 @@ add_theme_support('post-thumbnails');
 
 // Update default media sizes
 update_option( 'thumbnail_size_w', 200 );
-// update_option( 'thumbnail_size_h', 0 );
 update_option( 'medium_size_w', 768 );
 update_option( 'large_size_w', 992 );
+update_option( 'thumbnail_size_h', 0 );
+update_option( 'medium_size_h', 0 );
+update_option( 'large_size_h', 0 );
 
 // Custom media sizes
 // add_image_size( 'blog_featured_thumb', width, height, crop );

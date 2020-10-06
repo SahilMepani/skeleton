@@ -4,6 +4,10 @@
 ////////////////////////////////////////////////
 add_filter('show_admin_bar', '__return_false');
 
+// Disable WordPress all sitemaps
+////////////////////////////////////////////////
+add_filter('wp_sitemaps_enabled', '__return_false');
+
 // Search WP plugin, allow big words search
 ////////////////////////////////////////////////
 add_filter( 'searchwp_big_selects', '__return_true' );

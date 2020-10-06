@@ -19,6 +19,36 @@ function tse_enqueue_scripts() {
 add_action('wp_enqueue_scripts', 'tse_enqueue_scripts');
 
 
+
+// Disable all WordPress generated image sizes
+////////////////////////////////////////////////
+function tse_disable_image_sizes($sizes) {
+
+	unset($sizes['thumbnail']);    // disable thumbnail size
+	unset($sizes['medium']);       // disable medium size
+	unset($sizes['large']);        // disable large size
+	unset($sizes['medium_large']); // disable medium-large size
+	unset($sizes['1536x1536']);    // disable 2x medium-large size
+	unset($sizes['2048x2048']);    // disable 2x large size
+
+	return $sizes;
+
+}
+add_action('intermediate_image_sizes_advanced', 'tse_disable_image_sizes');
+
+// disable scaled image size
+add_filter('big_image_size_threshold', '__return_false');
+
+// disable other image sizes
+function tse_disable_other_image_sizes() {
+
+	remove_image_size('post-thumbnail'); // disable images added via set_post_thumbnail_size()
+	// remove_image_size('another-size');   // disable any other added image sizes
+
+}
+add_action('init', 'tse_disable_other_image_sizes');
+
+
 /*=============================================
 =            Remove junk from head            =
 =============================================*/

@@ -73,42 +73,42 @@ h6,
 
 h1,
 .h1 {
-  @include fluid( font-size, $min-375, $desktop, 30px, 60px );
+  @include fluid( font-size, $mobile, $desktop, 30px, 60px );
   font-weight: 700;
   line-height: 1.2;
 }
 
 h2,
 .h2 {
-  @include fluid( font-size, $min-375, $desktop, 24px, 45px );
+  @include fluid( font-size, $mobile, $desktop, 24px, 45px );
   font-weight: 700;
   line-height: 1.2;
 }
 
 h3,
 .h3 {
-  @include fluid( font-size, $min-375, $desktop, 20px, 32px );
+  @include fluid( font-size, $mobile, $desktop, 20px, 32px );
   font-weight: 700;
   line-height: 1.2;
 }
 
 h4,
 .h4 {
-  @include fluid( font-size, $min-375, $desktop, 18px, 24px );
+  @include fluid( font-size, $mobile, $desktop, 18px, 24px );
   font-weight: 700;
   line-height: 1.2;
 }
 
 h5,
 .h5 {
-  @include fluid( font-size, $min-375, $desktop, 18px, 18px );
+  @include fluid( font-size, $mobile, $desktop, 18px, 18px );
   font-weight: 700;
   line-height: 1.2;
 }
 
 h6,
 .h6 {
-  @include fluid( font-size, $min-375, $desktop, 15px, 15px );
+  @include fluid( font-size, $mobile, $desktop, 15px, 15px );
   font-weight: 700;
   line-height: 1.2;
 }

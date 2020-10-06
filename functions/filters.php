@@ -3,6 +3,10 @@
 //! REQUIRED - Do not edit below
 ////////////////////////////////////////////////
 
+// Disable WordPress all sitemaps - /wp-sitemap.xml
+////////////////////////////////////////////////
+add_filter('wp_sitemaps_enabled', '__return_false');
+
 // Defer scripts
 ////////////////////////////////////////////////
 // Add defer attribute to the scripts to set the resource priority to low

@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////
 add_filter('show_admin_bar', '__return_false');
 
-// Disable WordPress all sitemaps
+// Disable WordPress all sitemaps - /wp-sitemap.xml
 ////////////////////////////////////////////////
 add_filter('wp_sitemaps_enabled', '__return_false');
 

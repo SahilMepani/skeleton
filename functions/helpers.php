@@ -16,6 +16,21 @@ function tse_scrollspy_link( $string ) {
 }
 
 
+// Generate working youtube  link for magnific popup
+// Replace youtu.be to youtube.com
+////////////////////////////////////////////////
+// generate youtube link for magnific popup
+function yt_link( $url ) {
+  // grab the position of forward slash
+  $pos = strrpos($url, '/');
+  // use position to get substring
+  $id = $pos === false ? $url : substr($url, $pos + 1);
+  // create working youtube link
+  $url = 'https://www.youtube.com/watch?v=' . $id;
+  return $url;
+}
+
+
 /*================================================================
 =            Validate Youtube link for Magnific Popup            =
 ================================================================*/

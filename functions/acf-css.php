@@ -1,10 +1,4 @@
-<?php
-
-/*==========================================
-=            Custom options CSS            =
-==========================================*/
-function my_acf_admin_head() {
-	?>
+<?php function my_acf_admin_head() { ?>
 	<style type="text/css">
 		.acf-flexible-content .layout .acf-fc-layout-handle {
 			background-color: #00a0d2;
@@ -47,6 +41,6 @@ function my_acf_admin_head() {
 			border: 1px solid darken( #dbffd9, 20% );
 		}
 	</style>
-	<?php
+<?php
 }
 add_action('acf/input/admin_head', 'my_acf_admin_head');

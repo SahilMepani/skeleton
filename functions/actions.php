@@ -1,58 +1,5 @@
 <?php
 
-/* ===========================================
-=            Enqueue javascripts            =
-=========================================== */
-function tse_enqueue_scripts() {
-  /* Load google fonts */
-  wp_enqueue_style('google-fonts', '//fonts.googleapis.com/css?family=Montserrat&display=swap', 'all');
-
-  /* Do not load in backend */
-  if (is_admin()) return;
-
-  /* wp_enqueue_script( 'identifier', 'url', 'dependency', version', load_in_footer_boolean ); */
-  wp_enqueue_style('skeleton-style', get_stylesheet_uri(), array(), filemtime( get_stylesheet_uri() ));
-  wp_enqueue_script('modernizr', get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js');
-  wp_enqueue_script('img-cover', get_template_directory_uri() . '/js/img-cover.js');
-  wp_enqueue_script('ua-parser', get_template_directory_uri() . '/js/vendor/ua-parser-0.7.20.min.js');
-  wp_enqueue_script('plugins', get_template_directory_uri() . '/js/plugins.js', array('jquery'), filemtime( get_template_directory_uri() . '/js/plugins.js' ), true);
-  wp_enqueue_script('custom', get_template_directory_uri() . '/js/custom.js', array('jquery', 'plugins'), filemtime( get_template_directory_uri() . '/js/custom.js' ), true);
-  wp_localize_script('custom', 'localize_var', array(
-    'adminUrl' => admin_url('admin-ajax.php'),
-  ));
-}
-add_action('wp_enqueue_scripts', 'tse_enqueue_scripts');
-
-
-
-// Disable all WordPress generated image sizes
-////////////////////////////////////////////////
-function tse_disable_image_sizes($sizes) {
-
-	unset($sizes['thumbnail']);    // disable thumbnail size
-	unset($sizes['medium']);       // disable medium size
-	unset($sizes['large']);        // disable large size
-	unset($sizes['medium_large']); // disable medium-large size
-	unset($sizes['1536x1536']);    // disable 2x medium-large size
-	unset($sizes['2048x2048']);    // disable 2x large size
-
-	return $sizes;
-
-}
-add_action('intermediate_image_sizes_advanced', 'tse_disable_image_sizes');
-
-// disable scaled image size
-add_filter('big_image_size_threshold', '__return_false');
-
-// disable other image sizes
-function tse_disable_other_image_sizes() {
-
-	remove_image_size('post-thumbnail'); // disable images added via set_post_thumbnail_size()
-	// remove_image_size('another-size');   // disable any other added image sizes
-
-}
-add_action('init', 'tse_disable_other_image_sizes');
-
 
 /*=============================================
 =            Remove junk from head            =

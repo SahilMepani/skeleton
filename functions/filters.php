@@ -4,35 +4,16 @@
 ////////////////////////////////////////////////
 add_filter('show_admin_bar', '__return_false');
 
+
 // Disable WordPress all sitemaps - /wp-sitemap.xml
 ////////////////////////////////////////////////
 add_filter('wp_sitemaps_enabled', '__return_false');
 
-// Search WP plugin, allow big words search
-////////////////////////////////////////////////
-add_filter( 'searchwp_big_selects', '__return_true' );
 
-// ACF plugin, increase the backend loading performance
+// Disable image compression in WordPress
+// WordPress sets it to 82% by default
 ////////////////////////////////////////////////
-add_filter('acf/settings/remove_wp_meta_box', '__return_true');
-
-// Gravity forms plugin, change the submission loading icon
-////////////////////////////////////////////////
-add_filter( 'gform_ajax_spinner_url', 'spinner_url', 10, 2 );
-function spinner_url( $image_src, $form ) {
-  // relative to you theme images folder
-  return  'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-}
-
-// Add attributes to enqueue styles
-////////////////////////////////////////////////
-/* DO NOT USE with Autoptimizer or any contact plugin */
-// function add_style_attribute($tag, $handle) {
-//   if ( 'google-fonts' !== $handle )
-//       return $tag;
-//   return str_replace( " rel='stylesheet'", " rel='preload'", $tag );
-// }
-// add_filter('style_loader_tag', 'add_style_attribute', 10, 2);
+add_filter('jpeg_quality', function($arg){return 100;});
 
 
 // Custom WP login logo and link
@@ -61,6 +42,17 @@ function spinner_url( $image_src, $form ) {
 //   return 'Skeleton';
 // }
 // add_filter('login_headertitle', 'my_login_logo_url_title');
+
+
+// Add attributes to enqueue styles
+////////////////////////////////////////////////
+/* DO NOT USE with Autoptimizer or any contact plugin */
+// function add_style_attribute($tag, $handle) {
+//   if ( 'google-fonts' !== $handle )
+//       return $tag;
+//   return str_replace( " rel='stylesheet'", " rel='preload'", $tag );
+// }
+// add_filter('style_loader_tag', 'add_style_attribute', 10, 2);
 
 
 // Featured image size
@@ -169,11 +161,6 @@ function spinner_url( $image_src, $form ) {
 // add_filter('pre_get_posts','searchfilter');
 
 
-// Email Address Encoder plugin, for ACF fields
-////////////////////////////////////////////////
-// add_filter('acf/load_value', 'eae_encode_emails');
-
-
 // Add attributes to enqueue scripts
 ////////////////////////////////////////////////
 // function add_script_attribute($tag, $handle) {
@@ -182,11 +169,6 @@ function spinner_url( $image_src, $form ) {
 // 	return str_replace( ' src', ' async="async" src', $tag );
 // }
 // add_filter('script_loader_tag', 'add_script_attribute', 10, 2);
-
-
-// Disable image compression in WordPress
-// WordPress sets it to 82% by default
-// add_filter('jpeg_quality', function($arg){return 100;});
 
 
 ////////////////////////////////////////////////

@@ -1,3 +1,12 @@
+// Media queries constant
+const smMQ = window.matchMedia( '(min-width: 575px)' );
+const mdMQ = window.matchMedia( '(min-width: 768px)' );
+const lgMQ = window.matchMedia( '(min-width: 992px)' );
+const xlMQ = window.matchMedia( '(min-width: 1200px)' );
+const xxlMQ = window.matchMedia( '(min-width: 1400px)' );
+const xxxlMQ = window.matchMedia( '(min-width: 1600px)' );
+
+
 /*=================================
 =            UA Parser            =
 =================================*/
@@ -137,6 +146,11 @@ function filter_post( $this, trigger ) {
 
           $( '#ajax-list-post' ).append( $data );
 
+          // scroll to newly appended data object
+          // $( 'html,body' ).animate( {
+          //   scrollTop: $( $data ).offset().top - $( '.site-header' ).outerHeight()
+          // }, 1000, 'swing' );
+
           $( '.loading-dots' ).removeClass( 'js-active' );
 
         }
@@ -236,15 +250,17 @@ if ( Modernizr.cssanimations && Modernizr.mutationobserver ) {
 // if (Cookies.get('2016') != '1') {
 //   Cookies.set('2016', '1', { expires: 1 });
 // };
-$( '.header-nav-toggle' ).click( function( e ) {
+$( '.mobile-header-nav-toggle' ).click( function ( e ) {
   $( this ).toggleClass( 'js-active' );
-  $( '.header-nav' ).toggleClass( 'js-active' );
+  $( '.mobile-header-nav' ).toggleClass( 'js-active' );
+  $( 'body' ).toggleClass( 'js-popup-active' );
   e.preventDefault();
 } );
 
 $( '.header-nav-close' ).click( function( e ) {
   $( '.header-nav-toggle' ).toggleClass( 'js-active' );
   $( '.header-nav' ).toggleClass( 'js-active' );
+  $( 'body' ).removeClass( 'js-popup-active' );
   e.preventDefault();
 } );
 
@@ -254,57 +270,6 @@ $( '.header-nav-parent-menu > li.menu-item-has-children > a span' ).on( 'click',
   e.preventDefault();
   $( this ).parent( 'a' ).siblings( '.sub-menu' ).toggleClass( 'js-active' );
 } );;
-// https://www.jacklmoore.com/notes/naturalwidth-and-naturalheight-in-ie/
-// adds .naturalWidth() and .naturalHeight() methods to jQuery
-// for retreaving a normalized naturalWidth and naturalHeight.
-( function ( $ ) {
-  var
-    props = [ 'Width', 'Height' ],
-    prop;
-
-  while ( prop = props.pop() ) {
-    ( function ( natural, prop ) {
-      $.fn[ natural ] = ( natural in new Image() ) ?
-        function () {
-          return this[ 0 ][ natural ];
-        } :
-        function () {
-          var
-            node = this[ 0 ],
-            img,
-            value;
-
-          if ( node.tagName.toLowerCase() === 'img' ) {
-            img = new Image();
-            img.src = node.src,
-              value = img[ prop ];
-          }
-          return value;
-        };
-    }( 'natural' + prop, prop.toLowerCase() ) );
-  }
-}( jQuery ) );
-
-
-// Custom
-var imgCover = debounce( function () {
-  $( '.img-cover' ).each( function () {
-
-    var img = $( this );
-    var imgParent = $( this ).parents( '.img-cover-parent' );
-    var imgAspectRatio       = img.naturalWidth() / img.naturalHeight();
-    var imgParentAspectRatio = imgParent.outerWidth() / imgParent.outerHeight();
-
-    if ( imgAspectRatio >= imgParentAspectRatio ) {
-      img.removeClass( 'img-cover-w' ).addClass( 'img-cover-h' );
-    } else {
-      img.removeClass( 'img-cover-h' ).addClass( 'img-cover-w' );
-    }
-
-  } )
-}, 200 );
-window.addEventListener( 'resize', imgCover );
-imgCover();;
 /*==============================================
 =            Magnific Popup - Basic            =
 ==============================================*/
@@ -378,9 +343,9 @@ imgCover();;
 //     youtube: {
 //       index: 'youtube.com/', // String that detects type of video (in this case YouTube). Simply via url.indexOf(index).
 //       id: 'v=', // String that splits URL in a two parts, second part should be %id%
-//       // Or null - full URL will be returned
-//       // Or a function that should return %id%, for example:
-//       // id: function(url) { return 'parsed id'; }
+      // Or null - full URL will be returned
+      // Or a function that should return %id%, for example:
+      // id: function(url) { return 'parsed id'; }
 //       src: '//www.youtube.com/embed/%id%?autoplay=1&rel=0' // URL that will be set as a source for iframe.
 //     }
 //     ,
@@ -616,7 +581,13 @@ function postCardsCarousel() {
     } );
   } );
 }
-postCardsCarousel();;
+postCardsCarousel();
+
+// Initialize dynamic block preview (backend editor).
+// if ( window.acf ) {
+//   window.acf.addAction( 'render_block_preview', fullscreenSlider );
+//   window.acf.addAction( 'render_block_preview', postCardsCarousel );
+// };
 } ); // Document Ready
 
 

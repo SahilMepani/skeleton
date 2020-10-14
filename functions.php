@@ -2,7 +2,7 @@
 
 // require_once( get_template_directory() . '/functions/shortcodes.php' );
 require_once( get_template_directory() . '/functions/filters.php' );
-require_once( get_template_directory() . '/functions/actions.php' );
+require_once( get_template_directory() . '/functions/action.php' );
 require_once( get_template_directory() . '/functions/acf-css.php' );
 require_once( get_template_directory() . '/functions/helpers.php' );
 require_once( get_template_directory() . '/functions/disable-wp-generated-image-sizes.php' );
@@ -10,14 +10,13 @@ require_once( get_template_directory() . '/functions/add-image-sizes.php' );
 require_once( get_template_directory() . '/functions/register-acf-blocks.php' );
 require_once( get_template_directory() . '/functions/block-editor-settings.php' );
 require_once( get_template_directory() . '/functions/enqueue-scripts.php' );
+require_once( get_template_directory() . '/functions/remove-junk-from-head.php' );
+require_once( get_template_directory() . '/functions/wp-plugins.php' );
 // require_once( get_template_directory() . '/functions/custom-post-types.php' );
 // require_once( get_template_directory() . '/functions/custom-admin-columns.php' );
 // require_once( get_template_directory() . '/functions/admin-ajax.php' );
-// require_once( get_template_directory() . '/functions/amp.php' ); // only if amp plugin available
-// require_once( get_template_directory() . '/functions/twitter-feed/feed.php' );
-// require_once( get_template_directory() . '/functions/instagram-feed/feed.php' );
-// require_once( get_template_directory() . '/functions/pinterest-feed/feed.php' );
-// require_once( get_template_directory() . '/functions/post-like/post-like.php' );
+// only if amp plugin available
+// require_once( get_template_directory() . '/functions/amp.php' );
 
 /*----------  Enable login captcha  ----------*/
 // function is_login_page() {

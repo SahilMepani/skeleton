@@ -52,7 +52,7 @@
 @import "partials/templates/sitemap";
 
 // WP plugins
-// @import "partials/wp-plugins/gravity-forms";
+@import "partials/wp-plugins/gravity-forms";
 // @import "partials/wp-plugins/tribe-events/tribe_base";
 // @import "partials/wp-plugins/yoast-breadcrumbs";
 
@@ -62,6 +62,7 @@
 @import "partials/helpers/buttons";
 @import "partials/helpers/helpers";
 @import "partials/helpers/keyframes";
+@import "partials/animate-css/animate";
 
 // Utilities
 @import "partials/utilities/alert.scss";

@@ -47,7 +47,7 @@
 
 .text-body { color: $body-font-color !important; }
 
-.text-black-50 { color: rgba($black, .5) !important; }
+.text-black-50 { color: rgba(black, .5) !important; }
 .text-white-50 { color: rgba($white, .5) !important; }
 
 // Misc
@@ -82,9 +82,7 @@
 }
 .text-small { @extend small; }
 
-// .text-black { color: $black !important; }
-// .text-primary { color: $primary !important; }
-// .text-secondary { color: $secondary !important; }
+// .text-black { color: black !important; }
 
 // .ff-body { font-family: $body-font-family !important; }
 // .ff-heading { font-family: $headings-font-family !important; }

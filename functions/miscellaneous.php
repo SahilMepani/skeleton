@@ -16,6 +16,12 @@ add_filter('wp_sitemaps_enabled', '__return_false');
 add_filter('jpeg_quality', function($arg){return 100;});
 
 
+/* ======================================================
+=            Disable file editor in backend            =
+====================================================== */
+// define('DISALLOW_FILE_EDIT', TRUE);
+
+
 // Custom WP login logo and link
 ////////////////////////////////////////////////
 /*function my_login_logo() {
@@ -42,6 +48,115 @@ add_filter('jpeg_quality', function($arg){return 100;});
 //   return 'Skeleton';
 // }
 // add_filter('login_headertitle', 'my_login_logo_url_title');
+
+
+/*----------  Enable login captcha  ----------*/
+// function is_login_page() {
+// 	return in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'));
+// }
+// if ( is_login_page() ) {
+// 	require_once( get_template_directory() . '/functions/captcha.php' );
+// }
+
+
+// Blog Pagination
+// http://wp.tutsplus.com/tutorials/wordpress-pagination-a-primer
+/* ========================================== */
+// function tse_posts_pagination( $pages ) {
+//   $total_pages = $pages;
+
+//   if ( $total_pages > 1 ) {
+
+//     $current_page = max( 1, get_query_var( 'paged' ) );
+
+//     echo '<div class="posts-pagination">';
+
+//     echo '<span class="index"> Page ' . $current_page . ' of ' . $total_pages . "</span>";
+
+//     echo paginate_links(array(
+//         'base'      => get_pagenum_link( 1 ) . '%_%',
+//         'format'    => 'page/%#%/',
+//         'current'   => $current_page,
+//         'total'     => $total_pages,
+//         'type'      => 'list', // plain, array, list
+//         'prev_text' => '&lsaquo; Previous',
+//         'next_text' => 'Next &rsaquo;',
+//     ));
+//     echo '</div>';
+//   }
+// }
+
+
+
+/*==============================================
+=            Single/Page pagination            =
+==============================================*/
+/* http://bavotasan.com/2012/a-better-wp_link_pages-for-wordpress/
+ * The formatted output of a list of pages.
+ *
+ * Displays page links for paginated posts (i.e. includes the "nextpage".
+ * Quicktag one or more times). This tag must be within The Loop.
+ *
+ * @param string|array $args Optional. Overwrite the defaults.
+ * @return string Formatted output in HTML.
+ */
+
+// function tse_wp_link_pages($args = '') {
+//   $defaults = array(
+//       'before' => '<div class="single-pagination">' . '<span class="index">Pages:</span>',
+//       'after' => '</div>',
+//       'text_before' => '',
+//       'text_after' => '',
+//       'next_or_number' => 'number',
+//       'nextpagelink' => 'Next page',
+//       'previouspagelink' => 'Previous page',
+//       'pagelink' => '%',
+//       'echo' => 1
+//   );
+//   $r = wp_parse_args($args, $defaults);
+//   $r = apply_filters('wp_link_pages_args', $r);
+//   extract($r, EXTR_SKIP);
+//   global $page, $numpages, $multipage, $more, $pagenow;
+//   $output = '';
+//   if ($multipage) {
+//     if ('number' == $next_or_number) {
+//       $output .= $before;
+//       for ($i = 1; $i < ( $numpages + 1 ); $i = $i + 1) {
+//         $j = str_replace('%', $i, $pagelink);
+//         $output .= ' ';
+//         if ($i != $page || ( (!$more ) && ( $page == 1 ) ))
+//           $output .= _wp_link_page($i);
+//         else
+//           $output .= '<span class="current">';
+//         $output .= $text_before . $j . $text_after;
+//         if ($i != $page || ( (!$more ) && ( $page == 1 ) ))
+//           $output .= '</a>';
+//         else
+//           $output .= '</span>';
+//       }
+//       $output .= $after;
+//     } else {
+//       if ($more) {
+//         $output .= $before;
+//         $i = $page - 1;
+//         if ($i && $more) {
+//           $output .= _wp_link_page($i);
+//           $output .= $text_before . $previouspagelink . $text_after . '</a>';
+//         }
+//         $i = $page + 1;
+//         if ($i <= $numpages && $more) {
+//           $output .= _wp_link_page($i);
+//           $output .= $text_before . $nextpagelink . $text_after . '</a>';
+//         }
+//         $output .= $after;
+//       }
+//     }
+//   }
+//   if ($echo)
+//     echo $output;
+//   return $output;
+// }
+
 
 
 // Add attributes to enqueue styles

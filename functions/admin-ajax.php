@@ -1,26 +1,25 @@
 <?php
-/*===========================================
-=            Ajax load more post            =
-===========================================*/
-function filter_post() {
+// Update post
+////////////////////////////////////////////////
+function update_post() {
   $data = $_POST;
 
   $args = array(
     'post_type'      => $data['cpt'],
-    'posts_per_page' => 6,
+    'posts_per_page' => $data['postsPerPage'],
   );
 
-  /* Check if pagenumber is set for load more */
+  // Check if pagenumber is set for load more
   if ( isset($data['pageNumber']) && $data['pageNumber'] != '' ) {
     $args['paged'] = $data['pageNumber'] + 1;
   }
 
-  if ( $data['catID'] != '' ) {
+  if ( $data['cat'] != '' ) {
     $args['tax_query'] = array(
       array(
-        'taxonomy' => $data['cptTax'],
-        'field'    => 'id',
-        'terms'    => $data['catID'],
+        'taxonomy' => $data['tax'],
+        'field'    => 'slug',
+        'terms'    => $data['cat'],
       )
     );
   }
@@ -53,6 +52,6 @@ function filter_post() {
 }
 
 // function must start with wp_ajax_
-add_action('wp_ajax_filter_post_ajax', 'filter_post');
+add_action('wp_ajax_update_post_ajax', 'update_post');
 // for logout uers, no privilages, function must start with wp_ajax_nopriv_
-add_action('wp_ajax_nopriv_filter_post_ajax', 'filter_post');
+add_action('wp_ajax_nopriv_update_post_ajax', 'update_post');

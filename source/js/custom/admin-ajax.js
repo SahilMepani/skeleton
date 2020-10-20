@@ -1,112 +1,117 @@
 var btnMorePost = $( '#ajax-more-post' );
 var formSearchPost = $( '#ajax-search-post' );
 
-/*======================================
-=            Ajax More Post            =
-======================================*/
+// Load More Post
+////////////////////////////////////////////////
 btnMorePost.on( 'click', function( e ) {
   e.preventDefault();
 
-  $( this ).addClass( 'btn-disabled' );
-  $( '.loading-dots' ).addClass( 'js-active' );
+  // disable load more button
+  btnMorePost.addClass( 'btn-disabled' );
 
-  filter_post( $( this ), 'filter_more' );
+  update_post( $( this ), 'filter_more' );
 } );
 
 
-/*========================================
-=            Ajax Search Post            =
-========================================*/
+// Filter Search Post
+////////////////////////////////////////////////
 formSearchPost.submit( function( e ) {
   e.preventDefault();
 
-  $( '#ajax-submit-block' ).addClass( 'hidden' );
-  $( '#alert-no-data' ).addClass( 'hide' );
+  // remove search icon
+  $( '#ajax-submit-block' ).addClass( 'd-none' );
+  // remove close icon
   $( '#ajax-search-clear' ).removeClass( 'js-active' );
+  // show spinner inside input
   $( this ).find( '.loading-spinner' ).addClass( 'js-active' );
 
-  $( '#ajax-list-post > li' ).remove();
-  $( '.loading-dots' ).addClass( 'js-active' );
-  btnMorePost.hide();
-
+  // save the search value in hidden input
   var searchValue = formSearchPost.find( '.input-search' ).val();
   $( '#filter-search' ).val( searchValue );
 
-  filter_post( $( this ), 'filter_search' );
+  update_post( $( this ), 'filter_search' );
 } );
 
 
-/*=========================================
-=            Ajax Search Clear            =
-=========================================*/
+// Clear Search Post
+////////////////////////////////////////////////
 $( '#ajax-search-clear' ).click( function( e ) {
   e.preventDefault();
 
-  $( '#alert-no-data' ).addClass( 'hide' );
-
+  // clear input value
   formSearchPost.find( '.input-search' ).val( '' );
+  // remove value from hidden input
   $( '#filter-search' ).val( '' );
-
+  // submit the form
   formSearchPost.trigger( 'submit' );
 } );
 
 
-/*=======================================
-=            Ajax Filter Cat            =
-=======================================*/
+// Filter Categories Post
+////////////////////////////////////////////////
 $( '#ajax-filter-cat' ).on( 'change', function( e ) {
   e.preventDefault();
 
-  $( '#alert-no-data' ).addClass( 'hide' );
-  $( '#ajax-list-post > li' ).remove();
-  $( '.loading-dots' ).addClass( 'js-active' );
-  btnMorePost.hide();
+  // save the value in hidden input
+  var selectedCat = $( 'option:selected' ).data( 'term' );
+  $( '#filter-term' ).val( selectedCat );
 
-  var selectedCat = $( 'option:selected' ).data( 'term-id' );
-  $( '#filter-cat-id' ).val( selectedCat );
-
-  filter_post( $( 'option:selected', this ), 'filter_cat' );
+  update_post( $( 'option:selected', this ), 'filter_term' );
 } );
 
 
-/*========================================
-=            Ajax Filter Post            =
-========================================*/
-function filter_post( $this, trigger ) {
+// Update Post
+////////////////////////////////////////////////
+function update_post( $this, trigger ) {
 
-  var cpt = $this.attr( 'data-cpt' );
-  var cptTax = $this.attr( 'data-cpt-tax' );
-  var catID = $( '#filter-cat-id' ).val();
-  var authorID = $( '#filter-author-id' ).val();
-  var tagID = $( '#filter-tag-id' ).val();
-  var search = $( '#filter-search' ).val();
+  // remove no data heading
+  $( '#alert-no-data' ).addClass( 'd-none' );
+  // show loading dots
+  $( '.loading-dots' ).addClass( 'js-active' );
 
-  if ( trigger == 'filter_search' || trigger == 'filter_cat' ) {
+  if ( trigger == 'filter_search' || trigger == 'filter_term' ) {
 
-    // when user clicks load more, pagenum get sets to +1, so we need to reset it back to 1 to load first set of posts.
-    $( '#filter-pagenum' ).val( 1 );
-    // set page number variable empty
+    // hide the load more button
+    btnMorePost.hide();
+    // remove the list items
+    $( '#ajax-list-post > li' ).fadeOut( 400, function () {
+      $( '#ajax-list-post > li' ).remove();
+    } );
+
+    $( '#filter-pagenum' ).val( 1 ); // when user clicks load more, pagenum get sets to +1, so we need to reset it back to 1 to load first set of posts.
+
     var pageNumber = '';
 
-  } else if ( trigger == 'filter_more' ) {
-
-    var pageNumber = $( '#filter-pagenum' ).val();
-
   }
+
+  if ( trigger == 'filter_more' ) {
+    var pageNumber = $( '#filter-pagenum' ).val();
+  }
+
+  var cpt             = $this.data( 'cpt' );
+  var tax             = $this.data( 'tax' );
+  var term            = $( '#filter-term' ).val();
+  var authorID        = $( '#filter-author-id' ).val();
+  var tagID           = $( '#filter-tag-id' ).val();
+  var search          = $( '#filter-search' ).val();
+  var pageNumber      = $( '#filter-pagenum' ).val();
+  var postsPerPage    = $( '#filter-posts-per-page' ).val();
+  var unseenPostCount = $( '#filter-unseen-post-count' ).val();
 
   $.ajax( {
     type: 'POST',
     dataType: 'html',
-    url: localize_var.adminUrl,
+    url: localize_var.ajax_url,
     data: {
-      action: 'filter_post_ajax',
-      cpt: cpt,
-      cptTax: cptTax,
-      catID: catID,
-      authorID: authorID,
-      tagID: tagID,
-      search: search,
-      pageNumber: pageNumber,
+      action       : 'update_post_ajax',
+      cpt          : cpt,
+      tax          : tax,
+      term         : term,
+      authorID     : authorID,
+      tagID        : tagID,
+      search       : search,
+      pageNumber   : pageNumber,
+      postsPerPage : postsPerPage,
     },
     success: function( data ) {
 
@@ -119,16 +124,17 @@ function filter_post( $this, trigger ) {
         /*----------- Filter More -----------*/
         if ( trigger == 'filter_more' ) {
 
+          unseenPostCount = unseenPostCount - $data.length;
+
           $( '#filter-pagenum' ).val( parseInt( pageNumber ) + 1 );
+          $( '#filter-unseen-post-count' ).val( unseenPostCount );
 
           $( '#ajax-list-post' ).append( $data );
 
           // scroll to newly appended data object
-          // $( 'html,body' ).animate( {
-          //   scrollTop: $( $data ).offset().top - $( '.site-header' ).outerHeight()
-          // }, 1000, 'swing' );
-
-          $( '.loading-dots' ).removeClass( 'js-active' );
+          $( 'html,body' ).animate( {
+            scrollTop: $( $data ).offset().top
+          }, 100 );
 
         }
 
@@ -139,7 +145,7 @@ function filter_post( $this, trigger ) {
             if ( search != '' ) {
               $( '#ajax-search-clear' ).addClass( 'js-active' );
             } else {
-              $( '#ajax-submit-block' ).removeClass( 'hidden' );
+              $( '#ajax-submit-block' ).removeClass( 'd-none' );
             }
             $( '.loading-spinner' ).removeClass( 'js-active' );
             $( '#ajax-list-post' ).append( $data );
@@ -150,7 +156,7 @@ function filter_post( $this, trigger ) {
         }
 
         /*----------  Filter Cat  ----------*/
-        if ( trigger == 'filter_cat' ) {
+        if ( trigger == 'filter_term' ) {
 
           $( '#ajax-list-post > li' ).remove();
 
@@ -162,11 +168,7 @@ function filter_post( $this, trigger ) {
 
         }
 
-        // console.log( $data.length );
-
-        if ( $data.length < 6 ) {
-          btnMorePost.addClass( 'btn-disabled' );
-        } else {
+        if ( unseenPostCount ) {
           btnMorePost.removeClass( 'btn-disabled' );
         }
 
@@ -176,7 +178,7 @@ function filter_post( $this, trigger ) {
           $( '#ajax-search-clear' ).addClass( 'js-active' );
         }
         $( '.loading-spinner' ).removeClass( 'js-active' );
-        $( '#alert-no-data' ).removeClass( 'hide' );
+        $( '#alert-no-data' ).removeClass( 'd-none' );
         $( '.loading-dots' ).removeClass( 'js-active' );
         btnMorePost.hide();
 

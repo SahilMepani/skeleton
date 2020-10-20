@@ -175,7 +175,7 @@
   }
   input[type="submit"] {
     @include btn;
-    @include btn-primary;
+    @include btn-black;
     @include btn-md;
   }
   .comment-notes,

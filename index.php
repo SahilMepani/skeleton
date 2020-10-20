@@ -1,76 +1,13 @@
-<?php
-  if ( has_post_thumbnail() ) {
-    $featured_image_id       = get_post_thumbnail_id();
-    $featured_image_url_w768 = wp_get_attachment_image_src($featured_image_id, 'w768', true);
-    $featured_image_url_w768 = $featured_image_url_w768[0];
-    $featured_image_url_w992 = wp_get_attachment_image_src($featured_image_id, 'w992', true);
-    $featured_image_url_w992 = $featured_image_url_w992[0];
-    $featured_image_url_w1200 = wp_get_attachment_image_src($featured_image_id, 'w1200', true);
-    $featured_image_url_w1200 = $featured_image_url_w1200[0];
-    $featured_image_url_w1600 = wp_get_attachment_image_src($featured_image_id, 'w1600', true);
-    $featured_image_url_w1600 = $featured_image_url_w1600[0];
-    $featured_image_url_w1920 = wp_get_attachment_image_src($featured_image_id, 'w1920', true);
-    $featured_image_url_w1920 = $featured_image_url_w1920[0];
-    $featured_image_url_w2560 = wp_get_attachment_image_src($featured_image_id, 'w2560', true);
-    $featured_image_url_w2560 = $featured_image_url_w2560[0];
-    $featured_image_url_w3840 = wp_get_attachment_image_src($featured_image_id, 'w3840', true);
-    $featured_image_url_w3840 = $featured_image_url_w3840[0];
-?>
-    <style>
-      @media only screen and (max-width: 767px) {
-        .featured-img-section	{
-          background-image: url(<?php echo $featured_image_url_w768; ?>);
-        }
-      }
-      @media only screen and (min-width: 768px) {
-        .featured-img-section	{
-          background-image: url(<?php echo $featured_image_url_w992; ?>);
-        }
-      }
-      @media only screen and (min-width: 992px) {
-        .featured-img-section	{
-          background-image: url(<?php echo $featured_image_url_w1200; ?>);
-        }
-      }
-      @media only screen and (min-width: 1200px) {
-        .featured-img-section	{
-          background-image: url(<?php echo $featured_image_url_w1600; ?>);
-        }
-      }
-      @media only screen and (min-width: 1600px) {
-        .featured-img-section	{
-          background-image: url(<?php echo $featured_image_url_w1920; ?>);
-        }
-      }
-      @media only screen and (min-width: 1920px) {
-        .featured-img-section	{
-          background-image: url(<?php echo $featured_image_url_w1920; ?>);
-        }
-      }
-      @media only screen and (min-width: 2560px) {
-        .featured-img-section	{
-          background-image: url(<?php echo $featured_image_url_w2560; ?>);
-        }
-      }
-      @media only screen and (min-width: 3840px) {
-        .featured-img-section	{
-          background-image: url(<?php echo $featured_image_url_w3840; ?>);
-        }
-      }
-    </style>
-    <section class="featured-img-section"></section>
-<?php } ?>
-
 <?php get_header(); ?>
 
 <section class="py-xs-2 py-4">
   <div class="container">
 
-    <div class="filters">
+    <div class="d-sm-flex mx-sm-n1 mx-md-n1-5">
 
-      <div class="filters__item--search filters__item">
+      <div class="filters__item--search flex-fill px-sm-1 px-md-1-5 mb-1-5">
         <h5>Search</h5>
-        <form action="<?php echo home_url(); ?>/" method="get" id="ajax-search-post" data-cpt="post" data-cpt-tax="category">
+        <form action="<?php echo home_url(); ?>/" method="get" id="ajax-search-post" data-cpt="post" data-tax="category">
           <input type="text" name="s" placeholder="Search for" class="input-search w-100" />
           <div id="ajax-submit-block" class="submit-block">
             <input type="submit" value="" class="btn" />
@@ -80,11 +17,13 @@
         </form>
       </div> <!-- .filters__item-search -->
 
-      <div class="filters__item--select filters__item">
+      <div class="filters__item--select flex-fill px-sm-1 px-md-1-5">
         <h5>Filter</h5>
         <div class="custom-select-block">
           <select id="ajax-filter-cat">
-            <option data-cpt="post" data-cpt-tax="category" data-term-id=""><?php _e('Show All Categories','vt'); ?></option>
+            <option data-cpt="post" data-tax="category" data-term="">
+              <?php _e('Show All Categories','tse'); ?>
+            </option>
             <?php
               $cats_args = array(
                 'taxonomy' => 'category',
@@ -92,7 +31,7 @@
               $cats = get_categories( $cats_args );
               foreach ( $cats as $cat ) :
             ?>
-              <option data-cpt="post" data-cpt-tax="category" data-term-id="<?php echo $cat->term_id; ?>">
+              <option data-cpt="post" data-tax="category" data-term="<?php echo $cat->slug; ?>">
                 <?php echo $cat->name; ?>
               </option>
             <?php endforeach; ?>
@@ -111,10 +50,15 @@
     <?php
       global $query_string;
       global $wp_query;
-      query_posts( $query_string . '&posts_per_page=6&post_status=publish' );
-      $post_count = $wp_query->post_count;
+      query_posts( $query_string . '&posts_per_page=-1&post_status=publish' ); // set to -1 to get total number of posts
+      $total_post_count = $wp_query->post_count; // all the posts count
+      $posts_per_page = 6;
+      $unseen_post_count = $total_post_count - $posts_per_page; // posts not seen
+      query_posts( $query_string . '&posts_per_page=' . $posts_per_page . '&post_status=publish' );
+      echo $total_post_count;
+      $post_count = $wp_query->post_count; // updated query posts count
       if ( is_category() ) {
-        $cat_id = get_query_var( 'cat' );
+        $term = get_query_var( 'cat' );
       }
       if ( is_author() ) {
         $author_id = get_query_var( 'author' );
@@ -128,9 +72,9 @@
     ?>
 
     <?php if ( is_category() ) { ?>
-      <input type="hidden" id="filter-cat-id" value="<?php echo $cat_id; ?>" />
+      <input type="hidden" id="filter-term" value="<?php echo $term; ?>" />
     <?php } else { ?>
-      <input type="hidden" id="filter-cat-id" value="" />
+      <input type="hidden" id="filter-term" value="" />
     <?php } ?>
 
     <?php if ( is_author() ) { ?>
@@ -152,8 +96,11 @@
     <?php } ?>
 
     <input type="hidden" id="filter-pagenum" value="1" />
+    <input type="hidden" id="filter-total-post-count" value="<?php echo $total_post_count; ?>" />
+    <input type="hidden" id="filter-posts-per-page" value="<?php echo $posts_per_page; ?>" />
+    <input type="hidden" id="filter-unseen-post-count" value="<?php echo $unseen_post_count; ?>" />
 
-    <ul id="ajax-list-post" class="list-blog-post">
+    <ul id="ajax-list-post" class="list-blog-post mb-0">
 
       <?php if ( have_posts() ) : ?>
       <?php while ( have_posts() ) : the_post(); ?>
@@ -165,19 +112,17 @@
 
     </ul> <!-- .list-blog-post -->
 
-    <div class="text-center pt-1 clear">
+    <div class="text-center clear">
 
       <div class="loading-dots"></div>
 
       <?php //echo $post_count; ?>
 
       <div class="clear">
-        <h4 id="alert-no-data" class="hide">Sorry, there are no available post matching your filters.</h4>
-        <button id="ajax-more-post" data-cpt="post" data-cpt-tax="category" class="<?php echo ($post_count < 6) ? 'btn-disabled' : ''; ?> btn btn-primary btn-more-post btn-md">Load More</button>
+        <h4 id="alert-no-data" class="d-none">Sorry, there are no available post matching your filters.</h4>
+        <button id="ajax-more-post" data-cpt="post" data-tax="category" class="<?php echo ($total_post_count <= $posts_per_page) ? 'btn-disabled' : ''; ?> btn btn-black btn-md">Load More</button>
       </div>
     </div> <!-- .text-center -->
-
-    <div class="spinner"></div>
 
   </div> <!-- .container -->
 </section>

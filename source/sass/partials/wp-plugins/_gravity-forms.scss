@@ -141,7 +141,7 @@ $gf-field-label-font-size: rem-calc( 14px );
 .gfield.gsection {
   margin-top: rem-calc(50px);
   padding-top: rem-calc(40px);
-  border-top: rem-calc(1px) solid rgba($secondary,.2);
+  border-top: rem-calc(1px) solid rgba(#000,.2);
   margin-bottom: rem-calc(50px);
   &:first-child {
     border-top: none;
@@ -156,7 +156,7 @@ $gf-field-label-font-size: rem-calc( 14px );
   position: relative;
   &:before {
     content: '';
-    background-color: $primary;
+    background-color: red;
     width: rem-calc(45px);
     height: rem-calc(5px);
     position: absolute;
@@ -250,109 +250,8 @@ $gf-field-label-font-size: rem-calc( 14px );
 
 
 // Enhanced select
-.gform_wrapper {
-  position: relative;
-  // contain the selected value
-  .chosen-single {
-    padding: rem-calc( 10px );
-    // selected value
-    > span {
-      color: #aaa;
-      // margin-right: rem-calc(50px); enable this if below dropdown icon is displayed.
-    }
-    // contain the dropdown icon
-    div {
-      //display: none; //avoid double dropdown icons. First one is called standard select.
-      width: rem-calc(50px);
-      // dropdown icon
-      b {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-top: rem-calc(5px);
-        margin-left: rem-calc(-5px);
-        &:before {
-          content: '';
-          border: rem-calc(7px) solid transparent;
-          border-top-color: $secondary;
-        }
-      }
-    }
-    @include media-breakpoint-up( md ) {
-      padding: rem-calc(10px);
-    }
-  }
-  .chosen-container-active {
-    .chosen-single {
-      border-color: rgba(150, 150, 150, .7);
-      > span {
-        color: #444;
-      }
-    }
-  }
-  //contains the entire dropdown
-  .chosen-drop {
-    background-color: #fafafa;
-    // min-width: $input_min_width;
-    border: rem-calc(1px) solid rgba(150, 150, 150, .7);
-    border-top: none;
-    margin-top: rem-calc(-1px);
-    .chosen-results {
-      max-height: rem-calc(190px);
-      padding: rem-calc(4px);
-      li {
-        line-height: 1.2;
-        padding: rem-calc(10px) rem-calc(10px) rem-calc(11px);
-        &.highlighted, &:hover {
-          background-color: #ececec;
-        }
-      }
-    }
-  }
-  .chosen-search {
-    padding: rem-calc(8px) rem-calc(5px);
-    margin: 0;
-    position: relative;
-    &:after {
-      @include icon-font( $i-search, 21px, $secondary );
-      right: rem-calc(15px);
-      margin-top: rem-calc(-10px);
-    }
-    input {
-      width: 100%;
-      min-width: auto; //overwrite default min-width
-      padding: rem-calc(10px) rem-calc(35px) rem-calc(10px) rem-calc(10px);
-      // border: $input_focus_border;
-    }
-  }
-  @include media-breakpoint-down( md ) {
-    // iOS fix, chosen plugin not used by default
-    .chosen-single {
-      &:after {
-        @include icon-font-properties;
-        content: $i-dropdown;
-        font-size: rem-calc(18px);
-        display: block;
-        position: absolute;
-        right: rem-calc(15px);
-        top: 50%;
-        z-index: 1;
-        @include translateY(-50%);
-      }
-    }
-    .chosen-select {
-      font-size: rem-calc(16px);
-      letter-spacing: rem-calc(1px);
-      padding-left: rem-calc(15px);
-      border: $input-border-width solid $input-border-color;
-      padding-right: rem-calc(15px);
-      max-width: 100%;
-      width: 100%;
-      text-transform: capitalize;
-    }
-  }
-} // gfrom-wrapper
-
+////////////////////////////////////////////////
+// required - do not change
 .gform_wrapper {
   .chosen-container {
     text-align: left;
@@ -425,6 +324,108 @@ $gf-field-label-font-size: rem-calc( 14px );
   }
 }
 
+// custom - make changes
+.gform_wrapper {
+  position: relative;
+  // contain the selected value
+  .chosen-single {
+    // selected value
+    > span {
+      // color: #aaa;
+      margin-right: rem-calc(50px); // enable this if below dropdown icon is displayed.
+    }
+    // contain the dropdown icon
+    div {
+      //display: none; //avoid double dropdown icons. First one is called standard select.
+      width: rem-calc(50px);
+      // dropdown icon
+      b {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: rem-calc(5px);
+        margin-left: rem-calc(-5px);
+        &:before {
+          content: '';
+          border: rem-calc(7px) solid transparent;
+          border-top-color: #000;
+        }
+      }
+    }
+  }
+  .chosen-container-active {
+    .chosen-single {
+      border-color: rgba(150, 150, 150, .7);
+      // > span {
+      //   color: #444;
+      // }
+    }
+  }
+  //contains the entire dropdown
+  .chosen-drop {
+    background-color: #fafafa;
+    // min-width: $input_min_width;
+    border: rem-calc(1px) solid rgba(150, 150, 150, .7);
+    border-top: none;
+    margin-top: rem-calc(-1px);
+    .chosen-results {
+      max-height: rem-calc(190px);
+      padding: rem-calc(4px);
+      li {
+        line-height: 1.2;
+        padding: rem-calc(10px) rem-calc(10px) rem-calc(11px);
+        &.highlighted, &:hover {
+          background-color: #ececec;
+        }
+      }
+    }
+  }
+  .chosen-search {
+    padding: rem-calc(8px) rem-calc(5px);
+    margin: 0;
+    position: relative;
+    &:after {
+      @include icon-font-properties;
+      font-size: rem-calc( 21px );
+      content: $i-search;
+      right: rem-calc(15px);
+      margin-top: rem-calc(-10px);
+    }
+    input {
+      width: 100%;
+      min-width: auto; //overwrite default min-width
+      padding: rem-calc(10px) rem-calc(35px) rem-calc(10px) rem-calc(10px);
+      // border: $input_focus_border;
+    }
+  }
+  @include media-breakpoint-down( md ) {
+    // iOS fix, chosen plugin not used by default
+    .chosen-single {
+      &:after {
+        @include icon-font-properties;
+        content: $i-dropdown;
+        font-size: rem-calc(18px);
+        display: block;
+        position: absolute;
+        right: rem-calc(15px);
+        top: 50%;
+        z-index: 1;
+        @include translateY(-50%);
+      }
+    }
+    .chosen-select {
+      font-size: rem-calc(16px);
+      letter-spacing: rem-calc(1px);
+      padding-left: rem-calc(15px);
+      border: $input-border-width solid $input-border-color;
+      padding-right: rem-calc(15px);
+      max-width: 100%;
+      width: 100%;
+      text-transform: capitalize;
+    }
+  }
+} // gfrom-wrapper
+
 
 // Enhanced multi select
 .gform_wrapper {
@@ -435,7 +436,9 @@ $gf-field-label-font-size: rem-calc( 14px );
       position: relative;
       // dropdown icon
       &:before {
-        @include icon-font( $i-search, 24px, $secondary );
+        @include icon-font-properties;
+        font-size: rem-calc( 24px );
+        content: $i-search;
         display: block;
         position: absolute;
         right: rem-calc(10px);
@@ -478,7 +481,7 @@ $gf-field-label-font-size: rem-calc( 14px );
       &:after {
         @include icon-font-properties;
         content: $i-cross;
-        color: $secondary;
+        color: #000;
         font-size: rem-calc(20px);
         line-height: rem-calc(20px);
         position: relative;
@@ -534,7 +537,7 @@ $gf-field-label-font-size: rem-calc( 14px );
   &:before {
     @include icon-font-properties;
     content: $i-calendar;
-    color: $secondary;
+    color: #000;
     position: absolute;
     right: rem-calc(15px);
     top: 50%;
@@ -546,7 +549,7 @@ $gf-field-label-font-size: rem-calc( 14px );
 .datepicker-container {
   background-color: #fff;
   padding: rem-calc(5px);
-  border: rem-calc(1px) solid rgba($secondary,.2);
+  border: rem-calc(1px) solid rgba(#000,.2);
   position: absolute;
   width: rem-calc( 300px );
   max-width: 100%;
@@ -611,20 +614,20 @@ table.ui-datepicker-calendar {
   // Dates
   tbody td {
     a {
-      color: $secondary;
+      color: #000;
       text-align: center;
       display: block;
       padding: rem-calc(12px);
       cursor: pointer;
       &:hover {
-        background-color: $primary;
+        background-color: red;
         color: #fff;
         text-decoration: none;
       }
     }
     &.ui-datepicker-today {
       a {
-        background-color: $primary;
+        background-color: red;
         color: #fff;
       }
     }
@@ -636,6 +639,7 @@ table.ui-datepicker-calendar {
 .gform_wrapper {
   .ginput_complex .address_country {
     @include custom-select-block;
+    background-position: calc(100% - 3.2rem) calc(50% - 1.5rem), calc(100% - 2.5rem) calc(50% - 1.5rem);
   }
 }
 
@@ -746,7 +750,7 @@ input[type='file'] {
   @include input-text;
   input[type='button'] {
     @include btn;
-    @include btn-secondary;
+    @include btn-black;
     @include btn-md;
   }
 }
@@ -782,21 +786,21 @@ table.gfield_list {
   padding-top: rem-calc(50px);
   input[type='submit'] {
     @include btn;
-    @include btn-primary;
+    @include btn-black;
     @include btn-md;
     &:hover {
-      background-color: $secondary;
+      background-color: #000;
       color: #fff;
     }
   }
   // continue and save
   .gform_save_link {
     @include btn;
-    @include btn-secondary;
+    @include btn-black;
     @include btn-md;
     margin-left: rem-calc(20px);
     &:hover, &:active {
-      background: $secondary;
+      background: #000;
       color: #fff;
     }
   }
@@ -886,7 +890,7 @@ table.gfield_list {
 .gfield_html {
   &.gf-divider {
     margin-top: rem-calc(60px);
-    border-top: rem-calc(1px) solid rgba($secondary,.2);
+    border-top: rem-calc(1px) solid rgba(#000,.2);
     margin-bottom: rem-calc(50px);
   }
 }
@@ -988,7 +992,7 @@ table.gfield_list {
       // margin-top: rem-calc(-7px);
       &:checked {
         + label {
-          // background-color: $secondary;
+          // background-color: #000;
           // color: #fff;
         }
       }
@@ -1217,7 +1221,7 @@ table.gfield_list {
 //     a {
 //       background-color: #ffffd9;
 //       border: rem-calc(1px) solid darken( #ffffd9, 47% );
-//       color: $secondary;
+//       color: #000;
 //       display: block;
 //       padding: rem-calc(15px);
 //       line-height: 1.5;
@@ -1227,7 +1231,7 @@ table.gfield_list {
 //       }
 //     }
 //     .expiry {
-//       color: $primary;
+//       color: red;
 //     }
 //   }
 //   .email-block {
@@ -1244,10 +1248,10 @@ table.gfield_list {
 //     input[type="submit"] {
 //       @include btn;
 //       @include btn-md;
-//       @include btn-primary;
+//       @include btn-black;
 //       width: 100%;
 //       &:hover, &:active {
-//         background: $secondary;
+//         background: #000;
 //         color: #fff;
 //       }
 //     }
@@ -1268,6 +1272,7 @@ table.gfield_list {
 
 
 // Gravity form ready classes
+////////////////////////////////////////////////
 $padding: rem-calc( 10px );
 .gform_wrapper {
   .gf_left_half, .gf_right_half, .gf_left_third, .gf_middle_third, .gf_right_third, .gf_first_quarter, .gf_second_quarter, .gf_third_quarter, .gf_fourth_quarter, .gf_inline, .gf-left-half, .gf-right-half, .gf-left-third, .gf-middle-third, .gf-right-third, .gf-first-quarter, .gf-second-quarter, .gf-third-quarter, .gf-fourth-quarter, .gf-inline {

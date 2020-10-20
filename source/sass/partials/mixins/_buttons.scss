@@ -23,35 +23,23 @@
 }
 
 @mixin btn-red {
-  background: $primary;
+  background: red;
   color: #fff;
   &:hover,
   &:focus {
-    background: darken($primary,7%);
+    background: darken(red,7%);
     color: #fff;
   }
 }
 
 @mixin btn-black {
-  background: $black;
+  background: black;
   color: #fff;
   &:hover,
   &:focus {
-    background: darken($black,7%);
+    background: darken(black,7%);
     color: #fff;
   }
-}
-
-@mixin btn-primary {
-  @include btn-red;
-}
-
-@mixin btn-secondary {
-  @include btn-black;
-}
-
-@mixin btn-xs {
-  padding: rem-calc( 5px ) rem-calc( 10px );
 }
 
 @mixin btn-sm {
@@ -64,10 +52,6 @@
 
 @mixin btn-lg {
   padding: rem-calc( 20px ) rem-calc( 30px );
-}
-
-@mixin btn-xlg {
-  padding: rem-calc( 25px ) rem-calc( 40px );
 }
 
 @mixin btn-input-clone( $bg-color ) {

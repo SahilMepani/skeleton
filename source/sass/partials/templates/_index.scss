@@ -1,30 +1,3 @@
-.filters {
-  @include media-breakpoint-up( sm ) {
-    @include display-flex;
-    margin: 0 rem-calc(-10px);
-  }
-  @include media-breakpoint-up( md ) {
-    margin: 0 rem-calc(-15px);
-  }
-}
-
-.filters__item {
-  margin-bottom: rem-calc( 15px );
-  &:last-child {
-    margin-bottom: 0;
-  }
-  .heading {
-    margin-bottom: rem-calc( 7px );
-  }
-  @include media-breakpoint-up( sm ) {
-    @include flex(1);
-    padding: 0 rem-calc(10px);
-  }
-  @include media-breakpoint-up( md ) {
-    padding: 0 rem-calc(15px);
-  }
-}
-
 .filters__item--search {
   form {
     position: relative;
@@ -94,7 +67,7 @@
     }
     &:hover {
       &:before {
-        color: $primary;
+        color: red;
       }
     }
   }
@@ -144,7 +117,7 @@
     a {
       color: #999;
       &:hover {
-        color: $primary;
+        color: red;
         text-decoration: underline;
       }
     }
@@ -157,13 +130,13 @@
     a {
       color: $headings-color;
       &:hover {
-        color: $primary;
+        color: red;
         text-decoration: underline;
       }
     }
   }
   .more-link {
-    color: $primary;
+    color: red;
     font-weight: 700;
     border-bottom: rem-calc( 1px ) solid transparent;
     &:hover {
@@ -189,13 +162,5 @@
     .content-block {
       @include flex(1 1 auto);
     }
-  }
-}
-
-.btn-more-post {
-  &.btn-disabled {
-    cursor: default;
-    pointer-events: none;
-    opacity: .3;
   }
 }

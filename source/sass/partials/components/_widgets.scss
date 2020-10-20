@@ -83,13 +83,13 @@
     padding: rem-calc(9px);
   }
   #today {
-    background-color: $primary;
+    background-color: red;
     color: #fff;
   }
   #prev,
   #next {
     a {
-      background-color: $primary;
+      background-color: red;
       color: #fff;
       padding: rem-calc(5px) rem-calc(10px);
       &:hover {

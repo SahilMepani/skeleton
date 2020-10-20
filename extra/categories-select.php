@@ -1,6 +1,6 @@
 <!-- Chosen Select Ajax -->
 <select id="ajax-select-post-categories" class="chosen-select">
-  <option data-cpt="post" data-cpt-tax="category" data-term-id="-1"><?php _e('All Categories','vt'); ?></option>
+  <option data-cpt="post" data-tax="category" data-term=""><?php _e('All Categories','tse'); ?></option>
   <?php
     $cats_args = array(
       'taxonomy' => 'category',
@@ -8,7 +8,7 @@
     $cats = get_categories( $cats_args );
     foreach ( $cats as $cat ) :
   ?>
-    <option data-cpt="post" data-cpt-tax="category" data-term-id="<?php echo $cat->term_id; ?>" data-start-date="-1" data-end-date="-1">
+    <option data-cpt="post" data-tax="category" data-term="<?php echo $cat->slug; ?>" data-start-date="-1" data-end-date="-1">
       <?php echo $cat->name; ?>
     </option>
   <?php endforeach; ?>
@@ -17,7 +17,7 @@
 <!-- Custom Select Ajax -->
 <div class="custom-select-block">
   <select id="ajax-filter-cat">
-    <option data-cpt="post" data-cpt-tax="category" data-term-id="-1"><?php _e('All Categories','vt'); ?></option>
+    <option data-cpt="post" data-tax="category" data-term=""><?php _e('All Categories','tse'); ?></option>
     <?php
       $cats_args = array(
         'taxonomy' => 'category',
@@ -25,7 +25,7 @@
       $cats = get_categories( $cats_args );
       foreach ( $cats as $cat ) :
     ?>
-      <option data-cpt="post" data-cpt-tax="category" data-term-id="<?php echo $cat->term_id; ?>" data-start-date="-1" data-end-date="-1">
+      <option data-cpt="post" data-tax="category" data-term="<?php echo $cat->slug; ?>" data-start-date="-1" data-end-date="-1">
         <?php echo $cat->name . '(' . $cat->count . ')'; ?>
       </option>
     <?php endforeach; ?>

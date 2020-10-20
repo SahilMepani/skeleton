@@ -11,7 +11,7 @@ function tse_button_primary( $atts, $content = null ) {
 			'target' => '',
 		), $atts )
 	);
-	return '<a class="btn btn-lg btn-primary" href="'. $link . '" target="' . $target . '">' . do_shortcode($content) . '</a>';
+	return '<a class="btn btn-lg btn-black" href="'. $link . '" target="' . $target . '">' . do_shortcode($content) . '</a>';
 }
 add_shortcode('tse_button_primary', 'tse_button_primary');
 

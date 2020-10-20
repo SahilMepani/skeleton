@@ -5,28 +5,23 @@ $root-font-size : 10px; // never change this value
 
 
 // Project specific
-$red       : #ff2500;
+
 // Required colors
 $white      : #fff;
-$black      : #222;
-$primary    : $red;
-$secondary  : $black;
-$body-color : $black;
+$body-color : black;
 
 // Colors
 $colors: (
-  red       : $red,
-  white     : $white,
-  black     : $black,
-  primary   : $primary,
-  secondary : $secondary,
-  body      : $body-color,
+  white : $white,
+  black : black,
+  body  : $body-color,
+  grey : #eee
 );
 
 
 // Links
-$base-link-color            : $red;
-$base-link-hover-color      : $black;
+$base-link-color            : red;
+$base-link-hover-color      : black;
 $base-link-decoration       : none;
 $base-link-hover-decoration : none;
 

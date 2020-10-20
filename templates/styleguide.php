@@ -85,29 +85,25 @@
 
     <div class="col">
       <h4>Sizes</h4>
-      <code class="mb-1">&lt;a class="btn btn-xs"&gt;</code>
-      <div class="mb-2"><a href="#" class="btn btn-primary btn-xs">Extra Small</a></div>
       <code class="mb-1">&lt;a class="btn btn-sm"&gt;</code>
-      <div class="mb-2"><a href="#" class="btn btn-primary btn-sm">Small</a></div>
+      <div class="mb-2"><a href="#" class="btn btn-black btn-sm">Small</a></div>
       <code class="mb-1">&lt;a class="btn btn-md"&gt;</code>
-      <div class="mb-2"><a href="#" class="btn btn-primary btn-md">Medium</a></div>
+      <div class="mb-2"><a href="#" class="btn btn-black btn-md">Medium</a></div>
       <code class="mb-1">&lt;a class="btn btn-lg"&gt;</code>
-      <div class="mb-2"><a href="#" class="btn btn-primary btn-lg">Large</a></div>
-      <code class="mb-1">&lt;a class="btn btn-xlg"&gt;</code>
-      <div class="mb-2"><a href="#" class="btn btn-primary btn-xlg">Extra Large</a></div>
-      <code class="mb-1">&lt;a class="btn btn-md btn-block"&gt;</code>
-      <div class="mb-2"><a href="#" class="btn btn-primary btn-md btn-block">Block - Medium</a></div>
+      <div class="mb-2"><a href="#" class="btn btn-black btn-lg">Large</a></div>
+      <code class="mb-1">&lt;a class="btn btn-md d-block"&gt;</code>
+      <div class="mb-2"><a href="#" class="btn btn-black btn-md d-block">Block - Medium</a></div>
       <p>It will cover the entire width of the container.</p>
     </div> <!-- .col -->
 
     <div class="col">
       <h4>Colors</h4>
 
-      <code class="mb-1">&lt;a class="btn btn-primary btn-md"&gt;</code>
-      <div class="mb-2"><a href="#" class="btn btn-primary btn-md">Medium</a></div>
+      <code class="mb-1">&lt;a class="btn btn-black btn-md"&gt;</code>
+      <div class="mb-2"><a href="#" class="btn btn-black btn-md">Medium</a></div>
 
-      <code class="mb-1">&lt;a class="btn btn-secondary btn-lg"&gt;</code>
-      <div class="mb-2"><a href="#" class="btn btn-secondary btn-lg">Large</a></div>
+      <code class="mb-1">&lt;a class="btn btn-black btn-lg"&gt;</code>
+      <div class="mb-2"><a href="#" class="btn btn-black btn-lg">Large</a></div>
 
       <p>We can mix and match the sizes and color classes.</p>
 
@@ -497,7 +493,7 @@
 
 <hr class="mb-9">
 
-<?php gravity_form(1, $display_title=false, $display_description=false, $display_inactive=false, $field_values=null, $ajax=true, $tabindex=10); ?>
+<?php //gravity_form(1, $display_title=false, $display_description=false, $display_inactive=false, $field_values=null, $ajax=true, $tabindex=10); ?>
 
 </div> <!-- .container-fluid -->
 

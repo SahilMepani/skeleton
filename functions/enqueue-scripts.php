@@ -24,10 +24,6 @@ function tse_enqueue_scripts() {
     get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js'
   );
   wp_enqueue_script(
-    'img-cover',
-    get_template_directory_uri() . '/js/img-cover.js'
-  );
-  wp_enqueue_script(
     'ua-parser',
     get_template_directory_uri() . '/js/vendor/ua-parser-0.7.20.min.js'
   );

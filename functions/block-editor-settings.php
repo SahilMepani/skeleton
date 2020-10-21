@@ -81,13 +81,6 @@ function tse_gutenberg_scripts() {
     filemtime( get_stylesheet_directory(). '/js/vendor/modernizr-3.6.0.min.js' ),
     true
   );
-  // imgCover
-  wp_enqueue_script (
-    'tse-imgCover',
-    get_stylesheet_directory_uri() . '/js/img-cover.js',
-    filemtime( get_stylesheet_directory() . '/js/img-cover.js' ),
-    true
-  );
   // plugins
   wp_enqueue_script(
     'tse-editor-plugins',

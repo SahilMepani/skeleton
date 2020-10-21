@@ -4,8 +4,23 @@
 }
 
 // Custom
-// align classes are set by wp on images inside editor.
 ////////////////////////////////////////////////
+.img-cover-parent {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+// align classes are set by wp on images inside editor.
 .alignnone,
 .alignleft,
 .alignright,

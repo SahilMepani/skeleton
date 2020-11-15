@@ -17,7 +17,7 @@ function tse_enqueue_scripts() {
     'skeleton-style',
     get_stylesheet_uri(),
     array(),
-    // filemtime( get_stylesheet_uri() )
+    filemtime( get_stylesheet_uri() )
   );
   wp_enqueue_script(
     'modernizr',

@@ -1,4 +1,24 @@
-# GENERAL --- ✄ -----------------------:
+Developer Options:
+	Create a clone initially with default settings but for every block you may have to create all the dev options manually because of different defaults
+	Padding Top and Bottom Desc:
+		Separate multiple classes with spaces. Starts with pt-{breakpoint}-{number}. The number can be 1 from 15
+	Custom Class(es):
+		Separate multiple classes with spaces
+
+
+# Setting up WP Installation (30 mins):
+# Setting up Project variable (90 mins):
+	Setting up typography, buttons, colors, icons fonts
+
+
+# Responsive Image srcset:
+  ☐ Call the actual image size value in html code and always put the sizes in vw or rem units
+  ☐ By default the sizes is 100vw
+  ☐ Add 2x size in the instructions
+  ☐ If the image needs a max-size which is less than 100%. We need to specify that "sizes" attribute or else the image scale just like it did on art website for icons in extended text with image block
+
+
+  # GENERAL --- ✄ -----------------------:
   ☐ All custom functions should have the "tse_" prefix
   ☐ Shortcode
   ☐ Helper functions

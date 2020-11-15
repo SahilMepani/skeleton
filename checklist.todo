@@ -1,7 +1,7 @@
 # START --- ✄ -----------------------:
 
 # FINALIZE --- ✄ -----------------------:
-  ☐ Redirect all CPT slug to plural URL and use custom template to list all CPT posts for eg. url.com/resource should be redirect to url.com/resources
+  ☐ Redirect all CPT slug to plural URL and use custom template to list all CPT posts for eg. url.com/resource should be redirect to url.com/resources using Yoast SEO plugin
   ☐ Make sure all the content is editable from backend, if not please mention
   ☐ Change WP_DEBUG variable to false in wp-config.php file in root
   ☐ Go to Settings -> Reading and Uncheck "Discourage search engine..."
@@ -17,6 +17,7 @@
   ☐ Make the WP JPG resize quality filter percent to 70 if not planning to use Image Optimize plugin
   ☐ If aos added. Remove unwanted delay and duration CSS
   ☐ Remove unwanted keyframes
+  ☐ Add Redirection from old site to new site
 
   RESPONSIVE & CROSS BROWSER TESTING --- ✄ -----------------------
   WINDOWS --- ✄ -----------------------
@@ -43,6 +44,12 @@
   ☐ Add iThemes security plugin and activate it
   ☐ Change backend url from /wp-admin to /manage
 http://wiki.threesixtyeight.is/article/launch-check-list/
+
+
+# Content Editor:
+  ☐ All images need to have keyword focused lowercase names
+  ☐ All images need to have ALT text explaining the image content in detail
+  ☐ Do not upload same image again and to use it on another page. Use the existing one from the media library
 
 
 WP Engine Development:

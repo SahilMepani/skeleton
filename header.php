@@ -16,7 +16,7 @@
   <?php wp_head(); ?>
 </head>
 
-<body <?php body_class( 'site-wrapper' ); ?>>
+<body data-scroll-container <?php body_class( 'site-wrapper' ); ?>>
 
 <header class="site-header clearfix" role="banner">
   <div class="container-fluid">

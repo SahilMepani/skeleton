@@ -118,7 +118,6 @@ function update_post( $this, trigger ) {
   var tagID           = $( '#filter-tag-id' ).val();
   var search          = $( '#filter-search' ).val();
   var pageNumber      = $( '#filter-pagenum' ).val();
-  var totalPostCount  = $( '#filter-total-post-count' ).val();
   var postsPerPage    = $( '#filter-posts-per-page' ).val();
   var unseenPostCount = $( '#filter-unseen-post-count' ).val();
 
@@ -191,8 +190,6 @@ function update_post( $this, trigger ) {
           }, 300 );
 
         }
-
-        // console.log( $data.length );
 
         if ( unseenPostCount ) {
           btnMorePost.removeClass( 'btn-disabled' );

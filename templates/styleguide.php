@@ -497,4 +497,10 @@
 
 </div> <!-- .container-fluid -->
 
+<section style="height: 100vh">
+  <div class="box box-1"></div> <!-- .box -->
+  <div class="box box-2"></div> <!-- .box -->
+  <div class="box box-3"></div> <!-- .box -->
+</section>
+
 <?php get_footer(); ?>

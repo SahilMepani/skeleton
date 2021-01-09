@@ -16,32 +16,34 @@
   <?php wp_head(); ?>
 </head>
 
-<body data-scroll-container <?php body_class( 'site-wrapper' ); ?>>
+<body <?php body_class( 'site-wrapper' ); ?>>
+
+<div data-scroll-container class="scroll-container">
 
 <header class="site-header clearfix" role="banner">
   <div class="container-fluid">
 
     <div class="header-logo">
-			<a href="<?php echo esc_url( home_url() ); ?>" title="<?php esc_attr_e( get_bloginfo( 'name' ) ); ?>" aria-label="Go to Home" <?php echo (is_front_page()) ? 'aria-current="page"' : ''; ?>>
+      <a href="<?php echo esc_url( home_url() ); ?>" title="<?php esc_attr_e( get_bloginfo( 'name' ) ); ?>" aria-label="Go to Home" <?php echo (is_front_page()) ? 'aria-current="page"' : ''; ?>>
         <span><?php bloginfo('description'); ?></span>
         <?php include('images/svg/header-logo.svg') ?>
-			</a>
-		</div>
+      </a>
+    </div>
 
-		<button class="header-nav-toggle icon-font-before" aria-label="<?php _e( 'show primary navigation', 'tse' ); ?>" aria-haspopup="true" aria-expanded="false" aria-controls="siteMenu"><?php _e( 'Menu', 'tse' ); ?></button>
+    <button class="header-nav-toggle icon-font-before" aria-label="<?php _e( 'show primary navigation', 'tse' ); ?>" aria-haspopup="true" aria-expanded="false" aria-controls="siteMenu"><?php _e( 'Menu', 'tse' ); ?></button>
 
     <nav class="header-nav cleafix" role="navigation" aria-label="<?php _e( 'primary navigation', 'tse' ); ?>">
-			<button class="header-nav-close icon-font-before" aria-label="<?php _e( 'close primary navigation' ); ?>" aria-haspopup="true" aria-expanded="true" aria-controls="siteMenu"></button>
-			<?php wp_nav_menu( array(
-				'theme_location' => 'header-menu',
-				'container' => 'false',
-				'menu_class' => 'header-nav-parent-menu',
-				'items_wrap'	=> '<ul id="siteMenu" class="%2$s">%3$s</ul>',
-				)
-			); ?>
-		</nav> <!-- .header-nav -->
+      <button class="header-nav-close icon-font-before" aria-label="<?php _e( 'close primary navigation' ); ?>" aria-haspopup="true" aria-expanded="true" aria-controls="siteMenu"></button>
+      <?php wp_nav_menu( array(
+        'theme_location' => 'header-menu',
+        'container' => 'false',
+        'menu_class' => 'header-nav-parent-menu',
+        'items_wrap'	=> '<ul id="siteMenu" class="%2$s">%3$s</ul>',
+        )
+      ); ?>
+    </nav> <!-- .header-nav -->
 
   </div> <!-- .container-fluid -->
 </header> <!-- .site-header -->
 
-<main class="site-content" role="main">
+<main class="site-content" role="main" >

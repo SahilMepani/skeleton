@@ -3,7 +3,7 @@ module.exports = function ( grunt ) {
   // const compass = require( 'compass-importer' );
   // https://github.com/sindresorhus/grunt-sass
   const Fiber = require('fibers');
-  const sass  = require( 'sass' );
+  const sass  = require( 'node-sass' );
 
   grunt.initConfig( {
 
@@ -31,7 +31,7 @@ module.exports = function ( grunt ) {
           sourceMap: true,
           implementation: sass,
           fiber: Fiber,
-          // outputStyle: 'compact', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
+          outputStyle: 'compact', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
           // importer: compass
         },
         files: {
@@ -43,7 +43,7 @@ module.exports = function ( grunt ) {
           sourceMap: false,
           implementation: sass,
           fiber: Fiber,
-          // outputStyle: 'compressed', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
+          outputStyle: 'compressed', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
           // importer: compass
         },
         files: {

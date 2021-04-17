@@ -63,7 +63,7 @@
         }
         &:hover {
           &:before {
-            @include translate3d( rem-calc(5px),0,0 );
+            transform: translate3d( rem-calc(5px),0,0 );
           }
         }
       }
@@ -82,7 +82,7 @@
         }
         &:hover {
           &:after {
-            @include translate3d( rem-calc(-5px),0,0 );
+            transform: translate3d( rem-calc(-5px),0,0 );
           }
         }
       }

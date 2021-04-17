@@ -21,7 +21,7 @@
 .equal-height-slick-slides {
   // make the slider slides of equal height
   .slick-track {
-    @include display-flex;
+    display: flex;
   }
   .slick-slide {
     height: auto;

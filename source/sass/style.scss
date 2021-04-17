@@ -1,19 +1,14 @@
 /*!
 * Theme Name: Skeleton
-* Theme URI: http://www.yourdomain.com
+* Theme URI: http://www.sahilmepani.com
 * Description: Responsive custom theme
 * Text Domain: tse
 * Version: 1.0
-* Author: ThreeSixtyEight Team
-* Author URI: www.threesixtyeight.com
+* Author: sahil Mepani
+* Author URI: www.sahilmepani.com
 * License: GPL
 * License URI: http://wordpress.org/about/gpl/
 */
-
-// @import "compass/utilities";
-// @import "compass/css3";
-// @import "animation/core";
-// @import "node_modules/breakpoint-sass/stylesheets/breakpoint";
 
 // Required in same order
 @import "partials/variables";
@@ -62,7 +57,7 @@
 @import "partials/helpers/list";
 @import "partials/helpers/buttons";
 @import "partials/helpers/helpers";
-@import "partials/helpers/keyframes";
+// @import "partials/helpers/keyframes";
 // @import "partials/animate-css/animate";
 
 // Utilities

@@ -31,7 +31,7 @@
       position: absolute;
       left: rem-calc(15px); // same as padding right
       top: 50%;
-      @include translateY(-50%);
+      transform: translateY(-50%);
       transition: .2s ease-out;
     }
   }
@@ -106,10 +106,10 @@ $mobile-sub-menu-link-padding-x: $mobile-parent-menu-item-padding-x; //usually t
     bottom: 0;
     z-index: 99;
     overflow: auto;
-    @include translateX(-100%);
+    transform: translateX(-100%);
     transition: 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946);
     &.js-active {
-      @include translateX(0);
+      transform: translateX(0);
       box-shadow: 0 0 rem-calc(10px) rgba(120,120,120,.3);
     }
   }

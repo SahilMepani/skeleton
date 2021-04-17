@@ -4,10 +4,10 @@
     @include list-unstyled;
     border-bottom: 0;
     overflow: hidden;
-    @include display-flex;
+    display: flex;
     > li {
       background-color: #666;
-      @include flex(1 1 auto);
+      flex: 1 1 auto;
       text-align: center;
       &:hover {
         background-color: lighten(#666,7%);

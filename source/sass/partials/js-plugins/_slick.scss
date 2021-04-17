@@ -13,7 +13,7 @@
 }
 
 .slick-cloned { // custom css it will fix the inifinite loop last slider flickering issue
-  @include transform( translate3d(0, 0, 0) );
+  transform: translate3d(0, 0, 0);
 }
 
 .slick-slider {

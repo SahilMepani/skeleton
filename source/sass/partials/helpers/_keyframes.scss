@@ -1265,37 +1265,37 @@
 ========================================*/
 @include keyframes( moveUpDown ) {
 	50% {
-		@include translateY(-5px);
+		transform: translateY(-5px);
 	}
 }
 
 @include keyframes( moveLeftRight ) {
 	50% {
-		@include translateX(-5px);
+		transform: translateX(-5px);
 	}
 }
 
 @include keyframes( moveRightLeft ) {
 	50% {
-		@include translateX(5px);
+		transform: translateX(5px);
 	}
 }
 
 @include keyframes( moveRightLeftRight ) {
 	50% {
-		@include translateX(-5px);
+		transform: translateX(-5px);
 	}
 	100% {
-		@include translateX(5px);
+		transform: translateX(5px);
 	}
 }
 
 @include keyframes( rotate ) {
 	0% {
-		@include rotate(0);
+		transform: rotate(0);
 	}
 	100% {
-		@include rotate(360deg);
+		transform: rotate(360deg);
 	}
 }
 

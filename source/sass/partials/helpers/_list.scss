@@ -1,6 +1,6 @@
 .list-social-icons {
-  @include display-flex;
-  @include justify-content( center );
+  display: flex;
+  justify-content: center;
   margin: 0;
   list-style: none;
   li {
@@ -61,7 +61,7 @@
 // 			margin-right: 0;
 // 		}
 // 		a {
-// 			@include hide-text;
+// 			@include text-hide;
 // 			text-align: center;
 // 			text-decoration: none;
 // 			display: block;
@@ -103,7 +103,7 @@
 // 					position: absolute;
 // 					bottom: 100%;
 // 					left: 50%;
-// 					@include translateX(-50%);
+// 					transform: translateX(-50%);
 // 				}
 // 			}
 // 		}

@@ -410,7 +410,7 @@ $gf-field-label-font-size: rem-calc( 14px );
         right: rem-calc(15px);
         top: 50%;
         z-index: 1;
-        @include translateY(-50%);
+        transform: translateY(-50%);
       }
     }
     .chosen-select {
@@ -444,7 +444,7 @@ $gf-field-label-font-size: rem-calc( 14px );
         right: rem-calc(10px);
         top: 50%;
         z-index: 10;
-        @include translateY(-50%);
+        transform: translateY(-50%);
       }
       input {
         width: 100% !important; //overwrite inline style
@@ -471,7 +471,7 @@ $gf-field-label-font-size: rem-calc( 14px );
       top: 50%;
       right: rem-calc(10px);
       cursor: pointer;
-      @include translateY(-50%);
+      transform: translateY(-50%);
       &:hover {
         text-decoration: none;
         &:after {
@@ -541,7 +541,7 @@ $gf-field-label-font-size: rem-calc( 14px );
     position: absolute;
     right: rem-calc(15px);
     top: 50%;
-    @include translateY(-50%);
+    transform: translateY(-50%);
   }
 }
 
@@ -557,14 +557,14 @@ $gf-field-label-font-size: rem-calc( 14px );
 
 .datepicker-panel[data-view*='years'] {
   ul {
-    @include display-flex;
+    display: flex;
     text-align: center;
   }
   [data-view*='prev'] {
     width: rem-calc( 50px );
   }
   [data-view*='current'] {
-    @include flex( 1 1 auto );
+    flex: 1 1 auto;
   }
   [data-view*='next'] {
     width: rem-calc( 50px );
@@ -873,7 +873,7 @@ table.gfield_list {
   position: absolute;
   right: 0;
   top: 50%;
-  @include translateY(-50%);
+  transform: translateY(-50%);
 }
 @keyframes gf-ajax-spinner {
   0% {
@@ -981,7 +981,7 @@ table.gfield_list {
         left: 0;
         top: 50%;
         margin-top: rem-calc( -2px );
-        @include translateY(-50%);
+        transform: translateY(-50%);
       }
     }
     input[type='radio'], input[type='checkbox'] {
@@ -1097,22 +1097,22 @@ table.gfield_list {
       margin-left: rem-calc(-10px);
       margin-right: rem-calc(-10px);
       > ul {
-        @include display-flex;
+        display: flex;
         .gfield {
-          @include flex( 1 1 100% );
+          flex: 1 1 100%;
           padding: 0 rem-calc(10px);
           margin-bottom: 0;
           &.gf-col-3 {
-            @include flex( 0 0 25% );
+            flex: 0 0 25%;
           }
           &.gf-col-4 {
-            @include flex( 0 0 33.333333% );
+            flex: 0 0 33.33333%;
           }
           &.gf-col-6 {
-            @include flex( 0 0 50% );
+            flex: 0 0 50%;
           }
           &.gf-col-8 {
-            @include flex( 0 0 75% );
+            flex: 0 0 75%;
           }
         }
       }
@@ -1180,9 +1180,9 @@ table.gfield_list {
   }
   @include media-breakpoint-up( md ) {
     .gfield.gf-label-inline {
-      @include display-flex;
-      @include flex-wrap( wrap );
-      @include align-items( center );
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
       .gfield_label {
         margin-right: rem-calc(20px);
         margin-bottom: 0;

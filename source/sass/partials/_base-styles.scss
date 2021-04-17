@@ -112,7 +112,7 @@ p:empty { // added by wp-editor
 // 		right: rem-calc(15px);
 // 		&:before {
 // 			left: 0;
-// 			@include translateX( -100% );
+// 			transform: translateX( -100% );
 // 		}
 // 		&:after {
 // 			content: $i-arrow-right;
@@ -122,7 +122,7 @@ p:empty { // added by wp-editor
 // 		left: rem-calc(15px);
 // 		&:before {
 // 			right: 0;
-// 			@include translateX( 100% );
+// 			transform: translateX( 100% );
 // 		}
 // 		&:after {
 // 			content: $i-arrow-left;
@@ -152,7 +152,7 @@ p:empty { // added by wp-editor
 // 	}
 // 	button {
 // 		@include btn;
-// 		@include hide-text;
+// 		@include text-hide;
 // 		background-color: rgba(255,255,255,.5);
 // 		width: rem-calc(10px);
 // 		height: rem-calc(10px);

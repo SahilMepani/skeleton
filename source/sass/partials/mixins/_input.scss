@@ -39,7 +39,7 @@ $input-transition: none;
   border: $input-border-width solid $input-border-color;
   border-radius: $input-border-radius;
   transition: $input-transition ;
-  @include experimental(appearance, none); //remove browser styling
+  appearance: none;
   @include input-placeholder( $input-placeholder-color );
   overflow: hidden;
   &:focus {
@@ -69,7 +69,7 @@ $input-transition: none;
     background: transparent;
     width: 100%; //make dropdown sit on top of select
     padding-right: rem-calc(40px);
-    @include experimental(appearance, none); //remove browser styling
+    appearance: none;
   }
   select::-ms-expand {
     display: none;
@@ -83,6 +83,6 @@ $input-transition: none;
   // 	right: rem-calc(15px);
   // 	top: 50%;
   // 	z-index: -1;
-  // 	@include translateY(-50%);
+  // 	transform: translateY(-50%);
   // }
 }

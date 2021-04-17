@@ -32,7 +32,7 @@ $monospace  : Menlo, Monaco, Consolas, "Courier New", monospace;
 
 
 // Body
-$body-bg-color    : #fff;
+$body-bg-color    : hsl(0, 0%, 100%);
 $body-text-color  : $body-color;
 $body-font-color  : $body-text-color; // part of bootstrap
 $body-font-size   : 1.6rem;
@@ -201,7 +201,7 @@ $container-max-widths: (
   xl   : 93vw,
   xxl  : 93vw,
   // max-width value needs to be less than the (breakpoint value(xxxl) - $container-padding)
-  xxxl : 155rem,
+  xxxl : 144rem,
 );
 
 $container-sm-max-width  : map-get($container-max-widths, 'sm');

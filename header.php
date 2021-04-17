@@ -18,6 +18,8 @@
 
 <body <?php body_class( 'site-wrapper' ); ?>>
 
+<?php wp_body_open(); ?>
+
 <div data-scroll-container class="scroll-container">
 
 <header class="site-header clearfix" role="banner">

@@ -11,15 +11,14 @@
     right: 0;
     top: 0;
     bottom: 0;
-    &:before {
-      @include icon-font-properties;
-      content: $i-search;
-      color: #ccc;
-      font-size: rem-calc(30px);
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      @include translate(-50%, -50%);
+    .search-icon-block {
+      svg {
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include translate(-50%, -50%);
+      }
     }
     input[type="submit"] {
       background: transparent;
@@ -51,15 +50,14 @@
     width: rem-calc(45px);
     visibility: hidden;
     opacity: 0;
-    &:before {
-      @include icon-font-properties;
-      content: $i-cross;
-      color: #999;
-      font-size: rem-calc(24px);
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      @include translate(-50%, -50%);
+    .clear-icon-block {
+      svg {
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include translate(-50%, -50%);
+      }
     }
     &.js-active {
       visibility: visible;

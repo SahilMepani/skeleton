@@ -1,3 +1,44 @@
+<div class="map-tooltip">
+	<div class="heading-block">
+		<h5 class="heading">State Name</h5>
+		<div class="year">2021</div>
+	</div> <!-- .heading-block -->
+	<ul class="list-data">
+		<li>
+			<span class="label">Lavel</span>
+			<span class="data">20,200</span>
+		</li>
+	</ul> <!-- .list-data -->
+</div> <!-- .map-tooltip -->
+
+<style>
+.map-tooltip {
+	background-color: #fff;
+	color: #000;
+	font-weight: 700;
+}
+.map-tooltip .heading-block {
+	display: flex;
+	justify-content: space-between;
+}
+.map-tooltip .heading-block .heading {
+	font-size: 18px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	flex: 1 1 auto;
+	text-align: center;
+}
+.map-tooltip .heading-block .year {
+	font-size: 14px;
+}
+.map-tooltip .list-data {
+	list-style: none;
+	display: flex;
+	justify-content: space-between;
+	margin: 0;
+}
+</style>
+
 <?php
 
 // Do not delete these lines

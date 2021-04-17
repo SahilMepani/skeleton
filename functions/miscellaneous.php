@@ -24,9 +24,27 @@ add_filter('jpeg_quality', function($arg){return 100;});
 
 // Custom WP login logo and link
 ////////////////////////////////////////////////
-/*function my_login_logo() {
+/*function tse_login_logo() {
   ?>
   <style type="text/css">
+    body.login {
+      background: #fefcec;
+    }
+    body.login #login_error {
+      background: #333;
+      color: #fff;
+      border: none;
+    }
+    #login form {
+      background: #FDF9DC;
+      border-color: #B2993E;
+    }
+    #login input {
+      border-color: #B2993E;
+    }
+    #login input[type="submit"] {
+      background: #A38831;
+    }
     #login h1 a, .login h1 a {
       background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg');
       width: auto;
@@ -37,17 +55,17 @@ add_filter('jpeg_quality', function($arg){return 100;});
   </style>
   <?php
 }*/
-// add_action('login_enqueue_scripts', 'my_login_logo');
+// add_action('login_enqueue_scripts', 'tse_login_logo');
 
-// function my_login_logo_url() {
-//   return tse_home_url();
+// function tse_login_logo_url() {
+//   return home_url();
 // }
-// add_filter('login_headerurl', 'my_login_logo_url');
+// add_filter('login_headerurl', 'tse_login_logo_url');
 
-// function my_login_logo_url_title() {
+// function tse_login_logo_url_title() {
 //   return 'Skeleton';
 // }
-// add_filter('login_headertitle', 'my_login_logo_url_title');
+// add_filter('login_headertitle', 'tse_login_logo_url_title');
 
 
 /*----------  Enable login captcha  ----------*/

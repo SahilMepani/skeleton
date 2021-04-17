@@ -1,12 +1,11 @@
 .no-comments { clear: both; }
 
-.comments-counts {
-  color: #666;
+.comments-counts, #comments {
   font-size: rem-calc(18px);
   font-weight: 700;
   line-height: rem-calc(28px);
-  text-transform: uppercase;
-  float: left;
+  // text-transform: uppercase;
+  // float: left;
 }
 
 .comments-pagination {
@@ -59,7 +58,7 @@
       top: rem-calc(10px);
       right: rem-calc(10px);
       a {
-        color: lighten($body-color, 20%);
+        color: tint($body-color, 20%);
         &.comment-edit-link {
           color: $base-link-color;
         }
@@ -125,6 +124,15 @@
   .comment & {
     margin-top: rem-calc(15px);
   }
+  .logged-in-as {
+    a {
+      color: $body-color;
+      font-size: 16px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 #reply-title {
@@ -181,7 +189,7 @@
   .comment-notes,
   .form-allowed-tags {
     //p.comment-notes
-    color: lighten($body-color, 20%);
+    color: tint($body-color, 20%);
     font-size: rem-calc(13px);
   }
   .comment-form-comment {

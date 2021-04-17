@@ -3,6 +3,7 @@
 /* ======================================
 =            ScrollSpy Link            =
 ====================================== */
+// use sanitize_title function instead
 function tse_scrollspy_link( $string ) {
 	// Lower case everything
 	$string = strtolower($string);

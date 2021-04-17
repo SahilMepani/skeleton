@@ -1,6 +1,30 @@
 .type-post {
+  margin-bottom: 5rem;
   .embed-responsive {
     margin-bottom: $global-margin-bottom;
+  }
+  header {
+    margin-bottom: 3rem;
+  }
+  .post-title {
+    text-transform: none;
+    margin-bottom: .5rem;
+  }
+  .post-meta {
+    color: #888;
+    font-size: 1.6rem;
+    margin-bottom: rem-calc( 20px );
+    line-height: 1.4;
+    overflow: hidden;
+    .author {
+      text-transform: capitalize;
+    }
+    a {
+      color: #999;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }
 

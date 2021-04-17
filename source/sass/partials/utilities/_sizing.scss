@@ -79,7 +79,7 @@
 
       }
 
-      // Negative margins (e.g., where `.mb-n1` is negative version of `.mb-1`)
+      // Negative margins for viewport (e.g., where `.mb-n1-vw` is negative version of `.mb-1-vw`)
       @each $size, $length in $viewport-spacers {
 
         @if $size != 0 {

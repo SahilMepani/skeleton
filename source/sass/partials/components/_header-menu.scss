@@ -229,11 +229,11 @@ $desktop-parent-menu-dropdown-icon-border: rem-calc( 5px );
 $desktop-parent-menu-space-between-text-and-arrow: rem-calc( 10px );
 /*----------  Sub Menu  ----------*/
 $desktop-sub-menu-width: rem-calc( 300px );
-$desktop-sub-menu-link-bg-color: #ddd;
+$desktop-sub-menu-link-bg-color: red;
 $desktop-sub-menu-link-color: #333;
-$desktop-sub-menu-link-hover-bg-color: #ccc;
+$desktop-sub-menu-link-hover-bg-color: shade(red,10%);
 $desktop-sub-menu-link-hover-color: $desktop-sub-menu-link-color; //if this is changed there is some transition bug
-$desktop-sub-menu-current-item-link-bg-color: #ccc;
+$desktop-sub-menu-current-item-link-bg-color: shade(red,20%);
 $desktop-sub-menu-current-item-link-color: transparent; //if this is changed there is some transition bug
 $desktop-sub-menu-font-size: $root-font-size;
 $desktop-sub-menu-link-padding-y: rem-calc( 8px );

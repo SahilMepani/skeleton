@@ -10,10 +10,10 @@
 * License URI: http://wordpress.org/about/gpl/
 */
 
-@import "compass/utilities";
-@import "compass/css3";
-@import "animation/core";
-@import "node_modules/breakpoint-sass/stylesheets/breakpoint";
+// @import "compass/utilities";
+// @import "compass/css3";
+// @import "animation/core";
+// @import "node_modules/breakpoint-sass/stylesheets/breakpoint";
 
 // Required in same order
 @import "partials/variables";
@@ -23,10 +23,10 @@
 
 // Javascript plugins
 @import "partials/js-plugins/locomotive-scroll";
-// @import "partials/js-plugins/slick";
-// @import "partials/js-plugins/magnific-popup";
-// @import "partials/js-plugins/js-socials";
-// @import "partials/js-plugins/aos";
+@import "partials/js-plugins/slick";
+@import "partials/js-plugins/magnific-popup";
+@import "partials/js-plugins/js-socials";
+@import "partials/js-plugins/aos";
 
 // Base
 @import "partials/base-styles";
@@ -54,8 +54,8 @@
 
 // WP plugins
 @import "partials/wp-plugins/gravity-forms";
-// @import "partials/wp-plugins/tribe-events/tribe_base";
-// @import "partials/wp-plugins/yoast-breadcrumbs";
+@import "partials/wp-plugins/tribe-events/tribe_base";
+@import "partials/wp-plugins/yoast-breadcrumbs";
 
 // Helpers
 @import "partials/helpers/table";
@@ -71,13 +71,13 @@
 @import "partials/utilities/clearfix.scss";
 @import "partials/utilities/colors.scss";
 @import "partials/utilities/display.scss";
-// @import "partials/utilities/embed.scss";
+@import "partials/utilities/embed.scss";
 @import "partials/utilities/flex.scss";
-// @import "partials/utilities/float.scss";
+@import "partials/utilities/float.scss";
 @import "partials/utilities/overflow.scss";
 @import "partials/utilities/images.scss";
 @import "partials/utilities/position.scss";
-// @import "partials/utilities/pseudo-class.scss";
+@import "partials/utilities/pseudo-class.scss";
 @import "partials/utilities/screenreaders.scss";
 @import "partials/utilities/sizing.scss";
 @import "partials/utilities/spacing.scss";
@@ -89,10 +89,10 @@
 @import "partials/utilities/custom.scss";
 
 // Last minute changes
-// @import "partials/shame";
+@import "partials/shame";
 
 // IE specific
-// @import "partials/ie";
+@import "partials/ie";
 
 // Print
 @import "partials/print";

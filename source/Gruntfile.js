@@ -1,7 +1,9 @@
-var compass = require( 'compass-importer' )
-const sass = require( 'node-sass' );
-
 module.exports = function ( grunt ) {
+
+  // const compass = require( 'compass-importer' );
+  // https://github.com/sindresorhus/grunt-sass
+  const Fiber = require('fibers');
+  const sass  = require( 'sass' );
 
   grunt.initConfig( {
 
@@ -28,8 +30,9 @@ module.exports = function ( grunt ) {
         options: {
           sourceMap: true,
           implementation: sass,
-          outputStyle: 'compact', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
-          importer: compass
+          fiber: Fiber,
+          // outputStyle: 'compact', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
+          // importer: compass
         },
         files: {
           '../style.css': 'sass/style.scss',
@@ -39,8 +42,9 @@ module.exports = function ( grunt ) {
         options: {
           sourceMap: false,
           implementation: sass,
-          outputStyle: 'compressed', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
-          importer: compass
+          fiber: Fiber,
+          // outputStyle: 'compressed', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
+          // importer: compass
         },
         files: {
           '../editor-style.css': 'sass/style.scss',
@@ -85,8 +89,7 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks( 'grunt-contrib-concat' );
   // grunt.loadNpmTasks( 'grunt-jquery-ready' );
   grunt.loadNpmTasks( 'grunt-contrib-uglify' );
-
-  grunt.registerTask( 'default', [ 'sass', 'concat', 'watch' ] );
-  grunt.registerTask( 'uglify', [ 'uglify' ] );
+  grunt.registerTask( 'default', [ 'sass', 'concat', 'watch'  ] );
+  // grunt.registerTask( 'uglify', [ 'uglify' ] );
 
 };

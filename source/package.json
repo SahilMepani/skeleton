@@ -6,13 +6,15 @@
   "devDependencies": {
     "breakpoint-sass": "^2.7.1",
     "compass-importer": "^0.4.1",
+    "fibers": "^5.0.0",
     "grunt": "^1.0.1",
     "grunt-autoprefixer": "^3.0.4",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-uglify": "^4.0.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-sass": "^3.1.0",
-    "node-sass": "^4.13.1"
+    "node-sass": "^4.13.1",
+    "sass": "^1.32.10"
   },
   "keywords": [],
   "author": "",

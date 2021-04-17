@@ -31,7 +31,7 @@ module.exports = function ( grunt ) {
           sourceMap: true,
           implementation: sass,
           fiber: Fiber,
-          outputStyle: 'compact', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
+          outputStyle: 'expanded', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
           // importer: compass
         },
         files: {
@@ -80,6 +80,18 @@ module.exports = function ( grunt ) {
           dest: '../js/',
         } ]
       }
+    },
+
+    // Post CSS
+    postcss: {
+      options: {
+        processors: [
+          require('autoprefixer')(),
+        ]
+      },
+      dist: {
+        src: '../*.css'
+      }
     }
 
   } );
@@ -89,7 +101,8 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks( 'grunt-contrib-concat' );
   // grunt.loadNpmTasks( 'grunt-jquery-ready' );
   grunt.loadNpmTasks( 'grunt-contrib-uglify' );
-  grunt.registerTask( 'default', [ 'sass', 'concat', 'watch'  ] );
+  grunt.loadNpmTasks('@lodder/grunt-postcss');
+  grunt.registerTask( 'default', [ 'sass', 'concat', 'postcss', 'watch'  ] );
   // grunt.registerTask( 'uglify', [ 'uglify' ] );
 
 };

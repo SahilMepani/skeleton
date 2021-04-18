@@ -1,8 +1,12 @@
 .site-header {
-  background-color: #f9f9f9;
+  background-color: pink;
   appearance: none;
   padding-top: rem-calc( 10px );
   padding-bottom: rem-calc( 10px );
+}
+
+.sample {
+  appearance: none;
 }
 
 .header-logo {

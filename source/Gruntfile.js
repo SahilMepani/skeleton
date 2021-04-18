@@ -1,9 +1,6 @@
 module.exports = function ( grunt ) {
 
-  // const compass = require( 'compass-importer' );
-  // https://github.com/sindresorhus/grunt-sass
-  const Fiber = require('fibers');
-  const sass  = require( 'node-sass' );
+  const nodeSass  = require( 'node-sass' );
 
   grunt.initConfig( {
 
@@ -29,28 +26,45 @@ module.exports = function ( grunt ) {
       frontend: {
         options: {
           sourceMap: true,
-          implementation: sass,
-          fiber: Fiber,
-          outputStyle: 'expanded', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
+          implementation: nodeSass,
+          outputStyle: 'compressed', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
           // importer: compass
         },
         files: {
-          '../style.css': 'sass/style.scss',
+          '../style.css': 'sass/style.scss'
         }
       },
       backend: {
         options: {
           sourceMap: false,
-          implementation: sass,
-          fiber: Fiber,
+          implementation: nodeSass,
           outputStyle: 'compressed', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
           // importer: compass
         },
         files: {
-          '../editor-style.css': 'sass/style.scss',
+          '../editor-style.css': 'sass/style.scss'
         }
       }
     },
+
+    // Browser Sync
+    // browserSync: {
+    //   dev: {
+    //     bsFiles: {
+    //       src : [
+    //         '../*.html',
+    //         '../*.php',
+    //         '../js/**/*.{js,json}',
+    //         '../*.css',
+    //         '../images/**/*.{png,jpg,jpeg,gif,webp,svg}'
+    //       ]
+    //     },
+    //     options: {
+    //       watchTask: true,
+    //       proxy: 'http://skeleton.local/'
+    //     }
+    //   }
+    // },
 
     // Frontend JS
     concat: {
@@ -67,20 +81,20 @@ module.exports = function ( grunt ) {
       },
     },
 
-    uglify: {
-      options: {
-        output: {
-          comments: 'false'
-        }
-      },
-      dist: {
-        files: [ {
-          expand: true,
-          src: [ '../js/plugins.js', '../js/custom.js' ],
-          dest: '../js/',
-        } ]
-      }
-    },
+    // uglify: {
+    //   options: {
+    //     output: {
+    //       comments: 'false'
+    //     }
+    //   },
+    //   dist: {
+    //     files: [ {
+    //       expand: true,
+    //       src: [ '../js/plugins.js', '../js/custom.js' ],
+    //       dest: '../js/',
+    //     } ]
+    //   }
+    // },
 
     // Post CSS
     postcss: {
@@ -92,6 +106,15 @@ module.exports = function ( grunt ) {
       dist: {
         src: '../*.css'
       }
+    },
+
+    // Update Dev dependency
+    devUpdate: {
+      main: {
+          options: {
+              //task options go here
+          }
+      }
     }
 
   } );
@@ -99,10 +122,13 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks( 'grunt-sass' );
   grunt.loadNpmTasks( 'grunt-contrib-watch' );
   grunt.loadNpmTasks( 'grunt-contrib-concat' );
+  grunt.loadNpmTasks('grunt-dev-update');
   // grunt.loadNpmTasks( 'grunt-jquery-ready' );
-  grunt.loadNpmTasks( 'grunt-contrib-uglify' );
+  // grunt.loadNpmTasks( 'grunt-contrib-uglify' );
   grunt.loadNpmTasks('@lodder/grunt-postcss');
-  grunt.registerTask( 'default', [ 'sass', 'concat', 'postcss', 'watch'  ] );
+  // grunt.loadNpmTasks('grunt-browser-sync');
+  grunt.registerTask( 'default', [ 'postcss', 'watch' ] );
+  grunt.registerTask( 'devUpdate', [ 'devUpdate' ] );
   // grunt.registerTask( 'uglify', [ 'uglify' ] );
 
 };

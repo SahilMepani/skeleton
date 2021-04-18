@@ -7,18 +7,20 @@
     "@lodder/grunt-postcss": "^3.0.1",
     "autoprefixer": "^10.2.5",
     "breakpoint-sass": "^2.7.1",
-    "fibers": "^5.0.0",
     "grunt": "^1.0.1",
+    "grunt-browser-sync": "^2.2.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-uglify": "^4.0.1",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-dev-update": "^2.3.0",
     "grunt-sass": "^3.1.0",
     "node-sass": "^4.13.1",
-    "postcss": "^8.2.10",
-    "sass": "^1.32.10"
+    "postcss": "^8.2.10"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "install": "^0.13.0"
+  }
 }

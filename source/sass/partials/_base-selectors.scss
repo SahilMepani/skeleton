@@ -9,26 +9,10 @@
 
 html {
   font-family: $body-font-family;
-  font-size: $root-font-size;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-  -ms-text-size-adjust: 100%;
-  -ms-overflow-style: scrollbar;
-  -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
-  // @include fluid( font-size, $mobile, $scaling, $root-font-size, $root-font-size, false, false ); // scale down
   @include fluid( font-size, $scaling, $four-k, $root-font-size, $root-font-size * 2.4, true, false );
+  // @include fluid( font-size, $mobile, $scaling, $root-font-size, $root-font-size, false, false ); // scale down
   // min-width: $container; if non-responsive
-  // -webkit-font-smoothing: antialiased;
-  //www.intridea.com/blog/2014/5/8/better-font-smoothing-in-chrome-on-mac-os-x
-  // below code makes the font slightly bold and dark on mac. Use with testing
-  // @media only screen and (-webkit-min-device-pixel-ratio: 1.25),
-  // only screen and ( min-device-pixel-ratio: 1.25),
-  // only screen and ( min-resolution: 200dpi),
-  // only screen and ( min-resolution: 1.25dppx)
-  // {
-  // 	-webkit-font-smoothing: subpixel-antialiased;
-  // }
   // add custom scrollbar
   // &.no-touchevents {
     // @include scrollbars(1rem, $blue, #e9e9e9);
@@ -36,41 +20,14 @@ html {
   // }
 }
 
-body {
-  background: $body-bg-color;
-  color: $body-color;
-  font-size: $body-font-size;
-  font-family: $body-font-family;
-  font-weight: $body-font-weight;
-  line-height: 1;
+// body {
   // &.site-wrapper { // prevent breaking the gutenberg editor
   //   overflow-x: hidden;
   // }
   // &.js-popup-active {
   //   overflow-y: hidden;
   // }
-}
-
-/*----------  Headings  ----------*/
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-  font-family: $headings-font-family;
-  color: $headings-color;
-  margin: $headings-margin-top 0 $headings-margin-bottom 0;
-  &:first-child {
-    margin-top: 0;
-  }
-}
+// }
 
 h1,
 .h1 {
@@ -115,32 +72,6 @@ h6,
 }
 
 /*----------  Links/Buttons  ----------*/
-a {
-  color: $base-link-color;
-  text-decoration: $base-link-decoration;
-  &:hover {
-    color: $base-link-hover-color;
-    text-decoration: $base-link-hover-decoration;
-  }
-  &:focus {
-    outline: none;
-  }
-}
-
-button {
-  &:focus {
-    outline: none;
-  }
-}
-
-button,
-input,
-optgroup,
-select,
-textarea {
-  font-family: $body-font-family;
-}
-
 a,
 button,
 input[type="submit"],
@@ -151,6 +82,7 @@ input[type="reset"] {
   transition-duration: .2s;
   border-radius: 0;
   -webkit-text-decoration-skip-ink: auto;
+  text-decoration-skip-ink: auto;
   -webkit-text-decoration-skip: objects;
   &:hover {
     transition-duration: .1s;
@@ -201,26 +133,6 @@ address {
   margin: 0 0 $global-margin-bottom;
 }
 
-b,
-strong {
-  font-weight: 700;
-}
-
-small {
-  font-size: rem-calc( 14px );
-}
-
-hr {
-  margin-top: $global-margin-bottom;
-  margin-bottom: $global-margin-bottom;
-  border: 0;
-  border-top: 1px solid #e5e5e5;
-}
-
-address {
-  font-style: normal;
-}
-
 output {
   display: block;
   padding-top: rem-calc( 30px );
@@ -229,10 +141,8 @@ output {
 }
 
 code {
-  background-color: #f6f8fa;
-  font-size: $body-font-size;
+  background-color: $grey-100;
   font-weight: 400;
-  font-family: $monospace;
   display: inline-block;
   padding: rem-calc( 5px );
 }
@@ -241,13 +151,9 @@ code {
 table {
   width: 100%;
   max-width: 100%;
-  border-collapse: collapse;
   caption {
-    font-family: $headings-font-family;
-    text-align: left;
     padding-top: rem-calc( 10px );
     padding-bottom: rem-calc( 10px );
-    caption-side: top;
   }
   tbody {
     tr:last-child {
@@ -272,11 +178,11 @@ table {
 }
 
 /*----------  Lists  ----------*/
-ul,
-ol,
-dl {
-  padding: 0;
-}
+// ul,
+// ol,
+// dl {
+//   padding: 0;
+// }
 
 ul,
 ol {
@@ -294,6 +200,7 @@ ol {
   nav & {
     margin: 0;
     li {
+      list-style: none;
       margin-bottom: 0;
       line-height: 1;
     }

@@ -1,80 +1,67 @@
 // Can't use rem-calc function in this file
 // Bootstrap last updated 13-08-2019
 // Root font size
-$root-font-size : 10px; // never change this value
+$root-font-size : 10px; // needs to be same as $font-size-base but in pixels
 
 
-// Project specific
+// Project Colors
 
-// Required colors
-$white      : #fff;
-$body-color : black;
 
 // Colors -used for generating bg-* and color-* classes
 $colors: (
-  white : $white,
+  white : white,
   black : black,
-  body  : $body-color,
-  grey : #eee
 );
 
-
-// Links
-$base-link-color            : red;
-$base-link-hover-color      : black;
-$base-link-decoration       : none;
-$base-link-hover-decoration : none;
-
-
-// Font family
-$montserrat : 'Montserrat', 'Lato', sans-serif;
-$monospace  : Menlo, Monaco, Consolas, "Courier New", monospace;
-
-
-// Body
-$body-bg-color    : hsl(0, 0%, 100%);
-$body-text-color  : $body-color;
-$body-font-color  : $body-text-color; // part of bootstrap
-$body-font-size   : 1.6rem;
-$body-font-weight : 400;
-$body-font-family : $montserrat;
+// Project Font family
 
 
 // Spacing
 $global-margin-bottom : 3rem; // p, table, ul, ol, dl, dd, pre, blockquote, address
 $global-line-height   : 1.7; // p, pre, blockquote, address, dt, textarea
 
-
-// Headings
-$headings-color         : inherit;
-$headings-font-family   : inherit;
-$headings-margin-top    : $global-margin-bottom*2;
-$headings-margin-bottom : 2rem;
-
 // Input
 // variables are set in input mixin file because it requires rem-values
-
 
 // Text selection
 $text-selection-bg-color : #F7EA6F;
 $text-selection-color    : #2c2c2c;
 
-
-// Font weights
-$font-weight-lighter : lighter;
-$font-weight-light   : 300;
-$font-weight-normal  : 400;
-$font-weight-bold    : 700;
-$font-weight-bolder  : bolder;
-
+// Breakpoints - Orientation
+$portrait: orientation portrait;
+$landscape: orientation landscape;
 
 // This variable affects the `.pt-*` and `.mb-*` classes etc.
-$enable-viewport-spacers: false;
-$viewport-spacers : (
-  3: 3vw,
-  4: 4vw,
-);
+// $enable-viewport-spacers: false;
+// $viewport-spacers : (
+//   3: 3vw,
+//   4: 4vw,
+// );
 
+// Bootstrap Overwrites
+////////////////////////////////////////////////
+
+// Settings for the `<body>` element.
+// $body-color: $gray-600;
+// $body-bg: $white;
+// $font-family-base: $font-family-sans-serif;
+$font-size-base: 1rem;
+// $font-weight-base: $font-weight-normal;
+// $line-height-base: 1.5;
+
+// Links
+$link-color            : red;
+$link-hover-color      : black;
+$link-decoration       : none;
+$link-hover-decoration : none;
+
+// Headings
+// $headings-color         : inherit;
+// $headings-font-family   : inherit;
+$headings-margin-bottom : 2rem;
+
+// p element
+$paragraph-margin-bottom: $global-margin-bottom;
 
 // This variable affects the `.pt-*` and `.mb-*` classes etc.
 $spacers : (
@@ -111,6 +98,10 @@ $spacers : (
   // 20     : 20rem,
 );
 
+// This variable affects the `.h-*` and `.w-*` classes.
+// $sizes: (
+  // 30: 30%
+// );
 
 // Breakpoints - Min width
 $xs      : 0; // do not change
@@ -127,13 +118,6 @@ $three-k : 2560px;
 $four-k  : 3840px;
 $mac-13  : ($md) (max-height 800px);
 
-
-// Changes depending on the project design, used on html element
-$mobile: $min-414; // mobile canvas size, mostly remains same
-$desktop: $two-k; // desktop canvas size
-$scaling: $two-k; // scaling starts from here, do not change if not sure, it cannot be smaller than $desktop
-
-
 // Breakpoints - Map
 $grid-breakpoints : (
   // this and $container-max-widths "map size" should match
@@ -147,28 +131,35 @@ $grid-breakpoints : (
   // add more if required
 );
 
+// Changes depending on the project design, used on html element
+$mobile: $min-414; // mobile canvas size, mostly remains same
+$desktop: $two-k; // desktop canvas size
+$scaling: $two-k; // scaling starts from here, do not change if not sure, it cannot be smaller than $desktop
+
+
 // Grid columns
 // Set the number of columns and specify the width of the gutters.
 $enable-grid-classes : true;
-$grid-columns        : 12;
-$grid-gutter-width   : 3rem; // gets divided by half per column for columns
-$container-padding   : 3rem; // each x-side
+$grid-columns      : 12 !default;
+$grid-gutter-width : 30px !default;
+$grid-gutter-width : 3rem; // gets divided by half per column for columns
+$container-padding : 3rem; // each x-side
 
 
 // Grid containers
 // Define the maximum width of `.container` for different screen sizes.
 // Changed the value to rem to scale on higher size screens
 // this object and $grid-breakpoints "map size" object should match
-$container-max-widths: (
-  xs   : 100vw,
-  sm   : 95vw,
-  md   : 95vw,
-  lg   : 93vw,
-  xl   : 93vw,
-  xxl  : 93vw,
-  // max-width value needs to be less than the (breakpoint value(xxxl) - $container-padding)
-  xxxl : 144rem,
-);
+// $container-max-widths: (
+//   xs   : 100vw,
+//   sm   : 95vw,
+//   md   : 95vw,
+//   lg   : 93vw,
+//   xl   : 93vw,
+//   xxl  : 93vw,
+//   // max-width value needs to be less than the (breakpoint value(xxxl) - $container-padding)
+//   xxxl : 144rem,
+// );
 
 // $container-sm-max-width  : map-get($container-max-widths, 'sm');
 // $container-md-max-width  : map-get($container-max-widths, 'md');
@@ -185,53 +176,3 @@ $embed-responsive-aspect-ratios: (
   (4 3),
   (1 1),
 );
-
-
-// This variable affects the `.h-*` and `.w-*` classes.
-$sizes: (
-  20   : 20%,
-  25   : 25%,
-  30   : 30%,
-  35   : 35%,
-  40   : 40%,
-  45   : 45%,
-  50   : 50%,
-  55   : 55%,
-  60   : 60%,
-  65   : 65%,
-  70   : 70%,
-  75   : 75%,
-  80   : 80%,
-  85   : 85%,
-  90   : 90%,
-  95   : 95%,
-  100  : 100%,
-  auto : auto
-);
-
-
-// Breakpoints - Orientation
-$portrait: orientation portrait;
-$landscape: orientation landscape;
-
-
-// Utilities
-$displays  : none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex;
-$overflows : auto, hidden;
-$positions : static, relative, absolute, fixed, sticky;
-
-
-// Printing
-$enable-print-styles  : true;
-$print-page-size      : a3;
-$print-body-min-width : map-get($grid-breakpoints, "lg");
-
-
-// Z-index
-$zindex-dropdown       : 1000;
-$zindex-sticky         : 1020;
-$zindex-fixed          : 1030;
-$zindex-modal-backdrop : 1040;
-$zindex-modal          : 1050;
-$zindex-popover        : 1060;
-$zindex-tooltip        : 1070;

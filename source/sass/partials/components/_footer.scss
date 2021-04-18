@@ -37,12 +37,12 @@
     position: fixed;
     right: rem-calc( 30px );
     bottom: rem-calc( 30px );
-    &:before {
-      @include icon-font-properties;
-      content: $i-go-top;
-      color: #999;
-      font-size: rem-calc( 40px );
-    }
+    // &:before {
+    //   @include icon-font-properties;
+    //   content: $i-go-top;
+    //   color: #999;
+    //   font-size: rem-calc( 40px );
+    // }
     &:hover {
       &:before {
 

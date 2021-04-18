@@ -26,7 +26,7 @@
     border: 0;
     position: relative;
     &:before {
-      content: $i-menu;
+      // content: $i-menu;
       font-size: rem-calc(24px);
       position: absolute;
       left: rem-calc(15px); // same as padding right
@@ -49,11 +49,11 @@
     position: absolute;
     right: 0;
     top: 0;
-    &:before {
-      content: $i-cross;
-      color: #000;
-      font-size: rem-calc(24px);
-    }
+    // &:before {
+    //   content: $i-cross;
+    //   color: #000;
+    //   font-size: rem-calc(24px);
+    // }
     &:hover,
     &:focus {
       background-color: #fff;

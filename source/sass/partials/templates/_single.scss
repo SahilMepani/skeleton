@@ -54,13 +54,13 @@
       position: relative;
       a {
         padding-left: rem-calc(25px);
-        &:before {
-          @include icon-font-properties;
-          content: $i-arrow-left;
-          position: absolute;
-          left: 0;
-          transition: 100ms transform linear;
-        }
+        // &:before {
+        //   @include icon-font-properties;
+        //   content: $i-arrow-left;
+        //   position: absolute;
+        //   left: 0;
+        //   transition: 100ms transform linear;
+        // }
         &:hover {
           &:before {
             transform: translate3d( rem-calc(5px),0,0 );
@@ -73,13 +73,13 @@
       position: relative;
       a {
         padding-right: rem-calc(25px);
-        &:after {
-          @include icon-font-properties;
-          content: $i-arrow-right;
-          position: absolute;
-          right: 0;
-          transition: 100ms transform linear;
-        }
+        // &:after {
+        //   @include icon-font-properties;
+        //   content: $i-arrow-right;
+        //   position: absolute;
+        //   right: 0;
+        //   transition: 100ms transform linear;
+        // }
         &:hover {
           &:after {
             transform: translate3d( rem-calc(-5px),0,0 );

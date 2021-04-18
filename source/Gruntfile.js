@@ -27,7 +27,7 @@ module.exports = function ( grunt ) {
         options: {
           sourceMap: true,
           implementation: nodeSass,
-          outputStyle: 'compressed', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
+          outputStyle: 'nested', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
           // importer: compass
         },
         files: {
@@ -109,20 +109,20 @@ module.exports = function ( grunt ) {
     },
 
     // Update Dev dependency
-    devUpdate: {
-      main: {
-          options: {
-            updateType: 'prompt'
-          }
-      }
-    }
+    // devUpdate: {
+    //   main: {
+    //       options: {
+    //         updateType: 'prompt'
+    //       }
+    //   }
+    // }
 
   } );
 
   grunt.loadNpmTasks( 'grunt-sass' );
   grunt.loadNpmTasks( 'grunt-contrib-watch' );
   grunt.loadNpmTasks( 'grunt-contrib-concat' );
-  grunt.loadNpmTasks('grunt-dev-update');
+  // grunt.loadNpmTasks('grunt-dev-update');
   // grunt.loadNpmTasks( 'grunt-jquery-ready' );
   // grunt.loadNpmTasks( 'grunt-contrib-uglify' );
   grunt.loadNpmTasks('@lodder/grunt-postcss');

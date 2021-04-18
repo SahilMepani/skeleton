@@ -384,13 +384,13 @@ $gf-field-label-font-size: rem-calc( 14px );
     padding: rem-calc(8px) rem-calc(5px);
     margin: 0;
     position: relative;
-    &:after {
-      @include icon-font-properties;
-      font-size: rem-calc( 21px );
-      content: $i-search;
-      right: rem-calc(15px);
-      margin-top: rem-calc(-10px);
-    }
+    // &:after {
+    //   @include icon-font-properties;
+    //   font-size: rem-calc( 21px );
+    //   content: $i-search;
+    //   right: rem-calc(15px);
+    //   margin-top: rem-calc(-10px);
+    // }
     input {
       width: 100%;
       min-width: auto; //overwrite default min-width
@@ -401,17 +401,17 @@ $gf-field-label-font-size: rem-calc( 14px );
   @include media-breakpoint-down( md ) {
     // iOS fix, chosen plugin not used by default
     .chosen-single {
-      &:after {
-        @include icon-font-properties;
-        content: $i-dropdown;
-        font-size: rem-calc(18px);
-        display: block;
-        position: absolute;
-        right: rem-calc(15px);
-        top: 50%;
-        z-index: 1;
-        transform: translateY(-50%);
-      }
+      // &:after {
+      //   @include icon-font-properties;
+      //   content: $i-dropdown;
+      //   font-size: rem-calc(18px);
+      //   display: block;
+      //   position: absolute;
+      //   right: rem-calc(15px);
+      //   top: 50%;
+      //   z-index: 1;
+      //   transform: translateY(-50%);
+      // }
     }
     .chosen-select {
       font-size: rem-calc(16px);
@@ -435,17 +435,17 @@ $gf-field-label-font-size: rem-calc( 14px );
       margin-bottom: 0;
       position: relative;
       // dropdown icon
-      &:before {
-        @include icon-font-properties;
-        font-size: rem-calc( 24px );
-        content: $i-search;
-        display: block;
-        position: absolute;
-        right: rem-calc(10px);
-        top: 50%;
-        z-index: 10;
-        transform: translateY(-50%);
-      }
+      // &:before {
+      //   @include icon-font-properties;
+      //   font-size: rem-calc( 24px );
+      //   content: $i-search;
+      //   display: block;
+      //   position: absolute;
+      //   right: rem-calc(10px);
+      //   top: 50%;
+      //   z-index: 10;
+      //   transform: translateY(-50%);
+      // }
       input {
         width: 100% !important; //overwrite inline style
       }
@@ -478,15 +478,15 @@ $gf-field-label-font-size: rem-calc( 14px );
           color: red;
         }
       }
-      &:after {
-        @include icon-font-properties;
-        content: $i-cross;
-        color: #000;
-        font-size: rem-calc(20px);
-        line-height: rem-calc(20px);
-        position: relative;
-        top: rem-calc(-2px);
-      }
+      // &:after {
+      //   @include icon-font-properties;
+      //   content: $i-cross;
+      //   color: #000;
+      //   font-size: rem-calc(20px);
+      //   line-height: rem-calc(20px);
+      //   position: relative;
+      //   top: rem-calc(-2px);
+      // }
     }
   }
 }
@@ -534,15 +534,15 @@ $gf-field-label-font-size: rem-calc( 14px );
   input[type='text'] {
     width: 100%; //so the icon stays on top of it
   }
-  &:before {
-    @include icon-font-properties;
-    content: $i-calendar;
-    color: #000;
-    position: absolute;
-    right: rem-calc(15px);
-    top: 50%;
-    transform: translateY(-50%);
-  }
+  // &:before {
+  //   @include icon-font-properties;
+  //   content: $i-calendar;
+  //   color: #000;
+  //   position: absolute;
+  //   right: rem-calc(15px);
+  //   top: 50%;
+  //   transform: translateY(-50%);
+  // }
 }
 
 // Contain entire calendar
@@ -1023,38 +1023,38 @@ table.gfield_list {
         content: '\e607';
       }
     }
-    input[type='checkbox'] {
-      &:checked {
-        + label {
-          &:before {
-            content: $i-checkbox-checked;
-          }
-        }
-      }
-    }
+    // input[type='checkbox'] {
+    //   &:checked {
+    //     + label {
+    //       &:before {
+    //         content: $i-checkbox-checked;
+    //       }
+    //     }
+    //   }
+    // }
   }
 }
 
 
 // Custom radio
-.gfield.gf-list-enhanced {
-  .gfield_radio {
-    label {
-      &:before {
-        content: $i-radio;
-      }
-    }
-    input[type='radio'] {
-      &:checked {
-        + label {
-          &:before {
-            content: $i-radio-checked;
-          }
-        }
-      }
-    }
-  }
-}
+// .gfield.gf-list-enhanced {
+//   .gfield_radio {
+//     label {
+//       &:before {
+//         content: $i-radio;
+//       }
+//     }
+//     input[type='radio'] {
+//       &:checked {
+//         + label {
+//           &:before {
+//             content: $i-radio-checked;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
 .gfield.gf-list-enhanced:not([class*='gf-list-inline']) {
   //other choice

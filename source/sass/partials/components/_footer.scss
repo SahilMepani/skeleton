@@ -33,7 +33,7 @@
   }
   @include media-breakpoint-up( sm ) {
     cursor: pointer;
-    @include text-hide;
+    @include text-hide($ignore-warning: true);
     position: fixed;
     right: rem-calc( 30px );
     bottom: rem-calc( 30px );

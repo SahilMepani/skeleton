@@ -119,13 +119,13 @@
     }
   }
 
-  @include media-breakpoint-down($xs) {
+  @include media-breakpoint-down(xs) {
     .post-link {
       max-width: rem-calc(300px);
       margin: 0 auto;
     }
   }
-  @include media-breakpoint-up($sm) {
+  @include media-breakpoint-up(sm) {
     display: flex;
     flex-wrap: wrap;
     .col {

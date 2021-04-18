@@ -17,7 +17,7 @@
   }
   a:hover,
   .current {
-    background: $base-link-color;
+    background: $link-color;
     color: #fff;
   }
 }
@@ -60,7 +60,7 @@
       a {
         color: tint($body-color, 20%);
         &.comment-edit-link {
-          color: $base-link-color;
+          color: $link-color;
         }
         &:hover {
           text-decoration: underline;

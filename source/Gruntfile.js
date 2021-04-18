@@ -112,7 +112,7 @@ module.exports = function ( grunt ) {
     devUpdate: {
       main: {
           options: {
-              //task options go here
+            updateType: 'prompt'
           }
       }
     }
@@ -128,7 +128,7 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('@lodder/grunt-postcss');
   // grunt.loadNpmTasks('grunt-browser-sync');
   grunt.registerTask( 'default', [ 'postcss', 'watch' ] );
-  grunt.registerTask( 'devUpdate', [ 'devUpdate' ] );
+  // grunt.registerTask( 'devUpdate', [ 'devUpdate' ] );
   // grunt.registerTask( 'uglify', [ 'uglify' ] );
 
 };

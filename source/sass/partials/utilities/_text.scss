@@ -70,11 +70,11 @@
 
 // Custom
 ////////////////////////////////////////////////
-// @each $color, $value in $colors {
-//   .text-#{$color}, .color-#{$color} {
-//     color: $value !important;
-//   }
-// };
+@each $color, $value in $colors {
+  .text-#{$color}, .color-#{$color} {
+    color: $value !important;
+  }
+};
 
 
 .lead, .text-big {

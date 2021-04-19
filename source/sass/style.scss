@@ -54,7 +54,7 @@
 @import "partials/bootstrap/print";
 
 // Project variables
-@import "partials/project-variables.scss";
+@import "partials/variables.scss";
 
 // Mixins
 @import "partials/mixins/mixins";
@@ -103,7 +103,6 @@
 @import "partials/helpers/buttons";
 @import "partials/helpers/helpers";
 @import "partials/helpers/keyframes";
-
 
 // Utilities
 @import "partials/utilities/alert.scss";

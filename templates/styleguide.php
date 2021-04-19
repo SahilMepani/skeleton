@@ -76,9 +76,8 @@
     </div> <!-- .row -->
 </section>
 
-<hr class="mb-9" />
 
-<section class="buttons">
+<section class="buttons mb-9">
   <h3 class="mb-3">Buttons</h3>
 
   <div class="row">
@@ -116,9 +115,7 @@
   </div> <!-- .row -->
 </section>
 
-<hr class="mb-9">
-
-<section class="spacing">
+<section class="spacing mb-9">
   <h3 class="mb-3">Spacing</h3>
 
   <div class="row mb-4">
@@ -141,8 +138,8 @@
       <div class="bg-gray">Dummy Text</div>
 
 
+      <code class="mb-1">&lt;div class="mt-4 mt-3 mb-2 ml-1"&gt;</code> <br />
       <div class="bg-gray mt-4 mr-3 mb-2 ml-1">
-        <code class="mb-1">&lt;div class="mt-4 mt-3 mb-2 ml-1"&gt;</code> <br />
         <p>I've a margin of 40px at top, 30px at right, 20px at bottom and 10px at left</p>
       </div>
 
@@ -175,9 +172,8 @@
   <p>Each number gets multiplied by 10px. So a class "mr-2" will set margin of 20px to the right of the element</p>
 </section>
 
-<hr class="mb-9">
 
-<section class="alerts">
+<section class="alerts mb-9">
   <h3 class="mb-3">Alerts</h3>
 
   <code class="mb-1">&lt;div class="alert alert-info"&gt;</code>
@@ -196,9 +192,8 @@
   </div> <!-- .alert -->
 </section>
 
-<hr class="mb-9">
 
-<section class="grid">
+<section class="grid mb-9">
   <h3 class="mb-4">Bootstrap Grid</h3>
 
   <p>Bootstrap's grid system allows up to 12 columns across the page. If you do not want to use all 12 column individually, you can group the columns together to create wider columns:</p>
@@ -252,16 +247,8 @@
   <p>It can go till <code>&lt;div class="col-12"&gt;</code></p>
 </section>
 
-<hr class="mb-9" />
 
-<section class="horizontal-rule">
-  <h3>Horizontal Rule</h3>
-  <code>&lt;hr&gt;</code>
-</section>
-
-<hr class="mb-9">
-
-<section class="list">
+<section class="list mb-9">
   <h3 class="mb-4">Lists</h3>
 
   <div class="row mb-5">
@@ -313,9 +300,7 @@
   </div> <!-- .row -->
 </section>
 
-<hr class="mb-9">
-
-<section class="table">
+<section class="table mb-9">
   <h3 class="mb-4">Table</h3>
 
   <div class="row mb-3">
@@ -496,7 +481,6 @@
   </table>
 </section>
 
-<hr class="mb-9">
 
 <?php //gravity_form(1, $display_title=false, $display_description=false, $display_inactive=false, $field_values=null, $ajax=true, $tabindex=10); ?>
 

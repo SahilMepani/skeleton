@@ -4,17 +4,6 @@
 // never change the value
 $html-font-size : 10px;
 
-// Remove bootstrap theme-colors
-$theme-colors: map-remove( $theme-colors, "success", "info", "warning", "danger", "light", "dark" );
-
-// Project theme colors
-$theme-colors: (
-	"gray": $gray-100
-);
-
-// Project Font family
-
-
 // Spacing
 $global-margin-bottom : 3rem; // p, table, ul, ol, dl, dd, pre, blockquote, address
 $global-line-height   : 1.7; // p, pre, blockquote, address, dt, textarea
@@ -26,9 +15,6 @@ $global-line-height   : 1.7; // p, pre, blockquote, address, dt, textarea
 $text-selection-bg-color : #F7EA6F;
 $text-selection-color    : #2c2c2c;
 
-// Breakpoints - Orientation
-$portrait: orientation portrait;
-$landscape: orientation landscape;
 
 // This variable affects the `.pt-*` and `.mb-*` classes etc.
 // $enable-viewport-spacers: false;

@@ -750,7 +750,7 @@ input[type='file'] {
   @include input-text;
   input[type='button'] {
     @include btn;
-    @include btn-black;
+    @include btn-red;
     @include btn-md;
   }
 }
@@ -786,7 +786,7 @@ table.gfield_list {
   padding-top: rem-calc(50px);
   input[type='submit'] {
     @include btn;
-    @include btn-black;
+    @include btn-red;
     @include btn-md;
     &:hover {
       background-color: #000;
@@ -796,7 +796,7 @@ table.gfield_list {
   // continue and save
   .gform_save_link {
     @include btn;
-    @include btn-black;
+    @include btn-red;
     @include btn-md;
     margin-left: rem-calc(20px);
     &:hover, &:active {
@@ -1248,7 +1248,7 @@ table.gfield_list {
 //     input[type="submit"] {
 //       @include btn;
 //       @include btn-md;
-//       @include btn-black;
+//       @include btn-red;
 //       width: 100%;
 //       &:hover, &:active {
 //         background: #000;

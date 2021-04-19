@@ -8,10 +8,6 @@
   @include custom-select-block;
 }
 
-.hr {
-  @extend hr;
-}
-
 p:empty { // added by wp-editor
   display: none;
 }

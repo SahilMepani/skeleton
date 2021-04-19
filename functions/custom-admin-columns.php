@@ -2,8 +2,8 @@
 /*===================================================================
 =            Display a custom taxonomy dropdown in admin            =
 ===================================================================*/
-// add_action('restrict_manage_posts', 'tse_filter_post_type_by_taxonomy');
-// function tse_filter_post_type_by_taxonomy() {
+// add_action('restrict_manage_posts', 'skel_filter_post_type_by_taxonomy');
+// function skel_filter_post_type_by_taxonomy() {
 // 	global $typenow;
 // 	$post_type = 'project'; // change to your post type
 // 	$taxonomy  = 'tax-one'; // change to your taxonomy
@@ -26,8 +26,8 @@
 /*=========================================================
 =            Filter posts by taxonomy in admin            =
 =========================================================*/
-// add_filter('parse_query', 'tse_convert_id_to_term_in_query');
-// function tse_convert_id_to_term_in_query($query) {
+// add_filter('parse_query', 'skel_convert_id_to_term_in_query');
+// function skel_convert_id_to_term_in_query($query) {
 // 	global $pagenow;
 // 	$post_type = 'project'; // change to your post type
 // 	$taxonomy  = 'tax-one'; // change to your taxonomy

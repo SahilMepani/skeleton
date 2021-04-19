@@ -24,7 +24,7 @@ add_filter('jpeg_quality', function($arg){return 100;});
 
 // Custom WP login logo and link
 ////////////////////////////////////////////////
-/*function tse_login_logo() {
+/*function skel_login_logo() {
   ?>
   <style type="text/css">
     body.login {
@@ -55,17 +55,17 @@ add_filter('jpeg_quality', function($arg){return 100;});
   </style>
   <?php
 }*/
-// add_action('login_enqueue_scripts', 'tse_login_logo');
+// add_action('login_enqueue_scripts', 'skel_login_logo');
 
-// function tse_login_logo_url() {
+// function skel_login_logo_url() {
 //   return home_url();
 // }
-// add_filter('login_headerurl', 'tse_login_logo_url');
+// add_filter('login_headerurl', 'skel_login_logo_url');
 
-// function tse_login_logo_url_title() {
+// function skel_login_logo_url_title() {
 //   return 'Skeleton';
 // }
-// add_filter('login_headertitle', 'tse_login_logo_url_title');
+// add_filter('login_headertitle', 'skel_login_logo_url_title');
 
 
 /*----------  Enable login captcha  ----------*/
@@ -80,7 +80,7 @@ add_filter('jpeg_quality', function($arg){return 100;});
 // Blog Pagination
 // http://wp.tutsplus.com/tutorials/wordpress-pagination-a-primer
 /* ========================================== */
-// function tse_posts_pagination( $pages ) {
+// function skel_posts_pagination( $pages ) {
 //   $total_pages = $pages;
 
 //   if ( $total_pages > 1 ) {
@@ -119,7 +119,7 @@ add_filter('jpeg_quality', function($arg){return 100;});
  * @return string Formatted output in HTML.
  */
 
-// function tse_wp_link_pages($args = '') {
+// function skel_wp_link_pages($args = '') {
 //   $defaults = array(
 //       'before' => '<div class="single-pagination">' . '<span class="index">Pages:</span>',
 //       'after' => '</div>',
@@ -214,7 +214,7 @@ add_filter('jpeg_quality', function($arg){return 100;});
 // https://viastudio.com/optimizing-your-theme-for-wordpress-4-4s-responsive-images/
 
 // Content Images
-// function tse_content_image_sizes_attr($sizes, $size) {
+// function skel_content_image_sizes_attr($sizes, $size) {
 //   $width = $size[0];
 //   if (get_page_template_slug() === 'template-full_width.php') {
 //       if ($width > 910) {
@@ -227,11 +227,11 @@ add_filter('jpeg_quality', function($arg){return 100;});
 //   }
 //   return '(max-width: ' . $width . 'px) 92vw, ' . $width . 'px';
 // }
-// add_filter('wp_calculate_image_sizes', 'tse_content_image_sizes_attr', 10 , 2);
+// add_filter('wp_calculate_image_sizes', 'skel_content_image_sizes_attr', 10 , 2);
 
 
 // Featured Images
-// function tse_post_thumbnail_sizes_attr($attr, $attachment, $size) {
+// function skel_post_thumbnail_sizes_attr($attr, $attachment, $size) {
 // Calculate Image Sizes by type and breakpoint
 // Header Images
 //   if ($size === 'header-thumb') {
@@ -242,7 +242,7 @@ add_filter('jpeg_quality', function($arg){return 100;});
 //   }
 //   return $attr;
 // }
-// add_filter('wp_get_attachment_image_attributes', 'tse_post_thumbnail_sizes_attr', 10 , 3);
+// add_filter('wp_get_attachment_image_attributes', 'skel_post_thumbnail_sizes_attr', 10 , 3);
 
 
 // Remove jquery migrate
@@ -259,18 +259,18 @@ add_filter('jpeg_quality', function($arg){return 100;});
 
 // Remove query string from static files
 ////////////////////////////////////////////////
-// function tse_remove_cssjs_ver( $src ) {
+// function skel_remove_cssjs_ver( $src ) {
 //  if( strpos( $src, '?ver=' ) )
 //  $src = remove_query_arg( 'ver', $src );
 //  return $src;
 // }
-// add_filter( 'style_loader_src', 'tse_remove_cssjs_ver', 10, 2 );
-// add_filter( 'script_loader_src', 'tse_remove_cssjs_ver', 10, 2 );
+// add_filter( 'style_loader_src', 'skel_remove_cssjs_ver', 10, 2 );
+// add_filter( 'script_loader_src', 'skel_remove_cssjs_ver', 10, 2 );
 
 
 // Redirect to result, if search query one result
 ////////////////////////////////////////////////
-// function tse_redirect_single_post() {
+// function skel_redirect_single_post() {
 // 	if (is_search()) {
 // 		global $wp_query;
 // 		if ($wp_query->post_count == 1 && $wp_query->max_num_pages == 1) {
@@ -279,7 +279,7 @@ add_filter('jpeg_quality', function($arg){return 100;});
 // 		}
 // 	}
 // }
-// add_action('template_redirect', 'tse_redirect_single_post');
+// add_action('template_redirect', 'skel_redirect_single_post');
 
 
 // Limit search results to post
@@ -311,7 +311,7 @@ add_filter('jpeg_quality', function($arg){return 100;});
 // Defer scripts
 ////////////////////////////////////////////////
 // Add defer attribute to the scripts to set the resource priority to low
-function tse_defer_scripts( $tag, $handle, $src ) {
+function skel_defer_scripts( $tag, $handle, $src ) {
   $defer = array(
     'plugins',
     'custom',
@@ -321,41 +321,41 @@ function tse_defer_scripts( $tag, $handle, $src ) {
   }
     return $tag;
 }
-add_filter( 'script_loader_tag', 'tse_defer_scripts', 10, 3 );
+add_filter( 'script_loader_tag', 'skel_defer_scripts', 10, 3 );
 
 
 // Wrap oEmbed resource/video inside a div
 ////////////////////////////////////////////////
-function tse_embed_oembed_html($html, $url, $attr, $post_id) {
+function skel_embed_oembed_html($html, $url, $attr, $post_id) {
   return '<div class="embed-responsive embed-responsive-16by9">' . $html . '</div>';
 }
-add_filter('embed_oembed_html', 'tse_embed_oembed_html', 99, 4);
+add_filter('embed_oembed_html', 'skel_embed_oembed_html', 99, 4);
 
 
 // Add body classes to editor
 ////////////////////////////////////////////////
-function tse_mce_settings($initArray) {
+function skel_mce_settings($initArray) {
   $initArray['body_class'] = 'post';
   return $initArray;
 }
-add_filter('tiny_mce_before_init', 'tse_mce_settings');
+add_filter('tiny_mce_before_init', 'skel_mce_settings');
 
 
 // Add page slug to body class
 ////////////////////////////////////////////////
-function tse_add_slug_body_class($classes) {
+function skel_add_slug_body_class($classes) {
   global $post;
   if (isset($post)) {
     $classes[] = $post->post_type . '-' . $post->post_name;
   }
   return $classes;
 }
-add_filter('body_class', 'tse_add_slug_body_class');
+add_filter('body_class', 'skel_add_slug_body_class');
 
 
 // Prevent WP Editor from removing span
 ////////////////////////////////////////////////
-function tse_no_delete_span($init) {
+function skel_no_delete_span($init) {
   // Command separated string of extended elements
   $ext = 'span[id|name|class|style]';
 
@@ -369,30 +369,30 @@ function tse_no_delete_span($init) {
   // Super important: return $init!
   return $init;
 }
-add_filter('tiny_mce_before_init', 'tse_no_delete_span');
+add_filter('tiny_mce_before_init', 'skel_no_delete_span');
 
 
 // Custom login errors
 ////////////////////////////////////////////////
-function tse_custom_wordpress_errors() {
+function skel_custom_wordpress_errors() {
   return 'Something is wrong!';
 }
-add_filter('login_errors', 'tse_custom_wordpress_errors');
+add_filter('login_errors', 'skel_custom_wordpress_errors');
 
 
 // Change default excerpt length
 ////////////////////////////////////////////////
-function tse_get_the_excerpt_length() {
+function skel_get_the_excerpt_length() {
   return 150; // Default Length
 }
-add_filter('excerpt_length', 'tse_get_the_excerpt_length');
+add_filter('excerpt_length', 'skel_get_the_excerpt_length');
 
 
 // Add ellipsis at the end of excerpt
 ////////////////////////////////////////////////
-function tse_get_the_excerpt_more( $more ) {
+function skel_get_the_excerpt_more( $more ) {
   return '... ';
 }
-add_filter('excerpt_more', 'tse_get_the_excerpt_more');
+add_filter('excerpt_more', 'skel_get_the_excerpt_more');
 
 ?>

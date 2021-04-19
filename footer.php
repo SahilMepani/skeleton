@@ -11,7 +11,7 @@
 
 </div> <!-- .scroll-container -->
 
-<a href="#" class="scroll-to-top scroll-to" aria-label="<?php _e( 'Scroll to Top', 'tse' ); ?>"></a>
+<a href="#" class="scroll-to-top scroll-to" aria-label="<?php _e( 'Scroll to Top', 'skel' ); ?>"></a>
 
 <?php wp_footer(); ?>
 </body>

@@ -7,7 +7,7 @@ update_option( 'thumbnail_size_h', 0 );
 update_option( 'medium_size_h', 0 );
 update_option( 'large_size_h', 0 );
 
-function tse_disable_image_sizes($sizes) {
+function skel_disable_image_sizes($sizes) {
 
   unset($sizes['thumbnail']);    // disable thumbnail size
   unset($sizes['medium']);       // disable medium size
@@ -19,17 +19,17 @@ function tse_disable_image_sizes($sizes) {
   return $sizes;
 
 }
-add_action('intermediate_image_sizes_advanced', 'tse_disable_image_sizes');
+add_action('intermediate_image_sizes_advanced', 'skel_disable_image_sizes');
 
 // disable scaled image size
 add_filter('big_image_size_threshold', '__return_false');
 
 // disable other image sizes
-function tse_disable_other_image_sizes() {
+function skel_disable_other_image_sizes() {
 
   remove_image_size('post-thumbnail'); // disable images added via set_post_thumbnail_size()
   // remove_image_size('another-size');   // disable any other added image sizes
 
 }
-add_action('init', 'tse_disable_other_image_sizes');
+add_action('init', 'skel_disable_other_image_sizes');
 ?>

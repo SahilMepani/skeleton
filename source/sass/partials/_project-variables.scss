@@ -1,0 +1,35 @@
+// Can't use rem-calc function in this file
+
+// Root font size
+$root-font-size : 10px; // needs to be same as $font-size-base but in pixels
+
+// Remove bootstrap theme-colors
+$theme-colors: map-remove( $theme-colors, "primary", "secondary", "success", "info", "warning", "danger", "light", "dark" );
+
+// Project theme colors
+$theme-colors: ();
+
+// Project Font family
+
+
+// Spacing
+$global-margin-bottom : 3rem; // p, table, ul, ol, dl, dd, pre, blockquote, address
+$global-line-height   : 1.7; // p, pre, blockquote, address, dt, textarea
+
+// Input
+// variables are set in input mixin file because it requires rem-values
+
+// Text selection
+$text-selection-bg-color : #F7EA6F;
+$text-selection-color    : #2c2c2c;
+
+// Breakpoints - Orientation
+$portrait: orientation portrait;
+$landscape: orientation landscape;
+
+// This variable affects the `.pt-*` and `.mb-*` classes etc.
+// $enable-viewport-spacers: false;
+// $viewport-spacers : (
+//   3: 3vw,
+//   4: 4vw,
+// );

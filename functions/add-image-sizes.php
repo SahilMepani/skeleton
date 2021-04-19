@@ -22,10 +22,10 @@ add_image_size( 'w3840', 3840, 9999 );
 // Add instructions to featured images
 ////////////////////////////////////////////////
 // WORKS FOR CLASSIC EDITOR ONLY
-// function tse_featured_image_html( $html ) {
+// function skel_featured_image_html( $html ) {
 //   return $html .= '<p><b>Recommended:</b> <br /> Minimum width: 1000px. <br /> Aspect ratio: Landscape. <br /> Format: JPG/JPEG </p>';
 // }
-// add_filter( 'admin_post_thumbnail_html', 'tse_featured_image_html');
+// add_filter( 'admin_post_thumbnail_html', 'skel_featured_image_html');
 
 // WORKS FOR GUTENBERG - NOT TESTED
 // function change_post_type_labels() {

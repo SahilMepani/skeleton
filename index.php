@@ -29,7 +29,7 @@
 				<div class="custom-select-block">
 					<select id="ajax-filter-cat">
 						<option data-cpt="post" data-tax="category" data-term="">
-							<?php _e('Show All Categories','tse'); ?>
+							<?php _e('Show All Categories','skel'); ?>
 						</option>
 						<?php
 							$cats_args = array(

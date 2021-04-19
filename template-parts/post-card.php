@@ -18,7 +18,7 @@
       <time pubdate><?php the_time('F j, Y'); ?></time> by <span class="author"><?php echo get_the_author(); ?></span> under <?php the_category(' / '); ?>
     </div> <!-- .post-meta -->
 
-    <p class="excerpt"><?php echo tse_get_the_excerpt(20); ?></p>
+    <p class="excerpt"><?php echo skel_get_the_excerpt(20); ?></p>
 
     <a href="<?php the_permalink(); ?>" class="more-link clear">Read More</a>
 

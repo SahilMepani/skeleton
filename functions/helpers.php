@@ -4,7 +4,7 @@
 =            ScrollSpy Link            =
 ====================================== */
 // use sanitize_title function instead
-function tse_scrollspy_link( $string ) {
+function skel_scrollspy_link( $string ) {
 	// Lower case everything
 	$string = strtolower($string);
 	// Make alphanumeric (removes all other characters)
@@ -35,7 +35,7 @@ function yt_link( $url ) {
 /*================================================================
 =            Validate Youtube link for Magnific Popup            =
 ================================================================*/
-function tse_validate_youtube_link( $link ) {
+function skel_validate_youtube_link( $link ) {
 	preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $link, $matches);
 	$link = 'https://www.youtube.com/watch?v=' . $matches[0];
 	return $link;
@@ -45,7 +45,7 @@ function tse_validate_youtube_link( $link ) {
 /*====================================================================
 =            Custom excerpt function with length argument            =
 ====================================================================*/
-function tse_get_the_excerpt( $limit ) {
+function skel_get_the_excerpt( $limit ) {
 	$excerpt = explode(' ', get_the_excerpt(), $limit);
 	if ( count($excerpt) >= $limit ) {
 		array_pop($excerpt);
@@ -61,7 +61,7 @@ function tse_get_the_excerpt( $limit ) {
 /*================================
 =            Tiny URL            =
 ================================*/
-function tse_tiny_url($url) {
+function skel_tiny_url($url) {
 	return file_get_contents('http://tinyurl.com/api-create.php?url=' . $url);
 }
 
@@ -69,7 +69,7 @@ function tse_tiny_url($url) {
 /*====================================
 =            Text Shorter            =
 ====================================*/
-function tse_text_shorter($input, $length) {
+function skel_text_shorter($input, $length) {
 	// no need to trim, already shorter than trim length
 	if (strlen($input) <= $length) {
 		return $input;
@@ -89,7 +89,7 @@ function tse_text_shorter($input, $length) {
 /*=================================================
 =            Return terms without link            =
 =================================================*/
-function tse_the_terms($post_id, $taxonomy) {
+function skel_the_terms($post_id, $taxonomy) {
 	$terms = get_the_terms($post_id, $taxonomy); // Returns objects array
 	$ar_term = array(); // Initialize an array
 	foreach ($terms as $term) {

@@ -1,6 +1,6 @@
 <!-- Chosen Select Ajax -->
 <select id="ajax-select-post-categories" class="chosen-select">
-  <option data-cpt="post" data-tax="category" data-term=""><?php _e('All Categories','tse'); ?></option>
+  <option data-cpt="post" data-tax="category" data-term=""><?php _e('All Categories','skel'); ?></option>
   <?php
     $cats_args = array(
       'taxonomy' => 'category',
@@ -17,7 +17,7 @@
 <!-- Custom Select Ajax -->
 <div class="custom-select-block">
   <select id="ajax-filter-cat">
-    <option data-cpt="post" data-tax="category" data-term=""><?php _e('All Categories','tse'); ?></option>
+    <option data-cpt="post" data-tax="category" data-term=""><?php _e('All Categories','skel'); ?></option>
     <?php
       $cats_args = array(
         'taxonomy' => 'category',

@@ -1,53 +1,13 @@
-// Can't use rem-calc function in this file
-// Bootstrap last updated 13-08-2019
-// Root font size
-$root-font-size : 10px; // needs to be same as $font-size-base but in pixels
-
-
-// Project Colors
-
-
-// Colors -used for generating bg-* and color-* classes
-$colors: (
-  white : white,
-  black : black,
-);
-
-// Project Font family
-
-
-// Spacing
-$global-margin-bottom : 3rem; // p, table, ul, ol, dl, dd, pre, blockquote, address
-$global-line-height   : 1.7; // p, pre, blockquote, address, dt, textarea
-
-// Input
-// variables are set in input mixin file because it requires rem-values
-
-// Text selection
-$text-selection-bg-color : #F7EA6F;
-$text-selection-color    : #2c2c2c;
-
-// Breakpoints - Orientation
-$portrait: orientation portrait;
-$landscape: orientation landscape;
-
-// This variable affects the `.pt-*` and `.mb-*` classes etc.
-// $enable-viewport-spacers: false;
-// $viewport-spacers : (
-//   3: 3vw,
-//   4: 4vw,
-// );
-
-// Bootstrap Overwrites
+// Bootstrap overwrites
 ////////////////////////////////////////////////
 
 // Settings for the `<body>` element.
 // $body-color: $gray-600;
 // $body-bg: $white;
 // $font-family-base: $font-family-sans-serif;
-$font-size-base: 1rem;
+// $font-size-base: 1rem;
 // $font-weight-base: $font-weight-normal;
-// $line-height-base: 1.5;
+$line-height-base: 1.5;
 
 // Links
 $link-color            : red;
@@ -59,9 +19,6 @@ $link-hover-decoration : none;
 // $headings-color         : inherit;
 // $headings-font-family   : inherit;
 $headings-margin-bottom : 2rem;
-
-// p element
-$paragraph-margin-bottom: $global-margin-bottom;
 
 // This variable affects the `.pt-*` and `.mb-*` classes etc.
 $spacers : (
@@ -140,10 +97,8 @@ $scaling: $two-k; // scaling starts from here, do not change if not sure, it can
 // Grid columns
 // Set the number of columns and specify the width of the gutters.
 $enable-grid-classes : true;
-$grid-columns      : 12 !default;
-$grid-gutter-width : 30px !default;
+// $grid-columns      : 12;
 $grid-gutter-width : 3rem; // gets divided by half per column for columns
-$container-padding : 3rem; // each x-side
 
 
 // Grid containers
@@ -167,12 +122,3 @@ $container-padding : 3rem; // each x-side
 // $container-xl-max-width  : map-get($container-max-widths, 'xl');
 // $container-xxl-max-width : map-get($container-max-widths, 'xxl');
 // $container-xxxl-max-width : map-get($container-max-widths, 'xxxl');
-
-
-// Embed aspect ratio
-$embed-responsive-aspect-ratios: (
-  (21 9),
-  (16 9),
-  (4 3),
-  (1 1),
-);

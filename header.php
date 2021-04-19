@@ -32,9 +32,9 @@
       </a>
     </div>
 
-    <button class="header-nav-toggle icon-font-before" aria-label="<?php _e( 'show primary navigation', 'tse' ); ?>" aria-haspopup="true" aria-expanded="false" aria-controls="siteMenu"><?php _e( 'Menu', 'tse' ); ?></button>
+    <button class="header-nav-toggle icon-font-before" aria-label="<?php _e( 'show primary navigation', 'skel' ); ?>" aria-haspopup="true" aria-expanded="false" aria-controls="siteMenu"><?php _e( 'Menu', 'skel' ); ?></button>
 
-    <nav class="header-nav cleafix" role="navigation" aria-label="<?php _e( 'primary navigation', 'tse' ); ?>">
+    <nav class="header-nav cleafix" role="navigation" aria-label="<?php _e( 'primary navigation', 'skel' ); ?>">
       <button class="header-nav-close icon-font-before" aria-label="<?php _e( 'close primary navigation' ); ?>" aria-haspopup="true" aria-expanded="true" aria-controls="siteMenu"></button>
       <?php wp_nav_menu( array(
         'theme_location' => 'header-menu',

@@ -19,7 +19,7 @@ Developer Options:
 
 
   # GENERAL --- ✄ -----------------------:
-  ☐ All custom functions should have the "tse_" prefix
+  ☐ All custom functions should have the "skel_" prefix
   ☐ Shortcode
   ☐ Helper functions
 

@@ -2,7 +2,7 @@
 * Theme Name: Skeleton
 * Theme URI: http://www.sahilmepani.com
 * Description: Responsive custom theme
-* Text Domain: tse
+* Text Domain: skel
 * Version: 1.0
 * Author: sahil Mepani
 * Author URI: www.sahilmepani.com
@@ -11,7 +11,7 @@
 */
 
 // Required in same order
-@import "partials/variables";
+@import "partials/bootstrap-overwrites";
 
 // Bootstrap v4.1.3 (https://getbootstrap.com/)
 // Bootstrap required
@@ -53,6 +53,9 @@
 @import "partials/bootstrap/utilities";
 @import "partials/bootstrap/print";
 
+// Project variables
+@import "partials/project-variables.scss";
+
 // Mixins
 @import "partials/mixins/mixins";
 
@@ -60,11 +63,11 @@
 @import "partials/base-selectors";
 
 // JS plugins
-@import "partials/js-plugins/locomotive-scroll";
-@import "partials/js-plugins/slick";
-@import "partials/js-plugins/magnific-popup";
-@import "partials/js-plugins/js-socials";
-@import "partials/js-plugins/aos";
+// @import "partials/js-plugins/aos";
+// @import "partials/js-plugins/js-socials";
+// @import "partials/js-plugins/locomotive-scroll";
+// @import "partials/js-plugins/magnific-popup";
+// @import "partials/js-plugins/slick";
 
 // Base
 @import "partials/base-styles";
@@ -73,29 +76,29 @@
 @import "partials/components/content";
 @import "partials/components/header";
 @import "partials/components/header-menu";
-@import "partials/components/sidebar";
+// @import "partials/components/sidebar";
 @import "partials/components/footer";
-@import "partials/components/widgets";
-@import "partials/components/comments";
-@import "partials/components/post-formats";
+// @import "partials/components/widgets";
+// @import "partials/components/comments";
+// @import "partials/components/post-formats";
 
 // Templates
 @import "partials/templates/index.scss";
 @import "partials/templates/front-page";
 @import "partials/templates/page";
 @import "partials/templates/single";
-@import "partials/templates/projects";
+// @import "partials/templates/projects";
 @import "partials/templates/search";
 @import "partials/templates/404";
-@import "partials/templates/sitemap";
+// @import "partials/templates/sitemap";
 
 // WP plugins
-@import "partials/wp-plugins/gravity-forms";
-@import "partials/wp-plugins/tribe-events/tribe_base";
-@import "partials/wp-plugins/yoast-breadcrumbs";
+// @import "partials/wp-plugins/gravity-forms";
+// @import "partials/wp-plugins/tribe-events/tribe_base";
+// @import "partials/wp-plugins/yoast-breadcrumbs";
 
 // Helpers
-@import "partials/helpers/table";
+// @import "partials/helpers/table";
 @import "partials/helpers/list";
 @import "partials/helpers/buttons";
 @import "partials/helpers/helpers";

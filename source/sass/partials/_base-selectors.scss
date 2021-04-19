@@ -9,7 +9,7 @@
 
 html {
   scroll-behavior: smooth;
-  @include fluid( font-size, $scaling, $four-k, $root-font-size, $root-font-size * 2.4, true, false );
+  // @include fluid( font-size, $scaling, $four-k, $root-font-size, $root-font-size * 2.4, true, false );
   // @include fluid( font-size, $mobile, $scaling, $root-font-size, $root-font-size, false, false ); // scale down
   // min-width: $container; if non-responsive
   // add custom scrollbar

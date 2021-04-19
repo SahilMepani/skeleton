@@ -19,13 +19,13 @@
       <div class="category">
         <?php
           if ( has_term('', 'tax-one') ) {
-            echo tse_the_terms( $post->ID, 'tax-one' );
+            echo skel_the_terms( $post->ID, 'tax-one' );
             if ( has_term('', 'tax-two') ) {
               echo ', ';
             }
           };
           if ( has_term('', 'tax-two') ) {
-            echo tse_the_terms( $post->ID, 'tax-two' );
+            echo skel_the_terms( $post->ID, 'tax-two' );
           }
         ?>
       </div>

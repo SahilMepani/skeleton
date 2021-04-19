@@ -2,30 +2,30 @@
 
 // Create a new block category
 ////////////////////////////////////////////////
-function tse_block_category( $categories, $post ) {
+function skel_block_category( $categories, $post ) {
   return array_merge(
     $categories,
     array(
       array(
         'slug' => 'threesixtyeight',
-        'title' => __( 'ThreeSixtyEight', 'tse' ),
+        'title' => __( 'ThreeSixtyEight', 'skel' ),
       ),
     )
   );
 }
-add_filter( 'block_categories', 'tse_block_category', 10, 2);
+add_filter( 'block_categories', 'skel_block_category', 10, 2);
 
-function tse_register_acf_blocks() {
+function skel_register_acf_blocks() {
 
   // Sample
   ////////////////////////////////////////////////
   acf_register_block_type(array(
     'name'              => 'homepage-hero',
-    'title'             => __( 'Homepage Hero', 'tse' ),
-    'description'       => __( 'Generally used as a banner at the beginning of the page', 'tse' ),
+    'title'             => __( 'Homepage Hero', 'skel' ),
+    'description'       => __( 'Generally used as a banner at the beginning of the page', 'skel' ),
     'category'          => 'threesixtyeight',
     'icon'              => 'layout',
-    'keywords'          => array( 'banner', 'tse' ),
+    'keywords'          => array( 'banner', 'skel' ),
     'render_template'  	=> 'acf-blocks/blank.php',
     'example'           => [],
     'mode'              => 'edit',
@@ -42,5 +42,5 @@ function tse_register_acf_blocks() {
 // Check if function exists and hook into setup
 ////////////////////////////////////////////////
 if ( function_exists( 'acf_register_block_type' ) ) {
-  add_action( 'acf/init', 'tse_register_acf_blocks' );
+  add_action( 'acf/init', 'skel_register_acf_blocks' );
 }

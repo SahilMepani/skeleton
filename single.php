@@ -28,7 +28,7 @@
 
             <?php the_content(); ?>
 
-            <?php tse_wp_link_pages(); ?>
+            <?php skel_wp_link_pages(); ?>
 
             <?php if ( has_tag() ) { ?>
               <p class="tags"> <?php the_tags( '<b>Tags:</b> ', ', ', '' ); ?> </p>

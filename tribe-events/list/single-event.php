@@ -42,7 +42,7 @@ $organizer = tribe_get_organizer();
 
   <!-- <p class="organizer"><?php //echo tribe_get_organizer( $organizer ); ?></p> -->
 
-  <p class="excerpt clear"><?php echo tse_get_the_excerpt(20); ?></p>
+  <p class="excerpt clear"><?php echo skel_get_the_excerpt(20); ?></p>
 
   <div class="event-meta">
     <span class="event-time"><?php echo tribe_events_event_schedule_details(); ?></span>

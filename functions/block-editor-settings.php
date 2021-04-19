@@ -6,32 +6,32 @@
 // -- Custom Color Pallette
 // add_theme_support( 'editor-color-palette', array(
 //   array(
-//     'name' => __( 'Dark Blue', 'tse' ),
+//     'name' => __( 'Dark Blue', 'skel' ),
 //     'slug' => 'dark-blue',
 //     'color' => '#221a3e',
 //   ),
 //   array(
-//     'name' => __( 'Blue', 'tse' ),
+//     'name' => __( 'Blue', 'skel' ),
 //     'slug' => 'Blue',
 //     'color' => '#45367d',
 //   ),
 //   array(
-//     'name' => __( 'Dark gray', 'tse' ),
+//     'name' => __( 'Dark gray', 'skel' ),
 //     'slug' => 'dark-gray',
 //     'color' => '#626262',
 //   ),
 //   array(
-//     'name' => __( 'Golden', 'tse' ),
+//     'name' => __( 'Golden', 'skel' ),
 //     'slug' => 'golden',
 //     'color' => '#d2b66f',
 //   ),
 //   array(
-//     'name' => __( 'Gray', 'tse' ),
+//     'name' => __( 'Gray', 'skel' ),
 //     'slug' => 'gray',
 //     'color' => '#c2c2c7',
 //   ),
 //   array(
-//     'name' => __( 'Light Gray', 'tse' ),
+//     'name' => __( 'Light Gray', 'skel' ),
 //     'slug' => 'gray',
 //     'color' => '#e3e2e8',
 //   ),
@@ -40,20 +40,20 @@
 // -- Custom Font Sizes
 // add_theme_support( 'editor-font-sizes', array(
 //   array(
-//     'name'      => __( 'Small', 'tse' ),
-//     'shortName' => __( 'S', 'tse' ),
+//     'name'      => __( 'Small', 'skel' ),
+//     'shortName' => __( 'S', 'skel' ),
 //     'size'      => 12,
 //     'slug'      => 'small'
 //   ),
 //   array(
-//     'name'      => __( 'Normal', 'tse' ),
-//     'shortName' => __( 'M', 'tse' ),
+//     'name'      => __( 'Normal', 'skel' ),
+//     'shortName' => __( 'M', 'skel' ),
 //     'size'      => 16,
 //     'slug'      => 'normal'
 //   ),
 //   array(
-//     'name'      => __( 'Large', 'tse' ),
-//     'shortName' => __( 'L', 'tse' ),
+//     'name'      => __( 'Large', 'skel' ),
+//     'shortName' => __( 'L', 'skel' ),
 //     'size'      => 20,
 //     'slug'      => 'large'
 //   ),
@@ -73,17 +73,17 @@ add_theme_support( 'responsive-embeds' );
 
 
 // -- Enqueue editor script
-function tse_gutenberg_scripts() {
+function skel_gutenberg_scripts() {
   // modernizr
   wp_enqueue_script(
-    'tse-modernizr',
+    'skel-modernizr',
     get_stylesheet_directory_uri(). '/js/vendor/modernizr-3.6.0.min.js',
     filemtime( get_stylesheet_directory(). '/js/vendor/modernizr-3.6.0.min.js' ),
     true
   );
   // plugins
   wp_enqueue_script(
-    'tse-editor-plugins',
+    'skel-editor-plugins',
     get_stylesheet_directory_uri(). '/js/plugins.js',
     array( 'jquery' ),
     filemtime( get_stylesheet_directory(). '/js/plugins.js' ),
@@ -91,16 +91,16 @@ function tse_gutenberg_scripts() {
   );
   // custom
   wp_enqueue_script(
-    'tse-editor-custom',
+    'skel-editor-custom',
     get_stylesheet_directory_uri(). '/js/custom.js',
-    array( 'tse-editor-plugins' ),
+    array( 'skel-editor-plugins' ),
     filemtime( get_stylesheet_directory(). '/js/custom.js' ),
     true
   );
   // editor js
   // https://developer.wordpress.org/block-editor/developers/filters/block-filters/#using-a-blacklist
   wp_enqueue_script (
-    'tse-editor',
+    'skel-editor',
     get_stylesheet_directory_uri() . '/js/editor.js',
     array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
     filemtime( get_stylesheet_directory() . '/js/editor.js' ),
@@ -109,11 +109,11 @@ function tse_gutenberg_scripts() {
   // typekit fonts
   wp_enqueue_style( 'typekit-fonts', '//use.typekit.net/soi0ors.css', 'all' );
 }
-add_action( 'enqueue_block_editor_assets', 'tse_gutenberg_scripts' );
+add_action( 'enqueue_block_editor_assets', 'skel_gutenberg_scripts' );
 
 
 // -- Load custom css in editor
-function tse_editor_css() {
+function skel_editor_css() {
   ?>
     <style type="text/css">
     /* change the root font size as all selector values are rem unit */
@@ -152,15 +152,15 @@ function tse_editor_css() {
   </style>
     <?php
 }
-add_action( 'admin_head-post.php', 'tse_editor_css' );
-add_action( 'admin_head-post-new.php', 'tse_editor_css' );
+add_action( 'admin_head-post.php', 'skel_editor_css' );
+add_action( 'admin_head-post-new.php', 'skel_editor_css' );
 
 
 // -- Remove Gutenberg Block Library CSS from loading on the frontend
-function tse_remove_wp_block_library_css() {
+function skel_remove_wp_block_library_css() {
   wp_dequeue_style( 'wp-block-library' );
   wp_dequeue_style( 'wp-block-library-theme' );
 }
-add_action( 'wp_enqueue_scripts', 'tse_remove_wp_block_library_css' );
+add_action( 'wp_enqueue_scripts', 'skel_remove_wp_block_library_css' );
 
 ?>

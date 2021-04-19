@@ -1,7 +1,7 @@
 <?php
-function tse_enqueue_scripts() {
+function skel_enqueue_scripts() {
   /* Load google fonts */
-  wp_enqueue_style('google-fonts', '//fonts.googleapis.com/css?family=Montserrat&display=swap', 'all');
+  wp_enqueue_style('google-fonts', '//fonts.googleapis.com/css?family=Monskelrrat&display=swap', 'all');
 
   /* Do not load in backend */
   if (is_admin()) return;
@@ -52,5 +52,5 @@ function tse_enqueue_scripts() {
     )
   );
 }
-add_action('wp_enqueue_scripts', 'tse_enqueue_scripts');
+add_action('wp_enqueue_scripts', 'skel_enqueue_scripts');
 ?>

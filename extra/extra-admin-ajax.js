@@ -171,12 +171,12 @@ jQuery( document ).ready( function( $ ) {
     } );
 
     if ( select == true ) {
-      var firstSelectFilterCategory = $( '#ajax-first-select-post-categories' );
+      var firsskellectFilterCategory = $( '#ajax-first-select-post-categories' );
       var secondSelectFilterCategory = $( '#ajax-second-select-post-categories' );
 
-      var cpt = firstSelectFilterCategory.find( ':selected' ).data( 'cpt' );
-      var firstCptTax = firstSelectFilterCategory.find( ':selected' ).data( 'first-tax' );
-      var firstCatID = firstSelectFilterCategory.find( ':selected' ).data( 'first-cat-id' );
+      var cpt = firsskellectFilterCategory.find( ':selected' ).data( 'cpt' );
+      var firstCptTax = firsskellectFilterCategory.find( ':selected' ).data( 'first-tax' );
+      var firstCatID = firsskellectFilterCategory.find( ':selected' ).data( 'first-cat-id' );
       var secondCptTax = secondSelectFilterCategory.find( ':selected' ).data( 'second-tax' );
       var secondCatID = secondSelectFilterCategory.find( ':selected' ).data( 'second-cat-id' );
     }

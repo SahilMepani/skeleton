@@ -20,7 +20,7 @@
 
 <?php wp_body_open(); ?>
 
-<div data-scroll-container class="scroll-container">
+<!-- <div data-scroll-container class="scroll-container"> -->
 
 <header class="site-header clearfix" role="banner">
   <div class="container-fluid">

@@ -1,25 +1,8 @@
 @mixin btn {
-  background: transparent;
-  font-weight: 400;
   line-height: $input-line-height;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
-  display: inline-block;
   border: 0;
-  padding: 0;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  // padding: 0;
   background-clip: padding-box;
-  transition-property: background, color, border-color;
-  transition-duration: .2s;
-  &:hover {
-    transition-duration: .1s;
-    text-decoration: none;
-  }
 }
 
 @mixin btn-red {
@@ -32,26 +15,16 @@
   }
 }
 
-@mixin btn-black {
-  background: black;
-  color: #fff;
-  &:hover,
-  &:focus {
-    background: darken(black,7%);
-    color: #fff;
-  }
-}
-
 @mixin btn-sm {
   padding: rem-calc( 10px ) rem-calc( 20px );
 }
 
 @mixin btn-md {
-  padding: rem-calc( 15px ) rem-calc( 20px );
+  padding: rem-calc( 15px ) rem-calc( 30px );
 }
 
 @mixin btn-lg {
-  padding: rem-calc( 20px ) rem-calc( 30px );
+  padding: rem-calc( 20px ) rem-calc( 50px );
 }
 
 @mixin btn-input-clone( $bg-color ) {

@@ -14,7 +14,7 @@ Developer Options:
 # Responsive Image srcset:
   ☐ Call the actual image size value in html code and always put the sizes in vw or rem units
   ☐ By default the sizes is 100vw
-  ☐ Add 2x size in the instructions
+  ☐ Add 2x size in the acf field instructions
   ☐ If the image needs a max-size which is less than 100%. We need to specify that "sizes" attribute or else the image scale just like it did on art website for icons in extended text with image block
 
 
@@ -53,14 +53,12 @@ Naming Convention:
   ☐ Any class/ID added using javascript should be prefixed using "js-" e.g. js-active, js-hidden
 
 Rules:
-  ☐ All px values to be wrapped inside rem-calc() function. Manually calculate the rem value at the base of $root-font-size value which is always set to 10px if you want to use inside calc() or it will throw error. For eg. if your value is 30px it will convert to 30/10 = 3rem
+  ☐ All px values to be wrapped inside rem-calc() function. Manually calculate the rem value at the base of $html-font-size value which is always set to 10px if you want to use inside calc() or it will throw error. For eg. if your value is 30px it will convert to 30/10 = 3rem
   ☐ Avoid ID as much as possible.
   ☐ Whenever possible use utility/helper classes in html rather than writing custom css.
 
 --- ✄ -----------------------
-
-
-  ☐	Remove the headings font and line height variable. We will have manually write for headings in base selectors. Each headings should have its own font-weight, line-height, letter-spacing and size defined. This is because we don't know the styles from h3 class but still using h2 line-height. Headings cannot have anything global except margin-bottom
+☐	Remove the headings font and line height variable. We will have manually write for headings in base selectors. Each headings should have its own font-weight, line-height, letter-spacing and size defined. This is because we don't know the styles from h3 class but still using h2 line-height. Headings cannot have anything global except margin-bottom
 
 
 /* ================================================= */
@@ -74,3 +72,14 @@ Rules:
 .table-sm
 .align-middle, .align-top, .align-bottom on table element
 .flex-fill
+
+
+
+
+// Advantage of Skeleton
+1. Source map
+2. Compilation time is less
+3. Bootstrap integrated
+4. Uses most bootstrap classes and its functions
+5. Smaller footprint
+6. No learning curve

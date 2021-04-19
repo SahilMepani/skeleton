@@ -62,8 +62,6 @@ $spacers : (
 
 // Breakpoints - Min width
 $xs      : 0; // do not change
-$min-375 : 375px;
-$min-414 : 414px;
 $sm      : 576px;
 $md      : 768px;
 $lg      : 992px;
@@ -73,7 +71,6 @@ $xxxl    : 1600px;
 $two-k   : 1920px;
 $three-k : 2560px;
 $four-k  : 3840px;
-$mac-13  : ($md) (max-height 800px);
 
 // Breakpoints - Map
 $grid-breakpoints : (
@@ -89,7 +86,7 @@ $grid-breakpoints : (
 );
 
 // Changes depending on the project design, used on html element
-$mobile: $min-414; // mobile canvas size, mostly remains same
+$mobile: 414px; // mobile canvas size, mostly remains same, used for fkuid typography
 $desktop: $two-k; // desktop canvas size
 $scaling: $two-k; // scaling starts from here, do not change if not sure, it cannot be smaller than $desktop
 
@@ -103,18 +100,16 @@ $grid-gutter-width : 3rem; // gets divided by half per column for columns
 
 // Grid containers
 // Define the maximum width of `.container` for different screen sizes.
-// Changed the value to rem to scale on higher size screens
-// this object and $grid-breakpoints "map size" object should match
-// $container-max-widths: (
-//   xs   : 100vw,
-//   sm   : 95vw,
-//   md   : 95vw,
-//   lg   : 93vw,
-//   xl   : 93vw,
-//   xxl  : 93vw,
-//   // max-width value needs to be less than the (breakpoint value(xxxl) - $container-padding)
-//   xxxl : 144rem,
-// );
+// Change the value to rem to scale on higher size screens
+$container-max-widths: (
+  sm   : 95vw,
+  md   : 95vw,
+  lg   : 93vw,
+  xl   : 93vw,
+  xxl  : 93vw,
+  // max-width value needs to be less than the (breakpoint value(xxxl) - $container-padding)
+  xxxl : 144rem,
+);
 
 // $container-sm-max-width  : map-get($container-max-widths, 'sm');
 // $container-md-max-width  : map-get($container-max-widths, 'md');

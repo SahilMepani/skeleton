@@ -86,26 +86,31 @@
     <div class="col">
       <h4>Sizes</h4>
       <code class="mb-1">&lt;a class="btn btn-sm"&gt;</code>
-      <div class="mb-2"><a href="#" class="btn btn-black btn-sm">Small</a></div>
-      <code class="mb-1">&lt;a class="btn btn-md"&gt;</code>
-      <div class="mb-2"><a href="#" class="btn btn-black btn-md">Medium</a></div>
+      <div class="mb-2"><a href="#" class="btn btn-primary btn-sm">Small</a></div>
+      <code class="mb-1">&lt;btn class="btn btn-md"&gt; - notice btn tag</code>
+      <div class="mb-2"><btn class="btn btn-primary btn-md">Medium</btn></div>
       <code class="mb-1">&lt;a class="btn btn-lg"&gt;</code>
-      <div class="mb-2"><a href="#" class="btn btn-black btn-lg">Large</a></div>
+      <div class="mb-2"><a href="#" class="btn btn-primary btn-lg">Large</a></div>
       <code class="mb-1">&lt;a class="btn btn-md d-block"&gt;</code>
-      <div class="mb-2"><a href="#" class="btn btn-black btn-md d-block">Block - Medium</a></div>
+      <div class="mb-2"><a href="#" class="btn btn-primary btn-md d-block">Block - Medium</a></div>
       <p>It will cover the entire width of the container.</p>
     </div> <!-- .col -->
 
     <div class="col">
       <h4>Colors</h4>
 
-      <code class="mb-1">&lt;a class="btn btn-black btn-md"&gt;</code>
-      <div class="mb-2"><a href="#" class="btn btn-black btn-md">Medium</a></div>
+      <code class="mb-1">&lt;btn class="btn btn-primary btn-md"&gt;</code>
+      <div class="mb-2"><btn class="btn btn-primary btn-md">Medium</btn></div>
 
-      <code class="mb-1">&lt;a class="btn btn-black btn-lg"&gt;</code>
-      <div class="mb-2"><a href="#" class="btn btn-black btn-lg">Large</a></div>
+      <code class="mb-1">&lt;btn class="btn btn-secondary btn-lg"&gt;</code>
+      <div class="mb-2"><btn class="btn btn-secondary btn-lg">Large</btn></div>
 
       <p>We can mix and match the sizes and color classes.</p>
+
+      <h4>Disabled</h4>
+
+      <code class="mb-1">&lt;btn class="btn btn-primary btn-md btn-disabled"&gt;</code>
+      <div class="mb-2"><btn class="btn btn-primary btn-md btn-disabled">Medium</btn></div>
 
     </div> <!-- .col -->
   </div> <!-- .row -->
@@ -128,20 +133,20 @@
       <p><b>ml-(number)</b> <br /> Sets the left margin of an element</p>
 
       <code class="mb-1">&lt;div class="mb-3"&gt;</code>
-      <div class="bg-grey mb-3">I've a margin bottom of 30px</div>
+      <div class="bg-gray mb-3">I've a margin bottom of 30px</div>
 
       <code class="mb-1">&lt;div class="mb-2"&gt;</code>
-      <div class="bg-grey mb-2">I've a margin bottom of 20px</div>
+      <div class="bg-gray mb-2">I've a margin bottom of 20px</div>
 
-      <div class="bg-grey">Dummy Text</div>
+      <div class="bg-gray">Dummy Text</div>
 
 
-      <div class="bg-grey mt-4 mr-3 mb-2 ml-1">
+      <div class="bg-gray mt-4 mr-3 mb-2 ml-1">
         <code class="mb-1">&lt;div class="mt-4 mt-3 mb-2 ml-1"&gt;</code> <br />
         <p>I've a margin of 40px at top, 30px at right, 20px at bottom and 10px at left</p>
       </div>
 
-      <div class="bg-grey">Dummy Text</div>
+      <div class="bg-gray">Dummy Text</div>
     </div> <!-- .col -->
 
     <div class="col">
@@ -154,13 +159,13 @@
       <p><b>pl-(number)</b> <br /> Sets the left padding of an element</p>
 
       <code class="mb-1">&lt;div class="p-3"&gt;</code>
-      <div class="bg-grey p-3 mb-2">I've a padding of 30px at each side</div>
+      <div class="bg-gray p-3 mb-2">I've a padding of 30px at each side</div>
 
       <code class="mb-1">&lt;div class="pb-2"&gt;</code>
-      <div class="bg-grey p-2 mb-2">I've a padding of 20px at each side</div>
+      <div class="bg-gray p-2 mb-2">I've a padding of 20px at each side</div>
 
       <code class="mb-1">&lt;div class="pt-2 pr-1-5 pb-3 pl-2-5"&gt;</code>
-      <div class="bg-grey pt-2 pr-1-5 pb-3 pl-2-5 mb-2"><p>I've a padding of 20px at top, 15px at right, 50px at bottom and 25px at left</p></div>
+      <div class="bg-gray pt-2 pr-1-5 pb-3 pl-2-5 mb-2"><p>I've a padding of 20px at top, 15px at right, 50px at bottom and 25px at left</p></div>
     </div> <!-- .col -->
 
   </div> <!-- .row -->
@@ -215,33 +220,33 @@
   <code class="p-1 mb-1">&lt;div class="col-1"&gt;</code>
   <div class="row text-center mb-3">
     <div class="col-1">
-      <div class="bg-grey p-2">Hi</div>
+      <div class="bg-gray p-2">Hi</div>
     </div>
   </div> <!-- .row -->
 
   <code class="p-1 mb-1">&lt;div class="col-2"&gt;</code>
   <div class="row text-center mb-3">
-    <div class="col-2"><div class="bg-grey p-2">Hi</div></div>
+    <div class="col-2"><div class="bg-gray p-2">Hi</div></div>
   </div> <!-- .row -->
 
   <code class="p-1 mb-1">&lt;div class="col-3"&gt;</code>
   <div class="row text-center mb-3">
-    <div class="col-3"><div class="bg-grey p-2">Hi</div></div>
+    <div class="col-3"><div class="bg-gray p-2">Hi</div></div>
   </div> <!-- .row -->
 
   <code class="p-1 mb-1">&lt;div class="col-4"&gt;</code>
   <div class="row text-center mb-3">
-    <div class="col-4"><div class="bg-grey p-2">Hi</div></div>
+    <div class="col-4"><div class="bg-gray p-2">Hi</div></div>
   </div> <!-- .row -->
 
   <code class="p-1 mb-1">&lt;div class="col-5"&gt;</code>
   <div class="row text-center mb-3">
-    <div class="col-5"><div class="bg-grey p-2">Hi</div></div>
+    <div class="col-5"><div class="bg-gray p-2">Hi</div></div>
   </div> <!-- .row -->
 
   <code class="p-1 mb-1">&lt;div class="col-6"&gt;</code>
   <div class="row text-center mb-3">
-    <div class="col-6"><div class="bg-grey p-2">Hi</div></div>
+    <div class="col-6"><div class="bg-gray p-2">Hi</div></div>
   </div> <!-- .row -->
 
   <p>It can go till <code>&lt;div class="col-12"&gt;</code></p>
@@ -496,11 +501,5 @@
 <?php //gravity_form(1, $display_title=false, $display_description=false, $display_inactive=false, $field_values=null, $ajax=true, $tabindex=10); ?>
 
 </div> <!-- .container-fluid -->
-
-<section style="height: 100vh">
-  <div class="box box-1"></div> <!-- .box -->
-  <div class="box box-2"></div> <!-- .box -->
-  <div class="box box-3"></div> <!-- .box -->
-</section>
 
 <?php get_footer(); ?>

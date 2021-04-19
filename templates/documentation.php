@@ -428,12 +428,12 @@
 </div> <!-- .alert alert-info -->
 
 <h5>rem-calc() function</h5>
-<p>Convert px units to rem. Divide the px value by $root-font-size. It is very important to wrap all the px values inside the rem-calc function for the scaling to work on 3K or higher screens</p>
+<p>Convert px units to rem. Divide the px value by $html-font-size. It is very important to wrap all the px values inside the rem-calc function for the scaling to work on 3K or higher screens</p>
 <h6 class="mt-0">Usage</h6>
 <code class="d-block p-1 mb-4">
 <pre>
 h6 {
-  font-size: rem-calc( 20px ); // 20px/$root-font-size(10px) which outputs 2rem
+  font-size: rem-calc( 20px ); // 20px/$html-font-size(10px) which outputs 2rem
 }
 </pre>
 </code>

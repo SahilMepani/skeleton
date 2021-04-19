@@ -1,17 +1,11 @@
 ::-moz-selection { background: $text-selection-bg-color; color: $text-selection-color; text-shadow: none; }
 ::selection { background: $text-selection-bg-color; color: $text-selection-color; text-shadow: none; }
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit; // from html
-}
-
 html {
-  font-size: .625rem;
+  font-size: $html-font-size;
   scroll-behavior: smooth;
-  // @include fluid( font-size, $scaling, $four-k, $root-font-size, $root-font-size * 2.4, true, false );
-  // @include fluid( font-size, $mobile, $scaling, $root-font-size, $root-font-size, false, false ); // scale down
+  @include fluid( font-size, $scaling, $four-k, $html-font-size, $html-font-size * 2.4, true, false );
+  // @include fluid( font-size, $mobile, $scaling, $html-font-size, $html-font-size, false, false ); // scale down
   // min-width: $container; if non-responsive
   // add custom scrollbar
   // &.no-touchevents {

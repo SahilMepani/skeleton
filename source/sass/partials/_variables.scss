@@ -1,13 +1,16 @@
 // Can't use rem-calc function in this file
 
 // Root font size
-$root-font-size : 10px; // needs to be same as $font-size-base but in pixels
+// never change the value
+$html-font-size : 10px;
 
 // Remove bootstrap theme-colors
-$theme-colors: map-remove( $theme-colors, "primary", "secondary", "success", "info", "warning", "danger", "light", "dark" );
+$theme-colors: map-remove( $theme-colors, "success", "info", "warning", "danger", "light", "dark" );
 
 // Project theme colors
-$theme-colors: ();
+$theme-colors: (
+	"gray": $gray-100
+);
 
 // Project Font family
 

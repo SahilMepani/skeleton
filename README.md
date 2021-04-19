@@ -3,19 +3,19 @@ Starter theme to help you jump start coding custom WordPress themes
 
 ## Master Branch
 ## Setup
-1. Download the **MASTER** branch. **DO NOT CLONE**
-2. Rename the theme folder to match the project name
-3. Create a theme screenshot.png file using screenshot.psd
-4. Create favicon.png and favicon.ico files at the root
-5. Run `node -v` anywhere in terminal to check if you have Node.js installed in your system. If not, [Download Node.js](https://nodejs.org/en/) and install
-6. Install all the required packages to run grunt tasks <br>
+- Download the **MASTER** branch. **DO NOT CLONE**
+- Rename the theme folder to match the project name
+- Create a theme screenshot.png file using screenshot.psd
+- Create favicon.png and favicon.ico files at the root
+- Run `node -v` anywhere in terminal to check if you have Node.js installed in your system. If not, [Download Node.js](https://nodejs.org/en/) and install
+- Install all the required packages to run grunt tasks <br>
 `cd /path/to/your/wp-content/themes/theme-name/source` <br>
 `npm install`
-7. Update theme name, theme URI and description in sass/style.scss file
-8. Compile all the sass and js files using grunt<br>
+- Update theme name, theme URI and description in sass/style.scss file
+- Compile all the sass and js files using grunt<br>
 `cd /path/to/your/wp-content/themes/theme-name/source` <br>
 `grunt`<br><br>
-All the sass files are created inside the source/sass/partials/ folder and its sub-folders. <br>All the js files are divided into two folders source/js/plugins and source/js/custom. <br>Grunt will compile all the source/sass/partials/.scss files into a file named style.css and source/js/plugins/.js files into js/plugins.js file and source/js/custom/.js files into js/custom.js file
+>_ All the sass files are created inside the source/sass/partials/ folder and its sub-folders. <br>All the js files are divided into two folders source/js/plugins and source/js/custom. <br>Grunt will compile all the source/sass/partials/.scss files into a file named style.css and source/js/plugins/.js files into js/plugins.js file and source/js/custom/.js files into js/custom.js file
 
 ## Important Notes
 	Always use rem units except for breakpoints and line-height. Avoid pixels.

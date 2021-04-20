@@ -83,3 +83,11 @@ Rules:
 4. Uses most bootstrap classes and its functions
 5. Smaller footprint
 6. No learning curve
+
+
+
+
+// Changes to FED
+1. Remove breakpoint media queries and use bootstrap media queries. It has fixes for some safari bugs and is consistent with bootstrap
+2. Change the fontface name to font-face. It will be more consistent
+3. Remove xs breakoint from font-size maps as null and xs values are always same

@@ -68,10 +68,6 @@ $theme-colors: map-remove( $theme-colors, "success", "info", "warning", "danger"
 
 // JS plugins
 // @import "partials/js-plugins/aos";
-// @import "partials/js-plugins/js-socials";
-// @import "partials/js-plugins/locomotive-scroll";
-// @import "partials/js-plugins/magnific-popup";
-// @import "partials/js-plugins/slick";
 
 // Base
 @import "partials/base-styles";
@@ -98,10 +94,9 @@ $theme-colors: map-remove( $theme-colors, "success", "info", "warning", "danger"
 // @import "partials/wp-plugins/gravity-forms";
 
 // Helpers
-@import "partials/helpers/list";
 @import "partials/helpers/buttons";
 @import "partials/helpers/helpers";
-@import "partials/helpers/keyframes";
+@import "partials/helpers/animations";
 
 // Utilities
 @import "partials/utilities/alert.scss";
@@ -114,7 +109,4 @@ $theme-colors: map-remove( $theme-colors, "success", "info", "warning", "danger"
 @import "partials/utilities/miscellaneous.scss";
 
 // Last minute changes
-// @import "partials/shame";
-
-// IE specific
-// @import "partials/ie";
+@import "partials/shame";

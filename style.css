@@ -7153,6 +7153,46 @@ a.text-gray:hover, a.text-gray:focus {
     color: inherit;
     border-color: #dee2e6; } }
 
+@keyframes flash {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes glance {
+  0% {
+    transform: rotate(-45deg) translateY(-451%); }
+  100% {
+    transform: rotate(-45deg) translateY(500%); } }
+
+@keyframes popup {
+  0% {
+    opacity: 0.0;
+    transform: scale3d(0.8, 0.8, 1);
+    transition: all 0.9s; }
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+    transition: all 0.9s; } }
+
+@keyframes down-to-top {
+  0% {
+    bottom: 0px;
+    opacity: 0; }
+  100% {
+    bottom: 80px;
+    opacity: 1; } }
+
+@keyframes top-to-down {
+  0% {
+    bottom: 80px;
+    opacity: 1; }
+  99% {
+    bottom: 0px;
+    opacity: 0; }
+  100% {
+    display: none; } }
+
 ::-moz-selection {
   background: #F7EA6F;
   color: #2c2c2c;
@@ -7173,52 +7213,36 @@ html {
         font-size: calc(0.7291666667vw - 4px); } }
 
 h1, .h1 {
+  font-size: 36px;
+  font-size: 36px;
+  font-size: 48px;
+  font-size: 60px;
   font-weight: 700;
   line-height: 1.2; }
-  h1, .h1 {
-    font-size: 30px; }
-    @media screen and (min-width: 414px) {
-      h1, .h1 {
-        font-size: calc(1.9920318725vw + 21.7529880478px); } }
-    @media screen and (min-width: 1920px) {
-      h1, .h1 {
-        font-size: 6rem; } }
 
 h2, .h2 {
+  font-size: 30px;
+  font-size: 30px;
+  font-size: 36px;
+  font-size: 48px;
   font-weight: 700;
   line-height: 1.2; }
-  h2, .h2 {
-    font-size: 24px; }
-    @media screen and (min-width: 414px) {
-      h2, .h2 {
-        font-size: calc(1.3944223108vw + 18.2270916335px); } }
-    @media screen and (min-width: 1920px) {
-      h2, .h2 {
-        font-size: 4.5rem; } }
 
 h3, .h3 {
+  font-size: 24px;
+  font-size: 24px;
+  font-size: 30px;
+  font-size: 36px;
   font-weight: 700;
   line-height: 1.2; }
-  h3, .h3 {
-    font-size: 20px; }
-    @media screen and (min-width: 414px) {
-      h3, .h3 {
-        font-size: calc(0.796812749vw + 16.7011952191px); } }
-    @media screen and (min-width: 1920px) {
-      h3, .h3 {
-        font-size: 3.2rem; } }
 
 h4, .h4 {
+  font-size: 18px;
+  font-size: 18px;
+  font-size: 24px;
+  font-size: 30px;
   font-weight: 700;
   line-height: 1.2; }
-  h4, .h4 {
-    font-size: 18px; }
-    @media screen and (min-width: 414px) {
-      h4, .h4 {
-        font-size: calc(0.3984063745vw + 16.3505976096px); } }
-    @media screen and (min-width: 1920px) {
-      h4, .h4 {
-        font-size: 2.4rem; } }
 
 h5, .h5 {
   font-weight: 700;
@@ -7339,6 +7363,11 @@ table {
     padding: 1.6rem; }
 
 /*----------  Lists  ----------*/
+ul,
+ol,
+dl {
+  padding: 0; }
+
 ul,
 ol {
   list-style-position: outside;
@@ -7588,24 +7617,6 @@ video {
 /* show focus ring on form controls only when keyboard tabbing is used, using what-input js */
 [data-whatintent='keyboard'] *:focus {
   outline: 0.3rem dashed dodgerblue; }
-
-.custom-select-block {
-  background: #fff;
-  background-image: linear-gradient(45deg, transparent 50%, black 50%), linear-gradient(135deg, black 50%, transparent 50%);
-  background-position: calc(100% - 2rem) 50%, calc(100% - 1.3rem) 50%;
-  background-size: 0.7rem 0.7rem, 0.7rem 0.7rem;
-  background-repeat: no-repeat;
-  position: relative; }
-  .custom-select-block select {
-    background: transparent;
-    width: 100%;
-    padding-right: 4rem;
-    appearance: none; }
-  .custom-select-block select::-ms-expand {
-    display: none; }
-
-p:empty {
-  display: none; }
 
 .btn {
   line-height: 1.2;
@@ -7879,22 +7890,6 @@ p:empty {
       text-decoration: underline; }
   .footer-menu a:hover {
     text-decoration: underline; }
-
-@media (max-width: 575.98px) {
-  .scroll-to-top {
-    display: none !important; } }
-
-@media (min-width: 576px) {
-  .scroll-to-top {
-    cursor: pointer;
-    font: 0/0 a;
-    color: transparent;
-    text-shadow: none;
-    background-color: transparent;
-    border: 0;
-    position: fixed;
-    right: 3rem;
-    bottom: 3rem; } }
 
 .filters__item--search form {
   position: relative; }

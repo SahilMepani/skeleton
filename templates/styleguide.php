@@ -4,7 +4,7 @@
 
 <div class="container py-4">
 
-<section class="typography">
+<section class="typography mb-9">
 
   <h3 class="mb-4">Typography</h3>
 

@@ -22,7 +22,7 @@ $custom-breakpoints : (
 ////////////////////////////////////////////////
 @each $breakpoint in map-keys($custom-breakpoints) {
   @include media-breakpoint-up($breakpoint) {
-    $infix: breakpoint-infix($breakpoint, $custom-breakpoints);
+    // $infix: breakpoint-infix($breakpoint, $custom-breakpoints);
 
       [data-aos] {
         @for $i from 0 through 20 {

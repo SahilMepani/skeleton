@@ -4,14 +4,6 @@
   outline: rem-calc(3px) dashed dodgerblue;
 }
 
-.custom-select-block {
-  @include custom-select-block;
-}
-
-p:empty { // added by wp-editor
-  display: none;
-}
-
 .btn {
   @include btn;
 }

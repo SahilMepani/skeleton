@@ -18,6 +18,8 @@ $global-line-height   : 1.7; // p, pre, blockquote, address, dt, textarea
 $text-selection-bg-color : #F7EA6F;
 $text-selection-color    : #2c2c2c;
 
+// Custom ease
+$custom_ease: cubic-bezier(0.215, 0, 0.000, 0.995);
 
 // This variable affects the `.pt-*` and `.mb-*` classes etc.
 // $enable-viewport-spacers: false;

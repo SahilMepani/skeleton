@@ -1,31 +1,13 @@
-.box {
-  float: left;
-  margin-left: 200px;
-  width: 100px;
-  height: 100px;
-}
-
-.box-1 {
-  background: red;
-}
-
-.box-2 {
-  background: blue;
-}
-
-.box-3 {
-  background: orange;
-}
-
-
-.equal-height-slick-slides {
-  // make the slider slides of equal height
-  .slick-track {
-    display: flex;
-  }
-  .slick-slide {
-    height: auto;
-  }
+.bg-video {
+  display: none;
+  height: 100%;
+  width: 177.77777778vh; /* 100 * 16 / 9 */
+  min-width: 100%;
+  min-height: 56.25vw; /* 100 * 9 / 16 */
+  position: absolute;
+  left: 50%; /* % of surrounding element */
+  top: 50%;
+  transform: translate(-50%, -50%); /* % of current element */
 }
 
 .text-highlight {

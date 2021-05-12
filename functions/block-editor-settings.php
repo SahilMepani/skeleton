@@ -125,7 +125,7 @@ function skel_editor_css() {
         height: 75px;
     }
     /* change the font styles as per project */
-    #editorcontainer #content, #wp_mce_fullscreen, textarea.wp-editor-area {
+    #editorcontainer #content, #wp_mce_fullscreen, textarea.wp-editor-area, .block-editor-writing-flow {
         font-family: 'titling-gothic-fb', sans-serif; /* this font should be imported editor-style.css */
       font-size: 1.6rem;
       line-height: 1.7;

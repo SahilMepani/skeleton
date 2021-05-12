@@ -1,10 +1,16 @@
 <?php
 function skel_enqueue_scripts() {
+
   /* Load google fonts */
   wp_enqueue_style('google-fonts', '//fonts.googleapis.com/css?family=Monskelrrat&display=swap', 'all');
 
   /* Do not load in backend */
   if (is_admin()) return;
+
+  // load jquery at bottom
+  // https://wordpress.stackexchange.com/questions/173601/enqueue-core-jquery-in-the-footer
+  wp_scripts()->add_data( 'jquery', 'group', 1 );
+  wp_scripts()->add_data( 'jquery-core', 'group', 1 );
 
   /* wp_enqueue_script(
     'identifier',
@@ -13,12 +19,14 @@ function skel_enqueue_scripts() {
     'version',
     load_in_footer_boolean
   ); */
+
   wp_enqueue_style(
     'skeleton-style',
     get_stylesheet_uri(),
     array(),
     filemtime( get_template_directory() )
   );
+
   wp_enqueue_script(
     'modernizr',
     get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js'
@@ -27,6 +35,7 @@ function skel_enqueue_scripts() {
     'ua-parser',
     get_template_directory_uri() . '/js/vendor/ua-parser-0.7.20.min.js'
   );
+
   wp_enqueue_script(
     'plugins',
     get_template_directory_uri() . '/js/plugins.js',
@@ -34,6 +43,7 @@ function skel_enqueue_scripts() {
     filemtime( get_template_directory() . '/js/plugins.js' ),
     true
   );
+
   wp_enqueue_script(
     'custom',
     get_template_directory_uri() . '/js/custom.js',
@@ -41,6 +51,7 @@ function skel_enqueue_scripts() {
     filemtime( get_template_directory() . '/js/custom.js' ),
     true
   );
+
   // localize scripts
   wp_localize_script(
     'custom',
@@ -51,6 +62,7 @@ function skel_enqueue_scripts() {
       'nonce'    => wp_create_nonce( 'nonce_name' ),
     )
   );
+
 }
 add_action('wp_enqueue_scripts', 'skel_enqueue_scripts');
 ?>

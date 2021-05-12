@@ -2,8 +2,8 @@
 
 // require_once( get_template_directory() . '/functions/shortcodes.php' );
 require_once( get_template_directory() . '/functions/miscellaneous.php' );
-require_once( get_template_directory() . '/functions/acf-css.php' );
 require_once( get_template_directory() . '/functions/helpers.php' );
+require_once( get_template_directory() . '/functions/disable-auto-embed-script.php' );
 require_once( get_template_directory() . '/functions/disable-wp-generated-image-sizes.php' );
 require_once( get_template_directory() . '/functions/add-image-sizes.php' );
 require_once( get_template_directory() . '/functions/register-acf-blocks.php' );

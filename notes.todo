@@ -1,4 +1,28 @@
-Developer Options:
+Dev to Design handoff:
+	☐ Styleguide - including mobile typography. Any color or typography needs to be documentated, Buttons and hover styles
+	☐ Base interval of 5px for spacing. We rem as units to scale website to 4K. We give the admin the options to change the spacing as gutenberg blocks act as an individual component
+	☐ Assets folder - If possible specially the icons. I use icomoon font. All this I could find but takes twice the time for developers
+	☐ https://app.avocode.com/revisions/60276708/?design=40321127 - Styleguide
+  ☐ If the card or text will be a link
+  ☐ Any limitation on the number for slides/cards/columns
+  ☐ Any image will be a slider, if videos are included what format to be supported. Embed or third party. Any particular source like youtube or vimeo
+  ☐ Any restrictions on characters
+  ☐ How it should look if other card have more characters.. equal height or not
+  ☐ Which section will pull content automatically or which are custom post types?
+  ☐ What will be the URL structure
+  ☐ Do we need 301 redirect to save SEO. If yes, url for old site and map the links between them?
+  ☐ Any form linked with third party mailing list?
+
+Frontend Developer:
+	☐ Each section will be independent. Spacing for sections need not be tied with css but classes so that we can use the section at any other place
+	☐ If a section has different variation both the variations needs to be added as a part of same section unless and until it asks for a separate section
+	☐ All images should be a part of img tag. They cannot be a part of background image css. We will use responsive images
+  ☐ Use reusable components whenever possible
+  ☐ If heading has some text with different color. Use utility class and not inline CSS
+
+
+
+  Developer Options:
 	Create a clone initially with default settings but for every block you may have to create all the dev options manually because of different defaults
 	Padding Top and Bottom Desc:
 		Separate multiple classes with spaces. Starts with pt-{breakpoint}-{number}. The number can be 1 from 15
@@ -16,6 +40,7 @@ Developer Options:
   ☐ By default the sizes is 100vw
   ☐ Add 2x size in the acf field instructions
   ☐ If the image needs a max-size which is less than 100%. We need to specify that "sizes" attribute or else the image scale just like it did on art website for icons in extended text with image block
+  ☐ Remove width and height if we are using img-cover as it will not allow the image to scale to cover its parent
 
 
   # GENERAL --- ✄ -----------------------:

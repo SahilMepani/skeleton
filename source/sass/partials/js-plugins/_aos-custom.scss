@@ -1,0 +1,38 @@
+// // Generate Duration && Delay
+// $custom-breakpoints : (
+//   md   : $md,
+//   lg   : $lg,
+// );
+
+// // AOS delay
+// ////////////////////////////////////////////////
+// [data-aos] {
+//   @for $i from 0 through 20 {
+
+//     &[data-aos][data-aos-delay='#{$i * 50}'] {
+//       &.animated {
+//         animation-delay: #{$i * 50}ms;
+//       }
+//     }
+
+//   }
+// }
+
+// // AOS responsive delay
+// ////////////////////////////////////////////////
+// @each $breakpoint in map-keys($custom-breakpoints) {
+//   @include media-breakpoint-up($breakpoint) {
+//     // $infix: breakpoint-infix($breakpoint, $custom-breakpoints);
+
+//       [data-aos] {
+//         @for $i from 0 through 20 {
+//           &[data-aos][data-aos-#{$breakpoint}-delay='#{$i * 50}'] {
+//             &.animated {
+//               animation-delay: #{$i * 50}ms;
+//             }
+//           }
+//         }
+//       }
+
+//   }
+// }

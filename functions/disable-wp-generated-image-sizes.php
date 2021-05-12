@@ -1,4 +1,5 @@
 <?php
+
 // Update default media sizes
 update_option( 'thumbnail_size_w', 0 );
 update_option( 'medium_size_w', 0 );
@@ -32,4 +33,5 @@ function skel_disable_other_image_sizes() {
 
 }
 add_action('init', 'skel_disable_other_image_sizes');
+
 ?>

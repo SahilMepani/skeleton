@@ -4,31 +4,28 @@
 * Description: Responsive custom theme
 * Text Domain: skel
 * Version: 1.0
-* Author: sahil Mepani
+* Author: Sahil Mepani
 * Author URI: www.sahilmepani.com
 * License: GPL
 * License URI: http://wordpress.org/about/gpl/
 */
 
-// Required in same order
-@import "partials/bootstrap-overwrites";
-
-// Bootstrap v4.1.3 (https://getbootstrap.com/)
-// Never directly edit the bootstrap files
-// Bootstrap required -
+// Bootstrap 5
+// Configuration
 @import "partials/bootstrap/functions";
 @import "partials/bootstrap/variables";
 @import "partials/bootstrap/mixins";
+@import "partials/bootstrap/utilities";
 
-// Remove bootstrap theme-colors - unfortunately this is the only place where it works
-$theme-colors: map-remove( $theme-colors, "success", "info", "warning", "danger", "light", "dark" );
+// Bootstrap overwrites
+@import "partials/bootstrap-overwrites";
 
-// Bootstrap optional -
+// Layout & components
 @import "partials/bootstrap/root";
 @import "partials/bootstrap/reboot";
 @import "partials/bootstrap/type";
 @import "partials/bootstrap/images";
-@import "partials/bootstrap/code";
+@import "partials/bootstrap/containers";
 @import "partials/bootstrap/grid";
 @import "partials/bootstrap/tables";
 // @import "partials/bootstrap/forms";
@@ -36,26 +33,26 @@ $theme-colors: map-remove( $theme-colors, "success", "info", "warning", "danger"
 // @import "partials/bootstrap/transitions";
 // @import "partials/bootstrap/dropdown";
 // @import "partials/bootstrap/button-group";
-// @import "partials/bootstrap/input-group";
-// @import "partials/bootstrap/custom-forms";
 // @import "partials/bootstrap/nav";
 // @import "partials/bootstrap/navbar";
 // @import "partials/bootstrap/card";
+// @import "partials/bootstrap/accordion";
 // @import "partials/bootstrap/breadcrumb";
 // @import "partials/bootstrap/pagination";
 // @import "partials/bootstrap/badge";
-// @import "partials/bootstrap/jumbotron";
 // @import "partials/bootstrap/alert";
 // @import "partials/bootstrap/progress";
-// @import "partials/bootstrap/media";
 // @import "partials/bootstrap/list-group";
 // @import "partials/bootstrap/close";
+// @import "partials/bootstrap/toasts";
 // @import "partials/bootstrap/modal";
 // @import "partials/bootstrap/tooltip";
 // @import "partials/bootstrap/popover";
 // @import "partials/bootstrap/carousel";
-@import "partials/bootstrap/utilities";
-@import "partials/bootstrap/print";
+// @import "partials/bootstrap/spinners";
+// @import "partials/bootstrap/offcanvas";
+@import "partials/bootstrap/helpers";
+@import "partials/bootstrap/utilities/api";
 
 // Project variables
 @import "partials/variables.scss";

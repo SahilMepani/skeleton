@@ -2,6 +2,11 @@
 .phpintel
 .sass-cache
 .vscode
+style.css
+editor-style.css
+style-rtl.css
+js/custom.js
+js/plugins.js
 *.css.map
 Thumbs.db
 acf-json

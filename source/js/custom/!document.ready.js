@@ -11,8 +11,8 @@ const xxxlMQ = window.matchMedia( '(min-width: 1600px)' );
 =            UA Parser            =
 =================================*/
 // https://github.com/faisalman/ua-parser-js
-var parser = new UAParser();
-var result = parser.getResult();
+// var parser = new UAParser();
+// var result = parser.getResult();
 // console.log( result.browser.name );
 // console.log( parseInt( result.browser.version.split( '.' )[ 0 ], 10 ) );
 // console.log( result.device.type );

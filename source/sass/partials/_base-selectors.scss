@@ -2,8 +2,6 @@
 ::selection { background: $text-selection-bg-color; color: $text-selection-color; text-shadow: none; }
 
 html {
-  font-size: $html-font-size;
-  scroll-behavior: smooth;
   @include fluid( font-size, $scaling, $four-k, $html-font-size, $html-font-size * 2.4, true, false );
   // @include fluid( font-size, $mobile, $scaling, $html-font-size, $html-font-size, false, false ); // scale down
   // add custom scrollbar
@@ -22,47 +20,47 @@ html {
   // }
 // }
 
-h1,
-.h1 {
-  @include font-size( $xxxxl-font );
-  font-weight: 700;
-  line-height: 1.2;
-}
+// h1,
+// .h1 {
+//   @include font-size( $xxxxl-font );
+//   font-weight: 700;
+//   line-height: 1.2;
+// }
 
-h2,
-.h2 {
-  @include font-size( $xxxl-font );
-  font-weight: 700;
-  line-height: 1.2;
-}
+// h2,
+// .h2 {
+//   @include font-size( $xxxl-font );
+//   font-weight: 700;
+//   line-height: 1.2;
+// }
 
-h3,
-.h3 {
-  @include font-size( $xxl-font );
-  font-weight: 700;
-  line-height: 1.2;
-}
+// h3,
+// .h3 {
+//   @include font-size( $xxl-font );
+//   font-weight: 700;
+//   line-height: 1.2;
+// }
 
-h4,
-.h4 {
-  @include font-size( $xl-font );
-  font-weight: 700;
-  line-height: 1.2;
-}
+// h4,
+// .h4 {
+//   @include font-size( $xl-font );
+//   font-weight: 700;
+//   line-height: 1.2;
+// }
 
-h5,
-.h5 {
-  @include fluid( font-size, $mobile, $desktop, 18px, 18px );
-  font-weight: 700;
-  line-height: 1.2;
-}
+// h5,
+// .h5 {
+//   @include fluid( font-size, $mobile, $desktop, 18px, 18px );
+//   font-weight: 700;
+//   line-height: 1.2;
+// }
 
-h6,
-.h6 {
-  @include fluid( font-size, $mobile, $desktop, 15px, 15px );
-  font-weight: 700;
-  line-height: 1.2;
-}
+// h6,
+// .h6 {
+//   @include fluid( font-size, $mobile, $desktop, 15px, 15px );
+//   font-weight: 700;
+//   line-height: 1.2;
+// }
 
 /*----------  Links/Buttons  ----------*/
 a,
@@ -106,13 +104,13 @@ h6 {
   }
 }
 
-p,
-pre,
-blockquote,
-address,
-dd {
-  line-height: $global-line-height;
-}
+// p,
+// pre,
+// blockquote,
+// address,
+// dd {
+//   line-height: $global-line-height;
+// }
 
 p,
 table,

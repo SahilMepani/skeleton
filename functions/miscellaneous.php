@@ -62,10 +62,6 @@ add_filter('jpeg_quality', function($arg){return 100;});
 // }
 // add_filter('login_headerurl', 'skel_login_logo_url');
 
-// function skel_login_logo_url_title() {
-//   return 'Skeleton';
-// }
-// add_filter('login_headertitle', 'skel_login_logo_url_title');
 
 
 /*----------  Enable login captcha  ----------*/

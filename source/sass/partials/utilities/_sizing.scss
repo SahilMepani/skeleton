@@ -13,14 +13,14 @@
       max-width: 100%;
     }
     .minw#{$infix}-100 {
-			min-width: 100%;
-		}
-		.maxw#{$infix}-none {
-		  max-width: none;
+      min-width: 100%;
+    }
+    .maxw#{$infix}-none {
+      max-width: none;
     }
     .w#{$infix}-auto {
-		  width: auto;
-		}
+      width: auto;
+    }
 
   }
 }

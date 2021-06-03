@@ -1,10 +1,56 @@
-// Bootstrap overwrites
-////////////////////////////////////////////////
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+
+$enable-caret:                false !default;
+$enable-rounded:              false !default;
+$enable-shadows:              false !default;
+$enable-gradients:            false !default;
+$enable-transitions:          true !default;
+$enable-reduced-motion:       true !default;
+$enable-smooth-scroll:        true !default;
+$enable-grid-classes:         true !default;
+$enable-button-pointers:      true !default;
+$enable-rfs:                  false !default;
+$enable-validation-icons:     false !default;
+$enable-negative-margins:     false !default;
+$enable-deprecation-messages: true !default;
+$enable-important-utilities:  true !default;
+
 
 // Project theme colors
+// This will generate btn-*, text-*, bg-* classes
+
 $theme-colors: (
 	"gray": #eee
 );
+
+
+// Body
+//
+// Settings for the `<body>` element.
+
+$body-bg:                   $white !default;
+$body-color:                $gray-900 !default;
+// $body-text-align:           null !default;
+
+
+// Links
+//
+// Style anchor elements.
+
+$link-color:                              $primary !default;
+$link-decoration:                         underline !default;
+$link-shade-percentage:                   20% !default;
+$link-hover-color:                        shift-color($link-color, $link-shade-percentage) !default;
+$link-hover-decoration:                   null !default;
+
+
+// Paragraphs
+//
+// Style p element.
+
+$paragraph-margin-bottom:   1rem !default;
 
 // Settings for the `<body>` element.
 // $body-color: $gray-600;
@@ -20,20 +66,9 @@ $link-hover-color      : black;
 $link-decoration       : none;
 $link-hover-decoration : none;
 
-// Headings
-// $headings-color         : inherit;
-// $headings-font-family   : inherit;
-$headings-margin-bottom : 2rem;
-
-// Buttons + Forms
-// $input-btn-focus-width:       .2rem !default;
-// $input-btn-focus-color:       rgba($component-active-bg, .25) !default;
-// $input-btn-focus-box-shadow:  0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
-// $btn-border-radius:           $border-radius !default;
-// $btn-border-radius-lg:        $border-radius-lg !default;
-// $btn-border-radius-sm:        $border-radius-sm !default;
 
 // This variable affects the `.pt-*` and `.mb-*` classes etc.
+$spacer: 2rem; // used on many other comoponents
 $spacers : (
   0      : 0,
   0-#{5} : 0.5rem,
@@ -68,52 +103,60 @@ $spacers : (
   // 20     : 20rem,
 );
 
-// This variable affects the `.h-*` and `.w-*` classes.
-// $sizes: (
-  // 30: 30%
-// );
+// Custom map
+// useful to generate negative and gutter utility classes
+$negative-and-gutter-spacers: (
+  0      : 0,
+  0-#{5} : 0.5rem,
+  1      : 1rem,
+  1-#{5} : 1.5rem,
+  2      : 2rem,
+  2-#{5} : 2.5rem,
+  3      : 3rem,
+  3-#{5} : 3.5rem,
+  4      : 4rem,
+  4-#{5} : 4.5rem,
+  5      : 5rem,
+  5-#{5} : 5.5rem,
+  6      : 6rem,
+  6-#{5} : 6.5rem,
+  7      : 7rem,
+  7-#{5} : 7.5rem,
+  8      : 8rem,
+  8-#{5} : 8.5rem,
+  9      : 9rem,
+  9-#{5} : 9.5rem,
+  10     : 10rem,
+);
 
-// Breakpoints - Min width
-$xs      : 0; // do not change
-$sm      : 576px;
-$md      : 768px;
-$lg      : 992px;
-$xl      : 1200px;
-$xxl     : 1400px;
-$xxxl    : 1600px;
+$negative-spacers: if($enable-negative-margins, negativify-map($negative-and-gutter-spacers), null);
+
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+// New breakpoints - never use rem/%
+$grid-breakpoints: map-merge( $grid-breakpoints, (xxxl : 1600px) );
+// @debug $grid-breakpoints;
+
+// Required breakpoints for 4K scaling
 $two-k   : 1920px;
 $three-k : 2560px;
 $four-k  : 3840px;
 
-// Breakpoints - Map
-$grid-breakpoints : (
-  // this and $container-max-widths "map size" should match
-  xs  : $xs,
-  sm  : $sm,
-  md  : $md,
-  lg  : $lg,
-  xl  : $xl,
-  xxl : $xxl,
-  xxxl : $xxxl,
-  // add more if required
-);
-
 // Changes depending on the project design, used on html element
-$mobile: 414px; // mobile canvas size, mostly remains same, used for fkuid typography
+$mobile: 414px; // mobile canvas size, mostly remains same, used for fluid typography
 $desktop: $two-k; // desktop canvas size
 $scaling: $two-k; // scaling starts from here, do not change if not sure, it cannot be smaller than $desktop
 
 
-// Grid columns
-// Set the number of columns and specify the width of the gutters.
-$enable-grid-classes : true;
-// $grid-columns      : 12;
-$grid-gutter-width : 3rem; // gets divided by half per column for columns
-
-
 // Grid containers
+//
 // Define the maximum width of `.container` for different screen sizes.
-// Change the value to rem to scale on higher size screens
+// Do not use pixel values. Use rem to scale on higher size screens
+
 $container-max-widths: (
   sm   : 95vw,
   md   : 95vw,
@@ -123,6 +166,61 @@ $container-max-widths: (
   // max-width value needs to be less than the (breakpoint value(xxxl) - $container-padding)
   xxxl : 144rem,
 );
+
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+// $grid-columns:                12;
+$grid-gutter-width : 3rem; // gets divided by 2 for each side
+// $grid-row-columns:            6;
+
+$gutters: $negative-and-gutter-spacers;
+
+
+// Typography
+//
+// Font, line-height, and color for body text, headings, and more.
+
+// $font-size-root effects the value of `rem`, which is used for as well font sizes, paddings and margins
+// $font-size-base effects the font size of the body text
+$font-size-root: 10px;
+// $font-size-base:              1rem; // Assumes the browser default, typically `16px`
+// $font-size-sm:                $font-size-base * .875;
+// $font-size-lg:                $font-size-base * 1.25;
+
+// $font-weight-base:            $font-weight-normal;
+
+$line-height-base:            1.5;
+// $line-height-sm:              1.25;
+// $line-height-lg:              2;
+
+$h1-font-size:                $font-size-base * 2.5;
+$h2-font-size:                $font-size-base * 2;
+$h3-font-size:                $font-size-base * 1.75;
+$h4-font-size:                $font-size-base * 1.5;
+$h5-font-size:                $font-size-base * 1.25;
+$h6-font-size:                $font-size-base;
+
+$headings-margin-bottom:      $spacer / 2;
+$headings-font-family:        null;
+$headings-font-style:         null;
+$headings-font-weight:        500;
+$headings-line-height:        1.2;
+$headings-color:              null;
+
+// $display-font-sizes: (
+//   1: 5rem,
+//   2: 4.5rem,
+//   3: 4rem,
+//   4: 3.5rem,
+//   5: 3rem,
+//   6: 2.5rem
+// );
+
+// $display-font-weight: 300 ;
+// $display-line-height: $headings-line-height;
 
 // $container-sm-max-width  : map-get($container-max-widths, 'sm');
 // $container-md-max-width  : map-get($container-max-widths, 'md');

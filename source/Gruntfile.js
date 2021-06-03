@@ -27,7 +27,7 @@ module.exports = function ( grunt ) {
         options: {
           sourceMap: true,
           implementation: nodeSass,
-          outputStyle: 'nested', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
+          outputStyle: 'compressed', // must be compact or expanded to avoid merge conflict in git and also for source maps to work
           // importer: compass
         },
         files: {
@@ -72,41 +72,69 @@ module.exports = function ( grunt ) {
         separator: ';\n'
       },
       plugin: {
-        src: 'js/plugins/*.js',
+        src: ['js/plugins/*.js', 'js/custom/*.js'],
         dest: '../js/plugins.js',
       },
-      custom: {
-        src: 'js/custom/*.js',
-        dest: '../js/custom.js',
-      },
+      // custom: {
+      //   src: 'js/custom/*.js',
+      //   dest: '../js/custom.js',
+      // },
     },
 
-    // uglify: {
-    //   options: {
-    //     output: {
-    //       comments: 'false'
-    //     }
-    //   },
-    //   dist: {
-    //     files: [ {
-    //       expand: true,
-    //       src: [ '../js/plugins.js', '../js/custom.js' ],
-    //       dest: '../js/',
-    //     } ]
-    //   }
-    // },
+    uglify: {
+      options: {
+        output: {
+          comments: 'false',
+        }
+      },
+      dist: {
+        files: [ {
+          expand: true,
+          src: [ '../js/plugins.js' ],
+          dest: '../js/',
+        } ]
+      }
+    },
 
     // Post CSS
     postcss: {
       options: {
         processors: [
-          require('autoprefixer')(),
+          require('autoprefixer')({overrideBrowserslist: '> 0.5%, last 2 versions'})
         ]
       },
       dist: {
-        src: '../*.css'
+        src: '../style.css'
       }
     },
+
+    // Stylelint
+    stylelint: {
+      all: ['sass/**/*.scss']
+    },
+
+    // RTLCSS
+    rtlcss: {
+      myTask: {
+        // task options
+        options: {
+          // generate source maps
+          map: {inline: false},
+          // rtlcss options
+          opts: {
+            clean: false
+          },
+          // rtlcss plugins
+          plugins: [],
+          // save unmodified files
+          saveUnmodified: false,
+        },
+        expand: false,
+        cwd: '',
+        dest: '../style-rtl.css',
+        src: [ '../style.css' ]
+      }
+    }
 
     // Update Dev dependency
     // devUpdate: {
@@ -122,12 +150,15 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks( 'grunt-sass' );
   grunt.loadNpmTasks( 'grunt-contrib-watch' );
   grunt.loadNpmTasks( 'grunt-contrib-concat' );
+  grunt.loadNpmTasks( 'grunt-rtlcss' );
   // grunt.loadNpmTasks('grunt-dev-update');
   // grunt.loadNpmTasks( 'grunt-jquery-ready' );
-  // grunt.loadNpmTasks( 'grunt-contrib-uglify' );
-  grunt.loadNpmTasks('@lodder/grunt-postcss');
+  grunt.loadNpmTasks( 'grunt-contrib-uglify' );
+  grunt.loadNpmTasks( '@lodder/grunt-postcss' );
+  grunt.loadNpmTasks( 'grunt-stylelint' );
   // grunt.loadNpmTasks('grunt-browser-sync');
-  grunt.registerTask( 'default', [ 'postcss', 'watch' ] );
+  grunt.registerTask( 'default', [ 'watch' ] );
+  grunt.registerTask( 'build', [ 'postcss', 'uglify', 'rtlcss' ] );
   // grunt.registerTask( 'devUpdate', [ 'devUpdate' ] );
   // grunt.registerTask( 'uglify', [ 'uglify' ] );
 

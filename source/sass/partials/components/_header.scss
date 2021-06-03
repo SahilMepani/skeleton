@@ -12,7 +12,6 @@
   margin-top: rem-calc( 15px ) !important; // overwrite :first-child
   margin-bottom: 0;
   a {
-    @include text-hide($ignore-warning: true);
     display: block;
     height: 100%;
     position: absolute;

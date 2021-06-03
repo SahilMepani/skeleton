@@ -10,6 +10,10 @@
   transform: translate(-50%, -50%); /* % of current element */
 }
 
+.bg-cover {
+	@include bg-cover;
+}
+
 .text-highlight {
   background-color: $text-selection-bg-color;
   color: $text-selection-color;

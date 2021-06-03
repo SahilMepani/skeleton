@@ -13,9 +13,14 @@
     "grunt-contrib-uglify": "^5.0.1",
     "grunt-contrib-watch": "*",
     "grunt-dev-update": "*",
+    "grunt-rtlcss": "^2.0.2",
     "grunt-sass": "*",
+    "grunt-stylelint": "^0.16.0",
     "node-sass": "^5.0.0",
-    "postcss": "*"
+    "postcss": "*",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0",
+    "stylelint-config-twbs-bootstrap": "^2.2.0"
   },
   "keywords": [],
   "author": "",

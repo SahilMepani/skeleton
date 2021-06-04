@@ -109,7 +109,7 @@ h6 {
 // blockquote,
 // address,
 // dd {
-//   line-height: $global-line-height;
+//   line-height: $line-height-base;
 // }
 
 p,
@@ -121,7 +121,7 @@ dd,
 pre,
 blockquote,
 address {
-  margin: 0 0 $global-margin-bottom;
+  margin: 0 0 $paragraph-margin-bottom;
 }
 
 output {
@@ -207,15 +207,15 @@ ol {
 }
 
 li {
-  line-height: $global-line-height;
-  margin-bottom: $global-margin-bottom / 2;
+  line-height: $line-height-base;
+  margin-bottom: $paragraph-margin-bottom / 2;
 }
 
 dt {
   font-family: $headings-font-family;
   font-weight: 700;
-  line-height: $global-line-height;
-  margin: 0 0 ( $global-margin-bottom / 2 );
+  line-height: $line-height-base;
+  margin: 0 0 ( $paragraph-margin-bottom / 2 );
 }
 
 /*----------  Form  ----------*/
@@ -226,7 +226,7 @@ form {
   > ul {
     > li {
       clear: both;
-      margin-bottom: $global-margin-bottom / 2;
+      margin-bottom: $paragraph-margin-bottom / 2;
       > label {
         margin-right: rem-calc(10px);
       }
@@ -244,7 +244,7 @@ fieldset {
 legend {
   font-weight: 700;
   display: block;
-  margin-bottom: $global-margin-bottom / 2;
+  margin-bottom: $paragraph-margin-bottom / 2;
   border: 0;
 }
 
@@ -277,7 +277,7 @@ input[type="date"] {
 }
 
 textarea {
-  line-height: $global-line-height;
+  line-height: $line-height-base;
   height: rem-calc( 150px );
   resize: vertical;
 }

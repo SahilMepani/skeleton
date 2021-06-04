@@ -47,13 +47,15 @@ $gf-field-label-font-size: rem-calc( 14px );
 .gform_body {
   // unordered list used to structure all of the form elements (ul)
   .gform_fields {
-    @include list-unstyled;
+    margin-left: 0;
+    list-style: none;
   }
   // individual list items containing each form element (li)
   .gfield {
     margin-bottom: $gf-field-mb;
     ul {
       margin-top: 0;
+      margin-left: 0;
     }
     // wraps the actual form element inside the containing list item (div)
     .ginput_container {
@@ -807,7 +809,7 @@ table.gfield_list {
 .gforms_confirmation_message {
   background-color: #dbffd9;
   padding: rem-calc( 15px );
-  margin-bottom: $global-margin-bottom;
+  margin-bottom: $paragraph-margin-bottom;
   border: rem-calc(1px) solid darken(#dbffd9, 20%);
   text-align: center;
   line-height: 1.4;
@@ -817,7 +819,7 @@ table.gfield_list {
 .validation_error {
   background-color: #ffffd9;
   padding: rem-calc( 15px );
-  margin-bottom: $global-margin-bottom;
+  margin-bottom: $paragraph-margin-bottom;
   border: rem-calc(1px) solid darken(#ffffd9, 47%);
   text-align: center;
   line-height: 1.4;
@@ -844,7 +846,7 @@ table.gfield_list {
 .gform_confirmation_message {
   background-color: #dbffd9;
   padding: rem-calc( 15px );
-  margin-bottom: $global-margin-bottom;
+  margin-bottom: $paragraph-margin-bottom;
   border: rem-calc(1px) solid darken(#dbffd9, 20%);
   text-align: center;
   line-height: 1.4;

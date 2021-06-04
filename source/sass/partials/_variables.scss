@@ -1,11 +1,14 @@
 // Can't use rem-calc function in this file
 
-// Spacing
-$global-margin-bottom : 3rem; // p, table, ul, ol, dl, dd, pre, blockquote, address
-$global-line-height   : 1.7; // p, pre, blockquote, address, dt, textarea
+// Required breakpoints for 4K scaling
+$two-k   : 1920px;
+$three-k : 2560px;
+$four-k  : 3840px;
 
-// Input
-// variables are set in input mixin file because it requires rem-values
+// Changes depending on the project design, used on html element
+$mobile: 414px; // mobile canvas size, mostly remains same, used for fluid typography
+$desktop: $two-k; // desktop canvas size
+$scaling: $two-k; // scaling starts from here, do not change if not sure, it cannot be smaller than $desktop
 
 // Text selection
 $text-selection-bg-color : #F7EA6F;
@@ -13,6 +16,13 @@ $text-selection-color    : #2c2c2c;
 
 // Custom ease
 $custom_ease: cubic-bezier(0.215, 0, 0.000, 0.995);
+
+// $container-sm-max-width  : map-get($container-max-widths, 'sm');
+// $container-md-max-width  : map-get($container-max-widths, 'md');
+// $container-lg-max-width  : map-get($container-max-widths, 'lg');
+// $container-xl-max-width  : map-get($container-max-widths, 'xl');
+// $container-xxl-max-width : map-get($container-max-widths, 'xxl');
+// $container-xxxl-max-width : map-get($container-max-widths, 'xxxl');
 
 // This variable affects the `.pt-*` and `.mb-*` classes etc.
 // $enable-viewport-spacers: false;

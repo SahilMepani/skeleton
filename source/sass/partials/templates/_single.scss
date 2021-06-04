@@ -1,7 +1,7 @@
 .type-post {
   margin-bottom: 5rem;
   .embed-responsive {
-    margin-bottom: $global-margin-bottom;
+    margin-bottom: $paragraph-margin-bottom;
   }
   header {
     margin-bottom: 3rem;
@@ -124,7 +124,7 @@
   background: #f5f5f5;
   padding: rem-calc(20px);
   border: rem-calc(1px) solid #ddd;
-  margin-bottom: $global-margin-bottom;
+  margin-bottom: $paragraph-margin-bottom;
   overflow: hidden;
   box-shadow: inset rem-calc(1px) rem-calc(1px) 0 #fff, inset rem-calc(-1px) rem-calc(-1px) 0 #fff;
 }

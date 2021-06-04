@@ -1,34 +1,3 @@
-@mixin btn {
-  background: transparent;
-  line-height: $input-line-height;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  background-clip: padding-box;
-}
-
-@mixin btn-red {
-  background: red;
-  color: #fff;
-  &:hover,
-  &:focus {
-    background: darken(red,7%);
-    color: #fff;
-  }
-}
-
-@mixin btn-sm {
-  padding: rem-calc( 10px ) rem-calc( 20px );
-}
-
-@mixin btn-md {
-  padding: rem-calc( 15px ) rem-calc( 30px );
-}
-
-@mixin btn-lg {
-  padding: rem-calc( 20px ) rem-calc( 50px );
-}
-
 @mixin btn-input-clone( $bg-color ) {
   background-color: $bg-color;
   font-size: 1rem;
@@ -41,10 +10,4 @@
     padding-top: $input-px-md;
     padding-bottom: $input-px-md;
   }
-}
-
-@mixin btn-disabled {
-  cursor: default;
-  pointer-events: none;
-  opacity: .3;
 }

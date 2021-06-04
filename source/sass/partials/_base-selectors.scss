@@ -2,8 +2,8 @@
 ::selection { background: $text-selection-bg-color; color: $text-selection-color; text-shadow: none; }
 
 html {
-  @include fluid( font-size, $scaling, $four-k, $html-font-size, $html-font-size * 2.4, true, false );
-  // @include fluid( font-size, $mobile, $scaling, $html-font-size, $html-font-size, false, false ); // scale down
+  @include fluid( font-size, $scaling, $four-k, $font-size-root, $font-size-root * 2.4, true, false );
+  // @include fluid( font-size, $mobile, $scaling, $font-size-root, $font-size-root, false, false ); // scale down
   // add custom scrollbar
   // &.no-touchevents {
     // @include scrollbars(1rem, $blue, #e9e9e9);
@@ -139,34 +139,34 @@ code {
 }
 
 /*----------  Table  ----------*/
-table {
-  width: 100%;
-  max-width: 100%;
-  caption {
-    padding-top: rem-calc( 10px );
-    padding-bottom: rem-calc( 10px );
-  }
-  tbody {
-    tr:last-child {
-      border-bottom: none;
-    }
-  }
-  tr {
-    border-bottom: 1px solid #e5e5e5;
-  }
-  th {
-    font-weight: 700;
-    text-align: left;
-  }
-  thead th {
-    vertical-align: bottom;
-  }
-  th,
-  td {
-    vertical-align: top;
-    padding: rem-calc( 16px );
-  }
-}
+// table {
+//   width: 100%;
+//   max-width: 100%;
+//   caption {
+//     padding-top: rem-calc( 10px );
+//     padding-bottom: rem-calc( 10px );
+//   }
+//   tbody {
+//     tr:last-child {
+//       border-bottom: none;
+//     }
+//   }
+//   tr {
+//     border-bottom: 1px solid #e5e5e5;
+//   }
+//   th {
+//     font-weight: 700;
+//     text-align: left;
+//   }
+//   thead th {
+//     vertical-align: bottom;
+//   }
+//   th,
+//   td {
+//     vertical-align: top;
+//     padding: rem-calc( 16px );
+//   }
+// }
 
 /*----------  Lists  ----------*/
 ul,

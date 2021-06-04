@@ -1,4 +1,4 @@
-$rem-baseline: $html-font-size !default;
+$rem-baseline: $font-size-root !default;
 
 $rem-fallback: false !default;
 $rem-px-only: false !default;
@@ -18,7 +18,7 @@ $rem-px-only: false !default;
 }
 
 @mixin rem-baseline($zoom: 100%) {
-  font-size: $zoom / $html-font-size * $rem-baseline;
+  font-size: $zoom / $font-size-root * $rem-baseline;
 }
 
 @function rem-convert($to, $values...) {

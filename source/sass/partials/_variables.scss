@@ -1,12 +1,5 @@
 // Can't use rem-calc function in this file
 
-// Root font size
-// never change the value
-$html-font-size : 10px;
-
-// Responsive font sizes
-// $font-sizes: ( xxxs: 10px, xxs: 11px, xs:12px, sm: 16px, md:18px, lg:24px, xl: 30px, xxl: 36px, xxxl: 48px, xxxxl: 60px);
-
 // Spacing
 $global-margin-bottom : 3rem; // p, table, ul, ol, dl, dd, pre, blockquote, address
 $global-line-height   : 1.7; // p, pre, blockquote, address, dt, textarea

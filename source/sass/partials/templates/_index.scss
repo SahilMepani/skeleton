@@ -41,7 +41,7 @@
     }
   }
   .clear-search {
-    @include btn;
+    @extend .btn;
     position: absolute;
     right: 0;
     top: 0;

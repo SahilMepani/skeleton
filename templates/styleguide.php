@@ -4,346 +4,452 @@
 
 <div class="container py-4">
 
-<section class="typography mb-9">
 
-  <h3 class="mb-4">Typography</h3>
-
-  <div class="row">
-
-    <div class="col-md">
-      <h1><code>&lt;h1&gt;</code> Heading</h1>
-
-      <h2><code>&lt;h2&gt;</code> Heading</h2>
-
-      <h3><code>&lt;h3&gt;</code> Heading</h3>
-
-      <h4><code>&lt;h4&gt;</code> Heading</h4>
-
-      <h5><code>&lt;h5&gt;</code> Heading</h5>
-
-      <h6><code>&lt;h6&gt;</code> Heading</h6>
-
-      <p>We can interchange heading tag with different heading class. For example. <code class="alert-info">&lt;h5 class="h1"&gt;</code> It will use h5 tag but h1 styling will be applied. Generally useful for SEO.</p>
-
-      <h4 class="mb-3">Paragraphs</h4>
-
-      <code class="mb-1">&lt;p&gt;</code>
-      <div class="mb-3">
-        <p>This para has default font-size. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, magnam.</p>
-      </div> <!-- .text-left -->
-
-      <code class="mb-1">&lt;div class="text-big"&gt;</code>
-      <div class="text-big mb-3">
-        <p>This para is big in font-size. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, magnam.</p>
-      </div> <!-- .text-left -->
-
-      <code class="mb-1">&lt;div class="text-small"&gt;</code>
-      <div class="text-small mb-3">
-        <p>This para is small in font-size. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, magnam.</p>
-      </div> <!-- .text-left -->
-
-
-    </div> <!-- .col -->
-
-    <div class="col-md">
-
-      <p>You might have noticed all the monospaced text in this guide. There are a number of inline <abbr title="HyperText Markup Language">HTML</abbr> elements you may use anywhere within other elements, including <abbr title="Abbreviation">abbr</abbr>, <cite>cite</cite>, <code>code</code>, <del>del</del>, <em>em</em>, <ins>ins</ins>, <strong>strong</strong>, <var>var</var>, and <a href="#" title="link">link</a></p>
-
-      <h4 class="mb-3">Text Alignment</h4>
-
-      <code class="mb-1">&lt;div class="text-left"&gt;</code>
-      <div class="text-left mb-3">
-        <p>This text is align left</p>
-      </div> <!-- .text-left -->
-
-      <code class="mb-1">&lt;div class="text-right"&gt;</code>
-      <div class="text-right mb-3">
-        <p>This text is align right</p>
-      </div> <!-- .text-right -->
-
-      <code class="mb-1">&lt;div class="text-center"&gt;</code>
-      <div class="text-center mb-3">
-        <p>This text is align center</p>
-      </div> <!-- .text-center -->
-
-      <code class="mb-1">&lt;div class="text-justify"&gt;</code>
-      <div class="text-justify mb-3">
-        <p>This text is justified. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, fugit.</p>
-      </div> <!-- .text-center -->
-
-    </div> <!-- .col -->
-
-    </div> <!-- .row -->
-</section>
-
-
-<section class="buttons mb-9">
-  <h3 class="mb-3">Buttons</h3>
-
-  <div class="row">
-
-    <div class="col">
-      <h4>Sizes</h4>
-      <code class="mb-1">&lt;a class="btn btn-sm"&gt;</code>
-      <div class="mb-2"><a href="#" class="btn btn-primary btn-sm">Small</a></div>
-      <code class="mb-1">&lt;btn class="btn btn-md"&gt; - notice btn tag</code>
-      <div class="mb-2"><btn class="btn btn-primary btn-md">Medium</btn></div>
-      <code class="mb-1">&lt;a class="btn btn-lg"&gt;</code>
-      <div class="mb-2"><a href="#" class="btn btn-primary btn-lg">Large</a></div>
-      <code class="mb-1">&lt;a class="btn btn-md d-block"&gt;</code>
-      <div class="mb-2"><a href="#" class="btn btn-primary btn-md d-block">Block - Medium</a></div>
-      <p>It will cover the entire width of the container.</p>
-    </div> <!-- .col -->
-
-    <div class="col">
-      <h4>Colors</h4>
-
-      <code class="mb-1">&lt;btn class="btn btn-primary btn-md"&gt;</code>
-      <div class="mb-2"><btn class="btn btn-primary btn-md">Medium</btn></div>
-
-      <code class="mb-1">&lt;btn class="btn btn-secondary btn-lg"&gt;</code>
-      <div class="mb-2"><btn class="btn btn-secondary btn-lg">Large</btn></div>
-
-      <p>We can mix and match the sizes and color classes.</p>
-
-      <h4>Disabled</h4>
-
-      <code class="mb-1">&lt;btn class="btn btn-primary btn-md btn-disabled"&gt;</code>
-      <div class="mb-2"><btn class="btn btn-primary btn-md btn-disabled">Medium</btn></div>
-
-    </div> <!-- .col -->
-  </div> <!-- .row -->
-</section>
-
-<section class="spacing mb-9">
-  <h3 class="mb-3">Spacing</h3>
-
-  <div class="row mb-4">
-
-    <div class="col">
-      <p>The margin classes are used to create space around elements, outside of any defined borders. There are classes for setting the margin for each side of an element (top, right, bottom, and left).</p>
-
-      <p><b>m-(number)</b> <br /> Set margin for all four sides (top, right, bottom, and left).</p>
-      <p><b>mt-(number)</b> <br /> Sets the top margin of an element</p>
-      <p><b>mr-(number)</b> <br /> Sets the right margin of an element</p>
-      <p><b>mb-(number)</b> <br /> Sets the bottom margin of an element</p>
-      <p><b>ml-(number)</b> <br /> Sets the left margin of an element</p>
-
-      <code class="mb-1">&lt;div class="mb-3"&gt;</code>
-      <div class="bg-gray mb-3">I've a margin bottom of 30px</div>
-
-      <code class="mb-1">&lt;div class="mb-2"&gt;</code>
-      <div class="bg-gray mb-2">I've a margin bottom of 20px</div>
-
-      <div class="bg-gray">Dummy Text</div>
-
-
-      <code class="mb-1">&lt;div class="mt-4 mt-3 mb-2 ml-1"&gt;</code> <br />
-      <div class="bg-gray mt-4 mr-3 mb-2 ml-1">
-        <p>I've a margin of 40px at top, 30px at right, 20px at bottom and 10px at left</p>
-      </div>
-
-      <div class="bg-gray">Dummy Text</div>
-    </div> <!-- .col -->
-
-    <div class="col">
-      <p>The padding classes are used to generate space around an element's content, inside of any defined borders. There are classes for setting the classes for each side of an element (top, right, bottom, and left).</p>
-
-      <p><b>p-(number)</b> <br /> Set padding for all four sides (top, right, bottom, and left).</p>
-      <p><b>pt-(number)</b> <br /> Sets the top padding of an element</p>
-      <p><b>pr-(number)</b> <br /> Sets the right padding of an element</p>
-      <p><b>pb-(number)</b> <br /> Sets the bottom padding of an element</p>
-      <p><b>pl-(number)</b> <br /> Sets the left padding of an element</p>
-
-      <code class="mb-1">&lt;div class="p-3"&gt;</code>
-      <div class="bg-gray p-3 mb-2">I've a padding of 30px at each side</div>
-
-      <code class="mb-1">&lt;div class="pb-2"&gt;</code>
-      <div class="bg-gray p-2 mb-2">I've a padding of 20px at each side</div>
-
-      <code class="mb-1">&lt;div class="pt-2 pr-1-5 pb-3 pl-2-5"&gt;</code>
-      <div class="bg-gray pt-2 pr-1-5 pb-3 pl-2-5 mb-2"><p>I've a padding of 20px at top, 15px at right, 50px at bottom and 25px at left</p></div>
-    </div> <!-- .col -->
-
-  </div> <!-- .row -->
-
-  <p>(number) can be replaced by any number starting from 0-5 to 20 at an interval of .5. For eg. 0-5, 1, 1-5, 2, 2-5 etc.</p>
-
-  <p>Each number gets multiplied by 10px. So a class "mr-2" will set margin of 20px to the right of the element</p>
-</section>
-
-
-<section class="alerts mb-9">
-  <h3 class="mb-3">Alerts</h3>
-
-  <code class="mb-1">&lt;div class="alert alert-info"&gt;</code>
-  <div class="alert alert-info mb-2">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, similique?</p>
-  </div> <!-- .alert -->
-
-  <code class="mb-1">&lt;div class="alert alert-error"&gt;</code>
-  <div class="alert alert-error mb-2">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, similique?</p>
-  </div> <!-- .alert -->
-
-  <code class="mb-1">&lt;div class="alert alert-success"&gt;</code>
-  <div class="alert alert-success mb-2">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, similique?</p>
-  </div> <!-- .alert -->
-</section>
-
-
-<section class="grid mb-9">
-  <h3 class="mb-4">Bootstrap Grid</h3>
-
-  <p>Bootstrap's grid system allows up to 12 columns across the page. If you do not want to use all 12 column individually, you can group the columns together to create wider columns:</p>
-
-  <p class="mb-1">All columns should be wrapped inside a row</p>
-
-  <code class="d-block p-1 mb-3">
-  <pre>
-  &lt;div class="row"&gt;
-    &lt;div class="col-8"&gt;Dummy Text&lt;/div&gt;
-    &lt;div class="col-4"&gt;Dummy Text&lt;/div&gt;
-  &lt;/div&gt;
-  </pre>
-  </code>
-
-  <p>Bootstrap's grid system is responsive, and the columns will re-arrange depending on the screen size: On a big screen it might look better with the content organized in three columns, but on a small screen it would be better if the content items were stacked on top of each other.</p>
-  <p>Remember that grid columns should add up to twelve for a row. More than that, columns will stack no matter the viewport.</p>
-
-  <code class="p-1 mb-1">&lt;div class="col-1"&gt;</code>
-  <div class="row text-center mb-3">
-    <div class="col-1">
-      <div class="bg-gray p-2">Hi</div>
-    </div>
-  </div> <!-- .row -->
-
-  <code class="p-1 mb-1">&lt;div class="col-2"&gt;</code>
-  <div class="row text-center mb-3">
-    <div class="col-2"><div class="bg-gray p-2">Hi</div></div>
-  </div> <!-- .row -->
-
-  <code class="p-1 mb-1">&lt;div class="col-3"&gt;</code>
-  <div class="row text-center mb-3">
-    <div class="col-3"><div class="bg-gray p-2">Hi</div></div>
-  </div> <!-- .row -->
-
-  <code class="p-1 mb-1">&lt;div class="col-4"&gt;</code>
-  <div class="row text-center mb-3">
-    <div class="col-4"><div class="bg-gray p-2">Hi</div></div>
-  </div> <!-- .row -->
-
-  <code class="p-1 mb-1">&lt;div class="col-5"&gt;</code>
-  <div class="row text-center mb-3">
-    <div class="col-5"><div class="bg-gray p-2">Hi</div></div>
-  </div> <!-- .row -->
-
-  <code class="p-1 mb-1">&lt;div class="col-6"&gt;</code>
-  <div class="row text-center mb-3">
-    <div class="col-6"><div class="bg-gray p-2">Hi</div></div>
-  </div> <!-- .row -->
-
-  <p>It can go till <code>&lt;div class="col-12"&gt;</code></p>
-</section>
-
-
-<section class="list mb-9">
-  <h3 class="mb-4">Lists</h3>
-
-  <div class="row mb-5">
-
-    <div class="col">
-      <h5>Ordered List <code>&lt;ol&gt;</code></h5>
-      <ol>
-        <li>List Item</li>
-        <li>List Item</li>
-        <li>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.</li>
-        <ol>
-          <li>List Item</li>
-          <li>List Item</li>
-          <li>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.</li>
-        </ol>
-      </ol>
-    </div> <!-- .col -->
-
-    <div class="col">
-      <h5>Unordered List <code>&lt;ul&gt;</code></h5>
+<div class="mb-5">
+  <h2>Headings</h2>
+  <p class="h1">h1. Bootstrap heading</p>
+  <p class="h2">h2. Bootstrap heading</p>
+  <p class="h3">h3. Bootstrap heading</p>
+  <p class="h4">h4. Bootstrap heading</p>
+  <p class="h5">h5. Bootstrap heading</p>
+  <p class="h6">h6. Bootstrap heading</p>
+</div> <!-- .mb-5 -->
+
+<div class="mb-5">
+  <h2>Display headings</h2>
+  <h1 class="display-1">Display 1</h1>
+  <h1 class="display-2">Display 2</h1>
+  <h1 class="display-3">Display 3</h1>
+  <h1 class="display-4">Display 4</h1>
+  <h1 class="display-5">Display 5</h1>
+  <h1 class="display-6">Display 6</h1>
+</div> <!-- .mb-5 -->
+
+<div class="mb-5">
+  <h2>Lead</h2>
+  <p class="lead">
+    This is a lead paragraph. It stands out from regular paragraphs.
+  </p>
+</div> <!-- .mb-5 -->
+
+<div class="mb-5">
+  <h2>Inline text elements</h2>
+  <p>You can use the mark tag to <mark>highlight</mark> text.</p>
+  <p><del>This line of text is meant to be treated as deleted text.</del></p>
+  <p><s>This line of text is meant to be treated as no longer accurate.</s></p>
+  <p><ins>This line of text is meant to be treated as an addition to the document.</ins></p>
+  <p><u>This line of text will render as underlined.</u></p>
+  <p><small>This line of text is meant to be treated as fine print.</small></p>
+  <p><strong>This line rendered as bold text.</strong></p>
+  <p><em>This line rendered as italicized text.</em></p>
+</div> <!-- .mb-5 -->
+
+<div class="mb-5">
+  <h2>Paragraphs</h2>
+  <p>This para has default font-size, line-height, and margin. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium, iusto atque! Deleniti similique culpa necessitatibus illo tempora cumque! Laboriosam, dolorum? Quo quisquam labore harum alias esse quibusdam molestias fugit repellat. Consectetur, itaque sequi at soluta distinctio perferendis, est iusto, hic accusantium quaerat cum aliquam. Suscipit numquam hic est debitis voluptate dolorum cumque culpa fugit similique quam repellendus odio, accusantium labore aperiam ea et eaque voluptates corporis ullam minima, explicabo eius! Fuga numquam rerum cumque delectus quos dicta, blanditiis doloremque! Nulla quo nihil eos quos ipsam fuga ipsum, dolorum ratione soluta vitae voluptas dolor, libero harum pariatur doloremque. Dolores, quidem ullam.</p>
+
+  <p>You might have noticed all the monospaced text in this guide. There are a number of inline <abbr title="HyperText Markup Language">HTms</abbr> elements you may use anywhere within other elements, including <abbr title="Abbreviation">abbr</abbr>, <cite>cite</cite>, <code>code</code>, <del>del</del>, <em>em</em>, <ins>ins</ins>, <strong>strong</strong>, <var>var</var>, and <a href="#" title="link">link</a></p>
+</div> <!-- .mb-5 -->
+
+<div class="mb-5">
+  <h2>Blockquotes</h2>
+  <blockquote class="blockquote">
+    <p>A well-known quote, contained in a blockquote element.</p>
+  </blockquote>
+</div> <!-- .mb-5 -->
+
+<div class="mb-5">
+  <h2>Naming a source</h2>
+  <figure>
+    <blockquote class="blockquote">
+      <p>A well-known quote, contained in a blockquote element.</p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+      Someone famous in <cite title="Source Title">Source Title</cite>
+    </figcaption>
+  </figure>
+</div> <!-- .mb-5 -->
+
+<div class="mb-5">
+  <h2>Unordered Lists</h2>
+  <ul>
+    <li>This is a list.</li>
+    <li>It appears completely unstyled.</li>
+    <li>Structurally, it's still a list.</li>
+    <li>However, this style only applies to immediate child elements.</li>
+    <li>Nested lists:
       <ul>
-        <li>List Item</li>
-        <li>List Item</li>
-        <li>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.</li>
-          <ul>
-            <li>List Item</li>
-            <li>List Item</li>
-            <li>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.</li>
-          </ul>
+        <li>are unaffected by this style</li>
+        <li>will still show a bullet</li>
+        <li>and have appropriate left margin</li>
       </ul>
-    </div> <!-- .col -->
+    </li>
+    <li>This may still come in handy in some situations.</li>
+  </ul>
+</div>
 
-  </div> <!-- .row -->
+<div class="mb-5">
+  <h2>Ordered Lists</h2>
+  <ol>
+    <li>This is a list.</li>
+    <li>It appears completely unstyled.</li>
+    <li>Structurally, it's still a list.</li>
+    <li>However, this style only applies to immediate child elements.</li>
+    <li>Nested lists:
+      <ol>
+        <li>are unaffected by this style</li>
+        <li>will still show a bullet</li>
+        <li>and have appropriate left margin</li>
+      </ol>
+    </li>
+    <li>This may still come in handy in some situations.</li>
+  </ul>
+</div>
 
-  <div class="row">
-    <div class="col">
-      <h5>Definition List <code>&lt;dl&gt;</code></h5>
-      <dl>
-         <dt>Definition list</dt>
-         <dd>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-      aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</dd>
-         <dt>Lorem ipsum dolor sit amet</dt>
-         <dd>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-      aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</dd>
-      </dl>
-    </div> <!-- .col -->
-  </div> <!-- .row -->
-</section>
 
-<section class="table mb-9">
-  <h3 class="mb-4">Table</h3>
+<div class="mb-5">
+  <h2>Buttons</h2>
+  <h4>Colors</h4>
+  <button type="button" class="btn btn-primary">Primary</button>
+  <button type="button" class="btn btn-secondary">Secondary</button>
+  <button type="button" class="btn btn-success">Success</button>
+  <button type="button" class="btn btn-danger">Danger</button>
+  <button type="button" class="btn btn-warning">Warning</button>
+  <button type="button" class="btn btn-info">Info</button>
+  <button type="button" class="btn btn-light">Light</button>
+  <button type="button" class="btn btn-dark">Dark</button>
 
-  <div class="row mb-3">
+  <button type="button" class="btn btn-link">Link</button>
+</div> <!-- .mb-5 -->
 
-    <div class="col">
-    <table>
-      <caption><b>Default</b> <code>&lt;table&gt;</code></caption>
+<div class="mb-5">
+  <h4>Sizes</h4>
+  <button type="button" class="btn btn-primary btn-sm">Small button</button>
+  <button type="button" class="btn btn-primary">Default button</button>
+  <button type="button" class="btn btn-primary btn-lg">Large button</button>
+</div> <!-- .mb-5 -->
+
+<div class="mb-5">
+  <h4>Outline</h4>
+  <button type="button" class="btn btn-outline-primary">Primary</button>
+  <button type="button" class="btn btn-outline-secondary">Secondary</button>
+  <button type="button" class="btn btn-outline-success">Success</button>
+  <button type="button" class="btn btn-outline-danger">Danger</button>
+  <button type="button" class="btn btn-outline-warning">Warning</button>
+  <button type="button" class="btn btn-outline-info">Info</button>
+  <button type="button" class="btn btn-outline-light">Light</button>
+  <button type="button" class="btn btn-outline-dark">Dark</button>
+</div> <!-- .mb-5 -->
+
+<div class="mb-5">
+  <h2>Alerts</h2>
+  <div class="alert alert-primary" role="alert">
+    A simple primary alert—check it out!
+  </div>
+  <div class="alert alert-secondary" role="alert">
+    A simple secondary alert—check it out!
+  </div>
+  <div class="alert alert-success" role="alert">
+    A simple success alert—check it out!
+  </div>
+  <div class="alert alert-danger" role="alert">
+    A simple danger alert—check it out!
+  </div>
+  <div class="alert alert-warning" role="alert">
+    A simple warning alert—check it out!
+  </div>
+  <div class="alert alert-info" role="alert">
+    A simple info alert—check it out!
+  </div>
+  <div class="alert alert-light" role="alert">
+    A simple light alert—check it out!
+  </div>
+  <div class="alert alert-dark" role="alert">
+    A simple dark alert—check it out!
+  </div>
+</div> <!-- .mb-5 -->
+
+
+<h2>Table</h2>
+
+<div class="row mb-5">
+
+  <div class="col col-md-6 mb-5">
+    <h5>Default</h5>
+    <table class="table">
       <thead>
         <tr>
-          <th scope="col">Heading</th>
-          <th scope="col">Heading</th>
-          <th scope="col">Heading</th>
-          <th scope="col">Heading</th>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Table Cell</td>
-          <td>Table Cell</td>
-          <td>Table Cell</td>
-          <td>Table Cell</td>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
         </tr>
         <tr>
-          <td>Table Cell</td>
-          <td>Table Cell</td>
-          <td>Table Cell</td>
-          <td>Table Cell</td>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
         </tr>
         <tr>
-          <td>Table Cell</td>
-          <td>Table Cell</td>
-          <td>Table Cell</td>
-          <td>Table Cell</td>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
         </tr>
       </tbody>
     </table>
-    </div> <!-- .col -->
+  </div> <!-- .col -->
 
-    <div class="col">
-      <table class="table-hover">
-        <caption><b>Hover</i></b> <code>&lt;table class="table-hover"&gt;</code></caption>
+  <div class="col col-md-6 mb-5">
+    <h5>Primary</h5>
+    <table class="table table-primary">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> <!-- .col -->
+
+  <div class="col col-md-6 mb-5">
+    <h5>Hover</h5>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> <!-- .col -->
+
+  <div class="col col-md-6 mb-5">
+    <h5>Bordered</h5>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> <!-- .col -->
+
+  <div class="col col-md-6 mb-5">
+    <h5>Bordered Primary</h5>
+    <table class="table table-bordered border-primary">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> <!-- .col -->
+
+  <div class="col col-md-6 mb-5">
+    <h5>Striped</h5>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> <!-- .col -->
+
+  <div class="col col-md-6 mb-5">
+    <h5>Borderless</h5>
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> <!-- .col -->
+
+  <div class="col col-md-6 mb-5">
+    <h5>Small Tables</h5>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> <!-- .col -->
+
+  <div class="col col-md-6 mb-5">
+    <h5>Responsive Table</h5>
+    <div class="table-responsive">
+      <table class="table">
         <thead>
           <tr>
+            <th scope="col">#</th>
+            <th scope="col">Heading</th>
+            <th scope="col">Heading</th>
+            <th scope="col">Heading</th>
+            <th scope="col">Heading</th>
+            <th scope="col">Heading</th>
             <th scope="col">Heading</th>
             <th scope="col">Heading</th>
             <th scope="col">Heading</th>
@@ -352,137 +458,51 @@
         </thead>
         <tbody>
           <tr>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
+            <th scope="row">1</th>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
           </tr>
           <tr>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
+            <th scope="row">2</th>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
           </tr>
           <tr>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
+            <th scope="row">3</th>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
           </tr>
         </tbody>
       </table>
-    </div> <!-- .col -->
+    </div>
+  </div> <!-- .col -->
 
-  </div> <!-- .row -->
+</div> <!-- .row -->
 
-  <div class="row mb-3">
+<h2>Form</h2>
 
-    <div class="col">
-      <table class="table-bordered">
-        <caption><b>Bordered</b> <code>&lt;table class="table-bordered"&gt;</code></caption>
-        <thead>
-          <tr>
-            <th scope="col">Heading</th>
-            <th scope="col">Heading</th>
-            <th scope="col">Heading</th>
-            <th scope="col">Heading</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-          </tr>
-          <tr>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-          </tr>
-          <tr>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-          </tr>
-        </tbody>
-      </table>
-
-    </div> <!-- .col -->
-
-    <div class="col">
-      <table class="table-striped">
-        <caption><b>Striped</b> <code>&lt;table class="table-striped"&gt;</code></caption>
-        <thead>
-          <tr>
-            <th scope="col">Heading</th>
-            <th scope="col">Heading</th>
-            <th scope="col">Heading</th>
-            <th scope="col">Heading</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-          </tr>
-          <tr>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-          </tr>
-          <tr>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-          </tr>
-        </tbody>
-      </table>
-    </div> <!-- .col -->
-
-  </div> <!-- .row -->
-
-  <table class="table-striped table-bordered table-hover">
-    <caption><b>Mixed</b> <code>&lt;table class="table-striped table-bordered table-hover"&gt;</code></caption>
-    <thead>
-      <tr>
-        <th scope="col">Heading</th>
-        <th scope="col">Heading</th>
-        <th scope="col">Heading</th>
-        <th scope="col">Heading</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Table Cell</td>
-        <td>Table Cell</td>
-        <td>Table Cell</td>
-        <td>Table Cell</td>
-      </tr>
-      <tr>
-        <td>Table Cell</td>
-        <td>Table Cell</td>
-        <td>Table Cell</td>
-        <td>Table Cell</td>
-      </tr>
-      <tr>
-        <td>Table Cell</td>
-        <td>Table Cell</td>
-        <td>Table Cell</td>
-        <td>Table Cell</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-
-
-<?php //gravity_form(1, $display_title=false, $display_description=false, $display_inactive=false, $field_values=null, $ajax=true, $tabindex=10); ?>
+<?php gravity_form(1, $display_title=false, $display_description=false, $display_inactive=false, $field_values=null, $ajax=true, $tabindex=10); ?>
 
 </div> <!-- .container-fluid -->
 

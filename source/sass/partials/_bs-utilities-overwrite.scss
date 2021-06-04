@@ -1,0 +1,29 @@
+$utilities_overwrite: (
+  "shadow": null,
+  "gap": (
+    responsive : true,
+    property   : gap,
+    class      : gap,
+    values     : $negative-spacers
+  ),
+  // "border"                 : null,
+  // "border-top"             : null,
+  // "border-end"             : null,
+  // "border-bottom"          : null,
+  // "border-start"           : null,
+  // "border-color"           : null,
+  // "border-width"           : null,
+  "negative-margin-x"      : null,
+  "negative-margin-y"      : null,
+  "negative-margin-top"    : null,
+  "negative-margin-end"    : null,
+  "negative-margin-bottom" : null,
+  "negative-margin-start"  : null,
+  "rounded"                : null,
+  "rounded-top"            : null,
+  "rounded-end"            : null,
+  "rounded-bottom"         : null,
+  "rounded-start"          : null,
+);
+
+$utilities: map-merge( $utilities, $utilities_overwrite );

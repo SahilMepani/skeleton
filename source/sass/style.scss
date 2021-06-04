@@ -11,14 +11,17 @@
 */
 
 // Bootstrap 5
-// Configuration
+// Configuration - same order
 @import "partials/bootstrap/functions";
 @import "partials/bootstrap/variables";
 @import "partials/bootstrap/mixins";
-@import "partials/bootstrap/utilities";
 
-// Bootstrap overwrites
-@import "partials/bootstrap-overwrites";
+// BS variables overwrite - same order
+@import "partials/bs-variables-overwrite";
+
+// BS utilities overwrite - same order
+@import "partials/bootstrap/utilities";
+@import "partials/bs-utilities-overwrite";
 
 // Layout & components
 @import "partials/bootstrap/root";
@@ -40,7 +43,7 @@
 // @import "partials/bootstrap/breadcrumb";
 // @import "partials/bootstrap/pagination";
 // @import "partials/bootstrap/badge";
-// @import "partials/bootstrap/alert";
+@import "partials/bootstrap/alert";
 // @import "partials/bootstrap/progress";
 // @import "partials/bootstrap/list-group";
 // @import "partials/bootstrap/close";
@@ -88,7 +91,7 @@
 @import "partials/templates/404";
 
 // WP plugins
-// @import "partials/wp-plugins/gravity-forms";
+@import "partials/wp-plugins/gravity-forms";
 
 // Helpers
 @import "partials/helpers/buttons";

@@ -428,12 +428,12 @@
 </div> <!-- .alert alert-info -->
 
 <h5>rem-calc() function</h5>
-<p>Convert px units to rem. Divide the px value by $html-font-size. It is very important to wrap all the px values inside the rem-calc function for the scaling to work on 3K or higher screens</p>
+<p>Convert px units to rem. Divide the px value by $font-size-root. It is very important to wrap all the px values inside the rem-calc function for the scaling to work on 3K or higher screens</p>
 <h6 class="mt-0">Usage</h6>
 <code class="d-block p-1 mb-4">
 <pre>
 h6 {
-  font-size: rem-calc( 20px ); // 20px/$html-font-size(10px) which outputs 2rem
+  font-size: rem-calc( 20px ); // 20px/$font-size-root(10px) which outputs 2rem
 }
 </pre>
 </code>
@@ -512,5 +512,62 @@ h6 {
   </div> <!-- .row -->
 
 </div> <!-- .container -->
+
+<section class="spacing mb-9">
+  <h3 class="mb-3">Spacing</h3>
+
+  <div class="row mb-4">
+
+    <div class="col">
+      <p>The margin classes are used to create space around elements, outside of any defined borders. There are classes for setting the margin for each side of an element (top, right, bottom, and left).</p>
+
+      <p><b>m-(number)</b> <br /> Set margin for all four sides (top, right, bottom, and left).</p>
+      <p><b>mt-(number)</b> <br /> Sets the top margin of an element</p>
+      <p><b>me-(number)</b> <br /> Sets the right margin of an element</p>
+      <p><b>mb-(number)</b> <br /> Sets the bottom margin of an element</p>
+      <p><b>ms-(number)</b> <br /> Sets the left margin of an element</p>
+
+      <code class="mb-1">&lt;div class="mb-3"&gt;</code>
+      <div class="bg-gray mb-3">I've a margin bottom of 30px</div>
+
+      <code class="mb-1">&lt;div class="mb-2"&gt;</code>
+      <div class="bg-gray mb-2">I've a margin bottom of 20px</div>
+
+      <div class="bg-gray">Dummy Text</div>
+
+
+      <code class="mb-1">&lt;div class="mt-4 mt-3 mb-2 ms-1"&gt;</code> <br />
+      <div class="bg-gray mt-4 me-3 mb-2 ms-1">
+        <p>I've a margin of 40px at top, 30px at right, 20px at bottom and 10px at left</p>
+      </div>
+
+      <div class="bg-gray">Dummy Text</div>
+    </div> <!-- .col -->
+
+    <div class="col">
+      <p>The padding classes are used to generate space around an element's content, inside of any defined borders. There are classes for setting the classes for each side of an element (top, right, bottom, and left).</p>
+
+      <p><b>p-(number)</b> <br /> Set padding for all four sides (top, right, bottom, and left).</p>
+      <p><b>pt-(number)</b> <br /> Sets the top padding of an element</p>
+      <p><b>pe-(number)</b> <br /> Sets the right padding of an element</p>
+      <p><b>pb-(number)</b> <br /> Sets the bottom padding of an element</p>
+      <p><b>ps-(number)</b> <br /> Sets the left padding of an element</p>
+
+      <code class="mb-1">&lt;div class="p-3"&gt;</code>
+      <div class="bg-gray p-3 mb-2">I've a padding of 30px at each side</div>
+
+      <code class="mb-1">&lt;div class="pb-2"&gt;</code>
+      <div class="bg-gray p-2 mb-2">I've a padding of 20px at each side</div>
+
+      <code class="mb-1">&lt;div class="pt-2 pe-1-5 pb-3 ps-2-5"&gt;</code>
+      <div class="bg-gray pt-2 pe-1-5 pb-3 ps-2-5 mb-2"><p>I've a padding of 20px at top, 15px at right, 50px at bottom and 25px at left</p></div>
+    </div> <!-- .col -->
+
+  </div> <!-- .row -->
+
+  <p>(number) can be replaced by any number starting from 0-5 to 20 at an interval of .5. For eg. 0-5, 1, 1-5, 2, 2-5 etc.</p>
+
+  <p>Each number gets multiplied by 10px. So a class "me-2" will set margin of 20px to the right of the element</p>
+</section>
 
 <?php get_footer(); ?>

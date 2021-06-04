@@ -698,8 +698,7 @@ input[type='file'] {
 .ginput_container_fileupload {
   // single upload, multi uploads
   input[type='file'], .gform_button_select_files {
-    @include btn;
-    @include btn-md;
+    @extend .btn;
     border: $input-border-width solid $input-border-color;
   }
   // multiselect
@@ -749,9 +748,8 @@ input[type='file'] {
   display: inline-block;
   @include input-text;
   input[type='button'] {
-    @include btn;
-    @include btn-red;
-    @include btn-md;
+    @extend .btn;
+    @extend .btn-primary;
   }
 }
 
@@ -785,9 +783,8 @@ table.gfield_list {
   position: relative;
   padding-top: rem-calc(50px);
   input[type='submit'] {
-    @include btn;
-    @include btn-red;
-    @include btn-md;
+    @extend .btn;
+    @extend .btn-primary;
     &:hover {
       background-color: #000;
       color: #fff;
@@ -795,9 +792,8 @@ table.gfield_list {
   }
   // continue and save
   .gform_save_link {
-    @include btn;
-    @include btn-red;
-    @include btn-md;
+    @extend .btn;
+    @extend .btn-primary;
     margin-left: rem-calc(20px);
     &:hover, &:active {
       background: #000;
@@ -1248,7 +1244,7 @@ table.gfield_list {
 //     input[type="submit"] {
 //       @include btn;
 //       @include btn-md;
-//       @include btn-red;
+//       @include btn-primary;
 //       width: 100%;
 //       &:hover, &:active {
 //         background: #000;

@@ -235,7 +235,7 @@ $desktop-sub-menu-link-hover-bg-color: shade(red,10%);
 $desktop-sub-menu-link-hover-color: $desktop-sub-menu-link-color; //if this is changed there is some transition bug
 $desktop-sub-menu-current-item-link-bg-color: shade(red,20%);
 $desktop-sub-menu-current-item-link-color: transparent; //if this is changed there is some transition bug
-$desktop-sub-menu-font-size: $html-font-size;
+$desktop-sub-menu-font-size: rem-calc( 10px );
 $desktop-sub-menu-link-padding-y: rem-calc( 8px );
 $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; //usually this is same as parent menu
 $desktop-sub-menu-link-height: rem-calc( 36px ); //req for animation, manually calculate usually font height(not size) + padding-top and bottom.

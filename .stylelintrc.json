@@ -1,4 +1,0 @@
-{
-  "extends": "stylelint-config-twbs-bootstrap/scss",
-  "ignoreFiles": ["source/sass/partials/bootstrap/**/*.scss", "source/sass/partials/js-plugins/**/*.scss", "source/sass/partials/wp-plugins/**/*.scss"]
-}

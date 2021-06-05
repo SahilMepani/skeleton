@@ -108,11 +108,6 @@ module.exports = function ( grunt ) {
       }
     },
 
-    // Stylelint
-    stylelint: {
-      all: ['sass/**/*.scss']
-    },
-
     // RTLCSS
     rtlcss: {
       myTask: {
@@ -155,7 +150,6 @@ module.exports = function ( grunt ) {
   // grunt.loadNpmTasks( 'grunt-jquery-ready' );
   grunt.loadNpmTasks( 'grunt-contrib-uglify' );
   grunt.loadNpmTasks( '@lodder/grunt-postcss' );
-  grunt.loadNpmTasks( 'grunt-stylelint' );
   // grunt.loadNpmTasks('grunt-browser-sync');
   grunt.registerTask( 'default', [ 'watch' ] );
   grunt.registerTask( 'build', [ 'postcss', 'uglify', 'rtlcss' ] );

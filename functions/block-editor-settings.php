@@ -74,27 +74,12 @@ add_theme_support( 'responsive-embeds' );
 
 // -- Enqueue editor script
 function skel_gutenberg_scripts() {
-  // modernizr
-  wp_enqueue_script(
-    'skel-modernizr',
-    get_stylesheet_directory_uri(). '/js/vendor/modernizr-3.6.0.min.js',
-    filemtime( get_stylesheet_directory(). '/js/vendor/modernizr-3.6.0.min.js' ),
-    true
-  );
   // plugins
   wp_enqueue_script(
     'skel-editor-plugins',
     get_stylesheet_directory_uri(). '/js/plugins.js',
     array( 'jquery' ),
     filemtime( get_stylesheet_directory(). '/js/plugins.js' ),
-    true
-  );
-  // custom
-  wp_enqueue_script(
-    'skel-editor-custom',
-    get_stylesheet_directory_uri(). '/js/custom.js',
-    array( 'skel-editor-plugins' ),
-    filemtime( get_stylesheet_directory(). '/js/custom.js' ),
     true
   );
   // editor js
@@ -107,7 +92,7 @@ function skel_gutenberg_scripts() {
     true
   );
   // typekit fonts
-  wp_enqueue_style( 'typekit-fonts', '//use.typekit.net/soi0ors.css', 'all' );
+  // wp_enqueue_style( 'typekit-fonts', '//use.typekit.net/soi0ors.css', 'all' );
 }
 add_action( 'enqueue_block_editor_assets', 'skel_gutenberg_scripts' );
 

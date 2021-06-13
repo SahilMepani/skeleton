@@ -152,7 +152,7 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks( '@lodder/grunt-postcss' );
   // grunt.loadNpmTasks('grunt-browser-sync');
   grunt.registerTask( 'default', [ 'watch' ] );
-  grunt.registerTask( 'build', [ 'postcss', 'uglify', 'rtlcss' ] );
+  grunt.registerTask( 'build', [ 'concat', 'postcss', 'uglify', 'rtlcss' ] );
   // grunt.registerTask( 'devUpdate', [ 'devUpdate' ] );
   // grunt.registerTask( 'uglify', [ 'uglify' ] );
 

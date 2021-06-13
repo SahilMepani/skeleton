@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "Gruntfile.js",
+  "scripts": {
+    "start": "grunt",
+    "build": "grunt build"
+  },
   "devDependencies": {
     "@lodder/grunt-postcss": "*",
     "autoprefixer": "*",

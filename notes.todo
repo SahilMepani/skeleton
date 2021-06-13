@@ -47,6 +47,8 @@ Dev to Design handoff:
   ☐ Do not use ID
   ☐ Bootstrap class naming convention
   ☐ All lowercase classes names separated by dash
+  ☐ Cannot use SVG code as a part of the file. Instead use img tag
+  ☐ If any place there are repeating items. Do not target using classes like first, second etc instead use nth-child css
 
 DWTC:
   ☐ Design link?

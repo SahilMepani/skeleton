@@ -134,9 +134,9 @@
         "location": [
             [
                 {
-                    "param": "post_type",
+                    "param": "block",
                     "operator": "==",
-                    "value": "post"
+                    "value": "all"
                 }
             ]
         ],

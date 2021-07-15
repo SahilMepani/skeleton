@@ -25,7 +25,7 @@ function skel_enqueue_scripts() {
     'skeleton-style',
     get_stylesheet_uri(),
     array(),
-    filemtime( get_template_directory() )
+    filemtime( get_template_directory() . '/style.css' )
   );
 
   // load style-rtl for rtl languages

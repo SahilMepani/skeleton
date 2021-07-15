@@ -97,3 +97,9 @@ add_shortcode('skel_md_one_fourth', 'skel_md_one_fourth');
 =            Enable shortcodes in widgets            =
 ====================================================*/
 add_filter( 'widget_text', 'do_shortcode' );
+
+
+// Add shortcode support for ACF fields values
+add_filter('acf/format_value/type=text', 'do_shortcode');
+add_filter('acf/format_value/type=textarea', 'do_shortcode');
+add_filter('acf/format_value/type=wysiwyg', 'do_shortcode');

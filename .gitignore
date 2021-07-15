@@ -14,3 +14,4 @@ sftp-config.json
 sftp-config-live.json
 sftp-config-dev.json
 /nbproject/private/
+notes.todo

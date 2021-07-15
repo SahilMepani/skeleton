@@ -1,5 +1,6 @@
-var btnMorePost = $( '#ajax-more-post' );
+var btnMorePost    = $( '#ajax-more-post' );
 var formSearchPost = $( '#ajax-search-post' );
+var loadingDots    = $( '.loading-dots' );
 
 // Load More Post
 ////////////////////////////////////////////////
@@ -67,7 +68,7 @@ function update_post( $this, trigger ) {
   // remove no data heading
   $( '#alert-no-data' ).addClass( 'd-none' );
   // show loading dots
-  $( '.loading-dots' ).addClass( 'js-active' );
+  loadingDots.addClass( 'js-active' );
 
   if ( trigger == 'filter_search' || trigger == 'filter_term' ) {
 
@@ -119,7 +120,7 @@ function update_post( $this, trigger ) {
 
       if ( $.trim( data ) != '' && $.trim( data ) != 0 ) {
 
-        $( '.loading-dots' ).removeClass( 'js-active' );
+        loadingDots.removeClass( 'js-active' );
 
         /*----------- Filter More -----------*/
         if ( trigger == 'filter_more' ) {
@@ -179,7 +180,7 @@ function update_post( $this, trigger ) {
         }
         $( '.loading-spinner' ).removeClass( 'js-active' );
         $( '#alert-no-data' ).removeClass( 'd-none' );
-        $( '.loading-dots' ).removeClass( 'js-active' );
+        loadingDots.removeClass( 'js-active' );
         btnMorePost.hide();
 
       } // trim

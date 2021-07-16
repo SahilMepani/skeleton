@@ -18,42 +18,42 @@ html {
 
 h1,
 .h1 {
-  font-size: rem-calc( 72px );
+  font-size: $h1-font-size;
   font-weight: 400;
   line-height: 1.2;
 }
 
 h2,
 .h2 {
-  font-size: rem-calc( 60px );
+  font-size: $h2-font-size;
   font-weight: 400;
   line-height: 1.2;
 }
 
 h3,
 .h3 {
-  font-size: rem-calc( 48px );
+  font-size: $h3-font-size;
   font-weight: 400;
   line-height: 1.2;
 }
 
 h4,
 .h4 {
-  font-size: rem-calc( 36px );
+  font-size: $h4-font-size;
   font-weight: 400;
   line-height: 1.2;
 }
 
 h5,
 .h5 {
-  font-size: rem-calc( 30px );
+  font-size: $h5-font-size;
   font-weight: 400;
   line-height: 1.2;
 }
 
 h6,
 .h6 {
-  font-size: rem-calc( 24px );
+  font-size: $h6-font-size;
   font-weight: 400;
   line-height: 1.2;
 }

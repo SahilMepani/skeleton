@@ -1,11 +1,14 @@
 $utilities_overwrite: (
+  // comment the default utilities you want to use
+  // custom utility
+  // "any-name": (
+  //   responsive : true,
+  //   property   : gap,
+  //   class      : gp,
+  //   values     : $spacers // accepts map
+  // ),
+  // end custom utility
   "shadow": null,
-  "gap": (
-    responsive : true,
-    property   : gap,
-    class      : gap,
-    values     : $negative-spacers
-  ),
   // "border"                 : null,
   // "border-top"             : null,
   // "border-end"             : null,

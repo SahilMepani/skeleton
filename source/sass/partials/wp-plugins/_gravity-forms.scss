@@ -751,7 +751,7 @@ input[type='file'] {
   @include input-text;
   input[type='button'] {
     @extend .btn;
-    @extend .btn-primary;
+    // @extend .btn-primary;
   }
 }
 
@@ -786,7 +786,7 @@ table.gfield_list {
   padding-top: rem-calc(50px);
   input[type='submit'] {
     @extend .btn;
-    @extend .btn-primary;
+    // @extend .btn-primary;
     &:hover {
       background-color: #000;
       color: #fff;
@@ -795,7 +795,7 @@ table.gfield_list {
   // continue and save
   .gform_save_link {
     @extend .btn;
-    @extend .btn-primary;
+    // @extend .btn-primary;
     margin-left: rem-calc(20px);
     &:hover, &:active {
       background: #000;

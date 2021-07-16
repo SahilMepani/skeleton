@@ -17,12 +17,10 @@ $enable-negative-margins     : true;
 $enable-deprecation-messages : true;
 $enable-important-utilities  : true;
 
+// Do not generate css properties/variables for colors
+$colors: null;
 
 // Project theme colors
-// This will generate btn-*, text-*, bg-* classes
-
-$colors: null; // do not generate css properties/variables for colors
-
 $primary   : $blue;
 $secondary : $gray-600;
 $success   : $green;
@@ -32,6 +30,7 @@ $danger    : $red;
 $light     : $gray-300;
 $dark      : $gray-900;
 
+// This will generate .btn-*, .btn-outline-*, text-*, .link-*, .bg-*, .alert-*, .table-* classes
 $theme-colors: (
   "primary"   : $primary,
   "secondary" : $secondary,
@@ -43,46 +42,27 @@ $theme-colors: (
   "dark"      : $dark
 );
 
-
-// Body
-//
-// Settings for the `<body>` element.
-
-$body-bg:                   $white;
-$body-color:                $gray-900;
-// $body-text-align:           null;
-
-
 // Links
 //
 // Style anchor elements.
+$link-color            : $primary;
+$link-decoration       : underline;
+$link-shade-percentage : 20%;
+$link-hover-color      : shift-color($link-color, $link-shade-percentage);
+$link-hover-decoration : null;
 
-$link-color:                              $primary;
-$link-decoration:                         underline;
-$link-shade-percentage:                   20%;
-$link-hover-color:                        shift-color($link-color, $link-shade-percentage);
-$link-hover-decoration:                   null;
-
+// Settings for the `<body>` element.
+$body-color : $gray-600;
+$body-bg    : $white;
 
 // Paragraphs
 //
 // Style p element.
-
-$paragraph-margin-bottom:   $spacer;
+$paragraph-margin-bottom: 3rem;
 
 // Settings for the `<body>` element.
-// $body-color: $gray-600;
-// $body-bg: $white;
-// $font-family-base: $font-family-sans-serif;
-$font-size-base: 1.6rem;
-// $font-weight-base: $font-weight-normal;
-$line-height-base: 1.5;
-
-// Links
-$link-color            : red;
-$link-hover-color      : black;
-$link-decoration       : none;
-$link-hover-decoration : none;
+$body-bg    : $white;
+$body-color : $gray-900;
 
 // This variable affects the `.pt-*` and `.mb-*` classes etc.
 $spacer: 3rem; // used on many other comoponents
@@ -146,7 +126,10 @@ $negative-and-gutter-spacers: (
   10     : 10rem,
 );
 
+// It prefixes the keys with `n` and makes the value negative.
 $negative-spacers: if($enable-negative-margins, negativify-map($negative-and-gutter-spacers), null);
+
+// @debug $negative-spacers;
 
 
 // Grid breakpoints
@@ -192,23 +175,24 @@ $gutters: $negative-and-gutter-spacers;
 
 // $font-size-root effects the value of `rem`, which is used for as well font sizes, paddings and margins
 // $font-size-base effects the font size of the body text
-$font-size-root: 10px;
-$font-size-base:              1.6rem; // Assumes the browse, typically `16px`
+$font-family-base : 'Montserrat', $font-family-sans-serif;
+$font-size-root   : 10px;
+$font-size-base   : 1.6rem; // Assumes the browse, typically `16px`
 // $font-size-sm:                $font-size-base * .875;
 // $font-size-lg:                $font-size-base * 1.25;
 
 // $font-weight-base:            $font-weight-normal;
 
-$line-height-base:            1.5;
+$line-height-base : 1.5;
 // $line-height-sm:              1.25;
 // $line-height-lg:              2;
 
-// $h1-font-size:                $font-size-base * 2.5;
-// $h2-font-size:                $font-size-base * 2;
-// $h3-font-size:                $font-size-base * 1.75;
-// $h4-font-size:                $font-size-base * 1.5;
-// $h5-font-size:                $font-size-base * 1.25;
-// $h6-font-size:                $font-size-base;
+$h1-font-size:                $font-size-base * 2.5;
+$h2-font-size:                $font-size-base * 2;
+$h3-font-size:                $font-size-base * 1.75;
+$h4-font-size:                $font-size-base * 1.5;
+$h5-font-size:                $font-size-base * 1.25;
+$h6-font-size:                $font-size-base;
 
 $headings-margin-bottom:      $spacer / 2;
 $headings-font-family:        null;
@@ -217,6 +201,8 @@ $headings-font-style:         null;
 // $headings-line-height:        1.2;
 $headings-color:              null;
 
+$display-font-sizes: null;
+// cannot use rem-calc()
 // $display-font-sizes: (
 //   1: 5rem,
 //   2: 4.5rem,

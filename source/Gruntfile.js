@@ -2,6 +2,20 @@ module.exports = function ( grunt ) {
 
   const nodeSass  = require( 'node-sass' );
 
+  const browserList = [
+    'last 2 version',
+    '> 1%',
+    'ie >= 11',
+    'last 1 Android versions',
+    'last 1 ChromeAndroid versions',
+    'last 2 Chrome versions',
+    'last 2 Firefox versions',
+    'last 2 Safari versions',
+    'last 2 iOS versions',
+    'last 2 Edge versions',
+    'last 2 Opera versions'
+  ];
+
   grunt.initConfig( {
 
     watch: {
@@ -100,7 +114,12 @@ module.exports = function ( grunt ) {
     postcss: {
       options: {
         processors: [
-          require('autoprefixer')({overrideBrowserslist: '> 0.5%, last 2 versions'})
+          require('autoprefixer')({
+            overrideBrowserslist: browserList
+          }),
+          require('cssnano')({
+            preset: 'default',
+          }),
         ]
       },
       dist: {
@@ -129,6 +148,28 @@ module.exports = function ( grunt ) {
         dest: '../style-rtl.css',
         src: [ '../style.css' ]
       }
+    },
+
+    babel: {
+      options: {
+        sourceMap: true,
+        presets: [
+          [
+            '@babel/preset-env',
+            {
+              targets: {
+                "browsers": browserList
+              },
+              modules: false
+            }
+          ]
+        ]
+      },
+      dist: {
+        files: {
+          '../js/plugins.js': '../js/plugins.js'
+        }
+      }
     }
 
     // Update Dev dependency
@@ -150,10 +191,10 @@ module.exports = function ( grunt ) {
   // grunt.loadNpmTasks( 'grunt-jquery-ready' );
   grunt.loadNpmTasks( 'grunt-contrib-uglify' );
   grunt.loadNpmTasks( '@lodder/grunt-postcss' );
+  grunt.loadNpmTasks('grunt-babel');
   // grunt.loadNpmTasks('grunt-browser-sync');
   grunt.registerTask( 'default', [ 'watch' ] );
-  grunt.registerTask( 'build', [ 'concat', 'postcss', 'uglify', 'rtlcss' ] );
+  grunt.registerTask( 'build', [ 'concat', 'postcss', 'babel', 'uglify', 'rtlcss' ] );
   // grunt.registerTask( 'devUpdate', [ 'devUpdate' ] );
-  // grunt.registerTask( 'uglify', [ 'uglify' ] );
 
 };

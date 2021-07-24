@@ -8,10 +8,16 @@
     "build": "grunt build"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
     "@lodder/grunt-postcss": "*",
     "autoprefixer": "*",
+    "babel-plugin-transform-remove-strict-mode": "0.0.2",
+    "babel-preset-env": "^1.7.0",
     "breakpoint-sass": "*",
+    "cssnano": "^5.0.7",
     "grunt": "*",
+    "grunt-babel": "^8.0.0",
     "grunt-browser-sync": "*",
     "grunt-contrib-concat": "*",
     "grunt-contrib-uglify": "^5.0.1",

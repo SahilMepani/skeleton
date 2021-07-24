@@ -15,6 +15,7 @@ Starter theme to help you jump start coding awesome WordPress themes
 `cd /path/to/your/wp-content/themes/theme-name/source` <br>
 `grunt`<br><br>
 > All the sass files are created inside the source/sass/partials/ folder and its sub-folders. <br>All the js files are divided into two folders source/js/plugins and source/js/custom. <br>Grunt will compile all the source/sass/partials/.scss files into a file named style.css and source/js/plugins/.js files into js/plugins.js file and source/js/custom/.js files into js/custom.js file
+<br>Run `grunt build` when pushing it to production
 
 ## Important Notes
 	Always use rem units except for breakpoints and line-height. Avoid pixels.

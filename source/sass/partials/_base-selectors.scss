@@ -81,6 +81,14 @@ h6 {
 }
 
 p,
+pre,
+blockquote,
+address,
+dd {
+  line-height: $line-height-sm;
+}
+
+p,
 table,
 ul,
 ol,

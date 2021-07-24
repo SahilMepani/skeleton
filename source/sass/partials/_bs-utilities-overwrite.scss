@@ -1,13 +1,24 @@
 $utilities_overwrite: (
-  // comment the default utilities you want to use
   // custom utility
   // "any-name": (
-  //   responsive : true,
-  //   property   : gap,
-  //   class      : gp,
-  //   values     : $spacers // accepts map
+    //   responsive : true,
+    //   property   : gap,
+    //   class      : gp,
+    //   values     : $spacers // accepts map
+    // ),
+    // end custom utility
+  // comment or the default utilities you want to use
+  // "font-weight": (
+  //   property: font-weight,
+  //   class: fw,
+  //   values: (
+  //     light: $font-weight-light,
+  //     lighter: $font-weight-lighter,
+  //     normal: $font-weight-normal,
+  //     bold: $font-weight-bold,
+  //     bolder: $font-weight-bolder
+  //   )
   // ),
-  // end custom utility
   "shadow": null,
   // "border"                 : null,
   // "border-top"             : null,

@@ -21,22 +21,27 @@ $enable-important-utilities  : true;
 $colors: null;
 
 // Project theme colors
+// Base Colors
+// Put here
+
+// Accent Colors
+// Put Here
+
+// General theme colors
 $primary   : $blue;
 $secondary : $gray-600;
 $success   : $green;
 $info      : $cyan;
-$warning   : $yellow;
 $danger    : $red;
 $light     : $gray-300;
 $dark      : $gray-900;
 
-// This will generate .btn-*, .btn-outline-*, text-*, .link-*, .bg-*, .alert-*, .table-* classes
+// This will generate .btn-*, .btn-outline-*, text-*, .link-*, .bg-*, border-* classes
 $theme-colors: (
   "primary"   : $primary,
   "secondary" : $secondary,
   "success"   : $success,
   "info"      : $info,
-  "warning"   : $warning,
   "danger"    : $danger,
   "light"     : $light,
   "dark"      : $dark
@@ -101,7 +106,7 @@ $spacers : (
 );
 
 // Custom map
-// useful to generate negative and gutter utility classes
+// useful to generate negative margins and gutter utility classes
 $negative-and-gutter-spacers: (
   0      : 0,
   0-#{5} : 0.5rem,
@@ -166,6 +171,11 @@ $container-max-widths: (
 $grid-gutter-width : 3rem; // gets divided by 2 for each side
 // $grid-row-columns:            6;
 
+
+// should be defined in this file
+$container-padding-x: $grid-gutter-width / 2;
+
+
 $gutters: $negative-and-gutter-spacers;
 
 
@@ -183,16 +193,26 @@ $font-size-base   : 1.6rem; // Assumes the browse, typically `16px`
 
 // $font-weight-base:            $font-weight-normal;
 
-$line-height-base : 1.5;
-// $line-height-sm:              1.25;
+$line-height-base : 1;
+$line-height-sm:              1.55;
 // $line-height-lg:              2;
 
-$h1-font-size:                $font-size-base * 2.5;
-$h2-font-size:                $font-size-base * 2;
-$h3-font-size:                $font-size-base * 1.75;
-$h4-font-size:                $font-size-base * 1.5;
-$h5-font-size:                $font-size-base * 1.25;
-$h6-font-size:                $font-size-base;
+// $h1-font-size:                $font-size-base * 2.5;
+// $h2-font-size:                $font-size-base * 2;
+// $h3-font-size:                $font-size-base * 1.75;
+// $h4-font-size:                $font-size-base * 1.5;
+// $h5-font-size:                $font-size-base * 1.25;
+// $h6-font-size:                $font-size-base;
+
+// have to set it again to use the updated values from top
+$font-sizes: (
+  1: $h1-font-size,
+  2: $h2-font-size,
+  3: $h3-font-size,
+  4: $h4-font-size,
+  5: $h5-font-size,
+  6: $h6-font-size
+);
 
 $headings-margin-bottom:      $spacer / 2;
 $headings-font-family:        null;
@@ -269,6 +289,19 @@ $table-group-separator-color: currentColor;
 $table-caption-color:         $text-muted;
 
 $table-bg-scale:              -80%;
+
+// replace values to generate different colors tables
+// by default it generates the following commented code
+// $table-variants: (
+//   "primary":    shift-color($primary, $table-bg-scale),
+//   "secondary":  shift-color($secondary, $table-bg-scale),
+//   "success":    shift-color($success, $table-bg-scale),
+//   "info":       shift-color($info, $table-bg-scale),
+//   "warning":    shift-color($warning, $table-bg-scale),
+//   "danger":     shift-color($danger, $table-bg-scale),
+//   "light":      $light,
+//   "dark":       $dark,
+// );
 
 
 // Buttons + Forms

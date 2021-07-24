@@ -13,7 +13,7 @@ function skel_block_category( $categories, $post ) {
     )
   );
 }
-add_filter( 'block_categories', 'skel_block_category', 10, 2);
+add_filter( 'block_categories_all', 'skel_block_category', 10, 2);
 
 function skel_register_acf_blocks() {
 

@@ -3,17 +3,7 @@ module.exports = function ( grunt ) {
   const nodeSass  = require( 'node-sass' );
 
   const browserList = [
-    'last 2 version',
-    '> 1%',
-    'ie >= 11',
-    'last 1 Android versions',
-    'last 1 ChromeAndroid versions',
-    'last 2 Chrome versions',
-    'last 2 Firefox versions',
-    'last 2 Safari versions',
-    'last 2 iOS versions',
-    'last 2 Edge versions',
-    'last 2 Opera versions'
+    'defaults'
   ];
 
   grunt.initConfig( {
@@ -194,7 +184,7 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-babel');
   // grunt.loadNpmTasks('grunt-browser-sync');
   grunt.registerTask( 'default', [ 'watch' ] );
-  grunt.registerTask( 'build', [ 'concat', 'postcss', 'babel', 'uglify', 'rtlcss' ] );
+  grunt.registerTask( 'build', [ 'rtlcss', 'postcss', 'concat', 'babel', 'uglify' ] );
   // grunt.registerTask( 'devUpdate', [ 'devUpdate' ] );
 
 };

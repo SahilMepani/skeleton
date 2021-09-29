@@ -50,11 +50,6 @@ Dev to Design handoff:
   ☐ Cannot use SVG code as a part of the file. Instead use img tag
   ☐ If any place there are repeating items. Do not target using classes like first, second etc instead use nth-child css
 
-DWTC:
-  ☐ Design link?
-  ☐ Deadline?
-  ☐ Same git repo if possible
-  ☐ Components shared between each site or gitex to gfs or gfs to gitex
 
   Developer Options:
 	Create a clone initially with default settings but for every block you may have to create all the dev options manually because of different defaults
@@ -142,11 +137,3 @@ Rules:
 4. Uses most bootstrap classes and its functions
 5. Smaller footprint
 6. No learning curve
-
-
-
-
-// Changes to FED
-1. Remove breakpoint media queries and use bootstrap media queries. It has fixes for some safari bugs and is consistent with bootstrap
-2. Change the fontface name to font-face. It will be more consistent
-3. Remove xs breakoint from font-size maps as null and xs values are always same

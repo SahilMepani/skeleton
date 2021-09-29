@@ -3,8 +3,8 @@
  ☐ If we need pixel perfect spacing we need to remove the extra line-height in design
  ☐ Anything outside the container gets overlayed on smaller screens, generally the slider arrows
  ☐ Changing font-size at later stage breaks the heirarchy
- ☐ Changing from mobile to desktop or vice versa has to be gradual. If possible don't shifte the elements order
+ ☐ Changing from mobile to desktop or vice versa has to be gradual. If possible don't shift the elements order
  ☐ How happy are designer at the scale of 1 to 10 and what they feel should be improved and missed in this project. This question should be asked after every project and same question goes for developer.
- ☐ Avoid scaling text because it gets blurred due to subpixel browser rendering example BCBSLA. Scaing with showing new content like BCBSLA.. eg https://www.ulsystem.edu/conference19-2/ the buttons
+ ☐ Avoid scaling text because it gets blurred due to subpixel browser rendering example BCBSLA. Scaling with showing new content like BCBSLA.. eg https://www.ulsystem.edu/conference19-2/ the buttons
  ☐ Increase the element size but without scaling like the arrows hover style used on ochsner
  ☐ A background gradient scaling across multiple section like ochsner mobile few sections

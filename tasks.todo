@@ -1,3 +1,12 @@
+☐ Image
+Instruction:
+	Recommended: Minimum width: 1920px | Aspect ratio: Landscape | Format: JPG
+Preview Size:
+	H200
+☐ WYSIWYG
+Instruction:
+	DO NOT COPY-PASTE TEXT ON THE "VISUAL" TAB. USE "TEXT" TAB INSTEAD
+
 ☐ Gravity form datepicker styling
 
 ADD LATER:
@@ -18,7 +27,7 @@ TRIVIA:
 
 
 
- ☐ Shify keyframes to placeholder and mixin so we can only call the ones we need.
+ ☐ Shift keyframes to placeholder and mixin so we can only call the ones we need.
  ☐ Set all headings as mixins.
  ☐ Change all transitions to ease-out.
 
@@ -30,19 +39,15 @@ TRIVIA:
 ☐ Set all the typography.
 ☐ Set font weight and line-height for each heading.
 ☐ Set all the font icons.
+
 Set the variables in avocode --- ✄ -----------------------:
   replace method must include the property too. e.g font-size: 18px to font-size: h4
   ☐ Colors
   ☐  Font sizes
   ☐  Font family
 
-
-
-    Upload an optimized version from <a href="https://tinypng.com" target="_blank">TinyPNG</a>
-
 BACKEND --- ✄ -----------------------:
  ☐ Make the backend custom styled like white label depending on the site color scheme.
-
 
 MISCELLANEOUS --- ✄ -----------------------:
  ☐ Differents options for hamburger icon, with menu text and without.

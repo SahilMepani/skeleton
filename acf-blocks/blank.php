@@ -1,4 +1,12 @@
 <?php
+	// Set preview
+	if ( isset( $block['data']['preview_image'] ) ) {
+		echo '<img src="'. $block['data']['preview_image'] .'" style="width:100%; height:auto;">';
+		return; // required
+	}
+?>
+
+<?php
   // Block options
   $bg_color       = get_field('background_color');
   // Developer options

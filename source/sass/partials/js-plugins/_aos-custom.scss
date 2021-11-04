@@ -10,7 +10,7 @@
 //   @for $i from 0 through 20 {
 
 //     &[data-aos][data-aos-delay='#{$i * 50}'] {
-//       &.animated {
+//       &.aos-animate {
 //         animation-delay: #{$i * 50}ms;
 //       }
 //     }
@@ -27,7 +27,7 @@
 //       [data-aos] {
 //         @for $i from 0 through 20 {
 //           &[data-aos][data-aos-#{$breakpoint}-delay='#{$i * 50}'] {
-//             &.animated {
+//             &.aos-animate {
 //               animation-delay: #{$i * 50}ms;
 //             }
 //           }

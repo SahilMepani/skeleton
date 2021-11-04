@@ -1,10 +1,16 @@
 // Media queries constant
-const smMQ = window.matchMedia( '(min-width: 575px)' );
-const mdMQ = window.matchMedia( '(min-width: 768px)' );
-const lgMQ = window.matchMedia( '(min-width: 992px)' );
-const xlMQ = window.matchMedia( '(min-width: 1200px)' );
-const xxlMQ = window.matchMedia( '(min-width: 1400px)' );
-const xxxlMQ = window.matchMedia( '(min-width: 1600px)' );
+const smMq   = window.matchMedia( '(min-width: 576px)' );
+const mdMq   = window.matchMedia( '(min-width: 768px)' );
+const lgMq   = window.matchMedia( '(min-width: 992px)' );
+const xlMq   = window.matchMedia( '(min-width: 1200px)' );
+const xxlMq  = window.matchMedia( '(min-width: 1400px)' );
+const xxxlMq = window.matchMedia( '(min-width: 1600px)' );
+const smMaxMq   = window.matchMedia( '(max-width: 575px)' );
+const mdMaxMq   = window.matchMedia( '(max-width: 767px)' );
+const lgMaxMq   = window.matchMedia( '(max-width: 991px)' );
+const xlMaxMq   = window.matchMedia( '(max-width: 1199px)' );
+const xxlMaxMq  = window.matchMedia( '(max-width: 1399px)' );
+const xxxlMaxMq = window.matchMedia( '(max-width: 1599px)' );
 
 
 /*=================================
@@ -20,4 +26,4 @@ const xxxlMQ = window.matchMedia( '(min-width: 1600px)' );
 // console.log( result.os.version );
 
 
-jQuery( document ).ready( function( $ ) {
+jQuery( document ).ready( function ( $ ) {

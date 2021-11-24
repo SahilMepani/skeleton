@@ -22,48 +22,6 @@ add_filter('jpeg_quality', function($arg){return 100;});
 // define('DISALLOW_FILE_EDIT', TRUE);
 
 
-// Custom WP login logo and link
-////////////////////////////////////////////////
-/*function skel_login_logo() {
-  ?>
-  <style type="text/css">
-    body.login {
-      background: #fefcec;
-    }
-    body.login #login_error {
-      background: #333;
-      color: #fff;
-      border: none;
-    }
-    #login form {
-      background: #FDF9DC;
-      border-color: #B2993E;
-    }
-    #login input {
-      border-color: #B2993E;
-    }
-    #login input[type="submit"] {
-      background: #A38831;
-    }
-    #login h1 a, .login h1 a {
-      background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg');
-      width: auto;
-      background-size: contain;
-      background-repeat: no-repeat;
-      margin: 0 auto 10px;
-    }
-  </style>
-  <?php
-}*/
-// add_action('login_enqueue_scripts', 'skel_login_logo');
-
-// function skel_login_logo_url() {
-//   return home_url();
-// }
-// add_filter('login_headerurl', 'skel_login_logo_url');
-
-
-
 /*----------  Enable login captcha  ----------*/
 // function is_login_page() {
 // 	return in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'));

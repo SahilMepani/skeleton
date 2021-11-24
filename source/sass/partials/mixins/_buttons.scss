@@ -1,3 +1,11 @@
+@mixin btn {
+  font-size: rem-calc( 18px );
+  font-weight: 600;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+}
+
 @mixin btn-input-clone( $bg-color ) {
   background-color: $bg-color;
   font-size: 1rem;
@@ -11,3 +19,19 @@
     padding-bottom: $input-px-md;
   }
 }
+
+// @mixin btn-rarr {
+//   position: relative;
+//   &::after {
+//     @include icon-font-properties;
+//     content: $right-chevron;
+//     font-size: rem-calc( 24px );
+//     margin-left: rem-calc( 20px );
+//   }
+//   &.btn-sm {
+//     &::after {
+//       font-size: rem-calc( 18px );
+//       margin-left: rem-calc( 10px );
+//     }
+//   }
+// }

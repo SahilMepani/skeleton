@@ -1,10 +1,10 @@
 // Media queries constant
-const smMq   = window.matchMedia( '(min-width: 576px)' );
-const mdMq   = window.matchMedia( '(min-width: 768px)' );
-const lgMq   = window.matchMedia( '(min-width: 992px)' );
-const xlMq   = window.matchMedia( '(min-width: 1200px)' );
-const xxlMq  = window.matchMedia( '(min-width: 1400px)' );
-const xxxlMq = window.matchMedia( '(min-width: 1600px)' );
+const smMinMq   = window.matchMedia( '(min-width: 576px)' );
+const mdMinMq   = window.matchMedia( '(min-width: 768px)' );
+const lgMinMq   = window.matchMedia( '(min-width: 992px)' );
+const xlMinMq   = window.matchMedia( '(min-width: 1200px)' );
+const xxlMinMq  = window.matchMedia( '(min-width: 1400px)' );
+const xxxlMinMq = window.matchMedia( '(min-width: 1600px)' );
 const smMaxMq   = window.matchMedia( '(max-width: 575px)' );
 const mdMaxMq   = window.matchMedia( '(max-width: 767px)' );
 const lgMaxMq   = window.matchMedia( '(max-width: 991px)' );

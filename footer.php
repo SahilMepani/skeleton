@@ -4,7 +4,7 @@
 <div class="container">
 
   <?php //wp_nav_menu( array( 'theme_location' => 'footer-menu', 'container' => '', 'menu_class' => 'footer-menu' ) ); ?>
-  <!-- <p class="copyright">&copy; <?php //echo date( 'Y' ); ?>. All Rights Reserved.</p> -->
+  <p class="copyright">&copy; <?php echo date( 'Y' ); ?>. All Rights Reserved.</p>
 
 </div> <!-- .container -->
 </footer> <!-- #footer -->

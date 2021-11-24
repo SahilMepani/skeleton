@@ -6,6 +6,7 @@ require_once( get_template_directory() . '/functions/helpers.php' );
 require_once( get_template_directory() . '/functions/disable-auto-embed-script.php' );
 require_once( get_template_directory() . '/functions/disable-wp-generated-image-sizes.php' );
 require_once( get_template_directory() . '/functions/add-image-sizes.php' );
+require_once( get_template_directory() . '/functions/custom-login.php' );
 require_once( get_template_directory() . '/functions/register-acf-blocks.php' );
 require_once( get_template_directory() . '/functions/block-editor-settings.php' );
 require_once( get_template_directory() . '/functions/enqueue-scripts.php' );

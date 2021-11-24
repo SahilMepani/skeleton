@@ -1,5 +1,25 @@
 <?php
 
+// Swiper class depending on the direction
+////////////////////////////////////////////////
+function swiper_direction_class() {
+  if ( ICL_LANGUAGE_CODE==en ) {
+    return 'swiper-container';
+  } else if ( ICL_LANGUAGE_CODE==ar ) {
+    return 'swiper-container-rtl';
+  }
+}
+
+// Language direction class
+////////////////////////////////////////////////
+function direction_class() {
+  if ( ICL_LANGUAGE_CODE==en ) {
+    return 'dir-ltr';
+  } else if ( ICL_LANGUAGE_CODE==ar ) {
+    return 'dir-rtl';
+  }
+}
+
 /* ======================================
 =            ScrollSpy Link            =
 ====================================== */

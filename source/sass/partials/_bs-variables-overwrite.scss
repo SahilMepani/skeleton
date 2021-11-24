@@ -13,7 +13,7 @@ $enable-grid-classes         : true;
 $enable-button-pointers      : true;
 $enable-rfs                  : false;
 $enable-validation-icons     : false;
-$enable-negative-margins     : true;
+$enable-negative-margins     : false; // different than gutter classes
 $enable-deprecation-messages : true;
 $enable-important-utilities  : true;
 
@@ -86,44 +86,45 @@ $body-bg    : $white;
 // Style p element.
 $paragraph-margin-bottom: 3rem;
 
-// Settings for the `<body>` element.
-$body-bg    : $white;
-$body-color : $gray-900;
-
 // This variable affects the `.pt-*` and `.mb-*` classes etc.
-$spacer: 3rem; // used on many other comoponents
+$spacer: 3rem; // used on many other components
 $spacers : (
-  0      : 0,
+  0  : 0,
   0-#{5} : 0.5rem,
-  1      : 1rem,
+  1  : 1rem,
   1-#{5} : 1.5rem,
-  2      : 2rem,
+  2  : 2rem,
   2-#{5} : 2.5rem,
-  3      : 3rem,
+  3  : 3rem,
   3-#{5} : 3.5rem,
-  4      : 4rem,
+  4  : 4rem,
   4-#{5} : 4.5rem,
-  5      : 5rem,
+  5  : 5rem,
   5-#{5} : 5.5rem,
-  6      : 6rem,
+  6  : 6rem,
   6-#{5} : 6.5rem,
-  7      : 7rem,
+  7  : 7rem,
   7-#{5} : 7.5rem,
-  8      : 8rem,
+  8  : 8rem,
   8-#{5} : 8.5rem,
-  9      : 9rem,
+  9  : 9rem,
   9-#{5} : 9.5rem,
-  10     : 10rem,
-  // 11     : 11rem,
-  // 12     : 12rem,
-  // 13     : 13rem,
-  // 14     : 14rem,
-  // 15     : 15rem,
-  // 16     : 16rem,
-  // 17     : 17rem,
-  // 18     : 18rem,
-  // 19     : 19rem,
-  // 20     : 20rem,
+  10 : 10rem,
+  10-#{5} : 10.5rem,
+  11 : 11rem,
+  11-#{5} : 11.5rem,
+  12 : 12rem,
+  12-#{5}: 12.5rem,
+  13 : 13rem,
+  13-#{5} : 13.5rem,
+  14 : 14rem,
+  14-#{5} : 14.5rem,
+  15 : 15rem,
+  16 : 16rem,
+  17 : 17rem,
+  18 : 18rem,
+  19 : 19rem,
+  20 : 20rem,
 );
 
 // Custom map
@@ -180,6 +181,7 @@ $container-max-widths: (
   xl   : 93vw,
   xxl  : 93vw,
   // max-width value needs to be less than the (breakpoint value(xxxl) - $container-padding)
+  // any property added here should also be added to grid breakpoints
   xxxl : 144rem,
 );
 
@@ -215,8 +217,8 @@ $font-size-base   : 1.6rem; // Assumes the browse, typically `16px`
 // $font-weight-base:            $font-weight-normal;
 
 $line-height-base : 1;
-$line-height-sm:              1.55;
-// $line-height-lg:              2;
+$line-height-sm   : 1.25; // used for list-item
+$line-height-lg   : 1.55; // used for paragraph and other block level elements
 
 // $h1-font-size:                $font-size-base * 2.5;
 // $h2-font-size:                $font-size-base * 2;
@@ -226,6 +228,7 @@ $line-height-sm:              1.55;
 // $h6-font-size:                $font-size-base;
 
 // have to set it again to use the updated values from top
+// generate fs-* classes
 $font-sizes: (
   1: $h1-font-size,
   2: $h2-font-size,
@@ -242,10 +245,11 @@ $headings-font-style:         null;
 // $headings-line-height:        1.2;
 $headings-color:              null;
 
-// uncomment no display font sizes
+// uncomment to not display font sizes
 // $display-font-sizes: null;
 
 // only if you want to use display font sizes
+// generate display-* classes
 // cannot use rem-calc()
 $display-font-sizes: (
   1: 5rem,

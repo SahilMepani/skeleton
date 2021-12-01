@@ -17,12 +17,14 @@ $text-selection-color    : #2c2c2c;
 // Custom ease
 $custom_ease: cubic-bezier(0.215, 0, 0.000, 0.995);
 
-// $container-sm-max-width  : map-get($container-max-widths, 'sm');
-// $container-md-max-width  : map-get($container-max-widths, 'md');
-// $container-lg-max-width  : map-get($container-max-widths, 'lg');
-// $container-xl-max-width  : map-get($container-max-widths, 'xl');
-// $container-xxl-max-width : map-get($container-max-widths, 'xxl');
-// $container-xxxl-max-width : map-get($container-max-widths, 'xxxl');
+// set container max-width variable for each breakpoints
+:root {
+	@each $breakpoint, $container-max-width in $container-max-widths {
+		@include media-breakpoint-up($breakpoint) {
+			--container-max-width: #{$container-max-width};
+		}
+	}
+}
 
 // This variable affects the `.pt-*` and `.mb-*` classes etc.
 // $enable-viewport-spacers: false;

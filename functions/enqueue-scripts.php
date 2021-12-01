@@ -57,15 +57,15 @@ function skel_enqueue_scripts() {
   // );
 
   // localize scripts
-  wp_localize_script(
-    'custom',
-    'localize_var',
-    array(
-      'ajax_url' => admin_url( 'admin-ajax.php' ),
-      // security
-      'nonce'    => wp_create_nonce( 'nonce_name' ),
-    )
-  );
+  // wp_localize_script(
+  //   'custom',
+  //   'localize_var',
+  //   array(
+  //     'ajax_url' => admin_url( 'admin-ajax.php' ),
+  //     // security
+  //     'nonce'    => wp_create_nonce( 'nonce_name' ),
+  //   )
+  // );
 
 }
 add_action('wp_enqueue_scripts', 'skel_enqueue_scripts');

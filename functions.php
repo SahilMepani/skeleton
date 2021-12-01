@@ -15,7 +15,7 @@ require_once( get_template_directory() . '/functions/wp-plugins.php' );
 require_once( get_template_directory() . '/functions/security.php' );
 // require_once( get_template_directory() . '/functions/custom-post-types.php' );
 // require_once( get_template_directory() . '/functions/custom-admin-columns.php' );
-require_once( get_template_directory() . '/functions/admin-ajax.php' );
+// require_once( get_template_directory() . '/functions/admin-ajax.php' );
 // only if amp plugin available
 // require_once( get_template_directory() . '/functions/amp.php' );
 

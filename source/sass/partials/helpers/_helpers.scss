@@ -1,3 +1,11 @@
+.absolute-cover {
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
 .bg-video {
   height: 100%;
   width: 177.77777778vh; /* 100 * 16 / 9 */

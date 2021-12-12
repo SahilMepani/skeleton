@@ -78,6 +78,14 @@ h6,
 
 
 /*----------  Content  ----------*/
+a,
+button,
+input[type='submit'],
+input[type='button'],
+input[type='reset'] {
+	transition: $btn-transition;
+}
+
 p,
 table,
 ul,

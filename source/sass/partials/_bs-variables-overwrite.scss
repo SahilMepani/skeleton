@@ -175,7 +175,7 @@ $grid-breakpoints: map-merge( $grid-breakpoints, (xxxl : 1600px) );
 // Do not use pixel values. Use rem to scale on higher size screens
 
 $container-max-widths: (
-  sm   : 95vw,
+  sm   : 100vw,
   md   : 95vw,
   lg   : 93vw,
   xl   : 93vw,
@@ -196,7 +196,7 @@ $grid-gutter-width : 3rem; // gets divided by 2 for each side
 
 
 // should be defined in this file
-$container-padding-x: $grid-gutter-width / 2;
+$container-padding-x: 2rem; // cannot be less than $grid gutter one side
 
 
 $gutters: $negative-and-gutter-spacers;

@@ -1,12 +1,18 @@
 $utilities_overwrite: (
   // custom utility
-  // "any-name": (
-    //   responsive : true,
-    //   property   : gap,
-    //   class      : gp,
-    //   values     : $spacers // accepts map
-    // ),
-    // end custom utility
+  "hover-color": (
+    property: color,
+    state: hover,
+    class: text,
+    values: map-merge(
+      $theme-colors,
+      (
+        "body": $body-color,
+        "reset": inherit,
+      )
+    )
+  ),
+  // end custom utility
   // comment or the default utilities you want to use
   // "font-weight": (
   //   property: font-weight,
@@ -19,6 +25,17 @@ $utilities_overwrite: (
   //     bolder: $font-weight-bolder
   //   )
   // ),
+  "width": (
+    property: width,
+    class: w,
+    responsive : true,
+    values: (
+      25: 25%,
+      50: 50%,
+      75: 75%,
+      100: 100%,
+    )
+  ),
   "shadow": null,
   // border generally used for table, null if you want to disble border-* classes
   // "border"                 : null,

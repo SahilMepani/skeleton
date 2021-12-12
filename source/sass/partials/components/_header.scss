@@ -20,3 +20,48 @@
     width: 100%;
   }
 }
+
+
+
+.header-nav-toggle {
+  background: red;
+  color: #fff;
+  text-decoration: none;
+  float: right;
+  display: block;
+  padding: rem-calc(10px) rem-calc(15px) rem-calc(10px) rem-calc(50px) !important;
+  position: relative;
+  .i-menu {
+    font-size: rem-calc(30px);
+    line-height: rem-calc( 30px );
+    position: absolute;
+    left: rem-calc(15px); // same as padding right
+    top: 50%;
+    transform: translateY(-50%);
+    transition: .2s ease-out;
+  }
+  @include media-breakpoint-up( lg ) {
+    display: none;
+  }
+}
+
+.header-nav-close {
+  background: none;
+  text-decoration: none;
+  border: 0;
+  padding: rem-calc(10px);
+  .i-close {
+    font-size: rem-calc( 36px );
+    line-height: rem-calc( 36px );
+  }
+  &:hover,
+  &:focus {
+    background-color: #fff;
+    &:before {
+      color: red;
+    }
+  }
+  @include media-breakpoint-up( lg ) {
+    display: none;
+  }
+}

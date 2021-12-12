@@ -61,3 +61,16 @@
 		}
   }
 }
+
+@mixin animate-background-underline-on-hover( $text-color: currentColor, $background-start-color: currentColor, $background-end-color: currentColor ) {
+  background-image: linear-gradient(to right, $background-start-color, $background-end-color);
+  background-size: 0 rem-calc( 2px );
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  padding-bottom: rem-calc( 2px );
+  transition: background .2s ease-out;
+  &:hover, &:active  {
+    color: $text_color;
+    background-size: 100% rem-calc( 2px );
+  }
+}

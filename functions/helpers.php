@@ -98,11 +98,13 @@ function skel_text_shorter($input, $length) {
 function skel_the_terms($post_id, $taxonomy) {
 	$terms = get_the_terms($post_id, $taxonomy); // Returns objects array
 	$ar_term = array(); // Initialize an array
-	foreach ($terms as $term) {
-		$ar_term[] = $term->name; // Store term name
+	if ( $terms ) {
+		foreach ($terms as $term) {
+			$ar_term[] = $term->name; // Store term name
+		}
 	}
 	$result = join(", ", $ar_term); // Join all terms name
-	echo $result;
+	return $result;
 }
 
 // return array
@@ -111,10 +113,12 @@ function skel_the_terms_data($post_id, $taxonomy) {
 	$terms = get_the_terms($post_id, $taxonomy); // Returns objects array
 	$ar_term = array(); // Initialize an array
 	$i = 0;
-	foreach ($terms as $term) {
-		$ar_term[$i]['name'] = $term->name; // Store term name
-		$ar_term[$i]['id'] = $term->term_id; // Store term id
-		$i++;
+	if ( $terms ) {
+		foreach ($terms as $term) {
+			$ar_term[$i]['name'] = $term->name; // Store term name
+			$ar_term[$i]['id'] = $term->term_id; // Store term id
+			$i++;
+		}
 	}
 	return $ar_term;
 }

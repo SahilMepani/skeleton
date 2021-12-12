@@ -1,0 +1,115 @@
+/* Fullscreen Video using Magnific Popup */
+.mfp-fullscreen-video {
+	.mfp-content {
+		background-color: #000;
+		opacity: 0;
+		height: 100% !important;
+		max-width: none !important;
+		width: 100%;
+		border: rem-calc( 20px ) solid #000;
+		position: fixed;
+		top: 0;
+		left: 0;
+		transform: scale3d(0.05,0.05,1);
+	}
+	video {
+		position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    // transform: translateX(-50%);
+		width: 100%;
+		height: auto;
+    max-height: 100%;
+	}
+	/* animate in */
+	&.mfp-ready {
+		.mfp-content {
+			opacity: 1;
+			transform: scale3d(1,1,1);
+			transition: .5s;
+		}
+	}
+	/* animate out */
+	&.mfp-removing {
+		.mfp-content {
+			opacity: 0;
+			transition: .2s;
+		}
+	}
+	&.mfp-bg {
+		display: none;
+	}
+	.mfp-iframe-holder {
+		padding: 0 !important;
+	}
+	.mfp-close {
+		background-color: #000;
+		font-size: rem-calc( 30px );
+		top: 0;
+		right: 0;
+		line-height: 1;
+		text-align: center;
+		width: rem-calc( 30px );
+		height: rem-calc( 30px );
+		padding: 0;
+		opacity: .5;
+		transition: .2s ease-out;
+		&:hover {
+			opacity: 1;
+		}
+	}
+	@media only screen and (min-width: 768px) {
+		.mfp-close {
+			font-size: rem-calc( 60px );
+			width: rem-calc( 60px );
+			height: rem-calc( 60px );
+		}
+	}
+}
+
+/* Custom Arrow */
+// .mfp-arrow {
+//   position: absolute;
+//   opacity: $mfp-controls-opacity;
+//   margin: 0;
+//   top: 50%;
+//   margin-top: -55px;
+//   padding: 0;
+//   width: 90px;
+//   height: 110px;
+//   -webkit-tap-highlight-color: rgba(0,0,0,0);
+//   &:active {
+//     margin-top: -54px;
+//   }
+//   &:hover,
+//   &:focus {
+//     opacity: 1;
+//   }
+//   &:before {
+//     @include icon-font-properties;
+//     display: block;
+//     content: '\e616';
+//     color: #fff;
+//     font-size: 48px;
+//     position: absolute;
+//     left: 50%;
+//     top: 50%;
+//     transform: translate(-50%,-50%);
+//   }
+// }
+
+// .mfp-arrow-left {
+//   left: 0;
+//   &:before {
+//     content: '\e616';
+//   }
+// }
+
+// .mfp-arrow-right {
+//   right: 0;
+//   &:before {
+//     content: '\e617';
+//   }
+// }

@@ -4,208 +4,59 @@
   height: auto;
 }
 
-/*----------  Swiper Dot Pagination  ----------*/
-.swiper-dot-pagination {
-  span {
-    background-color: rgba( 255,255,255,.4 );
-    display: inline-block;
-    width: rem-calc( 10px );
-    height: rem-calc( 10px );
-    margin-left: rem-calc( 10px );
-    border-radius: 50%;
-    position: relative;
-    cursor: pointer;
-    &.swiper-pagination-bullet-active {
-      background-color: #fff;
-      transition: .2s;
-    }
-  }
+/*----------  Swiper Dashed Pagination  ----------*/
+.swiper-pagination.swiper-dashed-pagination { // specificity issue
+	bottom: 0; // overwrite default
+	position: relative; // overwrite default
+	&.dark {
+		span {
+			background-color: red;
+		}
+	}
+	span {
+		background-color: #fff;
+		display: inline-block;
+		width: rem-calc( 40px );
+		height: rem-calc( 4px );
+		margin-left: rem-calc( 5px );
+		border-radius: 0;
+		position: relative;
+		cursor: pointer;
+		&:not(:last-child) {
+			margin: 0 rem-calc( 10px ) 0 0;
+		}
+		&.swiper-pagination-bullet-active {
+			opacity: 1;
+			transition: .2s;
+		}
+	}
+	@include media-breakpoint-up( md ) {
+		span {
+			width: rem-calc( 70px );
+		}
+	}
 }
 
-/*----------  Swiper Arrow Navigation  ----------*/
-.swiper-arrow-navigation {
-  .btn {
-    color: $primary;
-    position: absolute;
-    transition: .2s ease-in-out;
-    &.swiper-button-disabled {
-      opacity: .4;
-      pointer-events: none;
-    }
-    &:after {
-      @include icon-font-properties;
-      content: '';
-      display: block;
-      font-size: rem-calc( 36px );
-    }
-    &:hover {
-      &:after {
-        animation: leftRightBounce 1s infinite ;
-      }
-    }
-  }
-  .btn-next {
-    right: rem-calc( 15px );
-    &:before {
-      left: 0;
-      transform: translateX(100%);
-    }
-    &:after {
-      content: '$i_arrow_right';
-    }
-  }
-  .btn-prev {
-    left: rem-calc( 15px );
-    &:before {
-      right: 0;
-      transform: translateX(100%);
-    }
-    &:after {
-      content: '$i_arrow_left';
-    }
-  }
-  @include media-breakpoint-up( sm ) {
-    .btn {
-      &:after {
-        font-size: rem-calc( 60px );
-      }
-    }
-  }
-}
-
-
-/*----------  Swiper Arrow Navigation  ----------*/
-.swiper-navigation {
-  display: flex;
-}
-
-.swiper-button-prev, .swiper-button-next {
-  width: rem-calc( 52px );
-  height: rem-calc( 52px );
-  line-height: rem-calc( 52px );
-  border: rem-calc( 2px ) solid red;
-  border-radius: 50%;
-  position: relative;
-  margin: 0;
-  left: auto;
-  right: auto;
-  top: auto;
-  z-index: 10;
-  transition: .2s ease-out;
-  &:after {
-    font-size: rem-calc( 18px );
-    color: red;
-  }
-}
-
-.swiper-button-prev {
-  margin-right: rem-calc( 8px );
-  @include media-breakpoint-up( md ) {
-    margin-right: rem-calc( 16px );
-  }
-}
-
-.swiper-button-disabled {
-  border-color: black;
-  &:after {
-    color: black;
-  }
-}
-
-.swiper-navigation-floating {
-  .swiper-button-prev, .swiper-button-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .swiper-button-prev {
-    left: 0;
-  }
-  .swiper-button-next {
-    right: 0;
-  }
-}
-
-/*----------  Swiper Arrow Navigation  ----------*/
-.swiper-navigation {
-  display: flex;
-}
-
-.swiper-button-prev, .swiper-button-next {
-  width: rem-calc( 52px );
-  height: rem-calc( 52px );
-  line-height: rem-calc( 52px );
-  border: rem-calc( 2px ) solid red;
-  border-radius: 50%;
-  position: relative;
-  margin: 0;
-  left: auto;
-  right: auto;
-  top: auto;
-  z-index: 10;
-  transition: .2s ease-out;
-  &:after {
-    font-size: rem-calc( 18px );
-    color: red;
-  }
-}
-
-.swiper-button-prev {
-  margin-right: rem-calc( 8px );
-  @include media-breakpoint-up( md ) {
-    margin-right: rem-calc( 16px );
-  }
-}
-
-.swiper-button-disabled {
-  border-color: black;
-  &:after {
-    color: black;
-  }
-}
-
-.swiper-navigation-floating {
-  .swiper-button-prev, .swiper-button-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .swiper-button-prev {
-    left: 0;
-  }
-  .swiper-button-next {
-    right: 0;
-  }
-}
-
-
-// .btn-prev, .btn-next {
-//   text-align: center;
-//   color: transparent;
-//   font: 0/0 a;
-//   width: 40px;
-//   height: 40px;
-//   float: left;
-//   border: 1px solid #ccc;
-//   &.swiper-button-disabled {
-//     opacity: .5;
-//     cursor: default;
+/*----------  Swiper Arrow Navigation - Absolute end at the edge  ----------*/
+// .swiper-navigation-absolute {
+//   .swiper-button-prev, .swiper-button-next {
+//     color: $green;
+//     &::after {
+//       @include icon-font-properties;
+//       font-size: rem-calc( 48px );
+//     }
 //   }
-//   &:before {
-//     color: $color_primary;
-//     font-size: 20px;
+//   .swiper-button-prev {
+//     right: auto;
+//     left: rem-calc( 50px );
+//   }
+//   .swiper-button-next {
+//     right: rem-calc( 50px );
+//     left: auto;
 //   }
 // }
 
-// .btn-prev {
-//   margin-right: rem-calc( 10px );
-//   &:before {
-//     content: '\e616';
-//   }
-// }
-
-// .btn-next {
-//   &:before {
-//     content: '\e617';
-//   }
-// }
+// hide the buttons when not enough slides
+.swiper-button-lock {
+	display: none !important;
+}

@@ -1,10 +1,4 @@
-.absolute-cover {
-  position: absolute !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-}
+
 
 .bg-video {
   height: 100%;
@@ -27,6 +21,32 @@
 }
 
 /*----------  Required  ----------*/
+.swiper-cards-overflow-down-xl {
+  @include swiper-cards-overflow-down( 'xl' );
+}
+
+.swiper-cards-overflow-down-lg {
+  @include swiper-cards-overflow-down( 'lg' );
+}
+
+.container-max-width {
+  margin-left: var(--container-max-width);
+}
+.container-half-width {
+  margin-left: var(--container-half-width);
+}
+.container-margin-x {
+  margin-left: var(--container-margin-x);
+}
+
+.absolute-cover {
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
 .list-unstyled {
   margin-left: 0;
   margin-top: 0;

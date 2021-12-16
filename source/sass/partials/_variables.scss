@@ -24,6 +24,7 @@ $custom_ease: cubic-bezier(0.215, 0, 0.000, 0.995);
 			$half-width: calc((#{$container-max-width} / 2) - #{$container-padding-x});
 			--container-max-width: #{$container-max-width};
 			--container-half-width: #{$half-width};
+			--container-margin-x: calc(((100% - #{$container-max-width}) / 2) + #{$container-padding-x});
 		}
 	}
 }

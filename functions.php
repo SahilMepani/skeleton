@@ -29,6 +29,10 @@ register_nav_menus(
   )
 );
 
+
+// Add except to page post type
+// add_post_type_support( 'page', 'excerpt' );
+
 /*=========================================
 =            Register sidebars            =
 =========================================*/

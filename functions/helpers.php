@@ -2,7 +2,7 @@
 
 // Swiper class depending on the direction
 ////////////////////////////////////////////////
-function swiper_direction_class() {
+function skel_swiper_direction_class() {
   if ( ICL_LANGUAGE_CODE==en ) {
     return 'swiper-container';
   } else if ( ICL_LANGUAGE_CODE==ar ) {
@@ -12,7 +12,7 @@ function swiper_direction_class() {
 
 // Language direction class
 ////////////////////////////////////////////////
-function direction_class() {
+function skel_direction_class() {
   if ( ICL_LANGUAGE_CODE==en ) {
     return 'dir-ltr';
   } else if ( ICL_LANGUAGE_CODE==ar ) {
@@ -25,7 +25,7 @@ function direction_class() {
 // Replace youtu.be to youtube.com
 ////////////////////////////////////////////////
 // generate youtube link for magnific popup
-function yt_link( $url ) {
+function skel_get_yt_link( $url ) {
   // grab the position of forward slash
   $pos = strrpos($url, '/');
   // use position to get substring
@@ -39,7 +39,7 @@ function yt_link( $url ) {
 /*================================================================
 =            Validate Youtube link for Magnific Popup            =
 ================================================================*/
-function skel_validate_youtube_link( $link ) {
+function skel_get_validate_youtube_link( $link ) {
 	preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $link, $matches);
 	$link = 'https://www.youtube.com/watch?v=' . $matches[0];
 	return $link;
@@ -49,8 +49,8 @@ function skel_validate_youtube_link( $link ) {
 /*====================================================================
 =            Custom excerpt function with length argument            =
 ====================================================================*/
-function skel_get_the_excerpt( $limit ) {
-	$excerpt = explode(' ', get_the_excerpt(), $limit);
+function skel_get_the_excerpt( $post_id, $limit ) {
+	$excerpt = explode(' ', get_the_excerpt( $post_id ), $limit);
 	if ( count($excerpt) >= $limit ) {
 		array_pop($excerpt);
 		$excerpt = implode(" ",$excerpt).'...';
@@ -65,7 +65,7 @@ function skel_get_the_excerpt( $limit ) {
 /*================================
 =            Tiny URL            =
 ================================*/
-function skel_tiny_url($url) {
+function skel_get_tiny_url($url) {
 	return file_get_contents('http://tinyurl.com/api-create.php?url=' . $url);
 }
 
@@ -73,7 +73,7 @@ function skel_tiny_url($url) {
 /*====================================
 =            Text Shorter            =
 ====================================*/
-function skel_text_shorter($input, $length) {
+function skel_get_text_shorter($input, $length) {
 	// no need to trim, already shorter than trim length
 	if (strlen($input) <= $length) {
 		return $input;
@@ -95,7 +95,7 @@ function skel_text_shorter($input, $length) {
 =================================================*/
 // return string
 // eg. term 1, term 2
-function skel_the_terms($post_id, $taxonomy) {
+function skel_get_the_terms($post_id, $taxonomy) {
 	$terms = get_the_terms($post_id, $taxonomy); // Returns objects array
 	$ar_term = array(); // Initialize an array
 	if ( $terms ) {
@@ -109,7 +109,7 @@ function skel_the_terms($post_id, $taxonomy) {
 
 // return array
 // eg. [name = 'term', 'id' = 3]
-function skel_the_terms_data($post_id, $taxonomy) {
+function skel_get_the_terms_data($post_id, $taxonomy) {
 	$terms = get_the_terms($post_id, $taxonomy); // Returns objects array
 	$ar_term = array(); // Initialize an array
 	$i = 0;

@@ -37,10 +37,10 @@
             },
             {
                 "key": "field_5efc495ad4b67",
-                "label": "Padding Top",
-                "name": "padding_top",
+                "label": "Spacing Top",
+                "name": "spacing_top",
                 "type": "text",
-                "instructions": "Separate multiple classes with spaces. Starts with pt-{breakpoint}-{number}. The {number} can be 1 from 15.",
+                "instructions": "Separate multiple classes with spaces. Starts with pt-{breakpoint}-{number}. The {number} can be 1 from 20.",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -56,8 +56,8 @@
             },
             {
                 "key": "field_5efc495ad4f14",
-                "label": "Padding Bottom",
-                "name": "padding_bottom",
+                "label": "Spacing Bottom",
+                "name": "spacing_bottom",
                 "type": "text",
                 "instructions": "Separate multiple classes with spaces. Starts with pb-{breakpoint}-{number}. The number can be 1 from 20.",
                 "required": 0,
@@ -147,6 +147,7 @@
         "instruction_placement": "label",
         "hide_on_screen": "",
         "active": false,
-        "description": ""
+        "description": "",
+        "show_in_rest": 0
     }
 ]

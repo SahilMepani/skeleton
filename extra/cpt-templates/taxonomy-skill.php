@@ -50,7 +50,7 @@
 
 					<div class="post-meta">
 						Published by <?php the_author_posts_link(); ?> on
-						<time pubdate><?php the_time('F j, Y'); ?></time> under <?php skel_the_terms( $post->ID, 'skills' ); ?>
+						<time pubdate><?php the_time('F j, Y'); ?></time> under <?php skel_get_the_terms( $post->ID, 'skills' ); ?>
 					</div> <!-- .post-meta -->
 				</header>
 

@@ -35,6 +35,9 @@ function skel_create_post_type() {
 		//You must also save your permalink structure to prevent 404 errors
 		//'rewrite'           => array( 'slug' => 'project/%skills%', 'with_front' => false ),
 		'supports'            => array('title','editor','thumbnail','page-attributes', 'custom-fields'),
+		// enable gutenberg
+		// 'show_in_rest' => true,
+		// 'supports' => array('editor')
 	);
 
 	register_post_type( 'project', $cpt_project_args );

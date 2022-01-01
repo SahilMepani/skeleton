@@ -67,7 +67,8 @@
 @import "partials/base-selectors";
 
 // JS plugins
-// @import "partials/js-plugins/aos";
+@import "partials/js-plugins/aos";
+@import "partials/js-plugins/aos-custom";
 
 // Base
 @import "partials/font-face";

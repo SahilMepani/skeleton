@@ -6,19 +6,19 @@
 
 
 /*----------  AOS  ----------*/
-// html.js.mutationobserver.cssanimations:not(.js-mobile) [data-aos] {
-//   visibility: hidden;
-//   &.animated {
-//   	visibility: visible;
-//   }
-// }
+html.js.mutationobserver.cssanimations:not(.js-mobile) [data-aos] {
+	visibility: hidden;
+	&.aos-animate {
+		visibility: visible;
+	}
+}
 
-// html.js-mobile [data-aos],
-// html.no-mutationobserver [data-aos],
-// html.no-js [data-aos],
-// html.no-cssanimations [data-aos] {
-//   @include animation( none !important);
-// }
+html.js-mobile [data-aos],
+html.no-mutationobserver [data-aos],
+html.no-js [data-aos],
+html.no-cssanimations [data-aos] {
+	animation: none !important;
+}
 
 
 /*----------  Scroll Reveal  ----------*/

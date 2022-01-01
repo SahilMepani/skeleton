@@ -1,13 +1,13 @@
 @mixin stagger-animation( $animation, $child, $interval: 100 ) {
   $delay: $interval;
   visibility: visible;
-  @include animation-duration( 1s );
-  @include animation-fill-mode( both );
-  @include animation-name( $animation );
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: $animation;
   @for $i from 1 through $child {
     $delay: $delay + $interval;
     &:nth-child(#{$i}) {
-      @include animation-delay( unquote($delay + 'ms') );
+      animation-delay: unquote($delay + 'ms');
     }
   }
 }

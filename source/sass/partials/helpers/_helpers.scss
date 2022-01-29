@@ -21,25 +21,11 @@
 }
 
 /*----------  Required  ----------*/
-.swiper-cards-overflow-down-xl {
-  @include swiper-cards-overflow-down( 'xl' );
+.z-10 {
+  z-index: 10;
 }
 
-.swiper-cards-overflow-down-lg {
-  @include swiper-cards-overflow-down( 'lg' );
-}
-
-.container-max-width {
-  margin-left: var(--container-max-width);
-}
-.container-half-width {
-  margin-left: var(--container-half-width);
-}
-.container-margin-x {
-  margin-left: var(--container-margin-x);
-}
-
-.absolute-cover {
+.position-absolute-cover {
   position: absolute !important;
   top: 0 !important;
   bottom: 0 !important;

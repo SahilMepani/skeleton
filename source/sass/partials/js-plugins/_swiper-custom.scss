@@ -1,20 +1,26 @@
 // Make all slides equal height
 /* ========================================== */
 .swiper-slide {
-  height: auto;
+	height: auto;
 }
 
-/*----------  Swiper Dashed Pagination  ----------*/
-.swiper-pagination.swiper-dashed-pagination { // specificity issue
+/*----------  Swiper Pagination - Dashed & left aligned  ----------*/
+.swiper-pagination.swiper-pagination-horizontal { // specificity issue
+	height: 0;
 	bottom: 0; // overwrite default
 	position: relative; // overwrite default
 	&.dark {
 		span {
-			background-color: red;
+			background-color: rgba(green,.3);
+			&:after {
+				content: '';
+				background: green;
+			}
 		}
 	}
 	span {
-		background-color: #fff;
+		opacity: 1;
+		background-color: rgba(#fff,.2);
 		display: inline-block;
 		width: rem-calc( 40px );
 		height: rem-calc( 4px );
@@ -22,41 +28,130 @@
 		border-radius: 0;
 		position: relative;
 		cursor: pointer;
+		overflow: hidden;
 		&:not(:last-child) {
 			margin: 0 rem-calc( 10px ) 0 0;
 		}
+		&:after {
+			content: '';
+			background: #fff;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			z-index: 10;
+			transform: scale(0);
+			transform-origin: 100% 100%;
+			transition: .3s transform ease-out;
+		}
 		&.swiper-pagination-bullet-active {
-			opacity: 1;
-			transition: .2s;
+			&::after {
+				transform: scale(1);
+				transform-origin: 0 0;
+			}
 		}
 	}
+	// .hero-media-slider & {
+	// 	left: var(--container-margin-x);
+	// 	bottom: rem-calc( 40px );
+	// }
+	// .step-cards-slider-section & {
+	// 	bottom: rem-calc( 50px );
+	// }
 	@include media-breakpoint-up( md ) {
 		span {
 			width: rem-calc( 70px );
 		}
+		// .hero-media-slider & {
+		// 	bottom: rem-calc( 110px );
+		// }
 	}
 }
 
-/*----------  Swiper Arrow Navigation - Absolute end at the edge  ----------*/
-// .swiper-navigation-absolute {
-//   .swiper-button-prev, .swiper-button-next {
-//     color: $green;
-//     &::after {
-//       @include icon-font-properties;
-//       font-size: rem-calc( 48px );
-//     }
-//   }
-//   .swiper-button-prev {
-//     right: auto;
-//     left: rem-calc( 50px );
-//   }
-//   .swiper-button-next {
-//     right: rem-calc( 50px );
-//     left: auto;
-//   }
+/*----------  Swiper Arrow Navigation - Inline  ----------*/
+.swiper-navigation-inline {
+	.swiper-button-prev, .swiper-button-next {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: rem-calc( 50px );
+		height: rem-calc( 50px );
+		border-radius: 50%;
+		border: rem-calc( 1px ) solid green;
+		margin-top: rem-calc( 1px ); // space for border, required
+		// required
+		position: relative;
+		left: auto;
+		right: auto;
+		&.scheme-light {
+			border-color: #fff;
+		}
+		&:after {
+			font-size: rem-calc( 24px );
+		}
+	}
+	.swiper-button-next {
+		&:after {
+			display: block;
+			left: rem-calc( -20px );
+		}
+	}
+}
+
+.swiper-button-next, .swiper-button-prev {
+	color: green;
+	&.scheme-light {
+		color: #fff;
+	}
+	&:after {
+		@include icon-font-properties;
+		content: $i-right-chevron;
+	}
+}
+
+// .swiper-button-prev {
+// 	&:after {
+// 		transform: rotate(180deg);
+// 	}
 // }
+
+/*----------  Swiper Arrow Navigation - Absolute end  ----------*/
+.swiper-navigation-absolute {
+  .swiper-button-prev, .swiper-button-next {
+    color: green;
+    &::after {
+      @include icon-font-properties;
+      font-size: rem-calc( 48px );
+      content: $i-right-chevron;
+    }
+  }
+  .swiper-button-prev {
+    right: auto;
+    left: rem-calc( 50px );
+    transform: rotate(180deg);
+  }
+  .swiper-button-next {
+    right: rem-calc( 50px );
+    left: auto;
+  }
+}
 
 // hide the buttons when not enough slides
 .swiper-button-lock {
 	display: none !important;
+	// opacity: .3 !important;
+}
+
+/*----------  Required  ----------*/
+.swiper-cards-overflow-down-xl {
+  @include swiper-cards-overflow-down( 'xl' );
+}
+
+.swiper-cards-overflow-down-lg {
+  @include swiper-cards-overflow-down( 'lg' );
+}
+
+.swiper-cards-overflow-down-md {
+  @include swiper-cards-overflow-down( 'md' );
 }

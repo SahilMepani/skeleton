@@ -13,7 +13,7 @@ add_filter('wp_sitemaps_enabled', '__return_false');
 // Disable image compression in WordPress
 // WordPress sets it to 82% by default
 ////////////////////////////////////////////////
-add_filter('jpeg_quality', function($arg){return 100;});
+// add_filter('jpeg_quality', function($arg){return 100;});
 
 
 /* ======================================================

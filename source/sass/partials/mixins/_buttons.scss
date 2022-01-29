@@ -1,6 +1,7 @@
 @mixin btn {
   font-size: rem-calc( 18px );
   font-weight: 600;
+  line-height: $btn-line-height;
   display: flex;
   width: fit-content;
   align-items: center;

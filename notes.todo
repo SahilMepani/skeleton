@@ -1,3 +1,12 @@
+Swiper Events Order
+// beforeInit
+// init
+// activeIndexChange
+// slideChange
+// beforeTransitionStart
+// slideChangeTransitionStart
+// slideChangeTransitionEnd
+
 ACF:
   Recommended: Minimum width: 1920px | Aspect ratio: Landscape | Format: JPG
   DO NOT COPY-PASTE TEXT ON THE "VISUAL" TAB. USE "TEXT" TAB INSTEAD

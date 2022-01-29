@@ -35,6 +35,14 @@ function skel_enqueue_scripts() {
     'modernizr',
     get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js'
   );
+
+  wp_enqueue_script(
+    'match-height',
+    get_template_directory_uri() . '/js/vendor/match-height.js',
+    array('jquery'),
+    filemtime( get_template_directory() . '/js/vendor/match-height.js' ),
+  );
+
   // wp_enqueue_script(
   //   'ua-parser',
   //   get_template_directory_uri() . '/js/vendor/ua-parser-0.7.20.min.js'

@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?>>
 <head>
   <!-- HTML Boilerplte v8.00 -->
   <meta charset="<?php bloginfo( 'charset' ); ?>" />

@@ -115,6 +115,17 @@ function skel_editor_css() {
       font-size: 1.6rem;
       line-height: 1.7;
     }
+    .acf-block-preview p,
+    .acf-block-preview table,
+    .acf-block-preview ul,
+    .acf-block-preview ol,
+    .acf-block-preview dl,
+    .acf-block-preview dd,
+    .acf-block-preview pre,
+    .acf-block-preview blockquote,
+    .acf-block-preview address {
+      font-size: 1.6rem !important;
+    }
     /* Increase block editor sidebar */
     .edit-post-layout.is-sidebar-opened .edit-post-layout__content {
         margin-right: 25vw !important;

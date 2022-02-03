@@ -4,104 +4,10 @@
   outline: rem-calc(3px) dashed dodgerblue;
 }
 
-
-/*----------  AOS  ----------*/
-html.js.mutationobserver.cssanimations:not(.js-mobile) [data-aos] {
-	visibility: hidden;
-	&.aos-animate {
-		visibility: visible;
-	}
+.sreveal-stagger-item, [data-sreveal] {
+  visibility: hidden;
 }
 
-html.js-mobile [data-aos],
-html.no-mutationobserver [data-aos],
-html.no-js [data-aos],
-html.no-cssanimations [data-aos] {
-	animation: none !important;
+[data-sreveal="trigger"] {
+  visibility: visible;
 }
-
-
-/*----------  Scroll Reveal  ----------*/
-// html.js.mutationobserver.cssanimations:not(.js-mobile) [data-sreveal],
-// html.js.mutationobserver.cssanimations:not(.js-mobile) .sreveal {
-// 	// @include animation-name( none );
-// 	visibility: hidden !important;
-// 	&.animated {
-// 		visibility: visible !important;
-// 	}
-// }
-
-
-/*----------  Swiper Arrow Navigation  ----------*/
-// .swiper-arrow-navigation {
-// 	.btn {
-// 		color: #000;
-// 		position: absolute;
-// 		@include transition( .2s ease-in-out );
-// 		&.swiper-button-disabled {
-// 			opacity: .4;
-// 			pointer-events: none;
-// 		}
-// 		&:after {
-// 			@include icon-font-properties;
-// 			content: '';
-// 			display: block;
-// 			font-size: rem-calc(36px);
-// 		}
-// 		&:hover {
-// 			&:after {
-// 				//@include animation( leftRightBounce 1s infinite );
-// 			}
-// 		}
-// 	}
-// 	.btn-next {
-// 		right: rem-calc(15px);
-// 		&:before {
-// 			left: 0;
-// 			transform: translateX( -100% );
-// 		}
-// 		&:after {
-// 			content: $i-arrow-right;
-// 		}
-// 	}
-// 	.btn-prev {
-// 		left: rem-calc(15px);
-// 		&:before {
-// 			right: 0;
-// 			transform: translateX( 100% );
-// 		}
-// 		&:after {
-// 			content: $i-arrow-left;
-// 		}
-// 	}
-// 	@include media-breakpoint-up( sm ) {
-// 		.btn {
-// 			&:after {
-// 				font-size: rem-calc(60px);
-// 			}
-// 		}
-// 	}
-// }
-
-/*----------  Slick Dots  ----------*/
-// .slick-dots {
-// 	@include list-unstyled;
-// 	li {
-// 		display: inline-block;
-// 		margin: 0 rem-calc(10px) 0 0;
-// 		position: relative;
-// 		&.slick-active {
-// 			button {
-// 				background-color: #fff;
-// 			}
-// 		}
-// 	}
-// 	button {
-// 		@include btn;
-// 		@include text-hide;
-// 		background-color: rgba(255,255,255,.5);
-// 		width: rem-calc(10px);
-// 		height: rem-calc(10px);
-// 		border-radius: 50%;
-// 	}
-// }

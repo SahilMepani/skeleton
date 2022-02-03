@@ -19,6 +19,10 @@ require_once( get_template_directory() . '/functions/security.php' );
 // only if amp plugin available
 // require_once( get_template_directory() . '/functions/amp.php' );
 
+// Limit WP Revisions
+////////////////////////////////////////////////
+define('WP_POST_REVISIONS', 5);
+
 
 // Register menus
 ////////////////////////////////////////////////

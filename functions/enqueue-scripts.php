@@ -31,17 +31,10 @@ function skel_enqueue_scripts() {
   // load style-rtl for rtl languages
   wp_style_add_data( 'skeleton-style', 'rtl', 'replace' );
 
-  wp_enqueue_script(
-    'modernizr',
-    get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js'
-  );
-
-  wp_enqueue_script(
-    'match-height',
-    get_template_directory_uri() . '/js/vendor/match-height.js',
-    array('jquery'),
-    filemtime( get_template_directory() . '/js/vendor/match-height.js' ),
-  );
+  // wp_enqueue_script(
+  //   'modernizr',
+  //   get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js'
+  // );
 
   // wp_enqueue_script(
   //   'ua-parser',
@@ -56,13 +49,13 @@ function skel_enqueue_scripts() {
     true
   );
 
-  // wp_enqueue_script(
-  //   'custom',
-  //   get_template_directory_uri() . '/js/custom.js',
-  //   array('jquery', 'plugins'),
-  //   filemtime( get_template_directory() . '/js/custom.js' ),
-  //   true
-  // );
+  wp_enqueue_script(
+    'match-height',
+    get_template_directory_uri() . '/js/vendor/match-height.js',
+    array('jquery'),
+    filemtime( get_template_directory() . '/js/vendor/match-height.js' ),
+    true
+  );
 
   // localize scripts
   // wp_localize_script(

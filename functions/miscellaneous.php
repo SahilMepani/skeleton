@@ -268,7 +268,7 @@ add_filter( 'wp_default_scripts', 'dequeue_jquery_migrate' );
 function skel_defer_scripts( $tag, $handle, $src ) {
   $defer = array(
     'plugins',
-    'custom',
+    'match-height'
   );
   if ( in_array( $handle, $defer ) ) {
      return '<script src="' . $src . '" defer="defer" type="text/javascript"></script>' . "\n";

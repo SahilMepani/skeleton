@@ -23,7 +23,7 @@
 }
 
 // Required
-/* ========================================== */
+////////////////////////////////////////////////
 @mixin swiper-cards-overflow-down( $breakpoint ) {
   @include media-breakpoint-down( $breakpoint ) {
     // section
@@ -44,7 +44,8 @@
     .swiper {
       // show atleast (padding-right-value) of last card on the right
       // it will add (padding-right-value) extra scrolling space on the right
-      padding-right: 10vw;
+      padding-right: rem-calc( 30px ); // important to add 0 or any other value
+      // max-width: 80vw;
     }
   }
 }

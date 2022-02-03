@@ -123,6 +123,7 @@ dd,
 pre,
 blockquote,
 address {
+  font-size: $font-size-base; // required for backend
   margin: 0 0 $paragraph-margin-bottom;
 }
 

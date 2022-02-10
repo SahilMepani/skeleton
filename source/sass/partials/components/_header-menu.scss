@@ -18,43 +18,45 @@
 /*==============================
 =            Mobile            =
 ==============================*/
-$mobile-sidebar-bg-color: #ddd;
+$mobile-sidebar-bg-color: $teal;
 /*----------  Parent Menu  ----------*/
 $mobile-parent-menu-item-border-bottom: rem-calc(1px) solid rgba(0,0,0,.1);
 $mobile-parent-menu-link-bg-color: transparent;
-$mobile-parent-menu-link-color: #000;
+$mobile-parent-menu-link-color: $green;
 $mobile-parent-menu-link-hover-bg-color: rgba(0,0,0,.1);
-$mobile-parent-menu-link-hover-color: #000;
-$mobile-parent-menu-item-padding-y: 1.3rem;
-$mobile-parent-menu-item-padding-x: 2rem;
-$mobile-parent-menu-current-item-link-bg-color: red;
+$mobile-parent-menu-link-hover-color: $green;
+$mobile-parent-menu-item-font-size: rem-calc( 24px );
+$mobile-parent-menu-item-padding-y: rem-calc( 13px );
+$mobile-parent-menu-item-padding-x: rem-calc( 20px );
+$mobile-parent-menu-current-item-link-bg-color: $green;
 $mobile-parent-menu-current-item-link-color: #fff;
-$mobile-parent-menu-dropdown-bg-color: #fff;
-$mobile-parent-menu-dropdown-icon-color: #000;
+$mobile-parent-menu-dropdown-bg-color: darken($teal,5%);
+$mobile-parent-menu-dropdown-icon-color: $green;
 $mobile-parent-menu-dropdown-hover-bg-color: #fff;
-$mobile-parent-menu-dropdown-hover-icon-color: red;
+$mobile-parent-menu-dropdown-hover-icon-color: $green;
 /* Sub Menu */
-$mobile-sub-menu-font-size: 1rem;
-$mobile-sub-menu-bg-color: #fff;
+$mobile-sub-menu-font-size: rem-calc( 18px );
+$mobile-sub-menu-bg-color: darken($teal,5%);
 $mobile-sub-menu-link-bg-color: transparent;
 $mobile-sub-menu-link-hover-bg-color: rgba(0,0,0,.05);
-$mobile-sub-menu-link-color: #666;
+$mobile-sub-menu-link-color: $green;
 $mobile-sub-menu-link-hover-color: #000;
 $mobile-sub-menu-link-padding-y: rem-calc(13px);
-$mobile-sub-menu-link-padding-x: $mobile-parent-menu-item-padding-x; //usually this is same as parent menu
+$mobile-sub-menu-link-padding-x: rem-calc( 20px ); //usually this is same as parent menu
+
 
 .header-nav {
-  @include media-breakpoint-down( md ) {
+  @include media-breakpoint-down( lg ) {
     background-color: $mobile-sidebar-bg-color;
     width: 100%;
-    padding: rem-calc(50px) 0 rem-calc(40px);
+    padding: rem-calc(90px) 0 rem-calc(40px);
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
-    z-index: 99;
+    z-index: 9999;
     overflow: auto;
-    overscroll-behavior-y: contain; // avoid scroll chaining
+    overscroll-behavior: contain; // avoid scroll chaining
     transform: translateX(-100%);
     transition: 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946);
     &.js-active {
@@ -65,19 +67,17 @@ $mobile-sub-menu-link-padding-x: $mobile-parent-menu-item-padding-x; //usually t
 }
 
 .header-nav-parent-menu {
-  @include media-breakpoint-down( md ) {
+  @include media-breakpoint-down( lg ) {
     > li {
-      border-bottom: $mobile-parent-menu-item-border-bottom;
       > a {
         background-color: $mobile-parent-menu-link-bg-color;
         color: $mobile-parent-menu-link-color;
-        font-size: rem-calc(14px);
-        font-weight: 700;
-        letter-spacing: rem-calc(2px);
+        text-align: center;
+        font-size: $mobile-parent-menu-item-font-size;
         display: block;
         padding: $mobile-parent-menu-item-padding-y $mobile-parent-menu-item-padding-x;
-        text-transform: uppercase;
         text-decoration: none;
+        position: relative;
         &:hover, &:focus {
           background: $mobile-parent-menu-link-hover-bg-color;
           color: $mobile-parent-menu-link-hover-color;
@@ -90,6 +90,7 @@ $mobile-sub-menu-link-padding-x: $mobile-parent-menu-item-padding-x; //usually t
       background: $mobile-parent-menu-current-item-link-bg-color;
       color: $mobile-parent-menu-current-item-link-color;
     }
+    // Submenu
     > li.menu-item-has-children {
       position: relative;
       &:hover, &:focus {
@@ -108,7 +109,13 @@ $mobile-sub-menu-link-padding-x: $mobile-parent-menu-item-padding-x; //usually t
           top: 0;
           right: 0;
           bottom: 0;
-          &:after {
+          &.js-active {
+            &::after {
+              border-top-width: 0;
+              border-bottom-color: $mobile-parent-menu-dropdown-icon-color;
+            }
+          }
+          &::after {
             content: '';
             border: rem-calc(8px) solid transparent;
             border-left-width: rem-calc(6px);
@@ -121,7 +128,7 @@ $mobile-sub-menu-link-padding-x: $mobile-parent-menu-item-padding-x; //usually t
             margin-left: rem-calc(-6px);
           }
           &:hover, &:focus {
-            background: $mobile-parent-menu-dropdown-hover-bg-color;
+            // background: $mobile-parent-menu-dropdown-hover-bg-color;
             &:after {
               border-top-color: $mobile-parent-menu-dropdown-hover-icon-color;
             }
@@ -133,7 +140,7 @@ $mobile-sub-menu-link-padding-x: $mobile-parent-menu-item-padding-x; //usually t
 }
 
 .header-nav .sub-menu {
-  @include media-breakpoint-down( md ) {
+  @include media-breakpoint-down( lg ) {
     background: $mobile-sub-menu-bg-color;
     height: 0;
     visibility: hidden;
@@ -141,16 +148,19 @@ $mobile-sub-menu-link-padding-x: $mobile-parent-menu-item-padding-x; //usually t
       height: auto;
       visibility: visible;
     }
+    .sub-menu {
+      background-color: #fff;
+    }
     > li {
+      text-align: center;
       > a {
         background-color: $mobile-sub-menu-link-bg-color;
         color: $mobile-sub-menu-link-color;
-        font-size: rem-calc(14px);
-        font-weight: 700;
+        font-size: $mobile-sub-menu-font-size;
         letter-spacing: rem-calc(1px);
         text-transform: uppercase;
         display: block;
-        // padding: $mobile-sub-menu-link-padding-y $mobile-sub-menu-link-padding-x $mobile-sub-menu-link-padding-y ($mobile-sub-menu-link-padding-x + 15px);
+        padding: $mobile-sub-menu-link-padding-y $mobile-sub-menu-link-padding-x;
         text-decoration: none;
         &:hover, &:focus {
           background: $mobile-sub-menu-link-hover-bg-color;
@@ -165,44 +175,48 @@ $mobile-sub-menu-link-padding-x: $mobile-parent-menu-item-padding-x; //usually t
 =            Desktop            =
 ===============================*/
 /*----------  Parent Menu  ----------*/
-$desktop-parent-menu-link-bg-color: #eee;
+$desktop-parent-menu-link-bg-color: #ccc;
 $desktop-parent-menu-link-color: #000;
-$desktop-parent-menu-link-hover-bg-color: #ddd;
-$desktop-parent-menu-link-hover-color: #000;
+$desktop-parent-menu-link-hover-bg-color: green;
+$desktop-parent-menu-link-hover-color: #fff;
 $desktop-parent-menu-item-padding-y: rem-calc( 15px );
 $desktop-parent-menu-item-padding-x: rem-calc( 20px );
 $desktop-parent-menu-current-item-link-bg-color: red;
 $desktop-parent-menu-current-item-link-color: #fff;
 $desktop-parent-menu-dropdown-icon-color: #999;
+$desktop-parent-menu-dropdown-icon-hover-color: #fff;
 $desktop-parent-menu-dropdown-icon-border: rem-calc( 5px );
 $desktop-parent-menu-space-between-text-and-arrow: rem-calc( 10px );
 /*----------  Sub Menu  ----------*/
-$desktop-sub-menu-width: rem-calc( 300px );
-$desktop-sub-menu-link-bg-color: red;
-$desktop-sub-menu-link-color: #333;
-$desktop-sub-menu-link-hover-bg-color: shade(red,10%);
-$desktop-sub-menu-link-hover-color: $desktop-sub-menu-link-color; //if this is changed there is some transition bug
-$desktop-sub-menu-current-item-link-bg-color: shade(red,20%);
-$desktop-sub-menu-current-item-link-color: transparent; //if this is changed there is some transition bug
-$desktop-sub-menu-font-size: rem-calc( 10px );
-$desktop-sub-menu-link-padding-y: rem-calc( 8px );
-$desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; //usually this is same as parent menu
-$desktop-sub-menu-link-height: rem-calc( 36px ); //req for animation, manually calculate usually font height(not size) + padding-top and bottom.
+$desktop-sub-menu-width: rem-calc( 250px );
+$desktop-sub-menu-link-bg-color: green;
+$desktop-sub-menu-link-color: #fff;
+$desktop-sub-menu-link-hover-bg-color: darken($desktop-sub-menu-link-bg-color,10%);
+$desktop-sub-menu-link-hover-color: $desktop-sub-menu-link-color;
+$desktop-sub-menu-current-item-link-bg-color: darken($desktop-sub-menu-link-bg-color,20%);
+$desktop-sub-menu-current-item-link-color: transparent;
+$desktop-sub-menu-font-size: rem-calc( 16px );
+$desktop-sub-menu-link-padding-y: rem-calc( 12px );
+$desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usually this is same as parent menu
 
+// Desktop Parent Menu
+////////////////////////////////////////////////
 .header-nav-parent-menu {
   @include media-breakpoint-up( lg ) {
     > li {
       float: left;
       margin-right: rem-calc( 5px );
+      &:hover, &:focus {
+        > a {
+          background-color: $desktop-parent-menu-link-hover-bg-color;
+          color: $desktop-parent-menu-link-hover-color;
+        }
+      }
       > a {
         background-color: $desktop-parent-menu-link-bg-color;
         color: $desktop-parent-menu-link-color;
         display: block;
         padding: $desktop-parent-menu-item-padding-y $desktop-parent-menu-item-padding-x;
-        &:hover, &:focus {
-          background-color: $desktop-parent-menu-link-hover-bg-color;
-          color: $desktop-parent-menu-link-hover-color;
-        }
       }
     }
     > li.current-page-ancestor > a,
@@ -223,53 +237,91 @@ $desktop-sub-menu-link-height: rem-calc( 36px ); //req for animation, manually c
           top: 50%;
           right: $desktop-parent-menu-item-padding-y;
           margin-top: rem-calc( -2px );
+          transition: $btn-transition;
         }
       }
       &:hover, &:focus {
         > a {
           color: $desktop-parent-menu-link-hover-color;
-        }
-        .sub-menu {
-          > li {
-            > a {
-              visibility: visible;
-              color: $desktop-sub-menu-link-color;
-              height: $desktop-sub-menu-link-height;
-              padding-top: $desktop-sub-menu-link-padding-y;
-              padding-bottom: $desktop-sub-menu-link-padding-y;
-              &:hover, &:focus {
-                background-color: $desktop-sub-menu-link-hover-bg-color;
-                color: $desktop-sub-menu-link-hover-color;
-              }
-            }
+          &:after {
+            border-top-color: $desktop-parent-menu-dropdown-icon-hover-color;
           }
         }
       }
     }
-  }
-}
-
-.header-nav .sub-menu {
-  @include media-breakpoint-up( lg ) {
-    width: $desktop-sub-menu-width;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 99;
-    > li {
-      line-height: 1.3;
-      > a {
-        visibility: hidden;
-        background-color: $desktop-sub-menu-link-bg-color;
-        color: transparent;
-        display: block;
-        height: 0;
-        padding: 0 $desktop-sub-menu-link-padding-x;
+    li.menu-item-has-children {
+      &:hover, &focus {
+        > .sub-menu {
+          visibility: visible;
+          opacity: 1;
+          pointer-events: auto;
+          z-index: 10;
+        }
       }
     }
-    > li.current-menu-item > a {
-      background-color: $desktop-sub-menu-current-item-link-bg-color;
-      color: $desktop-sub-menu-current-item-link-color;
+  } // breakpoint
+}
+
+// Desktop Sub Menu
+////////////////////////////////////////////////
+.header-nav-parent-menu  {
+  @include media-breakpoint-up( lg ) {
+    .sub-menu {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      z-index: -1;
+      width: $desktop-sub-menu-width;
+      position: absolute;
+      transition: $btn-transition, opacity .15s;
+      > li {
+        line-height: 1.3;
+        &:hover, &:focus {
+          > a {
+            background-color: $desktop-sub-menu-link-hover-bg-color;
+            color: $desktop-sub-menu-link-hover-color;
+          }
+        }
+        > a {
+          background-color: $desktop-sub-menu-link-bg-color;
+          font-size: $desktop-sub-menu-font-size;
+          color: $desktop-sub-menu-link-color;
+          display: block;
+          padding: $desktop-sub-menu-link-padding-y $desktop-sub-menu-link-padding-x;
+          border-bottom: rem-calc( 1px ) solid desaturate(green,20%);
+        }
+      }
+      > li.current-menu-item > a {
+        background-color: $desktop-sub-menu-current-item-link-bg-color;
+        color: $desktop-sub-menu-current-item-link-color;
+      }
+    }
+    // first sub menu
+    > li > .sub-menu {
+      top: 100%;
+      left: 0;
+      > li.menu-item-has-children > a {
+        padding-right: $desktop-parent-menu-item-padding-y + $desktop-parent-menu-dropdown-icon-border + $desktop-parent-menu-dropdown-icon-border + $desktop-parent-menu-space-between-text-and-arrow; //chevron icon
+        position: relative;
+        &:after {
+          content: '';
+          border: $desktop-parent-menu-dropdown-icon-border solid transparent;
+          border-left-color: $desktop-parent-menu-dropdown-icon-hover-color;
+          position: absolute;
+          top: $desktop-parent-menu-item-padding-x;
+          right: $desktop-parent-menu-item-padding-y;
+          transition: $btn-transition;
+          margin-top: rem-calc( -4px );
+        }
+      }
+    }
+    // second sub menu
+    .sub-menu .sub-menu {
+      min-width: $desktop-sub-menu-width;
+      width: fit-content;
+      max-width: 40vw;
+      top: 0;
+      left: $desktop-sub-menu-width;
     }
   }
 }

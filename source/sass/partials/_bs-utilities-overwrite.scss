@@ -1,4 +1,15 @@
 $utilities_overwrite: (
+  "font-weight": (
+    property: font-weight,
+    class: fw,
+    values: (
+      lighter: 300,
+      normal: 400,
+      medium: 500,
+      semibold: 600,
+      bold: 700,
+    )
+  ),
   "width": (
     property: width,
     class: w,

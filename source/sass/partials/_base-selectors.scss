@@ -19,15 +19,23 @@
   border-radius: 100vw;
 }
 
-html {
-  // @include fluid( font-size, $scaling, $four-k, $font-size-root, $font-size-root * 2.4, true, false );
+:root {
+  @include fluid( font-size, $scaling, $four-k, $font-size-root, $font-size-root * 2.4, true, false );
   // @include fluid( font-size, $mobile, $scaling, $font-size-root, $font-size-root, false, false ); // scale down
+}
+
+html {
+  // same as NON-FIXED header height
+  // Do not use sreveal on header with this
+  // scroll-padding-top: rem-calc( 100px ); //
 }
 
 body {
   .no-touchevents &.js-popup-active {
     overflow-y: hidden;
-    padding-right: rem-calc( 10px ); // make the space for hidden scrollbar on body
+    // make the space for hidden scrollbar on body
+    // same as width set for custom scrollbar
+    padding-right: rem-calc( 10px );
   }
   &.body-overflow-hidden {
     overflow-y: hidden;

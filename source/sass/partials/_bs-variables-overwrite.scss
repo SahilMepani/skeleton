@@ -36,6 +36,7 @@ $teal:    #20c997 !default;
 $cyan:    #0dcaf0 !default;
 
 // General theme colors - update/delete as per project
+$body : $gray-600;
 $primary   : $blue;
 $secondary : $gray-600;
 $success   : $green;
@@ -59,6 +60,7 @@ $theme-colors: (
   "teal" : $teal,
   "cyan" : $cyan,
   // ....
+  "body"   : $body,
   "primary"   : $primary,
   "secondary" : $secondary,
   "success"   : $success,
@@ -78,7 +80,7 @@ $link-hover-color      : shift-color($link-color, $link-shade-percentage);
 $link-hover-decoration : null;
 
 // Settings for the `<body>` element.
-$body-color : $gray-600;
+$body-color : $body;
 $body-bg    : $white;
 
 // Paragraphs
@@ -229,14 +231,15 @@ $line-height-lg   : 1.55; // used for paragraph and other block level elements
 
 // have to set it again to use the updated values from top
 // generate fs-* classes
-$font-sizes: (
-  1: $h1-font-size,
-  2: $h2-font-size,
-  3: $h3-font-size,
-  4: $h4-font-size,
-  5: $h5-font-size,
-  6: $h6-font-size
-);
+$font-sizes: false;
+// UP OR $font-sizes: (
+//   1: $h1-font-size,
+//   2: $h2-font-size,
+//   3: $h3-font-size,
+//   4: $h4-font-size,
+//   5: $h5-font-size,
+//   6: $h6-font-size
+// );
 
 $headings-margin-bottom:      $spacer / 2;
 $headings-font-family:        null;
@@ -246,19 +249,19 @@ $headings-font-style:         null;
 $headings-color:              null;
 
 // uncomment to not display font sizes
-// $display-font-sizes: null;
+$display-font-sizes: null;
 
 // only if you want to use display font sizes
 // generate display-* classes
 // cannot use rem-calc()
-$display-font-sizes: (
-  1: 5rem,
-  2: 4.5rem,
-  3: 4rem,
-  4: 3.5rem,
-  5: 3rem,
-  6: 2.5rem
-);
+// $display-font-sizes: (
+//   1: 5rem,
+//   2: 4.5rem,
+//   3: 4rem,
+//   4: 3.5rem,
+//   5: 3rem,
+//   6: 2.5rem
+// );
 
 // $display-font-weight: 300 ;
 // $display-line-height: $headings-line-height;

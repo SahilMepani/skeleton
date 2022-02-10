@@ -1,3 +1,7 @@
+.btn {
+	@include btn;
+}
+
 // .btn-sm {
 //   @include btn-sm;
 // }
@@ -10,10 +14,19 @@
 //   @include btn-lg;
 // }
 
-// .btn-input-clone {
-//   @include btn-input-clone( transparent );
-// }
+.btn-input-clone {
+  @include btn-input-clone( transparent );
+}
 
-// .btn-disabled {
-//   @include btn-disabled;
+.btn-reset {
+  @include btn-reset;
+}
+
+.btn-rarr {
+  @include btn-rarr;
+}
+
+
+// &.disabled {
+//   // Already avaiable in bootstrap by default
 // }

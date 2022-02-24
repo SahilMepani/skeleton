@@ -325,11 +325,3 @@ $aos-easing: (
   transition-duration: 300;
   transform: translate3d(0, -30rem, 0);
 }
-
-// Required for backend
-////////////////////////////////////////////////
-.acf-block-preview [data-aos]:not(.aos-stagger-item), .acf-block-preview .aos-stagger-item.swiper-slide {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-}

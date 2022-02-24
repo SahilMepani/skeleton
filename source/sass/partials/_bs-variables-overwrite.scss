@@ -88,6 +88,9 @@ $body-bg    : $white;
 // Style p element.
 $paragraph-margin-bottom: 3rem;
 
+// should be defined in this file
+$container-padding-x: 2.5rem; // cannot be less than $grid gutter one side, this size works best on mobile
+
 // This variable affects the `.pt-*` and `.mb-*` classes etc.
 $spacer: 3rem; // used on many other components
 $spacers : (
@@ -197,8 +200,6 @@ $grid-gutter-width : 3rem; // gets divided by 2 for each side
 // $grid-row-columns:            6;
 
 
-// should be defined in this file
-$container-padding-x: 2rem; // cannot be less than $grid gutter one side
 
 
 $gutters: $negative-and-gutter-spacers;

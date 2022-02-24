@@ -1,64 +1,5 @@
 <?php
 
-// -- Enable Align wide
-// add_theme_support( 'align-wide' );
-
-// -- Custom Color Pallette
-// add_theme_support( 'editor-color-palette', array(
-//   array(
-//     'name' => __( 'Dark Blue', 'skel' ),
-//     'slug' => 'dark-blue',
-//     'color' => '#221a3e',
-//   ),
-//   array(
-//     'name' => __( 'Blue', 'skel' ),
-//     'slug' => 'Blue',
-//     'color' => '#45367d',
-//   ),
-//   array(
-//     'name' => __( 'Dark gray', 'skel' ),
-//     'slug' => 'dark-gray',
-//     'color' => '#626262',
-//   ),
-//   array(
-//     'name' => __( 'Golden', 'skel' ),
-//     'slug' => 'golden',
-//     'color' => '#d2b66f',
-//   ),
-//   array(
-//     'name' => __( 'Gray', 'skel' ),
-//     'slug' => 'gray',
-//     'color' => '#c2c2c7',
-//   ),
-//   array(
-//     'name' => __( 'Light Gray', 'skel' ),
-//     'slug' => 'gray',
-//     'color' => '#e3e2e8',
-//   ),
-// ) );
-
-// -- Custom Font Sizes
-// add_theme_support( 'editor-font-sizes', array(
-//   array(
-//     'name'      => __( 'Small', 'skel' ),
-//     'shortName' => __( 'S', 'skel' ),
-//     'size'      => 12,
-//     'slug'      => 'small'
-//   ),
-//   array(
-//     'name'      => __( 'Normal', 'skel' ),
-//     'shortName' => __( 'M', 'skel' ),
-//     'size'      => 16,
-//     'slug'      => 'normal'
-//   ),
-//   array(
-//     'name'      => __( 'Large', 'skel' ),
-//     'shortName' => __( 'L', 'skel' ),
-//     'size'      => 20,
-//     'slug'      => 'large'
-//   ),
-// ) );
-
 // When set, users will be restricted to the default sizes provided in the block editor or the sizes provided via the editor-font-sizes theme support setting.
 add_theme_support( 'disable-custom-font-sizes' );
 
@@ -98,12 +39,11 @@ add_action( 'enqueue_block_editor_assets', 'skel_gutenberg_scripts' );
 
 
 // -- Load custom css in editor
-function skel_editor_css() {
-  ?>
+function skel_editor_css() { ?>
     <style type="text/css">
     /* change the root font size as all selector values are rem unit */
-      html {
-        font-size: 10px;
+    html {
+      font-size: 10px;
     }
     /* change editor post title height */
     textarea#post-title-0 {
@@ -111,9 +51,9 @@ function skel_editor_css() {
     }
     /* change the font styles as per project */
     #editorcontainer #content, #wp_mce_fullscreen, textarea.wp-editor-area, .block-editor-writing-flow {
-        font-family: 'titling-gothic-fb', sans-serif; /* this font should be imported editor-style.css */
-      font-size: 1.6rem;
-      line-height: 1.7;
+        font-family: 'FSSiena', $font-family-sans-serif; /* this font should be imported editor-style.css */
+      font-size: 1.8rem;
+      line-height: 1.55;
     }
     .acf-block-preview p,
     .acf-block-preview table,
@@ -124,7 +64,7 @@ function skel_editor_css() {
     .acf-block-preview pre,
     .acf-block-preview blockquote,
     .acf-block-preview address {
-      font-size: 1.6rem !important;
+      font-size: 1.8rem !important;
     }
     /* Increase block editor sidebar */
     .edit-post-layout.is-sidebar-opened .edit-post-layout__content {
@@ -144,6 +84,22 @@ function skel_editor_css() {
     /* Width of "full-wide" blocks */
     .wp-block[data-align="full"] {
         max-width: none;
+    }
+    /* Overwrites */
+    .acf-tab-group li {
+      margin-bottom: 0 !important;
+    }
+    /* Overwrite sreveal visibility hidden to visible */
+    .sreveal-stagger-item, [data-sreveal] {
+      visibility: visible !important;
+    }
+    .swiper-slide.wait-for-sreveal .aos-stagger-item,
+    .swiper-slide.wait-for-sreveal [data-aos],
+    .swiper-wrapper[data-sreveal="trigger"] .aos-stagger-item,
+    .swiper-wrapper[data-sreveal="trigger"] [data-aos] {
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
     }
   </style>
     <?php

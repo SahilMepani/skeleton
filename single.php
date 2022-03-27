@@ -34,8 +34,6 @@
               <p class="tags"> <?php the_tags( '<b>Tags:</b> ', ', ', '' ); ?> </p>
             <?php } ?>
 
-            <div class="js-socials-share margin-top-3"></div>
-
           </article> <!-- .type-post -->
 
           <div class="author-box">

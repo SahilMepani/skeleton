@@ -78,7 +78,8 @@ function skel_build_taxonomies() {
 			'public'            => true,
 			'show_ui'           => true,
 			'hierarchical'      => true,
-			'show_admin_column' => true
+			'show_admin_column' => true,
+			'show_in_rest' => true
 			//'rewrite'    => array( 'slug' => 'custom_post_type', 'with_front' => false ) //this will enable the url to be custom_post_type/term instead of taxonomy/term
 		)
 	);
@@ -110,7 +111,8 @@ function skel_build_taxonomies() {
 			'public'            => true,
 			'show_ui'           => true,
 			'hierarchical'      => true,
-			'show_admin_column' => true
+			'show_admin_column' => true,
+			'show_in_rest' => true
 			//'rewrite'    => array( 'slug' => 'custom_post_type', 'with_front' => false ) //this will enable the url to be custom_post_type/term instead of taxonomy/term
 		)
 	);

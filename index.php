@@ -3,10 +3,51 @@
 <section class="py-xs-2 py-4">
 	<div class="container">
 
-		<div class="d-sm-flex mx-sm-n1 mx-md-n1-5">
+		<div class="row">
 
-			<div class="filters__item--search flex-fill px-sm-1 px-md-1-5 mb-1-5">
-				<h5>Search</h5>
+			<div class="filters__item--select col-sm-4">
+				<div class="custom-select-block">
+					<select id="ajax-filter-cat">
+						<option data-cpt="post" data-tax="category" data-term="">
+							<?php _e('Show All Categories','skel'); ?>
+						</option>
+						<?php
+							$cats_args = array(
+								'taxonomy' => 'insight-category',
+							);
+							$cats = get_categories( $cats_args );
+							foreach ( $cats as $cat ) :
+						?>
+							<option data-cpt="post" data-tax="insight-category" data-term="<?php echo $cat->slug; ?>">
+								<?php echo $cat->name; ?>
+							</option>
+						<?php endforeach; ?>
+					</select>
+				</div> <!-- .custom-select-block -->
+			</div> <!-- .filters__item-select -->
+
+			<div class="filters__item--select col-sm-4">
+				<div class="custom-select-block">
+					<select id="ajax-filter-cat">
+						<option data-cpt="post" data-tax="category" data-term="">
+							<?php _e('Show All Topics','skel'); ?>
+						</option>
+						<?php
+							$cats_args = array(
+								'taxonomy' => 'insight-topic',
+							);
+							$cats = get_categories( $cats_args );
+							foreach ( $cats as $cat ) :
+						?>
+							<option data-cpt="post" data-tax="insight-topic" data-term="<?php echo $cat->slug; ?>">
+								<?php echo $cat->name; ?>
+							</option>
+						<?php endforeach; ?>
+					</select>
+				</div> <!-- .custom-select-block -->
+			</div> <!-- .filters__item-select -->
+
+			<div class="filters__item--search col-sm-4">
 				<form action="<?php echo home_url(); ?>/" method="get" id="ajax-search-post" data-cpt="post" data-tax="category">
 					<input type="search" name="s" placeholder="Search for" class="input-search w-100" />
 					<div id="ajax-submit-block" class="submit-block">
@@ -24,29 +65,7 @@
 				</form>
 			</div> <!-- .filters__item-search -->
 
-			<div class="filters__item--select flex-fill px-sm-1 px-md-1-5">
-				<h5>Filter</h5>
-				<div class="custom-select-block">
-					<select id="ajax-filter-cat">
-						<option data-cpt="post" data-tax="category" data-term="">
-							<?php _e('Show All Categories','skel'); ?>
-						</option>
-						<?php
-							$cats_args = array(
-								'taxonomy' => 'category',
-							);
-							$cats = get_categories( $cats_args );
-							foreach ( $cats as $cat ) :
-						?>
-							<option data-cpt="post" data-tax="category" data-term="<?php echo $cat->slug; ?>">
-								<?php echo $cat->name; ?>
-							</option>
-						<?php endforeach; ?>
-					</select>
-				</div> <!-- .custom-select-block -->
-			</div> <!-- .filters__item-select -->
-
-		</div> <!-- .filters -->
+		</div> <!-- .row -->
 
 	</div> <!-- .container -->
 </section>
@@ -62,7 +81,7 @@
 			$posts_per_page = 6;
 			$unseen_post_count = $total_post_count - $posts_per_page; // posts not seen
 			query_posts( $query_string . '&posts_per_page=' . $posts_per_page . '&post_status=publish' );
-			echo $total_post_count;
+			// echo $total_post_count;
 			$post_count = $wp_query->post_count; // updated query posts count
 			if ( is_category() ) {
 				$term = get_query_var( 'cat' );
@@ -127,8 +146,10 @@
 
 			<div class="clear">
 				<h4 id="alert-no-data" class="d-none">Sorry, there are no available post matching your filters.</h4>
-				<button id="ajax-more-post" data-cpt="post" data-tax="category" class="<?php echo ($total_post_count <= $posts_per_page) ? 'btn-disabled' : ''; ?> btn btn-black btn-md">Load More</button>
 			</div>
+			<div class="d-flex justify-content-center">
+				<button id="ajax-more-post" data-cpt="post" data-tax="category" class="<?php echo ($total_post_count <= $posts_per_page) ? 'btn-disabled' : ''; ?> btn btn-black btn-md">Load More</button>
+			</div> <!-- .d-flex justify-content-center -->
 		</div> <!-- .text-center -->
 
 	</div> <!-- .container -->

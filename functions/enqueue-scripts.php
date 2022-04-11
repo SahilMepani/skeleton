@@ -23,9 +23,7 @@ function skel_enqueue_scripts() {
 
   wp_enqueue_style(
     'skeleton-style',
-    get_stylesheet_uri(),
-    array(),
-    filemtime( get_template_directory() . '/style.css' )
+    get_stylesheet_uri() . '?v' . filemtime( get_template_directory() . '/style.css' )
   );
 
   // load style-rtl for rtl languages
@@ -44,9 +42,9 @@ function skel_enqueue_scripts() {
 
   wp_enqueue_script(
     'plugins',
-    get_template_directory_uri() . '/js/plugins.js',
+    get_template_directory_uri() . '/js/plugins.js' . '?v' . filemtime( get_template_directory() . '/js/plugins.js' ),
     array('jquery'),
-    filemtime( get_template_directory() . '/js/plugins.js' ),
+    false,
     true
   );
 

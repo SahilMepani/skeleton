@@ -34,9 +34,15 @@ register_nav_menus(
   )
 );
 
-
 // Add except to page post type
+/* ========================================== */
 // add_post_type_support( 'page', 'excerpt' );
+
+
+// Enable featured images for all post types including custom
+////////////////////////////////////////////////
+// add_theme_support('post-thumbnails');
+
 
 /*=========================================
 =            Register sidebars            =

@@ -1,9 +1,18 @@
-::selection { background: $text-selection-bg-color; color: $text-selection-color; text-shadow: none; }
+:root {
+  --scrollbar-width: rem-calc( 10px );
+  @include fluid( font-size, $scaling, $four-k, $font-size-root, $font-size-root * 2.4, true, false );
+  // @include fluid( font-size, $mobile, $scaling, $font-size-root, $font-size-root, false, false ); // scale down
+}
+
+::selection { background: $text-selection-bg-color;
+  color: $text-selection-color;
+  text-shadow: none;
+}
 
 // Custom Scrollbars
 .no-touchevents body::-webkit-scrollbar {
-  width: rem-calc( 10px );
-  // height usedfor horizonal scrollbars
+  width: var(--scrollbar-width);
+  // height used for horizonal scrollbars
   // height: 1em;
 }
 
@@ -19,15 +28,10 @@
   border-radius: 100vw;
 }
 
-:root {
-  @include fluid( font-size, $scaling, $four-k, $font-size-root, $font-size-root * 2.4, true, false );
-  // @include fluid( font-size, $mobile, $scaling, $font-size-root, $font-size-root, false, false ); // scale down
-}
-
 html {
   // same as NON-FIXED header height
   // Do not use sreveal on header with this
-  // scroll-padding-top: rem-calc( 100px ); //
+  // scroll-padding-top: rem-calc( 100px ); // It will leave this space when scrolled using scroll snapping
 }
 
 body {
@@ -35,50 +39,44 @@ body {
     overflow-y: hidden;
     // make the space for hidden scrollbar on body
     // same as width set for custom scrollbar
-    padding-right: rem-calc( 10px );
+    padding-right: var(--scrollbar-width);
   }
   &.body-overflow-hidden {
     overflow-y: hidden;
   }
 }
 
-h1,
-.h1 {
+h1, .h1 {
   font-size: $h1-font-size;
   font-weight: 400;
   line-height: 1.2;
 }
 
-h2,
-.h2 {
+h2, .h2 {
   font-size: $h2-font-size;
   font-weight: 400;
   line-height: 1.2;
 }
 
-h3,
-.h3 {
+h3, .h3 {
   font-size: $h3-font-size;
   font-weight: 400;
   line-height: 1.2;
 }
 
-h4,
-.h4 {
+h4, .h4 {
   font-size: $h4-font-size;
   font-weight: 400;
   line-height: 1.2;
 }
 
-h5,
-.h5 {
+h5, .h5 {
   font-size: $h5-font-size;
   font-weight: 400;
   line-height: 1.2;
 }
 
-h6,
-.h6 {
+h6, .h6 {
   font-size: $h6-font-size;
   font-weight: 400;
   line-height: 1.2;
@@ -86,51 +84,21 @@ h6,
 
 
 /*----------  Content  ----------*/
-a,
-button,
-input[type='submit'],
-input[type='button'],
-input[type='reset'] {
-	transition: $btn-transition;
+a, button, input[type='submit'], input[type='button'], input[type='reset'] {
+  transition: $btn-transition;
 }
 
-p,
-table,
-ul,
-ol,
-dl,
-dd,
-pre,
-blockquote,
-address,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+p, table, ul, ol, dl, dd, pre, blockquote, address, h1, h2, h3, h4, h5, h6 {
   &:last-child {
     margin-bottom: 0;
   }
 }
 
-p,
-pre,
-blockquote,
-address,
-dd {
+p, pre, blockquote, address, dd {
   line-height: $line-height-lg;
 }
 
-p,
-table,
-ul,
-ol,
-dl,
-dd,
-pre,
-blockquote,
-address {
+p, table, ul, ol, dl, dd, pre, blockquote, address {
   font-size: $font-size-base; // required for backend
   margin: 0 0 $paragraph-margin-bottom;
 }
@@ -149,18 +117,14 @@ code {
 }
 
 /*----------  Lists  ----------*/
-ul,
-ol,
-dl {
+ul, ol, dl {
   padding: 0;
 }
 
-ul,
-ol {
+ul, ol {
   list-style-position: outside;
   margin-left: rem-calc( 20px );;
-  ul,
-  ol {
+  ul, ol {
     margin: 0;
     margin-top: rem-calc( 5px );
     margin-left: rem-calc( 40px );
@@ -226,31 +190,20 @@ form {
     border: 0;
   }
 
-  input[type="text"],
-  input[type="tel"],
-  input[type="url"],
-  input[type="number"],
-  input[type="password"],
-  input[type="email"],
-  input[type="range"],
-  input[type="file"],
-  input[type="date"],
-  input[type="search"],
-  textarea,
-  select {
+  input[type='text'], input[type='tel'], input[type='url'], input[type='number'], input[type='password'], input[type='email'], input[type='range'], input[type='file'], input[type='date'], input[type='search'], textarea, select {
     @include input-text;
     max-width: 100%;
   }
 
-  input[type="submit"] {
+  input[type='submit'] {
     background-color: #fff;
   }
 
-  input[type="search"] {
+  input[type='search'] {
     -webkit-appearance: none;
   }
 
-  input[type="date"] {
+  input[type='date'] {
     line-height: rem-calc( 32px );
   }
 
@@ -260,31 +213,27 @@ form {
     resize: vertical;
   }
 
-  input[type="checkbox"],
-  input[type="radio"] {
+  input[type='checkbox'], input[type='radio'] {
     margin: 0;
     margin-top: rem-calc( 4px );
     margin-right: rem-calc( 5px );
     line-height: normal;
   }
 
-  select[multiple],
-  select[size] {
+  select[multiple], select[size] {
     height: auto;
   }
 
-  input[type="file"] {
+  input[type='file'] {
     display: block;
   }
 
-  input[type="range"] {
+  input[type='range'] {
     display: block;
     width: 100%;
   }
 
-  input[type="file"]:focus,
-  input[type="radio"]:focus,
-  input[type="checkbox"]:focus {
+  input[type='file']:focus, input[type='radio']:focus, input[type='checkbox']:focus {
     outline: thin dotted;
     outline: rem-calc(5px) auto -webkit-focus-ring-color;
     outline-offset: rem-calc(-2px);
@@ -292,17 +241,10 @@ form {
 }
 
 /*----------  Miscellaneous  ----------*/
-img,
-iframe,
-svg {
+img, iframe, svg {
   max-width: 100%;
 }
 
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
+audio, canvas, iframe, img, svg, video {
   vertical-align: middle;
 }

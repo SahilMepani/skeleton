@@ -2,27 +2,30 @@
 
 # FINALIZE --- ✄ -----------------------:
   ☐ Check for PHP warnings or errors with debug to true or use Query monitor plugin
-  ☐ Redirect all CPT slug to plural URL and use custom template to list all CPT posts for eg. url.com/resource should be redirect to url.com/resources using Yoast SEO plugin
+  ☐ Activate "Redirection" plugin and redirect all CPT slug to plural URL and use custom template to list all CPT posts. Also click check for al logs include 404 and monitor all Post Types
+	☐ Activate "Admin columns" plugin and add slug as columns for all Post types
+  ☐ Activate "WebP express" plugin and copy the settings form DallahTrading
+	☐ Activate "Autoptimize" plugin and copy the settings from DallahTrading
+  ☐ Activate "Wordfence" security plugin and import settings using
+	8e6a436f1f47f5c500fc0a4f7885b5cbecb71bbe75b4abfb31b22d49643f8183cb2906d9f75e85fa073da4be9e79eaeed4fb0630d5765222902dbb8657457d44
+	☐ Activate "WP Hardened" plugin
   ☐ Make sure all the content is editable from backend, if not please mention
   ☐ Change WP_DEBUG variable to false in wp-config.php file in root
   ☐ Go to Settings -> Reading and Uncheck "Discourage search engine..."
   ☐ Check for any console errors on every page
-  ☐ Rebuild all the thunbnails
-  ☐ Optimize wp-content/uploads directory
-  ☐ Optimize database using "WP Optimize" plugin. Please take a backup
+	☐ Check for any PHP error using Query Monitor plugin
+  ☐ Please take a backup and Optimize database using "WP Optimize" plugin.
   ☐ Remove unwanted icons
   ☐ Remove unwanted/extra code from each file one by one
   ☐ Remove unwanted plugins
   ☐ Hide unwanted options from admin menu sidebar using "Admin menu editor" plugin
   ☐ Make the WP JPG resize quality filter percent to 70 if not planning to use Image Optimize plugin
-  ☐ If AOS added. Remove unwanted delay and duration CSS
   ☐ Setup SMTP for email delivery to Inbox
   ☐ Setup Google search console
   ☐ Remove unwanted keyframes
   ☐ Check 404
   ☐ Check Favicon
   ☐ Add Redirection from old site to new site using 301 redirects
-  ☐ Add Wordfence security plugin
 
   RESPONSIVE & CROSS BROWSER TESTING --- ✄ -----------------------
   WINDOWS --- ✄ -----------------------

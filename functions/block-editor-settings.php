@@ -45,6 +45,9 @@ function skel_editor_css() { ?>
     html {
       font-size: 10px;
     }
+		body#tinymce {
+			margin: 10px; /* required */
+		}
     /* change editor post title height */
     textarea#post-title-0 {
         height: 75px;

@@ -130,7 +130,6 @@ add_filter('wp_sitemaps_enabled', '__return_false');
 // }
 
 
-
 // Add attributes to enqueue styles
 ////////////////////////////////////////////////
 /* DO NOT USE with Autoptimizer or any contact plugin */
@@ -349,4 +348,15 @@ function skel_get_the_excerpt_more( $more ) {
 }
 add_filter('excerpt_more', 'skel_get_the_excerpt_more');
 
+// WPMDB License
+////////////////////////////////////////////////
+define( 'WPMDB_LICENCE', '0a991cb8-d833-41c9-a687-0de26793e53b' );
+
+// ACF License
+////////////////////////////////////////////////
+define( 'ACF_PRO_LICENSE', 'b3JkZXJfaWQ9OTYwMzN8dHlwZT1kZXZlbG9wZXJ8ZGF0ZT0yMDE2LTEyLTIxIDA1OjQyOjM4' );
+
+// Gravity Forms License
+////////////////////////////////////////////////
+define( 'GF_LICENSE_KEY', 'fb06d94365250fe255fc2fadeb4d3ea0' );
 ?>

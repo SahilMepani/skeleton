@@ -21,9 +21,12 @@ function skel_enqueue_scripts() {
     load_in_footer_boolean
   ); */
 
+  // version using WP function is not working correctly so we have add it to the file itself
   wp_enqueue_style(
     'skeleton-style',
-    get_stylesheet_uri() . '?v' . filemtime( get_template_directory() . '/style.css' )
+    get_stylesheet_uri() . '?v' . filemtime( get_template_directory() . '/style.css' ),
+		array(),
+		null
   );
 
   // load style-rtl for rtl languages
@@ -31,7 +34,14 @@ function skel_enqueue_scripts() {
 
   wp_enqueue_script(
     'modernizr',
-    get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js',
+    get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js'
+  );
+
+  wp_enqueue_script(
+    'plugins',
+    get_template_directory_uri() . '?v' . filemtime( get_template_directory() . '/js/plugins.js' ),
+    array('jquery'),
+		null,
     true
   );
 
@@ -39,14 +49,6 @@ function skel_enqueue_scripts() {
   //   'ua-parser',
   //   get_template_directory_uri() . '/js/vendor/ua-parser-0.7.20.min.js'
   // );
-
-  wp_enqueue_script(
-    'plugins',
-    get_template_directory_uri() . '/js/plugins.js' . '?v' . filemtime( get_template_directory() . '/js/plugins.js' ),
-    array('jquery'),
-    false,
-    true
-  );
 
   wp_enqueue_script(
     'match-height',
@@ -58,7 +60,7 @@ function skel_enqueue_scripts() {
 
   // localize scripts
   // wp_localize_script(
-  //   'custom',
+  //   'plugins', // file name without extension where we want to use the localize_var
   //   'localize_var',
   //   array(
   //     'ajax_url' => admin_url( 'admin-ajax.php' ),

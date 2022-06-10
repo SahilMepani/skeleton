@@ -1,12 +1,13 @@
 # START --- ✄ -----------------------:
 
-# FINALIZE --- ✄ -----------------------:
-  ☐ Check for PHP warnings or errors with debug to true or use Query monitor plugin
-  ☐ Activate "Redirection" plugin and redirect all CPT slug to plural URL and use custom template to list all CPT posts. Also click check for al logs include 404 and monitor all Post Types
-	☐ Activate "Admin columns" plugin and add slug as columns for all Post types
-  ☐ Activate "WebP express" plugin and copy the settings form DallahTrading
-	☐ Activate "Autoptimize" plugin and copy the settings from DallahTrading
-  ☐ Activate "Wordfence" security plugin and import settings using
+	# FINALIZE --- ✄ -----------------------:
+		☐ Check for PHP warnings or errors with debug to true or use Query monitor plugin
+		☐ Activate "Redirection" plugin and redirect all CPT slug to plural URL and use custom template to list all CPT posts. Also click check for al logs include 404 and monitor all Post Types
+		☐ Disable Archive and Single page template for CPT where it is not required
+		☐ Activate "Admin columns" plugin and add slug as columns for all Post types
+		☐ Activate "WebP express" plugin and copy the settings form DallahTrading
+		☐ Activate "Autoptimize" plugin and copy the settings from DallahTrading
+		☐ Activate "Wordfence" security plugin and import settings using
 	8e6a436f1f47f5c500fc0a4f7885b5cbecb71bbe75b4abfb31b22d49643f8183cb2906d9f75e85fa073da4be9e79eaeed4fb0630d5765222902dbb8657457d44
 	☐ Activate "WP Hardened" plugin
   ☐ Make sure all the content is editable from backend, if not please mention
@@ -26,6 +27,7 @@
   ☐ Check 404
   ☐ Check Favicon
   ☐ Add Redirection from old site to new site using 301 redirects
+	☐ Make sure all the repeaters are collapsible
 
   RESPONSIVE & CROSS BROWSER TESTING --- ✄ -----------------------
   WINDOWS --- ✄ -----------------------
@@ -94,3 +96,37 @@ Kinsta LIVE:
   ☐ Enable PHP 7.4
   ☐ Enable Force HTTPS
   ☐ Only change for SFTP here is the Port in sftp.json file
+
+This will show you the autoloaded data size, how many entries are in the table, and the first 10 entries by size.:
+SELECT 'autoloaded data in KiB' as name, ROUND(SUM(LENGTH(option_value))/ 1024) as value FROM wp_options WHERE autoload='yes'
+UNION
+SELECT 'autoloaded data count', count(*) FROM wp_options WHERE autoload='yes'
+UNION
+(SELECT option_name, length(option_value) FROM wp_options WHERE autoload='yes' ORDER BY length(option_value) DESC LIMIT 10)
+
+Find all options with the name jetpack in option_name:
+SELECT *
+FROM `wp_options`
+WHERE `autoload` = 'yes'
+AND `option_name` LIKE '%wpml%'
+
+Delete  all options with the name jetpack in option_name:
+DELETE
+FROM `wp_options`
+WHERE `autoload` = 'yes'
+AND `option_name` LIKE '%ws_menu_editor%'
+
+Transient should not be autoloaded but you can find out if it does. It is better to use a plugin Transient Cleaner:
+SELECT *
+FROM `wp_options`
+WHERE `autoload` = 'yes'
+AND `option_name` LIKE '%transient%'
+
+Find up WordPress Sessions:
+SELECT *
+FROM `wp_options`
+WHERE `option_name` LIKE '_wp_session_%'
+
+Delete up WordPress Sessions:
+DELETE FROM `wp_options`
+WHERE `option_name` LIKE '_wp_session_%'

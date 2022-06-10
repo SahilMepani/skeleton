@@ -1,5 +1,5 @@
 .img-fluid, .img-responsive {
-	width: auto;
+  width: auto;
   height: auto;
 }
 
@@ -19,11 +19,7 @@
 }
 
 // align classes are set by wp on images inside editor.
-.alignnone,
-.alignleft,
-.alignright,
-.aligncenter,
-.wp-post-image {
+.alignnone, .alignleft, .alignright, .aligncenter, .wp-post-image {
   width: auto;
   height: auto;
 }
@@ -42,4 +38,15 @@
     float: right;
     margin: 0 0 rem-calc( 20px ) rem-calc( 20px );
   }
+}
+
+
+.alignleft {
+  float: left;
+  margin: 0 rem-calc( 20px ) rem-calc( 20px ) 0;
+}
+
+.alignright {
+  float: right;
+  margin: 0 0 rem-calc( 20px ) rem-calc( 20px );
 }

@@ -21,15 +21,11 @@ function skel_create_post_type() {
 
 	$cpt_project_args = array(
 		'labels'              => $cpt_project_labels,
-		'public'              => true,
-		'exclude_from_search' => false,
-		'publicly_queryable'  => true,
-		'show_ui'             => true,
-		'query_var'           => true,
-		'hierarchical'        => true, //simple page ordering
-		'has_archive'         => true, //pagination & archive page
-		'capability_type'     => 'post',
-		'menu_position'       => 20, //below pages
+		'public'              => true, // archive and single
+		'show_ui'             => true, // manage single post from backend
+		'hierarchical'        => true, // simple page ordering
+		'has_archive'         => true, // pagination & archive page
+		'menu_position'       => 20, // below pages
 		'menu_icon'           => 'dashicons-welcome-view-site', //defaults to post icon
 		//Uncomment the following line to change the slug;
 		//You must also save your permalink structure to prevent 404 errors
@@ -37,7 +33,6 @@ function skel_create_post_type() {
 		'supports'            => array('title','editor','thumbnail','page-attributes', 'custom-fields'),
 		// enable gutenberg
 		// 'show_in_rest' => true,
-		// 'supports' => array('editor')
 	);
 
 	register_post_type( 'project', $cpt_project_args );
@@ -48,6 +43,14 @@ function skel_create_post_type() {
 /*================================
 =            Taxonomy            =
 ================================*/
+// $reference_default_args = array(
+// 	'publicly_queryable' => true, // archive inherit from public
+// 	'show_ui'            => true, // manage terms, false if we want to set default terms and don't want to add/edit them, inherit from public
+// 	'show_in_menu'       => true, // hide from sidebar menu but accessible from URL, requires 'show_ui' true.
+// 	'show_in_nav_menus'  => true, // apprearance menu
+// 	'show_in_quick_edit' => true, // requires 'show_ui' true.
+// );
+
 function skel_build_taxonomies() {
 
 	/*----------  First Tax  ----------*/
@@ -75,11 +78,11 @@ function skel_build_taxonomies() {
 		array( 'project' ), // post type
 		array(
 			'labels'            => $tax_one_labels,
-			'public'            => true,
-			'show_ui'           => true,
-			'hierarchical'      => true,
-			'show_admin_column' => true,
-			'show_in_rest' => true
+			'public'             => false,
+			'show_ui'            => true, // manage terms, false if we want to set default terms and don't want to add/edit them
+			'hierarchical'       => true,
+			'show_admin_column'  => true,
+			'show_in_rest'       => true
 			//'rewrite'    => array( 'slug' => 'custom_post_type', 'with_front' => false ) //this will enable the url to be custom_post_type/term instead of taxonomy/term
 		)
 	);

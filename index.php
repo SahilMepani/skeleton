@@ -56,6 +56,7 @@
 						</div> <!-- .search-icon-block -->
 						<input type="submit" value="" class="btn" />
 					</div> <!-- .submit-block -->
+
 					<div class="loading-spinner"></div>
 					<a href="#" id="ajax-search-clear" class="clear-search" title="clear">
 						<div class="clear-icon-block">

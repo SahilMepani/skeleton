@@ -21,29 +21,28 @@ function skel_enqueue_scripts() {
     load_in_footer_boolean
   ); */
 
-  // version using WP function is not working correctly so we have add it to the file itself
   wp_enqueue_style(
-    'skeleton-style',
-    get_stylesheet_uri() . '?v' . filemtime( get_template_directory() . '/style.css' ),
+		'skeleton-style',
+		get_stylesheet_uri(),
 		array(),
-		null
-  );
+		filemtime( get_template_directory() . '/style.css' )
+	);
 
   // load style-rtl for rtl languages
   wp_style_add_data( 'skeleton-style', 'rtl', 'replace' );
 
   wp_enqueue_script(
-    'modernizr',
-    get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js'
-  );
-
-  wp_enqueue_script(
     'plugins',
-    get_template_directory_uri() . '?v' . filemtime( get_template_directory() . '/js/plugins.js' ),
+    get_template_directory_uri() . '/js/plugins.js',
     array('jquery'),
-		null,
+    filemtime( get_template_directory() . '/js/plugins.js' ),
     true
   );
+
+  // wp_enqueue_script(
+  //   'modernizr',
+  //   get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js'
+  // );
 
   // wp_enqueue_script(
   //   'ua-parser',

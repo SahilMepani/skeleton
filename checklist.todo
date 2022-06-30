@@ -1,5 +1,9 @@
 # START --- ✄ -----------------------:
-
+  ☐ Rename the theme
+  ☐ Replace the screenshot
+  ☐ Remove git folder and initialize git
+  ☐ Setup repo
+  ☐ Create site pages and register CPT and taxonomies
 	# FINALIZE --- ✄ -----------------------:
 		☐ Check for PHP warnings or errors with debug to true or use Query monitor plugin
 		☐ Activate "Redirection" plugin and redirect all CPT slug to plural URL and use custom template to list all CPT posts. Also click check for al logs include 404 and monitor all Post Types
@@ -28,6 +32,8 @@
   ☐ Check Favicon
   ☐ Add Redirection from old site to new site using 301 redirects
 	☐ Make sure all the repeaters are collapsible
+	☐ Force HTTPS on kinsta tools
+  ☐ Add back the acf-json folder so that the ACF options are loaded faster in backend
 
   RESPONSIVE & CROSS BROWSER TESTING --- ✄ -----------------------
   WINDOWS --- ✄ -----------------------

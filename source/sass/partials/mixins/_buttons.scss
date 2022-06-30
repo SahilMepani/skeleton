@@ -31,18 +31,18 @@
   cursor: pointer;
 }
 
-// @mixin btn-rarr {
-//   position: relative;
-//   &::after {
-//     @include icon-font-properties;
-//     content: $i-chevron-right;
-//     font-size: rem-calc( 24px );
-//     margin-left: rem-calc( 20px );
-//   }
-//   &.btn-sm {
-//     &::after {
-//       font-size: rem-calc( 18px );
-//       margin-left: rem-calc( 10px );
-//     }
-//   }
-// }
+@mixin btn-rarr {
+  position: relative;
+  &::after {
+    @include icon-font-properties;
+    content: $i-chevron-right;
+    font-size: rem-calc( 24px );
+    margin-left: rem-calc( 20px );
+  }
+  &.btn-sm {
+    &::after {
+      font-size: rem-calc( 18px );
+      margin-left: rem-calc( 10px );
+    }
+  }
+}

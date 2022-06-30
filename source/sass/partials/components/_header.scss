@@ -17,6 +17,14 @@
   float: left;
   margin-top: rem-calc( 15px ) !important; // overwrite :first-child
   margin-bottom: 0;
+  span {
+    visibility: hidden;
+    font-size: 0;
+    color: transparent;
+    pointer-events: none;
+    height: 0;
+    position: absolute;
+  }
   a {
     display: block;
     height: 100%;

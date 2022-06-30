@@ -1,148 +1,147 @@
 .gform_wrapper.gravity-theme { // required for specificity
-	.gform-body {
-		.gfield {
-			margin-bottom: rem-calc( 15px );
+  .gform-body {
+    .gfield {
+      margin-bottom: rem-calc( 15px );
       &.spacer {
         display: none;
       }
-		}
-		.gfield_required {
-			display: none;
-		}
-		.gfield_label {
-			color: #211F21;
-		}
-		.gfield-select {
-			display: flex;
-			flex-wrap: wrap;
-			.ginput_container {
-				display: flex;
-				width: 100%;
-			}
-		}
-		.ginput_container_select {
-			@include custom-select-block;
-		}
-		input[type="text"], input[type="tel"], input[type="email"], select, textarea {
-			color: $body-color;
-			font-size: rem-calc( 16px );
-			padding: 0 rem-calc( 20px );
-			height: rem-calc( 44px );
-			line-height: rem-calc( 44px );
-			border: rem-calc( 1px ) solid #C4C4C4;
-			border-radius: 0;
-			&::placeholder {
-				color: #c4c4c4;
-			}
-			&:focus {
-				color: $black;
-			}
-		}
-		textarea {
-			line-height: 1.4;
-			padding: rem-calc( 12px ) rem-calc( 20px );
-			height: auto;
-		}
-		select {
-			appearance: none;
-		}
-		.chosen-container-single {
-			display: flex;
-			&.chosen-container-active {
-				.chosen-single {
-					color: $black;
-				}
-			}
-		}
-		// .chosen-search {
-		// 	display: none;
-		// }
-		.chosen-search-input {
-			background: none;
-			height: rem-calc( 30px ) !important;
-			line-height: rem-calc( 30px ) !important;
-			padding: rem-calc( 8px ) !important;
-		}
-		.chosen-single {
-			background: #fff;
-			color: #c4c4c4;
-			display: flex;
-			width: 100%;
-			border: rem-calc( 1px ) solid #C4C4C4;
-			height: auto;
-			padding-left: rem-calc( 20px );
-			align-items: center;
-			box-shadow: none;
-			div {
-				display: none;
-			}
-		}
-		.chosen-results {
-			> li {
-				background: #eee;
-				color: $body-color;
-				padding: rem-calc( 8px );
-				border-bottom: rem-calc( 1px ) solid rgba(#000,.05);
-				&.highlighted {
-					background: $teal;
-				}
-			}
-		}
-		.gfield_validation_message { // individual fields error
-			font-size: rem-calc( 14px );
-			padding: rem-calc( 8px ) rem-calc( 15px );
-			border: rem-calc( 1px ) solid darken(#fff9f9,5%);
-			margin-top: rem-calc( 5px );
-		}
-	}
-	.gform_footer {
-		margin: 0;
-		padding: 0;
-		button[type="submit"] {
+    }
+    .gfield_required {
+      display: none;
+    }
+    .gfield_label {
+      color: #211f21;
+    }
+    .gfield-select {
+      display: flex;
+      flex-wrap: wrap;
+      .ginput_container {
+        display: flex;
+        width: 100%;
+      }
+    }
+    .ginput_container_select {
+      @include custom-select-block;
+    }
+    input[type='text'], input[type='tel'], input[type='email'], select, textarea {
+      color: $body-color;
+      font-size: rem-calc( 16px );
+      padding: 0 rem-calc( 20px );
+      height: rem-calc( 44px );
+      line-height: rem-calc( 44px );
+      border: rem-calc( 1px ) solid #c4c4c4;
+      border-radius: 0;
+      &::placeholder {
+        color: #c4c4c4;
+      }
+      &:focus {
+        color: $black;
+      }
+    }
+    textarea {
+      line-height: 1.4;
+      padding: rem-calc( 12px ) rem-calc( 20px );
+      height: auto;
+    }
+    select {
+      appearance: none;
+    }
+    .chosen-container-single {
+      display: flex;
+      &.chosen-container-active {
+        .chosen-single {
+          color: $black;
+        }
+      }
+    }
+    // .chosen-search {
+    // 	display: none;
+    // }
+    .chosen-search-input {
+      background: none;
+      height: rem-calc( 30px ) !important;
+      line-height: rem-calc( 30px ) !important;
+      padding: rem-calc( 8px ) !important;
+    }
+    .chosen-single {
+      background: #fff;
+      color: #c4c4c4;
+      display: flex;
+      width: 100%;
+      border: rem-calc( 1px ) solid #c4c4c4;
+      height: auto;
+      padding-left: rem-calc( 20px );
+      align-items: center;
+      box-shadow: none;
+      div {
+        display: none;
+      }
+    }
+    .chosen-results {
+      > li {
+        background: #eee;
+        color: $body-color;
+        padding: rem-calc( 8px );
+        border-bottom: rem-calc( 1px ) solid rgba(#000,.05);
+        &.highlighted {
+          background: $teal;
+        }
+      }
+    }
+    .gfield_validation_message { // individual fields error
+      font-size: rem-calc( 14px );
+      padding: rem-calc( 8px ) rem-calc( 15px );
+      border: rem-calc( 1px ) solid darken(#fff9f9,5%);
+      margin-top: rem-calc( 5px );
+    }
+  }
+  .gform_footer {
+    margin: 0;
+    padding: 0;
+    button[type='submit'] {
       @include btn;
       @include btn-rarr;
-      border: rem-calc( 2px ) solid $grey-dark;
-			&:hover, &:focus {
-				background-color: $grey-dark;
-				color: #fff;
-			}
-		}
-	}
-	> .gform_validation_errors { // form sumbmission error
-		border: 0;
-		padding: 0;
-		margin: 0;
+      border: rem-calc( 2px ) solid $primary;
+      &:hover, &:focus {
+        background-color: $primary;
+        color: #fff;
+      }
+    }
+  }
+  > .gform_validation_errors { // form sumbmission error
+    border: 0;
+    padding: 0;
+    margin: 0;
     box-shadow: none;
-		margin-bottom: rem-calc( 30px );
-		.gform_submission_error {
-			background-color: red;
-			color: #fff;
-			font-size: rem-calc( 18px );
-			padding: rem-calc( 15px ) rem-calc( 20px );
-			.gform-icon {
-				display: none;
-			}
-		}
-	}
-	@media only screen and (min-width: 768px ) {
-		padding: 0;
-		.gform-body {
-			input[type="text"], input[type="tel"], input[type="email"], select, textarea {
-				// height: rem-calc( 60px );
-				// line-height: rem-calc( 60px );
-			}
-			textarea {
-
-			}
-		}
-	}
+    margin-bottom: rem-calc( 30px );
+    .gform_submission_error {
+      background-color: red;
+      color: #fff;
+      font-size: rem-calc( 18px );
+      padding: rem-calc( 15px ) rem-calc( 20px );
+      .gform-icon {
+        display: none;
+      }
+    }
+  }
+  @media only screen and (min-width: 768px ) {
+    padding: 0;
+    .gform-body {
+      input[type='text'], input[type='tel'], input[type='email'], select, textarea {
+        // height: rem-calc( 60px );
+        // line-height: rem-calc( 60px );
+      }
+      textarea {
+      }
+    }
+  }
 }
 
 .gform_confirmation_message {
-	background: $teal;
-	color: #fff;
-	font-size: rem-calc( 20px );
-	line-height: 1.3;
-	text-align: center;
-	padding: rem-calc( 10px ) rem-calc( 30px );
+  background: $teal;
+  color: #fff;
+  font-size: rem-calc( 20px );
+  line-height: 1.3;
+  text-align: center;
+  padding: rem-calc( 10px ) rem-calc( 30px );
 }

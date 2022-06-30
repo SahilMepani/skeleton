@@ -1,3 +1,8 @@
+KInsta:
+	☐ Versioning is not working with Kinsta so we have to use Autoptimize beacause it does versioning byitself whenever we upload an updated CSS file
+
+
+
 Swiper Events Order
 // beforeInit
 // init
@@ -104,6 +109,9 @@ Dev to Design handoff:
   Clones:
   ☐ Any "field group" used as a clone, should have a "clone" at the end of title
   ☐ Any clone field used outside of FC will need a name prefix as it will conflict with other fields (create another "field group" cloning that clone)
+
+  ACF-JSON:
+    ☐ When both a database definition and a JSON definition are present, the JSON definition is always used – regardless of which one was modified most recently. - https://salferrarello.com/acf-database-vs-json-precedence/
 
 --- ✄ -----------------------
 

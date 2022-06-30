@@ -16,6 +16,8 @@ require_once( get_template_directory() . '/functions/security.php' );
 require_once( get_template_directory() . '/functions/remove-comments.php' );
 require_once( get_template_directory() . '/functions/acf-options-page.php' );
 require_once( get_template_directory() . '/functions/remove-post-type.php' );
+require_once( get_template_directory() . '/functions/disable-block-directory.php' );
+require_once( get_template_directory() . '/functions/skip-dashboard.php' );
 // require_once( get_template_directory() . '/functions/custom-post-types.php' );
 // require_once( get_template_directory() . '/functions/custom-admin-columns.php' );
 // require_once( get_template_directory() . '/functions/admin-ajax.php' );

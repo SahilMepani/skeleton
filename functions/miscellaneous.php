@@ -16,12 +16,6 @@ add_filter('wp_sitemaps_enabled', '__return_false');
 // add_filter('jpeg_quality', function($arg){return 100;});
 
 
-/* ======================================================
-=            Disable file editor in backend            =
-====================================================== */
-// define('DISALLOW_FILE_EDIT', TRUE);
-
-
 /*----------  Enable login captcha  ----------*/
 // function is_login_page() {
 // 	return in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'));

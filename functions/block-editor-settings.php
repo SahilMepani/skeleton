@@ -12,6 +12,9 @@ add_theme_support( 'editor-styles' );
 // -- Enable responsive embedded content
 add_theme_support( 'responsive-embeds' );
 
+// Add Google Fonts - Before using check if fonts are already loading or not in the backend
+// add_editor_style( 'https://fonts.googleapis.com/css?family=Roboto+Slab' );
+
 
 // -- Enqueue editor script
 function skel_gutenberg_scripts() {
@@ -23,15 +26,15 @@ function skel_gutenberg_scripts() {
     filemtime( get_stylesheet_directory(). '/js/plugins.js' ),
     true
   );
-  // editor js
+  // editor js - Npt required anymore
   // https://developer.wordpress.org/block-editor/developers/filters/block-filters/#using-a-blacklist
-  wp_enqueue_script (
-    'skel-editor',
-    get_stylesheet_directory_uri() . '/js/editor.js',
-    array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
-    filemtime( get_stylesheet_directory() . '/js/editor.js' ),
-    true
-  );
+  // wp_enqueue_script (
+  //   'skel-editor',
+  //   get_stylesheet_directory_uri() . '/js/editor.js',
+  //   array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
+  //   filemtime( get_stylesheet_directory() . '/js/editor.js' ),
+  //   true
+  // );
   // typekit fonts
   // wp_enqueue_style( 'typekit-fonts', '//use.typekit.net/soi0ors.css', 'all' );
 }
@@ -52,9 +55,13 @@ function skel_editor_css() { ?>
     textarea#post-title-0 {
         height: 75px;
     }
+		/* Post title */
+    .wp-block-post-title {
+      font-size: 3.6rem !important;
+    }
     /* change the font styles as per project */
     #editorcontainer #content, #wp_mce_fullscreen, textarea.wp-editor-area, .block-editor-writing-flow {
-        font-family: 'FSSiena', $font-family-sans-serif; /* this font should be imported editor-style.css */
+        font-family: 'Montserrat', $font-family-sans-serif; /* this font should be imported editor-style.css */
       font-size: 1.8rem;
       line-height: 1.55;
     }

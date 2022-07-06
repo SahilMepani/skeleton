@@ -95,7 +95,7 @@ function skel_get_text_shorter($input, $length) {
 =================================================*/
 // return string
 // eg. term 1, term 2
-function skel_get_the_terms($post_id, $taxonomy) {
+function skel_get_the_terms($post_id, $taxonomy, $seperator) {
 	$terms = get_the_terms($post_id, $taxonomy); // Returns objects array
 	$ar_term = array(); // Initialize an array
 	if ( $terms ) {
@@ -103,7 +103,8 @@ function skel_get_the_terms($post_id, $taxonomy) {
 			$ar_term[] = $term->name; // Store term name
 		}
 	}
-	$result = join(", ", $ar_term); // Join all terms name
+  $seperator = ($seperator) ? $seperator : ' ';
+	$result = join($seperator, $ar_term); // Join all terms name
 	return $result;
 }
 

@@ -4,6 +4,7 @@
   ☐ Remove git folder and initialize git
   ☐ Setup repo
   ☐ Create site pages and register CPT and taxonomies
+	☐ Make sure the editor style is matching the theme style. Edit block-editor-settings.php
 	# FINALIZE --- ✄ -----------------------:
 		☐ Check for PHP warnings or errors with debug to true or use Query monitor plugin
 		☐ Activate "Redirection" plugin and redirect all CPT slug to plural URL and use custom template to list all CPT posts. Also click check for al logs include 404 and monitor all Post Types
@@ -34,6 +35,7 @@
 	☐ Make sure all the repeaters are collapsible
 	☐ Force HTTPS on kinsta tools
   ☐ Add back the acf-json folder so that the ACF options are loaded faster in backend
+	☐ Make sure the editor style is matching the theme style. Edit block-editor-settings.php
 
   RESPONSIVE & CROSS BROWSER TESTING --- ✄ -----------------------
   WINDOWS --- ✄ -----------------------

@@ -39,10 +39,10 @@ function skel_enqueue_scripts() {
     true
   );
 
-  // wp_enqueue_script(
-  //   'modernizr',
-  //   get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js'
-  // );
+  wp_enqueue_script(
+    'modernizr',
+    get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js'
+  );
 
   // wp_enqueue_script(
   //   'ua-parser',

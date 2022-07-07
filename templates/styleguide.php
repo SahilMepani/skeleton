@@ -81,47 +81,30 @@
   </li>
 </ul> <!-- .mb-10 -->
 
-<div class="fs-4 mb-1 text-gray-600 fw-bold">Desktop Font Styles</div>
-
-<hr class="mb-4">
-
 <div class="row row-cols-2 gx-5 mb-10">
   <div class="col">
+		<div class="fs-4 mb-1 text-gray-600 fw-bold">DESKTOP TYPOGRAPHY</div>
+		<hr class="mb-4">
     <div class="d-block text-gray-500 fw-bold mb-1">H1</div>
-    <div class="h1 mb-4">Euclid Large</div>
+    <div class="h1 mb-4">This is a heading and it needs to span two lines to get an idea about line-height too</div>
     <div class="d-block text-gray-500 fw-bold mb-1">H2</div>
-    <div class="h2 mb-4">Euclid Medium</div>
+    <div class="h2 mb-4">Make sure font-weight and letter spacing matches the heading too please</div>
     <div class="d-block text-gray-500 fw-bold mb-1">H3</div>
-    <div class="h3 mb-4">Lora Medium</div>
+    <div class="h3 mb-4">Heading Three</div>
     <div class="d-block text-gray-500 fw-bold mb-1">H4</div>
-    <div class="h4 mb-4">Euclid Mid-Small</div>
+    <div class="h4 mb-4">Heading Four</div>
     <div class="d-block text-gray-500 fw-bold mb-1">H5</div>
-    <div class="h5 mb-4">Lora Small</div>
+    <div class="h5 mb-4">Heading Five</div>
     <div class="d-block text-gray-500 fw-bold mb-1">H6</div>
-    <div class="h6">Euclid Small</div>
-  </div> <!-- .col -->
-  <div class="col">
-
-    <div class="d-block fw-bold text-gray-500 mb-1">Display 1</div>
+    <div class="h6 mb-4">Heading Six</div>
+		<div class="d-block fw-bold text-gray-500 mb-1">Display 1</div>
     <div class="display-1 mb-4">Lora Large</div>
-
     <div class="d-block fw-bold text-gray-500 mb-1">Display 2</div>
     <div class="display-2 mb-4">Lora Large</div>
-
     <div class="d-block fw-bold text-gray-500 mb-1">Display 3</div>
     <div class="display-3 mb-4">Lora Large</div>
-
-    <div class="d-block fw-bold text-gray-500 mb-1">Display 4</div>
-    <div class="display-4 mb-4">Lora Large</div>
-
-    <div class="d-block fw-bold text-gray-500 mb-1">Display 5</div>
-    <div class="display-5 mb-4">Lora Large</div>
-
-    <div class="d-block fw-bold text-gray-500 mb-1">Display 6</div>
-    <div class="display-6 mb-4">Lora Large</div>
-
-    <div class="d-block mb-2 fw-bold text-gray-500">BODY</div>
-    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+		<div class="d-block mb-2 fw-bold text-gray-500">BODY</div>
+    <p>There should be two paragraph stacked on top of each other to get an idea about the spacing required between them.</p>
     <p class="mb-6">You might have noticed all the monospaced text in this guide. There are a number of inline <abbr title="HyperText Markup Language">HTML</abbr> elements you may use anywhere within other elements, including <abbr title="Abbreviation">abbr</abbr>, <cite>cite</cite>, <code>code</code>, <del>del</del>, <em>em</em>, <ins>ins</ins>, <strong>strong</strong>, <var>var</var>, and <a href="#" title="link">link</a></p>
 
     <div class="d-block mb-2 fw-bold text-gray-500">LEAD</div>
@@ -130,11 +113,6 @@
     </p>
 
     <div class="d-block mb-2 fw-bold text-gray-500">BLOCKQUOTES</div>
-    <blockquote class="mb-6 blockquote">
-      <p>A well-known quote, contained in a blockquote element.</p>
-    </blockquote>
-
-    <div class="d-block mb-2 fw-bold text-gray-500">NAMING A SOURCE</div>
     <figure class="mb-6">
       <blockquote class="blockquote">
         <p>A well-known quote, contained in a blockquote element.</p>
@@ -143,7 +121,46 @@
         Someone famous in <cite title="Source Title">Source Title</cite>
       </figcaption>
     </figure>
+  </div> <!-- .col -->
+	<div class="col">
+		<div class="fs-4 mb-1 text-gray-600 fw-bold">MOBILE TYPOGRAPHY</div>
+		<hr class="mb-4">
+    <div class="d-block text-gray-500 fw-bold mb-1">H1</div>
+    <div class="h2 mb-4">This is a heading and it needs to span two lines to get an idea about line-height too</div>
+    <div class="d-block text-gray-500 fw-bold mb-1">H2</div>
+    <div class="h3 mb-4">Make sure font-weight and letter spacing matches the heading too please</div>
+    <div class="d-block text-gray-500 fw-bold mb-1">H3</div>
+    <div class="h4 mb-4">Heading Three</div>
+    <div class="d-block text-gray-500 fw-bold mb-1">H4</div>
+    <div class="h5 mb-4">Heading Four</div>
+    <div class="d-block text-gray-500 fw-bold mb-1">H5</div>
+    <div class="h6 mb-4">Heading Five</div>
+    <div class="d-block text-gray-500 fw-bold mb-1">H6</div>
+    <div class="h6 mb-4">Heading Six</div>
+		<div class="d-block fw-bold text-gray-500 mb-1">Display 1</div>
+    <div class="display-2 mb-4">Lora Large</div>
+    <div class="d-block fw-bold text-gray-500 mb-1">Display 2</div>
+    <div class="display-3 mb-4">Lora Large</div>
+    <div class="d-block fw-bold text-gray-500 mb-1">Display 3</div>
+    <div class="display-4 mb-4">Lora Large</div>
+		<div class="d-block mb-2 fw-bold text-gray-500">BODY</div>
+    <p>There should be two paragraph stacked on top of each other to get an idea about the spacing required between them.</p>
+    <p class="mb-6">You might have noticed all the monospaced text in this guide. There are a number of inline <abbr title="HyperText Markup Language">HTML</abbr> elements you may use anywhere within other elements, including <abbr title="Abbreviation">abbr</abbr>, <cite>cite</cite>, <code>code</code>, <del>del</del>, <em>em</em>, <ins>ins</ins>, <strong>strong</strong>, <var>var</var>, and <a href="#" title="link">link</a></p>
 
+    <div class="d-block mb-2 fw-bold text-gray-500">LEAD</div>
+    <p class="mb-6 lead">
+      This is a lead paragraph. It stands out from regular paragraphs.
+    </p>
+
+    <div class="d-block mb-2 fw-bold text-gray-500">BLOCKQUOTES</div>
+    <figure class="mb-6">
+      <blockquote class="blockquote">
+        <p>A well-known quote, contained in a blockquote element.</p>
+      </blockquote>
+      <figcaption class="blockquote-footer">
+        Someone famous in <cite title="Source Title">Source Title</cite>
+      </figcaption>
+    </figure>
   </div> <!-- .col -->
 </div> <!-- .row row-cols-2 gx-5 -->
 
@@ -155,10 +172,10 @@
 
 <div class="mb-6 row row-cols-auto gx-2">
   <div>
-    <button type="button" class="btn btn-primary">Button Primary .btn-primary</button>
+    <button type="button" class="btn btn-primary">Button Primary</button>
   </div>
   <div>
-    <button type="button" class="btn btn-outline-primary">Button Outline Primary .btn-outline-primary</button>
+    <button type="button" class="btn btn-outline-primary">Button Outline Primary</button>
   </div>
 </div> <!-- .mb-6 -->
 
@@ -166,13 +183,13 @@
 
 <div class="mb-6 row row-cols-auto gx-2">
   <div>
-    <button type="button" class="btn btn-primary btn-sm">Button Small .btn-sm</button>
+    <button type="button" class="btn btn-primary btn-sm">Button Small</button>
   </div>
   <div>
-    <button type="button" class="btn btn-primary">Button Default .btn</button>
+    <button type="button" class="btn btn-primary">Button Default</button>
   </div>
   <div>
-    <button type="button" class="btn btn-primary btn-lg">Button Large .btn-lg</button>
+    <button type="button" class="btn btn-primary btn-lg">Button Large</button>
   </div>
 </div> <!-- .mb-6 -->
 

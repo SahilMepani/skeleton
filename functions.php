@@ -50,6 +50,15 @@ register_nav_menus(
 // add_theme_support('post-thumbnails');
 
 
+// Faster WordPress
+// Disable if Autoptimize is enabled
+/* ========================================== */
+function hints() {
+  header("link: </wp-content/themes/phpied2/style.css>; rel=preload, </wp-includes/css/dist/block-library/style.min.css?ver=5.4.1>; rel=preload");
+}
+add_action('send_headers', 'hints');
+
+
 /*=========================================
 =            Register sidebars            =
 =========================================*/
@@ -65,6 +74,7 @@ register_nav_menus(
 //     )
 //   );
 // endforeach;
+
 
 
 /*----------  REQUIRED - Do not edit  ----------*/

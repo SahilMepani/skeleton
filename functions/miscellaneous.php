@@ -194,7 +194,8 @@ add_filter('wp_sitemaps_enabled', '__return_false');
 
 // Remove jquery migrate
 ////////////////////////////////////////////////
-// Not useful if autoptimize is enabled
+// Not useful if autoptimize for JS with concatenation is enabled
+// If any jquery dependent script is loaded at top then the jquery is forced by WP to load at top for e.g Gravity forms
 function dequeue_jquery_migrate( &$scripts){
 	if(!is_admin()){
 		$scripts->remove( 'jquery');

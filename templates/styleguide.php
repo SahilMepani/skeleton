@@ -164,7 +164,7 @@
   </div> <!-- .col -->
 </div> <!-- .row row-cols-2 gx-5 -->
 
-<div class="fs-4 mb-1 text-gray-600 fw-bold">Buttons</div>
+<div class="fs-4 mb-1 text-gray-600 fw-bold">Buttons with Hover</div>
 
 <hr class="mb-4">
 

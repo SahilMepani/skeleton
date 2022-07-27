@@ -28,7 +28,7 @@ require_once( get_template_directory() . '/functions/skip-dashboard.php' );
 
 // Limit WP Revisions
 ////////////////////////////////////////////////
-define('WP_POST_REVISIONS', 5);
+// define('WP_POST_REVISIONS', 5);
 
 
 // Register menus
@@ -53,10 +53,19 @@ register_nav_menus(
 // Faster WordPress
 // Disable if Autoptimize is enabled
 /* ========================================== */
-function hints() {
-  header("link: <" . get_stylesheet_uri() . ">; rel=preload, </wp-includes/css/dist/block-library/style.min.css?ver=5.4.1>; rel=preload");
+function skel_hints() {
+  header("link: <" . get_stylesheet_uri() . ">;");
 }
-add_action('send_headers', 'hints');
+add_action('send_headers', 'skel_hints');
+
+
+// Load MO files
+// file name should only be {locale}.mo/po
+////////////////////////////////////////////////
+// add_action('after_setup_theme', 'wpdocs_theme_setup');
+// function wpdocs_theme_setup(){
+//   load_theme_textdomain( 'skel', get_template_directory().'/lang' );
+// }
 
 
 /*=========================================

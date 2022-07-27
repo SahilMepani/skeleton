@@ -281,6 +281,23 @@ $blockquote-font-size:        $font-size-base * 1.25;
 // $blockquote-footer-color:     $gray-600;
 // $blockquote-footer-font-size: $small-font-size;
 
+// $aspect-ratios: map-merge(
+//   (
+//     "2x1": calc(1 / 2 * 100%),
+//     "3x2": calc(2 / 3 * 100%),
+//   ),
+//   $aspect-ratios
+// );
+
+// Borders
+////////////////////////////////////////////////
+$border-width: .2rem; // it will work by applying just border-top class
+$border-widths: (
+  1: .1rem,
+  2: .2rem,
+);
+$border-color: $primary; // it will work by applying just border-top class
+
 
 // Tables
 //

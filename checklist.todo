@@ -1,10 +1,15 @@
 # START --- ✄ -----------------------:
-  ☐ Rename the theme
-  ☐ Replace the screenshot
-  ☐ Remove git folder and initialize git
+	☐ Open Site Shell using Local
+	☐ Paste WP Run - Local.bat file into Shell
+	☐ Change the PROJECTNAME to "Your project" in WP Paste - Local.bat file
+	☐ Paste WP Paste - Local.bat file into Shell
+	☐ Undo the project name in WP Paste - Local.bat and save the file
   ☐ Setup repo
+	☐ Copy the first time connection code from Repo
+  ☐ Replace the screenshot
   ☐ Create site pages and register CPT and taxonomies
 	☐ Make sure the editor style is matching the theme style. Edit block-editor-settings.php
+
 	# FINALIZE --- ✄ -----------------------:
 		☐ Check for PHP warnings or errors with debug to true or use Query monitor plugin
 		☐ Activate "Redirection" plugin and redirect all CPT slug to plural URL and use custom template to list all CPT posts. Also click check for al logs include 404 and monitor all Post Types
@@ -36,32 +41,6 @@
 	☐ Force HTTPS on kinsta tools
   ☐ Add back the acf-json folder so that the ACF options are loaded faster in backend
 	☐ Make sure the editor style is matching the theme style. Edit block-editor-settings.php
-
-  RESPONSIVE & CROSS BROWSER TESTING --- ✄ -----------------------
-  WINDOWS --- ✄ -----------------------
-  ☐ IE 11+
-  ☐ Chrome
-  ☐ Safari
-  ☐ Firefox
-  ☐ Opera
-  MAC --- ✄ -----------------------
-  ☐ Safari
-  ☐ Chrome
-  ☐ Firefox
-  ☐ Opera
-  iOS (6,7,X,iPad, iPad Pro) --- ✄ -----------------------
-  ☐ Safari
-  ☐ Chrome
-  Android --- ✄ -----------------------
-  ☐ Chrome
-  ☐ Firefox
-  ☐ Opera
-  ☐ UC Browser
-
-# PRODUCTION --- ✄ -----------------------:
-  ☐ Add iThemes security plugin and activate it
-  ☐ Change backend url from /wp-admin to /manage
-http://wiki.threesixtyeight.is/article/launch-check-list/
 
 
 # Content Editor:

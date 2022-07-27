@@ -21,8 +21,8 @@ function skel_register_acf_blocks() {
   ////////////////////////////////////////////////
   acf_register_block_type(array(
     'name'              => 'visual-editor',
-    'title'             => __( 'Visual Editor', 'skel' ),
-    'description'       => __( 'Generally used as a banner at the beginning of the page', 'skel' ),
+    'title'             => 'Visual Editor',
+    'description'       => 'Generally used as a banner at the beginning of the page',
     'category'          => 'skeleton',
     'icon' => array(
       'background' => '#ff2500',

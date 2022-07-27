@@ -109,45 +109,45 @@ var trigger = {
 }
 
 /* Invoke stagger animation */
-let srevealStagger100 = document.querySelectorAll('.sreveal-stagger-100');
+let srevealStagger100 = document.querySelectorAll('body:not(.wp-admin) .sreveal-stagger-100');
 for ( const item of srevealStagger100 ) {
-  let srevealStaggerItem = item.querySelectorAll('.sreveal-stagger-item');
+  let srevealStaggerItem = item.querySelectorAll('body:not(.wp-admin) .sreveal-stagger-item');
   sr.reveal( srevealStaggerItem, {
     interval: 100,
   } );
 }
 
-let srevealStagger200 = document.querySelectorAll('.sreveal-stagger-200');
+let srevealStagger200 = document.querySelectorAll('body:not(.wp-admin) .sreveal-stagger-200');
 for ( const item of srevealStagger200 ) {
-  let srevealStaggerItem = item.querySelectorAll('.sreveal-stagger-item');
+  let srevealStaggerItem = item.querySelectorAll('body:not(.wp-admin) .sreveal-stagger-item');
   sr.reveal( srevealStaggerItem, {
     interval: 200,
   } );
 }
 
 /* Invoke custom animations */
-sr.reveal( '[data-sreveal="trigger"]', trigger );
-sr.reveal( '[data-sreveal="fade"]', fade );
-sr.reveal( '[data-sreveal="fade-up"]', fadeUp );
-sr.reveal( '[data-sreveal="fade-down"]', fadeDown );
-sr.reveal( '[data-sreveal="fade-right"]', fadeRight );
-sr.reveal( '[data-sreveal="fade-left"]', fadeLeft );
-sr.reveal( '[data-sreveal="slide-up"]', slideUp );
-sr.reveal( '[data-sreveal="slide-up"]', slideUp );
-sr.reveal( '[data-sreveal="slide-up-full"]', slideUpFull );
-sr.reveal( '[data-sreveal="slide-down"]', slideDown );
-sr.reveal( '[data-sreveal="slide-down-full"]', slideDownFull );
-sr.reveal( '[data-sreveal="slide-right"]', slideRight );
-sr.reveal( '[data-sreveal="slide-right-full"]', slideRightFull );
-sr.reveal( '[data-sreveal="slide-left"]', slideLeft );
-sr.reveal( '[data-sreveal="slide-left-full"]', slideLeftFull );
-sr.reveal( '[data-sreveal="zoom-out"]', zoomOut );
-sr.reveal( '[data-sreveal="zoom-fade-out"]', zoomFadeOut );
-sr.reveal( '[data-sreveal="slide-down-markers"]', slideDownMarkers );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="trigger"]', trigger );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="fade"]', fade );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="fade-up"]', fadeUp );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="fade-down"]', fadeDown );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="fade-right"]', fadeRight );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="fade-left"]', fadeLeft );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="slide-up"]', slideUp );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="slide-up"]', slideUp );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="slide-up-full"]', slideUpFull );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="slide-down"]', slideDown );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="slide-down-full"]', slideDownFull );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="slide-right"]', slideRight );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="slide-right-full"]', slideRightFull );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="slide-left"]', slideLeft );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="slide-left-full"]', slideLeftFull );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="zoom-out"]', zoomOut );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="zoom-fade-out"]', zoomFadeOut );
+sr.reveal( 'body:not(.wp-admin) [data-sreveal="slide-down-markers"]', slideDownMarkers );
 
 
 /* Enable data-attributes */
-$( '[data-sreveal]' ).each( function () {
+$( 'body:not(.wp-admin) [data-sreveal]' ).each( function () {
 
   var el = $( this );
 

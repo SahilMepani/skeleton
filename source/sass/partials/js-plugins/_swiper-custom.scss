@@ -9,7 +9,7 @@
 	height: 0;
 	bottom: 0; // overwrite default
 	position: relative; // overwrite default
-	&.dark {
+	&.scheme-dark {
 		span {
 			background-color: rgba(green,.3);
 			&:after {
@@ -81,6 +81,7 @@
 		border: rem-calc( 1px ) solid green;
 		margin-top: rem-calc( 1px ); // space for border, required
 		// required
+		margin-top: 0;
 		position: relative;
 		left: auto;
 		right: auto;

@@ -9,6 +9,9 @@
   ☐ Replace the screenshot
   ☐ Create site pages and register CPT and taxonomies
 	☐ Make sure the editor style is matching the theme style. Edit block-editor-settings.php
+	☐ Get Google Analytics code form Client
+	☐ Get old website URL
+	☐ Get the new website pages slug
 
 	# FINALIZE --- ✄ -----------------------:
 		☐ Check for PHP warnings or errors with debug to true or use Query monitor plugin

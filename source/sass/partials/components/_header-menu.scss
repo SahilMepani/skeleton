@@ -288,7 +288,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
           color: $desktop-sub-menu-link-color;
           display: block;
           padding: $desktop-sub-menu-link-padding-y $desktop-sub-menu-link-padding-x;
-          border-bottom: rem-calc( 1px ) solid desaturate(green,20%);
+          border-bottom: rem-calc( 1px ) solid desaturate($desktop-sub-menu-link-bg-color,20%);
         }
       }
       > li.current-menu-item > a {

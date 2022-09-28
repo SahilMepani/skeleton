@@ -13,6 +13,7 @@ $enable-grid-classes         : true;
 $enable-button-pointers      : true;
 $enable-rfs                  : false;
 $enable-validation-icons     : false;
+// if enabled we also need to comment the negative margin utilites in utilities overwrite file
 $enable-negative-margins     : false; // different than gutter classes
 $enable-deprecation-messages : true;
 $enable-important-utilities  : true;

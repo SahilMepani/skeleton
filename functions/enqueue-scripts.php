@@ -32,7 +32,7 @@ function skel_enqueue_scripts() {
   wp_style_add_data( 'skeleton-style', 'rtl', 'replace' );
 
   wp_enqueue_script(
-    'plugins',
+    'skeleton-plugins',
     get_template_directory_uri() . '/js/plugins.js',
     array('jquery'),
     filemtime( get_template_directory() . '/js/plugins.js' ),
@@ -59,7 +59,7 @@ function skel_enqueue_scripts() {
 
   // localize scripts
   // wp_localize_script(
-  //   'plugins', // file name without extension where we want to use the localize_var
+  //   'skeleton-plugins', // file name without extension where we want to use the localize_var
   //   'localize_var',
   //   array(
   //     'ajax_url' => admin_url( 'admin-ajax.php' ),

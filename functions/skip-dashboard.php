@@ -1,7 +1,7 @@
 <?php
-add_filter( 'login_redirect', 'fe_skip_dash', 10, 3 );
+add_filter( 'login_redirect', 'skel_skip_dash', 10, 3 );
 
-function fe_skip_dash( $url, $request, $user ) {
+function skel_skip_dash( $url, $request, $user ) {
 	if ( ! $user ||  is_wp_error( $user ) ) {
 			// There is no user.
 			// Do not change the URL.

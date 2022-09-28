@@ -2,7 +2,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&display=swap">
   <style type="text/css">
     body.login {
-      background-color: #110724;
+      background-color: #e9e9e9;
 			font-family: "Josefin Sans", "-apple-system", BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 			position: relative;
 			overflow: hidden;
@@ -63,14 +63,14 @@
 			display: none;
 		}
 		#login input[type="text"]:focus, #login input[type="password"]:focus {
-			border-color: #6c1efc;
+			border-color: #6432be;
 			box-shadow: none !important;
 		}
     #login input[type="submit"] {
-      background: #6c1efc;
+      background: #6432be;
 			color: #fff;
 			text-transform: uppercase;
-			width: 89px;
+			min-width: 89px;
 			height: 39px;
 			line-height: 39px;
 			letter-spacing: 0.84px;
@@ -82,7 +82,7 @@
 			box-shadow: none;
 		}
     #login h1 a, .login h1 a {
-      background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg');
+      background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/header-logo.svg');
       width: auto;
 			height: 90px;
       background-size: contain;
@@ -99,10 +99,10 @@
 			margin-top: 18px;
 		}
 		#login #nav a, #login #backtoblog a, .privacy-policy-page-link a {
-			color: #fff;
+			color: #6432be;
 		}
 		#login #nav a:hover, #login #backtoblog a:hover, .privacy-policy-page-link a:hover {
-			color: #47dcfc;
+			color: #6432be;
 			text-decoration: underline;
 		}
 		.privacy-policy-link {

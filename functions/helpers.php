@@ -108,8 +108,11 @@ function skel_get_the_terms($post_id, $taxonomy, $seperator) {
 	return $result;
 }
 
-// return array
-// eg. [name = 'term', 'id' = 3]
+/**
+ * Terms Array
+ * @param int $post_id, string taxonomy name
+ * @return array [name = 'term', 'id' = 3]
+ */
 function skel_get_the_terms_data($post_id, $taxonomy) {
 	$terms = get_the_terms($post_id, $taxonomy); // Returns objects array
 	$ar_term = array(); // Initialize an array

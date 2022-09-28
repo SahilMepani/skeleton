@@ -95,7 +95,6 @@
           <li>If comments not allowed, Uncheck "Allow people to post comments on new articles"</li>
           <li>If comments not allowed, Uncheck "Show Avatars"</li>
         </ul>
-        <li>Install and activate the following plugins with licence code:</li>
           <ul>
             <li><a href="https://drive.google.com/open?id=1nzQAAZNAvg_SJbrTqWkuqUrWR9auybaB" target="_blank">All plugins download link</a></li>
             <li>Admin Menu Editor - <a href="https://wordpress.org/plugins/admin-menu-editor/" target="_blank">Plugin page</a></li>

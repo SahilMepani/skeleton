@@ -95,25 +95,6 @@
           <li>If comments not allowed, Uncheck "Allow people to post comments on new articles"</li>
           <li>If comments not allowed, Uncheck "Show Avatars"</li>
         </ul>
-          <ul>
-            <li><a href="https://drive.google.com/open?id=1nzQAAZNAvg_SJbrTqWkuqUrWR9auybaB" target="_blank">All plugins download link</a></li>
-            <li>Admin Menu Editor - <a href="https://wordpress.org/plugins/admin-menu-editor/" target="_blank">Plugin page</a></li>
-            <li>Advanced Custom Field Pro - <a href="https://drive.google.com/open?id=1ffGYPATxigIHQcN_eeHmrtkYrk1zkrvc" target="_blank">Download link</a> <br /><small><code>b3JkZXJfaWQ9MzQxNzV8dHlwZT1kZXZlbG9wZXJ8ZGF0ZT0yMDE0LTA3LTA5IDIyOjMyOjAw</code></small></li>
-            <li>All in one migration - <a href="https://drive.google.com/open?id=1MuoA5cSLcGYhIbRMxKDtysTbUM63swVa" target="_blank">Download link</a> <br /><small><code>1d090987-fae0-4172-a8cd-cc7689dfe3d5</code></small></li>
-            <li>All in one migration Unlimited Editon - <a href="https://drive.google.com/open?id=1yK2yGZLB38zYc1OGC1oQ3Y7kHBsBMi4H" target="_blank">Download link</a> <br /><small><code>1d090987-fae0-4172-a8cd-cc7689dfe3d5</code></small></li>
-            <li>Classic Editor - <a href="https://wordpress.org/plugins/classic-editor/" target="_blank">Plugin page</a></li>
-            <li>Duplicate Post - <a href="https://wordpress.org/plugins/duplicate-post/" target="_blank">Plugin page</a></li>
-            <li>Enhanced Media Library - <a href="https://wordpress.org/plugins/enhanced-media-library/" target="_blank">Plugin page</a></li>
-            <li>Gravity Forms - <a href="https://drive.google.com/open?id=1KaBtpGtUL7mZam_EPt415UW0XpIMIMPJ" target="_blank">Download link</a> <br /> <small><code>c20f6083662ea51a3d85ddddab0e6d36</code></small></li>
-            <li>Redirection - <a href="https://wordpress.org/plugins/redirection/" target="_blank">Plugin page</a></li>
-            <li>Regenerate Thumbnails - <a href="https://wordpress.org/plugins/regenerate-thumbnails/" target="_blank">Plugin page</a></li>
-            <li>SearchWP - <a href="https://drive.google.com/open?id=1AAayYivM5aqzhrQTC_4dle7IjdjiLEC3" target="_blank">Download link</a> <br /> <small><code>8d1c00c38a2e1a0919a5d5d3392b608e</code></small></li>
-            <li>Yoast SEO - <a href="https://wordpress.org/plugins/wordpress-seo/" target="_blank">Plugin page</a></li>
-            <li id="wp-migrate-db-pro">WP Migrate DB Pro - <a href="https://drive.google.com/open?id=1bsSQUqjceACc4IIPeKSTwItIuRQxJ6Id" target="_blank">Download link</a> <br /> <small><code>a5684f4b-bd85-453e-8fb2-3feb32d64b7c</code></small></li>
-            <li id="wp-migrate-db-pro">WP Migrate DB Pro Media Files - <a href="https://drive.google.com/open?id=1IYPn1PngeL6aSvzGquDlGZS9liYUj1o9" target="_blank">Download link</a> <br /> <small><code>a5684f4b-bd85-453e-8fb2-3feb32d64b7c</code></small></li>
-            <li id="wp-migrate-db-pro">WP Migrate DB Pro Theme and Plugin files - <a href="https://drive.google.com/open?id=1ZWi7OkPZ5s-7JkxkVQ4RrlK0ADLjfQ-E" target="_blank">Download link</a> <br /> <small><code>a5684f4b-bd85-453e-8fb2-3feb32d64b7c</code></small></li>
-          </ul>
-          <p>Plugins downloaded from drive needs to be updated once installed</p>
       </ol>
 
       <h5 id="development">2.2 Development WP (development branch)</h5>
@@ -174,7 +155,7 @@
             <code>cd /path/to/your/folder/theme</code>
           </li>
           <li>Connect your existing repository to Bitbucket <br />
-              <code>git remote add origin git@bitbucket.org:threesixtyeight/your-repo-name.git</code>
+              <code>git remote add origin "YOUR REPO LINK"</code>
               <code>git push -u origin master</code>
             </small>
           </li>

@@ -49,7 +49,7 @@ function skel_get_validate_youtube_link( $link ) {
 /*====================================================================
 =            Custom excerpt function with length argument            =
 ====================================================================*/
-function skel_get_the_excerpt( $post_id, $limit ) {
+function skel_get_the_excerpt( $limit, $post_id ) {
 	$excerpt = explode(' ', get_the_excerpt( $post_id ), $limit);
 	if ( count($excerpt) >= $limit ) {
 		array_pop($excerpt);

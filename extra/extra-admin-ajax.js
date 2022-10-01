@@ -68,9 +68,9 @@ jQuery( document ).ready( function( $ ) {
           }, 300 );
 
           if ( $data.length < 6 ) {
-            loadMoreBtn.removeClass( 'js-active btn-disabled' ).addClass( 'btn-disabled' );
+            loadMoreBtn.removeClass( 'js-active disabled' ).addClass( 'disabled' );
           } else {
-            loadMoreBtn.removeClass( 'js-active btn-disabled' ).addClass( 'js-active' );
+            loadMoreBtn.removeClass( 'js-active disabled' ).addClass( 'js-active' );
           }
 
         }
@@ -87,7 +87,7 @@ jQuery( document ).ready( function( $ ) {
   ===========================================*/
   $( '#ajax-load-more-post' ).on( 'click', function( e ) {
     e.preventDefault();
-    $( this ).removeClass( 'js-active' ).addClass( 'btn-disabled' );
+    $( this ).removeClass( 'js-active' ).addClass( 'disabled' );
     $( '.spinner' ).addClass( 'js-active' );
     load_more_post( $( this ) );
   } );
@@ -124,14 +124,14 @@ jQuery( document ).ready( function( $ ) {
             $( '.spinner' ).removeClass( 'js-active' );
 
             if ( $data.length < 6 ) {
-              $this.addClass( 'btn-disabled' );
+              $this.addClass( 'disabled' );
             } else {
-              $this.removeClass( 'btn-disabled' ).addClass( 'js-active' );
+              $this.removeClass( 'disabled' ).addClass( 'js-active' );
             }
 
           } else {
             $( '.spinner' ).removeClass( 'js-active' );
-            $this.removeClass( 'js-active' ).addClass( 'btn-disabled' );
+            $this.removeClass( 'js-active' ).addClass( 'disabled' );
           }
 
         } //success
@@ -226,9 +226,9 @@ jQuery( document ).ready( function( $ ) {
           }, 300 );
 
           if ( $data.length < 6 ) {
-            loadMoreBtn.removeClass( 'js-active' ).addClass( 'btn-disabled' );
+            loadMoreBtn.removeClass( 'js-active' ).addClass( 'disabled' );
           } else {
-            loadMoreBtn.removeClass( 'btn-disabled' ).addClass( 'js-active' );
+            loadMoreBtn.removeClass( 'disabled' ).addClass( 'js-active' );
           }
 
         }
@@ -246,7 +246,7 @@ jQuery( document ).ready( function( $ ) {
   ===============================================*/
   $( '#ajax-load-more-post-dual' ).on( 'click', function( e ) {
     e.preventDefault();
-    $( this ).removeClass( 'js-active' ).addClass( 'btn-disabled' );
+    $( this ).removeClass( 'js-active' ).addClass( 'disabled' );
     $( '.spinner' ).addClass( 'js-active' );
     load_more_dual_cpt( $( this ) );
   } );
@@ -286,14 +286,14 @@ jQuery( document ).ready( function( $ ) {
             $( '.spinner' ).removeClass( 'js-active' );
 
             if ( $data.length < 6 ) {
-              $this.addClass( 'btn-disabled' );
+              $this.addClass( 'disabled' );
             } else {
-              $this.removeClass( 'btn-disabled' ).addClass( 'js-active' );
+              $this.removeClass( 'disabled' ).addClass( 'js-active' );
             }
 
           } else {
             $( '.spinner' ).removeClass( 'js-active' );
-            $this.removeClass( 'js-active' ).addClass( 'btn-disabled' );
+            $this.removeClass( 'js-active' ).addClass( 'disabled' );
           }
 
         } //success

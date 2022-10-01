@@ -149,7 +149,7 @@
 				<h4 id="alert-no-data" class="d-none">Sorry, there are no available post matching your filters.</h4>
 			</div>
 			<div class="d-flex justify-content-center">
-				<button id="ajax-more-post" data-cpt="post" data-tax="category" class="<?php echo ($total_post_count <= $posts_per_page) ? 'btn-disabled' : ''; ?> btn btn-black btn-md">Load More</button>
+				<button id="ajax-more-post" data-cpt="post" data-tax="category" class="<?php echo ($total_post_count <= $posts_per_page) ? 'disabled' : ''; ?> btn btn-black btn-md">Load More</button>
 			</div> <!-- .d-flex justify-content-center -->
 		</div> <!-- .text-center -->
 

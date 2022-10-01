@@ -8,7 +8,7 @@ btnMorePost.on( 'click', function( e ) {
   e.preventDefault();
 
   // disable load more button
-  btnMorePost.addClass( 'btn-disabled' );
+  btnMorePost.addClass( 'disabled' );
 
   update_post( $( this ), 'filter_more' );
 } );
@@ -134,8 +134,8 @@ function update_post( $this, trigger ) {
 
           // scroll to newly appended data object
           $( 'html,body' ).animate( {
-            scrollTop: $( $data ).offset().top
-          }, 100 );
+            scrollTop: $( $data ).offset().top - 40
+          }, 0 );
 
         }
 
@@ -170,7 +170,7 @@ function update_post( $this, trigger ) {
         }
 
         if ( unseenPostCount ) {
-          btnMorePost.removeClass( 'btn-disabled' );
+          btnMorePost.removeClass( 'disabled' );
         }
 
       } else {

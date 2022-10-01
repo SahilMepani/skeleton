@@ -114,7 +114,7 @@
     </div> <!-- .spinner -->
 
     <div class="btn-load-more-block clear">
-      <button id="ajax-load-more-post-dual" data-cpt="project" data-first-cpt-tax="tax-one" data-second-cpt-tax="tax-two" class="<?php echo ($post_count < 6) ? 'btn-disabled' : 'js-active'; ?> btn btn-black btn-lg btn-load-more"><b><?php _e('LOAD MORE','skel'); ?></b></button>
+      <button id="ajax-load-more-post-dual" data-cpt="project" data-first-cpt-tax="tax-one" data-second-cpt-tax="tax-two" class="<?php echo ($post_count < 6) ? 'disabled' : 'js-active'; ?> btn btn-black btn-lg btn-load-more"><b><?php _e('LOAD MORE','skel'); ?></b></button>
     </div>
   </div> <!-- .text-center -->
 

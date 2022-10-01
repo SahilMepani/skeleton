@@ -69,6 +69,22 @@
 	}
 }
 
+// Swiper navigation
+.swiper-button-next, .swiper-button-prev {
+  color: $lavender;
+  width: rem-calc( 60px );
+  height: rem-calc( 60px );
+  text-align: center;
+  border-radius: 50%;
+  border: rem-calc( 1px ) solid $lavender;
+  &::after {
+    display: none; // default overwrite
+  }
+  svg {
+    fill: $lavender;
+  }
+}
+
 /*----------  Swiper Arrow Navigation - Inline  ----------*/
 .swiper-navigation-inline {
 	.swiper-button-prev, .swiper-button-next {
@@ -81,7 +97,6 @@
 		border: rem-calc( 1px ) solid green;
 		margin-top: rem-calc( 1px ); // space for border, required
 		// required
-		margin-top: 0;
 		position: relative;
 		left: auto;
 		right: auto;
@@ -92,48 +107,16 @@
 			font-size: rem-calc( 24px );
 		}
 	}
-	.swiper-button-next {
-		&:after {
-			display: block;
-			left: rem-calc( -20px );
-		}
-	}
 }
-
-.swiper-button-next, .swiper-button-prev {
-	color: green;
-	&.scheme-light {
-		color: #fff;
-	}
-	&:after {
-		@include icon-font-properties;
-		content: $i-right-chevron;
-	}
-}
-
-// .swiper-button-prev {
-// 	&:after {
-// 		transform: rotate(180deg);
-// 	}
-// }
 
 /*----------  Swiper Arrow Navigation - Absolute end  ----------*/
 .swiper-navigation-absolute {
-  .swiper-button-prev, .swiper-button-next {
-    color: green;
-    &::after {
-      @include icon-font-properties;
-      font-size: rem-calc( 48px );
-      content: $i-right-chevron;
-    }
-  }
   .swiper-button-prev {
     right: auto;
-    left: rem-calc( 50px );
-    transform: rotate(180deg);
+    left: 0;
   }
   .swiper-button-next {
-    right: rem-calc( 50px );
+    right: 0;
     left: auto;
   }
 }

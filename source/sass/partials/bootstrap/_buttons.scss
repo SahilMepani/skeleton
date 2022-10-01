@@ -45,7 +45,7 @@
   &.disabled,
   fieldset:disabled & {
     pointer-events: none;
-    opacity: $btn-disabled-opacity;
+    opacity: $disabled-opacity;
     @include box-shadow(none);
   }
 }

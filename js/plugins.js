@@ -104,7 +104,7 @@ btnMorePost.on( 'click', function( e ) {
   e.preventDefault();
 
   // disable load more button
-  btnMorePost.addClass( 'btn-disabled' );
+  btnMorePost.addClass( 'disabled' );
 
   update_post( $( this ), 'filter_more' );
 } );
@@ -266,7 +266,7 @@ function update_post( $this, trigger ) {
         }
 
         if ( unseenPostCount ) {
-          btnMorePost.removeClass( 'btn-disabled' );
+          btnMorePost.removeClass( 'disabled' );
         }
 
       } else {

@@ -13,6 +13,12 @@
 	☐ Get old website URL
 	☐ Get the new website pages slug
 
+	CSS:
+		☐ Remove spacers classes which are not used
+		☐ Remove gutter classes which are not used
+		☐ Remove negative spacer classes which are not used
+		☐ Remove spacer classes for higher breakpoints which are not used (xxl)
+
 	# FINALIZE --- ✄ -----------------------:
 		☐ Check for PHP warnings or errors with debug to true or use Query monitor plugin
 		☐ Activate "Redirection" plugin and redirect all CPT slug to plural URL and use custom template to list all CPT posts. Also click check for al logs include 404 and monitor all Post Types

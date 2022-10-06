@@ -128,6 +128,7 @@
 }
 
 /*----------  Required  ----------*/
+// these classes are added to section containing the swiper slider
 .swiper-cards-overflow-down-xl {
   @include swiper-cards-overflow-down( 'xl' );
 }

@@ -20,6 +20,85 @@
         width: 100%;
       }
     }
+		.gfield.gf-list-enhanced {
+      .gfield_checkbox {
+        input {
+          display: none;
+        }
+        label {
+          line-height: 1.2;
+          position: relative;
+          padding-left: rem-calc( 22px );
+          margin-bottom: rem-calc( 8px );
+          &:before {
+            content: '';
+            display: block;
+            background-color: #fff;
+            width: rem-calc( 15px );
+            height: rem-calc( 15px );
+            border: rem-calc( 1px ) solid #999;
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-radius: rem-calc( 3px );
+          }
+        }
+        input[type='checkbox'] {
+          &:checked {
+            + label {
+              &:before {
+                background-color: $turquoise;
+                border-color: $turquoise;
+              }
+            }
+          }
+        }
+      }
+    }
+    .gf_list_2col, .gf_list_3col, .gf_list_4col, .gf_list_5col, .gf_list_inline, .gf-list-2col, .gf-list-3col, .gf-list-4col, .gf-list-5col, .gf-list-inline {
+      .gfield_checkbox li, .gfield_radio li, .gfield-checkbox li, .gfield-radio li {
+        display: inline-block;
+        padding-right: 3rem;
+      }
+    }
+    .gf_list_2col, .gf-list-2col {
+      .gfield_checkbox li, .gfield_radio li, .gfield-checkbox li, .gfield-radio li {
+        width: 100%;
+        @include media-breakpoint-up( sm ) {
+          width: 50%;
+        }
+      }
+    }
+    .gf_list_3col, .gf-list-3col {
+      .gfield_checkbox li, .gfield_radio li, .gfield-checkbox li, .gfield-radio li {
+        width: 100%;
+        @include media-breakpoint-up( md ) {
+          width: 33.333333%;
+        }
+      }
+    }
+    .gf_list_4col, .gf-list-4col {
+      .gfield_checkbox li, .gfield_radio li, .gfield-checkbox li, .gfield-radio li {
+        width: 100%;
+        @include media-breakpoint-up( sm ) {
+          width: 50%;
+        }
+        @include media-breakpoint-up( md ) {
+          width: 25%;
+        }
+      }
+    }
+    .gf_list_5col, .gf-list-5col {
+      .gfield_checkbox li, .gfield_radio li, .gfield-checkbox li, .gfield-radio li {
+        width: 100%;
+        @include media-breakpoint-up( sm ) {
+          width: 50%;
+        }
+        @include media-breakpoint-up( md ) {
+          width: 20%;
+        }
+      }
+    }
     .ginput_container_select {
       @include custom-select-block;
     }

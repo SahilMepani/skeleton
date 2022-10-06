@@ -1,4 +1,11 @@
 /*----------  Required  ----------*/
+.container {
+  @include media-breakpoint-up( 1600px ) {
+    width: rem-calc( 1470px ); // change this value as per design
+		// added over to avoid generating utility classes for this breakpoint. for eg. pt-xxxl-1 etc
+  }
+}
+
 /* show focus ring on form controls only when keyboard tabbing is used, using what-input js */
 [data-whatintent='keyboard'] *:focus {
   outline: rem-calc(3px) dashed dodgerblue;

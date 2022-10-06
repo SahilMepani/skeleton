@@ -116,26 +116,46 @@ $spacers : (
   9  : 9rem,
   9-#{5} : 9.5rem,
   10 : 10rem,
-  10-#{5} : 10.5rem,
-  11 : 11rem,
-  11-#{5} : 11.5rem,
-  12 : 12rem,
-  12-#{5}: 12.5rem,
-  13 : 13rem,
-  13-#{5} : 13.5rem,
-  14 : 14rem,
-  14-#{5} : 14.5rem,
-  15 : 15rem,
-  16 : 16rem,
-  17 : 17rem,
-  18 : 18rem,
-  19 : 19rem,
-  20 : 20rem,
+  // 11 : 11rem,
+  // 12 : 12rem,
+  // 13 : 13rem,
+  // 14 : 14rem,
+  // 15 : 15rem,
+  // 16 : 16rem,
+  // 17 : 17rem,
+  // 18 : 18rem,
+  // 19 : 19rem,
+  // 20 : 20rem,
 );
 
 // Custom map
-// useful to generate negative margins and gutter utility classes
-$negative-and-gutter-spacers: (
+// useful to generate gutter utility classes
+$gutter-spacers: (
+  0      : 0,
+  0-#{5} : 0.5rem,
+  1      : 1rem,
+  1-#{5} : 1.5rem,
+  2      : 2rem,
+  2-#{5} : 2.5rem,
+  3      : 3rem,
+  3-#{5} : 3.5rem,
+  4      : 4rem,
+  4-#{5} : 4.5rem,
+  5      : 5rem,
+  5-#{5} : 5.5rem,
+  6      : 6rem,
+  6-#{5} : 6.5rem,
+  7      : 7rem,
+  7-#{5} : 7.5rem,
+  8      : 8rem,
+  8-#{5} : 8.5rem,
+  9      : 9rem,
+  9-#{5} : 9.5rem,
+  10     : 10rem,
+);
+
+// useful to generate negative margin utility classes
+$negative-utility-spacers: (
   0      : 0,
   0-#{5} : 0.5rem,
   1      : 1rem,
@@ -160,7 +180,7 @@ $negative-and-gutter-spacers: (
 );
 
 // It prefixes the keys with `n` and makes the value negative.
-$negative-spacers: if($enable-negative-margins, negativify-map($negative-and-gutter-spacers), null);
+$negative-spacers: if($enable-negative-margins, negativify-map($negative-utility-spacers), null);
 
 // @debug $negative-spacers;
 
@@ -171,7 +191,7 @@ $negative-spacers: if($enable-negative-margins, negativify-map($negative-and-gut
 // adapting to different screen sizes, for use in media queries.
 
 // New breakpoints - never use rem/%
-$grid-breakpoints: map-merge( $grid-breakpoints, (xxxl : 1600px) );
+// $grid-breakpoints: map-merge( $grid-breakpoints, (xxxl : 1600px) );
 // @debug $grid-breakpoints;
 
 
@@ -188,7 +208,7 @@ $container-max-widths: (
   xxl  : 93vw,
   // max-width value needs to be less than the (breakpoint value(xxxl) - $container-padding)
   // any property added here should also be added to grid breakpoints
-  xxxl : 144rem,
+  // xxxl : 144rem,
 );
 
 
@@ -203,7 +223,7 @@ $grid-gutter-width : 3rem; // gets divided by 2 for each side
 
 
 
-$gutters: $negative-and-gutter-spacers;
+$gutters: $gutter-spacers;
 
 
 // Typography

@@ -256,22 +256,6 @@ add_filter( 'wp_default_scripts', 'dequeue_jquery_migrate' );
 //! REQUIRED - Do not edit below
 ////////////////////////////////////////////////
 
-// Defer scripts
-////////////////////////////////////////////////
-// Add defer attribute to the scripts to set the resource priority to low
-function skel_defer_scripts( $tag, $handle, $src ) {
-  $defer = array(
-    'plugins',
-    'match-height'
-  );
-  if ( in_array( $handle, $defer ) ) {
-     return '<script src="' . $src . '" defer="defer" type="text/javascript"></script>' . "\n";
-  }
-    return $tag;
-}
-add_filter( 'script_loader_tag', 'skel_defer_scripts', 10, 3 );
-
-
 // Wrap oEmbed resource/video inside a div
 ////////////////////////////////////////////////
 function skel_embed_oembed_html($html, $url, $attr, $post_id) {

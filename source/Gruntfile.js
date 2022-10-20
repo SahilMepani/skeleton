@@ -11,11 +11,17 @@ module.exports = function ( grunt ) {
     watch: {
       sass: {
         files: [ 'sass/**/*.{scss,sass}', 'sass/_partials/**/*.{scss,sass}' ],
-        tasks: [ 'sass' ]
+        // dev
+        tasks: [ 'sass' ],
+        // prod
+        // tasks: [ 'sass', 'rtlcss', 'postcss' ]
       },
       js: {
         files: [ 'js/**/*.js' ],
-        tasks: [ 'concat' ]
+        // dev
+        tasks: [ 'concat' ],
+        // prod
+        // tasks: [ 'concat',  'babel', 'uglify' ]
       },
       livereload: {
         files: [ '../*.html', '../*.php', '../js/**/*.{js,json}', '../*.css', '../img/**/*.{png,jpg,jpeg,gif,webp,svg}' ],

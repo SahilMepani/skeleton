@@ -3,19 +3,19 @@
 // Swiper class depending on the direction
 ////////////////////////////////////////////////
 function skel_swiper_direction_class() {
-  if ( ICL_LANGUAGE_CODE==en ) {
-    return 'swiper-container';
-  } else if ( ICL_LANGUAGE_CODE==ar ) {
-    return 'swiper-container-rtl';
+  if ( ICL_LANGUAGE_CODE == 'en' ) {
+    return 'swiper';
+  } else if ( ICL_LANGUAGE_CODE == 'ar' ) {
+    return 'swiper-rtl';
   }
 }
 
 // Language direction class
 ////////////////////////////////////////////////
 function skel_direction_class() {
-  if ( ICL_LANGUAGE_CODE==en ) {
+  if ( ICL_LANGUAGE_CODE == 'en' ) {
     return 'dir-ltr';
-  } else if ( ICL_LANGUAGE_CODE==ar ) {
+  } else if ( ICL_LANGUAGE_CODE == 'ar' ) {
     return 'dir-rtl';
   }
 }

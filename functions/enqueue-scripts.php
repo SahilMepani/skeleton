@@ -39,23 +39,24 @@ function skel_enqueue_scripts() {
     true
   );
 
-  // wp_enqueue_script(
-  //   'modernizr',
-  //   get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js'
-  // );
+	// required and used for touch and no-touch events
+  wp_enqueue_script(
+    'modernizr',
+    get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js'
+  );
 
   // wp_enqueue_script(
   //   'ua-parser',
   //   get_template_directory_uri() . '/js/vendor/ua-parser-0.7.20.min.js'
   // );
 
-  // wp_enqueue_script(
-  //   'match-height',
-  //   get_template_directory_uri() . '/js/vendor/match-height.js',
-  //   array('jquery'),
-  //   filemtime( get_template_directory() . '/js/vendor/match-height.js' ),
-  //   true
-  // );
+  wp_enqueue_script(
+    'match-height',
+    get_template_directory_uri() . '/js/vendor/match-height.js',
+    array('jquery'),
+    filemtime( get_template_directory() . '/js/vendor/match-height.js' ),
+    true
+  );
 
   // localize scripts
   // wp_localize_script(
@@ -77,9 +78,9 @@ add_action('wp_enqueue_scripts', 'skel_enqueue_scripts');
 // Add defer attribute to the scripts to set the resource priority to low
 function skel_defer_scripts( $tag, $handle, $src ) {
   $defer = array(
+    // 'jquery',
+    // 'jquery-core',
     'plugins',
-    'jquery',
-    'jquery-core',
 		'match-height'
   );
   if ( in_array( $handle, $defer ) ) {

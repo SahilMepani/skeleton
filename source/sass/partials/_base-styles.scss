@@ -18,3 +18,9 @@
 [data-sreveal='trigger'] {
   visibility: visible;
 }
+
+@media (prefers-reduced-motion: reduce) {
+	.sreveal-stagger-item, [data-sreveal] {
+		visibility: visible;
+	}
+}

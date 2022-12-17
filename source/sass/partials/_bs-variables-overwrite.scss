@@ -13,7 +13,7 @@ $enable-grid-classes         : true;
 $enable-button-pointers      : true;
 $enable-rfs                  : false;
 $enable-validation-icons     : false;
-// if enabled we also need to comment the negative margin utilites in utilities overwrite file
+// if enabled we also need to uncomment the negative margin utilites in utilities overwrite file
 $enable-negative-margins     : false; // different than gutter classes
 $enable-deprecation-messages : true;
 $enable-important-utilities  : true;
@@ -217,7 +217,7 @@ $container-max-widths: (
 // Set the number of columns and specify the width of the gutters.
 
 // $grid-columns:                12;
-$grid-gutter-width : 3rem; // gets divided by 2 for each side
+$grid-gutter-width : 2rem; // gets divided by 2 for each side
 // $grid-row-columns:            6;
 
 
@@ -233,7 +233,8 @@ $gutters: $gutter-spacers;
 // $font-size-root effects the value of `rem`, which is used for as well font sizes, paddings and margins
 // $font-size-base effects the font size of the body text
 $font-family-base : 'Montserrat', $font-family-sans-serif;
-$font-size-base   : 1.6rem; // Assumes the browser, typically `16px`
+$font-size-base : 50%; // 8px
+$font-size-base   : 2rem; // Assumes the browser, typically `16px`
 // $font-size-sm:                $font-size-base * .875;
 // $font-size-lg:                $font-size-base * 1.25;
 

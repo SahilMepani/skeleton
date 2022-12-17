@@ -6,9 +6,18 @@
         display: none;
       }
     }
-    .gfield_required {
-      display: none;
-    }
+    // .gfield_required {
+		// 	position: relative;
+    //   .gfield_required {
+		// 		display: none;
+		// 	}
+		// 	&::after {
+		// 		display: inline-block;
+		// 		content: '*';
+		// 		font-size: rem-calc( 16px );
+		// 		margin-inline-start: rem-calc( 5px );
+		// 	}
+    // }
     .gfield_label {
       color: #211f21;
     }

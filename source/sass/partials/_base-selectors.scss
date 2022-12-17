@@ -1,7 +1,7 @@
 :root {
   --scrollbar-width: rem-calc( 10px );
-  // @include fluid( font-size, $scaling, $four-k, 10px, 10px * 2.4, true, false );
-  // @include fluid( font-size, $mobile, $scaling, $font-size-root, $font-size-root, false, false ); // scale down
+  // @include fluid( font-size, $scaling, $four-k, $font-size-base, $font-size-base * 2.4, true, false );
+  // @include fluid( font-size, $mobile, $scaling, $font-size-base, $font-size-base, false, false ); // scale down
 }
 
 ::selection { background: $text-selection-bg-color;

@@ -1,7 +1,7 @@
 // Check if user scrolled
 ////////////////////////////////////////////////
 let pageScroll = function () {
-	let scroll = $( window ).scrollTop();
+	let scroll = window.scrollY;
 	const siteHeader = document.querySelector( '.site-header' );
 	if ( siteHeader ) {
 		if ( scroll > 0 ) {

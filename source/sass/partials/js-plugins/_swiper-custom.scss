@@ -127,6 +127,14 @@
 	// opacity: .3 !important;
 }
 
+/*----------  Swiper Arrow Navigation  ----------*/
+.swiper-navigation {
+  display: flex;
+  &.dir-rtl {
+    flex-direction: row-reverse;
+  }
+}
+
 /*----------  Required  ----------*/
 // these classes are added to section containing the swiper slider
 .swiper-cards-overflow-down-xl {

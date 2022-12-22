@@ -1,5 +1,5 @@
 :root {
-  --scrollbar-width: rem-calc( 10px );
+  --scrollbar-width: 1rem; // don't use rem-calc
   // @include fluid( font-size, $scaling, $four-k, $font-size-base, $font-size-base * 2.4, true, false );
   // @include fluid( font-size, $mobile, $scaling, $font-size-base, $font-size-base, false, false ); // scale down
 }

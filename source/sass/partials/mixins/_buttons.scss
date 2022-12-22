@@ -1,6 +1,4 @@
 @mixin btn {
-	background-color: transparent;
-	border: 0;
 	font-size: rem-calc( 18px );
 	font-weight: 600;
 	line-height: $btn-line-height;

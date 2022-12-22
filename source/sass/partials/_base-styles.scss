@@ -1,8 +1,8 @@
 /*----------  Required  ----------*/
 .container {
-  @include media-breakpoint-up( 1600px ) {
-    width: rem-calc( 1470px ); // change this value as per design
-		// added over to avoid generating utility classes for this breakpoint. for eg. pt-xxxl-1 etc
+  @include media-breakpoint-up( $xxxl ) {
+	// added over to avoid generating utility classes for this breakpoint. for eg. pt-xxxl-1 etc
+    max-width: rem-calc( 1470px ); // change this value as per design
   }
 }
 

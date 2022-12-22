@@ -5,33 +5,39 @@
 }
 
 /*----------  Swiper Pagination - Dashed & left aligned  ----------*/
-.swiper-pagination.swiper-pagination-horizontal { // specificity issue
+.swiper-pagination.swiper-pagination-horizontal {
+	// specificity issue
 	height: 0;
 	bottom: 0; // overwrite default
 	position: relative; // overwrite default
+
 	&.scheme-dark {
 		span {
-			background-color: rgba(green,.3);
+			background-color: rgba(green, .3);
+
 			&:after {
 				content: '';
 				background: green;
 			}
 		}
 	}
+
 	span {
 		opacity: 1;
-		background-color: rgba(#fff,.2);
+		background-color: rgba(#fff, .2);
 		display: inline-block;
-		width: rem-calc( 40px );
-		height: rem-calc( 4px );
-		margin-left: rem-calc( 5px );
+		width: rem-calc(40px);
+		height: rem-calc(4px);
+		margin-left: rem-calc(5px);
 		border-radius: 0;
 		position: relative;
 		cursor: pointer;
 		overflow: hidden;
+
 		&:not(:last-child) {
-			margin: 0 rem-calc( 10px ) 0 0;
+			margin: 0 rem-calc(10px) 0 0;
 		}
+
 		&:after {
 			content: '';
 			background: #fff;
@@ -45,6 +51,7 @@
 			transform-origin: 100% 100%;
 			transition: .3s transform ease-out;
 		}
+
 		&.swiper-pagination-bullet-active {
 			&::after {
 				transform: scale(1);
@@ -52,6 +59,7 @@
 			}
 		}
 	}
+
 	// .hero-media-slider & {
 	// 	left: var(--container-margin-x);
 	// 	bottom: rem-calc( 40px );
@@ -59,10 +67,11 @@
 	// .step-cards-slider-section & {
 	// 	bottom: rem-calc( 50px );
 	// }
-	@include media-breakpoint-up( md ) {
+	@include media-breakpoint-up(md) {
 		span {
-			width: rem-calc( 70px );
+			width: rem-calc(70px);
 		}
+
 		// .hero-media-slider & {
 		// 	bottom: rem-calc( 110px );
 		// }
@@ -70,55 +79,60 @@
 }
 
 // Swiper navigation
-.swiper-button-next, .swiper-button-prev {
-  color: $lavender;
-  width: rem-calc( 60px );
-  height: rem-calc( 60px );
-  text-align: center;
-  border-radius: 50%;
-  border: rem-calc( 1px ) solid $lavender;
-  &::after {
-    display: none; // default overwrite
-  }
-  svg {
-    fill: $lavender;
-  }
+.swiper-button-next,
+.swiper-button-prev {
+	color: $primary;
+	width: rem-calc(60px);
+	height: rem-calc(60px);
+	text-align: center;
+	border-radius: 50%;
+	border: rem-calc(1px) solid $primary;
+
+	&::after {
+		display: none; // default overwrite
+	}
+
+	svg {
+		fill: $primary;
+	}
 }
 
-/*----------  Swiper Arrow Navigation - Inline  ----------*/
+
+// Swiper Arrow Navigation - Inline
+////////////////////////////////////////////////
 .swiper-navigation-inline {
-	.swiper-button-prev, .swiper-button-next {
+	gap: 0 rem-calc( 10px );
+
+	.swiper-button-prev,
+	.swiper-button-next {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: rem-calc( 50px );
-		height: rem-calc( 50px );
+		width: rem-calc(50px);
+		height: rem-calc(50px);
+		padding: rem-calc( 10px );
 		border-radius: 50%;
-		border: rem-calc( 1px ) solid green;
-		margin-top: rem-calc( 1px ); // space for border, required
+		border: rem-calc(1px) solid currentColor;
+		// space for border, required, if the navigation is standalone and not a part of heading + navigation
+		margin-top: rem-calc(1px);
 		// required
 		position: relative;
 		left: auto;
 		right: auto;
-		&.scheme-light {
-			border-color: #fff;
-		}
-		&:after {
-			font-size: rem-calc( 24px );
-		}
 	}
 }
 
 /*----------  Swiper Arrow Navigation - Absolute end  ----------*/
 .swiper-navigation-absolute {
-  .swiper-button-prev {
-    right: auto;
-    left: 0;
-  }
-  .swiper-button-next {
-    right: 0;
-    left: auto;
-  }
+	.swiper-button-prev {
+		right: auto;
+		left: 0;
+	}
+
+	.swiper-button-next {
+		right: 0;
+		left: auto;
+	}
 }
 
 // hide the buttons when not enough slides
@@ -127,24 +141,36 @@
 	// opacity: .3 !important;
 }
 
+// Scrollbar
+////////////////////////////////////////////////
+.swiper-horizontal > .swiper-scrollbar {
+	width: 100%;
+	left: 0;
+	.swiper-scrollbar-drag {
+		background-color: $royal-blue;
+		border-radius: rem-calc( 5px );
+	}
+}
+
 /*----------  Swiper Arrow Navigation - RTL  ----------*/
 .swiper-navigation {
-  display: flex;
-  &.dir-rtl {
-    flex-direction: row-reverse;
-  }
+	display: flex;
+
+	&.dir-rtl {
+		flex-direction: row-reverse;
+	}
 }
 
 /*----------  Required  ----------*/
 // these classes are added to section containing the swiper slider
 .swiper-cards-overflow-down-xl {
-  @include swiper-cards-overflow-down( 'xl' );
+	@include swiper-cards-overflow-down('xl');
 }
 
 .swiper-cards-overflow-down-lg {
-  @include swiper-cards-overflow-down( 'lg' );
+	@include swiper-cards-overflow-down('lg');
 }
 
 .swiper-cards-overflow-down-md {
-  @include swiper-cards-overflow-down( 'md' );
+	@include swiper-cards-overflow-down('md');
 }

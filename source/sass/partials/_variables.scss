@@ -1,6 +1,12 @@
 // Can't use rem-calc function in this file
 
-// Required breakpoints for 4K scaling
+// Same as grid breakpoints before $two-k
+$sm      : 576px;
+$md      : 768px;
+$lg      : 992px;
+$xl      : 1200px;
+$xxl     : 1400px;
+$xxxl    : 1600px;
 $two-k   : 1920px;
 $three-k : 2560px;
 $four-k  : 3840px;

@@ -22,22 +22,10 @@ $enable-important-utilities : true;
 $colors: null;
 
 // Project theme colors
-// Base Colors - update/delete as per project
-$blue: #0d6efd !default;
-$indigo: #6610f2 !default;
-$purple: #6f42c1 !default;
-$pink: #d63384 !default;
-$red: #dc3545 !default;
-
-// Accent Colors - update/delete as per project
-$orange: #fd7e14 !default;
-$yellow: #ffc107 !default;
-$green: #198754 !default;
-$teal: #20c997 !default;
-$cyan: #0dcaf0 !default;
-
-// General theme colors - update/delete as per project
+// update/delete as per project
+// pure white and pure black are defined by default
 $body : $gray-600;
+$heading : $black;
 $primary : $blue;
 $secondary : $gray-600;
 $success : $green;
@@ -47,28 +35,16 @@ $light : $gray-300;
 $dark : $gray-900;
 
 // This will generate .btn-*, .btn-outline-*, text-*, .link-*, .bg-*, border-* classes
-$theme-colors: ( // base colors
-	"blue" : $blue,
-	"indigo" : $indigo,
-	"purple" : $purple,
-	"pink" : $pink,
-	"red" : $red,
-	// accent colors
-	"orange" : $orange,
-	"yellow" : $yellow,
-	"green" : $green,
-	"teal" : $teal,
-	"cyan" : $cyan,
-	// ....
+// Use less colors as possible to save kb
+$theme-colors: (
+	// as per the project
+	$blue : $any_color,
+	// required
 	"body" : $body,
+	"heading" : $heading,
 	"primary" : $primary,
 	"secondary" : $secondary,
-	"success" : $success,
-	"info" : $info,
-	"danger" : $danger,
-	"light" : $light,
-	"dark" : $dark);
-
+);
 // Links
 //
 // Style anchor elements.
@@ -261,11 +237,11 @@ $font-sizes: false;
 // );
 
 $headings-margin-bottom: 2.5rem;
-$headings-font-family: null;
-$headings-font-style: null;
+// $headings-font-family: null;
+// $headings-font-style: null;
 // $headings-font-weight:        400;
 // $headings-line-height:        1.2;
-$headings-color: null;
+// $headings-color: null;
 
 // uncomment to not display font sizes
 // $display-font-sizes: null;

@@ -115,19 +115,6 @@ Dev to Design handoff:
 
 --- ✄ -----------------------
 
-
-# CSS --- ✄ -----------------------:
-Naming Convention:
-  ☐ Any div that covers the entire width should be called a section. e.g. content-section
-  ☐ Any div inside container that wrap elements should be called a block. e.g content-block
-  ☐ Any div inside section that wrap container should be called a wrapper. e.g. content-wrapper
-  ☐ Any class/ID added using javascript should be prefixed using "js-" e.g. js-active, js-hidden
-
-Rules:
-  ☐ All px values to be wrapped inside rem-calc() function. Manually calculate the rem value at the base of $html-font-size value which is always set to 10px if you want to use inside calc() or it will throw error. For eg. if your value is 30px it will convert to 30/10 = 3rem
-  ☐ Avoid ID as much as possible.
-  ☐ Whenever possible use utility/helper classes in html rather than writing custom css.
-
 --- ✄ -----------------------
 ☐	Remove the headings font and line height variable. We will have manually write for headings in base selectors. Each headings should have its own font-weight, line-height, letter-spacing and size defined. This is because we don't know the styles from h3 class but still using h2 line-height. Headings cannot have anything global except margin-bottom
 

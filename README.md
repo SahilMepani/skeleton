@@ -1,7 +1,9 @@
 ## Skeleton WordPress theme
 Starter theme to help you jump start coding awesome WordPress themes
 
+---
 ### Initial Setup
+---
 
 1. [Download WordPress](https://wordpress.org/latest.zip) and install on your local server
 
@@ -13,25 +15,36 @@ Starter theme to help you jump start coding awesome WordPress themes
 
 1. Install all the required packages
 *cd /path/to/your/wp-content/themes/theme-name/source*
-Run <br />`npm install`
+Run <br />`npm i`
 `grunt`
 
-> If you get an error ==grunt command not found==. Install grunt cli with the following command:
-`npm install -g grunt-cli`
+> <br />If you get an error ==grunt is not recognized==. Install grunt cli with the following command:
+`npm i -g grunt-cli`
+then restart the terminal
 `grunt`
+<br />
 
 If everything went successful you should be able to see **Running watch task** in your terminal.
 
+If the error still persists. Add the following path in your environment.
+`C:\Users\your_username\AppData\Roaming\npm`
+
+Backup the variables in your PATH (My Computer > right-click > Properties > Advanced system settings > Environment Variables > 'Edit' the 'Path' user variables for the current user, and copy the 'Variable value' and save it somewhere)
+
+---
 ### Theme Activation
+---
 
-- Rename the downloaded theme folder to match your project name
-- Create a theme screenshot.png[600x600]px file at the root.
-- Create favicon.png and favicon.ico files at the root
-- Update theme name and other details in sass/style.scss file
-- cd *theme/source* and run `grunt`
-- Activate the theme
+1. Rename the downloaded theme folder to match your project name
+1. Create a theme screenshot.png[600x600]px file at the root.
+1. Create favicon.png and favicon.ico files at the root
+1. Update theme name and other details in sass/style.scss file
+1. cd *theme/source* and run `grunt`
+1. Activate the theme
 
+---
 ### Development
+---
 
 You can compile all JS and CSS code by running `grunt` command from  *theme/source*
 
@@ -41,9 +54,16 @@ We use SASS for CSS development. All the sass files are created inside the *sour
 
 ###### Creating a new SASS partial file
 
-Add a new *_filename.scss* partial inside *source/sass/partials/* at the root or its appropriate folder and then import it inside *source/sass/_style.css* file.
+Add a new *_filename.scss* partial inside *source/sass/partials/* or its sub folders and then import it inside *source/sass/_style.css* file.
 
 *source/sass/_style.css* is the index file calling all the partials.
+
+
+###### Rules
+
+- Never use px units. Always use rem unit. 10px = 1rem.
+
+- Use utility/helper classes rather than writing custom css.
 
 #### Javascript
 
@@ -51,8 +71,60 @@ All the JS files are created inside the *source/sass/js/plugins* and *source/sas
 
 ###### Creating a new JS file
 
-> . <br>All the js files are divided into two folders source/js/plugins and source/js/custom. <br>Grunt will compile all the source/sass/partials/.scss files into a file named style.css and source/js/plugins/.js files into js/plugins.js file and source/js/custom/.js files into js/custom.js file
-<br>Run `grunt build` when pushing it to production
+If you want to add a vendor/plugin, create a new file with the vendor/plugin name inside */source/js/plugins* folder.
 
-## Important Notes
-	Always use rem units except for breakpoints and line-height. Avoid pixels.
+To add custom coded js, create a new file with the appropriate_name.js inside */source/js/custom* folder.
+
+Unlike, SASS partials this file don't have to be imported inside index file. They will automatically gets compiled into */js/plugins.js* file
+
+---
+#### Class/ID Naming Convention
+---
+
+All classes should be lowercase and separated by dash.
+
+- Any design that covers the entire viewport should use the section tag and should be postfixed using section. e.g. *-section. Generally it sits outside the container.
+
+		<section class="hero-slider">
+			<div class="container">
+			</div>
+		</section>
+
+- Any tag inside container that wrap elements should be postfixed using block. e.g *-block
+
+		<div class="container">
+			<div class="heading-block">
+			</div>
+		</div>
+
+- Any tag inside section that wraps container should be called wrapper. It happens in very rare scenario.
+
+		<section class="hero-slider">
+			<div class="wrapper">
+				<div class="container">
+				</div>
+			</div>
+		</section>
+
+- Any class/ID added using javascript should be prefixed using "js-" e.g. js-active, js-hidden
+
+- Any class targeted with javascript should be prefixed using "js-" e.g. js-cards-slider
+
+- Avoid ID as much as possible.
+
+- Add a comment for every closing tag if it has multiple children.
+
+		<section class="hero-slider">
+			<div class="wrapper">
+				<div class="container">
+				</div>
+			</div>
+		</section> <!-- .hero-slider -->
+
+Run `grunt build` when pushing it to production
+
+---
+### Important Notes
+---
+
+- Always use rem units except for breakpoints and line-height. Avoid pixels.

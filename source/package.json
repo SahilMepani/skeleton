@@ -24,10 +24,12 @@
     "grunt-contrib-uglify": "^5.0.1",
     "grunt-contrib-watch": "*",
     "grunt-dev-update": "*",
+    "grunt-purgecss": "^5.0.0",
     "grunt-rtlcss": "^2.0.2",
     "grunt-sass": "*",
     "node-sass": "^5.0.0",
-    "postcss": "*"
+    "postcss": "*",
+    "purgecss-with-wordpress": "^5.0.0"
   },
   "keywords": [],
   "author": "",

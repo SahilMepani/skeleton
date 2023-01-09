@@ -51,7 +51,7 @@ $rem-base: 10px;
 /// @param {String} $max-breakpoint - Where the distance ends.
 /// @return {String} - The calc() CSS operation with crazy mathz.
 ///
-@function fluid($min-value, $max-value, $min-breakpoint: 'md', $max-breakpoint: 'xxl') {
+@function fluid($min-value, $max-value, $min-breakpoint, $max-breakpoint) {
 	@if $min-value == 0 {
 		$min-value: 0.001;
 	}

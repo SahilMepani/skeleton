@@ -1,6 +1,9 @@
 // Can't use rem-calc function in this file
 
 // Same as grid breakpoints before $two-k
+// @each $breakpoint, $value in $grid-breakpoint {
+// 	$#{$breakpoint}: #{$value};
+// }
 $sm      : 576px;
 $md      : 768px;
 $lg      : 992px;

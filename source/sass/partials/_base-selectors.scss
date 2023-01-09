@@ -1,7 +1,7 @@
 :root {
 	--scrollbar-width: 1rem; // don't use rem-calc
-	// @include fluid-old( font-size, $scaling, $four-k, $font-size-base, $font-size-base * 2.4, true, false );
-	// @include fluid-old( font-size, $mobile, $scaling, $font-size-base, $font-size-base, false, false ); // scale down
+	// @include fluid( font-size, $font-size-base, $font-size-base * 2.4, $scaling, $four-k, true, false );
+	// @include fluid( font-size, $font-size-base, $font-size-base, $mobile, $scaling, false, false ); // scale down
 }
 
 ::selection {
@@ -49,14 +49,14 @@ body {
 
 h1,
 .h1 {
-	font-size: $h1-font-size;
+	// font-size: fluid(36, 90);
 	font-weight: 400;
 	line-height: 1.2;
 }
 
 h2,
 .h2 {
-	font-size: $h2-font-size;
+	@include fluid( font-size, 36px, 90px, $sm, $xxl);
 	font-weight: 400;
 	line-height: 1.2;
 }

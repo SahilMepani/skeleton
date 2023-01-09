@@ -6,6 +6,7 @@
 ?>
 
 <h1 data-sreveal="fade-up">Animation Style</h1>
+<h2 data-sreveal="fade-up">Animation Style</h2>
 
 <?php the_content(); ?>
 

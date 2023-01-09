@@ -3,7 +3,7 @@
 }
 
 // https://codepen.io/MadeByMike/pen/vNrvdZ
-@mixin fluid($properties, $min-screen, $max-screen, $min-value, $max-value, $default: true, $max-breakpoint: true) {
+@mixin fluid-old($properties, $min-screen, $max-screen, $min-value, $max-value, $default: true, $max-breakpoint: true) {
 	& {
 		@if ( $default ) {
 			@each $property in $properties {

@@ -15,7 +15,7 @@
     background-color: transparent;
     color: #999;
     width: 100%;
-    padding: rem-calc(10px) rem-calc(50px) rem-calc(10px) rem-calc(10px);
+    padding: rem-calc(10) rem-calc(50) rem-calc(10) rem-calc(10);
     &:focus {
       color: #222;
       outline: none;
@@ -30,7 +30,7 @@
       background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iIzJjMmMyYyIgZD0iTTYuNjY3IDAuNjY3cTEuMjE5IDAgMi4zMzEgMC40Nzd0MS45MTQgMS4yNzkgMS4yNzkgMS45MTQgMC40NzcgMi4zMzFxMCAxLjA0Ny0wLjM0MSAyLjAwNXQtMC45NzEgMS43NGwzLjc4NiAzLjc4MXEwLjE5MyAwLjE5MyAwLjE5MyAwLjQ3NCAwIDAuMjg2LTAuMTkgMC40Nzd0LTAuNDc3IDAuMTlxLTAuMjgxIDAtMC40NzQtMC4xOTNsLTMuNzgxLTMuNzg2cS0wLjc4MSAwLjYzLTEuNzQgMC45NzF0LTIuMDA1IDAuMzQxcS0xLjIxOSAwLTIuMzMxLTAuNDc3dC0xLjkxNC0xLjI3OS0xLjI3OS0xLjkxNC0wLjQ3Ny0yLjMzMSAwLjQ3Ny0yLjMzMSAxLjI3OS0xLjkxNCAxLjkxNC0xLjI3OSAyLjMzMS0wLjQ3N3pNNi42NjcgMnEtMC45NDggMC0xLjgxMyAwLjM3dC0xLjQ5IDAuOTk1LTAuOTk1IDEuNDktMC4zNyAxLjgxMyAwLjM3IDEuODEzIDAuOTk1IDEuNDkgMS40OSAwLjk5NSAxLjgxMyAwLjM3IDEuODEyLTAuMzcgMS40OS0wLjk5NSAwLjk5NS0xLjQ5IDAuMzctMS44MTMtMC4zNy0xLjgxMy0wLjk5NS0xLjQ5LTEuNDktMC45OTUtMS44MTMtMC4zN3oiPjwvcGF0aD48L3N2Zz4=');
     background-repeat: no-repeat;
     background-position: center center;
-    width: rem-calc(40px);
+    width: rem-calc(40);
     position: absolute;
     right: 0;
     top: 0;
@@ -49,7 +49,7 @@
       }
     }
     .gform_body {
-      margin-bottom: rem-calc(15px);
+      margin-bottom: rem-calc(15);
     }
   }
 }
@@ -57,12 +57,12 @@
 // Custom menu and pages
 .widget_nav_menu .sub-menu,
 .widget_pages .children {
-  margin: rem-calc(5px) 0 0 0;
+  margin: rem-calc(5) 0 0 0;
   > li {
     &:before {
       content: '\2014 ';
       color: #999;
-      margin-right: rem-calc(5px);
+      margin-right: rem-calc(5);
     }
   }
 }
@@ -72,7 +72,7 @@
   margin-bottom: 0;
   caption {
     font-weight: 700;
-    font-size: rem-calc(14px);
+    font-size: rem-calc(14);
   }
   a {
     display: block;
@@ -80,7 +80,7 @@
   }
   th,
   td {
-    padding: rem-calc(9px);
+    padding: rem-calc(9);
   }
   #today {
     background-color: red;
@@ -91,7 +91,7 @@
     a {
       background-color: red;
       color: #fff;
-      padding: rem-calc(5px) rem-calc(10px);
+      padding: rem-calc(5) rem-calc(10);
       &:hover {
         background-color: #666;
       }
@@ -105,7 +105,7 @@
 
 .widget_recent_entries {
   li {
-    margin-bottom: rem-calc(10px) !important;
+    margin-bottom: rem-calc(10) !important;
     &:last-child {
       margin-bottom: 0 !important;
     }

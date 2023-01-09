@@ -42,14 +42,14 @@
   background: #fff;
   background-image: linear-gradient(45deg, transparent 50%, $color 50%), linear-gradient(135deg, $color 50%, transparent 50%);
   background-position: calc(100% - 2rem) 50%, calc(100% - 1.3rem) 50%;
-  background-size: rem-calc( 7px ) rem-calc( 7px ), rem-calc( 7px ) rem-calc( 7px );
+  background-size: rem-calc( 7 ) rem-calc( 7 ), rem-calc( 7 ) rem-calc( 7 );
   background-repeat: no-repeat;
   // background: none; // make dropdown icon visible, if after is enabled, disable all the above bg rules
   position: relative;
   select {
     background: transparent;
     width: 100%; //make dropdown sit on top of select
-    padding-right: rem-calc(40px);
+    padding-right: rem-calc(40);
     appearance: none;
   }
   select::-ms-expand {
@@ -58,10 +58,10 @@
   // &:after { // chevron icon
   // 	@include icon-font-properties;
   // 	content: $i-dropdown;
-  // 	font-size: rem-calc(18px);
+  // 	font-size: rem-calc(18);
   // 	display: block;
   // 	position: absolute;
-  // 	right: rem-calc(15px);
+  // 	right: rem-calc(15);
   // 	top: 50%;
   // 	z-index: -1;
   // 	transform: translateY(-50%);

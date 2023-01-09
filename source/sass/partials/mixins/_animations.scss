@@ -16,7 +16,7 @@
 
 @mixin animate-underline-on-hover($text-color: currentColor, $border-color: currentColor) {
 	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
-	padding-bottom: rem-calc(1px);
+	padding-bottom: rem-calc(1);
 	position: relative;
 	transition: .2s;
 
@@ -25,7 +25,7 @@
 		content: '';
 		left: 0;
 		right: 0;
-		height: rem-calc(1px);
+		height: rem-calc(1);
 		position: absolute;
 		bottom: 0;
 		transform: scale(0);
@@ -44,7 +44,7 @@
 
 @mixin animate-line-on-hover($text-color: currentColor, $border-color: currentColor) {
 	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
-	padding-bottom: rem-calc(1px);
+	padding-bottom: rem-calc(1);
 	position: relative;
 	transition: .2s;
 
@@ -53,7 +53,7 @@
 		content: '';
 		left: 0;
 		right: 0;
-		height: rem-calc(1px);
+		height: rem-calc(1);
 		position: absolute;
 		bottom: 0;
 		transform: scaleX(0);
@@ -74,15 +74,15 @@
 
 @mixin animate-background-underline-on-hover($text-color: currentColor, $background-start-color: currentColor, $background-end-color: currentColor) {
 	background-image: linear-gradient(to right, $background-start-color, $background-end-color);
-	background-size: 0 rem-calc(2px);
+	background-size: 0 rem-calc(2);
 	background-position: left bottom;
 	background-repeat: no-repeat;
-	padding-bottom: rem-calc(2px);
+	padding-bottom: rem-calc(2);
 	transition: background .2s ease-out;
 
 	&:hover,
 	&:active {
 		color: $text_color;
-		background-size: 100% rem-calc(2px);
+		background-size: 100% rem-calc(2);
 	}
 }

@@ -6,7 +6,7 @@
 		height: 100% !important;
 		max-width: none !important;
 		width: 100%;
-		border: rem-calc( 20px ) solid #000;
+		border: rem-calc( 20 ) solid #000;
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -47,13 +47,13 @@
 	.mfp-close {
 		background-color: #000;
 		color: #fff;
-		font-size: rem-calc( 30px );
+		font-size: rem-calc( 30 );
 		top: 0;
 		right: 0;
 		line-height: 1;
 		text-align: center;
-		width: rem-calc( 30px );
-		height: rem-calc( 30px );
+		width: rem-calc( 30 );
+		height: rem-calc( 30 );
 		padding: 0;
 		opacity: .5;
 		transition: .2s ease-out;
@@ -63,9 +63,9 @@
 	}
 	@media only screen and (min-width: 768px) {
 		.mfp-close {
-			font-size: rem-calc( 60px );
-			width: rem-calc( 60px );
-			height: rem-calc( 60px );
+			font-size: rem-calc( 60 );
+			width: rem-calc( 60 );
+			height: rem-calc( 60 );
 		}
 	}
 }

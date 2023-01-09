@@ -20,8 +20,8 @@
 .no-touchevents body::-webkit-scrollbar-track {
 	background: #eee;
 	border-radius: 100vw;
-	margin-top: rem-calc(5px);
-	margin-bottom: rem-calc(5px);
+	margin-top: rem-calc(5);
+	margin-bottom: rem-calc(5);
 }
 
 .no-touchevents body::-webkit-scrollbar-thumb {
@@ -32,7 +32,7 @@
 html {
 	// same as NON-FIXED header height
 	// Do not use sreveal on header with this
-	// scroll-padding-top: rem-calc( 100px ); // It will leave this space when scrolled using scroll snapping
+	// scroll-padding-top: rem-calc( 100 ); // It will leave this space when scrolled using scroll snapping
 }
 
 body {
@@ -140,7 +140,7 @@ address {
 }
 
 output {
-	padding-top: rem-calc(30px);
+	padding-top: rem-calc(30);
 	line-height: 1.42857143;
 	color: #555;
 }
@@ -149,7 +149,7 @@ code {
 	background-color: $gray-100;
 	font-weight: 400;
 	display: inline-block;
-	padding: rem-calc(5px);
+	padding: rem-calc(5);
 }
 
 /*----------  Lists  ----------*/
@@ -162,12 +162,12 @@ dl {
 ul,
 ol {
 	list-style-position: outside;
-	margin-left: rem-calc(20px);
+	margin-left: rem-calc(20);
 	ul,
 	ol {
 		margin: 0;
-		margin-top: rem-calc(5px);
-		margin-left: rem-calc(40px);
+		margin-top: rem-calc(5);
+		margin-left: rem-calc(40);
 	}
 	ol {
 		list-style-type: lower-alpha;
@@ -212,7 +212,7 @@ form {
 			clear: both;
 			margin-bottom: $paragraph-margin-bottom / 2;
 			> label {
-				margin-right: rem-calc(10px);
+				margin-right: rem-calc(10);
 			}
 		}
 	}
@@ -255,20 +255,20 @@ form {
 	}
 
 	input[type="date"] {
-		line-height: rem-calc(32px);
+		line-height: rem-calc(32);
 	}
 
 	textarea {
 		line-height: $line-height-base;
-		height: rem-calc(150px);
+		height: rem-calc(150);
 		resize: vertical;
 	}
 
 	input[type="checkbox"],
 	input[type="radio"] {
 		margin: 0;
-		margin-top: rem-calc(4px);
-		margin-right: rem-calc(5px);
+		margin-top: rem-calc(4);
+		margin-right: rem-calc(5);
 		line-height: normal;
 	}
 
@@ -290,8 +290,8 @@ form {
 	input[type="radio"]:focus,
 	input[type="checkbox"]:focus {
 		outline: thin dotted;
-		outline: rem-calc(5px) auto -webkit-focus-ring-color;
-		outline-offset: rem-calc(-2px);
+		outline: rem-calc(5) auto -webkit-focus-ring-color;
+		outline-offset: rem-calc(-2);
 	}
 }
 

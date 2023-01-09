@@ -10,15 +10,15 @@
   }
   .widget-heading {
     font-weight: 700;
-    font-size: rem-calc(14px);
+    font-size: rem-calc(14);
     line-height: 1.2;
     text-transform: uppercase;
   }
   li.widget {
     clear: both;
-    padding-bottom: rem-calc(20px);
-    border-bottom: rem-calc(1px) solid #e5e5e5;
-    margin-bottom: rem-calc(20px);
+    padding-bottom: rem-calc(20);
+    border-bottom: rem-calc(1) solid #e5e5e5;
+    margin-bottom: rem-calc(20);
     @include clearfix;
     &:last-child {
       padding-bottom: 0;
@@ -26,13 +26,13 @@
       margin-bottom: 0;
     }
     li {
-      margin-bottom: rem-calc(10px);
+      margin-bottom: rem-calc(10);
       &:last-child {
         margin-bottom: 0;
       }
       a {
         line-height: 1.4;
-        padding-right: rem-calc(5px);
+        padding-right: rem-calc(5);
       }
     }
   }

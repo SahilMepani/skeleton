@@ -10,18 +10,18 @@
 
 .gallery-icon img {
   background: #fff;
-  padding: rem-calc(5px);
-  border: rem-calc(1px) solid #ddd !important; /* Overwrite default css */
-  box-shadow: 0 0 rem-calc(2px) rgba(0,0,0,.15);
+  padding: rem-calc(5);
+  border: rem-calc(1) solid #ddd !important; /* Overwrite default css */
+  box-shadow: 0 0 rem-calc(2) rgba(0,0,0,.15);
 }
 
 .gallery-caption {
   background: #f1f1f1;
   display: block;
   width: 80%;
-  padding: rem-calc(5px);
-  border: rem-calc(1px) solid #eee; /* Overwrite default css */
-  margin: rem-calc(5px) auto 0 !important;
+  padding: rem-calc(5);
+  border: rem-calc(1) solid #eee; /* Overwrite default css */
+  margin: rem-calc(5) auto 0 !important;
 }
 
 .gallery-images-count {
@@ -33,13 +33,13 @@
 .size-medium,
 .size-large,
 .size-full {
-  // padding: rem-calc(5px); // Center the Image, Required
+  // padding: rem-calc(5); // Center the Image, Required
 }
 
 .wp-caption {
-  border: rem-calc(1px) solid #ddd;
+  border: rem-calc(1) solid #ddd;
   margin-bottom: $global_margin_bottom;
-  box-shadow: 0 0 rem-calc(2px) rgba(0,0,0,.15);
+  box-shadow: 0 0 rem-calc(2) rgba(0,0,0,.15);
   a {
     display: block; // Containing the Image
   }
@@ -50,7 +50,7 @@
 .wp-caption-text {
   font-style: italic;
   text-align: center;
-  margin: rem-calc(10px) !important; // Overwrite .content p
+  margin: rem-calc(10) !important; // Overwrite .content p
 }
 
 /* Format Status */
@@ -59,15 +59,15 @@
 
 // Aside
 .format-aside .excerpt {
-  padding-left: rem-calc(20px);
-  border-left: rem-calc(10px) solid #eee;
+  padding-left: rem-calc(20);
+  border-left: rem-calc(10) solid #eee;
 }
 
 
 // Chat
 .format-chat .excerpt {
   background: #eee;
-  padding: rem-calc(20px);
+  padding: rem-calc(20);
 }
 
 
@@ -80,8 +80,8 @@
 // Video
 .format-video embed,
 .format-video video {
-  padding: rem-calc(4px);
-  border: rem-calc(1px) solid #ddd;
-  margin-bottom: rem-calc(10px);
-  box-shadow: 0 0 rem-calc(2px) rgba(0,0,0,.15);
+  padding: rem-calc(4);
+  border: rem-calc(1) solid #ddd;
+  margin-bottom: rem-calc(10);
+  box-shadow: 0 0 rem-calc(2) rgba(0,0,0,.15);
 }

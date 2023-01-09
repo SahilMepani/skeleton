@@ -89,7 +89,7 @@ function skel_editor_css() { ?>
     }
     /* Width of "wide" blocks */
     .wp-block[data-align="wide"] {
-        max-width: rem-calc( 1080px );
+        max-width: 108rem;
     }
     /* Width of "full-wide" blocks */
     .wp-block[data-align="full"] {

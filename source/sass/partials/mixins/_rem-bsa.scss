@@ -1,11 +1,9 @@
-@use 'sass:math';
-
 // Rem Calculation of Pixel Values
 $rem-base: 10px;
 
 @function strip-unit($number) {
 	@if type-of($number) == 'number' and not unitless($number) {
-		@return math.div($number, ($number * 0 + 1));
+		$number: $number / ($number * 0 + 1);
 	}
 
 	@return $number;
@@ -16,7 +14,7 @@ $rem-base: 10px;
 		@return $value * 1px;
 	}
 
-	$value: math.div(strip-unit($value), strip-unit($base-value)) * 1rem;
+	$value: strip-unit($value) / (strip-unit($base-value)) * 1rem;
 
 	@return $value;
 }
@@ -65,14 +63,14 @@ $rem-base: 10px;
 	$min-vw: 0;
 	$max-vw: 0;
 
-	@if map-has-key($breakpoints, $min-breakpoint) {
-		$min-vw: map-get($breakpoints, $min-breakpoint);
+	@if map-has-key($grid-breakpoints, $min-breakpoint) {
+		$min-vw: map-get($grid-breakpoints, $min-breakpoint);
 	} @else {
 		$min-vw: calc($min-breakpoint / 16) * 1rem;
 	}
 
-	@if map-has-key($breakpoints, $max-breakpoint) {
-		$max-vw: map-get($breakpoints, $max-breakpoint);
+	@if map-has-key($grid-breakpoints, $max-breakpoint) {
+		$max-vw: map-get($grid-breakpoints, $max-breakpoint);
 	} @else {
 		$max-vw: calc($max-breakpoint / 16) * 1rem;
 	}

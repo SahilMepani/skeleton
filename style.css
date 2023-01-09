@@ -1108,7 +1108,7 @@ code {
   background-color: #f8f9fa;
   font-weight: 400;
   display: inline-block;
-  padding: 0.5rem;
+  padding: 5px;
 }
 
 /*----------  Lists  ----------*/
@@ -1129,7 +1129,7 @@ ul ol,
 ol ul,
 ol ol {
   margin: 0;
-  margin-top: 0.5rem;
+  margin-top: 5px;
   margin-left: 4rem;
 }
 
@@ -1347,8 +1347,8 @@ form input[type="file"] {
 
 form input[type="file"]:focus {
   outline: thin dotted;
-  outline: 0.5rem auto -webkit-focus-ring-color;
-  outline-offset: -0.2rem;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
 }
 
 /*----------  Miscellaneous  ----------*/
@@ -1553,7 +1553,7 @@ video {
 @media (min-width: 992px) {
   .header-nav-parent-menu > li {
     float: left;
-    margin-right: 0.5rem;
+    margin-right: 5px;
   }
   .header-nav-parent-menu > li:hover > a, .header-nav-parent-menu > li:focus > a {
     background-color: green;
@@ -1563,7 +1563,7 @@ video {
     background-color: #ccc;
     color: #000;
     display: block;
-    padding: 1.5rem 2rem;
+    padding: 15px 20px;
   }
 }
 
@@ -1673,7 +1673,7 @@ video {
 .type-post--blog {
   clear: both;
   padding: 5vw;
-  border: 0.1rem solid #eee;
+  border: 1px solid #eee;
   margin: 0 auto 4rem;
 }
 
@@ -1734,7 +1734,7 @@ video {
 .type-post--blog .more-link {
   color: red;
   font-weight: 700;
-  border-bottom: 0.1rem solid transparent;
+  border-bottom: 1px solid transparent;
 }
 
 .type-post--blog .more-link:hover {
@@ -1839,7 +1839,7 @@ video {
     padding-left: 2.5rem;
   }
   .post-nav .old-post a:hover:before {
-    transform: translate3d(0.5rem, 0, 0);
+    transform: translate3d(5px, 0, 0);
   }
   .post-nav .new-post {
     text-align: right;
@@ -1849,7 +1849,7 @@ video {
     padding-right: 2.5rem;
   }
   .post-nav .new-post a:hover:after {
-    transform: translate3d(-0.5rem, 0, 0);
+    transform: translate3d(-5px, 0, 0);
   }
 }
 
@@ -1874,9 +1874,9 @@ video {
   text-align: center;
   float: left;
   min-width: 1rem;
-  padding: 0.7rem 1rem;
-  border: 0.1rem solid #e7e7e7;
-  margin-left: 0.4rem;
+  padding: 7px 1rem;
+  border: 1px solid #e7e7e7;
+  margin-left: 4px;
 }
 
 .single-pagination a:hover, .single-pagination .current {
@@ -1887,10 +1887,10 @@ video {
 .author-box {
   background: #f5f5f5;
   padding: 2rem;
-  border: 0.1rem solid #ddd;
+  border: 1px solid #ddd;
   margin-bottom: 3rem;
   overflow: hidden;
-  box-shadow: inset 0.1rem 0.1rem 0 #fff, inset -0.1rem -0.1rem 0 #fff;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #fff;
 }
 
 .author-info {
@@ -1901,8 +1901,8 @@ video {
   float: left;
   width: 10rem;
   height: 10rem;
-  padding: 0.2rem;
-  border: 0.1rem solid #eee;
+  padding: 2px;
+  border: 1px solid #eee;
   margin-right: 2rem;
 }
 
@@ -1933,13 +1933,13 @@ video {
 
 .alert {
   background-color: #ddd;
-  border: 0.1rem solid #656565;
+  border: 1px solid #656565;
   padding: 1.5rem;
 }
 
 .alert-info {
   background-color: #ffffd9;
-  border: 0.1rem solid #e8e800;
+  border: 1px solid #e8e800;
 }
 
 /*! rtl:begin:ignore */

@@ -74,15 +74,15 @@
 // @import "partials/js-plugins/aos-custom";
 
 // Base
-// @import "partials/font-face";
-// @import "partials/base-styles";
+@import "partials/font-face";
+@import "partials/base-styles";
 
 // Components
-// @import "partials/components/content";
-// @import "partials/components/header";
-// @import "partials/components/header-menu";
+@import "partials/components/content";
+@import "partials/components/header";
+@import "partials/components/header-menu";
 // @import "partials/components/sidebar";
-// @import "partials/components/footer";
+@import "partials/components/footer";
 // @import "partials/components/widgets";
 // @import "partials/components/comments";
 // @import "partials/components/post-formats";
@@ -92,28 +92,28 @@
 
 // Templates
 // @import "partials/templates/index.scss";
-// @import "partials/templates/front-page";
-// @import "partials/templates/page";
-// @import "partials/templates/single";
-// @import "partials/templates/search";
-// @import "partials/templates/404";
+@import "partials/templates/front-page";
+@import "partials/templates/page";
+@import "partials/templates/single";
+@import "partials/templates/search";
+@import "partials/templates/404";
 
 // WP plugins
-// @import "partials/wp-plugins/gravity-forms";
+@import "partials/wp-plugins/gravity-forms";
 
 // Helpers
-// @import "partials/helpers/buttons";
-// @import "partials/helpers/helpers";
-// @import "partials/helpers/animations";
+@import "partials/helpers/buttons";
+@import "partials/helpers/helpers";
+@import "partials/helpers/animations";
 
 // Utilities
-// @import "partials/utilities/images.scss";
-// @import "partials/utilities/sizing.scss";
-// @import "partials/utilities/spacing.scss";
-// @import "partials/utilities/text.scss";
-// @import "partials/utilities/alert.scss";
-// @import "partials/utilities/miscellaneous.scss";
-// @import "partials/utilities/rtl.scss";
+@import "partials/utilities/images.scss";
+@import "partials/utilities/sizing.scss";
+@import "partials/utilities/spacing.scss";
+@import "partials/utilities/text.scss";
+@import "partials/utilities/alert.scss";
+@import "partials/utilities/miscellaneous.scss";
+@import "partials/utilities/rtl.scss";
 
 // Last minute changes
-// @import "partials/shame";
+@import "partials/shame";

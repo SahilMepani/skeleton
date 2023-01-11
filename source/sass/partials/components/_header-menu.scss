@@ -20,14 +20,14 @@
 ==============================*/
 $mobile-sidebar-bg-color: $teal;
 /*----------  Parent Menu  ----------*/
-$mobile-parent-menu-item-border-bottom: rem-calc(1) solid rgba(0, 0, 0, 0.1);
+$mobile-parent-menu-item-border-bottom: rem-calc(1px) solid rgba(0, 0, 0, 0.1);
 $mobile-parent-menu-link-bg-color: transparent;
 $mobile-parent-menu-link-color: $green;
 $mobile-parent-menu-link-hover-bg-color: rgba(0, 0, 0, 0.1);
 $mobile-parent-menu-link-hover-color: $green;
-$mobile-parent-menu-item-font-size: rem-calc(24);
-$mobile-parent-menu-item-padding-y: rem-calc(13);
-$mobile-parent-menu-item-padding-x: rem-calc(20);
+$mobile-parent-menu-item-font-size: rem-calc(24px);
+$mobile-parent-menu-item-padding-y: rem-calc(13px);
+$mobile-parent-menu-item-padding-x: rem-calc(20px);
 $mobile-parent-menu-current-item-link-bg-color: $green;
 $mobile-parent-menu-current-item-link-color: #fff;
 $mobile-parent-menu-dropdown-bg-color: darken($teal, 5%);
@@ -35,22 +35,20 @@ $mobile-parent-menu-dropdown-icon-color: $green;
 $mobile-parent-menu-dropdown-hover-bg-color: #fff;
 $mobile-parent-menu-dropdown-hover-icon-color: $green;
 /* Sub Menu */
-$mobile-sub-menu-font-size: rem-calc(18);
+$mobile-sub-menu-font-size: rem-calc(18px);
 $mobile-sub-menu-bg-color: darken($teal, 5%);
 $mobile-sub-menu-link-bg-color: transparent;
 $mobile-sub-menu-link-hover-bg-color: rgba(0, 0, 0, 0.05);
 $mobile-sub-menu-link-color: $green;
 $mobile-sub-menu-link-hover-color: #000;
-$mobile-sub-menu-link-padding-y: rem-calc(13);
-$mobile-sub-menu-link-padding-x: rem-calc(
-	20
-); //usually this is same as parent menu
+$mobile-sub-menu-link-padding-y: rem-calc(13px);
+$mobile-sub-menu-link-padding-x: rem-calc(20px); //usually this is same as parent menu
 
 .header-nav {
 	@include media-breakpoint-down(lg) {
 		background-color: $mobile-sidebar-bg-color;
 		width: 100%;
-		padding: rem-calc(90) 0 rem-calc(40);
+		padding: rem-calc(90px) 0 rem-calc(40px);
 		position: fixed;
 		top: 0;
 		right: 0;
@@ -59,10 +57,10 @@ $mobile-sub-menu-link-padding-x: rem-calc(
 		overflow: auto;
 		overscroll-behavior: contain; // avoid scroll chaining
 		transform: translateX(-100%);
-		transition: 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946);
+		transition: 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946px);
 		&.js-active {
 			transform: translateX(0);
-			box-shadow: 0 0 rem-calc(10) rgba(120, 120, 120, 0.3);
+			box-shadow: 0 0 rem-calc( 10px ) rgba(120, 120, 120, 0.3px);
 		}
 	}
 }
@@ -107,7 +105,7 @@ $mobile-sub-menu-link-padding-x: rem-calc(
 				position: relative;
 				span {
 					background: $mobile-parent-menu-dropdown-bg-color;
-					width: rem-calc(45);
+					width: rem-calc(45px);
 					position: absolute;
 					top: 0;
 					right: 0;
@@ -120,15 +118,15 @@ $mobile-sub-menu-link-padding-x: rem-calc(
 					}
 					&::after {
 						content: "";
-						border: rem-calc(8) solid transparent;
-						border-left-width: rem-calc(6);
-						border-right-width: rem-calc(6);
+						border: rem-calc( 8px ) solid transparent;
+						border-left-width: rem-calc(6px);
+						border-right-width: rem-calc(6px);
 						border-top-color: $mobile-parent-menu-dropdown-icon-color;
 						position: absolute;
 						top: 50%;
 						left: 50%;
-						margin-top: rem-calc(-4);
-						margin-left: rem-calc(-6);
+						margin-top: rem-calc(-4px);
+						margin-left: rem-calc(-6px);
 					}
 					&:hover,
 					&:focus {
@@ -161,7 +159,7 @@ $mobile-sub-menu-link-padding-x: rem-calc(
 				background-color: $mobile-sub-menu-link-bg-color;
 				color: $mobile-sub-menu-link-color;
 				font-size: $mobile-sub-menu-font-size;
-				letter-spacing: rem-calc(1);
+				letter-spacing: rem-calc(1px);
 				text-transform: uppercase;
 				display: block;
 				padding: $mobile-sub-menu-link-padding-y
@@ -191,10 +189,10 @@ $desktop-parent-menu-current-item-link-bg-color: red;
 $desktop-parent-menu-current-item-link-color: #fff;
 $desktop-parent-menu-dropdown-icon-color: #999;
 $desktop-parent-menu-dropdown-icon-hover-color: #fff;
-$desktop-parent-menu-dropdown-icon-border: rem-calc(5);
-$desktop-parent-menu-space-between-text-and-arrow: rem-calc(10);
+$desktop-parent-menu-dropdown-icon-border: rem-calc( 5px );
+$desktop-parent-menu-space-between-text-and-arrow: rem-calc( 10px );
 /*----------  Sub Menu  ----------*/
-$desktop-sub-menu-width: rem-calc(250);
+$desktop-sub-menu-width: rem-calc(250px);
 $desktop-sub-menu-link-bg-color: green;
 $desktop-sub-menu-link-color: #fff;
 $desktop-sub-menu-link-hover-bg-color: darken(
@@ -207,8 +205,8 @@ $desktop-sub-menu-current-item-link-bg-color: darken(
 	20%
 );
 $desktop-sub-menu-current-item-link-color: transparent;
-$desktop-sub-menu-font-size: rem-calc(16);
-$desktop-sub-menu-link-padding-y: rem-calc(12);
+$desktop-sub-menu-font-size: rem-calc(16px);
+$desktop-sub-menu-link-padding-y: rem-calc( 12px );
 $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usually this is same as parent menu
 
 // Desktop Parent Menu
@@ -217,7 +215,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 	@include media-breakpoint-up(lg) {
 		> li {
 			float: left;
-			margin-right: rem-calc(5);
+			margin-right: rem-calc( 5px );
 			&:hover,
 			&:focus {
 				> a {
@@ -254,7 +252,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 					position: absolute;
 					top: 50%;
 					right: $desktop-parent-menu-item-padding-y;
-					margin-top: rem-calc(-2);
+					margin-top: rem-calc(-2px);
 					transition: $btn-transition;
 				}
 			}
@@ -310,7 +308,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 					display: block;
 					padding: $desktop-sub-menu-link-padding-y
 						$desktop-sub-menu-link-padding-x;
-					border-bottom: rem-calc(1) solid
+					border-bottom: rem-calc(1px) solid
 						desaturate($desktop-sub-menu-link-bg-color, 20%);
 				}
 			}
@@ -338,7 +336,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 					top: $desktop-parent-menu-item-padding-x;
 					right: $desktop-parent-menu-item-padding-y;
 					transition: $btn-transition;
-					margin-top: rem-calc(-4);
+					margin-top: rem-calc(-4px);
 				}
 			}
 		}

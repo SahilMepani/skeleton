@@ -12,14 +12,14 @@
 @mixin pagination-links {
 	background: #fff;
 	color: #666;
-	font-size: rem-calc(12);
+	font-size: rem-calc( 12px );
 	line-height: 1;
 	text-decoration: none;
 	text-align: center;
 	display: block;
-	min-width: rem-calc(35);
-	padding: rem-calc(10);
-	box-shadow: 0 0 rem-calc(1) rgba(0, 0, 0, 0.3);
+	min-width: rem-calc(35px);
+	padding: rem-calc( 10px );
+	box-shadow: 0 0 rem-calc(1px) rgba(0, 0, 0, 0.3);
 }
 
 // Required
@@ -37,7 +37,7 @@
 		.swiper-slide {
 			// card cannot be bigger than the value
 			// width is also set by the slider depending on the slidesPerView property
-			max-width: rem-calc(420);
+			max-width: rem-calc(420px);
 		}
 	}
 	@include media-breakpoint-down(md) {

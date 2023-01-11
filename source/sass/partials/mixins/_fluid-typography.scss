@@ -3,11 +3,7 @@
 }
 
 // https://codepen.io/MadeByMike/pen/vNrvdZ
-@mixin fluid($properties, $min-value, $max-value, $min-screen: $md, $max-screen: $xxl, $default: true, $max-breakpoint: true) {
-
-	// @debug $min-screen;
-	// @debug $max-screen;
-
+@mixin fluid($properties, $min-screen, $max-screen, $min-value, $max-value, $default: true, $max-breakpoint: true) {
 	& {
 		@if ( $default ) {
 			@each $property in $properties {
@@ -34,10 +30,8 @@
 // Requires the calc-interpolation function which can also be used independently
 @function calc-interpolation($min-screen, $min-value, $max-screen, $max-value) {
 	$a: ($max-value - $min-value) / ($max-screen - $min-screen);
-	$b: strip-unit($min-value - $a * $min-screen);
+	$b: $min-value - $a * $min-screen;
 	$b: rem-calc( $b );
-
-	// @debug $a;
 
 	$sign: "+";
 	@if ($b < 0) {

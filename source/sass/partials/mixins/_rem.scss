@@ -1,106 +1,78 @@
 $rem-baseline: 10px !default;
 
-$rem-base: 10px !default;
+$rem-fallback: false !default;
+$rem-px-only: false !default;
 
-@function strip-unit($number) {
-	@if type-of($number) == 'number' and not unitless($number) {
-		$number: $number / ($number * 0 + 1);
-	}
+// list-separator polyfill by Hugo Giraudel (https://sass-compatibility.github.io/#list_separator_function)
+@function rem-separator($list) {
+  @if function-exists("list-separator") == true {
+    @return list-separator($list);
+  }
 
-	@return $number;
+  $test-list: ();
+  @each $item in $list {
+    $test-list: append($test-list, $item, space);
+  }
+
+  @return if($test-list == $list, space, comma);
 }
 
-@function convert-to-rem($value, $base-value: $rem-base, $limit: true) {
-	@if abs($value) < 8 and $limit {
-		@return $value * 1px;
-	}
-
-	$value: strip-unit($value) / (strip-unit($base-value)) * 1rem;
-
-	@return $value;
+@mixin rem-baseline($zoom: 100%) {
+  font-size: $zoom / 10px * $rem-baseline;
 }
 
-@function rem-calc($values, $limit: true, $base-value: $rem-base) {
-	$max: length($values);
+@function rem-convert($to, $values...) {
+  $result: ();
+  $separator: rem-separator($values);
 
-	@if $max == 1 {
-		@return convert-to-rem(nth($values, 1), $base-value, $limit);
-	}
+  @each $value in $values {
+    @if type-of($value) == "number" and unit($value) == "rem" and $to == "px" {
+      $result: append($result, $value / 1rem * $rem-baseline, $separator);
+    } @else if type-of($value) == "number" and unit($value) == "px" and $to == "rem" {
+      $result: append($result, $value / ($rem-baseline / 1rem), $separator);
+    } @else if type-of($value) == "list" {
+      $result: append($result, rem-convert($to, $value...), $separator);
+    } @else {
+      $result: append($result, $value, $separator);
+    }
+  }
 
-	$remValues: ();
-
-	@for $i from 1 through $max {
-		$remValues: append(
-			$remValues,
-			convert-to-rem(nth($values, $i), $base-value)
-		);
-	}
-
-	@return $remValues;
+  @return if(length($result) == 1, nth($result, 1), $result);
 }
 
-///
-/// Returns a calc that translates into a fluid value between two breakpoints/limits.
-/// Commonly used for fluid typography - https://css-tricks.com/simplified-fluid-typography/
-/// Example usage: font-size: fluid('phone-small', 'tablet', 12px, 18px);
-///                line-height: fluid('phone-small', '1800px', 12px, 18px);
-/// Note that this is a linear function that will not stop growing/shrinking before or after the given breakpoints.
-///
-/// @param {Pixel Value} $min-value - The the minimum value that starts from the distance starting point.
-/// @param {Pixel Value} $max-value - The the maximum value that ends for the distance ending point.
-/// @param {String} $min-breakpoint - Where the distance starts to be calculated from.
-/// @param {String} $max-breakpoint - Where the distance ends.
-/// @return {String} - The calc() CSS operation with crazy mathz.
-///
-@function fluid-bsa($min-value, $max-value, $min-breakpoint: 'sm', $max-breakpoint: 'xxl') {
+@function rem($values...) {
+  @if $rem-px-only {
+    @return rem-convert(px, $values...);
+  } @else {
+    @return rem-convert(rem, $values...);
+  }
+}
 
-	@if $min-value == 0 {
-		$min-value: 0.001;
-	}
+@mixin rem($properties, $values...) {
+  @if type-of($properties) == "map" {
+    @each $property in map-keys($properties) {
+      @include rem($property, map-get($properties, $property));
+    }
+  } @else {
+    @each $property in $properties {
+      @if $rem-fallback or $rem-px-only {
+        #{$property}: rem-convert(px, $values...);
+      }
+      @if not $rem-px-only {
+        #{$property}: rem-convert(rem, $values...);
+      }
+    }
+  }
+}
 
-	@if $max-value == 0 {
-		$max-value: 0.001;
-	}
 
-	$min-vw: 0;
-	$max-vw: 0;
+@function rem-calc($values...) {
+  $result: ();
+  $separator: rem-separator($values);
 
-	@if map-has-key($grid-breakpoints, $min-breakpoint) {
-		$min-vw: strip-unit(map-get($grid-breakpoints, $min-breakpoint));
-		$min-vw: rem-calc( $min-vw, false );
-	} @else {
-		$min-vw: $min-breakpoint;
-	}
+  @each $value in $values {
+    $result: append($result, $value / ($rem-baseline / 1rem), $separator);
+  }
 
-	@if map-has-key($grid-breakpoints, $max-breakpoint) {
-		$max-vw: strip-unit(map-get($grid-breakpoints, $max-breakpoint));
-		$max-vw: rem-calc( $max-vw, false );
-	} @else {
-		$max-vw: $max-breakpoint;
-	}
-
-	$base-min-value: rem-calc($min-value, false);
-	$base-max-value: rem-calc($max-value, false);
-
-	// @debug $min-vw;
-	// @debug $max-vw;
-	// @debug $base-min-value;
-	// @debug $base-max-value;
-
-	$u1: unit($min-vw);
-	$u2: unit($max-vw);
-	$u3: unit($base-min-value);
-	$u4: unit($base-max-value);
-
-	@if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
-		$fluid-base: calc(
-			#{$base-min-value} + #{(strip-unit($base-max-value) - strip-unit($base-min-value))}
-			* ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
-		);
-		@return $fluid-base;
-
-	} @else {
-		@error 'Invalid fluid() declaration.';
-		@return 0;
-	}
+  @return if(length($result) == 1, nth($result, 1), $result);
 }

@@ -54,68 +54,35 @@ function skel_create_post_type() {
 function skel_build_taxonomies() {
 
 	/*----------  First Tax  ----------*/
-	$tax_one_labels = array(
-		'name'                       => __( 'Taxs One' ),
-		'all_items'                  => __( 'All Taxs One' ),
-		'singular_name'              => __( 'Tax One' ),
-		'search_items'               => __( 'Search Taxs One' ),
-		'popular_items'              => __( 'Popular Taxs One' ),
-		'all_items'                  => __( 'All Taxs One' ),
-		'parent_item'                => __( 'Parent Tax One' ),
-		'parent_item_colon'          => __( 'Parent Tax One:' ),
-		'edit_item'                  => __( 'Edit Tax One' ),
-		'update_item'                => __( 'Update Tax One' ),
-		'add_new_item'               => __( 'Add New Tax One' ),
-		'new_item_name'              => __( 'New Tax One Name' ),
-		'separate_items_with_commas' => __( 'Separate Taxs One with commas' ),
-		'add_or_remove_items'        => __( 'Add or remove Taxs One' ),
-		'choose_from_most_used'      => __( 'Choose from the most used Taxs One' ),
-		'menu_name'                  => __( 'Taxs One' )
+	$category_labels = array(
+		'name'                       => __( 'Categories' ),
+		'all_items'                  => __( 'All Categories' ),
+		'singular_name'              => __( 'Category' ),
+		'search_items'               => __( 'Search Categories' ),
+		'popular_items'              => __( 'Popular Categories' ),
+		'all_items'                  => __( 'All Categories' ),
+		'parent_item'                => __( 'Parent Category' ),
+		'parent_item_colon'          => __( 'Parent Category:' ),
+		'edit_item'                  => __( 'Edit Category' ),
+		'update_item'                => __( 'Update Category' ),
+		'add_new_item'               => __( 'Add New Category' ),
+		'new_item_name'              => __( 'New Category Name' ),
+		'separate_items_with_commas' => __( 'Separate Categories with commas' ),
+		'add_or_remove_items'        => __( 'Add or remove Categories' ),
+		'choose_from_most_used'      => __( 'Choose from the most used Categories' ),
+		'menu_name'                  => __( 'Categories' )
 	);
 
 	register_taxonomy(
-		'tax-one', // taxonomy name
+		'project-category', // taxonomy name
 		array( 'project' ), // post type
 		array(
-			'labels'            => $tax_one_labels,
+			'labels'            => $category_labels,
 			'public'             => false,
 			'show_ui'            => true, // manage terms, false if we want to set default terms and don't want to add/edit them
 			'hierarchical'       => true,
 			'show_admin_column'  => true,
 			'show_in_rest'       => true
-			//'rewrite'    => array( 'slug' => 'custom_post_type', 'with_front' => false ) //this will enable the url to be custom_post_type/term instead of taxonomy/term
-		)
-	);
-
-	/*----------  Second Tax  ----------*/
-	$tax_two_labels = array(
-		'name'                       => __( 'Taxs Two' ),
-		'singular_name'              => __( 'Tax Two' ),
-		'search_items'               => __( 'Search Taxs Two' ),
-		'popular_items'              => __( 'Popular Taxs Two' ),
-		'all_items'                  => __( 'All Taxs Two' ),
-		'parent_item'                => __( 'Parent Tax Two' ),
-		'parent_item_colon'          => __( 'Parent Tax Two:' ),
-		'edit_item'                  => __( 'Edit Tax Two' ),
-		'update_item'                => __( 'Update Tax Two' ),
-		'add_new_item'               => __( 'Add New Tax Two' ),
-		'new_item_name'              => __( 'New Tax Two Name' ),
-		'separate_items_with_commas' => __( 'Separate Taxs Two with commas' ),
-		'add_or_remove_items'        => __( 'Add or remove Taxs Two' ),
-		'choose_from_most_used'      => __( 'Choose from the most used Taxs Two' ),
-		'menu_name'                  => __( 'Taxs Two' )
-	);
-
-	register_taxonomy(
-		'tax-two', // taxonomy name
-		array( 'project' ), // post type
-		array(
-			'labels'            => $tax_two_labels,
-			'public'            => true,
-			'show_ui'           => true,
-			'hierarchical'      => true,
-			'show_admin_column' => true,
-			'show_in_rest' => true
 			//'rewrite'    => array( 'slug' => 'custom_post_type', 'with_front' => false ) //this will enable the url to be custom_post_type/term instead of taxonomy/term
 		)
 	);

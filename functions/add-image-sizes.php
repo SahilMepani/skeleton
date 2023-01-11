@@ -6,13 +6,8 @@ add_image_size( 'h200', 9999, 200 ); // used for image acf preview
 add_image_size( 'w200', 200, 9999 ); // used for image acf preview
 add_image_size( 'w414', 414, 9999 );
 add_image_size( 'w768', 768, 9999 );
-add_image_size( 'w992', 992, 9999 );
 add_image_size( 'w1400', 1400, 9999 );
-add_image_size( 'w1200', 1200, 9999 );
-add_image_size( 'w1600', 1600, 9999 );
 add_image_size( 'w1920', 1920, 9999 );
-add_image_size( 'w2560', 2560, 9999 );
-add_image_size( 'w3840', 3840, 9999 );
 
 
 // Enable featured images for all post types including custom

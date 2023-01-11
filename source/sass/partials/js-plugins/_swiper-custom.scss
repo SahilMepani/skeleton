@@ -26,16 +26,16 @@
 		opacity: 1;
 		background-color: rgba(#fff, .2);
 		display: inline-block;
-		width: rem-calc(40);
-		height: rem-calc(4);
-		margin-left: rem-calc(5);
+		width: rem-calc(40px);
+		height: rem-calc( 4px );
+		margin-left: rem-calc( 5px );
 		border-radius: 0;
 		position: relative;
 		cursor: pointer;
 		overflow: hidden;
 
 		&:not(:last-child) {
-			margin: 0 rem-calc(10) 0 0;
+			margin: 0 rem-calc( 10px ) 0 0;
 		}
 
 		&:after {
@@ -47,7 +47,7 @@
 			left: 0;
 			right: 0;
 			z-index: 10;
-			transform: scale(0);
+			transform: scale(0px);
 			transform-origin: 100% 100%;
 			transition: .3s transform ease-out;
 		}
@@ -62,18 +62,18 @@
 
 	// .hero-media-slider & {
 	// 	left: var(--container-margin-x);
-	// 	bottom: rem-calc( 40 );
+	// 	bottom: rem-calc( 40px );
 	// }
 	// .step-cards-slider-section & {
-	// 	bottom: rem-calc( 50 );
+	// 	bottom: rem-calc( 50px );
 	// }
 	@include media-breakpoint-up(md) {
 		span {
-			width: rem-calc(70);
+			width: rem-calc(70px);
 		}
 
 		// .hero-media-slider & {
-		// 	bottom: rem-calc( 110 );
+		// 	bottom: rem-calc( 110px );
 		// }
 	}
 }
@@ -82,11 +82,11 @@
 .swiper-button-next,
 .swiper-button-prev {
 	color: $primary;
-	width: rem-calc(60);
-	height: rem-calc(60);
+	width: rem-calc(60px);
+	height: rem-calc(60px);
 	text-align: center;
 	border-radius: 50%;
-	border: rem-calc(1) solid $primary;
+	border: rem-calc(1px) solid $primary;
 
 	&::after {
 		display: none; // default overwrite
@@ -101,20 +101,20 @@
 // Swiper Arrow Navigation - Inline
 ////////////////////////////////////////////////
 .swiper-navigation-inline {
-	gap: 0 rem-calc( 10 );
+	gap: 0 rem-calc( 10px );
 
 	.swiper-button-prev,
 	.swiper-button-next {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: rem-calc(50);
-		height: rem-calc(50);
-		padding: rem-calc( 10 );
+		width: rem-calc(50px);
+		height: rem-calc(50px);
+		padding: rem-calc( 10px );
 		border-radius: 50%;
-		border: rem-calc(1) solid currentColor;
+		border: rem-calc(1px) solid currentColor;
 		// space for border, required, if the navigation is standalone and not a part of heading + navigation
-		margin-top: rem-calc(1);
+		margin-top: rem-calc(1px);
 		// required
 		position: relative;
 		left: auto;
@@ -147,8 +147,8 @@
 	width: 100%;
 	left: 0;
 	.swiper-scrollbar-drag {
-		background-color: $royal-blue;
-		border-radius: rem-calc( 5 );
+		background-color: teal;
+		border-radius: rem-calc( 5px );
 	}
 }
 

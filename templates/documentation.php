@@ -413,7 +413,7 @@
 <code class="d-block p-1 mb-4">
 <pre>
 h6 {
-  font-size: rem-calc( 20 ); // 20px/$font-size-root(10px) which outputs 2rem
+  font-size: rem-calc( 20px ); // 20px/$font-size-root(10px) which outputs 2rem
 }
 </pre>
 </code>

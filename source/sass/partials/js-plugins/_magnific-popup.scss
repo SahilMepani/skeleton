@@ -9,11 +9,11 @@
 // overlay
 $mfp-overlay-color:                   black !default;                    // Color of overlay screen
 $mfp-overlay-opacity:                 0.95 !default;                        // Opacity of overlay screen
-$mfp-shadow:                          0 0 rem-calc( 8 ) rgba(0, 0, 0, 0.6) !default; // Shadow on image or iframe
+$mfp-shadow:                          0 0 rem-calc( 8px ) rgba(0, 0, 0, 0.6) !default; // Shadow on image or iframe
 
 // spacing
-$mfp-popup-padding-left:              rem-calc( 8 ) !default;                        // Padding from left and from right side
-$mfp-popup-padding-left-mobile:       rem-calc( 6 ) !default;                        // Same as above, but is applied when width of window is less than 800px
+$mfp-popup-padding-left:              rem-calc( 8px ) !default;                        // Padding from left and from right side
+$mfp-popup-padding-left-mobile:       rem-calc( 6px ) !default;                        // Same as above, but is applied when width of window is less than 800px
 
 $mfp-z-index-base:                    1040 !default;                       // Base z-index of popup
 
@@ -28,7 +28,7 @@ $mfp-controls-text-color-hover:       #FFF !default;                       // Ho
 
 // Iframe-type options
 $mfp-include-iframe-type:             true !default;                       // Enable Iframe-type popups
-$mfp-iframe-padding-top:              rem-calc( 40 ) !default;                       // Iframe padding top
+$mfp-iframe-padding-top:              rem-calc( 40px ) !default;                       // Iframe padding top
 $mfp-iframe-background:               #000 !default;                       // Background color of iframes
 $mfp-iframe-max-width:                900px !default;                      // Maximum width of iframes
 $mfp-iframe-ratio:                    9/16 !default;                       // Ratio of iframe (9/16 = widescreen, 3/4 = standard, etc.)
@@ -36,8 +36,8 @@ $mfp-iframe-ratio:                    9/16 !default;                       // Ra
 // Image-type options
 $mfp-include-image-type:              true !default;                       // Enable Image-type popups
 $mfp-image-background:                #444 !default;
-$mfp-image-padding-top:               rem-calc( 40 ) !default;                       // Image padding top
-$mfp-image-padding-bottom:            rem-calc( 40 ) !default;                       // Image padding bottom
+$mfp-image-padding-top:               rem-calc( 40px ) !default;                       // Image padding top
+$mfp-image-padding-bottom:            rem-calc( 40px ) !default;                       // Image padding bottom
 $mfp-include-mobile-layout-for-image: true !default;                       // Removes paddings from top and bottom
 
 // Image caption options
@@ -194,12 +194,12 @@ $mfp-use-visuallyhidden:              false !default;                      // Hi
   .mfp-hide {
     border: 0 !important;
     clip: rect(0 0 0 0) !important;
-    height: rem-calc( 1 ) !important;
-    margin: rem-calc( -1 ) !important;
+    height: rem-calc( 1px ) !important;
+    margin: rem-calc( -1px ) !important;
     overflow: hidden !important;
     padding: 0 !important;
     position: absolute !important;
-    width: rem-calc( 1 ) !important;
+    width: rem-calc( 1px ) !important;
   }
 } @else {
   .mfp-hide {
@@ -220,8 +220,8 @@ $mfp-use-visuallyhidden:              false !default;                      // Hi
   width: auto;
   text-align: center;
   margin-top: -0.8em;
-  left: rem-calc(8);
-  right: rem-calc(8);
+  left: rem-calc( 8px );
+  right: rem-calc( 8px );
   z-index: $mfp-z-index-base + 4;
   a {
     color: $mfp-controls-text-color;
@@ -270,9 +270,9 @@ button {
 
 // Close icon
 .mfp-close {
-  width: rem-calc(44);
-  height: rem-calc(44);
-  line-height: rem-calc(44);
+  width: rem-calc(44px);
+  height: rem-calc(44px);
+  line-height: rem-calc(44px);
 
   position: absolute;
   right: 0;
@@ -280,11 +280,11 @@ button {
   text-decoration: none;
   text-align: center;
   opacity: $mfp-controls-opacity;
-  padding: 0 0 rem-calc(18) rem-calc(10);
+  padding: 0 0 rem-calc(18px) rem-calc( 10px );
   color: $mfp-controls-color;
 
   font-style: normal;
-  font-size: rem-calc(28);
+  font-size: rem-calc(28px);
   font-family: Arial, Baskerville, monospace;
 
   &:hover,
@@ -293,7 +293,7 @@ button {
   }
 
   &:active {
-    top: rem-calc(1);
+    top: rem-calc(1px);
   }
 }
 .mfp-close-btn-in {
@@ -305,9 +305,9 @@ button {
 .mfp-iframe-holder {
   .mfp-close {
     color: $mfp-controls-color;
-    right: rem-calc(-6);
+    right: rem-calc(-6px);
     text-align: right;
-    padding-right: rem-calc(6);
+    padding-right: rem-calc(6px);
     width: 100%;
   }
 }
@@ -318,8 +318,8 @@ button {
   top: 0;
   right: 0;
   color: $mfp-controls-text-color;
-  font-size: rem-calc(12);
-  line-height: rem-calc(18);
+  font-size: rem-calc( 12px );
+  line-height: rem-calc(18px);
   white-space: nowrap;
 }
 
@@ -330,13 +330,13 @@ button {
     opacity: $mfp-controls-opacity;
     margin: 0;
     top: 50%;
-    margin-top: rem-calc(-55);
+    margin-top: rem-calc(-55px);
     padding: 0;
-    width: rem-calc(90);
-    height: rem-calc(110);
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    width: rem-calc(90px);
+    height: rem-calc(110px);
+    -webkit-tap-highlight-color: rgba(0,0,0,0px);
     &:active {
-      margin-top: rem-calc(-54);
+      margin-top: rem-calc(-54px);
     }
     &:hover,
     &:focus {
@@ -347,7 +347,7 @@ button {
       display: block;
       content: '\e616';
       color: #fff;
-      font-size: rem-calc(48);
+      font-size: rem-calc(48px);
       position: absolute;
       left: 50%;
       top: 50%;
@@ -384,7 +384,7 @@ button {
       max-width: $mfp-iframe-max-width;
     }
     .mfp-close {
-      top: rem-calc(-40);
+      top: rem-calc(-40px);
     }
   }
   .mfp-iframe-scaler {
@@ -444,8 +444,8 @@ button {
     small {
       color: $mfp-caption-subtitle-color;
       display: block;
-      font-size: rem-calc(12);
-      line-height: rem-calc(14);
+      font-size: rem-calc( 12px );
+      line-height: rem-calc(14px);
     }
     figure {
       margin: 0;
@@ -461,10 +461,10 @@ button {
   }
   .mfp-title {
     text-align: left;
-    line-height: rem-calc(18);
+    line-height: rem-calc(18px);
     color: $mfp-caption-title-color;
     word-wrap: break-word;
-    padding-right: rem-calc(36); // leave some space for counter at right side
+    padding-right: rem-calc(36px); // leave some space for counter at right side
   }
 
   .mfp-image-holder {
@@ -505,15 +505,15 @@ button {
           }
           small {
             display: inline;
-            margin-left: rem-calc(5);
+            margin-left: rem-calc( 5px );
           }
         }
         .mfp-bottom-bar {
-          background: rgba(0,0,0,0.6);
+          background: rgba(0,0,0,0.6px);
           bottom: 0;
           margin: 0;
           top: auto;
-          padding: rem-calc(3) rem-calc(5);
+          padding: rem-calc( 3px ) rem-calc( 5px );
           position: fixed;
           box-sizing: border-box;
           &:empty {
@@ -521,16 +521,16 @@ button {
           }
         }
         .mfp-counter {
-          right: rem-calc(5);
-          top: rem-calc(3);
+          right: rem-calc( 5px );
+          top: rem-calc( 3px );
         }
         .mfp-close {
           top: 0;
           right: 0;
-          width: rem-calc(35);
-          height: rem-calc(35);
-          line-height: rem-calc(35);
-          background: rgba(0, 0, 0, 0.6);
+          width: rem-calc(35px);
+          height: rem-calc(35px);
+          line-height: rem-calc(35px);
+          background: rgba(0, 0, 0, 0.6px);
           position: fixed;
           text-align: center;
           padding: 0;
@@ -545,8 +545,8 @@ button {
 // Scale navigation arrows and reduce padding from sides
 @media all and (max-width: 900) {
   .mfp-arrow {
-    -webkit-transform: scale(0.75);
-    transform: scale(0.75);
+    -webkit-transform: scale(0.75px);
+    transform: scale(0.75px);
   }
   .mfp-arrow-left {
     -webkit-transform-origin: 0;
@@ -569,7 +569,7 @@ button {
   .mfp-content {
     opacity: 0;
     transition:all 0.2s ease-in-out;
-    transform: scale(0.8);
+    transform: scale(0.8px);
   }
   &.mfp-bg {
     opacity: 0;
@@ -588,7 +588,7 @@ button {
   /* animate out */
   &.mfp-removing {
     .mfp-content {
-      transform: scale(0.8);
+      transform: scale(0.8px);
       opacity: 0;
     }
     &.mfp-bg {
@@ -637,7 +637,7 @@ button {
   .mfp-content {
     opacity: 0;
     transition:all 0.5s;
-    transform: scale(0);
+    transform: scale(0px);
     transform: rotate(500deg);
   }
   &.mfp-bg {
@@ -658,7 +658,7 @@ button {
   /* animate out */
   &.mfp-removing {
     .mfp-content {
-      transform: scale(0);
+      transform: scale(0px);
       transform: rotate(500deg);
       opacity: 0;
     }
@@ -675,7 +675,7 @@ button {
     vertical-align: top;
     opacity: 0;
     transition:all 0.2s;
-    transform: translateY(-100);
+    transform: translateY(-100px);
   }
   &.mfp-bg {
     opacity: 0;
@@ -685,7 +685,7 @@ button {
   &.mfp-ready {
     .mfp-content {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0px);
     }
     &.mfp-bg {
       opacity: 0.8;
@@ -694,7 +694,7 @@ button {
   /* animate out */
   &.mfp-removing {
     .mfp-content {
-      transform: translateY(-50);
+      transform: translateY(-50px);
       opacity: 0;
     }
     &.mfp-bg {

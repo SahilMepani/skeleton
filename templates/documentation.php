@@ -61,7 +61,8 @@
 					<li>Colors</li>
 					<li>Font Family</li>
 					<li>Typography (IMPORTANT): Each set for desktop and mobile. <br /> Headings(h1 to h6), paragraph,
-						blockquote, links and any other custom font styles/sizes can be defined as display-1, display-2, p1, p2, etc</li>
+						blockquote, links and any other custom font styles/sizes can be defined as display-1, display-2,
+						p1, p2, etc</li>
 					<li>Icons</li>
 					<li>Buttons</li>
 					<li>Form Inputs</li>
@@ -141,7 +142,8 @@
 				<li>Go to theme source folder <br /> <code>cd /path/to/your/wp-content/themes/theme-name/source</code>
 				</li>
 				<li>Run the following command to install all the necessary packages to run grunt tasks <br />
-					<code>npm install</code></li>
+					<code>npm install</code>
+				</li>
 				<li>Update theme info in sass/style.scss file. Theme name should match the project name</li>
 				<li>
 					Run the following command for grunt to compile all the scss/js files <br />
@@ -158,7 +160,8 @@
 				<li>Make the Initial Commit</li>
 				<li>Go to Appearance => Themes and activate the theme</li>
 				<li class="text-highlight">Create all the pages from sitemap with heirarchy and required URL structure
-					<small>(ask manager)</small></li>
+					<small>(ask manager)</small>
+				</li>
 			</ol>
 
 			<h5 id="skeleton-repo">3.2 Creating Repo</h5>
@@ -238,8 +241,8 @@
 			<code class="d-block p-1">
 <pre>
 .listing {
-  font-size: 18px;
-  line-height: 1.2;
+	font-size: 18px;
+	line-height: 1.2;
 }
 </pre>
 </code>
@@ -251,11 +254,11 @@
 			<code class="d-block p-1">
 <pre>
 .my-element-class {
-  /* ... */
+	/* ... */
 }
 
 [aria-hidden] {
-  /* ... */
+	/* ... */
 }
 </pre>
 </code>
@@ -267,8 +270,8 @@
 			<code class="d-block p-1">
 <pre>
 /* some selector */ {
-  background: #f1f1f1;
-  color: #333;
+	background: #f1f1f1;
+	color: #333;
 }
 </pre>
 </code>
@@ -291,13 +294,13 @@
 			<code class="d-block p-1 mb-2">
 <pre>
 .avatar{
-    border-radius:50%;
-    border:2px solid white; }
+		border-radius:50%;
+		border:2px solid white; }
 .no, .nope, .not_good {
-    // ...
+		// ...
 }
 #lol-no {
-  // ...
+	// ...
 }
 </pre>
 </code>
@@ -306,14 +309,14 @@
 			<code class="d-block p-1">
 <pre>
 .avatar {
-  border-radius: 50%;
-  border: 2px solid white;
+	border-radius: 50%;
+	border: 2px solid white;
 }
 
 .one,
 .selector,
 .per-line {
-  // ...
+	// ...
 }
 </pre>
 </code>
@@ -353,7 +356,7 @@
 			<code class="d-block p-1 mb-2">
 <pre>
 .foo {
-  border: none;
+	border: none;
 }
 </pre>
 </code>
@@ -362,7 +365,7 @@
 			<code class="d-block p-1">
 <pre>
 .foo {
-  border: 0;
+	border: 0;
 }
 </pre>
 </code>
@@ -389,7 +392,8 @@
 				especially when used with nested selectors. Even extending top-level placeholder selectors can cause
 				problems if the order of selectors ends up changing later (e.g. if they are in other files and the order
 				the files are loaded shifts). Gzipping should handle most of the savings you would have gained by using
-				<code>@extend</code>, and you can DRY up your stylesheets nicely with mixins.</p>
+				<code>@extend</code>, and you can DRY up your stylesheets nicely with mixins.
+			</p>
 
 			<h5>Nested selectors</h5>
 
@@ -398,11 +402,11 @@
 			<code class="d-block p-1 mb-4">
 <pre>
 .page-container {
-  .content {
-    .profile {
-      // STOP!
-    }
-  }
+	.content {
+		.profile {
+			// STOP!
+		}
+	}
 }
 </pre>
 </code>
@@ -429,12 +433,12 @@
 			<code class="d-block p-1 mb-2">
 <pre>
 .btn {
-  background: green;
-  .icon {
-    margin-right: 10px;
-  }
-  font-weight: bold;
-  @include transition(background 0.5s ease);
+	background: green;
+	.icon {
+		margin-right: 10px;
+	}
+	font-weight: bold;
+	@include transition(background 0.5s ease);
 }
 </pre>
 </code>
@@ -442,13 +446,13 @@
 			<code class="d-block p-1 mb-4">
 <pre>
 .btn {
-  background: green;
-  font-weight: bold;
-  @include transition(background 0.5s ease);
+	background: green;
+	font-weight: bold;
+	@include transition(background 0.5s ease);
 
-  .icon {
-    margin-right: 10px;
-  }
+	.icon {
+		margin-right: 10px;
+	}
 }
 </pre>
 </code>
@@ -466,7 +470,7 @@
 			<code class="d-block p-1 mb-4">
 <pre>
 h6 {
-  font-size: rem-calc( 20px ); // 20px/$font-size-root(10px) which outputs 2rem
+	font-size: rem-calc( 20px ); // 20px/$font-size-root(10px) which outputs 2rem
 }
 </pre>
 </code>
@@ -481,28 +485,28 @@ h6 {
 			<code class="overflow-auto d-block p-1 mb-4">
 <pre>
 @mixin fluid($properties, $min-screen, $max-screen, $min-value, $max-value, $default: true, $max-breakpoint: true) {
-  & {
+	& {
 
-    @if ( $default ) {
-      @each $property in $properties {
-        #{$property}: $min-value;
-      }
-    }
+		@if ( $default ) {
+			@each $property in $properties {
+				#{$property}: $min-value;
+			}
+		}
 
-    @media screen and (min-width: $min-screen) {
-      @each $property in $properties {
-        #{$property}: calc-interpolation($min-screen, $min-value, $max-screen, $max-value);
-      }
-    }
+		@media screen and (min-width: $min-screen) {
+			@each $property in $properties {
+				#{$property}: calc-interpolation($min-screen, $min-value, $max-screen, $max-value);
+			}
+		}
 
-    @if ( $max-breakpoint ) {
-      @media screen and (min-width: $max-screen) {
-        @each $property in $properties {
-          #{$property}: rem-calc( $max-value );
-        }
-      }
-    }
-  }
+		@if ( $max-breakpoint ) {
+			@media screen and (min-width: $max-screen) {
+				@each $property in $properties {
+					#{$property}: rem-calc( $max-value );
+				}
+			}
+		}
+	}
 }
 </pre>
 </code>
@@ -511,14 +515,14 @@ h6 {
 			<code class="overflow-auto d-block p-1 mb-4">
 <pre>
 h6 {
-  @include fluid(font-size, 375px, 1920px, 18px, 36px);
-  // variables can also be used for any of the parameters
-  // $max-screen cannot be larger than the $scaling variable set in variables.scss
-  // sets font-size to $min-value(18px) as a default for anything smaller than $min-screen
-  // px units are converted to rem units, similar to rem-calc()
-  // start scaling font-size from $min-value(18px) on a device with width of $min-screen(375px) to $max-value(36px) on a device with width of $max-screeen(1920px)
-  // scaling happens propotionately between the screen sizes. For eg. If $min-screen is 100px and $max-screen is 200px and the $min-value is 10px and $max-value is 20px. For every 1px change in screen size the font-size will be increase by 0.1px and for every 10px change in screen size the font-size be increase by 1px
-  // above $max-screen(1920px) the font-size will scale depending on the font-size set on html element
+	@include fluid(font-size, 375px, 1920px, 18px, 36px);
+	// variables can also be used for any of the parameters
+	// $max-screen cannot be larger than the $scaling variable set in variables.scss
+	// sets font-size to $min-value(18px) as a default for anything smaller than $min-screen
+	// px units are converted to rem units, similar to rem-calc()
+	// start scaling font-size from $min-value(18px) on a device with width of $min-screen(375px) to $max-value(36px) on a device with width of $max-screeen(1920px)
+	// scaling happens propotionately between the screen sizes. For eg. If $min-screen is 100px and $max-screen is 200px and the $min-value is 10px and $max-value is 20px. For every 1px change in screen size the font-size will be increase by 0.1px and for every 10px change in screen size the font-size be increase by 1px
+	// above $max-screen(1920px) the font-size will scale depending on the font-size set on html element
 }
 </pre>
 </code>

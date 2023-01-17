@@ -135,7 +135,7 @@ function skel_get_the_terms_data( $post_id, $taxonomy ) {
  * @return string $phone_url, ex: tel:5551234568
  */
 function skel_get_phone_url( $phone_number = false ) {
-	$phone_number = str_replace( [ '(', ')', '-', '.', '|', ' ' ], '', $phone_number );
+	$phone_number = str_replace( ['(', ')', '-', '.', '|', ' '], '', $phone_number );
 
 	return esc_url( 'tel:' . $phone_number );
 }

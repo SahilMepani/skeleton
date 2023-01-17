@@ -22,7 +22,6 @@
 // 	};
 // }
 
-
 /*=========================================================
 =            Filter posts by taxonomy in admin            =
 =========================================================*/
@@ -37,7 +36,6 @@
 // 		$q_vars[$taxonomy] = $term->slug;
 // 	}
 // }
-
 
 // https://www.ractoon.com/wordpress-sortable-admin-columns-for-custom-posts/
 

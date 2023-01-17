@@ -4,41 +4,40 @@
 =            Post Type - Portfolio            =
 =============================================*/
 function skel_create_post_type() {
-	$cpt_project_labels = array(
+	$cpt_project_labels = [
 		'name'               => __( 'Projects' ),
 		'all_items'          => __( 'All Projects' ),
-		'singular_name'      => __( 'Project'  ),
-		'add_new'            => __('Add New' ),
-		'add_new_item'       => __('Add New Project' ),
-		'edit_item'          => __('Edit Project' ),
-		'new_item'           => __('New Project' ),
-		'view_item'          => __('View Project' ),
-		'search_items'       => __('Search Projects' ),
-		'not_found'          =>  __('No Project found' ),
-		'not_found_in_trash' => __('No Project found in Trash' ),
+		'singular_name'      => __( 'Project' ),
+		'add_new'            => __( 'Add New' ),
+		'add_new_item'       => __( 'Add New Project' ),
+		'edit_item'          => __( 'Edit Project' ),
+		'new_item'           => __( 'New Project' ),
+		'view_item'          => __( 'View Project' ),
+		'search_items'       => __( 'Search Projects' ),
+		'not_found'          => __( 'No Project found' ),
+		'not_found_in_trash' => __( 'No Project found in Trash' ),
 		'parent_item_colon'  => ''
-	);
+	];
 
-	$cpt_project_args = array(
-		'labels'              => $cpt_project_labels,
-		'public'              => true, // archive and single
-		'show_ui'             => true, // manage single post from backend
-		'hierarchical'        => true, // simple page ordering
-		'has_archive'         => true, // pagination & archive page
-		'menu_position'       => 20, // below pages
-		'menu_icon'           => 'dashicons-welcome-view-site', //defaults to post icon
+	$cpt_project_args = [
+		'labels' => $cpt_project_labels,
+		'public' => true, // archive and single
+		'show_ui' => true, // manage single post from backend
+		'hierarchical' => true, // simple page ordering
+		'has_archive' => true, // pagination & archive page
+		'menu_position' => 20, // below pages
+		'menu_icon' => 'dashicons-welcome-view-site', //defaults to post icon
 		//Uncomment the following line to change the slug;
 		//You must also save your permalink structure to prevent 404 errors
 		//'rewrite'           => array( 'slug' => 'project/%skills%', 'with_front' => false ),
-		'supports'            => array('title','editor','thumbnail','page-attributes', 'custom-fields'),
+		'supports' => [ 'title', 'editor', 'thumbnail', 'page-attributes', 'custom-fields' ]
 		// enable gutenberg
 		// 'show_in_rest' => true,
-	);
+	];
 
 	register_post_type( 'project', $cpt_project_args );
 	// flush_rewrite_rules();
 }
-
 
 /*================================
 =            Taxonomy            =
@@ -54,7 +53,7 @@ function skel_create_post_type() {
 function skel_build_taxonomies() {
 
 	/*----------  First Tax  ----------*/
-	$category_labels = array(
+	$category_labels = [
 		'name'                       => __( 'Categories' ),
 		'all_items'                  => __( 'All Categories' ),
 		'singular_name'              => __( 'Category' ),
@@ -71,20 +70,20 @@ function skel_build_taxonomies() {
 		'add_or_remove_items'        => __( 'Add or remove Categories' ),
 		'choose_from_most_used'      => __( 'Choose from the most used Categories' ),
 		'menu_name'                  => __( 'Categories' )
-	);
+	];
 
 	register_taxonomy(
 		'project-category', // taxonomy name
-		array( 'project' ), // post type
-		array(
+		[ 'project' ], // post type
+		[
 			'labels'            => $category_labels,
-			'public'             => false,
-			'show_ui'            => true, // manage terms, false if we want to set default terms and don't want to add/edit them
-			'hierarchical'       => true,
-			'show_admin_column'  => true,
-			'show_in_rest'       => true
+			'public'            => false,
+			'show_ui'           => true, // manage terms, false if we want to set default terms and don't want to add/edit them
+			'hierarchical' => true,
+			'show_admin_column' => true,
+			'show_in_rest'      => true
 			//'rewrite'    => array( 'slug' => 'custom_post_type', 'with_front' => false ) //this will enable the url to be custom_post_type/term instead of taxonomy/term
-		)
+		]
 	);
 
 }

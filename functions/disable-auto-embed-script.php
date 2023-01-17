@@ -17,5 +17,3 @@ remove_action( 'wp_head', 'wp_oembed_add_host_js' );
 
 // Remove all embeds rewrite rules.
 // add_filter( 'rewrite_rules_array', 'disable_embeds_rewrites' );
-
-?>

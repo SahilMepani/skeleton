@@ -1,6 +1,5 @@
 <?php
-function skel_enqueue_scripts()
-{
+function skel_enqueue_scripts() {
 
 	/* Load google fonts */
 	wp_enqueue_style( 'google-fonts', '//fonts.googleapis.com/css?family=Montserrat&display=swap', 'all' );
@@ -27,7 +26,7 @@ function skel_enqueue_scripts()
 	wp_enqueue_style(
 		'skeleton-style',
 		get_stylesheet_uri(),
-		array(),
+		[],
 		filemtime( get_template_directory() . '/style.css' )
 	);
 
@@ -37,7 +36,7 @@ function skel_enqueue_scripts()
 	wp_enqueue_script(
 		'skeleton-plugins',
 		get_template_directory_uri() . '/js/plugins.js',
-		array( 'jquery' ),
+		[ 'jquery' ],
 		filemtime( get_template_directory() . '/js/plugins.js' ),
 		true
 	);
@@ -56,7 +55,7 @@ function skel_enqueue_scripts()
 	wp_enqueue_script(
 		'match-height',
 		get_template_directory_uri() . '/js/vendor/match-height.js',
-		array( 'jquery' ),
+		[ 'jquery' ],
 		filemtime( get_template_directory() . '/js/vendor/match-height.js' ),
 		true
 	);
@@ -78,14 +77,13 @@ add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
 // Defer scripts
 ////////////////////////////////////////////////
 // Add defer attribute to the scripts to set the resource priority to low
-function skel_defer_scripts( $tag, $handle, $src )
-{
-	$defer = array(
+function skel_defer_scripts( $tag, $handle, $src ) {
+	$defer = [
 		// 'jquery',
 		// 'jquery-core',
 		'plugins',
 		'match-height'
-	);
+	];
 	if ( in_array( $handle, $defer ) ) {
 		return '<script src="' . $src . '" defer="defer" type="text/javascript"></script>' . "\n";
 	}
@@ -93,6 +91,6 @@ function skel_defer_scripts( $tag, $handle, $src )
 	return $tag;
 }
 /* Do not load in backend */
-if ( ! is_admin() ) {
+if ( !  is_admin() ) {
 	add_filter( 'script_loader_tag', 'skel_defer_scripts', 10, 3 );
 }

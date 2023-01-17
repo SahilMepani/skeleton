@@ -16,20 +16,19 @@ add_filter( 'allowed_block_types_all', 'misha_allowed_block_types', 25, 2 );
 
 function misha_allowed_block_types( $allowed_blocks, $editor_context ) {
 
-  $allowed_blocks = array(
+	$allowed_blocks = [
 		'acf/hero-image-slider'
-	);
+	];
 
-  // Allow more blocks depending on the post type
-  // Same can also be used for specific post ID or users roles
+	// Allow more blocks depending on the post type
+	// Same can also be used for specific post ID or users roles
 	// if ( 'CUSTOM_POST_TYPE' === $editor_context->post->post_type ) {
-  //   $post_allowed_blocks = array(
-  //     'core/image',
-  //   );
+	//   $post_allowed_blocks = array(
+	//     'core/image',
+	//   );
 	// 	$allowed_blocks = array_merge( $post_allowed_blocks );
 	// }
 
 	return $allowed_blocks;
 
 }
-?>

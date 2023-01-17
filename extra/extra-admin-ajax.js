@@ -1,305 +1,325 @@
-jQuery( document ).ready( function( $ ) {
+jQuery(document).ready(function ($) {
+	/*=================================================
+	=            Set ajax load more height            =
+	=================================================*/
+	/* Prevents below content jumping on btn click due to hidden */
+	// $( '.btn-load-more-block' ).css( {
+	// 	height: $( '.btn-load-more-block' ).outerHeight()
+	// } );
 
-  /*=================================================
-  =            Set ajax load more height            =
-  =================================================*/
-  /* Prevents below content jumping on btn click due to hidden */
-  // $( '.btn-load-more-block' ).css( {
-  // 	height: $( '.btn-load-more-block' ).outerHeight()
-  // } );
+	/*===============================================
+	=            Ajax filter post by cat            =
+	===============================================*/
+	$("#ajax-list-post-categories a").on("click", function (e) {
+		e.preventDefault();
+		$("#ajax-list-post-categories li").removeClass("js-active");
+		$(this).parent("li").addClass("js-active");
+		filter_post_by_cat_trigger($(this));
+	});
 
+	$("#ajax-select-post-categories").on("change", function (e) {
+		e.preventDefault();
+		filter_post_by_cat_trigger($("option:selected", this));
+	});
 
-  /*===============================================
-  =            Ajax filter post by cat            =
-  ===============================================*/
-  $( '#ajax-list-post-categories a' ).on( 'click', function( e ) {
-    e.preventDefault();
-    $( '#ajax-list-post-categories li' ).removeClass( 'js-active' );
-    $( this ).parent( 'li' ).addClass( 'js-active' );
-    filter_post_by_cat_trigger( $( this ) );
-  } );
+	function filter_post_by_cat_trigger(filterCategory) {
+		var loadMoreBtn = $("#ajax-load-more-post");
 
-  $( '#ajax-select-post-categories' ).on( 'change', function( e ) {
-    e.preventDefault();
-    filter_post_by_cat_trigger( $( 'option:selected', this ) );
-  } );
+		loadMoreBtn.fadeOut(400);
 
-  function filter_post_by_cat_trigger( filterCategory ) {
-    var loadMoreBtn = $( '#ajax-load-more-post' );
+		$("#ajax-list-post").fadeOut("400", function () {
+			$(".spinner").addClass("js-active");
+		});
 
-    loadMoreBtn.fadeOut( 400 );
+		var cpt = filterCategory.attr("data-cpt");
+		var cptTax = filterCategory.attr("data-tax");
+		var catID = filterCategory.attr("data-cat-id");
 
-    $( '#ajax-list-post' ).fadeOut( '400', function() {
-      $( '.spinner' ).addClass( 'js-active' );
-    } );
+		$("#filter-cat-id").val(catID);
+		$("#filter-pagenum").val(1);
 
-    var cpt = filterCategory.attr( 'data-cpt' );
-    var cptTax = filterCategory.attr( 'data-tax' );
-    var catID = filterCategory.attr( 'data-cat-id' );
+		filter_post_by_cat(catID, cpt, cptTax, loadMoreBtn);
+	}
 
-    $( '#filter-cat-id' ).val( catID );
-    $( '#filter-pagenum' ).val( 1 );
+	function filter_post_by_cat(catID, cpt, cptTax, loadMoreBtn) {
+		$.ajax({
+			type: "POST",
+			dataType: "html",
+			url: localize_var.adminUrl,
+			data: {
+				action: "filter_post_by_cat_ajax",
+				catID: catID,
+				cpt: cpt,
+				cptTax: cptTax,
+			},
+			success: function (data) {
+				var $data = $(data);
+				if ($.trim(data) != "" && $.trim(data) != 0) {
+					$("#ajax-list-post > li").remove();
 
-    filter_post_by_cat( catID, cpt, cptTax, loadMoreBtn );
-  }
+					setTimeout(function () {
+						$("#ajax-list-post").append($data);
+						$(".spinner").removeClass("js-active");
+						$("#ajax-list-post").fadeIn(400);
+						loadMoreBtn.fadeIn(400);
+					}, 300);
 
-  function filter_post_by_cat( catID, cpt, cptTax, loadMoreBtn ) {
-    $.ajax( {
-      type: 'POST',
-      dataType: 'html',
-      url: localize_var.adminUrl,
-      data: {
-        action: 'filter_post_by_cat_ajax',
-        catID: catID,
-        cpt: cpt,
-        cptTax: cptTax,
-      },
-      success: function( data ) {
-        var $data = $( data );
-        if ( $.trim( data ) != '' && $.trim( data ) != 0 ) {
+					if ($data.length < 6) {
+						loadMoreBtn
+							.removeClass("js-active disabled")
+							.addClass("disabled");
+					} else {
+						loadMoreBtn
+							.removeClass("js-active disabled")
+							.addClass("js-active");
+					}
+				}
+			},
+			error: function (request, status, error) {
+				alert(request.responseText);
+			},
+		});
+		return false;
+	}
 
-          $( '#ajax-list-post > li' ).remove();
+	/*===========================================
+	=            Ajax load more post            =
+	===========================================*/
+	$("#ajax-load-more-post").on("click", function (e) {
+		e.preventDefault();
+		$(this).removeClass("js-active").addClass("disabled");
+		$(".spinner").addClass("js-active");
+		load_more_post($(this));
+	});
 
-          setTimeout( function() {
-            $( '#ajax-list-post' ).append( $data );
-            $( '.spinner' ).removeClass( 'js-active' );
-            $( '#ajax-list-post' ).fadeIn( 400 );
-            loadMoreBtn.fadeIn( 400 );
-          }, 300 );
+	function load_more_post($this) {
+		var cpt = $this.attr("data-cpt");
+		var cptTax = $this.attr("data-tax");
+		var catID = $("#filter-cat-id").val();
+		var pageNumber = $("#filter-pagenum").val();
 
-          if ( $data.length < 6 ) {
-            loadMoreBtn.removeClass( 'js-active disabled' ).addClass( 'disabled' );
-          } else {
-            loadMoreBtn.removeClass( 'js-active disabled' ).addClass( 'js-active' );
-          }
+		$.ajax({
+			type: "POST",
+			dataType: "html",
+			url: localize_var.ajax_url,
+			data: {
+				action: "load_more_post_ajax",
+				_ajax_nonce: localize_var.nonce,
+				cpt: cpt,
+				cptTax: cptTax,
+				catID: catID,
+				pageNumber: pageNumber,
+			},
+			success: function (data) {
+				var $data = $(data);
 
-        }
-      },
-      error: function( request, status, error ) {
-        alert( request.responseText );
-      }
-    } );
-    return false;
-  }
+				if ($.trim($data) != "" && $.trim($data) != 0) {
+					$("#filter-pagenum").val(parseInt(pageNumber) + 1);
 
-  /*===========================================
-  =            Ajax load more post            =
-  ===========================================*/
-  $( '#ajax-load-more-post' ).on( 'click', function( e ) {
-    e.preventDefault();
-    $( this ).removeClass( 'js-active' ).addClass( 'disabled' );
-    $( '.spinner' ).addClass( 'js-active' );
-    load_more_post( $( this ) );
-  } );
+					$("#ajax-list-post").append($data);
 
-  function load_more_post( $this ) {
+					$(".spinner").removeClass("js-active");
 
-    var cpt        = $this.attr( 'data-cpt' );
-    var cptTax     = $this.attr( 'data-tax' );
-    var catID      = $( '#filter-cat-id' ).val();
-    var pageNumber = $( '#filter-pagenum' ).val();
+					if ($data.length < 6) {
+						$this.addClass("disabled");
+					} else {
+						$this.removeClass("disabled").addClass("js-active");
+					}
+				} else {
+					$(".spinner").removeClass("js-active");
+					$this.removeClass("js-active").addClass("disabled");
+				}
+			}, //success
+		}); //ajax
+		return false;
+	}
 
-    $.ajax( {
-      type: 'POST',
-      dataType: 'html',
-      url: localize_var.ajax_url,
-      data: {
-        action: 'load_more_post_ajax',
-        _ajax_nonce: localize_var.nonce,
-        cpt: cpt,
-        cptTax: cptTax,
-        catID: catID,
-        pageNumber: pageNumber,
-      },
-      success: function( data ) {
+	/*====================================================
+	=            Ajax filter post by dual cat            =
+	====================================================*/
+	$(
+		"#ajax-first-list-post-categories a, #ajax-second-list-post-categories a"
+	).on("click", function (e) {
+		e.preventDefault();
+		$(this).parents("ul").find("li").removeClass("js-active");
+		$(this).parent("li").addClass("js-active");
+		filter_post_by_dual_cat_trigger();
+	});
 
-          var $data = $( data );
+	$(
+		"#ajax-first-select-post-categories, #ajax-second-select-post-categories"
+	).on("change", function (e) {
+		e.preventDefault();
+		filter_post_by_dual_cat_trigger(true);
+	});
 
-          if ( $.trim( $data ) != '' && $.trim( $data ) != 0 ) {
+	function filter_post_by_dual_cat_trigger(select) {
+		if (select === undefined) {
+			select = false;
+		}
 
-            $( '#filter-pagenum' ).val( parseInt( pageNumber ) + 1 );
+		var loadMoreBtn = $("#ajax-load-more-post-dual");
 
-            $( '#ajax-list-post' ).append( $data );
+		loadMoreBtn.fadeOut(400);
 
-            $( '.spinner' ).removeClass( 'js-active' );
+		$("#ajax-list-post").fadeOut("400", function () {
+			$(".spinner").addClass("js-active");
+		});
 
-            if ( $data.length < 6 ) {
-              $this.addClass( 'disabled' );
-            } else {
-              $this.removeClass( 'disabled' ).addClass( 'js-active' );
-            }
+		if (select == true) {
+			var firsskellectFilterCategory = $(
+				"#ajax-first-select-post-categories"
+			);
+			var secondSelectFilterCategory = $(
+				"#ajax-second-select-post-categories"
+			);
 
-          } else {
-            $( '.spinner' ).removeClass( 'js-active' );
-            $this.removeClass( 'js-active' ).addClass( 'disabled' );
-          }
+			var cpt = firsskellectFilterCategory.find(":selected").data("cpt");
+			var firstCptTax = firsskellectFilterCategory
+				.find(":selected")
+				.data("first-tax");
+			var firstCatID = firsskellectFilterCategory
+				.find(":selected")
+				.data("first-cat-id");
+			var secondCptTax = secondSelectFilterCategory
+				.find(":selected")
+				.data("second-tax");
+			var secondCatID = secondSelectFilterCategory
+				.find(":selected")
+				.data("second-cat-id");
+		}
 
-        } //success
+		if (select == false) {
+			var firstFilterCategory = $(
+				"#ajax-first-list-post-categories"
+			).find("li.js-active a");
+			var secondFilterCategory = $(
+				"#ajax-second-list-post-categories"
+			).find("li.js-active a");
 
-    } ); //ajax
-    return false;
-  }
+			var cpt = firstFilterCategory.attr("data-cpt");
+			var firstCptTax = firstFilterCategory.attr("data-first-tax");
+			var firstCatID = firstFilterCategory.attr("data-first-cat-id");
+			var secondCptTax = secondFilterCategory.attr("data-second-tax");
+			var secondCatID = secondFilterCategory.attr("data-second-cat-id");
+		}
 
+		$("#filter-first-cat-id").val(firstCatID);
+		$("#filter-second-cat-id").val(secondCatID);
+		$("#filter-pagenum").val(1);
 
-  /*====================================================
-  =            Ajax filter post by dual cat            =
-  ====================================================*/
-  $( '#ajax-first-list-post-categories a, #ajax-second-list-post-categories a' ).on( 'click', function( e ) {
-    e.preventDefault();
-    $( this ).parents( 'ul' ).find( 'li' ).removeClass( 'js-active' );
-    $( this ).parent( 'li' ).addClass( 'js-active' );
-    filter_post_by_dual_cat_trigger();
-  } );
+		filter_post_by_dual_cat(
+			cpt,
+			firstCptTax,
+			firstCatID,
+			secondCptTax,
+			secondCatID,
+			loadMoreBtn
+		);
+	}
 
-  $( '#ajax-first-select-post-categories, #ajax-second-select-post-categories' ).on( 'change', function( e ) {
-    e.preventDefault();
-    filter_post_by_dual_cat_trigger( true );
-  } );
+	function filter_post_by_dual_cat(
+		cpt,
+		firstCptTax,
+		firstCatID,
+		secondCptTax,
+		secondCatID,
+		loadMoreBtn
+	) {
+		$.ajax({
+			type: "POST",
+			dataType: "html",
+			url: localize_var.adminUrl,
+			data: {
+				action: "filter_post_by_dual_cat_ajax",
+				cpt: cpt,
+				firstCptTax: firstCptTax,
+				firstCatID: firstCatID,
+				secondCptTax: secondCptTax,
+				secondCatID: secondCatID,
+			},
+			success: function (data) {
+				var $data = $(data);
+				if ($.trim(data) != "" && $.trim(data) != 0) {
+					$("#ajax-list-post > li").remove();
 
-  function filter_post_by_dual_cat_trigger( select ) {
+					setTimeout(function () {
+						$("#ajax-list-post").append($data);
+						$(".spinner").removeClass("js-active");
+						$("#ajax-list-post").fadeIn(400);
+						loadMoreBtn.fadeIn(400);
+					}, 300);
 
-    if ( select === undefined ) {
-      select = false;
-    }
+					if ($data.length < 6) {
+						loadMoreBtn
+							.removeClass("js-active")
+							.addClass("disabled");
+					} else {
+						loadMoreBtn
+							.removeClass("disabled")
+							.addClass("js-active");
+					}
+				}
+			},
+			error: function (request, status, error) {
+				alert(request.responseText);
+			},
+		});
+		return false;
+	}
 
-    var loadMoreBtn = $( '#ajax-load-more-post-dual' );
+	/*===============================================
+	=            Ajax load more Dual CPT            =
+	===============================================*/
+	$("#ajax-load-more-post-dual").on("click", function (e) {
+		e.preventDefault();
+		$(this).removeClass("js-active").addClass("disabled");
+		$(".spinner").addClass("js-active");
+		load_more_dual_cpt($(this));
+	});
 
-    loadMoreBtn.fadeOut( 400 );
+	function load_more_dual_cpt($this) {
+		var cpt = $this.attr("data-cpt");
+		var firstCptTax = $this.attr("data-first-tax");
+		var firstCatID = $("#filter-first-cat-id").val();
+		var secondCptTax = $this.attr("data-second-tax");
+		var secondCatID = $("#filter-second-cat-id").val();
+		var pageNumber = $("#filter-pagenum").val();
 
-    $( '#ajax-list-post' ).fadeOut( '400', function() {
-      $( '.spinner' ).addClass( 'js-active' );
-    } );
+		$.ajax({
+			type: "POST",
+			dataType: "html",
+			url: localize_var.adminUrl,
+			data: {
+				action: "load_more_dual_cpt_ajax",
+				cpt: cpt,
+				firstCptTax: firstCptTax,
+				firstCatID: firstCatID,
+				secondCptTax: secondCptTax,
+				secondCatID: secondCatID,
+				pageNumber: pageNumber,
+			},
+			success: function (data) {
+				var $data = $(data);
 
-    if ( select == true ) {
-      var firsskellectFilterCategory = $( '#ajax-first-select-post-categories' );
-      var secondSelectFilterCategory = $( '#ajax-second-select-post-categories' );
+				if ($.trim(data) != "" && $.trim(data) != 0) {
+					$("#filter-pagenum").val(parseInt(pageNumber) + 1);
 
-      var cpt = firsskellectFilterCategory.find( ':selected' ).data( 'cpt' );
-      var firstCptTax = firsskellectFilterCategory.find( ':selected' ).data( 'first-tax' );
-      var firstCatID = firsskellectFilterCategory.find( ':selected' ).data( 'first-cat-id' );
-      var secondCptTax = secondSelectFilterCategory.find( ':selected' ).data( 'second-tax' );
-      var secondCatID = secondSelectFilterCategory.find( ':selected' ).data( 'second-cat-id' );
-    }
+					$("#ajax-list-post").append($data);
 
-    if ( select == false ) {
-      var firstFilterCategory = $( '#ajax-first-list-post-categories' ).find( 'li.js-active a' );
-      var secondFilterCategory = $( '#ajax-second-list-post-categories' ).find( 'li.js-active a' );
+					$(".spinner").removeClass("js-active");
 
-      var cpt = firstFilterCategory.attr( 'data-cpt' );
-      var firstCptTax = firstFilterCategory.attr( 'data-first-tax' );
-      var firstCatID = firstFilterCategory.attr( 'data-first-cat-id' );
-      var secondCptTax = secondFilterCategory.attr( 'data-second-tax' );
-      var secondCatID = secondFilterCategory.attr( 'data-second-cat-id' );
-    }
-
-    $( '#filter-first-cat-id' ).val( firstCatID );
-    $( '#filter-second-cat-id' ).val( secondCatID );
-    $( '#filter-pagenum' ).val( 1 );
-
-    filter_post_by_dual_cat( cpt, firstCptTax, firstCatID, secondCptTax, secondCatID, loadMoreBtn );
-  }
-
-  function filter_post_by_dual_cat( cpt, firstCptTax, firstCatID, secondCptTax, secondCatID, loadMoreBtn ) {
-    $.ajax( {
-      type: 'POST',
-      dataType: 'html',
-      url: localize_var.adminUrl,
-      data: {
-        action: 'filter_post_by_dual_cat_ajax',
-        cpt: cpt,
-        firstCptTax: firstCptTax,
-        firstCatID: firstCatID,
-        secondCptTax: secondCptTax,
-        secondCatID: secondCatID
-      },
-      success: function( data ) {
-        var $data = $( data );
-        if ( $.trim( data ) != '' && $.trim( data ) != 0 ) {
-
-          $( '#ajax-list-post > li' ).remove();
-
-          setTimeout( function() {
-            $( '#ajax-list-post' ).append( $data );
-            $( '.spinner' ).removeClass( 'js-active' );
-            $( '#ajax-list-post' ).fadeIn( 400 );
-            loadMoreBtn.fadeIn( 400 );
-          }, 300 );
-
-          if ( $data.length < 6 ) {
-            loadMoreBtn.removeClass( 'js-active' ).addClass( 'disabled' );
-          } else {
-            loadMoreBtn.removeClass( 'disabled' ).addClass( 'js-active' );
-          }
-
-        }
-      },
-      error: function( request, status, error ) {
-        alert( request.responseText );
-      }
-    } );
-    return false;
-  }
-
-
-  /*===============================================
-  =            Ajax load more Dual CPT            =
-  ===============================================*/
-  $( '#ajax-load-more-post-dual' ).on( 'click', function( e ) {
-    e.preventDefault();
-    $( this ).removeClass( 'js-active' ).addClass( 'disabled' );
-    $( '.spinner' ).addClass( 'js-active' );
-    load_more_dual_cpt( $( this ) );
-  } );
-
-  function load_more_dual_cpt( $this ) {
-
-    var cpt = $this.attr( 'data-cpt' );
-    var firstCptTax = $this.attr( 'data-first-tax' );
-    var firstCatID = $( '#filter-first-cat-id' ).val();
-    var secondCptTax = $this.attr( 'data-second-tax' );
-    var secondCatID = $( '#filter-second-cat-id' ).val();
-    var pageNumber = $( '#filter-pagenum' ).val();
-
-    $.ajax( {
-      type: 'POST',
-      dataType: 'html',
-      url: localize_var.adminUrl,
-      data: {
-        action: 'load_more_dual_cpt_ajax',
-        cpt: cpt,
-        firstCptTax: firstCptTax,
-        firstCatID: firstCatID,
-        secondCptTax: secondCptTax,
-        secondCatID: secondCatID,
-        pageNumber: pageNumber,
-      },
-      success: function( data ) {
-
-          var $data = $( data );
-
-          if ( $.trim( data ) != '' && $.trim( data ) != 0 ) {
-
-            $( '#filter-pagenum' ).val( parseInt( pageNumber ) + 1 );
-
-            $( '#ajax-list-post' ).append( $data );
-
-            $( '.spinner' ).removeClass( 'js-active' );
-
-            if ( $data.length < 6 ) {
-              $this.addClass( 'disabled' );
-            } else {
-              $this.removeClass( 'disabled' ).addClass( 'js-active' );
-            }
-
-          } else {
-            $( '.spinner' ).removeClass( 'js-active' );
-            $this.removeClass( 'js-active' ).addClass( 'disabled' );
-          }
-
-        } //success
-
-    } ); //ajax
-    return false;
-  }
-
-} ); // Document Ready
+					if ($data.length < 6) {
+						$this.addClass("disabled");
+					} else {
+						$this.removeClass("disabled").addClass("js-active");
+					}
+				} else {
+					$(".spinner").removeClass("js-active");
+					$this.removeClass("js-active").addClass("disabled");
+				}
+			}, //success
+		}); //ajax
+		return false;
+	}
+}); // Document Ready

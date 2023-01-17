@@ -1,7 +1,7 @@
-<?php /* Template Name: Gravity Forms Examples */ ?>
+<?php /* Template Name: Gravity Forms Examples */?>
 
-<?php get_header(); ?>
+<?php get_header();?>
 
 
 
-<?php get_footer(); ?>
+<?php get_footer();?>

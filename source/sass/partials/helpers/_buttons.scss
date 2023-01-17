@@ -15,7 +15,7 @@
 }
 
 .btn-input-clone {
-	@include btn-input-clone( transparent );
+	@include btn-input-clone(transparent);
 }
 
 .btn-reset {
@@ -25,7 +25,6 @@
 .btn-rarr {
 	@include btn-rarr;
 }
-
 
 // &.disabled {
 //	 // Already avaiable in bootstrap by default

@@ -1,16 +1,17 @@
 </main> <!-- #site-content -->
 
 <footer class="site-footer clearfix">
-<div class="container">
+	<div class="container">
 
-  <?php //wp_nav_menu( array( 'theme_location' => 'footer-menu', 'container' => '', 'menu_class' => 'footer-menu' ) ); ?>
-  <p class="copyright">&copy; <?php echo date( 'Y' ); ?>. All Rights Reserved.</p>
+		<?php //wp_nav_menu( array( 'theme_location' => 'footer-menu', 'container' => '', 'menu_class' => 'footer-menu' ) ); ?>
+		<p class="copyright">&copy;<?php echo date( 'Y' ); ?>. All Rights Reserved.</p>
 
-</div> <!-- .container -->
+	</div> <!-- .container -->
 </footer> <!-- #footer -->
 
-<a href="#" class="scroll-to-top scroll-to" aria-label="<?php _e( 'Scroll to Top', 'skel' ); ?>"></a>
+<a href="#" class="scroll-to-top scroll-to" aria-label="<?php _e( 'Scroll to Top', 'skel' );?>"></a>
 
-<?php wp_footer(); ?>
+<?php wp_footer();?>
 </body>
+
 </html>

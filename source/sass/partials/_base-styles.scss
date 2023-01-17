@@ -2,25 +2,27 @@
 .container {
 	@media screen and (min-width: $xxxl) {
 		// added over to avoid generating utility classes for this breakpoint. for eg. pt-xxxl-1 etc
-		max-width: rem-calc( 1440px ); // change this value as per design
+		max-width: rem-calc(1440px); // change this value as per design
 	}
 }
 
 /* show focus ring on form controls only when keyboard tabbing is used, using what-input js */
-[data-whatintent='keyboard'] *:focus {
-  outline: rem-calc( 3px ) dashed dodgerblue;
+[data-whatintent="keyboard"] *:focus {
+	outline: rem-calc(3px) dashed dodgerblue;
 }
 
-.sreveal-stagger-item, [data-sreveal] {
-  visibility: hidden;
+.sreveal-stagger-item,
+[data-sreveal] {
+	visibility: hidden;
 }
 
-[data-sreveal='trigger'] {
-  visibility: visible;
+[data-sreveal="trigger"] {
+	visibility: visible;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.sreveal-stagger-item, [data-sreveal] {
+	.sreveal-stagger-item,
+	[data-sreveal] {
 		visibility: visible;
 	}
 }

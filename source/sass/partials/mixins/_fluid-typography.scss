@@ -3,9 +3,17 @@
 }
 
 // https://codepen.io/MadeByMike/pen/vNrvdZ
-@mixin fluid($properties, $min-screen, $max-screen, $min-value, $max-value, $default: true, $max-breakpoint: true) {
+@mixin fluid(
+	$properties,
+	$min-screen,
+	$max-screen,
+	$min-value,
+	$max-value,
+	$default: true,
+	$max-breakpoint: true
+) {
 	& {
-		@if ( $default ) {
+		@if ($default) {
 			@each $property in $properties {
 				#{$property}: rem-calc($min-value);
 			}
@@ -13,14 +21,19 @@
 
 		@media screen and (min-width: $min-screen) {
 			@each $property in $properties {
-				#{$property}: calc-interpolation($min-screen, $min-value, $max-screen, $max-value);
+				#{$property}: calc-interpolation(
+					$min-screen,
+					$min-value,
+					$max-screen,
+					$max-value
+				);
 			}
 		}
 
-		@if ( $max-breakpoint ) {
+		@if ($max-breakpoint) {
 			@media screen and (min-width: $max-screen) {
 				@each $property in $properties {
-					#{$property}: rem-calc( $max-value );
+					#{$property}: rem-calc($max-value);
 				}
 			}
 		}
@@ -31,12 +44,12 @@
 @function calc-interpolation($min-screen, $min-value, $max-screen, $max-value) {
 	$a: ($max-value - $min-value) / ($max-screen - $min-screen);
 	$b: $min-value - $a * $min-screen;
-	$b: rem-calc( $b );
+	$b: rem-calc($b);
 
 	$sign: "+";
 	@if ($b < 0) {
 		$sign: "-";
 		$b: abs($b);
 	}
-	@return calc(#{$a*100}vw #{$sign} #{$b});
+	@return calc(#{$a * 100}vw #{$sign} #{$b});
 }

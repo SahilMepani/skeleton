@@ -9,27 +9,30 @@
 		$delay: $delay + $interval;
 
 		&:nth-child(#{$i}) {
-			animation-delay: unquote($delay + 'ms');
+			animation-delay: unquote($delay + "ms");
 		}
 	}
 }
 
-@mixin animate-underline-on-hover($text-color: currentColor, $border-color: currentColor) {
+@mixin animate-underline-on-hover(
+	$text-color: currentColor,
+	$border-color: currentColor
+) {
 	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
 	padding-bottom: rem-calc(1px);
 	position: relative;
-	transition: .2s;
+	transition: 0.2s;
 
 	&:after {
 		background-color: $border-color;
-		content: '';
+		content: "";
 		left: 0;
 		right: 0;
 		height: rem-calc(1px);
 		position: absolute;
 		bottom: 0;
 		transform: scale(0);
-		transition: .25s transform ease-out;
+		transition: 0.25s transform ease-out;
 	}
 
 	&:hover,
@@ -42,15 +45,18 @@
 	}
 }
 
-@mixin animate-line-on-hover($text-color: currentColor, $border-color: currentColor) {
+@mixin animate-line-on-hover(
+	$text-color: currentColor,
+	$border-color: currentColor
+) {
 	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
 	padding-bottom: rem-calc(1px);
 	position: relative;
-	transition: .2s;
+	transition: 0.2s;
 
 	&:after {
 		background-color: $border-color;
-		content: '';
+		content: "";
 		left: 0;
 		right: 0;
 		height: rem-calc(1px);
@@ -58,7 +64,7 @@
 		bottom: 0;
 		transform: scaleX(0);
 		transform-origin: 100% 100%;
-		transition: .3s transform;
+		transition: 0.3s transform;
 	}
 
 	&:hover,
@@ -72,13 +78,21 @@
 	}
 }
 
-@mixin animate-background-underline-on-hover($text-color: currentColor, $background-start-color: currentColor, $background-end-color: currentColor) {
-	background-image: linear-gradient(to right, $background-start-color, $background-end-color);
+@mixin animate-background-underline-on-hover(
+	$text-color: currentColor,
+	$background-start-color: currentColor,
+	$background-end-color: currentColor
+) {
+	background-image: linear-gradient(
+		to right,
+		$background-start-color,
+		$background-end-color
+	);
 	background-size: 0 rem-calc(2px);
 	background-position: left bottom;
 	background-repeat: no-repeat;
 	padding-bottom: rem-calc(2px);
-	transition: background .2s ease-out;
+	transition: background 0.2s ease-out;
 
 	&:hover,
 	&:active {

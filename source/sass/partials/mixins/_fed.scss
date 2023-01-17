@@ -1,11 +1,12 @@
 @mixin fontface($name, $folder, $file, $weight: normal, $style: normal) {
 	@font-face {
 		font-family: "#{$name}";
-		src: url('./assets/fonts/#{$folder}/#{$file}.eot');
-		src: url('./assets/fonts/#{$folder}/#{$file}.eot?#iefix') format('embedded-opentype'),
-		url('./assets/fonts/#{$folder}/#{$file}.woff') format('woff'),
-		url('./assets/fonts/#{$folder}/#{$file}.ttf') format('truetype'),
-		url('./assets/fonts/#{$folder}/#{$file}.svg?#webfont') format('svg');
+		src: url("./assets/fonts/#{$folder}/#{$file}.eot");
+		src: url("./assets/fonts/#{$folder}/#{$file}.eot?#iefix")
+				format("embedded-opentype"),
+			url("./assets/fonts/#{$folder}/#{$file}.woff") format("woff"),
+			url("./assets/fonts/#{$folder}/#{$file}.ttf") format("truetype"),
+			url("./assets/fonts/#{$folder}/#{$file}.svg?#webfont") format("svg");
 		font-weight: $weight;
 		font-style: $style;
 	}
@@ -16,15 +17,13 @@
 	@each $fs-breakpoint, $fs-font-size in $fs-map {
 		@if $fs-breakpoint==null {
 			font-size: $fs-font-size;
-		}
-		@else {
+		} @else {
 			// If $fs-font-size is a key that exists in
 			// $fs-breakpoints, use the value
-			@if map-has-key($fs-breakpoints,
-			$fs-breakpoint) {
+			@if map-has-key($fs-breakpoints, $fs-breakpoint) {
 				$fs-breakpoint: map-get($fs-breakpoints, $fs-breakpoint);
 			}
-			@include media-breakpoint-up( $fs-breakpoint ) {
+			@include media-breakpoint-up($fs-breakpoint) {
 				font-size: $fs-font-size;
 			}
 		}
@@ -68,12 +67,11 @@
 	}
 }
 
-@mixin custom-width ($min,$max) {
+@mixin custom-width($min, $max) {
 	@media only screen and (min-width: #{$min}) and (max-width: #{$max}) {
 		@content;
 	}
 }
-
 
 //vertical align
 @mixin vertical-align($position: relative) {
@@ -100,13 +98,57 @@
 	}
 }
 
-
-$xxxxl-font: ( null: map-get($font-sizes, xxl), xs: map-get($font-sizes, xxl), md: map-get($font-sizes, xxxl), lg: map-get($font-sizes, xxxxl));
-$xxxl-font: ( null: map-get($font-sizes, xl), xs: map-get($font-sizes, xl), md: map-get($font-sizes, xxl), lg: map-get($font-sizes, xxxl));
-$xxl-font: ( null: map-get($font-sizes, lg), xs: map-get($font-sizes, lg), md: map-get($font-sizes, xl), lg: map-get($font-sizes, xxl));
-$xl-font: ( null: map-get($font-sizes, md), xs: map-get($font-sizes, md), md: map-get($font-sizes, lg), lg: map-get($font-sizes, xl));
-$lg-font: ( null: map-get($font-sizes, sm), xs: map-get($font-sizes, sm), md: map-get($font-sizes, md), lg: map-get($font-sizes, lg));
-$md-font: ( null: map-get($font-sizes, xs), xs: map-get($font-sizes, xs), md: map-get($font-sizes, sm), lg: map-get($font-sizes, md));
-$sm-font: ( null: map-get($font-sizes, xs), xs: map-get($font-sizes, xs), md: map-get($font-sizes, xs), lg: map-get($font-sizes, sm));
-$xs-font: ( null: map-get($font-sizes, xxs), xs: map-get($font-sizes, xxs), md: map-get($font-sizes, xxs), lg: map-get($font-sizes, xs));
-$xxs-font: ( null: map-get($font-sizes, xxxs), xs: map-get($font-sizes, xxxs), md: map-get($font-sizes, xxxs), lg: map-get($font-sizes, xxs));
+$xxxxl-font: (
+	null: map-get($font-sizes, xxl),
+	xs: map-get($font-sizes, xxl),
+	md: map-get($font-sizes, xxxl),
+	lg: map-get($font-sizes, xxxxl),
+);
+$xxxl-font: (
+	null: map-get($font-sizes, xl),
+	xs: map-get($font-sizes, xl),
+	md: map-get($font-sizes, xxl),
+	lg: map-get($font-sizes, xxxl),
+);
+$xxl-font: (
+	null: map-get($font-sizes, lg),
+	xs: map-get($font-sizes, lg),
+	md: map-get($font-sizes, xl),
+	lg: map-get($font-sizes, xxl),
+);
+$xl-font: (
+	null: map-get($font-sizes, md),
+	xs: map-get($font-sizes, md),
+	md: map-get($font-sizes, lg),
+	lg: map-get($font-sizes, xl),
+);
+$lg-font: (
+	null: map-get($font-sizes, sm),
+	xs: map-get($font-sizes, sm),
+	md: map-get($font-sizes, md),
+	lg: map-get($font-sizes, lg),
+);
+$md-font: (
+	null: map-get($font-sizes, xs),
+	xs: map-get($font-sizes, xs),
+	md: map-get($font-sizes, sm),
+	lg: map-get($font-sizes, md),
+);
+$sm-font: (
+	null: map-get($font-sizes, xs),
+	xs: map-get($font-sizes, xs),
+	md: map-get($font-sizes, xs),
+	lg: map-get($font-sizes, sm),
+);
+$xs-font: (
+	null: map-get($font-sizes, xxs),
+	xs: map-get($font-sizes, xxs),
+	md: map-get($font-sizes, xxs),
+	lg: map-get($font-sizes, xs),
+);
+$xxs-font: (
+	null: map-get($font-sizes, xxxs),
+	xs: map-get($font-sizes, xxxs),
+	md: map-get($font-sizes, xxxs),
+	lg: map-get($font-sizes, xxs),
+);

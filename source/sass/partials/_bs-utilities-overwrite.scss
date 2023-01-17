@@ -3,151 +3,159 @@ $utilities_overwrite: (
 		property: font-weight,
 		class: fw,
 		values: (
-			lighter  : 300,
-			normal   : 400,
-			medium   : 500,
-			semibold : 600,
-			bold     : 700,
-		)
+			lighter: 300,
+			normal: 400,
+			medium: 500,
+			semibold: 600,
+			bold: 700,
+		),
 	),
 	"max-width": (
 		property: max-width,
 		class: maxw,
-		responsive : true,
+		responsive: true,
 		values: (
-			50   : 50%,
-			100  : 100%,
-			none : none
-		)
+			50: 50%,
+			100: 100%,
+			none: none,
+		),
 	),
 	"hover-color": (
 		property: color,
 		state: hover,
 		class: text,
-		values: map-merge(
-			$theme-colors,
-			(
-				"body": $body-color,
-				"reset": inherit,
-			)
-		)
+		values:
+			map-merge(
+				$theme-colors,
+				(
+					"body": $body-color,
+					"reset": inherit,
+				)
+			),
 	),
 	"container-half-width": (
 		property: width,
 		class: container,
-		responsive : true,
+		responsive: true,
 		values: (
 			half-width: var(--container-half-width),
-		)
+		),
 	),
 	"container-margin-start": (
 		property: margin-left,
 		class: container-margin,
-		responsive : true,
+		responsive: true,
 		values: (
 			start: var(--container-margin-x),
-		)
+		),
 	),
 	"container-margin-end": (
 		property: margin-right,
 		class: container-margin,
-		responsive : true,
+		responsive: true,
 		values: (
 			end: var(--container-margin-x),
-		)
+		),
 	),
 	// end custom utility
 	// COMMENT the default utilities you want to use
-	"align"    : null,
-	"float"    : null,
-	"overflow" : null,
+	"align": null,
+	"float": null,
+	"overflow": null,
 	"display": (
 		responsive: true,
 		print: true,
 		property: display,
 		class: d,
-		values: block flex none
-    ),
-	"shadow"                 : null,
+		values: block flex none,
+	),
+	"shadow": null,
 	// "position": null;
-	"top"                 : null,
-	"bottom"              : null,
-	"start"               : null,
-	"end"                 : null,
-	"translate-middle"    : null,
+	"top": null,
+	"bottom": null,
+	"start": null,
+	"end": null,
+	"translate-middle": null,
 	// border generally used for table, null if you want to disble border-* classes
-	"border"              : null,
-	"border-top"          : null,
-	"border-end"          : null,
-	"border-bottom"       : null,
-	"border-start"        : null,
-	"border-color"        : null,
-	"border-width"        : null,
+	"border": null,
+	"border-top": null,
+	"border-end": null,
+	"border-bottom": null,
+	"border-start": null,
+	"border-color": null,
+	"border-width": null,
 	// "width": null,
-	"viewport-width"      : null,
-	"min-viewport-width"  : null,
-	"height"              : null,
-	"max-height"          : null,
-	"viewport-height"     : null,
-	"min-viewport-height" : null,
-	"flex"                : null,
+	"viewport-width": null,
+	"min-viewport-width": null,
+	"height": null,
+	"max-height": null,
+	"viewport-height": null,
+	"min-viewport-height": null,
+	"flex": null,
 	// "flex-direction"      : null,
 	// "flex-grow"           : null,
 	// "flex-shrink"         : null,
 	// "flex-wrap"           : null,
-	"gap"                 : null,
+	"gap": null,
 	// "justify-content"     : null,
 	// "align-items"         : null,
 	// "align-content"       : null,
 	// "align-self"          : null,
-	"order": (
-		responsive: true,
-		property: order,
-		values: (
-			first: -1,
-			last: 6,
+	"order":
+		(
+			responsive: true,
+			property: order,
+			values: (
+				first: -1,
+				last: 6,
+			),
 		),
-	),
-	"margin"   : null,
-	"margin-x" : (
+	"margin": null,
+	"margin-x": (
 		responsive: true,
 		property: margin-left margin-right,
 		class: mx,
-		values: (auto: auto)
+		values: (
+			auto: auto,
+		),
 	),
-	"margin-y" : null,
+	"margin-y": null,
 	"margin-end": (
 		responsive: true,
 		property: margin-right,
 		class: me,
-		values: (auto: auto)
-    ),
+		values: (
+			auto: auto,
+		),
+	),
 	"margin-start": (
 		responsive: true,
 		property: margin-left,
 		class: ms,
-		values: (auto: auto)
-    ),
-	"negative-margin-x"      : null,
-	"negative-margin-y"      : null,
-	"negative-margin-top"    : null,
-	"negative-margin-end"    : null,
-	"negative-margin-bottom" : null,
-	"negative-margin-start"  : null,
-	"padding"                : null,
-	"padding-x"              : null,
-	"padding-y"              : null,
-	"font-size"              : null,
-	"white-space"            : null,
-	"word-wrap"              : null,
-	"gradient"               : null,
-	"pointer-events"         : null,
-	"rounded"                : null,
-	"rounded-top"            : null,
-	"rounded-end"            : null,
-	"rounded-bottom"         : null,
-	"rounded-start"          : null,
-	"visibility"             : null,
+		values: (
+			auto: auto,
+		),
+	),
+	"negative-margin-x": null,
+	"negative-margin-y": null,
+	"negative-margin-top": null,
+	"negative-margin-end": null,
+	"negative-margin-bottom": null,
+	"negative-margin-start": null,
+	"padding": null,
+	"padding-x": null,
+	"padding-y": null,
+	"font-size": null,
+	"white-space": null,
+	"word-wrap": null,
+	"gradient": null,
+	"pointer-events": null,
+	"rounded": null,
+	"rounded-top": null,
+	"rounded-end": null,
+	"rounded-bottom": null,
+	"rounded-start": null,
+	"visibility": null,
 );
 
-$utilities: map-merge( $utilities, $utilities_overwrite );
+$utilities: map-merge($utilities, $utilities_overwrite);

@@ -33,10 +33,10 @@ require_once get_template_directory() . '/functions/skip-dashboard.php';
 // Register menus
 ////////////////////////////////////////////////
 register_nav_menus(
-	array(
+	[
 		'header-menu' => 'Header Menu',
 		'footer-menu' => 'Footer Menu'
-	)
+	]
 );
 
 // Add except to page post type

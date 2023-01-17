@@ -4,15 +4,15 @@
 // @each $breakpoint, $value in $grid-breakpoint {
 // 	$#{$breakpoint}: #{$value};
 // }
-$sm      : 576px;
-$md      : 768px;
-$lg      : 992px;
-$xl      : 1200px;
-$xxl     : 1400px;
-$xxxl    : 1600px;
-$two-k   : 1920px;
-$three-k : 2560px;
-$four-k  : 3840px;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+$xxxl: 1600px;
+$two-k: 1920px;
+$three-k: 2560px;
+$four-k: 3840px;
 
 // Changes depending on the project design, used on html element
 $mobile: 414px; // mobile canvas size, mostly remains same, used for fluid typography
@@ -20,11 +20,11 @@ $desktop: $two-k; // desktop canvas size
 $scaling: $two-k; // scaling starts from here, do not change if not sure, it cannot be smaller than $desktop
 
 // Text selection
-$text-selection-bg-color : #F7EA6F;
-$text-selection-color    : #2c2c2c;
+$text-selection-bg-color: #f7ea6f;
+$text-selection-color: #2c2c2c;
 
 // Custom ease
-$custom_ease: cubic-bezier(0.215, 0, 0.000, 0.995);
+$custom_ease: cubic-bezier(0.215, 0, 0, 0.995);
 
 // set container max-width and half-width css variable for each breakpoints
 ////////////////////////////////////////////////
@@ -32,10 +32,14 @@ $custom_ease: cubic-bezier(0.215, 0, 0.000, 0.995);
 	--container-margin-x: #{$container-padding-x}; // required for mobile as below starts from breakpoint
 	@each $breakpoint, $container-max-width in $container-max-widths {
 		@include media-breakpoint-up($breakpoint) {
-			$half-width: calc((#{$container-max-width} / 2) - #{$container-padding-x});
+			$half-width: calc(
+				(#{$container-max-width} / 2) - #{$container-padding-x}
+			);
 			--container-max-width: #{$container-max-width};
 			--container-half-width: #{$half-width};
-			--container-margin-x: calc(((100% - #{$container-max-width}) / 2) + #{$container-padding-x});
+			--container-margin-x: calc(
+				((100% - #{$container-max-width}) / 2) + #{$container-padding-x}
+			);
 		}
 	}
 }
@@ -47,33 +51,32 @@ $custom_ease: cubic-bezier(0.215, 0, 0.000, 0.995);
 //   4: 4vw,
 // );
 
-
 // Icons
 ////////////////////////////////////////////////
-$i-arrow-down: '\e900';
-$i-arrow-left: '\e901';
-$i-arrow-right: '\e902';
-$i-arrow-up: '\e903';
-$i-check: '\e904';
-$i-check-square: '\e905';
-$i-chevron-down: '\e906';
-$i-chevron-left: '\e907';
-$i-chevron-right: '\e908';
-$i-chevron-up: '\e909';
-$i-download: '\e90a';
-$i-external-link: '\e90b';
-$i-facebook: '\e91a';
-$i-instagram: '\e90c';
-$i-linkedin: '\e90d';
-$i-mail: '\e90e';
-$i-map-pin: '\e90f';
-$i-menu: '\e910';
-$i-minus: '\e911';
-$i-phone-call: '\e912';
-$i-play: '\e913';
-$i-play-circle: '\e914';
-$i-plus: '\e915';
-$i-search: '\e916';
-$i-twitter: '\e917';
-$i-x: '\e918';
-$i-youtube: '\e919';
+$i-arrow-down: "\e900";
+$i-arrow-left: "\e901";
+$i-arrow-right: "\e902";
+$i-arrow-up: "\e903";
+$i-check: "\e904";
+$i-check-square: "\e905";
+$i-chevron-down: "\e906";
+$i-chevron-left: "\e907";
+$i-chevron-right: "\e908";
+$i-chevron-up: "\e909";
+$i-download: "\e90a";
+$i-external-link: "\e90b";
+$i-facebook: "\e91a";
+$i-instagram: "\e90c";
+$i-linkedin: "\e90d";
+$i-mail: "\e90e";
+$i-map-pin: "\e90f";
+$i-menu: "\e910";
+$i-minus: "\e911";
+$i-phone-call: "\e912";
+$i-play: "\e913";
+$i-play-circle: "\e914";
+$i-plus: "\e915";
+$i-search: "\e916";
+$i-twitter: "\e917";
+$i-x: "\e918";
+$i-youtube: "\e919";

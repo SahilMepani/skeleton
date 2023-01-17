@@ -1,15 +1,15 @@
-<?php /* Template Name: Calendar */ ?>
+<?php /* Template Name: Calendar */?>
 
-<?php get_header(); ?>
+<?php get_header();?>
 
 <div class="content-section padding-4">
-  <section class="main-content container-fluid">
+	<section class="main-content container-fluid">
 
-    <?php if ( have_posts() ) : the_post(); ?>
-      <?php the_content(); ?>
-    <?php endif; ?>
+		<?php if ( have_posts() ): the_post();?>
+<?php the_content();?>
+<?php endif;?>
 
-  </section> <!-- .main-content -->
+	</section> <!-- .main-content -->
 </div> <!-- .content-section -->
 
-<?php get_footer(); ?>
+<?php get_footer();?>

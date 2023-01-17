@@ -5,7 +5,6 @@
 // 	mainClass: 'mfp-fade'
 // } );
 
-
 /*====================================================
 =            Manually Open Magnific Popup            =
 ====================================================*/
@@ -20,8 +19,6 @@
 //   });
 // } );
 
-
-
 /*=======================================================
 =            Open gallery from external link            =
 =======================================================*/
@@ -29,7 +26,6 @@
 // 	$( '.gallery' ).magnificPopup( 'open' );
 // 	// $(this).next().magnificPopup('open');
 // } );
-
 
 /*================================================
 =            Magnific Popup - Gallery            =
@@ -57,7 +53,6 @@
 // 	}
 // } );
 
-
 /*==============================================
 =            Magnific Popup - Video            =
 ==============================================*/
@@ -71,9 +66,9 @@
 //     youtube: {
 //       index: 'youtube.com/', // String that detects type of video (in this case YouTube). Simply via url.indexOf(index).
 //       id: 'v=', // String that splits URL in a two parts, second part should be %id%
-      // Or null - full URL will be returned
-      // Or a function that should return %id%, for example:
-      // id: function(url) { return 'parsed id'; }
+// Or null - full URL will be returned
+// Or a function that should return %id%, for example:
+// id: function(url) { return 'parsed id'; }
 //       src: '//www.youtube.com/embed/%id%?autoplay=1&rel=0' // URL that will be set as a source for iframe.
 //     }
 //     ,
@@ -85,7 +80,6 @@
 //   }
 // }
 // } );
-
 
 /*====================================================
 =            Magnific Popup - Members Bio            =
@@ -101,7 +95,6 @@
   }
 } );*/
 
-
 /*====================================================
 =            Open a popup after 2 seconds            =
 ====================================================*/
@@ -115,7 +108,6 @@
 // 	} );
 // }, 2000 );
 
-
 /*====================================
 =            Custom Title            =
 ====================================*/
@@ -126,7 +118,6 @@
 // 		}
 // 	}
 // } );
-
 
 /*=======================================================================
 =            Next/Previous Arrows for gallery inside content            =
@@ -139,7 +130,6 @@
 // 		}
 // 	}
 // } )
-
 
 /*==============================================================================================
 =            Open on load and custom close with cookie set - REQUIRES cookie plugin            =

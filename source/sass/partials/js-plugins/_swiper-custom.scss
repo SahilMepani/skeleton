@@ -13,10 +13,10 @@
 
 	&.scheme-dark {
 		span {
-			background-color: rgba(green, .3);
+			background-color: rgba(green, 0.3);
 
 			&:after {
-				content: '';
+				content: "";
 				background: green;
 			}
 		}
@@ -24,22 +24,22 @@
 
 	span {
 		opacity: 1;
-		background-color: rgba(#fff, .2);
+		background-color: rgba(#fff, 0.2);
 		display: inline-block;
 		width: rem-calc(40px);
-		height: rem-calc( 4px );
-		margin-left: rem-calc( 5px );
+		height: rem-calc(4px);
+		margin-left: rem-calc(5px);
 		border-radius: 0;
 		position: relative;
 		cursor: pointer;
 		overflow: hidden;
 
 		&:not(:last-child) {
-			margin: 0 rem-calc( 10px ) 0 0;
+			margin: 0 rem-calc(10px) 0 0;
 		}
 
 		&:after {
-			content: '';
+			content: "";
 			background: #fff;
 			position: absolute;
 			top: 0;
@@ -49,7 +49,7 @@
 			z-index: 10;
 			transform: scale(0px);
 			transform-origin: 100% 100%;
-			transition: .3s transform ease-out;
+			transition: 0.3s transform ease-out;
 		}
 
 		&.swiper-pagination-bullet-active {
@@ -97,11 +97,10 @@
 	}
 }
 
-
 // Swiper Arrow Navigation - Inline
 ////////////////////////////////////////////////
 .swiper-navigation-inline {
-	gap: 0 rem-calc( 10px );
+	gap: 0 rem-calc(10px);
 
 	.swiper-button-prev,
 	.swiper-button-next {
@@ -110,7 +109,7 @@
 		justify-content: center;
 		width: rem-calc(50px);
 		height: rem-calc(50px);
-		padding: rem-calc( 10px );
+		padding: rem-calc(10px);
 		border-radius: 50%;
 		border: rem-calc(1px) solid currentColor;
 		// space for border, required, if the navigation is standalone and not a part of heading + navigation
@@ -148,7 +147,7 @@
 	left: 0;
 	.swiper-scrollbar-drag {
 		background-color: teal;
-		border-radius: rem-calc( 5px );
+		border-radius: rem-calc(5px);
 	}
 }
 
@@ -164,13 +163,13 @@
 /*----------  Required  ----------*/
 // these classes are added to section containing the swiper slider
 .swiper-cards-overflow-down-xl {
-	@include swiper-cards-overflow-down('xl');
+	@include swiper-cards-overflow-down("xl");
 }
 
 .swiper-cards-overflow-down-lg {
-	@include swiper-cards-overflow-down('lg');
+	@include swiper-cards-overflow-down("lg");
 }
 
 .swiper-cards-overflow-down-md {
-	@include swiper-cards-overflow-down('md');
+	@include swiper-cards-overflow-down("md");
 }

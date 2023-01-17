@@ -42,7 +42,9 @@ $mobile-sub-menu-link-hover-bg-color: rgba(0, 0, 0, 0.05);
 $mobile-sub-menu-link-color: $green;
 $mobile-sub-menu-link-hover-color: #000;
 $mobile-sub-menu-link-padding-y: rem-calc(13px);
-$mobile-sub-menu-link-padding-x: rem-calc(20px); //usually this is same as parent menu
+$mobile-sub-menu-link-padding-x: rem-calc(
+	20px
+); //usually this is same as parent menu
 
 .header-nav {
 	@include media-breakpoint-down(lg) {
@@ -60,7 +62,7 @@ $mobile-sub-menu-link-padding-x: rem-calc(20px); //usually this is same as paren
 		transition: 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946px);
 		&.js-active {
 			transform: translateX(0);
-			box-shadow: 0 0 rem-calc( 10px ) rgba(120, 120, 120, 0.3px);
+			box-shadow: 0 0 rem-calc(10px) rgba(120, 120, 120, 0.3px);
 		}
 	}
 }
@@ -118,7 +120,7 @@ $mobile-sub-menu-link-padding-x: rem-calc(20px); //usually this is same as paren
 					}
 					&::after {
 						content: "";
-						border: rem-calc( 8px ) solid transparent;
+						border: rem-calc(8px) solid transparent;
 						border-left-width: rem-calc(6px);
 						border-right-width: rem-calc(6px);
 						border-top-color: $mobile-parent-menu-dropdown-icon-color;
@@ -189,8 +191,8 @@ $desktop-parent-menu-current-item-link-bg-color: red;
 $desktop-parent-menu-current-item-link-color: #fff;
 $desktop-parent-menu-dropdown-icon-color: #999;
 $desktop-parent-menu-dropdown-icon-hover-color: #fff;
-$desktop-parent-menu-dropdown-icon-border: rem-calc( 5px );
-$desktop-parent-menu-space-between-text-and-arrow: rem-calc( 10px );
+$desktop-parent-menu-dropdown-icon-border: rem-calc(5px);
+$desktop-parent-menu-space-between-text-and-arrow: rem-calc(10px);
 /*----------  Sub Menu  ----------*/
 $desktop-sub-menu-width: rem-calc(250px);
 $desktop-sub-menu-link-bg-color: green;
@@ -206,7 +208,7 @@ $desktop-sub-menu-current-item-link-bg-color: darken(
 );
 $desktop-sub-menu-current-item-link-color: transparent;
 $desktop-sub-menu-font-size: rem-calc(16px);
-$desktop-sub-menu-link-padding-y: rem-calc( 12px );
+$desktop-sub-menu-link-padding-y: rem-calc(12px);
 $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usually this is same as parent menu
 
 // Desktop Parent Menu
@@ -215,7 +217,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 	@include media-breakpoint-up(lg) {
 		> li {
 			float: left;
-			margin-right: rem-calc( 5px );
+			margin-right: rem-calc(5px);
 			&:hover,
 			&:focus {
 				> a {

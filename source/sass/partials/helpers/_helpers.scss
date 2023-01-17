@@ -13,7 +13,7 @@
 	top: 50%;
 	transform: translate(-50%, -50%);
 	/* % of current element */
-	@media screen and (orientation:landscape) {
+	@media screen and (orientation: landscape) {
 		width: 177.77777778vh;
 		/* 100 * 16 / 9 */
 	}

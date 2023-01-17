@@ -1,221 +1,226 @@
-.no-comments { clear: both; }
+.no-comments {
+	clear: both;
+}
 
-.comments-counts, #comments {
-  font-size: rem-calc(18px);
-  font-weight: 700;
-  line-height: rem-calc(28px);
-  // text-transform: uppercase;
-  // float: left;
+.comments-counts,
+#comments {
+	font-size: rem-calc(18px);
+	font-weight: 700;
+	line-height: rem-calc(28px);
+	// text-transform: uppercase;
+	// float: left;
 }
 
 .comments-pagination {
-  text-align: right;
-  overflow: hidden;
-  a,
-  span {
-    @include pagination-links;
-  }
-  a:hover,
-  .current {
-    background: $link-color;
-    color: #fff;
-  }
+	text-align: right;
+	overflow: hidden;
+	a,
+	span {
+		@include pagination-links;
+	}
+	a:hover,
+	.current {
+		background: $link-color;
+		color: #fff;
+	}
 }
 
 .comments-list {
-  clear: both;
-  list-style: none;
-  margin: 0 0 rem-calc(20px) 0;
-  li.comment,
-  li.trackback,
-  li.pingback {
-    background-color: #f5f5f5;
-    padding: rem-calc( 10px ) rem-calc( 10px ) rem-calc( 10px ) rem-calc(74);
-    border: rem-calc(1px) solid #ddd;
-    margin-bottom: $paragraph-margin-bottom - rem-calc( 10px );
-    position: relative;
-    box-shadow: inset rem-calc(1px) rem-calc(1px) 0 #fff, inset rem-calc(-1) rem-calc(-1) 0 #fff;
-    .comment-author {
-      font-size: rem-calc(16px);
-      font-weight: 700;
-      padding: 0 rem-calc(170) 0 0;
-      cite {
-        font-style: normal;
-      }
-      .says {
-        display: none;
-      }
-      img.avatar {
-        position: absolute;
-        left: rem-calc( 10px );
-        top: rem-calc( 10px );
-      }
-    }
-    .comment-meta {
-      font-size: rem-calc( 8px );
-      text-align: right;
-      position: absolute;
-      top: rem-calc( 10px );
-      right: rem-calc( 10px );
-      a {
-        color: tint($body-color, 20%);
-        &.comment-edit-link {
-          color: $link-color;
-        }
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
-    p {
-      margin: rem-calc( 5px ) 0 rem-calc( 12px );
-    }
-    .reply {
-      margin-bottom: rem-calc( 5px );
-      a {
-          &:hover {
-            text-decoration: underline;
-          }
-      }
-    }
-    ul.children {
-      list-style: none;
-      margin: rem-calc( 12px ) 0 0;
-      li {
-        margin: 0;
-      }
-      li.odd {
-        background: #fff;
-      }
-      li.even {
-        background: #f9f9f9;
-      }
-    }
-    #respond {
-      background-color: #fff;
-    }
-  }
-  //Breakpoint
-  @include media-breakpoint-down( sm ) {
-    li.comment,
-    li.trackback,
-    li.pingback {
-      ul.children,
-      #respond {
-        margin-left: rem-calc(-64);
-      }
-      .comment-author {
-        padding-right: 0;
-      }
-      .comment-meta {
-        display: none;
-      }
-    }
-  }
+	clear: both;
+	list-style: none;
+	margin: 0 0 rem-calc(20px) 0;
+	li.comment,
+	li.trackback,
+	li.pingback {
+		background-color: #f5f5f5;
+		padding: rem-calc(10px) rem-calc(10px) rem-calc(10px) rem-calc(74);
+		border: rem-calc(1px) solid #ddd;
+		margin-bottom: $paragraph-margin-bottom - rem-calc(10px);
+		position: relative;
+		box-shadow: inset rem-calc(1px) rem-calc(1px) 0 #fff,
+			inset rem-calc(-1) rem-calc(-1) 0 #fff;
+		.comment-author {
+			font-size: rem-calc(16px);
+			font-weight: 700;
+			padding: 0 rem-calc(170) 0 0;
+			cite {
+				font-style: normal;
+			}
+			.says {
+				display: none;
+			}
+			img.avatar {
+				position: absolute;
+				left: rem-calc(10px);
+				top: rem-calc(10px);
+			}
+		}
+		.comment-meta {
+			font-size: rem-calc(8px);
+			text-align: right;
+			position: absolute;
+			top: rem-calc(10px);
+			right: rem-calc(10px);
+			a {
+				color: tint($body-color, 20%);
+				&.comment-edit-link {
+					color: $link-color;
+				}
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+		p {
+			margin: rem-calc(5px) 0 rem-calc(12px);
+		}
+		.reply {
+			margin-bottom: rem-calc(5px);
+			a {
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+		ul.children {
+			list-style: none;
+			margin: rem-calc(12px) 0 0;
+			li {
+				margin: 0;
+			}
+			li.odd {
+				background: #fff;
+			}
+			li.even {
+				background: #f9f9f9;
+			}
+		}
+		#respond {
+			background-color: #fff;
+		}
+	}
+	//Breakpoint
+	@include media-breakpoint-down(sm) {
+		li.comment,
+		li.trackback,
+		li.pingback {
+			ul.children,
+			#respond {
+				margin-left: rem-calc(-64);
+			}
+			.comment-author {
+				padding-right: 0;
+			}
+			.comment-meta {
+				display: none;
+			}
+		}
+	}
 }
 
 #respond {
-  background-color: #f5f5f5;
-  clear: both;
-  padding: rem-calc(15px);
-  border: rem-calc(1px) solid #ddd;
-  position: relative;
-  box-shadow: inset rem-calc(1px) rem-calc(1px) 0 #fff, inset rem-calc(-1) rem-calc(-1) 0 #fff;
-  .comment & {
-    margin-top: rem-calc(15px);
-  }
-  .logged-in-as {
-    a {
-      color: $body-color;
-      font-size: 16px;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
+	background-color: #f5f5f5;
+	clear: both;
+	padding: rem-calc(15px);
+	border: rem-calc(1px) solid #ddd;
+	position: relative;
+	box-shadow: inset rem-calc(1px) rem-calc(1px) 0 #fff,
+		inset rem-calc(-1) rem-calc(-1) 0 #fff;
+	.comment & {
+		margin-top: rem-calc(15px);
+	}
+	.logged-in-as {
+		a {
+			color: $body-color;
+			font-size: 16px;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
 }
 
 #reply-title {
-  font-size: rem-calc(20px);
-  margin-bottom: rem-calc( 5px );
-  @include media-breakpoint-down( md ) {
-    small {
-      display: block;
-    }
-  }
+	font-size: rem-calc(20px);
+	margin-bottom: rem-calc(5px);
+	@include media-breakpoint-down(md) {
+		small {
+			display: block;
+		}
+	}
 }
 
 #cancel-comment-reply-link {
-  font-size: rem-calc(13px);
-  position: absolute;
-  top: rem-calc(20px);
-  right: rem-calc(20px);
+	font-size: rem-calc(13px);
+	position: absolute;
+	top: rem-calc(20px);
+	right: rem-calc(20px);
 }
 
 #commentform {
-  p {
-    margin-bottom: rem-calc(20px);
-    @include clearfix;
-  }
-  label {
-    line-height: rem-calc(40px);
-  }
-  .required {
-    color: red;
-    font-size: rem-calc(14);
-  }
-  input[type="text"],
-  textarea {
-    @include input-text;
-    background-color: #fff;
-  }
-  input[type="text"] {
-    float: left;
-    width: rem-calc(280px);
-    padding: rem-calc( 10px ) rem-calc( 5px );
-    margin-right: rem-calc(15px);
-  }
-  textarea {
-    line-height: 1.5;
-    width: 100%;
-    padding: rem-calc( 5px );
-  }
-  input[type="submit"] {
-    @include btn;
-    @include btn-black;
-    @include btn-md;
-  }
-  .comment-notes,
-  .form-allowed-tags {
-    //p.comment-notes
-    color: tint($body-color, 20%);
-    font-size: rem-calc(13px);
-  }
-  .comment-form-comment {
-    //p.comment-form-comment
-    margin-bottom: rem-calc( 10px );
-    label {
-        line-height: rem-calc(25px);
-    }
-  }
-  .form-submit {
-    //p.form-submit
-    margin-bottom: 0;
-  }
+	p {
+		margin-bottom: rem-calc(20px);
+		@include clearfix;
+	}
+	label {
+		line-height: rem-calc(40px);
+	}
+	.required {
+		color: red;
+		font-size: rem-calc(14);
+	}
+	input[type="text"],
+	textarea {
+		@include input-text;
+		background-color: #fff;
+	}
+	input[type="text"] {
+		float: left;
+		width: rem-calc(280px);
+		padding: rem-calc(10px) rem-calc(5px);
+		margin-right: rem-calc(15px);
+	}
+	textarea {
+		line-height: 1.5;
+		width: 100%;
+		padding: rem-calc(5px);
+	}
+	input[type="submit"] {
+		@include btn;
+		@include btn-black;
+		@include btn-md;
+	}
+	.comment-notes,
+	.form-allowed-tags {
+		//p.comment-notes
+		color: tint($body-color, 20%);
+		font-size: rem-calc(13px);
+	}
+	.comment-form-comment {
+		//p.comment-form-comment
+		margin-bottom: rem-calc(10px);
+		label {
+			line-height: rem-calc(25px);
+		}
+	}
+	.form-submit {
+		//p.form-submit
+		margin-bottom: 0;
+	}
 }
 
 //comment validation
 #commentform {
-  label.error {
-    clear: both;
-    color: red;
-    font-size: rem-calc(14);
-    line-height: 1.5;
-    padding-top: rem-calc( 5px );
-    display: block;
-  }
-  input.error,
-  textarea.error {
-    border: rem-calc(1px) solid red;
-  }
+	label.error {
+		clear: both;
+		color: red;
+		font-size: rem-calc(14);
+		line-height: 1.5;
+		padding-top: rem-calc(5px);
+		display: block;
+	}
+	input.error,
+	textarea.error {
+		border: rem-calc(1px) solid red;
+	}
 }

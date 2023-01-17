@@ -1,24 +1,54 @@
 @keyframes flash {
-	0% {opacity: 0;}
-	100% {opacity: 1;}
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 @keyframes glance {
-	0% {transform: rotate(-45deg) translateY(-451%);}
-	100% {transform: rotate(-45deg) translateY(500%);}
+	0% {
+		transform: rotate(-45deg) translateY(-451%);
+	}
+	100% {
+		transform: rotate(-45deg) translateY(500%);
+	}
 }
 
 @keyframes popup {
-	0% {opacity: 0.0; transform: scale3d(0.8,0.8,1);transition: all 0.9s;}
-	100% {opacity: 1; transform: scale3d(1,1,1);transition: all 0.9s;}
+	0% {
+		opacity: 0;
+		transform: scale3d(0.8, 0.8, 1);
+		transition: all 0.9s;
+	}
+	100% {
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+		transition: all 0.9s;
+	}
 }
 
 @keyframes down-to-top {
-	0% {bottom: 0px;opacity: 0}
-	100% {bottom: 80px;opacity: 1}
+	0% {
+		bottom: 0px;
+		opacity: 0;
+	}
+	100% {
+		bottom: 80px;
+		opacity: 1;
+	}
 }
 @keyframes top-to-down {
-	0% {bottom: 80px;opacity: 1}
-	99% {bottom: 0px;opacity: 0}
-	100% {display: none}
+	0% {
+		bottom: 80px;
+		opacity: 1;
+	}
+	99% {
+		bottom: 0px;
+		opacity: 0;
+	}
+	100% {
+		display: none;
+	}
 }

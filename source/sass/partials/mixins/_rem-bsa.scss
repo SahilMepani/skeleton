@@ -2,7 +2,7 @@
 $rem-base: 10px;
 
 @function strip-unit($number) {
-	@if type-of($number) == 'number' and not unitless($number) {
+	@if type-of($number) == "number" and not unitless($number) {
 		$number: $number / ($number * 0 + 1);
 	}
 
@@ -85,14 +85,19 @@ $rem-base: 10px;
 
 	@if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
 		$fluid-base: calc(
-			#{$base-min-value} + #{(strip-unit($base-max-value) - strip-unit($base-min-value))}
-			* ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+			#{$base-min-value} +
+				#{(strip-unit($base-max-value) - strip-unit($base-min-value))} *
+				((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
 		);
 
 		@if $min-value < $max-value {
 			@return min($fluid-base, rem-calc($max-value));
 		} @else {
-			@return clamp(rem-calc($max-value), $fluid-base, rem-calc($min-value));
+			@return clamp(
+				rem-calc($max-value),
+				$fluid-base,
+				rem-calc($min-value)
+			);
 		}
 	} @else {
 		@error 'Invalid fluid() declaration.';
@@ -101,8 +106,8 @@ $rem-base: 10px;
 }
 
 @function remaining-side($wrapper-width, $value-only: false) {
-	@if ( $value-only ) {
-		@return calc( ( 1920 - $wrapper-width ) / 2 );
+	@if ($value-only) {
+		@return calc((1920 - $wrapper-width) / 2);
 	} @else {
 		@return calc((100% - #{rem-calc($wrapper-width)}) / 2);
 	}

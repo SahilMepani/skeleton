@@ -302,6 +302,11 @@ svg {
 	max-width: 100%;
 }
 
+svg {
+	// fix for safari mobile
+	width: 100%;
+}
+
 audio,
 canvas,
 iframe,

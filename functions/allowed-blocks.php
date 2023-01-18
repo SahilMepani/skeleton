@@ -17,7 +17,7 @@ add_filter( 'allowed_block_types_all', 'misha_allowed_block_types', 25, 2 );
 function misha_allowed_block_types( $allowed_blocks, $editor_context ) {
 
 	$allowed_blocks = [
-		'acf/hero-image-slider'
+		'acf/visual-editor'
 	];
 
 	// Allow more blocks depending on the post type

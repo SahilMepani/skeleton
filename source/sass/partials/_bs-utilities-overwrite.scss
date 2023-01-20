@@ -61,7 +61,7 @@ $utilities_overwrite: (
 	// COMMENT the default utilities you want to use
 	"align": null,
 	"float": null,
-	"overflow": null,
+	// "overflow": null,
 	"display": (
 		responsive: true,
 		print: true,
@@ -150,7 +150,17 @@ $utilities_overwrite: (
 	"word-wrap": null,
 	"gradient": null,
 	"pointer-events": null,
-	"rounded": null,
+	"rounded": (
+		responsive: false,
+		property: border-radius,
+		class: rounded,
+		values: (
+			1 : .5rem,
+			2   : 1rem,
+			3 : 1.5rem,
+			4   : 2rem,
+		)
+    ),
 	"rounded-top": null,
 	"rounded-end": null,
 	"rounded-bottom": null,

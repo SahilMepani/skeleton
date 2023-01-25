@@ -9,6 +9,7 @@ function skel_enqueue_scripts() {
 		return;
 	}
 
+
 	// load jquery at bottom
 	// https://wordpress.stackexchange.com/questions/173601/enqueue-core-jquery-in-the-footer
 	// ths will break gravity forms on some pages, be careful

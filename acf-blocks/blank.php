@@ -18,5 +18,5 @@
 	$custom_id      = get_field( 'custom_id' );
 ?>
 
-<section class="<?php echo $background_color; ?><?php echo $spacing_top; ?><?php echo $spacing_bottom; ?><?php echo $custom_classes; ?>" style="<?php echo $custom_css; ?>" id="<?php echo $custom_id; ?>">
+<section class="<?php echo $background_color . ' ' . $spacing_top . ' ' . $spacing_bottom . ' ' . $custom_classes; ?>" style="<?php echo $custom_css; ?>" id="<?php echo $custom_id; ?>">
 </section>

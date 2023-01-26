@@ -17,6 +17,7 @@ add_filter( 'allowed_block_types_all', 'misha_allowed_block_types', 25, 2 );
 function misha_allowed_block_types( $allowed_blocks, $editor_context ) {
 
 	$allowed_blocks = [
+		'core/block', // <-- Include to show reusable blocks in the block inserter.
 		'acf/visual-editor'
 	];
 

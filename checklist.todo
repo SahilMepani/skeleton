@@ -4,10 +4,10 @@
 	☐ Change the PROJECTNAME to "Your project" in WP Paste - Local.bat file
 	☐ Paste WP Paste - Local.bat file into Shell
 	☐ Undo the project name in WP Paste - Local.bat and save the file
-  ☐ Setup repo
+		☐ Setup repo
 	☐ Copy the first time connection code from Repo
-  ☐ Replace the screenshot
-  ☐ Create site pages and register CPT and taxonomies
+		☐ Replace the screenshot
+		☐ Create site pages and register CPT and taxonomies
 	☐ Make sure the editor style is matching the theme style. Edit block-editor-settings.php
 	☐ Get Google Analytics code form Client
 	☐ Get old website URL
@@ -29,70 +29,50 @@
 		☐ Activate "Wordfence" security plugin and import settings using
 	8e6a436f1f47f5c500fc0a4f7885b5cbecb71bbe75b4abfb31b22d49643f8183cb2906d9f75e85fa073da4be9e79eaeed4fb0630d5765222902dbb8657457d44
 	☐ Activate "WP Hardened" plugin
-  ☐ Make sure all the content is editable from backend, if not please mention
-  ☐ Change WP_DEBUG variable to false in wp-config.php file in root
-  ☐ Go to Settings -> Reading and Uncheck "Discourage search engine..."
-  ☐ Check for any console errors on every page
+	☐ Make sure all the content is editable from backend, if not please mention
+	☐ Change WP_DEBUG variable to false in wp-config.php file in root
+	☐ Go to Settings -> Reading and Uncheck "Discourage search engine..."
+	☐ Check for any console errors on every page
 	☐ Check for any PHP error using Query Monitor plugin
-  ☐ Please take a backup and Optimize database using "WP Optimize" plugin.
-  ☐ Remove unwanted icons
-  ☐ Remove unwanted/extra code from each file one by one
-  ☐ Remove unwanted plugins
-  ☐ Add all preview for acf-blocks
-  ☐ Hide unwanted options from admin menu sidebar using "Admin menu editor" plugin
-  ☐ Make the WP JPG resize quality filter percent to 70 if not planning to use Image Optimize plugin
-  ☐ Setup SMTP for email delivery to Inbox
-  ☐ Setup Google search console
-  ☐ Remove unwanted keyframes
-  ☐ Check 404
-  ☐ Check Favicon
-  ☐ Add Redirection from old site to new site using 301 redirects
+	☐ Please take a backup and Optimize database using "WP Optimize" plugin.
+	☐ Remove unwanted icons
+	☐ Remove unwanted/extra code from each file one by one
+	☐ Remove unwanted plugins
+	☐ Add all preview for acf-blocks
+	☐ Hide unwanted options from admin menu sidebar using "Admin menu editor" plugin
+	☐ Make the WP JPG resize quality filter percent to 70 if not planning to use Image Optimize plugin
+	☐ Setup SMTP for email delivery to Inbox
+	☐ Setup Google search console
+	☐ Remove unwanted keyframes
+	☐ Check 404
+	☐ Check Favicon
+	☐ Add Redirection from old site to new site using 301 redirects
 	☐ Make sure all the repeaters are collapsible
 	☐ Force HTTPS on kinsta tools
-  ☐ Add back the acf-json folder so that the ACF options are loaded faster in backend
+	☐ Add back the acf-json folder so that the ACF options are loaded faster in backend
 	☐ Make sure the editor style is matching the theme style. Edit block-editor-settings.php
+	☐ Add skel_direction_class to swiper-navigation class if site has arabic language
+	☐ Add skel_swiper_direction_class to swiper class if site has arabic langauge
 
 
 # Content Editor:
-  ☐ All images need to have keyword focused lowercase names
-  ☐ All images need to have ALT text explaining the image content in detail
-  ☐ Do not upload same image again and to use it on another page. Use the existing one from the media library
+	☐ All images need to have keyword focused lowercase names
+	☐ All images need to have ALT text explaining the image content in detail
+	☐ Do not upload same image again and to use it on another page. Use the existing one from the media library
 
-
-WP Engine Development:
-☐ Add Site - Click
-☐ Site Name: - Input
-    Name of the project in Camelcase. If two words separated by space
-☐ Site group - Input
-    Select the name of the lead developer
-☐ Add Development - Click
-☐ Name the environment: - Input
-    Name of the environment with dev suffix. It will also become the URL. If that name is not available change the "dev" to "devs".
-☐ Create Environment - Click
-☐ Utilities - Click
-☐ Enable Password Protected for Development
-    User is always the "EnviromnentName/Subdomain"
-    Password will be the "{EnviromnentName}" + "368"
-☐ STP Users (Development) - Click
-    Username will be the "enviromnent name"
-    Password will be "{{ Regular 368 }}"
-☐ WP Admin
-    Click on reset password and change it to the {{ Regular 368 }} password
-☐ Use Local to push site to WP Engine
-☐ Reset File permission in Utilities -> Reset Permissions or else the SFTP users will not be able to upload files
 
 KINSTA STAGING:
 
 
 Kinsta LIVE:
-  ☐ Add the domain to live environment and check the www checkbox
-  ☐ Add the verification records
-  ☐ Add the A record to live IP address
-  ☐ Push Staging to Live environment
-  ☐ Make the client domain as primary - check the replace URL checkbox
-  ☐ Enable PHP 7.4
-  ☐ Enable Force HTTPS
-  ☐ Only change for SFTP here is the Port in sftp.json file
+	☐ Add the domain to live environment and check the www checkbox
+	☐ Add the verification records
+	☐ Add the A record to live IP address
+	☐ Push Staging to Live environment
+	☐ Make the client domain as primary - check the replace URL checkbox
+	☐ Enable PHP 7.4
+	☐ Enable Force HTTPS
+	☐ Only change for SFTP here is the Port in sftp.json file
 
 This will show you the autoloaded data size, how many entries are in the table, and the first 10 entries by size.:
 SELECT 'autoloaded data in KiB' as name, ROUND(SUM(LENGTH(option_value))/ 1024) as value FROM wp_options WHERE autoload='yes'
@@ -107,7 +87,7 @@ FROM `wp_options`
 WHERE `autoload` = 'yes'
 AND `option_name` LIKE '%wpml%'
 
-Delete  all options with the name jetpack in option_name:
+Delete	all options with the name jetpack in option_name:
 DELETE
 FROM `wp_options`
 WHERE `autoload` = 'yes'

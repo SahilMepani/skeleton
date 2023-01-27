@@ -102,6 +102,10 @@
 .swiper-navigation-inline {
 	gap: 0 rem-calc(10px);
 
+	&.dir-rtl {
+		flex-direction: row-reverse;
+	}
+
 	.swiper-button-prev,
 	.swiper-button-next {
 		display: flex;

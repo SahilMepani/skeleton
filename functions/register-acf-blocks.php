@@ -44,7 +44,8 @@ function skel_register_acf_blocks() {
 		'post_types'      => [ 'page' ],
 		'supports'        => [
 			'align'           => false,
-			'customClassName' => false
+			'customClassName' => false,
+			'mode' => false // disable toggle preview and edit
 		]
 	] );
 

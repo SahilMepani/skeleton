@@ -183,7 +183,7 @@ $container-max-widths: (
 	lg: 93vw,
 	xl: 93vw,
 	xxl: 93vw,
-	// max-width value needs to be less than the (breakpoint value(xxxl) - $container-padding)
+	// max-width value needs to be less than the (breakpoint value(xxl) - $container-padding)
 	// any property added here should also be added to grid breakpoints
 	// xxxl : 144rem,
 	// if you don't want to generate the utility classes for it. You can add the breakpoint in base-style file,

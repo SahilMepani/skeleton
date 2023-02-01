@@ -1,4 +1,4 @@
-KInsta:
+Kinsta:
 	☐ FilemTime functions works on Staging but it doesn't work on Live environment on Kinsta
 	☐ Versioning is not working with Kinsta so we have to use Autoptimize because it does versioning by itself whenever we upload an updated CSS file.
 	☐ Before QA make sure, you have changed grunt file from dev to production.

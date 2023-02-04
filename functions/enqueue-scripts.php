@@ -42,11 +42,6 @@ function skel_enqueue_scripts() {
 	);
 
 	// wp_enqueue_script(
-	//   'ua-parser',
-	//   get_template_directory_uri() . '/js/vendor/ua-parser-0.7.20.min.js'
-	// );
-
-	// wp_enqueue_script(
 	// 	'match-height',
 	// 	get_template_directory_uri() . '/js/vendor/match-height.js',
 	// 	[ 'jquery' ],

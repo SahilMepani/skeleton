@@ -35,9 +35,8 @@ function skel_get_yt_link( $url ) {
 	return $url;
 }
 
-/*================================================================
-=            Validate Youtube link for Magnific Popup            =
-================================================================*/
+// Validate Youtube link for Magnific Popup
+////////////////////////////////////////////////
 function skel_get_validate_youtube_link( $link ) {
 	preg_match( "#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $link, $matches );
 	$link = 'https://www.youtube.com/watch?v=' . $matches[0];
@@ -45,9 +44,8 @@ function skel_get_validate_youtube_link( $link ) {
 	return $link;
 }
 
-/*====================================================================
-=            Custom excerpt function with length argument            =
-====================================================================*/
+// Custom excerpt function with length argument
+////////////////////////////////////////////////
 function skel_get_the_excerpt( $limit, $post_id ) {
 	$excerpt = explode( ' ', get_the_excerpt( $post_id ), $limit );
 	if ( count( $excerpt ) >= $limit ) {
@@ -61,16 +59,14 @@ function skel_get_the_excerpt( $limit, $post_id ) {
 	return $excerpt;
 }
 
-/*================================
-=            Tiny URL            =
-================================*/
+// Tiny URL
+////////////////////////////////////////////////
 function skel_get_tiny_url( $url ) {
 	return file_get_contents( 'http://tinyurl.com/api-create.php?url=' . $url );
 }
 
-/*====================================
-=            Text Shorter            =
-====================================*/
+// Text Shorter
+////////////////////////////////////////////////
 function skel_get_text_shorter( $input, $length ) {
 	// no need to trim, already shorter than trim length
 	if ( strlen( $input ) <= $length ) {
@@ -90,12 +86,12 @@ function skel_get_text_shorter( $input, $length ) {
 	return $trimmed_text;
 }
 
-/*=================================================
-=            Return terms without link            =
-=================================================*/
-// return string
-// eg. term 1, term 2
-function skel_get_the_terms( $post_id, $taxonomy, $seperator ) {
+/**
+ * Return terms without link
+ * @param int $post_id, string $taxonomy, string $separator
+ * @return string term 1, term 2
+ */
+function skel_get_the_terms( $post_id, $taxonomy, $separator ) {
 	$terms   = get_the_terms( $post_id, $taxonomy ); // Returns objects array
 	$ar_term = []; // Initialize an array
 	if ( $terms ) {
@@ -110,8 +106,8 @@ function skel_get_the_terms( $post_id, $taxonomy, $seperator ) {
 }
 
 /**
- * Terms Array
- * @param  int   $post_id, string taxonomy name
+ * Return terms without link
+ * @param  int   $post_id, string $taxonomy
  * @return array [name = 'term', 'id' = 3]
  */
 function skel_get_the_terms_data( $post_id, $taxonomy ) {

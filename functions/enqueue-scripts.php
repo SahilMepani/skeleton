@@ -9,7 +9,6 @@ function skel_enqueue_scripts() {
 		return;
 	}
 
-
 	// load jquery at bottom
 	// https://wordpress.stackexchange.com/questions/173601/enqueue-core-jquery-in-the-footer
 	// ths will break gravity forms on some pages, be careful
@@ -53,13 +52,13 @@ function skel_enqueue_scripts() {
 	//   get_template_directory_uri() . '/js/vendor/ua-parser-0.7.20.min.js'
 	// );
 
-	wp_enqueue_script(
-		'match-height',
-		get_template_directory_uri() . '/js/vendor/match-height.js',
-		[ 'jquery' ],
-		filemtime( get_template_directory() . '/js/vendor/match-height.js' ),
-		true
-	);
+	// wp_enqueue_script(
+	// 	'match-height',
+	// 	get_template_directory_uri() . '/js/vendor/match-height.js',
+	// 	[ 'jquery' ],
+	// 	filemtime( get_template_directory() . '/js/vendor/match-height.js' ),
+	// 	true
+	// );
 
 	// localize scripts
 	// wp_localize_script(
@@ -75,10 +74,16 @@ function skel_enqueue_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
 
-// Defer scripts
-////////////////////////////////////////////////
-// Add defer attribute to the scripts to set the resource priority to low
-function skel_defer_scripts( $tag, $handle, $src ) {
+
+/**
+ * Add defer attribute to the scripts to set the resource priority to low
+ * @param string $tag
+ * @param string $handle
+ * @param string $src
+ *
+ * @return $tag
+ */
+function skel_defer_scripts( string $tag, string $handle, string $src ) {
 	$defer = [
 		// 'jquery',
 		// 'jquery-core',
@@ -92,6 +97,6 @@ function skel_defer_scripts( $tag, $handle, $src ) {
 	return $tag;
 }
 /* Do not load in backend */
-if ( !  is_admin() ) {
+if ( ! is_admin() ) {
 	add_filter( 'script_loader_tag', 'skel_defer_scripts', 10, 3 );
 }

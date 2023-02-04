@@ -1,4 +1,5 @@
 <?php
+
 // Add custom image sizes
 ////////////////////////////////////////////////
 // add_image_size( 'blog_featured_thumb', width, height, crop );

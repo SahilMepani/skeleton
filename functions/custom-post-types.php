@@ -1,8 +1,7 @@
 <?php
 
-/*=============================================
-=            Post Type - Portfolio            =
-=============================================*/
+// Custom post type
+////////////////////////////////////////////////
 function skel_create_post_type() {
 	$cpt_project_labels = [
 		'name'               => __( 'Projects' ),
@@ -39,9 +38,7 @@ function skel_create_post_type() {
 	// flush_rewrite_rules();
 }
 
-/*================================
-=            Taxonomy            =
-================================*/
+// Custom taxonomies
 // $reference_default_args = array(
 // 	'publicly_queryable' => true, // archive inherit from public
 // 	'show_ui'            => true, // manage terms, false if we want to set default terms and don't want to add/edit them, inherit from public

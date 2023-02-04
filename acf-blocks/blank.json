@@ -24,7 +24,7 @@
 				"label": "Developer Options",
 				"name": "",
 				"type": "tab",
-				"instructions": "",
+				"instructions": "If unsure, do not edit.",
 				"required": 0,
 				"conditional_logic": 0,
 				"wrapper": {
@@ -40,7 +40,7 @@
 				"label": "Spacing Top",
 				"name": "spacing_top",
 				"type": "text",
-				"instructions": "Separate multiple classes with spaces. Starts with pt-{breakpoint}-{number}. The {number} can be 1 from 20.",
+				"instructions": "Separate multiple classes with spaces. Starts with pt-{breakpoint}-{number}. The {number} can be a 1 from 20.",
 				"required": 0,
 				"conditional_logic": 0,
 				"wrapper": {
@@ -113,8 +113,8 @@
 			},
 			{
 				"key": "field_608ff20426105",
-				"label": "Custom ID",
-				"name": "custom_id",
+				"label": "Unique ID",
+				"name": "unique_id",
 				"type": "text",
 				"instructions": "Add only one ID",
 				"required": 0,

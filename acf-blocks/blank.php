@@ -15,8 +15,8 @@
 	$spacing_bottom = get_field( 'spacing_bottom' );
 	$custom_classes = get_field( 'custom_classes' );
 	$custom_css     = get_field( 'custom_css' );
-	$custom_id      = get_field( 'custom_id' );
+	$unique_id      = get_field( 'unique_id' );
 ?>
 
-<section class="<?php echo $background_color . ' ' . $spacing_top . ' ' . $spacing_bottom . ' ' . $custom_classes; ?>" style="<?php echo $custom_css; ?>" id="<?php echo $custom_id; ?>">
+<section class="<?php echo $background_color . ' ' . $spacing_top . ' ' . $spacing_bottom . ' ' . $custom_classes; ?>" style="<?php echo $custom_css; ?>" id="<?php echo $unique_id; ?>">
 </section>

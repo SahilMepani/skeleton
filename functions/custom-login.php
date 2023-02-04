@@ -1,12 +1,12 @@
-<?php function skel_login_logo() {?>
+<?php function skel_login_logo() { ?>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&display=swap">
-  <style type="text/css">
-    body.login {
-      background-color: #e9e9e9;
+	<style type="text/css">
+		body.login {
+			background-color: #e9e9e9;
 			font-family: "Josefin Sans", "-apple-system", BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 			position: relative;
 			overflow: hidden;
-    }
+		}
 		/* body.login::before {
 			content: '';
 			background-blend
@@ -18,19 +18,19 @@
 			left: 0;
 			bottom: 0;
 		} */
-    body.login #login_error, #login .message {
+		body.login #login_error, #login .message {
 			color: #18151d;
 			font-size: 16px;
-      border-radius: 5px;
-      border: 0;
+			border-radius: 5px;
+			border: 0;
 			padding: 12px 20px;
-    }
-    #login form {
-      background: #fff;
-      border-color: transparent;
+		}
+		#login form {
+			background: #fff;
+			border-color: transparent;
 			border-radius: 12px;
 			padding: 24px 24px 28px;
-    }
+		}
 		#login label {
 			color: #18151d;
 		}
@@ -51,14 +51,14 @@
 		.wp-pwd input[type="text"] + button {
 			background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/login-icon-eye-strike.svg') !important;
 		}
-    #login input[type="text"], #login input[type="password"] {
+		#login input[type="text"], #login input[type="password"] {
 			font-size: 20px;
 			background: #f7f7f9;
 			color: #18151d;
 			padding: 8px 15px;
-      border-color: #737384;
+			border-color: #737384;
 			border-radius: 4px;
-    }
+		}
 		.dashicons.dashicons {
 			display: none;
 		}
@@ -66,8 +66,8 @@
 			border-color: #6432be;
 			box-shadow: none !important;
 		}
-    #login input[type="submit"] {
-      background: #6432be;
+		#login input[type="submit"] {
+			background: #6432be;
 			color: #fff;
 			text-transform: uppercase;
 			min-width: 89px;
@@ -77,18 +77,18 @@
 			border-radius: 22px;
 			border: 0;
 			overflow: hidden;
-    }
+		}
 		#login input[type="submit"]:focus {
 			box-shadow: none;
 		}
-    #login h1 a, .login h1 a {
-      background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/header-logo.svg');
-      width: auto;
+		#login h1 a, .login h1 a {
+			background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/header-logo.svg');
+			width: auto;
 			height: 90px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      margin: 0 auto 30px;
-    }
+			background-size: contain;
+			background-repeat: no-repeat;
+			margin: 0 auto 30px;
+		}
 		#nav, #backtoblog {
 			text-align: center;
 		}
@@ -108,12 +108,14 @@
 		.privacy-policy-link {
 			display: none;
 		}
-  </style>
-  <?php
-  	}
-  	add_action( 'login_enqueue_scripts', 'skel_login_logo' );
+	</style>
+<?php } ?>
 
-  	function skel_login_logo_url() {
-  		return home_url();
-  }
-  add_filter( 'login_headerurl', 'skel_login_logo_url' );
+<?php
+add_action( 'login_enqueue_scripts', 'skel_login_logo' );
+
+function skel_login_logo_url() {
+	return home_url();
+}
+add_filter( 'login_headerurl', 'skel_login_logo_url' );
+?>

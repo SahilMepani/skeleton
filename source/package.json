@@ -4,8 +4,8 @@
 	"description": "",
 	"main": "Gruntfile.js",
 	"scripts": {
-		"start": "npm start",
-		"build": "npm build"
+		"start": "grunt",
+		"build": "grunt build"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.14.8",
@@ -27,9 +27,14 @@
 		"grunt-purgecss": "^5.0.0",
 		"grunt-rtlcss": "^2.0.2",
 		"grunt-sass": "*",
+		"grunt-stylelint": "^0.18.0",
 		"node-sass": "^5.0.0",
 		"postcss": "*",
-		"purgecss-with-wordpress": "^5.0.0"
+		"purgecss-with-wordpress": "^5.0.0",
+		"stylelint": "^14.16.1",
+		"stylelint-config-prettier": "^9.0.4",
+		"stylelint-config-standard": "^29.0.0",
+		"stylelint-config-twbs-bootstrap": "^7.0.0"
 	},
 	"keywords": [],
 	"author": "",

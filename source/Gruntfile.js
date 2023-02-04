@@ -13,7 +13,7 @@ module.exports = function (grunt) {
 					"sass/_partials/**/*.{scss,sass}",
 				],
 				// dev
-				tasks: ["sass", "purgecss"],
+				tasks: ["sass", "stylelint", "purgecss"],
 				// prod
 				// tasks: [ 'sass', 'purgecss', 'rtlcss', 'postcss' ]
 			},
@@ -98,6 +98,7 @@ module.exports = function (grunt) {
 			// },
 		},
 
+		// Uglify
 		uglify: {
 			options: {
 				output: {
@@ -179,6 +180,7 @@ module.exports = function (grunt) {
 			},
 		},
 
+		// Babel
 		babel: {
 			options: {
 				sourceMap: true,
@@ -201,6 +203,11 @@ module.exports = function (grunt) {
 			},
 		},
 
+		// Stylelint
+		stylelint: {
+			all: ['sass/_partials/**/*.{scss,sass}']
+		}
+
 		// Update Dev dependency
 		// devUpdate: {
 		//   main: {
@@ -221,6 +228,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks("@lodder/grunt-postcss");
 	grunt.loadNpmTasks("grunt-babel");
 	grunt.loadNpmTasks("grunt-purgecss");
+	grunt.loadNpmTasks( 'grunt-stylelint' );
 	// grunt.loadNpmTasks('grunt-browser-sync');
 	grunt.registerTask("default", ["watch"]);
 	grunt.registerTask("build", [

@@ -6,8 +6,8 @@
 	<section class="main-content container-fluid">
 
 		<?php if ( have_posts() ): the_post();?>
-<?php the_content();?>
-<?php endif;?>
+			<?php the_content();?>
+		<?php endif;?>
 
 	</section> <!-- .main-content -->
 </div> <!-- .content-section -->

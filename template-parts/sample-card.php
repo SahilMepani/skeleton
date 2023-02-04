@@ -12,5 +12,5 @@ wp_reset_postdata();?>
 	$excerpt        = skel_get_the_excerpt( 20, $post_id );
 	$featured_image = get_post_thumbnail_id( $post_id );
 	$permalink      = get_the_permalink( $post_id );
-$date           = get_the_date( 'd.m.Y', $post_id );
+	$date           = get_the_date( 'd.m.Y', $post_id );
 ?>

@@ -1,4 +1,4 @@
-<li<?php post_class( "col" );?> id="post-<?php the_ID();?>">
+<li <?php post_class( "col" );?> id="post-<?php the_ID();?>">
 	<a href="<?php the_permalink();?>" class="post-link">
 
 		<?php

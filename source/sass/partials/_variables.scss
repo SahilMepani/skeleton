@@ -1,9 +1,30 @@
 // Can't use rem-calc function in this file
 
+// Text selection
+$text-selection-bg-color: #f7ea6f;
+$text-selection-color: #2c2c2c;
+
+// Custom Scrollbar
+$custom-scrollbar-enable: true;
+$track-width: 1.2rem;
+$track-background: #eee;
+$track-border-radius: 100vw;
+$track-margin-top: rem-calc( 5px );
+$track-margin-bottom: rem-calc( 5px );
+$thumb-background: #aaa;
+$thumb-border-radius: 100vw;
+
+// Custom ease
+$custom_ease: cubic-bezier(0.215, 0, 0, 0.995);
+
+
+/* Do not edit anything below */
+
 // Same as grid breakpoints before $two-k
 // @each $breakpoint, $value in $grid-breakpoint {
 // 	$#{$breakpoint}: #{$value};
 // }
+
 $sm: 576px;
 $md: 768px;
 $lg: 992px;
@@ -18,23 +39,6 @@ $four-k: 3840px;
 $mobile: 414px; // mobile canvas size, mostly remains same, used for fluid typography
 $desktop: $two-k; // desktop canvas size
 $scaling: $two-k; // scaling starts from here, do not change if not sure, it cannot be smaller than $desktop
-
-// Text selection
-$text-selection-bg-color: #f7ea6f;
-$text-selection-color: #2c2c2c;
-
-// Custom Scrollbar
-$custom-scrollbar-enable: true;
-$track-width: 1.2rem; // cannot use rem-calc func
-$track-background: #eee;
-$track-border-radius: 100vw;
-$track-margin-top: rem-calc( 5px );
-$track-margin-bottom: rem-calc( 5px );
-$thumb-background: #aaa;
-$thumb-border-radius: 100vw;
-
-// Custom ease
-$custom_ease: cubic-bezier(0.215, 0, 0, 0.995);
 
 // set container max-width and half-width css variable for each breakpoints
 ////////////////////////////////////////////////

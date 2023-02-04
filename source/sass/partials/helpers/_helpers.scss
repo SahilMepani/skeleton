@@ -20,7 +20,9 @@
 }
 
 .bg-cover {
-	@include bg-cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
 }
 
 .text-highlight {

@@ -13,16 +13,16 @@ module.exports = function (grunt) {
 					"sass/_partials/**/*.{scss,sass}",
 				],
 				// dev
-				tasks: ["sass"],
+				// tasks: ["sass"],
 				// prod
-				// tasks: [ "sass", "purgecss", "rtlcss", "postcss" ]
+				tasks: [ "sass", "purgecss", "rtlcss", "postcss" ]
 			},
 			js: {
 				files: ["js/**/*.js"],
 				// dev
-				tasks: ["concat"],
+				// tasks: ["concat"],
 				// prod
-				// tasks: [ "concat",  "babel", "uglify" ]
+				tasks: [ "concat",  "babel", "uglify" ]
 			},
 			livereload: {
 				files: [

@@ -14,7 +14,7 @@ $enable-button-pointers: true;
 $enable-rfs: false;
 $enable-validation-icons: false;
 // if enabled we also need to uncomment the negative margin utilites in utilities overwrite file
-$enable-negative-margins: false; // different than gutter classes
+$enable-negative-margins: true; // different than gutter classes
 $enable-deprecation-messages: true;
 $enable-important-utilities: true;
 
@@ -103,61 +103,11 @@ $spacers: (
 	// 20 : 20rem,,
 );
 
-// Custom map
-// useful to generate gutter utility classes
-$gutter-spacers: (
-	0: 0,
-	0-#{5}: 0.5rem,
-	1: 1rem,
-	1-#{5}: 1.5rem,
-	2: 2rem,
-	2-#{5}: 2.5rem,
-	3: 3rem,
-	3-#{5}: 3.5rem,
-	4: 4rem,
-	4-#{5}: 4.5rem,
-	5: 5rem,
-	5-#{5}: 5.5rem,
-	6: 6rem,
-	6-#{5}: 6.5rem,
-	7: 7rem,
-	7-#{5}: 7.5rem,
-	8: 8rem,
-	8-#{5}: 8.5rem,
-	9: 9rem,
-	9-#{5}: 9.5rem,
-	10: 10rem,
-);
-
-// useful to generate negative margin utility classes
-$negative-utility-spacers: (
-	0: 0,
-	0-#{5}: 0.5rem,
-	1: 1rem,
-	1-#{5}: 1.5rem,
-	2: 2rem,
-	2-#{5}: 2.5rem,
-	3: 3rem,
-	3-#{5}: 3.5rem,
-	4: 4rem,
-	4-#{5}: 4.5rem,
-	5: 5rem,
-	5-#{5}: 5.5rem,
-	6: 6rem,
-	6-#{5}: 6.5rem,
-	7: 7rem,
-	7-#{5}: 7.5rem,
-	8: 8rem,
-	8-#{5}: 8.5rem,
-	9: 9rem,
-	9-#{5}: 9.5rem,
-	10: 10rem,
-);
 
 // It prefixes the keys with `n` and makes the value negative.
 $negative-spacers: if(
 	$enable-negative-margins,
-	negativify-map($negative-utility-spacers),
+	negativify-map($spacers),
 	null
 );
 
@@ -198,7 +148,7 @@ $container-max-widths: (
 $grid-gutter-width: 2rem; // gets divided by 2 for each side
 // $grid-row-columns:            6;
 
-$gutters: $gutter-spacers;
+$gutters: $spacers;
 
 // Typography
 //

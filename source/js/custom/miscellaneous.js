@@ -6,7 +6,7 @@ if (!window.matchMedia("(pointer: coarse)").matches) {
 }
 
 
-// Find the header height and set to scroll-padding css property
+// Find the header height and set to scroll-padding-top css property
 ////////////////////////////////////////////////
 const headerHeight = document.querySelector('.site-header').offsetHeight;
 document.documentElement.style.setProperty('--scroll-padding-top', headerHeight + 'px');

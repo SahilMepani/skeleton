@@ -7048,7 +7048,7 @@ html {
 
 .js-no-touchevents body.js-popup-active {
   overflow-y: hidden;
-  padding-right: var(--scrollbar-width);
+  padding-right: 1.2rem;
 }
 
 h1, .h1,
@@ -7057,6 +7057,25 @@ h1, .h1,
   line-height: 1.2;
 }
 
+h1, .h1,
+.h1 {
+  font-size: 4.4rem;
+}
+
+@media screen and (min-width: 576px) {
+  h1, .h1,
+  .h1 {
+    font-size: calc(5.5825242718vw + 1.1844660194rem);
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  h1, .h1,
+  .h1 {
+    font-size: 9rem;
+  }
+}
+
 h2, .h2,
 .h2 {
   font-weight: 400;
@@ -7065,47 +7084,101 @@ h2, .h2,
 
 h2, .h2,
 .h2 {
-  font-size: 57.6rem;
+  font-size: 3.6rem;
 }
 
-@media screen and (min-width: 36px) {
+@media screen and (min-width: 576px) {
   h2, .h2,
   .h2 {
-    font-size: calc(1525.92592593vw + 2.6666666667rem);
+    font-size: calc(4.3689320388vw + 1.0834951456rem);
   }
 }
 
-@media screen and (min-width: 90px) {
+@media screen and (min-width: 1400px) {
   h2, .h2,
   .h2 {
-    font-size: 140rem;
+    font-size: 7.2rem;
   }
 }
 
 h3, .h3,
 .h3 {
-  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+h3, .h3,
+.h3 {
+  font-size: 2.8rem;
+}
+
+@media screen and (min-width: 576px) {
+  h3, .h3,
+  .h3 {
+    font-size: calc(3.8834951456vw + 0.5631067961rem);
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  h3, .h3,
+  .h3 {
+    font-size: 6rem;
+  }
+}
+
+h4, .h4,
+.h4 {
   font-weight: 400;
   line-height: 1.2;
 }
 
 h4, .h4,
 .h4 {
-  font-size: 1.5rem;
+  font-size: 2.4rem;
+}
+
+@media screen and (min-width: 576px) {
+  h4, .h4,
+  .h4 {
+    font-size: calc(2.9126213592vw + 0.7223300971rem);
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  h4, .h4,
+  .h4 {
+    font-size: 4.8rem;
+  }
+}
+
+h5, .h5,
+.h5 {
   font-weight: 400;
   line-height: 1.2;
 }
 
 h5, .h5,
 .h5 {
-  font-size: 1.25rem;
-  font-weight: 400;
-  line-height: 1.2;
+  font-size: 1.8rem;
+}
+
+@media screen and (min-width: 576px) {
+  h5, .h5,
+  .h5 {
+    font-size: calc(2.1844660194vw + 0.5417475728rem);
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  h5, .h5,
+  .h5 {
+    font-size: 3.6rem;
+  }
 }
 
 h6, .h6,
 .h6 {
-  font-size: 1rem;
+  font-size: 1.4rem;
   font-weight: 400;
   line-height: 1.2;
 }

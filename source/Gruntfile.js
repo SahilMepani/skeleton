@@ -13,16 +13,16 @@ module.exports = function (grunt) {
 					"sass/_partials/**/*.{scss,sass}",
 				],
 				// dev
-				tasks: ["sass", "stylelint", "purgecss"],
+				tasks: ["sass"],
 				// prod
-				// tasks: [ 'sass', 'purgecss', 'rtlcss', 'postcss' ]
+				// tasks: [ "sass", "purgecss", "rtlcss", "postcss" ]
 			},
 			js: {
 				files: ["js/**/*.js"],
 				// dev
 				tasks: ["concat"],
 				// prod
-				// tasks: [ 'concat',  'babel', 'uglify' ]
+				// tasks: [ "concat",  "babel", "uglify" ]
 			},
 			livereload: {
 				files: [
@@ -51,17 +51,18 @@ module.exports = function (grunt) {
 					"../style.css": "sass/style.scss",
 				},
 			},
-			backend: {
-				options: {
-					sourceMap: false,
-					implementation: nodeSass,
-					outputStyle: "compressed", // must be compact or expanded to avoid merge conflict in git and also for source maps to work
-					// importer: compass
-				},
-				files: {
-					"../editor-style.css": "sass/style.scss",
-				},
-			},
+			// backend: {
+			// 	options: {
+			// 		sourceMap: false,
+			// 		implementation: nodeSass,
+			// 		// must be compact or expanded to avoid merge conflict in git and also for source maps to work
+			// 		outputStyle: "compressed",
+			// 		// importer: compass
+			// 	},
+			// 	files: {
+			// 		"../editor-style.css": "sass/style.scss",
+			// 	},
+			// },
 		},
 
 		// Browser Sync
@@ -204,9 +205,12 @@ module.exports = function (grunt) {
 		},
 
 		// Stylelint
-		stylelint: {
-			all: ['sass/_partials/**/*.{scss,sass}']
-		}
+		// stylelint: {
+		// 	all: [
+		// 		'sass/**/*.{scss,sass}',
+		// 		'sass/_partials/**/*.{scss,sass}'
+		// 	]
+		// }
 
 		// Update Dev dependency
 		// devUpdate: {
@@ -228,7 +232,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks("@lodder/grunt-postcss");
 	grunt.loadNpmTasks("grunt-babel");
 	grunt.loadNpmTasks("grunt-purgecss");
-	grunt.loadNpmTasks( 'grunt-stylelint' );
+	// grunt.loadNpmTasks( 'grunt-stylelint' );
 	// grunt.loadNpmTasks('grunt-browser-sync');
 	grunt.registerTask("default", ["watch"]);
 	grunt.registerTask("build", [

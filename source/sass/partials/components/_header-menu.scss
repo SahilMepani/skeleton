@@ -42,9 +42,8 @@ $mobile-sub-menu-link-hover-bg-color: rgba(0, 0, 0, 0.05);
 $mobile-sub-menu-link-color: $green;
 $mobile-sub-menu-link-hover-color: #000;
 $mobile-sub-menu-link-padding-y: rem-calc(13px);
-$mobile-sub-menu-link-padding-x: rem-calc(
-	20px
-); //usually this is same as parent menu
+//usually this is same as parent menu
+$mobile-sub-menu-link-padding-x: rem-calc(20px);
 
 .header-nav {
 	@include media-breakpoint-down(lg) {
@@ -60,6 +59,7 @@ $mobile-sub-menu-link-padding-x: rem-calc(
 		overscroll-behavior: contain; // avoid scroll chaining
 		transform: translateX(-100%);
 		transition: 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946px);
+		font-size: regular;
 		&.js-active {
 			transform: translateX(0);
 			box-shadow: 0 0 rem-calc(10px) rgba(120, 120, 120, 0.3px);

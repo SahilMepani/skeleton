@@ -1,5 +1,4 @@
 :root {
-	--scrollbar-width: 1rem; // don't use rem-calc
 	// @include fluid( font-size, $font-size-base, $font-size-base * 2.4, $scaling, $four-k, true, false );
 	// @include fluid( font-size, $font-size-base, $font-size-base, $mobile, $scaling, false, false ); // scale down
 }
@@ -11,39 +10,40 @@
 }
 
 // Custom Scrollbars
-.no-touchevents body::-webkit-scrollbar {
-	width: var(--scrollbar-width);
-	// height used for horizonal scrollbars
-	// height: 1em;
+@if $custom-scrollbar-enable {
+	.js-no-touchevents body::-webkit-scrollbar {
+		width: $track-width;
+		// height used for horizonal scrollbars
+		// height: 1em;
+	}
+
+	.js-no-touchevents body::-webkit-scrollbar-track {
+		background: $track-background;
+		border-radius: $track-border-radius;
+		margin-top: $track-margin-top;
+		margin-bottom: $track-margin-bottom;
+	}
+
+	.js-no-touchevents body::-webkit-scrollbar-thumb {
+		background: $thumb-background;
+		border-radius: $thumb-border-radius;
+	}
 }
 
-.no-touchevents body::-webkit-scrollbar-track {
-	background: #eee;
-	border-radius: 100vw;
-	margin-top: rem-calc(5px);
-	margin-bottom: rem-calc(5px);
-}
-
-.no-touchevents body::-webkit-scrollbar-thumb {
-	background: #999;
-	border-radius: 100vw;
-}
 
 html {
 	// same as NON-FIXED header height
 	// Do not use sreveal on header with this
-	// scroll-padding-top: rem-calc( 100px ); // It will leave this space when scrolled using scroll snapping
+	// Leave fixed header space when scrolled using scroll snapping
+	scroll-padding-top: var(--scroll-padding-top, rem-calc(65px));
 }
 
 body {
-	.no-touchevents &.js-popup-active {
+	.js-no-touchevents &.js-popup-active {
 		overflow-y: hidden;
 		// make the space for hidden scrollbar on body
 		// same as width set for custom scrollbar
 		padding-right: var(--scrollbar-width);
-	}
-	&.body-overflow-hidden {
-		overflow-y: hidden;
 	}
 }
 

@@ -23,6 +23,16 @@ $scaling: $two-k; // scaling starts from here, do not change if not sure, it can
 $text-selection-bg-color: #f7ea6f;
 $text-selection-color: #2c2c2c;
 
+// Custom Scrollbar
+$custom-scrollbar-enable: true;
+$track-width: 1.2rem; // cannot use rem-calc func
+$track-background: #eee;
+$track-border-radius: 100vw;
+$track-margin-top: rem-calc( 5px );
+$track-margin-bottom: rem-calc( 5px );
+$thumb-background: #aaa;
+$thumb-border-radius: 100vw;
+
 // Custom ease
 $custom_ease: cubic-bezier(0.215, 0, 0, 0.995);
 

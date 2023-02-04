@@ -41,12 +41,6 @@ function skel_enqueue_scripts() {
 		true
 	);
 
-	// required and used for touch and no-touch events
-	wp_enqueue_script(
-		'modernizr',
-		get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js'
-	);
-
 	// wp_enqueue_script(
 	//   'ua-parser',
 	//   get_template_directory_uri() . '/js/vendor/ua-parser-0.7.20.min.js'

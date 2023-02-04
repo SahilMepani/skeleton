@@ -469,6 +469,20 @@ $(".header-nav-parent-menu li.menu-item-has-children > a span").on(
 // 	}
 // }
 ;
+// Check if the user's screen primary input device is touch or not
+// https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript
+////////////////////////////////////////////////
+if (!window.matchMedia("(pointer: coarse)").matches) {
+	document.documentElement.classList.add("js-no-touchevents");
+}
+
+
+// Find the header height and set to scroll-padding css property
+////////////////////////////////////////////////
+const headerHeight = document.querySelector('.site-header').offsetHeight;
+document.documentElement.style.setProperty('--scroll-padding-top', headerHeight + 'px');
+
+
 // Check if user scrolled
 ////////////////////////////////////////////////
 let pageScroll = function () {

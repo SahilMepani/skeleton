@@ -122,18 +122,18 @@ module.exports = function (grunt) {
 			my_target: {
 				options: {
 					content: ["../**/*.php"],
-				},
-				safelist: {
-					standard: [
-						...purgecssWordpress.safelist,
-						"/^logged-in/",
-						"logged-in",
-						"/^nav-/",
-					],
-					deep: [],
-					greedy: [],
-					keyframes: [],
-					variables: [],
+					safelist: {
+						standard: [
+							...purgecssWordpress.safelist,
+							/^nav-(.*)?$/,
+							/^pt-(.*)?$/,
+							/^pb-(.*)?$/,
+						],
+						deep: [],
+						greedy: [],
+						keyframes: [],
+						variables: [],
+					},
 				},
 				files: {
 					"../style.css": ["../style.css"],
@@ -235,12 +235,12 @@ module.exports = function (grunt) {
 	// grunt.loadNpmTasks( 'grunt-stylelint' );
 	// grunt.loadNpmTasks('grunt-browser-sync');
 	grunt.registerTask("default", ["watch"]);
-	grunt.registerTask("build", [
-		"rtlcss",
-		"postcss",
-		"concat",
-		"babel",
-		"uglify",
-	]);
+	// grunt.registerTask("build", [
+	// 	"rtlcss",
+	// 	"postcss",
+	// 	"concat",
+	// 	"babel",
+	// 	"uglify",
+	// ]);
 	// grunt.registerTask( 'devUpdate', [ 'devUpdate' ] );
 };

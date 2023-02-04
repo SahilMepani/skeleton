@@ -7020,39 +7020,35 @@ fieldset:disabled .filters__item--search .clear-search,
   }
 }
 
-:root {
-  --scrollbar-width: 1rem;
-}
-
 ::selection {
   background: #f7ea6f;
   color: #2c2c2c;
   text-shadow: none;
 }
 
-.no-touchevents body::-webkit-scrollbar {
-  width: var(--scrollbar-width);
+.js-no-touchevents body::-webkit-scrollbar {
+  width: 1.2rem;
 }
 
-.no-touchevents body::-webkit-scrollbar-track {
+.js-no-touchevents body::-webkit-scrollbar-track {
   background: #eee;
   border-radius: 100vw;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-top: rem-calc(5px);
+  margin-bottom: rem-calc(5px);
 }
 
-.no-touchevents body::-webkit-scrollbar-thumb {
-  background: #999;
+.js-no-touchevents body::-webkit-scrollbar-thumb {
+  background: #aaa;
   border-radius: 100vw;
 }
 
-.no-touchevents body.js-popup-active {
-  overflow-y: hidden;
-  padding-right: var(--scrollbar-width);
+html {
+  scroll-padding-top: var(--scroll-padding-top, 6.5rem);
 }
 
-body.body-overflow-hidden {
+.js-no-touchevents body.js-popup-active {
   overflow-y: hidden;
+  padding-right: var(--scrollbar-width);
 }
 
 h1, .h1,

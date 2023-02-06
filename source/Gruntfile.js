@@ -125,6 +125,7 @@ module.exports = function (grunt) {
 					safelist: {
 						standard: [
 							...purgecssWordpress.safelist,
+							"wp-post-image",
 							/^nav-(.*)?$/,
 							/^pt-(.*)?$/,
 							/^pb-(.*)?$/,
@@ -132,7 +133,8 @@ module.exports = function (grunt) {
 							/^js-(.*)?$/,
 						],
 						deep: [
-                            /rtl$/
+                            /rtl$/,
+                            /^gform_(.*)?$/
 						],
 						greedy: [],
 						keyframes: true,

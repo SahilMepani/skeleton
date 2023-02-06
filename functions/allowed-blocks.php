@@ -18,7 +18,8 @@ function misha_allowed_block_types( $allowed_blocks, $editor_context ) {
 
 	$allowed_blocks = [
 		'core/block', // <-- Include to show reusable blocks in the block inserter.
-		'acf/visual-editor'
+		'acf/visual-editor',
+		'acf/spacer',
 	];
 
 	// Allow more blocks depending on the post type

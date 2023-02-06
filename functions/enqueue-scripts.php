@@ -41,25 +41,6 @@ function skel_enqueue_scripts() {
 		true
 	);
 
-	// wp_enqueue_script(
-	// 	'match-height',
-	// 	get_template_directory_uri() . '/js/vendor/match-height.js',
-	// 	[ 'jquery' ],
-	// 	filemtime( get_template_directory() . '/js/vendor/match-height.js' ),
-	// 	true
-	// );
-
-	// localize scripts
-	// wp_localize_script(
-	//   'skeleton-plugins', // file name without extension where we want to use the localize_var
-	//   'localize_var',
-	//   array(
-	//     'ajax_url' => admin_url( 'admin-ajax.php' ),
-	//     // security
-	//     'nonce'    => wp_create_nonce( 'nonce_name' ),
-	//   )
-	// );
-
 }
 add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
 

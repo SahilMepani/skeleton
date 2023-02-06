@@ -40,15 +40,3 @@ function input_to_button( $button, $form ) {
 
 	return $dom->saveHtml( $new_button );
 }
-
-// Gravity forms plugin, change the submission loading icon
-////////////////////////////////////////////////
-// add_filter( 'gform_ajax_spinner_url', 'spinner_url', 10, 2 );
-// function spinner_url( $image_src, $form ) {
-//   // relative to you theme images folder
-//   return  'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-// }
-
-// Email Address Encoder plugin, for ACF fields
-////////////////////////////////////////////////
-// add_filter('acf/load_value', 'eae_encode_emails');

@@ -26,34 +26,10 @@
 // Layout & components
 @import "partials/bootstrap/root";
 @import "partials/bootstrap/reboot";
-// @import "partials/bootstrap/type";
-// @import "partials/bootstrap/images";
 @import "partials/bootstrap/containers";
 @import "partials/bootstrap/grid";
 @import "partials/bootstrap/tables";
-// @import "partials/bootstrap/forms";
 @import "partials/bootstrap/buttons";
-// @import "partials/bootstrap/transitions";
-// @import "partials/bootstrap/dropdown";
-// @import "partials/bootstrap/button-group";
-// @import "partials/bootstrap/nav";
-// @import "partials/bootstrap/navbar";
-// @import "partials/bootstrap/card";
-// @import "partials/bootstrap/accordion";
-// @import "partials/bootstrap/breadcrumb";
-// @import "partials/bootstrap/pagination";
-// @import "partials/bootstrap/badge";
-// @import "partials/bootstrap/alert";
-// @import "partials/bootstrap/progress";
-// @import "partials/bootstrap/list-group";
-// @import "partials/bootstrap/close";
-// @import "partials/bootstrap/toasts";
-// @import "partials/bootstrap/modal";
-// @import "partials/bootstrap/tooltip";
-// @import "partials/bootstrap/popover";
-// @import "partials/bootstrap/carousel";
-// @import "partials/bootstrap/spinners";
-// @import "partials/bootstrap/offcanvas";
 @import "partials/bootstrap/helpers";
 @import "partials/bootstrap/utilities/api";
 
@@ -67,11 +43,9 @@
 @import "partials/base-selectors";
 
 // JS plugins
-// @import "partials/js-plugins/swiper";
-// @import "partials/js-plugins/swiper-custom";
-// @import "partials/js-plugins/magnific-popup";
-// @import "partials/js-plugins/magnific-popup-custom";
-// @import "partials/js-plugins/aos-custom";
+@import "partials/js-plugins/swiper";
+@import "partials/js-plugins/swiper-custom";
+@import "partials/js-plugins/aos-custom";
 
 // Base
 @import "partials/font-face";
@@ -81,25 +55,15 @@
 @import "partials/components/content";
 @import "partials/components/header";
 @import "partials/components/header-menu";
-// @import "partials/components/sidebar";
 @import "partials/components/footer";
-// @import "partials/components/widgets";
-// @import "partials/components/comments";
-// @import "partials/components/post-formats";
 
 // ACF Blocks
-// @import "partials/acf-blocks/hero.scss";
+@import "partials/acf-blocks/visual-editor.scss";
 
 // Templates
-@import "partials/templates/index.scss";
-@import "partials/templates/front-page";
-@import "partials/templates/page";
 @import "partials/templates/single";
 @import "partials/templates/search";
 @import "partials/templates/404";
-
-// WP plugins
-@import "partials/wp-plugins/gravity-forms";
 
 // Helpers
 @import "partials/helpers/buttons";
@@ -108,11 +72,6 @@
 
 // Utilities
 @import "partials/utilities/images.scss";
-@import "partials/utilities/sizing.scss";
-@import "partials/utilities/spacing.scss";
-@import "partials/utilities/text.scss";
-@import "partials/utilities/alert.scss";
-@import "partials/utilities/miscellaneous.scss";
 @import "partials/utilities/rtl.scss";
 
 // Last minute changes

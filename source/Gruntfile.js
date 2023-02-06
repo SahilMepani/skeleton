@@ -125,7 +125,6 @@ module.exports = function (grunt) {
 					safelist: {
 						standard: [
 							...purgecssWordpress.safelist,
-							"height-full",
 							/^nav-(.*)?$/,
 							/^pt-(.*)?$/,
 							/^pb-(.*)?$/,

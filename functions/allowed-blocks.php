@@ -1,8 +1,6 @@
 <?php
 /*
  * Whitelist specific Gutenberg blocks (paragraph, heading, image and lists)
- *
- * @author Misha Rudrastyh
  * @link https://rudrastyh.com/gutenberg/remove-default-blocks.html#allowed_block_types_all
  */
 
@@ -12,15 +10,16 @@
 // $registered_block_slugs = array_keys( WP_Block_Type_Registry::get_instance()->get_all_registered() );
 // echo '<pre>' . print_r( $registered_block_slugs, true ) . '</pre>';
 
-add_filter( 'allowed_block_types_all', 'misha_allowed_block_types', 25, 2 );
+add_filter( 'allowed_block_types_all', 'skel_allowed_block_types', 25, 2 );
 
-function misha_allowed_block_types( $allowed_blocks, $editor_context ) {
+function skel_allowed_block_types( $allowed_blocks, $editor_context ) {
 
-	$allowed_blocks = [
-		'core/block', // <-- Include to show reusable blocks in the block inserter.
-		'acf/visual-editor',
-		'acf/spacer',
-	];
+	$allowed_blocks = array_values(
+		// <-- core/block to show reusable blocks in the block inserter.
+		array_filter( array_keys( $block_types ), function( $block ) {
+			return strpos( $block, 'acf/' ) === 0 || strpos( $block, 'core/block' );
+		})
+	);
 
 	// Allow more blocks depending on the post type
 	// Same can also be used for specific post ID or users roles

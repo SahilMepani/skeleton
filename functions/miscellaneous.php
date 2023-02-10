@@ -8,6 +8,18 @@ add_filter( 'show_admin_bar', '__return_false' );
 ////////////////////////////////////////////////
 add_filter( 'wp_sitemaps_enabled', '__return_false' );
 
+// Disable the customizer page and theme editor.
+add_action( 'admin_menu', function() {
+	$customizer_url = add_query_arg(
+		'return',
+		urlencode( remove_query_arg( wp_removable_query_args(), wp_unslash( $_SERVER['REQUEST_URI'] ) ) ),
+		'customize.php'
+	);
+
+	remove_submenu_page( 'themes.php', $customizer_url );
+	remove_submenu_page( 'themes.php', 'theme-editor.php' );
+}, 999 );
+
 // Disable image compression in WordPress
 // WordPress sets it to 82% by default
 ////////////////////////////////////////////////

@@ -14,8 +14,11 @@ add_filter( 'allowed_block_types_all', 'skel_allowed_block_types', 25, 2 );
 
 function skel_allowed_block_types( $allowed_blocks, $editor_context ) {
 
+	$block_types = WP_Block_Type_Registry::get_instance()->get_all_registered();
+
+	// core/block to show reusable blocks in the block inserter.
+	// all acf blocks
 	$allowed_blocks = array_values(
-		// <-- core/block to show reusable blocks in the block inserter.
 		array_filter( array_keys( $block_types ), function( $block ) {
 			return strpos( $block, 'acf/' ) === 0 || strpos( $block, 'core/block' );
 		})

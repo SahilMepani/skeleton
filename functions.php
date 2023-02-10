@@ -1,5 +1,6 @@
 <?php
 
+require_once get_template_directory() . '/functions/miscellaneous.php';
 require_once get_template_directory() . '/functions/helpers.php';
 require_once get_template_directory() . '/functions/disable-auto-embed-script.php';
 require_once get_template_directory() . '/functions/disable-wp-generated-image-sizes.php';

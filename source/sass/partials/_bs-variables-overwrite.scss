@@ -2,21 +2,21 @@
 //
 // Quickly modify global styling by enabling or disabling optional features.
 
-$enable-caret: false;
-$enable-rounded: false;
-$enable-shadows: false;
-$enable-gradients: false;
-$enable-transitions: true;
-$enable-reduced-motion: true;
-$enable-smooth-scroll: true;
-$enable-grid-classes: true;
-$enable-button-pointers: true;
-$enable-rfs: false;
-$enable-validation-icons: false;
+$enable-caret                : false;
+$enable-rounded              : false;
+$enable-shadows              : false;
+$enable-gradients            : false;
+$enable-transitions          : true;
+$enable-reduced-motion       : true;
+$enable-smooth-scroll        : true;
+$enable-grid-classes         : true;
+$enable-button-pointers      : true;
+$enable-rfs                  : false;
+$enable-validation-icons     : false;
 // if enabled we also need to uncomment the negative margin utilites in utilities overwrite file
-$enable-negative-margins: true; // different than gutter classes
-$enable-deprecation-messages: true;
-$enable-important-utilities: true;
+$enable-negative-margins     : true; // different than gutter classes
+$enable-deprecation-messages : true;
+$enable-important-utilities  : true;
 
 // Do not generate css properties/variables for colors
 $colors: null;

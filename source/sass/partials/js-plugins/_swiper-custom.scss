@@ -87,6 +87,7 @@
 	text-align: center;
 	border-radius: 50%;
 	border: rem-calc(1px) solid $primary;
+	margin-top: 0; // default overwrite
 
 	&::after {
 		display: none; // default overwrite

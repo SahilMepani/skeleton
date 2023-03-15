@@ -26,7 +26,7 @@ function skel_allowed_block_types( $allowed_blocks, $editor_context ) {
 	);
 
 	// Show reusable blocks in the block inserter.
-	$allowed_blocks = array_merge( ['core/block'] );
+	$allowed_blocks = array_merge( $allowed_blocks, ['core/block'] );
 
 	// Allow more blocks depending on the post type
 	// Same can also be used for specific post ID or users roles

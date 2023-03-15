@@ -2,6 +2,8 @@
 
 <?php get_header();?>
 
+<?php the_content(); ?>
+
 <div class="container">
 
 	<div class="row py-5">

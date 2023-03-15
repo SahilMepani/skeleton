@@ -9,7 +9,7 @@
 
 <?php
 	// Block options
-	$background_color = get_field( 'background_color' );
+	$text = get_field( 'text' );
 	// Developer options
 	$spacing_top    = get_field( 'spacing_top' );
 	$spacing_bottom = get_field( 'spacing_bottom' );
@@ -18,5 +18,7 @@
 	$unique_id      = get_field( 'unique_id' );
 ?>
 
-<section class="<?php echo $background_color . ' ' . $spacing_top . ' ' . $spacing_bottom . ' ' . $custom_classes; ?>" style="<?php echo $custom_css; ?>" id="<?php echo $unique_id; ?>">
+<section class="<?php $spacing_top . ' ' . $spacing_bottom . ' ' . $custom_classes; ?>"
+	style="<?php echo $custom_css; ?>" id="<?php echo $unique_id; ?>">
+	<h1><?php echo $text; ?> </h1>
 </section>

@@ -16,13 +16,17 @@ function skel_allowed_block_types( $allowed_blocks, $editor_context ) {
 
 	$block_types = WP_Block_Type_Registry::get_instance()->get_all_registered();
 
-	// core/block to show reusable blocks in the block inserter.
-	// all acf blocks
+	// All acf blocks
 	$allowed_blocks = array_values(
-		array_filter( array_keys( $block_types ), function( $block ) {
-			return strpos( $block, 'acf/' ) === 0 || strpos( $block, 'core/block' );
-		})
+		array_filter(
+			array_keys( $block_types ), function( $block ) {
+				return strpos( $block, 'acf/' ) === 0;
+			}
+		)
 	);
+
+	// Show reusable blocks in the block inserter.
+	$allowed_blocks = array_merge( ['core/block'] );
 
 	// Allow more blocks depending on the post type
 	// Same can also be used for specific post ID or users roles

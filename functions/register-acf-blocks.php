@@ -1,88 +1,74 @@
 <?php
 
-// Create a new block category
-////////////////////////////////////////////////
-function skel_block_category( $categories, $post ) {
-	return array_merge(
-		$categories,
-		[
-			[
-				'slug'  => 'skeleton',
-				'title' => __( 'Skeleton', 'skel' )
-			]
-		]
-	);
-}
-add_filter( 'block_categories_all', 'skel_block_category', 10, 2 );
+/**
+ * Add custom blocks
+ * ?string[]
+ */
+$block_types = [
+	'Visual Editor',
+	'Spacer'
+];
 
-function skel_register_acf_blocks() {
-
-	// Visual Editor
-	////////////////////////////////////////////////
-	acf_register_block_type( [
-		'name'            => 'visual-editor',
-		'title'           => 'Visual Editor',
-		'description'     => '',
-		'category'        => 'skeleton',
+/**
+ * Create block options
+ * @param string
+ * @return array
+ */
+function skel_create_block_options( $block ) {
+	$sanitize_block = sanitize_title( $block );
+	return [
+		'name'            => $sanitize_block,
+		'title'           => $block,
 		'icon'            => [
 			'background' => '#fbf3db',
 			'foreground' => '#333',
 			'src'        => 'layout'
 		],
-		'keywords'        => [ '', 'skel' ],
-		'render_template' => 'acf-blocks/visual-editor.php',
+		'post_types'      => [ 'page' ],
+		'category'        => 'uncategorized',
+		'mode'            => 'edit',
+		'render_template' => 'acf-blocks/' . $sanitize_block . '.php',
 		'example'         => [
 			'attributes' => [
 				'mode' => 'preview',
-				// 'viewportWidth' => 800, // doesn't work. It sets the preview width
 				'data' => [
-					'preview_image' => get_template_directory_uri() . '/acf-blocks/preview/visual-editor.jpg'
+					'preview_image' => get_template_directory_uri() . '/acf-blocks/preview/' . $sanitize_block . '.jpg'
 				]
 			]
 		],
-		'mode'            => 'edit',
-		'post_types'      => [ 'page' ],
 		'supports'        => [
 			'align'           => false,
 			'customClassName' => false,
 			'mode' => false // disable toggle preview and edit
 		]
-	] );
+	];
+}
 
-	// Spacer
-	////////////////////////////////////////////////
-	acf_register_block_type( [
-		'name'            => 'spacer',
-		'title'           => 'Spacer',
-		'category'        => 'skeleton',
-		'icon'            => [
-			'background' => '#fbf3db',
-			'foreground' => '#333',
-			'src'        => 'layout'
-		],
-		'keywords'        => [ '', 'skel' ],
-		'render_template' => 'acf-blocks/spacer.php',
-		'example'         => [
-			'attributes' => [
-				'mode' => 'preview',
-				'data' => [
-					'preview_image' => get_template_directory_uri() . '/acf-blocks/preview/spacer.jpg'
-				]
-			]
-		],
-		'mode'            => 'edit',
-		'post_types'      => [ 'page' ],
-		'supports'        => [
-			'align'           => false,
-			'customClassName' => false,
-			'mode' => false
-		]
-	] );
+/**
+ * Register blocks
+ * @uses acf_register_block_type()
+ */
+function skel_register_acf_blocks() {
+
+	global $block_types;
+
+	// create block options
+	$blocks = array_map( 'skel_create_block_options', $block_types );
+
+	// arrange the blocks in ascending order
+	sort( $blocks );
+
+	// register blocks
+	foreach( $blocks as $block ) {
+		acf_register_block_type( $block );
+	}
 
 }
 
-// Check if function exists and hook into setup
-////////////////////////////////////////////////
+
+/**
+ * Check if function exists and hook into setup
+ */
 if ( function_exists( 'acf_register_block_type' ) ) {
 	add_action( 'acf/init', 'skel_register_acf_blocks' );
 }

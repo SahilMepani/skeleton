@@ -1,4 +1,5 @@
 <?php
+
 if ( function_exists('acf_add_local_field_group') ) :
 
 	// get the name of the parent folder
@@ -71,7 +72,7 @@ if ( function_exists('acf_add_local_field_group') ) :
 		)
 	];
 
-	$options = [
+	$group_options = [
 		'key'                   => 'group_' . md5( $group_slug ),
 		'fields'                => $fields,
 		'location'              => [
@@ -94,7 +95,7 @@ if ( function_exists('acf_add_local_field_group') ) :
 		'show_in_rest'          => 0,
 	];
 
-	acf_add_local_field_group( $options );
+	acf_add_local_field_group( $group_options );
 
 endif;
 ?>

@@ -8,7 +8,6 @@ require_once get_template_directory() . '/functions/disable-wp-generated-image-s
 require_once get_template_directory() . '/functions/add-image-sizes.php';
 require_once get_template_directory() . '/functions/custom-login.php';
 require_once get_template_directory() . '/functions/acf-register-blocks.php';
-require_once get_template_directory() . '/acf-blocks/visual-editor/fields.php';
 require_once get_template_directory() . '/functions/block-editor-settings.php';
 require_once get_template_directory() . '/functions/enqueue-scripts.php';
 require_once get_template_directory() . '/functions/remove-junk-from-head.php';

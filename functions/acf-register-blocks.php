@@ -4,21 +4,28 @@
  * Get blocks parent dir
  * @var string path
  */
-$blocks_parent_dir = get_template_directory() . '/acf-blocks/';
+$blocks_parent_dir_path = get_template_directory() . '/acf-blocks/';
 
 /**
  * Get the path of all folders inside blocks parent dir
  * @var array
  */
-$blocks_dir = glob($blocks_parent_dir . '*' , GLOB_ONLYDIR);
+$blocks_dir_path = glob($blocks_parent_dir_path . '*' , GLOB_ONLYDIR);
 
 /**
  * Extract basename from filename in array
  * @param function basename
- * @param array $blocks_dir
+ * @param array $blocks_dir_path
  * @return array
  */
-$blocks_slug = array_map( 'basename', $blocks_dir );
+$blocks_dir_name = array_map( 'basename', $blocks_dir_path );
+
+$blocks_config = [];
+foreach( $blocks_dir_name as $dir_name ) {
+	$blocks_config = require_once $blocks_parent_dir_path . $dir_name . '/config.php';
+}
+
+print_r( $blocks_config );
 
 /**
  * Create block options
@@ -61,19 +68,26 @@ function skel_create_block_options( $slug ) {
  */
 function skel_register_acf_blocks() {
 
-	global $blocks_slug;
+	global $blocks_dir_name;
 
 	// create block options
-	$blocks = array_map( 'skel_create_block_options', $blocks_slug );
+	$blocks_options = array_map( 'skel_create_block_options', $blocks_dir_name );
 
 	// arrange the blocks in ascending order
-	sort( $blocks );
+	sort( $blocks_options );
 
 	// register blocks
-	foreach( $blocks as $slug ) {
-		acf_register_block_type( $slug );
+	foreach( $blocks_options as $block ) {
+		acf_register_block_type( $block );
 	}
 
+}
+
+/**
+ * Require fields group
+ */
+foreach( $blocks_dir_name as $slug ) {
+	require_once get_template_directory() . '/acf-blocks/' . $slug . '/fields.php';
 }
 
 

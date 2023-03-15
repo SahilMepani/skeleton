@@ -1,6 +1,6 @@
 <?php
 	return [
-		'name' => 'Visual Editor',
+		'title' => 'Visual Editor',
 		'icon' => 'align-left',
 		'fields' => [
 

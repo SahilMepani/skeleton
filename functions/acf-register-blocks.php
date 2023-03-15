@@ -20,37 +20,36 @@ $blocks_dir_path = glob($blocks_parent_dir_path . '*' , GLOB_ONLYDIR);
  */
 $blocks_dir_name = array_map( 'basename', $blocks_dir_path );
 
-$blocks_config = [];
-foreach( $blocks_dir_name as $dir_name ) {
-	$blocks_config = require_once $blocks_parent_dir_path . $dir_name . '/config.php';
-}
-
-print_r( $blocks_config );
+// $blocks_config = [];
+// foreach( $blocks_dir_name as $dir_name ) {
+// 	$blocks_config = require_once $blocks_parent_dir_path . $dir_name . '/config.php';
+// }
+// print_r( $blocks_config );
 
 /**
  * Create block options
- * @param string
+ * @param string $dir_name
  * @return array
  */
-function skel_create_block_options( $slug ) {
-	$title = ucwords(str_replace( '-', ' ', $slug ));
+function skel_create_block_options( $dir_name ) {
+	$title = ucwords(str_replace( '-', ' ', $dir_name ));
 	return [
-		'name'            => $slug,
+		'name'            => $dir_name,
 		'title'           => $title,
 		'icon'            => [
-			'background' => '#fbf3db',
-			'foreground' => '#333',
+			'background' => '#2271b1',
+			'foreground' => '#fff',
 			'src'        => 'layout'
 		],
 		'post_types'      => [ 'page' ],
 		'category'        => 'uncategorized',
 		'mode'            => 'edit',
-		'render_template' => 'acf-blocks/' . $slug . '/layout.php',
+		'render_template' => 'acf-blocks/' . $dir_name . '/layout.php',
 		'example'         => [
 			'attributes' => [
 				'mode' => 'preview',
 				'data' => [
-					'preview_image' => get_template_directory_uri() . '/acf-blocks/' . $slug . '/preview.jpg'
+					'preview_image' => get_template_directory_uri() . '/acf-blocks/' . $dir_name . '/preview.jpg'
 				]
 			]
 		],

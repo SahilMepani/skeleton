@@ -3,7 +3,7 @@
 if ( function_exists('acf_add_local_field_group') ) :
 
 	// get the name of the parent folder
-	$group_slug = basename(__DIR__);
+	$dir_name = basename(__DIR__);
 
 	$fields = [
 		array(
@@ -73,14 +73,14 @@ if ( function_exists('acf_add_local_field_group') ) :
 	];
 
 	$group_options = [
-		'key'                   => 'group_' . md5( $group_slug ),
+		'key'                   => 'group_' . md5( $dir_name ),
 		'fields'                => $fields,
 		'location'              => [
 			[
 				[
 					'param'              => 'block',
 					'operator'           => '==',
-					'value'              => 'acf/' . $group_slug,
+					'value'              => 'acf/' . $dir_name,
 				],
 			],
 		],

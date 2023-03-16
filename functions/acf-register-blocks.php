@@ -52,13 +52,13 @@ function skel_register_acf_blocks() {
 
 	global $block_types;
 
-	// create block options
+	// Create block options
 	$blocks = array_map( 'skel_create_block_options', $block_types );
 
-	// arrange the blocks in ascending order
+	// Arrange the blocks in ascending order
 	sort( $blocks );
 
-	// register blocks
+	// Register blocks
 	foreach( $blocks as $block ) {
 		acf_register_block_type( $block );
 	}

@@ -20,19 +20,15 @@ $blocks_dir_path = glob($blocks_parent_dir_path . '*' , GLOB_ONLYDIR);
  */
 $blocks_dir_name = array_map( 'basename', $blocks_dir_path );
 
-// $blocks_config = [];
-// foreach( $blocks_dir_name as $dir_name ) {
-// 	$blocks_config = require_once $blocks_parent_dir_path . $dir_name . '/config.php';
-// }
-// print_r( $blocks_config );
-
 /**
- * Create block options
+ * Prepare block type options
  * @param string $dir_name
  * @return array
  */
-function skel_create_block_options( $dir_name ) {
+function skel_prepare_block_type_options( $dir_name ) {
+
 	$title = ucwords(str_replace( '-', ' ', $dir_name ));
+
 	return [
 		'name'            => $dir_name,
 		'title'           => $title,
@@ -41,8 +37,6 @@ function skel_create_block_options( $dir_name ) {
 			'foreground' => '#fff',
 			'src'        => 'layout'
 		],
-		'post_types'      => [ 'page' ],
-		'category'        => 'uncategorized',
 		'mode'            => 'edit',
 		'render_template' => 'acf-blocks/' . $dir_name . '/layout.php',
 		'example'         => [
@@ -59,24 +53,25 @@ function skel_create_block_options( $dir_name ) {
 			'mode'            => false // disable toggle preview and edit
 		]
 	];
+
 }
 
 /**
- * Register blocks
+ * Register block type
  * @uses acf_register_block_type()
  */
-function skel_register_acf_blocks() {
+function skel_register_block_type() {
 
 	global $blocks_dir_name;
 
-	// create block options
-	$blocks_options = array_map( 'skel_create_block_options', $blocks_dir_name );
+	// prepare block options
+	$blocks_type_options = array_map( 'skel_prepare_block_type_options', $blocks_dir_name );
 
 	// arrange the blocks in ascending order
-	sort( $blocks_options );
+	sort( $blocks_type_options );
 
 	// register blocks
-	foreach( $blocks_options as $block ) {
+	foreach( $blocks_type_options as $block ) {
 		acf_register_block_type( $block );
 	}
 
@@ -85,14 +80,53 @@ function skel_register_acf_blocks() {
 /**
  * Require fields group
  */
-foreach( $blocks_dir_name as $slug ) {
-	require_once get_template_directory() . '/acf-blocks/' . $slug . '/fields.php';
-}
-
+// foreach( $blocks_dir_name as $slug ) {
+// 	require_once get_template_directory() . '/acf-blocks/' . $slug . '/fields.php';
+// }
 
 /**
- * Check if function exists and hook into setup
+ * Setup group options
+ * @param array $block_config
+ * @param string $dir_name
  */
-if ( function_exists( 'acf_register_block_type' ) ) {
-	add_action( 'acf/init', 'skel_register_acf_blocks' );
+function setup_group_options( $block_config, $dir_name ) {
+	$default_group_options = [
+		'key'  => 'group_' . md5( $dir_name ),
+		'name' => $dir_name,
+		'location' => [
+			[
+				[
+					'param'    => 'block',
+					'operator' => '==',
+					'value'    => 'acf/' . $dir_name,
+				],
+			],
+		]
+	];
+
+	return $group_options = array_merge( $default_group_options, $block_config );
 }
+
+/**
+ * Get the configs from all the blocks
+ */
+function skel_register_field_group() {
+
+	global $blocks_dir_name;
+	global $blocks_parent_dir_path;
+	$blocks_config = [];
+	$i = 0;
+
+	foreach( $blocks_dir_name as $dir_name ) {
+		$blocks_config[$i] = require_once $blocks_parent_dir_path . $dir_name . '/config.php';
+		$blocks_config[$i] = setup_group_options( $blocks_config[$i], $dir_name );
+		acf_add_local_field_group( $blocks_config[$i] );
+		$i++;
+	}
+
+	// echo '<pre>'; print_r( $blocks_config ); echo '</pre>';
+}
+
+// run if acf is activated
+add_action( 'acf/init', 'skel_register_block_type' );
+add_action( 'acf/init', 'skel_register_field_group' );

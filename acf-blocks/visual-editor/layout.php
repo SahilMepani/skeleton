@@ -20,5 +20,6 @@
 
 <section class="<?php $spacing_top . ' ' . $spacing_bottom . ' ' . $custom_classes; ?>"
 	style="<?php echo $custom_css; ?>" id="<?php echo $unique_id; ?>">
+	<h1>Testing</h1>
 	<h1><?php echo $text; ?> </h1>
 </section>

@@ -1,3 +1,4 @@
+# Stop the editor from looking for this file in parent directories
 root = true
 
 [*]

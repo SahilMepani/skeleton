@@ -1,28 +1,28 @@
 module.exports = function (grunt) {
-	const nodeSass = require("node-sass");
+	const nodeSass = require("node-sass")
 
-	const browserList = ["defaults"];
+	const browserList = ["defaults"]
 
-	const purgecssWordpress = require("purgecss-with-wordpress");
+	const purgecssWordpress = require("purgecss-with-wordpress")
 
 	grunt.initConfig({
 		watch: {
 			sass: {
 				files: [
 					"sass/**/*.{scss,sass}",
-					"sass/_partials/**/*.{scss,sass}",
+					"sass/_partials/**/*.{scss,sass}"
 				],
 				// dev
-				// tasks: ["sass"],
+				tasks: ["sass", "stylelint"]
 				// prod
-				tasks: [ "sass", "purgecss", "rtlcss", "postcss" ]
+				// tasks: [ "sass", "purgecss", "rtlcss", "postcss" ]
 			},
 			js: {
 				files: ["js/**/*.js"],
 				// dev
-				// tasks: ["concat"],
+				tasks: ["concat"]
 				// prod
-				tasks: [ "concat",  "babel", "uglify" ]
+				// tasks: [ "concat",  "babel", "uglify" ]
 			},
 			livereload: {
 				files: [
@@ -30,12 +30,30 @@ module.exports = function (grunt) {
 					"../*.php",
 					"../js/**/*.{js,json}",
 					"../*.css",
-					"../img/**/*.{png,jpg,jpeg,gif,webp,svg}",
+					"../img/**/*.{png,jpg,jpeg,gif,webp,svg}"
 				],
 				options: {
-					livereload: true,
-				},
+					livereload: true
+				}
+			}
+		},
+
+		// stylelint
+		stylelint: {
+			options: {
+				configFile: '../.stylelintrc.json',
+				formatter: 'string',
+				ignoreDisables: false,
+				failOnError: true,
+				outputFile: '',
+				reportNeedlessDisables: false,
+				fix: true,
+				syntax: ''
 			},
+			src: [
+				'sass/**/*.{scss,sass}',
+				'!sass/bootstrap/**/*.{scss,sass}'
+			]
 		},
 
 		// Frontend & Backend styles
@@ -44,13 +62,13 @@ module.exports = function (grunt) {
 				options: {
 					sourceMap: true,
 					implementation: nodeSass,
-					outputStyle: "expanded", // must be compact or expanded to avoid merge conflict in git and also for source maps to work
+					outputStyle: "expanded" // must be compact or expanded to avoid merge conflict in git and also for source maps to work
 					// importer: compass
 				},
 				files: {
-					"../style.css": "sass/style.scss",
-				},
-			},
+					"../style.css": "sass/style.scss"
+				}
+			}
 			// backend: {
 			// 	options: {
 			// 		sourceMap: false,
@@ -65,34 +83,15 @@ module.exports = function (grunt) {
 			// },
 		},
 
-		// Browser Sync
-		// browserSync: {
-		//   dev: {
-		//     bsFiles: {
-		//       src : [
-		//         '../*.html',
-		//         '../*.php',
-		//         '../js/**/*.{js,json}',
-		//         '../*.css',
-		//         '../images/**/*.{png,jpg,jpeg,gif,webp,svg}'
-		//       ]
-		//     },
-		//     options: {
-		//       watchTask: true,
-		//       proxy: 'http://skeleton.local/'
-		//     }
-		//   }
-		// },
-
 		// Frontend JS
 		concat: {
 			options: {
-				separator: ";\n",
+				separator: ";\n"
 			},
 			plugin: {
 				src: ["js/plugins/*.js", "js/custom/*.js"],
-				dest: "../js/plugins.js",
-			},
+				dest: "../js/plugins.js"
+			}
 			// custom: {
 			//   src: 'js/custom/*.js',
 			//   dest: '../js/custom.js',
@@ -103,18 +102,18 @@ module.exports = function (grunt) {
 		uglify: {
 			options: {
 				output: {
-					comments: "false",
-				},
+					comments: "false"
+				}
 			},
 			dist: {
 				files: [
 					{
 						expand: true,
 						src: ["../js/plugins.js"],
-						dest: "../js/",
-					},
-				],
-			},
+						dest: "../js/"
+					}
+				]
+			}
 		},
 
 		// Purge CSS
@@ -130,21 +129,18 @@ module.exports = function (grunt) {
 							/^pt-(.*)?$/,
 							/^pb-(.*)?$/,
 							/^swiper-(.*)?$/,
-							/^js-(.*)?$/,
+							/^js-(.*)?$/
 						],
-						deep: [
-                            /rtl$/,
-                            /^gform_(.*)?$/
-						],
+						deep: [/rtl$/, /^gform_(.*)?$/],
 						greedy: [],
 						keyframes: true,
-						variables: true,
-					},
+						variables: true
+					}
 				},
 				files: {
-					"../style.css": ["../style.css"],
-				},
-			},
+					"../style.css": ["../style.css"]
+				}
+			}
 		},
 
 		// Post CSS
@@ -152,16 +148,16 @@ module.exports = function (grunt) {
 			options: {
 				processors: [
 					require("autoprefixer")({
-						overrideBrowserslist: browserList,
+						overrideBrowserslist: browserList
 					}),
 					require("cssnano")({
-						preset: "default",
-					}),
-				],
+						preset: "default"
+					})
+				]
 			},
 			dist: {
-				src: "../style.css",
-			},
+				src: "../style.css"
+			}
 		},
 
 		// RTLCSS
@@ -170,21 +166,21 @@ module.exports = function (grunt) {
 				// task options
 				options: {
 					// generate source maps
-					map: { inline: false },
+					map: {inline: false},
 					// rtlcss options
 					opts: {
-						clean: false,
+						clean: false
 					},
 					// rtlcss plugins
 					plugins: [],
 					// save unmodified files
-					saveUnmodified: false,
+					saveUnmodified: false
 				},
 				expand: false,
 				cwd: "",
 				dest: "../style-rtl.css",
-				src: ["../style.css"],
-			},
+				src: ["../style.css"]
+			}
 		},
 
 		// Babel
@@ -196,19 +192,19 @@ module.exports = function (grunt) {
 						"@babel/preset-env",
 						{
 							targets: {
-								browsers: browserList,
+								browsers: browserList
 							},
-							modules: false,
-						},
-					],
-				],
+							modules: false
+						}
+					]
+				]
 			},
 			dist: {
 				files: {
-					"../js/plugins.js": "../js/plugins.js",
-				},
-			},
-		},
+					"../js/plugins.js": "../js/plugins.js"
+				}
+			}
+		}
 
 		// Stylelint
 		// stylelint: {
@@ -226,21 +222,21 @@ module.exports = function (grunt) {
 		//       }
 		//   }
 		// }
-	});
+	})
 
-	grunt.loadNpmTasks("grunt-sass");
-	grunt.loadNpmTasks("grunt-contrib-watch");
-	grunt.loadNpmTasks("grunt-contrib-concat");
-	grunt.loadNpmTasks("grunt-rtlcss");
+	grunt.loadNpmTasks("grunt-sass")
+	grunt.loadNpmTasks("grunt-contrib-watch")
+	grunt.loadNpmTasks("grunt-contrib-concat")
+	grunt.loadNpmTasks("grunt-rtlcss")
 	// grunt.loadNpmTasks('grunt-dev-update');
 	// grunt.loadNpmTasks( 'grunt-jquery-ready' );
-	grunt.loadNpmTasks("grunt-contrib-uglify");
-	grunt.loadNpmTasks("@lodder/grunt-postcss");
-	grunt.loadNpmTasks("grunt-babel");
-	grunt.loadNpmTasks("grunt-purgecss");
-	// grunt.loadNpmTasks( 'grunt-stylelint' );
+	grunt.loadNpmTasks("grunt-contrib-uglify")
+	grunt.loadNpmTasks("@lodder/grunt-postcss")
+	grunt.loadNpmTasks("grunt-babel")
+	grunt.loadNpmTasks("grunt-purgecss")
+	grunt.loadNpmTasks( 'grunt-stylelint' );
 	// grunt.loadNpmTasks('grunt-browser-sync');
-	grunt.registerTask("default", ["watch"]);
+	grunt.registerTask("default", ["watch"])
 	// grunt.registerTask("build", [
 	// 	"rtlcss",
 	// 	"postcss",
@@ -249,4 +245,4 @@ module.exports = function (grunt) {
 	// 	"uglify",
 	// ]);
 	// grunt.registerTask( 'devUpdate', [ 'devUpdate' ] );
-};
+}

@@ -7,8 +7,8 @@ $utilities_overwrite: (
 			normal: 400,
 			medium: 500,
 			semibold: 600,
-			bold: 700,
-		),
+			bold: 700
+		)
 	),
 	"max-width": (
 		property: max-width,
@@ -17,8 +17,8 @@ $utilities_overwrite: (
 		values: (
 			50: 50%,
 			100: 100%,
-			none: none,
-		),
+			none: none
+		)
 	),
 	"hover-color": (
 		property: color,
@@ -29,46 +29,47 @@ $utilities_overwrite: (
 				$theme-colors,
 				(
 					"body": $body-color,
-					"reset": inherit,
+					"reset": inherit
 				)
-			),
+			)
 	),
 	"container-half-width": (
 		property: width,
 		class: container,
 		responsive: true,
 		values: (
-			half-width: var(--container-half-width),
-		),
+			half-width: var(--container-half-width)
+		)
 	),
 	"container-margin-start": (
 		property: margin-left,
 		class: container-margin,
 		responsive: true,
 		values: (
-			start: var(--container-margin-x),
-		),
+			start: var(--container-margin-x)
+		)
 	),
 	"container-margin-end": (
 		property: margin-right,
 		class: container-margin,
 		responsive: true,
 		values: (
-			end: var(--container-margin-x),
-		),
+			end: var(--container-margin-x)
+		)
 	),
 	// end custom utility
 	// COMMENT the default utilities you want to use
 	"align": null,
 	"float": null,
 	// "overflow": null,
-	"display": (
-		responsive: true,
-		print: true,
-		property: display,
-		class: d,
-		values: block flex none,
-	),
+	"display":
+		(
+			responsive: true,
+			print: true,
+			property: display,
+			class: d,
+			values: block flex none
+		),
 	"shadow": null,
 	// "position": null;
 	"top": null,
@@ -107,8 +108,8 @@ $utilities_overwrite: (
 			property: order,
 			values: (
 				first: -1,
-				last: 6,
-			),
+				last: 6
+			)
 		),
 	// "margin": null,
 	// "margin-x": (
@@ -155,17 +156,17 @@ $utilities_overwrite: (
 		property: border-radius,
 		class: rounded,
 		values: (
-			1 : .5rem,
-			2   : 1rem,
-			3 : 1.5rem,
-			4   : 2rem,
+			1: 0.5rem,
+			2: 1rem,
+			3: 1.5rem,
+			4: 2rem
 		)
-    ),
+	),
 	"rounded-top": null,
 	"rounded-end": null,
 	"rounded-bottom": null,
 	"rounded-start": null,
-	"visibility": null,
+	"visibility": null
 );
 
 $utilities: map-merge($utilities, $utilities_overwrite);

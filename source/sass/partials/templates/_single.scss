@@ -1,26 +1,33 @@
 .type-post {
 	margin-bottom: 5rem;
+
 	.embed-responsive {
 		margin-bottom: $paragraph-margin-bottom;
 	}
+
 	header {
 		margin-bottom: 3rem;
 	}
+
 	.post-title {
 		text-transform: none;
 		margin-bottom: 0.5rem;
 	}
+
 	.post-meta {
 		color: #888;
 		font-size: 1.6rem;
 		margin-bottom: rem-calc(20px);
 		line-height: 1.4;
 		overflow: hidden;
+
 		.author {
 			text-transform: capitalize;
 		}
+
 		a {
 			color: #999;
+
 			&:hover {
 				text-decoration: underline;
 			}
@@ -39,21 +46,27 @@
 		font-weight: 700;
 		padding: 40px 0;
 		border-top: 1px solid #e5e5e5;
+
 		> div {
 			float: left;
 			width: 33.333333%;
 		}
+
 		a {
 			color: #2c2c2c;
 			text-decoration: none;
+
 			&:hover {
 				color: red;
 			}
 		}
+
 		.old-post {
 			position: relative;
+
 			a {
 				padding-left: rem-calc(25px);
+
 				// &:before {
 				//   @include icon-font-properties;
 				//   content: $i-arrow-left;
@@ -62,17 +75,20 @@
 				//   transition: 100ms transform linear;
 				// }
 				&:hover {
-					&:before {
-						transform: translate3d(rem-calc(5px), 0, 0px);
+					&::before {
+						transform: translate3d(rem-calc(5px), 0, 0);
 					}
 				}
 			}
 		}
+
 		.new-post {
 			text-align: right;
 			position: relative;
+
 			a {
 				padding-right: rem-calc(25px);
+
 				// &:after {
 				//   @include icon-font-properties;
 				//   content: $i-arrow-right;
@@ -81,8 +97,8 @@
 				//   transition: 100ms transform linear;
 				// }
 				&:hover {
-					&:after {
-						transform: translate3d(rem-calc(-5px), 0, 0px);
+					&::after {
+						transform: translate3d(rem-calc(-5px), 0, 0);
 					}
 				}
 			}
@@ -94,6 +110,7 @@
 .single-pagination {
 	clear: both;
 	overflow: hidden;
+
 	.index {
 		font-weight: 700;
 		line-height: rem-calc(28px);
@@ -101,6 +118,7 @@
 		border: 0;
 		margin-right: rem-calc(10px);
 	}
+
 	span,
 	a {
 		background: #fff;
@@ -114,6 +132,7 @@
 		border: rem-calc(1px) solid #e7e7e7;
 		margin-left: rem-calc(4px);
 	}
+
 	a:hover,
 	.current {
 		background: $link-color;
@@ -131,9 +150,11 @@
 	box-shadow: inset rem-calc(1px) rem-calc(1px) 0 #fff,
 		inset rem-calc(-1px) rem-calc(-1px) 0 #fff;
 }
+
 .author-info {
 	overflow: hidden;
 }
+
 .avatar-block {
 	float: left;
 	width: rem-calc(100px);

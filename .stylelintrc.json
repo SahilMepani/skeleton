@@ -13,7 +13,7 @@
 		"at-rule-semicolon-newline-after": "always",
 		"block-opening-brace-space-before": "always",
 		"color-no-invalid-hex": true,
-		"comment-no-empty": true,
+		"comment-no-empty": null,
 		"declaration-block-no-duplicate-properties": true,
 		"declaration-block-no-shorthand-property-overrides": true,
 		"font-family-no-duplicate-names": true,

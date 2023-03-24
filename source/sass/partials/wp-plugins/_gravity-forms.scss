@@ -3,10 +3,12 @@
 	.gform-body {
 		.gfield {
 			margin-bottom: rem-calc(15px);
+
 			&.spacer {
 				display: none;
 			}
 		}
+
 		// .gfield_required {
 		// 	position: relative;
 		//   .gfield_required {
@@ -22,25 +24,30 @@
 		.gfield_label {
 			color: #211f21;
 		}
+
 		.gfield-select {
 			display: flex;
 			flex-wrap: wrap;
+
 			.ginput_container {
 				display: flex;
 				width: 100%;
 			}
 		}
+
 		.gfield.gf-list-enhanced {
 			.gfield_checkbox {
 				input {
 					display: none;
 				}
+
 				label {
 					line-height: 1.2;
 					position: relative;
 					padding-left: rem-calc(22px);
 					margin-bottom: rem-calc(8px);
-					&:before {
+
+					&::before {
 						content: "";
 						display: block;
 						background-color: #fff;
@@ -53,10 +60,11 @@
 						border-radius: rem-calc(3px);
 					}
 				}
+
 				input[type="checkbox"] {
 					&:checked {
 						+ label {
-							&:before {
+							&::before {
 								background-color: $primary;
 								border-color: $primary;
 							}
@@ -65,6 +73,7 @@
 				}
 			}
 		}
+
 		.gf_list_2col,
 		.gf_list_3col,
 		.gf_list_4col,
@@ -83,6 +92,7 @@
 				padding-right: 3rem;
 			}
 		}
+
 		.gf_list_2col,
 		.gf-list-2col {
 			.gfield_checkbox li,
@@ -95,6 +105,7 @@
 				}
 			}
 		}
+
 		.gf_list_3col,
 		.gf-list-3col {
 			.gfield_checkbox li,
@@ -107,6 +118,7 @@
 				}
 			}
 		}
+
 		.gf_list_4col,
 		.gf-list-4col {
 			.gfield_checkbox li,
@@ -122,6 +134,7 @@
 				}
 			}
 		}
+
 		.gf_list_5col,
 		.gf-list-5col {
 			.gfield_checkbox li,
@@ -137,9 +150,11 @@
 				}
 			}
 		}
+
 		.ginput_container_select {
 			@include custom-select-block;
 		}
+
 		input[type="text"],
 		input[type="tel"],
 		input[type="email"],
@@ -152,29 +167,36 @@
 			line-height: rem-calc(44px);
 			border: rem-calc(1px) solid #c4c4c4;
 			border-radius: 0;
+
 			&::placeholder {
 				color: #c4c4c4;
 			}
+
 			&:focus {
 				color: $black;
 			}
 		}
+
 		textarea {
 			line-height: 1.4;
 			padding: rem-calc(12px) rem-calc(20px);
 			height: auto;
 		}
+
 		select {
 			appearance: none;
 		}
+
 		.chosen-container-single {
 			display: flex;
+
 			&.chosen-container-active {
 				.chosen-single {
 					color: $black;
 				}
 			}
 		}
+
 		// .chosen-search {
 		// 	display: none;
 		// }
@@ -184,6 +206,7 @@
 			line-height: rem-calc(30px) !important;
 			padding: rem-calc(8px) !important;
 		}
+
 		.chosen-single {
 			background: #fff;
 			color: #c4c4c4;
@@ -194,21 +217,25 @@
 			padding-left: rem-calc(20px);
 			align-items: center;
 			box-shadow: none;
+
 			div {
 				display: none;
 			}
 		}
+
 		.chosen-results {
 			> li {
 				background: #eee;
 				color: $body-color;
 				padding: rem-calc(8px);
 				border-bottom: rem-calc(1px) solid rgba(#000, 0.05);
+
 				&.highlighted {
 					background: $teal;
 				}
 			}
 		}
+
 		.gfield_validation_message {
 			// individual fields error
 			font-size: rem-calc(14px);
@@ -218,13 +245,17 @@
 			margin-top: rem-calc(5px);
 		}
 	}
+
 	.gform_footer {
 		margin: 0;
 		padding: 0;
+
 		button[type="submit"] {
 			@include btn;
 			@include btn-rarr;
+
 			border: rem-calc(2px) solid $primary;
+
 			&:hover,
 			&:focus {
 				background-color: $primary;
@@ -232,6 +263,7 @@
 			}
 		}
 	}
+
 	> .gform_validation_errors {
 		// form sumbmission error
 		border: 0;
@@ -239,6 +271,7 @@
 		margin: 0;
 		box-shadow: none;
 		margin-bottom: rem-calc(30px);
+
 		.gform_submission_error {
 			background-color: red;
 			color: #fff;
@@ -247,6 +280,7 @@
 			text-align: center;
 			letter-spacing: normal;
 			padding: rem-calc(15px) rem-calc(20px);
+
 			.gform-icon {
 				display: none;
 			}
@@ -254,6 +288,7 @@
 	}
 	@media only screen and (min-width: 768) {
 		padding: 0;
+
 		.gform-body {
 			input[type="text"],
 			input[type="tel"],
@@ -263,6 +298,7 @@
 				// height: rem-calc( 60px );
 				// line-height: rem-calc( 60px );
 			}
+
 			textarea {
 			}
 		}

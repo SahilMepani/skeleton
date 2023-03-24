@@ -33,8 +33,9 @@
 
 @mixin btn-rarr {
 	position: relative;
+
 	svg {
-		fill: currentColor;
+		fill: currentcolor;
 		width: rem-calc(24px);
 		height: rem-calc(24px);
 		margin-left: rem-calc(20px);

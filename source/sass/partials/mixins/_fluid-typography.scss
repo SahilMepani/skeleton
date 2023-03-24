@@ -13,7 +13,7 @@
 	$max-breakpoint: true
 ) {
 	& {
-		@if ($default) {
+		@if $default {
 			@each $property in $properties {
 				#{$property}: rem-calc($min-value);
 			}
@@ -30,7 +30,7 @@
 			}
 		}
 
-		@if ($max-breakpoint) {
+		@if $max-breakpoint {
 			@media screen and (min-width: $max-screen) {
 				@each $property in $properties {
 					#{$property}: rem-calc($max-value);
@@ -45,9 +45,8 @@
 	$a: ($max-value - $min-value) / ($max-screen - $min-screen);
 	$b: $min-value - $a * $min-screen;
 	$b: rem-calc($b);
-
 	$sign: "+";
-	@if ($b < 0) {
+	@if $b < 0 {
 		$sign: "-";
 		$b: abs($b);
 	}

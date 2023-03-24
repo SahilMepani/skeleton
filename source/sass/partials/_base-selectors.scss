@@ -13,6 +13,7 @@
 @if $custom-scrollbar-enable {
 	.js-no-touchevents body::-webkit-scrollbar {
 		width: $track-width;
+
 		// height used for horizonal scrollbars
 		// height: 1em;
 	}
@@ -30,7 +31,6 @@
 	}
 }
 
-
 html {
 	// Do not use sreveal on header with this
 	// Leave fixed header space when scrolled using scroll snapping
@@ -40,6 +40,7 @@ html {
 body {
 	.js-no-touchevents &.js-popup-active {
 		overflow-y: hidden;
+
 		// make the space for hidden scrollbar on body
 		// same as width set for custom scrollbar
 		padding-right: $track-width;
@@ -49,6 +50,7 @@ body {
 h1,
 .h1 {
 	@include fluid(font-size, $sm, $xxl, 44px, 90px);
+
 	font-weight: 400;
 	line-height: 1.2;
 }
@@ -56,6 +58,7 @@ h1,
 h2,
 .h2 {
 	@include fluid(font-size, $sm, $xxl, 36px, 72px);
+
 	font-weight: 400;
 	line-height: 1.2;
 }
@@ -63,6 +66,7 @@ h2,
 h3,
 .h3 {
 	@include fluid(font-size, $sm, $xxl, 28px, 60px);
+
 	font-weight: 400;
 	line-height: 1.2;
 }
@@ -70,6 +74,7 @@ h3,
 h4,
 .h4 {
 	@include fluid(font-size, $sm, $xxl, 24px, 48px);
+
 	font-weight: 400;
 	line-height: 1.2;
 }
@@ -77,18 +82,19 @@ h4,
 h5,
 .h5 {
 	@include fluid(font-size, $sm, $xxl, 18px, 36px);
+
 	font-weight: 400;
 	line-height: 1.2;
 }
 
 h6,
 .h6 {
-	font-size: rem-calc( 14px );
+	font-size: rem-calc(14px);
 	font-weight: 400;
 	line-height: 1.2;
 }
 
-/*----------  Content  ----------*/
+/* ----------  Content  ---------- */
 a,
 button,
 input[type="submit"],
@@ -151,7 +157,7 @@ code {
 	padding: rem-calc(5px);
 }
 
-/*----------  Lists  ----------*/
+/* ----------  Lists  ---------- */
 ul,
 ol,
 dl {
@@ -162,17 +168,21 @@ ul,
 ol {
 	list-style-position: outside;
 	margin-left: rem-calc(20px);
+
 	ul,
 	ol {
 		margin: 0;
 		margin-top: rem-calc(5px);
 		margin-left: rem-calc(40px);
 	}
+
 	ol {
 		list-style-type: lower-alpha;
 	}
+
 	nav & {
 		margin: 0;
+
 		li {
 			list-style: none;
 			margin-bottom: 0;
@@ -201,20 +211,23 @@ dt {
 	margin: 0 0 ($paragraph-margin-bottom / 2);
 }
 
-/*----------  Form  ----------*/
+/* ----------  Form  ---------- */
 form {
 	ul {
 		@include list-unstyled;
 	}
+
 	> ul {
 		> li {
 			clear: both;
 			margin-bottom: $paragraph-margin-bottom / 2;
+
 			> label {
 				margin-right: rem-calc(10px);
 			}
 		}
 	}
+
 	fieldset {
 		padding: 0;
 		margin: 0;
@@ -242,6 +255,7 @@ form {
 	textarea,
 	select {
 		@include input-text;
+
 		max-width: 100%;
 	}
 
@@ -250,7 +264,7 @@ form {
 	}
 
 	input[type="search"] {
-		-webkit-appearance: none;
+		appearance: none;
 	}
 
 	input[type="date"] {
@@ -288,13 +302,12 @@ form {
 	input[type="file"]:focus,
 	input[type="radio"]:focus,
 	input[type="checkbox"]:focus {
-		outline: thin dotted;
 		outline: rem-calc(5px) auto -webkit-focus-ring-color;
 		outline-offset: rem-calc(-2px);
 	}
 }
 
-/*----------  Miscellaneous  ----------*/
+/* ----------  Miscellaneous  ---------- */
 img,
 iframe,
 svg {

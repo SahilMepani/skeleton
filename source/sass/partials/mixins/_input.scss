@@ -1,14 +1,14 @@
 @mixin input-placeholder($color) {
-	&:-moz-placeholder {
+	&:placeholder {
 		color: $color;
 	} // Firefox 4-18
-	&::-moz-placeholder {
+	&::placeholder {
 		color: $color;
 	} // Firefox 19+
-	&:-ms-input-placeholder {
+	&:input-placeholder {
 		color: $color;
 	} // Internet Explorer 10+
-	&::-webkit-input-placeholder {
+	&::input-placeholder {
 		color: $color;
 	} // Safari and Chrome
 	&::placeholder {
@@ -26,18 +26,21 @@
 	transition: $input-transition;
 	appearance: none;
 	@include input-placeholder($input-placeholder-color);
+
 	overflow: hidden;
+
 	&:focus {
 		border-color: $input-focus-border-color;
-		@if ($input-focus-width == 0) {
+		@if $input-focus-width == 0 {
 			outline: none;
 		}
 	}
 	@include media-breakpoint-up(md) {
 		padding: $input-padding-y $input-padding-x;
 	}
+
 	//required to disable auto zoom in iOS when font is less than 16px
-	@media screen and (-webkit-min-device-pixel-ratio: 0) and (max-width: 767px) {
+	@media screen and (min-device-pixel-ratio: 0) and (max-width: 767px) {
 		font-size: 16px !important;
 	}
 }
@@ -50,17 +53,21 @@
 	background-position: calc(100% - 2rem) 50%, calc(100% - 1.3rem) 50%;
 	background-size: rem-calc(7px) rem-calc(7px), rem-calc(7px) rem-calc(7px);
 	background-repeat: no-repeat;
+
 	// background: none; // make dropdown icon visible, if after is enabled, disable all the above bg rules
 	position: relative;
+
 	select {
 		background: transparent;
 		width: 100%; //make dropdown sit on top of select
 		padding-right: rem-calc(40px);
 		appearance: none;
 	}
+
 	select::-ms-expand {
 		display: none;
 	}
+
 	// &:after { // chevron icon
 	// 	@include icon-font-properties;
 	// 	content: $i-dropdown;

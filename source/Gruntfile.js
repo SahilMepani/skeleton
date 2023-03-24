@@ -43,6 +43,38 @@ module.exports = function (grunt) {
 			options: {
 				configFile: '../.stylelintrc.json',
 				fix: true,
+				rules: {
+					"order/properties-order": [
+						[
+							"background",
+							"color",
+							"font-family",
+							"font-size",
+							"font-weight",
+							"line-height",
+							"letter-spacing",
+							"text-align",
+							"vertical-align",
+							"display",
+							"width",
+							"height",
+							"padding",
+							"border",
+							"margin",
+							"border-radius",
+							"position",
+							"top",
+							"right",
+							"bottom",
+							"left",
+							"z-index",
+							"box-shadow",
+							"overflow",
+							"transition",
+						],
+						{ unspecified: "bottom" }
+					],
+				},
 			},
 			src: [
 				'sass/**/*.{scss,sass}',

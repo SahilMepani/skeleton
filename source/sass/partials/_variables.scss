@@ -9,14 +9,13 @@ $custom-scrollbar-enable: true;
 $track-width: 1.2rem;
 $track-background: #eee;
 $track-border-radius: 100vw;
-$track-margin-top: rem-calc( 5px );
-$track-margin-bottom: rem-calc( 5px );
+$track-margin-top: rem-calc(5px);
+$track-margin-bottom: rem-calc(5px);
 $thumb-background: #aaa;
 $thumb-border-radius: 100vw;
 
 // Custom ease
-$custom_ease: cubic-bezier(0.215, 0, 0, 0.995);
-
+$custom-ease: cubic-bezier(0.215, 0, 0, 0.995);
 
 /* Do not edit anything below */
 
@@ -49,6 +48,7 @@ $scaling: $two-k; // scaling starts from here, do not change if not sure, it can
 			$half-width: calc(
 				(#{$container-max-width} / 2) - #{$container-padding-x}
 			);
+
 			--container-max-width: #{$container-max-width};
 			--container-half-width: #{$half-width};
 			--container-margin-x: calc(

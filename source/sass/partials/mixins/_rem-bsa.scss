@@ -77,7 +77,6 @@ $rem-base: 10px;
 
 	$base-min-value: rem-calc($min-value, false);
 	$base-max-value: rem-calc($max-value, false);
-
 	$u1: unit($min-vw);
 	$u2: unit($max-vw);
 	$u3: unit($base-min-value);
@@ -86,8 +85,8 @@ $rem-base: 10px;
 	@if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
 		$fluid-base: calc(
 			#{$base-min-value} +
-				#{(strip-unit($base-max-value) - strip-unit($base-min-value))} *
-				((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+			#{(strip-unit($base-max-value) - strip-unit($base-min-value))} *
+			((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
 		);
 
 		@if $min-value < $max-value {
@@ -106,7 +105,7 @@ $rem-base: 10px;
 }
 
 @function remaining-side($wrapper-width, $value-only: false) {
-	@if ($value-only) {
+	@if $value-only {
 		@return calc((1920 - $wrapper-width) / 2);
 	} @else {
 		@return calc((100% - #{rem-calc($wrapper-width)}) / 2);

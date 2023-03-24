@@ -1,5 +1,4 @@
 $rem-baseline: 10px !default;
-
 $rem-fallback: false !default;
 $rem-px-only: false !default;
 
@@ -31,8 +30,7 @@ $rem-px-only: false !default;
 			unit($value) ==
 			"rem" and
 			$to ==
-			"px"
-		{
+			"px" {
 			$result: append($result, $value / 1rem * $rem-baseline, $separator);
 		} @else if
 			type-of($value) ==
@@ -40,8 +38,7 @@ $rem-px-only: false !default;
 			unit($value) ==
 			"px" and
 			$to ==
-			"rem"
-		{
+			"rem" {
 			$result: append(
 				$result,
 				$value / ($rem-baseline / 1rem),

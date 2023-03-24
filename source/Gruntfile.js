@@ -41,47 +41,18 @@ module.exports = function (grunt) {
 		// stylelint
 		stylelint: {
 			options: {
+				cache: true, // Use caching to speed up linting
 				configFile: '../.stylelintrc.json',
-				fix: true,
-				rules: {
-					"order/properties-order": [
-						[
-							"background",
-							"color",
-							"font-family",
-							"font-size",
-							"font-weight",
-							"line-height",
-							"letter-spacing",
-							"text-align",
-							"vertical-align",
-							"display",
-							"width",
-							"height",
-							"padding",
-							"border",
-							"margin",
-							"border-radius",
-							"position",
-							"top",
-							"right",
-							"bottom",
-							"left",
-							"z-index",
-							"box-shadow",
-							"overflow",
-							"transition",
-						],
-						{ unspecified: "bottom" }
-					],
-				},
+				fix: true
 			},
 			src: [
-				'sass/**/*.{scss,sass}',
-				'!sass/partials/bootstrap/**/*.{scss,sass}',
-				'!sass/partials/js-plugins/**/*.{scss,sass}',
-				'!sass/partials/_bs-utilities-overwrite.{scss,sass}',
-				'!sass/partials/_bs-varirables-overwrite.{scss,sass}'
+				'sass/**/*.scss',
+				'!sass/partials/bootstrap/**/*.scss',
+				'!sass/partials/js-plugins/**/*.scss',
+				'!sass/partials/_bs-utilities-overwrite.scss',
+				'!sass/partials/_bs-variables-overwrite.scss',
+				'!sass/partials/mixins/_rem.scss',
+				'!sass/partials/mixins/_fluid-typography.scss'
 			]
 		},
 

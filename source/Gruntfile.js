@@ -42,17 +42,14 @@ module.exports = function (grunt) {
 		stylelint: {
 			options: {
 				configFile: '../.stylelintrc.json',
-				formatter: 'string',
-				ignoreDisables: false,
-				failOnError: true,
-				outputFile: '',
-				reportNeedlessDisables: false,
 				fix: true,
-				syntax: ''
 			},
 			src: [
 				'sass/**/*.{scss,sass}',
-				'!sass/bootstrap/**/*.{scss,sass}'
+				'!sass/partials/bootstrap/**/*.{scss,sass}',
+				'!sass/partials/js-plugins/**/*.{scss,sass}',
+				'!sass/partials/_bs-utilities-overwrite.{scss,sass}',
+				'!sass/partials/_bs-varirables-overwrite.{scss,sass}'
 			]
 		},
 

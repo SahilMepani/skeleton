@@ -19,21 +19,22 @@
 	$text-color: currentColor,
 	$border-color: currentColor
 ) {
-	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
-	padding-bottom: rem-calc(1px);
 	position: relative;
 	transition: 0.2s;
 
+	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
+	padding-bottom: rem-calc(1px);
+
 	&::after {
 		background-color: $border-color;
-		content: "";
-		left: 0;
-		right: 0;
 		height: rem-calc(1px);
 		position: absolute;
+		right: 0;
 		bottom: 0;
+		left: 0;
 		transform: scale(0);
 		transition: 0.25s transform ease-out;
+		content: "";
 	}
 
 	&:hover,
@@ -50,22 +51,23 @@
 	$text-color: currentColor,
 	$border-color: currentColor
 ) {
-	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
-	padding-bottom: rem-calc(1px);
 	position: relative;
 	transition: 0.2s;
 
+	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
+	padding-bottom: rem-calc(1px);
+
 	&::after {
 		background-color: $border-color;
-		content: "";
-		left: 0;
-		right: 0;
 		height: rem-calc(1px);
 		position: absolute;
+		right: 0;
 		bottom: 0;
+		left: 0;
 		transform: scaleX(0);
-		transform-origin: 100% 100%;
 		transition: 0.3s transform;
+		content: "";
+		transform-origin: 100% 100%;
 	}
 
 	&:hover,
@@ -89,11 +91,11 @@
 		$background-start-color,
 		$background-end-color
 	);
+	transition: background 0.2s ease-out;
 	background-size: 0 rem-calc(2px);
 	background-position: left bottom;
 	background-repeat: no-repeat;
 	padding-bottom: rem-calc(2px);
-	transition: background 0.2s ease-out;
 
 	&:hover,
 	&:active {

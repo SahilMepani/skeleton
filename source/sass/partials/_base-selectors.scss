@@ -145,9 +145,9 @@ address {
 }
 
 output {
-	padding-top: rem-calc(30px);
-	line-height: 1.42857143;
 	color: #555;
+	line-height: 1.4285;
+	padding-top: rem-calc(30px);
 }
 
 code {
@@ -184,9 +184,9 @@ ol {
 		margin: 0;
 
 		li {
+			line-height: 1;
 			list-style: none;
 			margin-bottom: 0;
-			line-height: 1;
 		}
 	}
 }
@@ -230,16 +230,16 @@ form {
 
 	fieldset {
 		padding: 0;
-		margin: 0;
 		border: 0;
+		margin: 0;
 		min-width: 0;
 	}
 
 	legend {
 		font-weight: 700;
 		display: block;
-		margin-bottom: $paragraph-margin-bottom / 2;
 		border: 0;
+		margin-bottom: $paragraph-margin-bottom / 2;
 	}
 
 	input[type="text"],
@@ -279,10 +279,10 @@ form {
 
 	input[type="checkbox"],
 	input[type="radio"] {
+		line-height: normal;
 		margin: 0;
 		margin-top: rem-calc(4px);
 		margin-right: rem-calc(5px);
-		line-height: normal;
 	}
 
 	select[multiple],

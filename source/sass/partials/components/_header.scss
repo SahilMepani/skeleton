@@ -1,8 +1,8 @@
 .site-header {
 	background-color: #eee;
+	transition: 0.3s ease;
 	padding-top: rem-calc(10px);
 	padding-bottom: rem-calc(10px);
-	transition: 0.3s ease;
 
 	&.js-fixed {
 		position: sticky;
@@ -20,39 +20,39 @@
 	margin-bottom: 0;
 
 	span {
-		visibility: hidden;
-		font-size: 0;
 		color: transparent;
-		pointer-events: none;
+		font-size: 0;
 		height: 0;
 		position: absolute;
+		visibility: hidden;
+		pointer-events: none;
 	}
 
 	a {
 		display: block;
+		width: 100%;
 		height: 100%;
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 100%;
 	}
 }
 
 .header-nav-toggle {
 	background: red;
 	color: #fff;
-	text-decoration: none;
-	float: right;
 	display: block;
 	padding: rem-calc(10px) rem-calc(15px) rem-calc(10px) rem-calc(50px) !important;
 	position: relative;
+	text-decoration: none;
+	float: right;
 
 	.i-menu {
 		font-size: rem-calc(24px);
 		line-height: rem-calc(24px);
 		position: absolute;
-		left: rem-calc(15px); // same as padding right
 		top: 50%;
+		left: rem-calc(15px); // same as padding right
 		transform: translateY(-50%);
 	}
 	@include media-breakpoint-up(lg) {
@@ -62,12 +62,12 @@
 
 .header-nav-close {
 	background: none;
-	text-decoration: none;
-	border: 0;
 	padding: rem-calc(10px);
+	border: 0;
 	position: absolute;
 	top: 0;
 	right: 0;
+	text-decoration: none;
 
 	.i-x {
 		font-size: rem-calc(36px);

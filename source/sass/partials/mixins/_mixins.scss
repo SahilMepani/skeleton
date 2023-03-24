@@ -4,19 +4,18 @@
 @import "fluid-typography";
 @import "input";
 @import "keyframes";
-@import "media-queries";
 
 @mixin pagination-links {
 	background: #fff;
 	color: #666;
 	font-size: rem-calc(12px);
 	line-height: 1;
-	text-decoration: none;
 	text-align: center;
 	display: block;
-	min-width: rem-calc(35px);
 	padding: rem-calc(10px);
 	box-shadow: 0 0 rem-calc(1px) rgb(0 0 0 / 30%);
+	text-decoration: none;
+	min-width: rem-calc(35px);
 }
 
 // Required

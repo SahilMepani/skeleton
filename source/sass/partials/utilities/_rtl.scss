@@ -2,13 +2,12 @@
 
 // Phone numbers
 .phone-rtl {
+	/*! rtl:ignore */
+	text-align: right;
 	display: inline-block;
 
 	/*! rtl:ignore */
 	direction: ltr;
-
-	/*! rtl:ignore */
-	text-align: right;
 }
 
 // Table

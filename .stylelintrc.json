@@ -44,6 +44,8 @@
 		"order/properties-order": [
 			[
 				"background",
+				"background-color",
+				"background-image",
 				"color",
 				"font-family",
 				"font-size",
@@ -69,11 +71,10 @@
 				"box-shadow",
 				"overflow",
 				"transform",
-				"transition"
-			],
-			{
-				"unspecified": "bottom"
-			}
+				"transition",
+				"opacity",
+				"visibility"
+			]
 		]
 	},
 	"syntax": "scss"

@@ -4,20 +4,20 @@
 
 .bg-video {
 	height: 100%;
-	min-width: 100%;
-	min-height: 56.25vw;
 
 	/* 100 * 9 / 16 */
 	position: absolute;
-	left: 50%;
 
 	/* % of surrounding element */
 	top: 50%;
+	left: 50%;
 	transform: translate(-50%, -50%);
+	min-width: 100%;
+	min-height: 56.25vw;
 
 	/* % of current element */
 	@media screen and (orientation: landscape) {
-		width: 177.77777778vh;
+		width: 177.7778vh;
 
 		/* 100 * 16 / 9 */
 	}
@@ -41,9 +41,9 @@
 
 .inset-0 {
 	top: 0 !important;
+	right: 0 !important;
 	bottom: 0 !important;
 	left: 0 !important;
-	right: 0 !important;
 }
 
 .list-unstyled {

@@ -1,8 +1,8 @@
 .site-header {
-	background-color: #eee;
-	transition: 0.3s ease;
 	padding-top: rem-calc(10px);
 	padding-bottom: rem-calc(10px);
+	transition: 0.3s ease;
+	background-color: #eee;
 
 	&.js-fixed {
 		position: sticky;
@@ -14,10 +14,10 @@
 .header-logo {
 	width: rem-calc(151px);
 	height: rem-calc(25px);
-	position: relative;
-	float: left;
 	margin-top: rem-calc(15px) !important; // overwrite :first-child
 	margin-bottom: 0;
+	position: relative;
+	float: left;
 
 	span {
 		color: transparent;

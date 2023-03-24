@@ -20,9 +20,9 @@
 
 	.js-no-touchevents body::-webkit-scrollbar-track {
 		background: $track-background;
-		border-radius: $track-border-radius;
 		margin-top: $track-margin-top;
 		margin-bottom: $track-margin-bottom;
+		border-radius: $track-border-radius;
 	}
 
 	.js-no-touchevents body::-webkit-scrollbar-thumb {
@@ -39,11 +39,10 @@ html {
 
 body {
 	.js-no-touchevents &.js-popup-active {
-		overflow-y: hidden;
-
 		// make the space for hidden scrollbar on body
 		// same as width set for custom scrollbar
 		padding-right: $track-width;
+		overflow-y: hidden;
 	}
 }
 
@@ -151,10 +150,10 @@ output {
 }
 
 code {
-	background-color: $gray-100;
 	font-weight: 400;
 	display: inline-block;
 	padding: rem-calc(5px);
+	background-color: $gray-100;
 }
 
 /* ----------  Lists  ---------- */
@@ -166,14 +165,14 @@ dl {
 
 ul,
 ol {
-	list-style-position: outside;
 	margin-left: rem-calc(20px);
+	list-style-position: outside;
 
 	ul,
 	ol {
 		margin: 0;
-		margin-top: rem-calc(5px);
 		margin-left: rem-calc(40px);
+		margin-top: rem-calc(5px);
 	}
 
 	ol {
@@ -185,8 +184,8 @@ ol {
 
 		li {
 			line-height: 1;
-			list-style: none;
 			margin-bottom: 0;
+			list-style: none;
 		}
 	}
 }
@@ -219,8 +218,8 @@ form {
 
 	> ul {
 		> li {
-			clear: both;
 			margin-bottom: $paragraph-margin-bottom / 2;
+			clear: both;
 
 			> label {
 				margin-right: rem-calc(10px);
@@ -229,17 +228,17 @@ form {
 	}
 
 	fieldset {
-		padding: 0;
-		border: 0;
-		margin: 0;
 		min-width: 0;
+		padding: 0;
+		margin: 0;
+		border: 0;
 	}
 
 	legend {
 		font-weight: 700;
 		display: block;
-		border: 0;
 		margin-bottom: $paragraph-margin-bottom / 2;
+		border: 0;
 	}
 
 	input[type="text"],
@@ -281,8 +280,8 @@ form {
 	input[type="radio"] {
 		line-height: normal;
 		margin: 0;
-		margin-top: rem-calc(4px);
 		margin-right: rem-calc(5px);
+		margin-top: rem-calc(4px);
 	}
 
 	select[multiple],

@@ -18,8 +18,8 @@
 		color: #888;
 		font-size: 1.6rem;
 		line-height: 1.4;
-		overflow: hidden;
 		margin-bottom: rem-calc(20px);
+		overflow: hidden;
 
 		.author {
 			text-transform: capitalize;
@@ -115,8 +115,8 @@
 		font-weight: 700;
 		line-height: rem-calc(28px);
 		padding: 0;
-		border: 0;
 		margin-right: rem-calc(10px);
+		border: 0;
 	}
 
 	span,
@@ -124,13 +124,13 @@
 		background: #fff;
 		color: #666;
 		font-size: rem-calc(12px);
-		line-height: 1;
 		text-align: center;
+		line-height: 1;
+		min-width: rem-calc(10px);
 		padding: rem-calc(7px) rem-calc(10px);
+		margin-left: rem-calc(4px);
 		border: rem-calc(1px) solid #e7e7e7;
 		float: left;
-		min-width: rem-calc(10px);
-		margin-left: rem-calc(4px);
 	}
 
 	a:hover,
@@ -144,11 +144,11 @@
 .author-box {
 	background: #f5f5f5;
 	padding: rem-calc(20px);
+	margin-bottom: $paragraph-margin-bottom;
 	border: rem-calc(1px) solid #ddd;
 	box-shadow: inset rem-calc(1px) rem-calc(1px) 0 #fff,
 		inset rem-calc(-1px) rem-calc(-1px) 0 #fff;
 	overflow: hidden;
-	margin-bottom: $paragraph-margin-bottom;
 }
 
 .author-info {
@@ -159,7 +159,7 @@
 	width: rem-calc(100px);
 	height: rem-calc(100px);
 	padding: rem-calc(2px);
+	margin-right: rem-calc(20px);
 	border: rem-calc(1px) solid #eee;
 	float: left;
-	margin-right: rem-calc(20px);
 }

@@ -50,7 +50,6 @@ $mobile-sub-menu-link-padding-x: rem-calc(20px);
 	}
 
 	@include media-breakpoint-down(lg) {
-		background-color: $mobile-sidebar-bg-color;
 		font-size: regular;
 		width: 100%;
 		padding: rem-calc(90px) 0 rem-calc(40px);
@@ -59,9 +58,10 @@ $mobile-sub-menu-link-padding-x: rem-calc(20px);
 		right: 0;
 		bottom: 0;
 		z-index: 9999;
-		overflow: auto;
 		transform: translateX(-100%);
 		transition: 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946px);
+		background-color: $mobile-sidebar-bg-color;
+		overflow: auto;
 		overscroll-behavior: contain; // avoid scroll chaining
 
 		&.js-active {
@@ -75,7 +75,6 @@ $mobile-sub-menu-link-padding-x: rem-calc(20px);
 	@include media-breakpoint-down(lg) {
 		> li {
 			> a {
-				background-color: $mobile-parent-menu-link-bg-color;
 				color: $mobile-parent-menu-link-color;
 				font-size: $mobile-parent-menu-item-font-size;
 				text-align: center;
@@ -83,6 +82,7 @@ $mobile-sub-menu-link-padding-x: rem-calc(20px);
 				padding: $mobile-parent-menu-item-padding-y
 					$mobile-parent-menu-item-padding-x;
 				position: relative;
+				background-color: $mobile-parent-menu-link-bg-color;
 				text-decoration: none;
 
 				&:hover,
@@ -125,6 +125,8 @@ $mobile-sub-menu-link-padding-x: rem-calc(20px);
 					}
 
 					&::after {
+						margin-left: rem-calc(-6px);
+						margin-top: rem-calc(-4px);
 						border: rem-calc(8px) solid transparent;
 						position: absolute;
 						top: 50%;
@@ -133,8 +135,6 @@ $mobile-sub-menu-link-padding-x: rem-calc(20px);
 						border-left-width: rem-calc(6px);
 						border-right-width: rem-calc(6px);
 						border-top-color: $mobile-parent-menu-dropdown-icon-color;
-						margin-top: rem-calc(-4px);
-						margin-left: rem-calc(-6px);
 					}
 
 					&:hover,
@@ -169,14 +169,14 @@ $mobile-sub-menu-link-padding-x: rem-calc(20px);
 			text-align: center;
 
 			> a {
-				background-color: $mobile-sub-menu-link-bg-color;
 				color: $mobile-sub-menu-link-color;
 				font-size: $mobile-sub-menu-font-size;
+				text-transform: uppercase;
 				letter-spacing: rem-calc(1px);
 				display: block;
 				padding: $mobile-sub-menu-link-padding-y
 					$mobile-sub-menu-link-padding-x;
-				text-transform: uppercase;
+				background-color: $mobile-sub-menu-link-bg-color;
 				text-decoration: none;
 
 				&:hover,
@@ -224,31 +224,31 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 .header-nav-parent-menu {
 	@include media-breakpoint-up(lg) {
 		> li {
-			float: left;
 			margin-right: rem-calc(5px);
+			float: left;
 
 			&:hover,
 			&:focus {
 				> a {
-					background-color: $desktop-parent-menu-link-hover-bg-color;
 					color: $desktop-parent-menu-link-hover-color;
+					background-color: $desktop-parent-menu-link-hover-bg-color;
 				}
 			}
 
 			> a {
-				background-color: $desktop-parent-menu-link-bg-color;
 				color: $desktop-parent-menu-link-color;
 				display: block;
 				padding: $desktop-parent-menu-item-padding-y
 					$desktop-parent-menu-item-padding-x;
+				background-color: $desktop-parent-menu-link-bg-color;
 			}
 		}
 
 		> li.current-page-ancestor > a,
 		> li.current-menu-parent > a,
 		> li.current-menu-item > a {
-			background-color: $desktop-parent-menu-current-item-link-bg-color;
 			color: $desktop-parent-menu-current-item-link-color;
+			background-color: $desktop-parent-menu-current-item-link-bg-color;
 		}
 
 		> li.menu-item-has-children {
@@ -260,6 +260,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 				// 	$desktop-parent-menu-dropdown-icon-border +
 				// 	$desktop-parent-menu-space-between-text-and-arrow; //dropdown icon
 				&::after {
+					margin-top: rem-calc(-2px);
 					border: $desktop-parent-menu-dropdown-icon-border solid
 						transparent;
 					position: absolute;
@@ -268,7 +269,6 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 					transition: $btn-transition;
 					content: "";
 					border-top-color: $desktop-parent-menu-dropdown-icon-color;
-					margin-top: rem-calc(-2px);
 				}
 			}
 
@@ -306,8 +306,8 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 			width: $desktop-sub-menu-width;
 			position: absolute;
 			z-index: -1;
-			transition: $btn-transition, opacity 0.15s;
 			opacity: 0;
+			transition: $btn-transition, opacity 0.15s;
 			visibility: hidden;
 			pointer-events: none;
 
@@ -317,26 +317,26 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 				&:hover,
 				&:focus {
 					> a {
-						background-color: $desktop-sub-menu-link-hover-bg-color;
 						color: $desktop-sub-menu-link-hover-color;
+						background-color: $desktop-sub-menu-link-hover-bg-color;
 					}
 				}
 
 				> a {
-					background-color: $desktop-sub-menu-link-bg-color;
 					color: $desktop-sub-menu-link-color;
 					font-size: $desktop-sub-menu-font-size;
 					display: block;
 					padding: $desktop-sub-menu-link-padding-y
 						$desktop-sub-menu-link-padding-x;
+					background-color: $desktop-sub-menu-link-bg-color;
 					border-bottom: rem-calc(1px) solid
 						$desktop-sub-menu-link-bg-color;
 				}
 			}
 
 			> li.current-menu-item > a {
-				background-color: $desktop-sub-menu-current-item-link-bg-color;
 				color: $desktop-sub-menu-current-item-link-color;
+				background-color: $desktop-sub-menu-current-item-link-bg-color;
 			}
 		}
 
@@ -353,6 +353,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 				position: relative;
 
 				&::after {
+					margin-top: rem-calc(-4px);
 					border: $desktop-parent-menu-dropdown-icon-border solid
 						transparent;
 					position: absolute;
@@ -361,7 +362,6 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 					transition: $btn-transition;
 					content: "";
 					border-left-color: $desktop-parent-menu-dropdown-icon-hover-color;
-					margin-top: rem-calc(-4px);
 				}
 			}
 		}
@@ -369,10 +369,10 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 		// second sub menu
 		.sub-menu .sub-menu {
 			width: fit-content;
-			top: 0;
-			left: $desktop-sub-menu-width;
 			min-width: $desktop-sub-menu-width;
 			max-width: 40vw;
+			top: 0;
+			left: $desktop-sub-menu-width;
 		}
 	}
 }

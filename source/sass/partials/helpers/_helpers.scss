@@ -4,6 +4,8 @@
 
 .bg-video {
 	height: 100%;
+	min-width: 100%;
+	min-height: 56.25vw;
 
 	/* 100 * 9 / 16 */
 	position: absolute;
@@ -12,8 +14,6 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	min-width: 100%;
-	min-height: 56.25vw;
 
 	/* % of current element */
 	@media screen and (orientation: landscape) {
@@ -24,14 +24,14 @@
 }
 
 .bg-cover {
-	background-repeat: no-repeat;
-	background-position: center;
 	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 .text-highlight {
-	background-color: $text-selection-bg-color;
 	color: $text-selection-color;
+	background-color: $text-selection-bg-color;
 }
 
 /* ----------  Required  ---------- */

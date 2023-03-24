@@ -1,20 +1,20 @@
 .alert {
-	background-color: #ddd;
 	padding: rem-calc(15px);
 	border: rem-calc(1px) solid #ddd;
+	background-color: #ddd;
 }
 
 .alert-info {
-	background-color: #ffffd9;
 	border: rem-calc(1px) solid #ffffd9;
+	background-color: #ffffd9;
 }
 
 .alert-error {
-	background-color: #ffd9d9;
 	border: rem-calc(1px) solid #ffd9d9;
+	background-color: #ffd9d9;
 }
 
 .alert-success {
-	background-color: #dbffd9;
 	border: rem-calc(1px) solid #dbffd9;
+	background-color: #dbffd9;
 }

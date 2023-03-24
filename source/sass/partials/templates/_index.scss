@@ -83,14 +83,14 @@
 }
 
 .list-blog-post {
-	list-style: none;
 	margin-left: 0;
+	list-style: none;
 }
 
 .type-post--blog {
 	padding: 5vw;
-	border: rem-calc(1px) solid #eee;
 	margin: 0 auto rem-calc(40px);
+	border: rem-calc(1px) solid #eee;
 	clear: both;
 
 	&.sticky {
@@ -107,9 +107,9 @@
 			overflow: hidden;
 
 			img {
-				vertical-align: top;
 				height: auto;
 				transition: 0.4s cubic-bezier(0.33, 0, 0.2, 1);
+				vertical-align: top;
 				backface-visibility: hidden;
 			}
 
@@ -124,8 +124,8 @@
 	.meta-block {
 		color: #999;
 		line-height: 1.4;
-		overflow: hidden;
 		margin-bottom: rem-calc(20px);
+		overflow: hidden;
 
 		.author {
 			text-transform: capitalize;

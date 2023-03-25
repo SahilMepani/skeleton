@@ -1,9 +1,9 @@
 .site-footer {
 	font-size: rem-calc(13px);
-	padding: 20px 0;
-	background-color: #f9f9f9;
 	clear: both;
+	padding: 20px 0;
 	border-top: 1px solid #ddd;
+	background-color: #f9f9f9;
 }
 
 // Footer menu
@@ -12,9 +12,9 @@
 	@include list-unstyled;
 
 	li {
+		float: left;
 		margin: 0 0 0 rem-calc(20px);
 		list-style: none;
-		float: left;
 
 		&.current-menu-item > a,
 		&.current_page_parent > a {

@@ -65,8 +65,8 @@
 					&:checked {
 						+ label {
 							&::before {
-								background-color: $primary;
 								border-color: $primary;
+								background-color: $primary;
 							}
 						}
 					}
@@ -276,9 +276,9 @@
 		.gform_submission_error {
 			color: #fff;
 			font-size: rem-calc(18px);
-			text-align: center;
 			line-height: 1.3;
 			letter-spacing: normal;
+			text-align: center;
 			padding: rem-calc(15px) rem-calc(20px);
 			background-color: red;
 
@@ -307,7 +307,7 @@
 	background: $teal;
 	color: #fff;
 	font-size: rem-calc(20px);
-	text-align: center;
 	line-height: 1.3;
+	text-align: center;
 	padding: rem-calc(10px) rem-calc(30px);
 }

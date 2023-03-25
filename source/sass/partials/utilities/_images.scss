@@ -32,25 +32,25 @@
 .alignleft {
 	margin-bottom: rem-calc(20px);
 	@include media-breakpoint-up(md) {
-		margin: 0 rem-calc(20px) rem-calc(20px) 0;
 		float: left;
+		margin: 0 rem-calc(20px) rem-calc(20px) 0;
 	}
 }
 
 .alignright {
 	margin-bottom: rem-calc(20px);
 	@include media-breakpoint-up(md) {
-		margin: 0 0 rem-calc(20px) rem-calc(20px);
 		float: right;
+		margin: 0 0 rem-calc(20px) rem-calc(20px);
 	}
 }
 
 .alignleft {
-	margin: 0 rem-calc(20px) rem-calc(20px) 0;
 	float: left;
+	margin: 0 rem-calc(20px) rem-calc(20px) 0;
 }
 
 .alignright {
-	margin: 0 0 rem-calc(20px) rem-calc(20px);
 	float: right;
+	margin: 0 0 rem-calc(20px) rem-calc(20px);
 }

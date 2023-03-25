@@ -56,6 +56,7 @@ module.exports = function (grunt) {
 			]
 		},
 
+		// eslint
 		eslint: {
 			target: [
 				"source/js/custom/**/*.js",
@@ -67,8 +68,6 @@ module.exports = function (grunt) {
 				fix: true
 			}
 		},
-
-		// eslint
 
 		// Frontend & Backend styles
 		sass: {

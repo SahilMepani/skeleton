@@ -2,9 +2,9 @@
 	$delay: $interval;
 
 	visibility: visible;
+	animation-name: $animation;
 	animation-duration: 1s;
 	animation-fill-mode: both;
-	animation-name: $animation;
 
 	@for $i from 1 through $child {
 		$delay: $delay + $interval;

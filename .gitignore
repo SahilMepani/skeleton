@@ -13,3 +13,5 @@ node_modules
 sftp.json
 /nbproject/private/
 *.todo
+.eslintcache
+.stylelintcache

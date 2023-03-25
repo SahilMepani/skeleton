@@ -43,13 +43,13 @@
 		color: #222;
 		font-weight: 700;
 		display: block;
-		padding: 40px 0;
 		clear: both;
+		padding: 40px 0;
 		border-top: 1px solid #e5e5e5;
 
 		> div {
-			width: 33.3333%;
 			float: left;
+			width: 33.3333%;
 		}
 
 		a {
@@ -108,8 +108,8 @@
 
 //  Single Pagination
 .single-pagination {
-	overflow: hidden;
 	clear: both;
+	overflow: hidden;
 
 	.index {
 		font-weight: 700;
@@ -124,13 +124,13 @@
 		background: #fff;
 		color: #666;
 		font-size: rem-calc(12px);
-		text-align: center;
 		line-height: 1;
+		text-align: center;
+		float: left;
 		min-width: rem-calc(10px);
 		padding: rem-calc(7px) rem-calc(10px);
 		margin-left: rem-calc(4px);
 		border: rem-calc(1px) solid #e7e7e7;
-		float: left;
 	}
 
 	a:hover,
@@ -156,10 +156,10 @@
 }
 
 .avatar-block {
+	float: left;
 	width: rem-calc(100px);
 	height: rem-calc(100px);
 	padding: rem-calc(2px);
 	margin-right: rem-calc(20px);
 	border: rem-calc(1px) solid #eee;
-	float: left;
 }

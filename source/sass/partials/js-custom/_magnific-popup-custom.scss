@@ -2,8 +2,8 @@
 .mfp-fullscreen-video {
 	.mfp-content {
 		width: 100%;
-		height: 100% !important;
 		max-width: none !important;
+		height: 100% !important;
 		border: rem-calc(20px) solid #000;
 		position: fixed;
 		top: 0;
@@ -53,8 +53,8 @@
 	.mfp-close {
 		color: #fff;
 		font-size: rem-calc(30px);
-		text-align: center;
 		line-height: 1;
+		text-align: center;
 		width: rem-calc(30px);
 		height: rem-calc(30px);
 		padding: 0;

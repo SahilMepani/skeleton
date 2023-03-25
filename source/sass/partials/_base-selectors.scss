@@ -39,9 +39,10 @@ html {
 
 body {
 	.js-no-touchevents &.js-popup-active {
+		padding-right: $track-width;
+
 		// make the space for hidden scrollbar on body
 		// same as width set for custom scrollbar
-		padding-right: $track-width;
 		overflow-y: hidden;
 	}
 }
@@ -171,8 +172,8 @@ ol {
 	ul,
 	ol {
 		margin: 0;
-		margin-left: rem-calc(40px);
 		margin-top: rem-calc(5px);
+		margin-left: rem-calc(40px);
 	}
 
 	ol {
@@ -218,8 +219,8 @@ form {
 
 	> ul {
 		> li {
-			margin-bottom: $paragraph-margin-bottom / 2;
 			clear: both;
+			margin-bottom: $paragraph-margin-bottom / 2;
 
 			> label {
 				margin-right: rem-calc(10px);
@@ -280,8 +281,8 @@ form {
 	input[type="radio"] {
 		line-height: normal;
 		margin: 0;
-		margin-right: rem-calc(5px);
 		margin-top: rem-calc(4px);
+		margin-right: rem-calc(5px);
 	}
 
 	select[multiple],

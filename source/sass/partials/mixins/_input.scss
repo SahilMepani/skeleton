@@ -18,10 +18,10 @@
 	border: $input-btn-border-width solid $input-border-color;
 	border-radius: $input-border-radius;
 	transition: $input-transition;
-	appearance: none;
 	@include input-placeholder($input-placeholder-color);
 
 	overflow: hidden;
+	appearance: none;
 
 	&:focus {
 		border-color: $input-focus-border-color;

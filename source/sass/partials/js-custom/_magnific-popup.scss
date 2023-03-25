@@ -115,10 +115,10 @@ $mfp-use-visuallyhidden: false !default; // Hide content from browsers, but make
 // Vertical centerer helper
 .mfp-container {
 	&::before {
+		vertical-align: middle;
 		display: inline-block;
 		height: 100%;
 		content: "";
-		vertical-align: middle;
 	}
 }
 
@@ -134,11 +134,11 @@ $mfp-use-visuallyhidden: false !default; // Hide content from browsers, but make
 // Popup content holder
 .mfp-content {
 	text-align: left;
+	vertical-align: middle;
 	display: inline-block;
 	margin: 0 auto;
 	position: relative;
 	z-index: $mfp-z-index-base + 5;
-	vertical-align: middle;
 }
 
 .mfp-inline-holder,
@@ -195,8 +195,8 @@ $mfp-use-visuallyhidden: false !default; // Hide content from browsers, but make
 		margin: rem-calc(-1px) !important;
 		border: 0 !important;
 		position: absolute !important;
-		clip: rect(0 0 0 0) !important;
 		overflow: hidden !important;
+		clip: rect(0 0 0 0) !important;
 	}
 } @else {
 	.mfp-hide {
@@ -254,8 +254,8 @@ button {
 		z-index: $mfp-z-index-base + 6;
 		box-shadow: none;
 		overflow: visible;
-		cursor: pointer;
 		appearance: none;
+		cursor: pointer;
 		outline: none;
 		touch-action: manipulation;
 	}
@@ -271,8 +271,10 @@ button {
 	color: $mfp-controls-color;
 	font-family: Arial, Baskerville, monospace;
 	font-size: rem-calc(28px);
-	text-align: center;
+	font-style: normal;
 	line-height: rem-calc(44px);
+	text-align: center;
+	text-decoration: none;
 	width: rem-calc(44px);
 	height: rem-calc(44px);
 	padding: 0 0 rem-calc(18px) rem-calc(10px);
@@ -280,8 +282,6 @@ button {
 	top: 0;
 	right: 0;
 	opacity: $mfp-controls-opacity;
-	text-decoration: none;
-	font-style: normal;
 
 	&:hover,
 	&:focus {
@@ -315,10 +315,10 @@ button {
 	color: $mfp-controls-text-color;
 	font-size: rem-calc(12px);
 	line-height: rem-calc(18px);
+	white-space: nowrap;
 	position: absolute;
 	top: 0;
 	right: 0;
-	white-space: nowrap;
 }
 
 // Navigation arrows
@@ -418,8 +418,8 @@ button {
 			line-height: 0;
 			display: block;
 			width: auto;
-			height: auto;
 			max-width: 100%;
+			height: auto;
 			padding: $mfp-image-padding-top 0 $mfp-image-padding-bottom;
 			margin: 0 auto;
 			box-sizing: border-box;
@@ -468,13 +468,12 @@ button {
 
 	.mfp-title {
 		color: $mfp-caption-title-color;
-		text-align: left;
 		line-height: rem-calc(18px);
+		text-align: left;
+		word-wrap: break-word;
 		padding-right: rem-calc(
 			36px
 		); // leave some space for counter at right side
-
-		word-wrap: break-word;
 	}
 
 	.mfp-image-holder {
@@ -499,8 +498,8 @@ button {
        */
 			.mfp-img-mobile {
 				.mfp-image-holder {
-					padding-left: 0;
 					padding-right: 0;
+					padding-left: 0;
 				}
 
 				img {
@@ -543,8 +542,8 @@ button {
 
 				.mfp-close {
 					background: rgb(0 0 0 / 0.6px);
-					text-align: center;
 					line-height: rem-calc(35px);
+					text-align: center;
 					width: rem-calc(35px);
 					height: rem-calc(35px);
 					padding: 0;
@@ -572,8 +571,8 @@ button {
 	}
 
 	.mfp-container {
-		padding-left: $mfp-popup-padding-left-mobile;
 		padding-right: $mfp-popup-padding-left-mobile;
+		padding-left: $mfp-popup-padding-left-mobile;
 	}
 }
 
@@ -698,10 +697,10 @@ button {
 .mfp-move-from-top {
 	/* start state */
 	.mfp-content {
+		vertical-align: top;
 		opacity: 0;
 		transform: translateY(-100px);
 		transition: all 0.2s;
-		vertical-align: top;
 	}
 
 	&.mfp-bg {

@@ -12,19 +12,19 @@
 }
 
 .header-logo {
+	float: left;
 	width: rem-calc(151px);
 	height: rem-calc(25px);
 	margin-top: rem-calc(15px) !important; // overwrite :first-child
 	margin-bottom: 0;
 	position: relative;
-	float: left;
 
 	span {
 		color: transparent;
 		font-size: 0;
+		visibility: hidden;
 		height: 0;
 		position: absolute;
-		visibility: hidden;
 		pointer-events: none;
 	}
 
@@ -41,11 +41,11 @@
 .header-nav-toggle {
 	background: red;
 	color: #fff;
+	text-decoration: none;
 	display: block;
+	float: right;
 	padding: rem-calc(10px) rem-calc(15px) rem-calc(10px) rem-calc(50px) !important;
 	position: relative;
-	text-decoration: none;
-	float: right;
 
 	.i-menu {
 		font-size: rem-calc(24px);
@@ -62,12 +62,12 @@
 
 .header-nav-close {
 	background: none;
+	text-decoration: none;
 	padding: rem-calc(10px);
 	border: 0;
 	position: absolute;
 	top: 0;
 	right: 0;
-	text-decoration: none;
 
 	.i-x {
 		font-size: rem-calc(36px);

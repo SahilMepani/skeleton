@@ -9,8 +9,8 @@
 
 @mixin btn-input-clone($bg-color) {
 	font-size: 1rem;
-	text-transform: uppercase;
 	line-height: $input-line-height;
+	text-transform: uppercase;
 	padding-top: $input-padding-y;
 	padding-bottom: $input-padding-y;
 	border: rem-calc(1px) solid $bg-color;
@@ -35,10 +35,10 @@
 	position: relative;
 
 	svg {
+		fill: currentcolor;
 		width: rem-calc(24px);
 		height: rem-calc(24px);
 		margin-left: rem-calc(20px);
-		fill: currentcolor;
 	}
 }
 

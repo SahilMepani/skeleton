@@ -147,13 +147,13 @@ $sreveal-default-delay: 200; // same from custom/scroll-reveal.js
   */
 
 	[data-aos^="slide"] {
-		transition-property: transform;
 		visibility: hidden;
+		transition-property: transform;
 
 		.sreveal-in-view &,
 		.swiper-slide-active:not(.wait-for-sreveal) & {
-			transform: translate3d(0, 0, 0);
 			visibility: visible;
+			transform: translate3d(0, 0, 0);
 		}
 	}
 
@@ -195,8 +195,8 @@ $sreveal-default-delay: 200; // same from custom/scroll-reveal.js
   */
 
 	[data-aos^="flip"] {
-		backface-visibility: hidden;
 		transition-property: opacity, transform;
+		backface-visibility: hidden;
 	}
 
 	[data-aos="flip-left"] {

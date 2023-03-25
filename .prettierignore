@@ -1,3 +1,4 @@
+*.html
 js
 source/js/plugins
 source/sass/partials/bootstrap

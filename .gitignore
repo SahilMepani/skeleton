@@ -9,7 +9,7 @@ style-rtl.css.map
 Thumbs.db
 acf-json
 source/bower_components
-source/node_modules
+node_modules
 sftp.json
 /nbproject/private/
 *.todo

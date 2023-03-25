@@ -1,28 +1,30 @@
 /* Fullscreen Video using Magnific Popup */
 .mfp-fullscreen-video {
 	.mfp-content {
-		background-color: #000;
-		opacity: 0;
+		width: 100%;
 		height: 100% !important;
 		max-width: none !important;
-		width: 100%;
 		border: rem-calc(20px) solid #000;
 		position: fixed;
 		top: 0;
 		left: 0;
+		opacity: 0;
 		transform: scale3d(0.05, 0.05, 1);
+		background-color: #000;
 	}
+
 	video {
-		position: absolute;
-		left: 0;
-		top: 0;
-		bottom: 0;
-		right: 0;
 		// transform: translateX(-50%);
 		width: 100%;
 		height: auto;
 		max-height: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
 	}
+
 	/* animate in */
 	&.mfp-ready {
 		.mfp-content {
@@ -31,6 +33,7 @@
 			transition: 0.5s;
 		}
 	}
+
 	/* animate out */
 	&.mfp-removing {
 		.mfp-content {
@@ -38,25 +41,29 @@
 			transition: 0.2s;
 		}
 	}
+
 	&.mfp-bg {
 		display: none;
 	}
+
 	.mfp-iframe-holder {
 		padding: 0 !important;
 	}
+
 	.mfp-close {
-		background-color: #000;
 		color: #fff;
 		font-size: rem-calc(30px);
-		top: 0;
-		right: 0;
-		line-height: 1;
 		text-align: center;
+		line-height: 1;
 		width: rem-calc(30px);
 		height: rem-calc(30px);
 		padding: 0;
+		top: 0;
+		right: 0;
 		opacity: 0.5;
 		transition: 0.2s ease-out;
+		background-color: #000;
+
 		&:hover {
 			opacity: 1;
 		}

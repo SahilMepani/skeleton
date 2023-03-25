@@ -9,7 +9,7 @@
 // overlay
 $mfp-overlay-color: black !default; // Color of overlay screen
 $mfp-overlay-opacity: 0.95 !default; // Opacity of overlay screen
-$mfp-shadow: 0 0 rem-calc(8px) rgba(0, 0, 0, 0.6) !default; // Shadow on image or iframe
+$mfp-shadow: 0 0 rem-calc(8px) rgb(0 0 0 / 60%) !default; // Shadow on image or iframe
 
 // spacing
 $mfp-popup-padding-left: rem-calc(
@@ -35,7 +35,7 @@ $mfp-include-iframe-type: true !default; // Enable Iframe-type popups
 $mfp-iframe-padding-top: rem-calc(40px) !default; // Iframe padding top
 $mfp-iframe-background: #000 !default; // Background color of iframes
 $mfp-iframe-max-width: 900px !default; // Maximum width of iframes
-$mfp-iframe-ratio: 9/16 !default; // Ratio of iframe (9/16 = widescreen, 3/4 = standard, etc.)
+$mfp-iframe-ratio: 9 / 16 !default; // Ratio of iframe (9/16 = widescreen, 3/4 = standard, etc.)
 
 // Image-type options
 $mfp-include-image-type: true !default; // Enable Image-type popups
@@ -51,10 +51,8 @@ $mfp-caption-subtitle-color: #bdbdbd !default; // Caption subtitle color
 // A11y
 $mfp-use-visuallyhidden: false !default; // Hide content from browsers, but make it available for screen readers
 
-////////////////////////
-//
 // Contents:
-//
+
 // 1. General styles
 //    - Transluscent overlay
 //    - Containers, wrappers
@@ -79,26 +77,25 @@ $mfp-use-visuallyhidden: false !default; // Hide content from browsers, but make
 
 // Transluscent overlay
 .mfp-bg {
-	top: 0;
-	left: 0;
+	background: $mfp-overlay-color;
 	width: 100%;
 	height: 100%;
-	z-index: $mfp-z-index-base + 2;
-	overflow: hidden;
 	position: fixed;
-
-	background: $mfp-overlay-color;
+	top: 0;
+	left: 0;
+	z-index: $mfp-z-index-base + 2;
 	opacity: $mfp-overlay-opacity;
+	overflow: hidden;
 }
 
 // Wrapper for popup
 .mfp-wrap {
-	top: 0;
-	left: 0;
 	width: 100%;
 	height: 100%;
-	z-index: $mfp-z-index-base + 3;
 	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: $mfp-z-index-base + 3;
 	outline: none !important;
 	backface-visibility: hidden; // fixes webkit bug that can cause "false" scrollbar
 }
@@ -106,21 +103,21 @@ $mfp-use-visuallyhidden: false !default; // Hide content from browsers, but make
 // Root container
 .mfp-container {
 	text-align: center;
-	position: absolute;
 	width: 100%;
 	height: 100%;
-	left: 0;
-	top: 0;
 	padding: 0 $mfp-popup-padding-left;
+	position: absolute;
+	top: 0;
+	left: 0;
 	box-sizing: border-box;
 }
 
 // Vertical centerer helper
 .mfp-container {
-	&:before {
-		content: "";
+	&::before {
 		display: inline-block;
 		height: 100%;
+		content: "";
 		vertical-align: middle;
 	}
 }
@@ -128,7 +125,7 @@ $mfp-use-visuallyhidden: false !default; // Hide content from browsers, but make
 // Remove vertical centering when popup has class `mfp-align-top`
 .mfp-align-top {
 	.mfp-container {
-		&:before {
+		&::before {
 			display: none;
 		}
 	}
@@ -136,13 +133,14 @@ $mfp-use-visuallyhidden: false !default; // Hide content from browsers, but make
 
 // Popup content holder
 .mfp-content {
-	position: relative;
-	display: inline-block;
-	vertical-align: middle;
-	margin: 0 auto;
 	text-align: left;
+	display: inline-block;
+	margin: 0 auto;
+	position: relative;
 	z-index: $mfp-z-index-base + 5;
+	vertical-align: middle;
 }
+
 .mfp-inline-holder,
 .mfp-ajax-holder {
 	.mfp-content {
@@ -155,20 +153,18 @@ $mfp-use-visuallyhidden: false !default; // Hide content from browsers, but make
 .mfp-ajax-cur {
 	cursor: progress;
 }
+
 .mfp-zoom-out-cur {
 	&,
 	.mfp-image-holder .mfp-close {
-		cursor: -moz-zoom-out;
-		cursor: -webkit-zoom-out;
 		cursor: zoom-out;
 	}
 }
+
 .mfp-zoom {
-	cursor: pointer;
-	cursor: -webkit-zoom-in;
-	cursor: -moz-zoom-in;
 	cursor: zoom-in;
 }
+
 .mfp-auto-cursor {
 	.mfp-content {
 		cursor: auto;
@@ -179,8 +175,6 @@ $mfp-use-visuallyhidden: false !default; // Hide content from browsers, but make
 .mfp-arrow,
 .mfp-preloader,
 .mfp-counter {
-	-webkit-user-select: none;
-	-moz-user-select: none;
 	user-select: none;
 }
 
@@ -195,14 +189,14 @@ $mfp-use-visuallyhidden: false !default; // Hide content from browsers, but make
 @if $mfp-use-visuallyhidden {
 	// From HTML5 Boilerplate https://github.com/h5bp/html5-boilerplate/blob/v4.2.0/doc/css.md#visuallyhidden
 	.mfp-hide {
-		border: 0 !important;
-		clip: rect(0 0 0 0) !important;
-		height: rem-calc(1px) !important;
-		margin: rem-calc(-1px) !important;
-		overflow: hidden !important;
-		padding: 0 !important;
-		position: absolute !important;
 		width: rem-calc(1px) !important;
+		height: rem-calc(1px) !important;
+		padding: 0 !important;
+		margin: rem-calc(-1px) !important;
+		border: 0 !important;
+		position: absolute !important;
+		clip: rect(0 0 0 0) !important;
+		overflow: hidden !important;
 	}
 } @else {
 	.mfp-hide {
@@ -217,16 +211,18 @@ $mfp-use-visuallyhidden: false !default; // Hide content from browsers, but make
 // Preloader and text that displays error messages
 .mfp-preloader {
 	color: $mfp-controls-text-color;
+	text-align: center;
+	width: auto;
+	margin-top: -0.8em;
 	position: absolute;
 	top: 50%;
-	width: auto;
-	text-align: center;
-	margin-top: -0.8em;
-	left: rem-calc(8px);
 	right: rem-calc(8px);
+	left: rem-calc(8px);
 	z-index: $mfp-z-index-base + 4;
+
 	a {
 		color: $mfp-controls-text-color;
+
 		&:hover {
 			color: $mfp-controls-text-color-hover;
 		}
@@ -251,18 +247,19 @@ $mfp-use-visuallyhidden: false !default; // Hide content from browsers, but make
 button {
 	&.mfp-close,
 	&.mfp-arrow {
-		overflow: visible;
-		cursor: pointer;
 		background: transparent;
-		border: 0;
-		-webkit-appearance: none;
 		display: block;
-		outline: none;
 		padding: 0;
+		border: 0;
 		z-index: $mfp-z-index-base + 6;
 		box-shadow: none;
+		overflow: visible;
+		cursor: pointer;
+		appearance: none;
+		outline: none;
 		touch-action: manipulation;
 	}
+
 	&::-moz-focus-inner {
 		padding: 0;
 		border: 0;
@@ -271,22 +268,20 @@ button {
 
 // Close icon
 .mfp-close {
+	color: $mfp-controls-color;
+	font-family: Arial, Baskerville, monospace;
+	font-size: rem-calc(28px);
+	text-align: center;
+	line-height: rem-calc(44px);
 	width: rem-calc(44px);
 	height: rem-calc(44px);
-	line-height: rem-calc(44px);
-
-	position: absolute;
-	right: 0;
-	top: 0;
-	text-decoration: none;
-	text-align: center;
-	opacity: $mfp-controls-opacity;
 	padding: 0 0 rem-calc(18px) rem-calc(10px);
-	color: $mfp-controls-color;
-
+	position: absolute;
+	top: 0;
+	right: 0;
+	opacity: $mfp-controls-opacity;
+	text-decoration: none;
 	font-style: normal;
-	font-size: rem-calc(28px);
-	font-family: Arial, Baskerville, monospace;
 
 	&:hover,
 	&:focus {
@@ -297,75 +292,83 @@ button {
 		top: rem-calc(1px);
 	}
 }
+
 .mfp-close-btn-in {
 	.mfp-close {
 		color: $mfp-inner-close-icon-color;
 	}
 }
+
 .mfp-image-holder,
 .mfp-iframe-holder {
 	.mfp-close {
 		color: $mfp-controls-color;
-		right: rem-calc(-6px);
 		text-align: right;
-		padding-right: rem-calc(6px);
 		width: 100%;
+		padding-right: rem-calc(6px);
+		right: rem-calc(-6px);
 	}
 }
 
 // "1 of X" counter
 .mfp-counter {
-	position: absolute;
-	top: 0;
-	right: 0;
 	color: $mfp-controls-text-color;
 	font-size: rem-calc(12px);
 	line-height: rem-calc(18px);
+	position: absolute;
+	top: 0;
+	right: 0;
 	white-space: nowrap;
 }
 
 // Navigation arrows
 @if $mfp-include-arrows {
 	.mfp-arrow {
-		position: absolute;
-		opacity: $mfp-controls-opacity;
-		margin: 0;
-		top: 50%;
-		margin-top: rem-calc(-55px);
-		padding: 0;
 		width: rem-calc(90px);
 		height: rem-calc(110px);
-		-webkit-tap-highlight-color: rgba(0, 0, 0, 0px);
+		padding: 0;
+		margin: 0;
+		margin-top: rem-calc(-55px);
+		position: absolute;
+		top: 50%;
+		opacity: $mfp-controls-opacity;
+		-webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+
 		&:active {
 			margin-top: rem-calc(-54px);
 		}
+
 		&:hover,
 		&:focus {
 			opacity: 1;
 		}
-		&:before {
+
+		&::before {
 			@include icon-font-properties;
-			display: block;
-			content: "\e616";
+
 			color: #fff;
 			font-size: rem-calc(48px);
+			display: block;
 			position: absolute;
-			left: 50%;
 			top: 50%;
+			left: 50%;
 			transform: translate(-50%, -50%);
+			content: "\e616";
 		}
 	}
 
 	.mfp-arrow-left {
 		left: 0;
-		&:before {
+
+		&::before {
 			content: "\e616";
 		}
 	}
 
 	.mfp-arrow-right {
 		right: 0;
-		&:before {
+
+		&::before {
 			content: "\e617";
 		}
 	}
@@ -376,29 +379,33 @@ button {
 	.mfp-iframe-holder {
 		padding-top: $mfp-iframe-padding-top;
 		padding-bottom: $mfp-iframe-padding-top;
+
 		.mfp-content {
 			line-height: 0;
 			width: 100%;
 			max-width: $mfp-iframe-max-width;
 		}
+
 		.mfp-close {
 			top: rem-calc(-40px);
 		}
 	}
+
 	.mfp-iframe-scaler {
 		width: 100%;
 		height: 0;
-		overflow: hidden;
 		padding-top: $mfp-iframe-ratio * 100%;
+		overflow: hidden;
+
 		iframe {
-			position: absolute;
+			background: $mfp-iframe-background;
 			display: block;
-			top: 0;
-			left: 0;
 			width: 100%;
 			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
 			box-shadow: $mfp-shadow;
-			background: $mfp-iframe-background;
 		}
 	}
 }
@@ -408,60 +415,66 @@ button {
 	/* Main image in popup */
 	img {
 		&.mfp-img {
-			width: auto;
-			max-width: 100%;
-			height: auto;
-			display: block;
 			line-height: 0;
-			box-sizing: border-box;
+			display: block;
+			width: auto;
+			height: auto;
+			max-width: 100%;
 			padding: $mfp-image-padding-top 0 $mfp-image-padding-bottom;
 			margin: 0 auto;
+			box-sizing: border-box;
 		}
 	}
 
 	/* The shadow behind the image */
 	.mfp-figure {
 		line-height: 0;
-		&:after {
-			content: "";
-			position: absolute;
-			left: 0;
-			top: $mfp-image-padding-top;
-			bottom: $mfp-image-padding-bottom;
+
+		&::after {
+			background: $mfp-image-background;
 			display: block;
-			right: 0;
 			width: auto;
 			height: auto;
+			position: absolute;
+			top: $mfp-image-padding-top;
+			right: 0;
+			bottom: $mfp-image-padding-bottom;
+			left: 0;
 			z-index: -1;
 			box-shadow: $mfp-shadow;
-			background: $mfp-image-background;
+			content: "";
 		}
+
 		small {
 			color: $mfp-caption-subtitle-color;
-			display: block;
 			font-size: rem-calc(12px);
 			line-height: rem-calc(14px);
+			display: block;
 		}
+
 		figure {
 			margin: 0;
 		}
 	}
+
 	.mfp-bottom-bar {
+		width: 100%;
 		margin-top: -$mfp-image-padding-bottom + 4;
 		position: absolute;
 		top: 100%;
 		left: 0;
-		width: 100%;
 		cursor: auto;
 	}
+
 	.mfp-title {
+		color: $mfp-caption-title-color;
 		text-align: left;
 		line-height: rem-calc(18px);
-		color: $mfp-caption-title-color;
-		word-wrap: break-word;
 		padding-right: rem-calc(
 			36px
 		); // leave some space for counter at right side
+
+		word-wrap: break-word;
 	}
 
 	.mfp-image-holder {
@@ -489,48 +502,55 @@ button {
 					padding-left: 0;
 					padding-right: 0;
 				}
+
 				img {
 					&.mfp-img {
 						padding: 0;
 					}
 				}
+
 				.mfp-figure {
 					// The shadow behind the image
-					&:after {
+					&::after {
 						top: 0;
 						bottom: 0;
 					}
+
 					small {
 						display: inline;
 						margin-left: rem-calc(5px);
 					}
 				}
+
 				.mfp-bottom-bar {
-					background: rgba(0, 0, 0, 0.6px);
-					bottom: 0;
-					margin: 0;
-					top: auto;
+					background: rgb(0 0 0 / 0.6px);
 					padding: rem-calc(3px) rem-calc(5px);
+					margin: 0;
 					position: fixed;
+					top: auto;
+					bottom: 0;
 					box-sizing: border-box;
+
 					&:empty {
 						padding: 0;
 					}
 				}
+
 				.mfp-counter {
-					right: rem-calc(5px);
 					top: rem-calc(3px);
+					right: rem-calc(5px);
 				}
+
 				.mfp-close {
-					top: 0;
-					right: 0;
+					background: rgb(0 0 0 / 0.6px);
+					text-align: center;
+					line-height: rem-calc(35px);
 					width: rem-calc(35px);
 					height: rem-calc(35px);
-					line-height: rem-calc(35px);
-					background: rgba(0, 0, 0, 0.6px);
-					position: fixed;
-					text-align: center;
 					padding: 0;
+					position: fixed;
+					top: 0;
+					right: 0;
 				}
 			}
 		}
@@ -540,17 +560,17 @@ button {
 // Scale navigation arrows and reduce padding from sides
 @media all and (max-width: 900) {
 	.mfp-arrow {
-		-webkit-transform: scale(0.75px);
 		transform: scale(0.75px);
 	}
+
 	.mfp-arrow-left {
-		-webkit-transform-origin: 0;
 		transform-origin: 0;
 	}
+
 	.mfp-arrow-right {
-		-webkit-transform-origin: 100%;
 		transform-origin: 100%;
 	}
+
 	.mfp-container {
 		padding-left: $mfp-popup-padding-left-mobile;
 		padding-right: $mfp-popup-padding-left-mobile;
@@ -562,29 +582,34 @@ button {
 	/* start state */
 	.mfp-content {
 		opacity: 0;
-		transition: all 0.2s ease-in-out;
 		transform: scale(0.8px);
+		transition: all 0.2s ease-in-out;
 	}
+
 	&.mfp-bg {
 		opacity: 0;
 		transition: all 0.3s ease-out;
 	}
+
 	/* animate in */
 	&.mfp-ready {
 		.mfp-content {
 			opacity: 1;
 			transform: scale(1);
 		}
+
 		&.mfp-bg {
 			opacity: 0.8;
 		}
 	}
+
 	/* animate out */
 	&.mfp-removing {
 		.mfp-content {
-			transform: scale(0.8px);
 			opacity: 0;
+			transform: scale(0.8px);
 		}
+
 		&.mfp-bg {
 			opacity: 0;
 		}
@@ -596,29 +621,34 @@ button {
 	/* start state */
 	.mfp-content {
 		opacity: 0;
-		transition: all 0.3s ease-in-out;
 		transform: scale(1.3);
+		transition: all 0.3s ease-in-out;
 	}
+
 	&.mfp-bg {
 		opacity: 0;
 		transition: all 0.3s ease-out;
 	}
+
 	/* animate in */
 	&.mfp-ready {
 		.mfp-content {
 			opacity: 1;
 			transform: scale(1);
 		}
+
 		&.mfp-bg {
 			opacity: 0.8;
 		}
 	}
+
 	/* animate out */
 	&.mfp-removing {
 		.mfp-content {
-			transform: scale(1.3);
 			opacity: 0;
+			transform: scale(1.3);
 		}
+
 		&.mfp-bg {
 			opacity: 0;
 		}
@@ -630,32 +660,34 @@ button {
 	/* start state */
 	.mfp-content {
 		opacity: 0;
-		transition: all 0.5s;
-		transform: scale(0px);
 		transform: rotate(500deg);
+		transition: all 0.5s;
 	}
+
 	&.mfp-bg {
 		opacity: 0;
 		transition: all 0.5s;
 	}
+
 	/* animate in */
 	&.mfp-ready {
 		.mfp-content {
 			opacity: 1;
-			transform: scale(1);
 			transform: rotate(0deg);
 		}
+
 		&.mfp-bg {
 			opacity: 0.8;
 		}
 	}
+
 	/* animate out */
 	&.mfp-removing {
 		.mfp-content {
-			transform: scale(0px);
-			transform: rotate(500deg);
 			opacity: 0;
+			transform: rotate(500deg);
 		}
+
 		&.mfp-bg {
 			opacity: 0;
 		}
@@ -666,31 +698,36 @@ button {
 .mfp-move-from-top {
 	/* start state */
 	.mfp-content {
-		vertical-align: top;
 		opacity: 0;
-		transition: all 0.2s;
 		transform: translateY(-100px);
+		transition: all 0.2s;
+		vertical-align: top;
 	}
+
 	&.mfp-bg {
 		opacity: 0;
 		transition: all 0.2s;
 	}
+
 	/* animate in */
 	&.mfp-ready {
 		.mfp-content {
 			opacity: 1;
-			transform: translateY(0px);
+			transform: translateY(0);
 		}
+
 		&.mfp-bg {
 			opacity: 0.8;
 		}
 	}
+
 	/* animate out */
 	&.mfp-removing {
 		.mfp-content {
-			transform: translateY(-50px);
 			opacity: 0;
+			transform: translateY(-50px);
 		}
+
 		&.mfp-bg {
 			opacity: 0;
 		}
@@ -702,31 +739,36 @@ button {
 	/* start state */
 	.mfp-content {
 		opacity: 0;
+		transform: rotateY(-60deg);
 		transition: all 0.3s ease-in-out;
 		transform-style: preserve-3d;
 		perspective: 2000px;
-		transform: rotateY(-60deg);
 	}
+
 	&.mfp-bg {
 		opacity: 0;
 		transition: all 0.5s;
 	}
+
 	/* animate in */
 	&.mfp-ready {
 		.mfp-content {
 			opacity: 1;
 			transform: rotateY(0deg);
 		}
+
 		&.mfp-bg {
 			opacity: 0.8;
 		}
 	}
+
 	/* animate out */
 	&.mfp-removing {
 		.mfp-content {
-			transform: rotateY(60deg);
 			opacity: 0;
+			transform: rotateY(60deg);
 		}
+
 		&.mfp-bg {
 			opacity: 0;
 		}
@@ -740,23 +782,28 @@ button {
 		opacity: 0;
 		transition: all 0.15s ease-out;
 	}
+
 	&.mfp-bg {
 		opacity: 0;
 		transition: all 0.15s ease-out;
 	}
+
 	/* animate in */
 	&.mfp-ready {
 		.mfp-content {
 			opacity: 1;
 		}
+
 		&.mfp-bg {
 			opacity: 0.8;
 		}
 	}
+
 	&.mfp-removing {
 		.mfp-content {
 			opacity: 0;
 		}
+
 		&.mfp-bg {
 			opacity: 0;
 		}

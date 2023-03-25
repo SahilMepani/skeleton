@@ -7,6 +7,7 @@ $sreveal-default-delay: 200; // same from custom/scroll-reveal.js
 	[data-aos] {
 		visibility: hidden;
 		transition-duration: 1s;
+
 		.sreveal-in-view &,
 		.swiper-slide-active:not(.wait-for-sreveal) & {
 			visibility: visible;
@@ -151,8 +152,8 @@ $sreveal-default-delay: 200; // same from custom/scroll-reveal.js
 
 		.sreveal-in-view &,
 		.swiper-slide-active:not(.wait-for-sreveal) & {
-			visibility: visible;
 			transform: translate3d(0, 0, 0);
+			visibility: visible;
 		}
 	}
 
@@ -201,6 +202,7 @@ $sreveal-default-delay: 200; // same from custom/scroll-reveal.js
 	[data-aos="flip-left"] {
 		opacity: 0;
 		transform: perspective(2500px) rotateY(-100deg);
+
 		.sreveal-in-view &,
 		.swiper-slide-active:not(.wait-for-sreveal) & {
 			opacity: 1;
@@ -210,6 +212,7 @@ $sreveal-default-delay: 200; // same from custom/scroll-reveal.js
 
 	[data-aos="flip-right"] {
 		transform: perspective(2500px) rotateY(100deg);
+
 		.sreveal-in-view &,
 		.swiper-slide-active:not(.wait-for-sreveal) & {
 			transform: perspective(2500px) rotateY(0);
@@ -218,6 +221,7 @@ $sreveal-default-delay: 200; // same from custom/scroll-reveal.js
 
 	[data-aos="flip-up"] {
 		transform: perspective(2500px) rotateX(-100deg);
+
 		.sreveal-in-view &,
 		.swiper-slide-active:not(.wait-for-sreveal) & {
 			transform: perspective(2500px) rotateX(0);
@@ -226,6 +230,7 @@ $sreveal-default-delay: 200; // same from custom/scroll-reveal.js
 
 	[data-aos="flip-down"] {
 		transform: perspective(2500px) rotateX(100deg);
+
 		.sreveal-in-view &,
 		.swiper-slide-active:not(.wait-for-sreveal) & {
 			transform: perspective(2500px) rotateX(0);
@@ -244,6 +249,7 @@ $sreveal-default-delay: 200; // same from custom/scroll-reveal.js
 @for $i from 1 through 20 {
 	[data-aos-delay="#{$i * 100}"] {
 		transition-delay: 0s;
+
 		.sreveal-in-view &,
 		.swiper-slide-active:not(.wait-for-sreveal) & {
 			transition-delay: #{$i * 100}ms;
@@ -259,6 +265,7 @@ $sreveal-default-delay: 200; // same from custom/scroll-reveal.js
 
 [data-aos] {
 	pointer-events: none;
+
 	.sreveal-in-view &,
 	.swiper-slide-active:not(.wait-for-sreveal) & {
 		pointer-events: auto;
@@ -301,6 +308,7 @@ $aos-easing: (
 ////////////////////////////////////////////////
 @for $i from 1 through 20 {
 	$counter: $i - 1;
+
 	.sreveal-in-view {
 		.aos-stagger-item {
 			&:nth-child(#{$i}) {
@@ -314,6 +322,7 @@ $aos-easing: (
 // slides changes when they are already in view
 @for $i from 1 through 20 {
 	$counter: $i - 1;
+
 	.swiper-slide-active:not(.wait-for-sreveal) {
 		.aos-stagger-item {
 			&:nth-child(#{$i}) {
@@ -326,6 +335,6 @@ $aos-easing: (
 // Custom
 ////////////////////////////////////////////////
 [data-aos="slide-down-markers"] {
-	transition-duration: 300;
 	transform: translate3d(0, -30rem, 0);
+	transition-duration: 300;
 }

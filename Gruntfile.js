@@ -13,14 +13,14 @@ module.exports = function (grunt) {
 					"source/sass/_partials/**/*.{scss,sass}"
 				],
 				// dev
-				tasks: ["stylelint", "sass"]
+				tasks: ["sass"]
 				// prod
 				// tasks: [ "sass", "stylelint", "purgecss", "rtlcss", "postcss" ]
 			},
 			js: {
 				files: ["source/js/**/*.js"],
 				// dev
-				tasks: ["eslint", "concat"]
+				tasks: ["concat"]
 				// prod
 				// tasks: [ "concat",  "babel", "uglify" ]
 			},
@@ -63,6 +63,7 @@ module.exports = function (grunt) {
 				"!source/js/custom/Ιdocument.close.js"
 			],
 			options: {
+				cache: true,
 				fix: true
 			}
 		},
@@ -242,7 +243,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks("grunt-stylelint")
 	grunt.loadNpmTasks("grunt-eslint")
 	// grunt.loadNpmTasks('grunt-browser-sync');
-	grunt.registerTask("default", ["watch"])
+	grunt.registerTask("default", ["stylelint", "eslint", "watch"])
 	// grunt.registerTask("build", [
 	// 	"rtlcss",
 	// 	"postcss",

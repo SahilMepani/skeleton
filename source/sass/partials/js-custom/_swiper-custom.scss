@@ -1,36 +1,37 @@
 // Make all slides equal height
+
 /* ========================================== */
 .swiper-slide {
 	height: auto;
 }
 
-/*----------  Swiper Pagination - Dashed & left aligned  ----------*/
+/* ----------  Swiper Pagination - Dashed & left aligned  ---------- */
 .swiper-pagination.swiper-pagination-horizontal {
 	// specificity issue
 	height: 0;
-	bottom: 0; // overwrite default
 	position: relative; // overwrite default
+	bottom: 0; // overwrite default
 
 	&.scheme-dark {
 		span {
-			background-color: rgba(green, 0.3);
+			background-color: rgb(green 0.3);
 
-			&:after {
-				content: "";
+			&::after {
 				background: green;
+				content: "";
 			}
 		}
 	}
 
 	span {
-		opacity: 1;
-		background-color: rgba(#fff, 0.2);
 		display: inline-block;
 		width: rem-calc(40px);
 		height: rem-calc(4px);
 		margin-left: rem-calc(5px);
 		border-radius: 0;
 		position: relative;
+		opacity: 1;
+		background-color: rgba(#fff, 0.2);
 		cursor: pointer;
 		overflow: hidden;
 
@@ -38,18 +39,18 @@
 			margin: 0 rem-calc(10px) 0 0;
 		}
 
-		&:after {
-			content: "";
+		&::after {
 			background: #fff;
 			position: absolute;
 			top: 0;
+			right: 0;
 			bottom: 0;
 			left: 0;
-			right: 0;
 			z-index: 10;
-			transform: scale(0px);
-			transform-origin: 100% 100%;
+			transform: scale(0);
 			transition: 0.3s transform ease-out;
+			content: "";
+			transform-origin: 100% 100%;
 		}
 
 		&.swiper-pagination-bullet-active {
@@ -82,11 +83,11 @@
 .swiper-button-next,
 .swiper-button-prev {
 	color: $primary;
+	text-align: center;
 	width: rem-calc(60px);
 	height: rem-calc(60px);
-	text-align: center;
-	border-radius: 50%;
 	border: rem-calc(1px) solid $primary;
+	border-radius: 50%;
 
 	&::after {
 		display: none; // default overwrite
@@ -114,18 +115,20 @@
 		width: rem-calc(50px);
 		height: rem-calc(50px);
 		padding: rem-calc(10px);
-		border-radius: 50%;
-		border: rem-calc(1px) solid currentColor;
+
 		// space for border, required, if the navigation is standalone and not a part of heading + navigation
 		margin-top: rem-calc(1px);
+		border: rem-calc(1px) solid currentcolor;
+		border-radius: 50%;
+
 		// required
 		position: relative;
-		left: auto;
 		right: auto;
+		left: auto;
 	}
 }
 
-/*----------  Swiper Arrow Navigation - Absolute end  ----------*/
+/* ----------  Swiper Arrow Navigation - Absolute end  ---------- */
 .swiper-navigation-absolute {
 	.swiper-button-prev {
 		right: auto;
@@ -141,6 +144,7 @@
 // hide the buttons when not enough slides
 .swiper-button-lock {
 	display: none !important;
+
 	// opacity: .3 !important;
 }
 
@@ -149,13 +153,14 @@
 .swiper-horizontal > .swiper-scrollbar {
 	width: 100%;
 	left: 0;
+
 	.swiper-scrollbar-drag {
-		background-color: teal;
 		border-radius: rem-calc(5px);
+		background-color: teal;
 	}
 }
 
-/*----------  Swiper Arrow Navigation - RTL  ----------*/
+/* ----------  Swiper Arrow Navigation - RTL  ---------- */
 .swiper-navigation {
 	display: flex;
 
@@ -164,7 +169,7 @@
 	}
 }
 
-/*----------  Required  ----------*/
+/* ----------  Required  ---------- */
 // these classes are added to section containing the swiper slider
 .swiper-cards-overflow-down-xl {
 	@include swiper-cards-overflow-down("xl");

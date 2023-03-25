@@ -30,8 +30,6 @@
 		"grunt-stylelint": "^0.18.0",
 		"node-sass": "^5.0.0",
 		"postcss": "*",
-		"prettier": "2.2.1",
-		"prettier-eslint": "15.0.1",
 		"purgecss-with-wordpress": "^5.0.0"
 	},
 	"keywords": [],

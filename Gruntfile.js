@@ -18,7 +18,7 @@ module.exports = function (grunt) {
 				// tasks: [ "sass", "stylelint", "purgecss", "rtlcss", "postcss" ]
 			},
 			js: {
-				files: ["js/**/*.js"],
+				files: ["source/js/**/*.js"],
 				// dev
 				tasks: ["concat"]
 				// prod

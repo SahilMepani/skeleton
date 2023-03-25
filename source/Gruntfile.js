@@ -42,17 +42,17 @@ module.exports = function (grunt) {
 		stylelint: {
 			options: {
 				cache: true, // Use caching to speed up linting
-				configFile: '../.stylelintrc.json',
+				configFile: "../.stylelintrc.json",
 				fix: true
 			},
 			src: [
-				'sass/**/*.scss',
-				'!sass/partials/bootstrap/**/*.scss',
-				'!sass/partials/js-plugins/**/*.scss',
-				'!sass/partials/_bs-utilities-overwrite.scss',
-				'!sass/partials/_bs-variables-overwrite.scss',
-				'!sass/partials/mixins/_rem.scss',
-				'!sass/partials/mixins/_fluid-typography.scss'
+				"sass/**/*.scss",
+				"!sass/partials/bootstrap/**/*.scss",
+				"!sass/partials/js-plugins/**/*.scss",
+				"!sass/partials/_bs-utilities-overwrite.scss",
+				"!sass/partials/_bs-variables-overwrite.scss",
+				"!sass/partials/mixins/_rem.scss",
+				"!sass/partials/mixins/_fluid-typography.scss"
 			]
 		},
 
@@ -166,7 +166,7 @@ module.exports = function (grunt) {
 				// task options
 				options: {
 					// generate source maps
-					map: {inline: false},
+					map: { inline: false },
 					// rtlcss options
 					opts: {
 						clean: false
@@ -234,7 +234,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks("@lodder/grunt-postcss")
 	grunt.loadNpmTasks("grunt-babel")
 	grunt.loadNpmTasks("grunt-purgecss")
-	grunt.loadNpmTasks( 'grunt-stylelint' );
+	grunt.loadNpmTasks("grunt-stylelint")
 	// grunt.loadNpmTasks('grunt-browser-sync');
 	grunt.registerTask("default", ["watch"])
 	// grunt.registerTask("build", [

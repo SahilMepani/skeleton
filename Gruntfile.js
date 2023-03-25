@@ -13,14 +13,14 @@ module.exports = function (grunt) {
 					"source/sass/_partials/**/*.{scss,sass}"
 				],
 				// dev
-				tasks: ["sass", "stylelint"]
+				tasks: ["stylelint", "sass"]
 				// prod
 				// tasks: [ "sass", "stylelint", "purgecss", "rtlcss", "postcss" ]
 			},
 			js: {
 				files: ["source/js/**/*.js"],
 				// dev
-				tasks: ["concat"]
+				tasks: ["eslint", "concat"]
 				// prod
 				// tasks: [ "concat",  "babel", "uglify" ]
 			},
@@ -55,6 +55,19 @@ module.exports = function (grunt) {
 				"!source/sass/partials/mixins/_fluid-typography.scss"
 			]
 		},
+
+		eslint: {
+			target: [
+				"source/js/custom/**/*.js",
+				"!source/js/custom/!document.ready.js",
+				"!source/js/custom/Ιdocument.close.js"
+			],
+			options: {
+				fix: true
+			}
+		},
+
+		// eslint
 
 		// Frontend & Backend styles
 		sass: {
@@ -166,7 +179,7 @@ module.exports = function (grunt) {
 				// task options
 				options: {
 					// generate source maps
-					map: {inline: false},
+					map: { inline: false },
 					// rtlcss options
 					opts: {
 						clean: false
@@ -226,7 +239,8 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks("@lodder/grunt-postcss")
 	grunt.loadNpmTasks("grunt-babel")
 	grunt.loadNpmTasks("grunt-purgecss")
-	grunt.loadNpmTasks( 'grunt-stylelint' );
+	grunt.loadNpmTasks("grunt-stylelint")
+	grunt.loadNpmTasks("grunt-eslint")
 	// grunt.loadNpmTasks('grunt-browser-sync');
 	grunt.registerTask("default", ["watch"])
 	// grunt.registerTask("build", [

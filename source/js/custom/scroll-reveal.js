@@ -9,94 +9,94 @@ window.sr = ScrollReveal({
 	distance: "50px",
 	delay: 200,
 	beforeReveal: function (el) {
-		el.style.animationName = "";
-		el.classList.add("sreveal-in-view");
-	},
-});
+		el.style.animationName = ""
+		el.classList.add("sreveal-in-view")
+	}
+})
 
 /* Define custom animations */
 var fade = {
-	distance: 0,
-};
+	distance: 0
+}
 
 var fadeUp = {
 	// it means fade from Up
-	origin: "bottom",
-};
+	origin: "bottom"
+}
 
 var fadeDown = {
-	origin: "top",
-};
+	origin: "top"
+}
 
 var fadeRight = {
-	origin: "left",
-};
+	origin: "left"
+}
 
 var fadeLeft = {
-	origin: "right",
-};
+	origin: "right"
+}
 
 var slideUp = {
 	origin: "bottom",
-	opacity: null,
-};
+	opacity: null
+}
 
 var slideUpFull = {
 	origin: "bottom",
 	distance: "100%",
-	opacity: null,
-};
+	opacity: null
+}
 
 var slideDown = {
 	origin: "top",
-	opacity: null,
-};
+	opacity: null
+}
 
 var slideDownFull = {
 	origin: "top",
 	distance: "100%",
-	opacity: null,
-};
+	opacity: null
+}
 
 var slideRight = {
 	origin: "left",
-	opacity: null,
-};
+	opacity: null
+}
 
 var slideRightFull = {
 	origin: "left",
 	distance: "100%",
-	opacity: null,
-};
+	opacity: null
+}
 
 var slideLeft = {
 	origin: "right",
-	opacity: null,
-};
+	opacity: null
+}
 
 var slideLeftFull = {
 	origin: "right",
 	distance: "100%",
-	opacity: null,
-};
+	opacity: null
+}
 
 var zoomOut = {
 	scale: "1.2",
 	distance: 0,
-	opacity: null,
-};
+	opacity: null
+}
 
 var zoomFadeOut = {
 	scale: "1.2",
-	distance: 0,
-};
+	distance: 0
+}
 
 // Project Specific
 var slideDownMarkers = {
 	opacity: null,
 	distance: "-30rem",
-	origin: "bottom",
-};
+	origin: "bottom"
+}
 
 // do nothing, useful for adding just class
 var trigger = {
@@ -105,69 +105,69 @@ var trigger = {
 	easing: "ease",
 	distance: 0,
 	delay: 0,
-	opacity: null,
-};
+	opacity: null
+}
 
 /* Invoke stagger animation */
 let srevealStagger100 = document.querySelectorAll(
 	"body:not(.wp-admin) .sreveal-stagger-100"
-);
+)
 for (const item of srevealStagger100) {
 	let srevealStaggerItem = item.querySelectorAll(
 		"body:not(.wp-admin) .sreveal-stagger-item"
-	);
+	)
 	sr.reveal(srevealStaggerItem, {
-		interval: 100,
-	});
+		interval: 100
+	})
 }
 
 let srevealStagger200 = document.querySelectorAll(
 	"body:not(.wp-admin) .sreveal-stagger-200"
-);
+)
 for (const item of srevealStagger200) {
 	let srevealStaggerItem = item.querySelectorAll(
 		"body:not(.wp-admin) .sreveal-stagger-item"
-	);
+	)
 	sr.reveal(srevealStaggerItem, {
-		interval: 200,
-	});
+		interval: 200
+	})
 }
 
 /* Invoke custom animations */
-sr.reveal('body:not(.wp-admin) [data-sreveal="trigger"]', trigger);
-sr.reveal('body:not(.wp-admin) [data-sreveal="fade"]', fade);
-sr.reveal('body:not(.wp-admin) [data-sreveal="fade-up"]', fadeUp);
-sr.reveal('body:not(.wp-admin) [data-sreveal="fade-down"]', fadeDown);
-sr.reveal('body:not(.wp-admin) [data-sreveal="fade-right"]', fadeRight);
-sr.reveal('body:not(.wp-admin) [data-sreveal="fade-left"]', fadeLeft);
-sr.reveal('body:not(.wp-admin) [data-sreveal="slide-up"]', slideUp);
-sr.reveal('body:not(.wp-admin) [data-sreveal="slide-up"]', slideUp);
-sr.reveal('body:not(.wp-admin) [data-sreveal="slide-up-full"]', slideUpFull);
-sr.reveal('body:not(.wp-admin) [data-sreveal="slide-down"]', slideDown);
+sr.reveal("body:not(.wp-admin) [data-sreveal=\"trigger\"]", trigger)
+sr.reveal("body:not(.wp-admin) [data-sreveal=\"fade\"]", fade)
+sr.reveal("body:not(.wp-admin) [data-sreveal=\"fade-up\"]", fadeUp)
+sr.reveal("body:not(.wp-admin) [data-sreveal=\"fade-down\"]", fadeDown)
+sr.reveal("body:not(.wp-admin) [data-sreveal=\"fade-right\"]", fadeRight)
+sr.reveal("body:not(.wp-admin) [data-sreveal=\"fade-left\"]", fadeLeft)
+sr.reveal("body:not(.wp-admin) [data-sreveal=\"slide-up\"]", slideUp)
+sr.reveal("body:not(.wp-admin) [data-sreveal=\"slide-up\"]", slideUp)
+sr.reveal("body:not(.wp-admin) [data-sreveal=\"slide-up-full\"]", slideUpFull)
+sr.reveal("body:not(.wp-admin) [data-sreveal=\"slide-down\"]", slideDown)
 sr.reveal(
-	'body:not(.wp-admin) [data-sreveal="slide-down-full"]',
+	"body:not(.wp-admin) [data-sreveal=\"slide-down-full\"]",
 	slideDownFull
-);
-sr.reveal('body:not(.wp-admin) [data-sreveal="slide-right"]', slideRight);
+)
+sr.reveal("body:not(.wp-admin) [data-sreveal=\"slide-right\"]", slideRight)
 sr.reveal(
-	'body:not(.wp-admin) [data-sreveal="slide-right-full"]',
+	"body:not(.wp-admin) [data-sreveal=\"slide-right-full\"]",
 	slideRightFull
-);
-sr.reveal('body:not(.wp-admin) [data-sreveal="slide-left"]', slideLeft);
+)
+sr.reveal("body:not(.wp-admin) [data-sreveal=\"slide-left\"]", slideLeft)
 sr.reveal(
-	'body:not(.wp-admin) [data-sreveal="slide-left-full"]',
+	"body:not(.wp-admin) [data-sreveal=\"slide-left-full\"]",
 	slideLeftFull
-);
-sr.reveal('body:not(.wp-admin) [data-sreveal="zoom-out"]', zoomOut);
-sr.reveal('body:not(.wp-admin) [data-sreveal="zoom-fade-out"]', zoomFadeOut);
+)
+sr.reveal("body:not(.wp-admin) [data-sreveal=\"zoom-out\"]", zoomOut)
+sr.reveal("body:not(.wp-admin) [data-sreveal=\"zoom-fade-out\"]", zoomFadeOut)
 sr.reveal(
-	'body:not(.wp-admin) [data-sreveal="slide-down-markers"]',
+	"body:not(.wp-admin) [data-sreveal=\"slide-down-markers\"]",
 	slideDownMarkers
-);
+)
 
 /* Enable data-attributes */
 $("body:not(.wp-admin) [data-sreveal]").each(function () {
-	var el = $(this);
+	var el = $(this)
 
 	// options can be used as postfix. For eg. data-sreveal-option.
 	// option with two words should be separated using '-'. For eg. viewFactor can be written as data-sreveal-view-factor.
@@ -186,21 +186,21 @@ $("body:not(.wp-admin) [data-sreveal]").each(function () {
 		"reset",
 		"useDelay",
 		"viewFactor",
-		"viewOffset",
-	];
+		"viewOffset"
+	]
 
-	var settings = {};
-	var interval = 0;
+	var settings = {}
+	var interval = 0
 
 	$(options).each(function (index, element) {
 		if (el.data("sreveal-" + options[index])) {
-			var option = options[index];
-			settings[option] = el.data("sreveal-" + option);
+			var option = options[index]
+			settings[option] = el.data("sreveal-" + option)
 		}
-	});
+	})
 
-	sr.reveal(el, settings);
-});
+	sr.reveal(el, settings)
+})
 
 /* Disable animation, if not mobile */
 // $( 'html.js:not(.is-mobile) .sreveal' ).css( 'animation-name', 'none' );

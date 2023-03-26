@@ -1,1 +1,3 @@
 source/sass/partials/bootstrap/**/*.scss
+style.css
+style-rtl.css

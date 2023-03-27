@@ -37,7 +37,7 @@ $dark: $gray-900;
 // Use less colors as possible to save kb
 $theme-colors: (
 	// as per the project
-	$blue: #000000,
+	$blue: #000,
 	// required
 	"body": $body,
 	"heading": $heading,
@@ -46,7 +46,6 @@ $theme-colors: (
 );
 
 // Links
-//
 // Style anchor elements.
 $link-color: $primary;
 $link-decoration: underline;
@@ -59,7 +58,6 @@ $body-color: $body;
 $body-bg: $white;
 
 // Paragraphs
-//
 // Style p element.
 $paragraph-margin-bottom: 3rem;
 
@@ -108,7 +106,6 @@ $negative-spacers: if($enable-negative-margins, negativify-map($spacers), null);
 // @debug $negative-spacers;
 
 // Grid breakpoints
-//
 // Define the minimum dimensions at which your layout will change,
 // adapting to different screen sizes, for use in media queries.
 
@@ -118,7 +115,6 @@ $negative-spacers: if($enable-negative-margins, negativify-map($spacers), null);
 // @debug $grid-breakpoints;
 
 // Grid containers
-//
 // Define the maximum width of `.container` for different screen sizes.
 // Do not use pixel values. Use rem to scale on higher size screens
 
@@ -135,7 +131,6 @@ $container-max-widths: (
 );
 
 // Grid columns
-//
 // Set the number of columns and specify the width of the gutters.
 
 // $grid-columns:                12;
@@ -145,7 +140,6 @@ $grid-gutter-width: 2rem; // gets divided by 2 for each side
 $gutters: $spacers;
 
 // Typography
-//
 // Font, line-height, and color for body text, headings, and more.
 
 // $font-size-root effects the value of `rem`, which is used for as well font sizes, paddings and margins
@@ -242,7 +236,6 @@ $border-widths: (
 $border-color: $primary; // it will work by applying just border-top class
 
 // Tables
-//
 // Customizes the `.table` component with basic values, each used across all table variations.
 
 $table-cell-padding-y: 1rem;
@@ -284,7 +277,6 @@ $table-bg-scale: -80%;
 // );
 
 // Buttons + Forms
-//
 // Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
 
 // $input-btn-padding-y:         .5rem;
@@ -310,7 +302,6 @@ $table-bg-scale: -80%;
 // $input-btn-border-width:      $border-width;
 
 // Buttons
-//
 // For each of Bootstrap's buttons, define text, background, and border color.
 
 // scss-docs-start btn-variables
@@ -387,7 +378,6 @@ $input-plaintext-color: $body-color;
 $input-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
 // Alerts
-//
 // Define alert colors, border radius, and padding.
 
 // scss-docs-start alert-variables

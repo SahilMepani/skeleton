@@ -139,12 +139,12 @@
 		<ul id="ajax-list-post" class="list-blog-post mb-0">
 
 			<?php if ( have_posts() ): ?>
-<?php while ( have_posts() ): the_post();?>
+			<?php while ( have_posts() ): the_post();?>
 
-				<?php get_template_part( 'template-parts/post-card' );?>
+			<?php get_template_part( 'template-parts/post-card' );?>
 
-				<?php endwhile;?>
-<?php endif;?>
+			<?php endwhile;?>
+			<?php endif;?>
 
 		</ul> <!-- .list-blog-post -->
 

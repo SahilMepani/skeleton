@@ -13,3 +13,4 @@ source/node_modules
 sftp.json
 /nbproject/private/
 *.todo
+node_modules

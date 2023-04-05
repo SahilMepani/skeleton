@@ -77,8 +77,6 @@
 
 	</section> <!-- .main-content -->
 
-		<?php get_sidebar();?>
-
 	</div> <!-- .container -->
 
 </div> <!-- .content-section -->

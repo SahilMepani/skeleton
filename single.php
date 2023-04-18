@@ -29,8 +29,6 @@
 
 							<?php the_content();?>
 
-							<?php skel_wp_link_pages();?>
-
 							<?php if ( has_tag() ) {?>
 								<p class="tags"><?php the_tags( '<b>Tags:</b> ', ', ', '' ); ?> </p>
 							<?php } ?>
@@ -106,13 +104,6 @@
 
 						</div> <!-- .post-nav End -->
 
-						<?php
-							// If comments are open or we have at least one comment, load up the comment template.
-							if ( comments_open() || '0' != get_comments_number() ) {
-								comments_template( '', true );
-							}
-						?>
-
 					<?php else: ?>
 
 						<h2>Not Found</h2>
@@ -121,10 +112,6 @@
 					<?php endif;?>
 
 				</section> <!-- .main-content -->
-			</div> <!-- .col -->
-
-			<div class="col-sm-3">
-				<?php get_sidebar();?>
 			</div> <!-- .col -->
 
 		</div> <!-- .row -->

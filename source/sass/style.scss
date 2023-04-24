@@ -10,10 +10,13 @@
 * License URI: http://wordpress.org/about/gpl/
 */
 
-// Bootstrap 5.0
+// Bootstrap 5.2
+@import "partials/bootstrap/mixins/banner";
+
 // Configuration - same order
 @import "partials/bootstrap/functions";
 @import "partials/bootstrap/variables";
+@import "partials/bootstrap/maps";
 @import "partials/bootstrap/mixins";
 
 // BS variables overwrite - same order
@@ -23,40 +26,12 @@
 @import "partials/bootstrap/utilities";
 @import "partials/bs-utilities-overwrite";
 
-// Layout & components
 @import "partials/bootstrap/root";
 @import "partials/bootstrap/reboot";
-
-// @import "partials/bootstrap/type";
-// @import "partials/bootstrap/images";
 @import "partials/bootstrap/containers";
 @import "partials/bootstrap/grid";
 @import "partials/bootstrap/tables";
-
-// @import "partials/bootstrap/forms";
 @import "partials/bootstrap/buttons";
-
-// @import "partials/bootstrap/transitions";
-// @import "partials/bootstrap/dropdown";
-// @import "partials/bootstrap/button-group";
-// @import "partials/bootstrap/nav";
-// @import "partials/bootstrap/navbar";
-// @import "partials/bootstrap/card";
-// @import "partials/bootstrap/accordion";
-// @import "partials/bootstrap/breadcrumb";
-// @import "partials/bootstrap/pagination";
-// @import "partials/bootstrap/badge";
-// @import "partials/bootstrap/alert";
-// @import "partials/bootstrap/progress";
-// @import "partials/bootstrap/list-group";
-// @import "partials/bootstrap/close";
-// @import "partials/bootstrap/toasts";
-// @import "partials/bootstrap/modal";
-// @import "partials/bootstrap/tooltip";
-// @import "partials/bootstrap/popover";
-// @import "partials/bootstrap/carousel";
-// @import "partials/bootstrap/spinners";
-// @import "partials/bootstrap/offcanvas";
 @import "partials/bootstrap/helpers";
 @import "partials/bootstrap/utilities/api";
 

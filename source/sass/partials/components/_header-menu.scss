@@ -4,14 +4,14 @@
 $mobile-sidebar-bg-color: $teal;
 
 /* ----------  Parent Menu  ---------- */
-$mobile-parent-menu-item-border-bottom: rem-calc(1px) solid rgba(#000, 0.1);
+$mobile-parent-menu-item-border-bottom: rem-calc(1) solid rgba(#000, 0.1);
 $mobile-parent-menu-link-bg-color: transparent;
 $mobile-parent-menu-link-color: $green;
 $mobile-parent-menu-link-hover-bg-color: rgba(#000, 0.1);
 $mobile-parent-menu-link-hover-color: $green;
-$mobile-parent-menu-item-font-size: rem-calc(24px);
-$mobile-parent-menu-item-padding-y: rem-calc(13px);
-$mobile-parent-menu-item-padding-x: rem-calc(20px);
+$mobile-parent-menu-item-font-size: rem-calc(24);
+$mobile-parent-menu-item-padding-y: rem-calc(13);
+$mobile-parent-menu-item-padding-x: rem-calc(20);
 $mobile-parent-menu-current-item-link-bg-color: $green;
 $mobile-parent-menu-current-item-link-color: #fff;
 $mobile-parent-menu-dropdown-bg-color: $teal;
@@ -20,16 +20,16 @@ $mobile-parent-menu-dropdown-hover-bg-color: #fff;
 $mobile-parent-menu-dropdown-hover-icon-color: $green;
 
 /* Sub Menu */
-$mobile-sub-menu-font-size: rem-calc(18px);
+$mobile-sub-menu-font-size: rem-calc(18);
 $mobile-sub-menu-bg-color: $teal;
 $mobile-sub-menu-link-bg-color: transparent;
 $mobile-sub-menu-link-hover-bg-color: rgba(#000, 0.5);
 $mobile-sub-menu-link-color: $green;
 $mobile-sub-menu-link-hover-color: #000;
-$mobile-sub-menu-link-padding-y: rem-calc(13px);
+$mobile-sub-menu-link-padding-y: rem-calc(13);
 
 // usually this is same as parent menu
-$mobile-sub-menu-link-padding-x: rem-calc(20px);
+$mobile-sub-menu-link-padding-x: rem-calc(20);
 
 .header-nav {
 	ul {
@@ -52,20 +52,20 @@ $mobile-sub-menu-link-padding-x: rem-calc(20px);
 	@include media-breakpoint-down(lg) {
 		font-size: regular;
 		width: 100%;
-		padding: rem-calc(90px) 0 rem-calc(40px);
+		padding: rem-calc(90) 0 rem-calc(40);
 		position: fixed;
 		top: 0;
 		right: 0;
 		bottom: 0;
 		z-index: 9999;
 		transform: translateX(-100%);
-		transition: 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946px);
+		transition: 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946);
 		overflow: auto;
 		background-color: $mobile-sidebar-bg-color;
 		overscroll-behavior: contain; // avoid scroll chaining
 
 		&.js-active {
-			box-shadow: 0 0 rem-calc(10px) rgba(#999, 0.3);
+			box-shadow: 0 0 rem-calc(10) rgba(#999, 0.3);
 			transform: translateX(0);
 		}
 	}
@@ -111,7 +111,7 @@ $mobile-sub-menu-link-padding-x: rem-calc(20px);
 
 				span {
 					background: $mobile-parent-menu-dropdown-bg-color;
-					width: rem-calc(45px);
+					width: rem-calc(45);
 					position: absolute;
 					top: 0;
 					right: 0;
@@ -125,12 +125,12 @@ $mobile-sub-menu-link-padding-x: rem-calc(20px);
 					}
 
 					&::after {
-						margin-top: rem-calc(-4px);
-						margin-left: rem-calc(-6px);
-						border: rem-calc(8px) solid transparent;
+						margin-top: rem-calc(-4);
+						margin-left: rem-calc(-6);
+						border: rem-calc(8) solid transparent;
 						border-top-color: $mobile-parent-menu-dropdown-icon-color;
-						border-right-width: rem-calc(6px);
-						border-left-width: rem-calc(6px);
+						border-right-width: rem-calc(6);
+						border-left-width: rem-calc(6);
 						position: absolute;
 						top: 50%;
 						left: 50%;
@@ -171,7 +171,7 @@ $mobile-sub-menu-link-padding-x: rem-calc(20px);
 			> a {
 				color: $mobile-sub-menu-link-color;
 				font-size: $mobile-sub-menu-font-size;
-				letter-spacing: rem-calc(1px);
+				letter-spacing: rem-calc(1);
 				text-decoration: none;
 				text-transform: uppercase;
 				display: block;
@@ -204,19 +204,19 @@ $desktop-parent-menu-current-item-link-bg-color: red;
 $desktop-parent-menu-current-item-link-color: #fff;
 $desktop-parent-menu-dropdown-icon-color: #999;
 $desktop-parent-menu-dropdown-icon-hover-color: #fff;
-$desktop-parent-menu-dropdown-icon-border: rem-calc(5px);
-$desktop-parent-menu-space-between-text-and-arrow: rem-calc(10px);
+$desktop-parent-menu-dropdown-icon-border: rem-calc(5);
+$desktop-parent-menu-space-between-text-and-arrow: rem-calc(10);
 
 /* ----------  Sub Menu  ---------- */
-$desktop-sub-menu-width: rem-calc(250px);
+$desktop-sub-menu-width: rem-calc(250);
 $desktop-sub-menu-link-bg-color: green;
 $desktop-sub-menu-link-color: #fff;
 $desktop-sub-menu-link-hover-bg-color: $desktop-sub-menu-link-bg-color;
 $desktop-sub-menu-link-hover-color: $desktop-sub-menu-link-color;
 $desktop-sub-menu-current-item-link-bg-color: $desktop-sub-menu-link-bg-color;
 $desktop-sub-menu-current-item-link-color: transparent;
-$desktop-sub-menu-font-size: rem-calc(16px);
-$desktop-sub-menu-link-padding-y: rem-calc(12px);
+$desktop-sub-menu-font-size: rem-calc(16);
+$desktop-sub-menu-link-padding-y: rem-calc(12);
 $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usually this is same as parent menu
 
 // Desktop Parent Menu
@@ -225,7 +225,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 	@include media-breakpoint-up(lg) {
 		> li {
 			float: left;
-			margin-right: rem-calc(5px);
+			margin-right: rem-calc(5);
 
 			&:hover,
 			&:focus {
@@ -260,7 +260,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 				// 	$desktop-parent-menu-dropdown-icon-border +
 				// 	$desktop-parent-menu-space-between-text-and-arrow; //dropdown icon
 				&::after {
-					margin-top: rem-calc(-2px);
+					margin-top: rem-calc(-2);
 					border: $desktop-parent-menu-dropdown-icon-border solid
 						transparent;
 					border-top-color: $desktop-parent-menu-dropdown-icon-color;
@@ -328,7 +328,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 					display: block;
 					padding: $desktop-sub-menu-link-padding-y
 						$desktop-sub-menu-link-padding-x;
-					border-bottom: rem-calc(1px) solid
+					border-bottom: rem-calc(1) solid
 						$desktop-sub-menu-link-bg-color;
 					background-color: $desktop-sub-menu-link-bg-color;
 				}
@@ -353,7 +353,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 				position: relative;
 
 				&::after {
-					margin-top: rem-calc(-4px);
+					margin-top: rem-calc(-4);
 					border: $desktop-parent-menu-dropdown-icon-border solid
 						transparent;
 					border-left-color: $desktop-parent-menu-dropdown-icon-hover-color;

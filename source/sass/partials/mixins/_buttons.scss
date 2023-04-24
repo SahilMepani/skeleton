@@ -1,5 +1,5 @@
 @mixin btn {
-	font-size: rem-calc(18px);
+	font-size: rem-calc(18);
 	font-weight: 600;
 	line-height: $btn-line-height;
 	display: flex;
@@ -13,7 +13,7 @@
 	text-transform: uppercase;
 	padding-top: $input-padding-y;
 	padding-bottom: $input-padding-y;
-	border: rem-calc(1px) solid $bg-color;
+	border: rem-calc(1) solid $bg-color;
 	background-color: $bg-color;
 	@include media-breakpoint-up(md) {
 		padding-top: $input-padding-y-lg;
@@ -36,20 +36,20 @@
 
 	svg {
 		fill: currentcolor;
-		width: rem-calc(24px);
-		height: rem-calc(24px);
-		margin-left: rem-calc(20px);
+		width: rem-calc(24);
+		height: rem-calc(24);
+		margin-left: rem-calc(20);
 	}
 }
 
 @mixin btn-sm {
-	padding: rem-calc(10px) rem-calc(20px);
+	padding: rem-calc(10) rem-calc(20);
 }
 
 @mixin btn-md {
-	padding: rem-calc(10px) rem-calc(20px);
+	padding: rem-calc(10) rem-calc(20);
 }
 
 @mixin btn-lg {
-	padding: rem-calc(10px) rem-calc(20px);
+	padding: rem-calc(10) rem-calc(20);
 }

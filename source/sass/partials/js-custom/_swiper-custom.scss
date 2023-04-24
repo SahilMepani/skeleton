@@ -25,9 +25,9 @@
 
 	span {
 		display: inline-block;
-		width: rem-calc(40px);
-		height: rem-calc(4px);
-		margin-left: rem-calc(5px);
+		width: rem-calc(40);
+		height: rem-calc(4);
+		margin-left: rem-calc(5);
 		border-radius: 0;
 		position: relative;
 		opacity: 1;
@@ -36,7 +36,7 @@
 		cursor: pointer;
 
 		&:not(:last-child) {
-			margin: 0 rem-calc(10px) 0 0;
+			margin: 0 rem-calc(10) 0 0;
 		}
 
 		&::after {
@@ -70,7 +70,7 @@
 	// }
 	@include media-breakpoint-up(md) {
 		span {
-			width: rem-calc(70px);
+			width: rem-calc(70);
 		}
 
 		// .hero-media-slider & {
@@ -84,9 +84,9 @@
 .swiper-button-prev {
 	color: $primary;
 	text-align: center;
-	width: rem-calc(60px);
-	height: rem-calc(60px);
-	border: rem-calc(1px) solid $primary;
+	width: rem-calc(60);
+	height: rem-calc(60);
+	border: rem-calc(1) solid $primary;
 	border-radius: 50%;
 
 	&::after {
@@ -101,7 +101,7 @@
 // Swiper Arrow Navigation - Inline
 ////////////////////////////////////////////////
 .swiper-navigation-inline {
-	gap: 0 rem-calc(10px);
+	gap: 0 rem-calc(10);
 
 	&.dir-rtl {
 		flex-direction: row-reverse;
@@ -112,13 +112,13 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: rem-calc(50px);
-		height: rem-calc(50px);
-		padding: rem-calc(10px);
+		width: rem-calc(50);
+		height: rem-calc(50);
+		padding: rem-calc(10);
 
 		// space for border, required, if the navigation is standalone and not a part of heading + navigation
-		margin-top: rem-calc(1px);
-		border: rem-calc(1px) solid currentcolor;
+		margin-top: rem-calc(1);
+		border: rem-calc(1) solid currentcolor;
 		border-radius: 50%;
 
 		// required
@@ -155,7 +155,7 @@
 	left: 0;
 
 	.swiper-scrollbar-drag {
-		border-radius: rem-calc(5px);
+		border-radius: rem-calc(5);
 		background-color: teal;
 	}
 }

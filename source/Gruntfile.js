@@ -51,8 +51,7 @@ module.exports = function (grunt) {
 				"!sass/partials/js-plugins/**/*.scss",
 				"!sass/partials/_bs-utilities-overwrite.scss",
 				"!sass/partials/_bs-variables-overwrite.scss",
-				"!sass/partials/mixins/_rem.scss",
-				"!sass/partials/mixins/_fluid-typography.scss"
+				"!sass/partials/mixins/_rem.scss"
 			]
 		},
 

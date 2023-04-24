@@ -29,7 +29,7 @@
 html {
 	// Do not use sreveal on header with this
 	// Leave fixed header space when scrolled using scroll snapping
-	scroll-padding-top: var(--scroll-padding-top, rem-calc(65px));
+	scroll-padding-top: var(--scroll-padding-top, rem-calc(65));
 }
 
 body {
@@ -137,13 +137,13 @@ address {
 output {
 	color: #555;
 	line-height: 1.4285;
-	padding-top: rem-calc(30px);
+	padding-top: rem-calc(30);
 }
 
 code {
 	font-weight: 400;
 	display: inline-block;
-	padding: rem-calc(5px);
+	padding: rem-calc(5);
 	background-color: $gray-100;
 }
 
@@ -156,14 +156,14 @@ dl {
 
 ul,
 ol {
-	margin-left: rem-calc(20px);
+	margin-left: rem-calc(20);
 	list-style-position: outside;
 
 	ul,
 	ol {
 		margin: 0;
-		margin-top: rem-calc(5px);
-		margin-left: rem-calc(40px);
+		margin-top: rem-calc(5);
+		margin-left: rem-calc(40);
 	}
 
 	ol {
@@ -191,14 +191,14 @@ ol {
 
 li {
 	line-height: $line-height-lg;
-	margin-bottom: $paragraph-margin-bottom / 2;
+	margin-bottom: $paragraph-margin-bottom * 0.5;
 }
 
 dt {
 	font-family: $headings-font-family;
 	font-weight: 700;
 	line-height: $line-height-base;
-	margin: 0 0 ($paragraph-margin-bottom / 2);
+	margin: 0 0 ($paragraph-margin-bottom * 0.5);
 }
 
 /* ----------  Form  ---------- */
@@ -210,10 +210,10 @@ form {
 	> ul {
 		> li {
 			clear: both;
-			margin-bottom: $paragraph-margin-bottom / 2;
+			margin-bottom: $paragraph-margin-bottom * 0.5;
 
 			> label {
-				margin-right: rem-calc(10px);
+				margin-right: rem-calc(10);
 			}
 		}
 	}
@@ -228,7 +228,7 @@ form {
 	legend {
 		font-weight: 700;
 		display: block;
-		margin-bottom: $paragraph-margin-bottom / 2;
+		margin-bottom: $paragraph-margin-bottom * 0.5;
 		border: 0;
 	}
 
@@ -258,12 +258,12 @@ form {
 	}
 
 	input[type="date"] {
-		line-height: rem-calc(32px);
+		line-height: rem-calc(32);
 	}
 
 	textarea {
 		line-height: $line-height-base;
-		height: rem-calc(150px);
+		height: rem-calc(150);
 		resize: vertical;
 	}
 
@@ -271,8 +271,8 @@ form {
 	input[type="radio"] {
 		line-height: normal;
 		margin: 0;
-		margin-top: rem-calc(4px);
-		margin-right: rem-calc(5px);
+		margin-top: rem-calc(4);
+		margin-right: rem-calc(5);
 	}
 
 	select[multiple],
@@ -292,8 +292,8 @@ form {
 	input[type="file"]:focus,
 	input[type="radio"]:focus,
 	input[type="checkbox"]:focus {
-		outline: rem-calc(5px) auto -webkit-focus-ring-color;
-		outline-offset: rem-calc(-2px);
+		outline: rem-calc(5) auto -webkit-focus-ring-color;
+		outline-offset: rem-calc(-2);
 	}
 }
 

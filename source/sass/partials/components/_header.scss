@@ -1,6 +1,6 @@
 .site-header {
-	padding-top: rem-calc(10px);
-	padding-bottom: rem-calc(10px);
+	padding-top: rem-calc(10);
+	padding-bottom: rem-calc(10);
 	transition: 0.3s ease;
 	background-color: #eee;
 
@@ -13,9 +13,9 @@
 
 .header-logo {
 	float: left;
-	width: rem-calc(151px);
-	height: rem-calc(25px);
-	margin-top: rem-calc(15px) !important; // overwrite :first-child
+	width: rem-calc(151);
+	height: rem-calc(25);
+	margin-top: rem-calc(15) !important; // overwrite :first-child
 	margin-bottom: 0;
 	position: relative;
 
@@ -44,15 +44,15 @@
 	text-decoration: none;
 	display: block;
 	float: right;
-	padding: rem-calc(10px) rem-calc(15px) rem-calc(10px) rem-calc(50px) !important;
+	padding: rem-calc(10) rem-calc(15) rem-calc(10) rem-calc(50) !important;
 	position: relative;
 
 	.i-menu {
-		font-size: rem-calc(24px);
-		line-height: rem-calc(24px);
+		font-size: rem-calc(24);
+		line-height: rem-calc(24);
 		position: absolute;
 		top: 50%;
-		left: rem-calc(15px); // same as padding right
+		left: rem-calc(15); // same as padding right
 		transform: translateY(-50%);
 	}
 	@include media-breakpoint-up(lg) {
@@ -63,15 +63,15 @@
 .header-nav-close {
 	background: none;
 	text-decoration: none;
-	padding: rem-calc(10px);
+	padding: rem-calc(10);
 	border: 0;
 	position: absolute;
 	top: 0;
 	right: 0;
 
 	.i-x {
-		font-size: rem-calc(36px);
-		line-height: rem-calc(36px);
+		font-size: rem-calc(36);
+		line-height: rem-calc(36);
 	}
 
 	&:hover,

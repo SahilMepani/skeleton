@@ -9,7 +9,7 @@
 // overlay
 $mfp-overlay-color: black !default; // Color of overlay screen
 $mfp-overlay-opacity: 0.95 !default; // Opacity of overlay screen
-$mfp-shadow: 0 0 rem-calc(8px) #000 !default; // Shadow on image or iframe
+$mfp-shadow: 0 0 rem-calc(8) #000 !default; // Shadow on image or iframe
 
 // spacing
 $mfp-popup-padding-left: rem-calc(
@@ -32,7 +32,7 @@ $mfp-controls-text-color-hover: #fff !default; // Hover color of preloader and "
 
 // Iframe-type options
 $mfp-include-iframe-type: true !default; // Enable Iframe-type popups
-$mfp-iframe-padding-top: rem-calc(40px) !default; // Iframe padding top
+$mfp-iframe-padding-top: rem-calc(40) !default; // Iframe padding top
 $mfp-iframe-background: #000 !default; // Background color of iframes
 $mfp-iframe-max-width: 900px !default; // Maximum width of iframes
 $mfp-iframe-ratio: 9 / 16 !default; // Ratio of iframe (9/16 = widescreen, 3/4 = standard, etc.)
@@ -40,8 +40,8 @@ $mfp-iframe-ratio: 9 / 16 !default; // Ratio of iframe (9/16 = widescreen, 3/4 =
 // Image-type options
 $mfp-include-image-type: true !default; // Enable Image-type popups
 $mfp-image-background: #444 !default;
-$mfp-image-padding-top: rem-calc(40px) !default; // Image padding top
-$mfp-image-padding-bottom: rem-calc(40px) !default; // Image padding bottom
+$mfp-image-padding-top: rem-calc(40) !default; // Image padding top
+$mfp-image-padding-bottom: rem-calc(40) !default; // Image padding bottom
 $mfp-include-mobile-layout-for-image: true !default; // Removes paddings from top and bottom
 
 // Image caption options
@@ -189,10 +189,10 @@ $mfp-use-visuallyhidden: false !default; // Hide content from browsers, but make
 @if $mfp-use-visuallyhidden {
 	// From HTML5 Boilerplate https://github.com/h5bp/html5-boilerplate/blob/v4.2.0/doc/css.md#visuallyhidden
 	.mfp-hide {
-		width: rem-calc(1px) !important;
-		height: rem-calc(1px) !important;
+		width: rem-calc(1) !important;
+		height: rem-calc(1) !important;
 		padding: 0 !important;
-		margin: rem-calc(-1px) !important;
+		margin: rem-calc(-1) !important;
 		border: 0 !important;
 		position: absolute !important;
 		overflow: hidden !important;
@@ -216,8 +216,8 @@ $mfp-use-visuallyhidden: false !default; // Hide content from browsers, but make
 	margin-top: -0.8em;
 	position: absolute;
 	top: 50%;
-	right: rem-calc(8px);
-	left: rem-calc(8px);
+	right: rem-calc(8);
+	left: rem-calc(8);
 	z-index: $mfp-z-index-base + 4;
 
 	a {
@@ -270,14 +270,14 @@ button {
 .mfp-close {
 	color: $mfp-controls-color;
 	font-family: Arial, Baskerville, monospace;
-	font-size: rem-calc(28px);
+	font-size: rem-calc(28);
 	font-style: normal;
-	line-height: rem-calc(44px);
+	line-height: rem-calc(44);
 	text-align: center;
 	text-decoration: none;
-	width: rem-calc(44px);
-	height: rem-calc(44px);
-	padding: 0 0 rem-calc(18px) rem-calc(10px);
+	width: rem-calc(44);
+	height: rem-calc(44);
+	padding: 0 0 rem-calc(18) rem-calc(10);
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -289,7 +289,7 @@ button {
 	}
 
 	&:active {
-		top: rem-calc(1px);
+		top: rem-calc(1);
 	}
 }
 
@@ -305,16 +305,16 @@ button {
 		color: $mfp-controls-color;
 		text-align: right;
 		width: 100%;
-		padding-right: rem-calc(6px);
-		right: rem-calc(-6px);
+		padding-right: rem-calc(6);
+		right: rem-calc(-6);
 	}
 }
 
 // "1 of X" counter
 .mfp-counter {
 	color: $mfp-controls-text-color;
-	font-size: rem-calc(12px);
-	line-height: rem-calc(18px);
+	font-size: rem-calc(12);
+	line-height: rem-calc(18);
 	white-space: nowrap;
 	position: absolute;
 	top: 0;
@@ -324,18 +324,18 @@ button {
 // Navigation arrows
 @if $mfp-include-arrows {
 	.mfp-arrow {
-		width: rem-calc(90px);
-		height: rem-calc(110px);
+		width: rem-calc(90);
+		height: rem-calc(110);
 		padding: 0;
 		margin: 0;
-		margin-top: rem-calc(-55px);
+		margin-top: rem-calc(-55);
 		position: absolute;
 		top: 50%;
 		opacity: $mfp-controls-opacity;
 		-webkit-tap-highlight-color: fade-out(#000, 0);
 
 		&:active {
-			margin-top: rem-calc(-54px);
+			margin-top: rem-calc(-54);
 		}
 
 		&:hover,
@@ -345,7 +345,7 @@ button {
 
 		&::before {
 			color: #fff;
-			font-size: rem-calc(48px);
+			font-size: rem-calc(48);
 			display: block;
 			position: absolute;
 			top: 50%;
@@ -385,7 +385,7 @@ button {
 		}
 
 		.mfp-close {
-			top: rem-calc(-40px);
+			top: rem-calc(-40);
 		}
 	}
 
@@ -445,8 +445,8 @@ button {
 
 		small {
 			color: $mfp-caption-subtitle-color;
-			font-size: rem-calc(12px);
-			line-height: rem-calc(14px);
+			font-size: rem-calc(12);
+			line-height: rem-calc(14);
 			display: block;
 		}
 
@@ -466,7 +466,7 @@ button {
 
 	.mfp-title {
 		color: $mfp-caption-title-color;
-		line-height: rem-calc(18px);
+		line-height: rem-calc(18);
 		text-align: left;
 		word-wrap: break-word;
 		padding-right: rem-calc(
@@ -515,13 +515,13 @@ button {
 
 					small {
 						display: inline;
-						margin-left: rem-calc(5px);
+						margin-left: rem-calc(5);
 					}
 				}
 
 				.mfp-bottom-bar {
 					background: fade-out(#000, 0.4);
-					padding: rem-calc(3px) rem-calc(5px);
+					padding: rem-calc(3) rem-calc(5);
 					margin: 0;
 					position: fixed;
 					top: auto;
@@ -534,16 +534,16 @@ button {
 				}
 
 				.mfp-counter {
-					top: rem-calc(3px);
-					right: rem-calc(5px);
+					top: rem-calc(3);
+					right: rem-calc(5);
 				}
 
 				.mfp-close {
 					background: fade-out(#000, 0.4);
-					line-height: rem-calc(35px);
+					line-height: rem-calc(35);
 					text-align: center;
-					width: rem-calc(35px);
-					height: rem-calc(35px);
+					width: rem-calc(35);
+					height: rem-calc(35);
 					padding: 0;
 					position: fixed;
 					top: 0;
@@ -557,7 +557,7 @@ button {
 // Scale navigation arrows and reduce padding from sides
 @media all and (max-width: 900) {
 	.mfp-arrow {
-		transform: scale(0.75px);
+		transform: scale(0.75);
 	}
 
 	.mfp-arrow-left {
@@ -579,7 +579,7 @@ button {
 	/* start state */
 	.mfp-content {
 		opacity: 0;
-		transform: scale(0.8px);
+		transform: scale(0.8);
 		transition: all 0.2s ease-in-out;
 	}
 
@@ -604,7 +604,7 @@ button {
 	&.mfp-removing {
 		.mfp-content {
 			opacity: 0;
-			transform: scale(0.8px);
+			transform: scale(0.8);
 		}
 
 		&.mfp-bg {
@@ -697,7 +697,7 @@ button {
 	.mfp-content {
 		vertical-align: top;
 		opacity: 0;
-		transform: translateY(-100px);
+		transform: translateY(-100);
 		transition: all 0.2s;
 	}
 
@@ -722,7 +722,7 @@ button {
 	&.mfp-removing {
 		.mfp-content {
 			opacity: 0;
-			transform: translateY(-50px);
+			transform: translateY(-50);
 		}
 
 		&.mfp-bg {

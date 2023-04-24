@@ -4,7 +4,7 @@
 		width: 100%;
 		max-width: none !important;
 		height: 100% !important;
-		border: rem-calc(20px) solid #000;
+		border: rem-calc(20) solid #000;
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -52,11 +52,11 @@
 
 	.mfp-close {
 		color: #fff;
-		font-size: rem-calc(30px);
+		font-size: rem-calc(30);
 		line-height: 1;
 		text-align: center;
-		width: rem-calc(30px);
-		height: rem-calc(30px);
+		width: rem-calc(30);
+		height: rem-calc(30);
 		padding: 0;
 		top: 0;
 		right: 0;
@@ -68,11 +68,11 @@
 			opacity: 1;
 		}
 	}
-	@media only screen and (min-width: 768px) {
+	@media only screen and (min-width: 768) {
 		.mfp-close {
-			font-size: rem-calc(60px);
-			width: rem-calc(60px);
-			height: rem-calc(60px);
+			font-size: rem-calc(60);
+			width: rem-calc(60);
+			height: rem-calc(60);
 		}
 	}
 }

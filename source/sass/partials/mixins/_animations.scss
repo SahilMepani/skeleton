@@ -20,12 +20,12 @@
 	$border-color: currentColor
 ) {
 	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
-	padding-bottom: rem-calc(1px);
+	padding-bottom: rem-calc(1);
 	position: relative;
 	transition: 0.2s;
 
 	&::after {
-		height: rem-calc(1px);
+		height: rem-calc(1);
 		position: absolute;
 		right: 0;
 		bottom: 0;
@@ -51,12 +51,12 @@
 	$border-color: currentColor
 ) {
 	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
-	padding-bottom: rem-calc(1px);
+	padding-bottom: rem-calc(1);
 	position: relative;
 	transition: 0.2s;
 
 	&::after {
-		height: rem-calc(1px);
+		height: rem-calc(1);
 		position: absolute;
 		right: 0;
 		bottom: 0;
@@ -89,15 +89,15 @@
 		$background-start-color,
 		$background-end-color
 	);
-	background-size: 0 rem-calc(2px);
+	background-size: 0 rem-calc(2);
 	background-position: left bottom;
 	background-repeat: no-repeat;
-	padding-bottom: rem-calc(2px);
+	padding-bottom: rem-calc(2);
 	transition: background 0.2s ease-out;
 
 	&:hover,
 	&:active {
-		background-size: 100% rem-calc(2px);
+		background-size: 100% rem-calc(2);
 		color: $text_color;
 	}
 }

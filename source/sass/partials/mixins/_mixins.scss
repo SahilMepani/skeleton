@@ -1,21 +1,20 @@
 @import "rem"; // always first for input to work
 @import "animations";
 @import "buttons";
-@import "fluid-typography";
 @import "input";
 @import "keyframes";
 
 @mixin pagination-links {
 	background: #fff;
 	color: #666;
-	font-size: rem-calc(12px);
+	font-size: rem-calc(12);
 	line-height: 1;
 	text-align: center;
 	text-decoration: none;
 	display: block;
-	min-width: rem-calc(35px);
-	padding: rem-calc(10px);
-	box-shadow: 0 0 rem-calc(1px) rgb(0 0 0 / 30%);
+	min-width: rem-calc(35);
+	padding: rem-calc(10);
+	box-shadow: 0 0 rem-calc(1) rgb(0 0 0 / 30%);
 }
 
 // Required
@@ -35,7 +34,7 @@
 		.swiper-slide {
 			// card cannot be bigger than the value
 			// width is also set by the slider depending on the slidesPerView property
-			max-width: rem-calc(420px);
+			max-width: rem-calc(420);
 		}
 	}
 	@include media-breakpoint-down(md) {

@@ -1,6 +1,6 @@
 /* ----------  Required  ---------- */
 .container {
-	@media screen and (min-width: $xxxl) {
+	@media screen and (min-width: 1600px) {
 		// added over to avoid generating utility classes for this breakpoint. for eg. pt-xxxl-1 etc
 		max-width: rem-calc(1440px); // change this value as per design
 	}

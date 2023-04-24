@@ -1,8 +1,3 @@
-:root {
-	// @include fluid( font-size, $font-size-base, $font-size-base * 2.4, $scaling, $four-k, true, false );
-	// @include fluid( font-size, $font-size-base, $font-size-base, $mobile, $scaling, false, false ); // scale down
-}
-
 ::selection {
 	background: $text-selection-bg-color;
 	color: $text-selection-color;
@@ -49,47 +44,42 @@ body {
 
 h1,
 .h1 {
-	@include fluid(font-size, 44px, 90px);
-
+	font-size: fluid(44, 90);
 	font-weight: 400;
 	line-height: 1.2;
 }
 
 h2,
 .h2 {
-	@include fluid(font-size, 36px, 72px);
-
+	font-size: fluid(36, 72);
 	font-weight: 400;
 	line-height: 1.2;
 }
 
 h3,
 .h3 {
-	@include fluid(font-size, 28px, 60px);
-
+	font-size: fluid(28, 60);
 	font-weight: 400;
 	line-height: 1.2;
 }
 
 h4,
 .h4 {
-	@include fluid(font-size, 24px, 48px);
-
+	font-size: fluid(24, 48);
 	font-weight: 400;
 	line-height: 1.2;
 }
 
 h5,
 .h5 {
-	@include fluid(font-size, 18px, 36px);
-
+	font-size: fluid(18, 36);
 	font-weight: 400;
 	line-height: 1.2;
 }
 
 h6,
 .h6 {
-	font-size: rem-calc(14px);
+	font-size: rem-calc(14);
 	font-weight: 400;
 	line-height: 1.2;
 }

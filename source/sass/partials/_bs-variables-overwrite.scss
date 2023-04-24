@@ -37,7 +37,7 @@ $dark: $gray-900;
 // Use less colors as possible to save kb
 $theme-colors: (
 	// as per the project
-	$blue: #000,
+	"blue": #000,
 	// required
 	"body": $body,
 	"heading": $heading,
@@ -68,25 +68,25 @@ $container-padding-x: 2.5rem; // cannot be less than $grid gutter one side, this
 $spacer: 3rem; // used on many other components
 $spacers: (
 	0: 0,
-	0-#{5}: 0.5rem,
+	"0-5": 0.5rem,
 	1: 1rem,
-	1-#{5}: 1.5rem,
+	"1-5": 1.5rem,
 	2: 2rem,
-	2-#{5}: 2.5rem,
+	"2-5": 2.5rem,
 	3: 3rem,
-	3-#{5}: 3.5rem,
+	"3-5": 3.5rem,
 	4: 4rem,
-	4-#{5}: 4.5rem,
+	"4-5": 4.5rem,
 	5: 5rem,
-	5-#{5}: 5.5rem,
+	"5-5": 5.5rem,
 	6: 6rem,
-	6-#{5}: 6.5rem,
+	"6-5": 6.5rem,
 	7: 7rem,
-	7-#{5}: 7.5rem,
+	"7-5": 7.5rem,
 	8: 8rem,
-	8-#{5}: 8.5rem,
+	"8-5": 8.5rem,
 	9: 9rem,
-	9-#{5}: 9.5rem,
+	"9-5": 9.5rem,
 	10: 10rem,
 	// 11 : 11rem,
 	// 12 : 12rem,
@@ -111,7 +111,15 @@ $negative-spacers: if($enable-negative-margins, negativify-map($spacers), null);
 
 // New breakpoints - never use rem/%
 // if you don't want to generate the utility classes for it. You can add the breakpoint in base-style file
-// $grid-breakpoints: map-merge( $grid-breakpoints, (xxxl : 1600px) );
+$grid-breakpoints: (
+	xs: calc(375 / 10) * 1rem,
+	sm: calc(576 / 10) * 1rem,
+	md: calc(768 / 10) * 1rem,
+	lg: calc(992 / 10) * 1rem,
+	xl: calc(1200 / 10) * 1rem,
+	xxl: calc(1400 / 10) * 1rem
+);
+
 // @debug $grid-breakpoints;
 
 // Grid containers

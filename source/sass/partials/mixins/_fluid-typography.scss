@@ -5,10 +5,10 @@
 // https://codepen.io/MadeByMike/pen/vNrvdZ
 @mixin fluid(
 	$properties,
-	$min-screen,
-	$max-screen,
 	$min-value,
 	$max-value,
+	$min-screen: $sm,
+	$max-screen: $xxl,
 	$default: true,
 	$max-breakpoint: true
 ) {

@@ -1,5 +1,5 @@
 module.exports = function (grunt) {
-	const nodeSass = require("node-sass")
+	const sass = require("sass")
 
 	const browserList = ["defaults"]
 
@@ -74,7 +74,7 @@ module.exports = function (grunt) {
 			frontend: {
 				options: {
 					sourceMap: true,
-					implementation: nodeSass,
+					implementation: sass,
 					outputStyle: "expanded" // must be compact or expanded to avoid merge conflict in git and also for source maps to work
 					// importer: compass
 				},
@@ -85,7 +85,7 @@ module.exports = function (grunt) {
 			// backend: {
 			// 	options: {
 			// 		sourceMap: false,
-			// 		implementation: nodeSass,
+			// 		implementation: sass,
 			// 		// must be compact or expanded to avoid merge conflict in git and also for source maps to work
 			// 		outputStyle: "compressed",
 			// 		// importer: compass

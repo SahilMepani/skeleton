@@ -7,7 +7,7 @@
 	add_theme_support( 'disable-custom-colors' );
 
 	// -- Enable editor styles
-	add_theme_support( 'editor-styles' );
+	// add_theme_support( 'editor-styles' );
 
 	// -- Enable responsive embedded content
 	add_theme_support( 'responsive-embeds' );

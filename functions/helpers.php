@@ -135,3 +135,46 @@ function skel_get_phone_url( $phone_number = false ) {
 
 	return esc_url( 'tel:' . $phone_number );
 }
+
+
+
+
+// Limit WP Revisions
+////////////////////////////////////////////////
+// define('WP_POST_REVISIONS', 5);
+
+// Add except to page post type
+/* ========================================== */
+// add_post_type_support( 'page', 'excerpt' );
+
+
+// Enable featured images for all post types including custom
+////////////////////////////////////////////////
+// add_theme_support('post-thumbnails');
+
+
+// Faster WordPress
+// Disable if Autoptimize is enabled
+/* ========================================== */
+function skel_hints() {
+	header( "link: <" . get_stylesheet_uri() . ">;" );
+}
+add_action( 'send_headers', 'skel_hints' );
+
+
+// Load MO files
+// file name should only be {locale}.mo/po
+////////////////////////////////////////////////
+// add_action('after_setup_theme', 'wpdocs_theme_setup');
+// function wpdocs_theme_setup(){
+//   load_theme_textdomain( 'skel', get_template_directory().'/lang' );
+// }
+
+
+/*----------  REQUIRED - Do not edit  ----------*/
+
+/*============================================================
+=            Overrides default image-URL behavior            =
+============================================================*/
+// http://wordpress.org/support/topic/insert-image-default-to-no-link
+update_option( 'image_default_link_type', 'none' );

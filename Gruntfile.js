@@ -102,7 +102,7 @@ module.exports = function (grunt) {
 				separator: ";\n"
 			},
 			plugin: {
-				src: ["js/plugins/*.js", "js/custom/*.js"],
+				src: ["source/js/plugins/*.js", "source/js/custom/*.js"],
 				dest: "js/plugins.js"
 			}
 			// custom: {

@@ -134,34 +134,28 @@ for (const item of srevealStagger200) {
 }
 
 /* Invoke custom animations */
-sr.reveal("body:not(.wp-admin) [data-sreveal=\"trigger\"]", trigger)
-sr.reveal("body:not(.wp-admin) [data-sreveal=\"fade\"]", fade)
-sr.reveal("body:not(.wp-admin) [data-sreveal=\"fade-up\"]", fadeUp)
-sr.reveal("body:not(.wp-admin) [data-sreveal=\"fade-down\"]", fadeDown)
-sr.reveal("body:not(.wp-admin) [data-sreveal=\"fade-right\"]", fadeRight)
-sr.reveal("body:not(.wp-admin) [data-sreveal=\"fade-left\"]", fadeLeft)
-sr.reveal("body:not(.wp-admin) [data-sreveal=\"slide-up\"]", slideUp)
-sr.reveal("body:not(.wp-admin) [data-sreveal=\"slide-up\"]", slideUp)
-sr.reveal("body:not(.wp-admin) [data-sreveal=\"slide-up-full\"]", slideUpFull)
-sr.reveal("body:not(.wp-admin) [data-sreveal=\"slide-down\"]", slideDown)
+sr.reveal("body:not(.wp-admin) [data-sreveal='trigger']", trigger)
+sr.reveal("body:not(.wp-admin) [data-sreveal='fade']", fade)
+sr.reveal("body:not(.wp-admin) [data-sreveal='fade-up']", fadeUp)
+sr.reveal("body:not(.wp-admin) [data-sreveal='fade-down']", fadeDown)
+sr.reveal("body:not(.wp-admin) [data-sreveal='fade-right']", fadeRight)
+sr.reveal("body:not(.wp-admin) [data-sreveal='fade-left']", fadeLeft)
+sr.reveal("body:not(.wp-admin) [data-sreveal='slide-up']", slideUp)
+sr.reveal("body:not(.wp-admin) [data-sreveal='slide-up']", slideUp)
+sr.reveal("body:not(.wp-admin) [data-sreveal='slide-up-full']", slideUpFull)
+sr.reveal("body:not(.wp-admin) [data-sreveal='slide-down']", slideDown)
+sr.reveal("body:not(.wp-admin) [data-sreveal='slide-down-full']", slideDownFull)
+sr.reveal("body:not(.wp-admin) [data-sreveal='slide-right']", slideRight)
 sr.reveal(
-	"body:not(.wp-admin) [data-sreveal=\"slide-down-full\"]",
-	slideDownFull
-)
-sr.reveal("body:not(.wp-admin) [data-sreveal=\"slide-right\"]", slideRight)
-sr.reveal(
-	"body:not(.wp-admin) [data-sreveal=\"slide-right-full\"]",
+	"body:not(.wp-admin) [data-sreveal='slide-right-full']",
 	slideRightFull
 )
-sr.reveal("body:not(.wp-admin) [data-sreveal=\"slide-left\"]", slideLeft)
+sr.reveal("body:not(.wp-admin) [data-sreveal='slide-left']", slideLeft)
+sr.reveal("body:not(.wp-admin) [data-sreveal='slide-left-full']", slideLeftFull)
+sr.reveal("body:not(.wp-admin) [data-sreveal='zoom-out']", zoomOut)
+sr.reveal("body:not(.wp-admin) [data-sreveal='zoom-fade-out']", zoomFadeOut)
 sr.reveal(
-	"body:not(.wp-admin) [data-sreveal=\"slide-left-full\"]",
-	slideLeftFull
-)
-sr.reveal("body:not(.wp-admin) [data-sreveal=\"zoom-out\"]", zoomOut)
-sr.reveal("body:not(.wp-admin) [data-sreveal=\"zoom-fade-out\"]", zoomFadeOut)
-sr.reveal(
-	"body:not(.wp-admin) [data-sreveal=\"slide-down-markers\"]",
+	"body:not(.wp-admin) [data-sreveal='slide-down-markers']",
 	slideDownMarkers
 )
 

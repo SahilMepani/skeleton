@@ -5,16 +5,17 @@ if (!window.matchMedia("(pointer: coarse)").matches) {
 	document.documentElement.classList.add("js-no-touchevents")
 }
 
-
 // Find the header height and set to scroll-padding-top css property
 ////////////////////////////////////////////////
 const resizeHeaderHeight = () => {
-    const headerHeight = document.querySelector(".site-header").offsetHeight
-    document.documentElement.style.setProperty("--scroll-padding-top", headerHeight + "px")
+	const headerHeight = document.querySelector(".site-header").offsetHeight
+	document.documentElement.style.setProperty(
+		"--scroll-padding-top",
+		headerHeight + "px"
+	)
 }
 resizeHeaderHeight()
 window.addEventListener("resize", resizeHeaderHeight)
-
 
 // Check if user scrolled
 ////////////////////////////////////////////////

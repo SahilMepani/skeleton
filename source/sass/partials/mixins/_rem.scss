@@ -3,7 +3,7 @@
 @use 'sass:map';
 
 // Rem Calculation of Pixel Values
-$rem-base: 16px;
+$rem-base: $rem-base-unitless * 1px;
 
 @function strip-unit($number) {
 	@if type-of($number) == "number" and not unitless($number) {

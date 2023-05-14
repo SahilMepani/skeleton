@@ -7,6 +7,39 @@
  */
 
 /**
+ * Retrieves the specified option from the core configuration.
+ *
+ * @since 1.0.0
+ *
+ * @param string $option_name
+ * @param mixed [$default_value=null]
+ * @return mixed|null
+ */
+function core_get_option( $option_name, $default_value = null ) {
+	global $core_custom_options;
+	return core_default( $option_name, $core_custom_options, $default_value );
+}
+
+/**
+ * Checks if a given content type supports the specified feature.
+ *
+ * @since 2.10.0
+ * @internal
+ *
+ * @param string $feature
+ * @param array $reg_data
+ * @return boolean
+ */
+function core_content_type_supports( $feature, $reg_data ) {
+	if (
+		! array_key_exists( 'remove_support', $reg_data ) ||
+		! is_array( $reg_data['remove_support'] )
+	) return true;
+
+	return ! in_array( $feature, $reg_data['remove_support'] );
+}
+
+/**
  * A global list of sequential, but not unique IDs.
  *
  * This is used as the current page is rendered to generate unique IDs for components,

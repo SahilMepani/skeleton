@@ -41,7 +41,7 @@ function skel_prepare_block( $dir_name ) {
 }
 
 /**
- * Prepare block fields
+ * Prepare field group options
  * @param string $dir_name
  * @return array
  */

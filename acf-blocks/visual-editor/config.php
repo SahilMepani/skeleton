@@ -1,6 +1,7 @@
 <?php
 	return [
 		'title' => 'Visual Editor',
+		'key' => 'group_6460b71f48a46',
 		'fields' => [
 			[
 				'key' => 'field_6411d664fdf12',
@@ -66,6 +67,24 @@
 				],
 				'return_format' => 'array',
 			]
-		]
+		],
+		'location' => array(
+			array(
+				array(
+					'param' => 'block',
+					'operator' => '==',
+					'value' => 'acf/visual-editor',
+				),
+			),
+		),
+		'menu_order' => 0,
+		'position' => 'normal',
+		'style' => 'default',
+		'label_placement' => 'top',
+		'instruction_placement' => 'label',
+		'hide_on_screen' => '',
+		'active' => true,
+		'description' => '',
+		'show_in_rest' => 0,
 	];
 ?>

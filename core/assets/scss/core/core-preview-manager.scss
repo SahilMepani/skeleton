@@ -1,0 +1,241 @@
+@use 'util' as *;
+@use 'abstract/colors';
+
+.preview-manager,
+.core-section .preview-manager-wrapper {
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 500ms, visibility 500ms;
+
+	body.preview-manager-active:not(.generating-previews) & {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+body.generating-previews {
+	pointer-events: none;
+	overflow: hidden;
+}
+
+.preview-manager {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10000;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+
+	&__screen-size-alert {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		z-index: 2;
+		margin-top: 0;
+		padding: rem-calc(30);
+		opacity: 1;
+		visibility: visible;
+		transform: translate(-50%, -50%);
+		color: colors.$light;
+		background: colors.$dark;
+		font-size: rem-calc(14);
+		line-height: 1.8;
+		box-shadow: 0 8px 14px fade-out(black, 0.9);
+		transition: all 250ms;
+		transition-property: margin-top, opacity, visibility;
+
+		@media screen and (min-width: 1920px) and (max-width: 1920px) {
+			margin-top: rem-calc(10);
+			opacity: 0;
+			visibility: hidden;
+		}
+	}
+
+	&__wrapper {
+		position: absolute;
+		top: rem-calc(40);
+		left: rem-calc(40);
+		display: flex;
+		align-items: center;
+		border-radius: rem-calc(22);
+		box-shadow: 0 2px 6px fade-out(black, 0.8);
+
+		@include media('<tablet') {
+			display: none;
+		}
+	}
+
+	&__selected,
+	&__button {
+		display: flex;
+		align-items: center;
+		height: rem-calc(44);
+		padding: 0 rem-calc(24);
+		font-size: rem-calc(12);
+		font-weight: bold;
+		text-transform: uppercase;
+
+		&:first-child {
+			border-radius: rem-calc(22) 0 0 rem-calc(22);
+		}
+
+		&:last-child {
+			border-radius: 0 rem-calc(22) rem-calc(22) 0;
+		}
+	}
+
+	&__selected {
+		color: colors.$dark;
+		background: white;
+
+		span {
+			display: inline-block;
+			margin-right: rem-calc(6);
+		}
+	}
+
+	&__button {
+		color: colors.$light;
+		pointer-events: all;
+		transition: background-color 250ms;
+
+		&.primary {
+			background: colors.$primary;
+		}
+
+		&.dark {
+			background: colors.$dark;
+		}
+
+		&.disabled,
+		&.locked {
+			background: colors.$gray;
+		}
+
+		&:not(.disabled, .locked):hover {
+			&.primary {
+				background: lighten(colors.$primary, 5%);
+			}
+
+			&.dark {
+				background: lighten(colors.$dark, 5%);
+			}
+		}
+	}
+}
+
+.core-section {
+	position: relative;
+
+	.preview-manager-wrapper,
+	.preview-manager-wrapper .pmw__toggler {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.preview-manager-wrapper {
+		z-index: 9999;
+	}
+
+	.pmw {
+		&__input {
+			display: none;
+		}
+
+		&__section-slug {
+			position: absolute;
+			top: rem-calc(14);
+			right: rem-calc(14);
+			z-index: 2;
+			padding: rem-calc(8) rem-calc(12) rem-calc(7);
+			color: colors.$light;
+			background: colors.$dark;
+			font-size: rem-calc(12);
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+
+		&__toggler {
+			background: fade-out(white, 0.3);
+			border: 6px solid colors.$gray;
+			cursor: pointer;
+			transition: background-color 500ms, border-color 500ms;
+
+			&::before {
+				content: 'Missing Preview';
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 2;
+				display: flex;
+				align-items: center;
+				padding: rem-calc(6) rem-calc(18) rem-calc(10) rem-calc(12);
+				opacity: 0;
+				color: colors.$light;
+				background: colors.$error-light;
+				font-size: rem-calc(12);
+				font-weight: bold;
+				text-transform: uppercase;
+				pointer-events: none;
+				transition: opacity 500ms;
+			}
+		}
+
+		&__input:checked ~ .pmw__toggler {
+			background: fade-out(colors.$primary, 0.8);
+			border-color: colors.$primary;
+
+			&::before {
+				opacity: 0;
+			}
+		}
+
+		&.skip .pmw__input:checked ~ .pmw__toggler {
+			background: fade-out(colors.$gray, 0.5);
+			border-color: colors.$gray;
+		}
+
+		&.missing .pmw__input:not(:checked) ~ .pmw__toggler {
+			border-color: colors.$error-light;
+
+			&::before {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.preview-manager-progress {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	visibility: hidden;
+	background: fade-out(black, 0.5);
+	transition: opacity 250ms, visibility 250ms;
+
+	body.generating-previews & {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	&__box {
+		padding: rem-calc(30) rem-calc(50);
+		color: colors.$light;
+		background: colors.$dark;
+		font-size: rem-calc(14);
+		line-height: 1.8;
+		box-shadow: 0 8px 14px fade-out(black, 0.9);
+	}
+}
+

@@ -1,0 +1,98 @@
+.core-acf-no-label {
+	& > .acf-label {
+		display: none;
+	}
+
+	& > .acf-input > .acf-fields {
+		border: none;
+	}
+}
+
+.core-acf-tabgroup > .acf-input > .acf-fields > .acf-field {
+	padding-right: 5px;
+	padding-left: 5px;
+
+	&:first-child {
+		padding-top: 5px;
+	}
+
+	&:last-child {
+		padding-bottom: 5px;
+	}
+}
+
+.core-acf-no-label > .acf-input > .acf-fields > .acf-field {
+	padding-right: 0;
+	padding-left: 0;
+
+	&:first-child {
+		padding-top: 0;
+	}
+
+	&:last-child {
+		padding-bottom: 0;
+	}
+}
+
+#post-body .acf-tab-wrap.-left::before {
+	height: 0;
+	border-top: none;
+}
+
+// Section library
+.core-acf-section-library {
+	&.js-section-library-locked .acf-fc-layout-handle {
+		cursor: pointer !important;
+	}
+}
+
+// Spacer flexible layouts
+.acf-flexible-content .layout {
+	margin-top: 0 !important;
+
+	&:not(:last-child) {
+		border-bottom-width: 20px;
+	}
+
+	&[data-layout="spacer"] {
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			z-index: 3;
+			pointer-events: none;
+			transition: opacity 500ms;
+			transition-delay: 2s;
+		}
+
+		&::before {
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #F9F9F9;
+		}
+
+		&::after {
+			top: 50%;
+			left: 50%;
+			width: 30px;
+			height: 80%;
+			margin-top: 1px;
+			transform: translate(-50%, -50%);
+			background: #BBB;
+			clip-path: polygon(
+				0 0, 100% 0, 100% 2px, calc(50% + 1px) 2px, calc(50% + 1px) calc(100% - 2px),
+				100% calc(100% - 2px), 100% 100%, 0 100%, 0 calc(100% - 2px), calc(50% - 1px) calc(100% - 2px),
+				calc(50% - 1px) 2px, 0 2px
+			);
+		}
+
+		&:hover::before,
+		&:hover::after {
+			opacity: 0;
+			transition-duration: 300ms;
+			transition-delay: 0s;
+		}
+	}
+}

@@ -1,0 +1,28 @@
+@use 'util' as *;
+
+.scroll-lock {
+	overflow-y: hidden;
+}
+
+.show-for-sr {
+	font-size: 0;
+}
+
+.skip-link {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 500;
+	padding: rem-calc(13) rem-calc(13) rem-calc(10);
+	opacity: 0;
+	color: black;
+	background: white;
+	font-size: rem-calc(12);
+	font-weight: bold;
+	text-transform: uppercase;
+	pointer-events: none;
+
+	&:focus {
+		opacity: 1;
+	}
+}

@@ -1,0 +1,11 @@
+@use 'sass:map';
+@use 'config';
+
+// Typography styles.
+@mixin type( $name ) {
+	@if config.$typography-styles and map.has-key( config.$typography-styles, $name ) {
+		@each $prop, $value in map.get( config.$typography-styles, $name ) {
+			#{$prop}: #{$value};
+		}
+	}
+}

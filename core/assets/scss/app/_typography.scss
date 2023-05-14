@@ -1,0 +1,13 @@
+@use 'config';
+@use 'util-assets' as *;
+
+//
+// This automatically generates styles available in markup declarations.
+//
+@if   config.$typography-styles  {
+	@each $style, $_value in config.$typography-styles {
+		.#{$style} {
+			@include type($style);
+		}
+	}
+}

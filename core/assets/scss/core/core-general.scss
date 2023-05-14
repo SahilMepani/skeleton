@@ -1,0 +1,27 @@
+#adminmenuwrap #adminmenu .wp-menu-separator {
+	height: auto;
+	margin: 12px 0;
+
+	.separator {
+		height: 1px;
+		background: fade-out(white, 0.8);
+	}
+}
+
+.wp-admin.plugins-php .core-plugin {
+	&--highlight {
+		position: relative;
+		animation: blink_plugin 1.5s infinite;
+
+		@keyframes blink_plugin {
+			0%,
+			100% {
+				background: fade-out(#00d, 0.95);
+			}
+
+			50% {
+				background: fade-out(#00d, 0.9);
+			}
+		}
+	}
+}

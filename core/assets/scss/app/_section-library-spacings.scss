@@ -1,0 +1,25 @@
+@use 'sass:map';
+@use 'util' as *;
+@use 'config';
+
+.core-section-library-wrapper .core-section {
+	$sizes: map.set( config.$section-spacings, 'custom', 0 );
+
+	@each $size, $values in $sizes {
+		@each $position in ( 'top', 'bottom' ) {
+			&.spacing-#{$position}-#{$size} {
+				@if $size == 'custom' {
+					$max-s: var(--core-spacing-#{$position});
+					$min-s: calc( $max-s / 2 );
+
+					padding-#{$position}: min(
+						calc($min-s * 1px) + calc(($max-s / 16) - ($min-s / 16)) * ((100vw - 320px) / 100),
+						calc($max-s * 1px)
+					);
+				} @else {
+					padding-#{$position}: fluid( $values... );
+				}
+			}
+		}
+	}
+}

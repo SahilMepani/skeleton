@@ -1,0 +1,9 @@
+// Hide the external preview link.
+.edit-post-header-preview__button-external {
+	opacity: 0.3;
+	pointer-events: none;
+}
+
+.block-editor-inserter__tips {
+	display: none !important;
+}

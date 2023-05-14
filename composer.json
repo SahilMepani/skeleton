@@ -1,0 +1,14 @@
+{
+    "require": {
+        "vlucas/phpdotenv": "^5.3",
+        "timber/timber": "^1.19"
+    },
+    "require-dev": {
+        "paulthewalton/acf-stubs": "*"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}

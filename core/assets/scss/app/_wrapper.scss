@@ -1,0 +1,60 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'util' as *;
+@use 'config';
+
+// The lateral paddings.
+$padding-min: map.get( config.$wrapper-lateral-paddings, 'min' );
+$padding-max: map.get( config.$wrapper-lateral-paddings, 'max' );
+
+.wrapper {
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/** Default wrapper size */
+$default-wrapper-selector-exclusions: '';
+
+@each $size, $value in config.$extra-wrapper-sizes {
+	$default-wrapper-selector-exclusions: '#{$default-wrapper-selector-exclusions}:not(.#{$size})';
+}
+
+.wrapper#{$default-wrapper-selector-exclusions} {
+	max-width: rem-calc(config.$default-wrapper-size);
+
+	&:not(.no-padding) {
+		max-width: rem-calc(config.$default-wrapper-size + calc($padding-max * 2));
+		padding-right: fluid($padding-min, $padding-max);
+		padding-left: fluid($padding-min, $padding-max);
+
+		@include media('>=#{config.$default-wrapper-size + calc($padding-max * 2)}px') {
+			max-width: rem-calc(config.$default-wrapper-size);
+			padding-right: 0;
+			padding-left: 0;
+		}
+	}
+}
+
+//
+// This automatically generates the wrapper sizes available in markup declarations.
+//
+@if   config.$extra-wrapper-sizes  {
+	@each $size, $value in config.$extra-wrapper-sizes {
+		.wrapper.#{$size} {
+			max-width: rem-calc($value);
+
+			&:not(.no-padding) {
+				max-width: rem-calc($value + calc($padding-max * 2));
+				padding-right: fluid($padding-min, $padding-max, 'phone-xsmall', $value);
+				padding-left: fluid($padding-min, $padding-max, 'phone-xsmall', $value);
+
+				@include media('>=#{$value + calc($padding-max * 2)}px') {
+					max-width: rem-calc($value);
+					padding-right: 0;
+					padding-left: 0;
+				}
+			}
+		}
+	}
+}

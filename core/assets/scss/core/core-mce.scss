@@ -1,0 +1,65 @@
+@use 'abstract/fonts';
+@use 'app/typography';
+
+i.mce-i-core-icon {
+	margin-left: -2px;
+	padding: 0;
+	padding-right: 2px;
+	vertical-align: top;
+	font: 400 20px/1 dashicons;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+// The editor
+.mce-toolbar .mce-btn.mce-btn-has-text > button {
+	display: flex;
+	align-items: center;
+	padding: 4px 6px;
+	background: white;
+	border: 1px solid lightgray;
+
+	.mce-caret {
+		margin-top: 0;
+		margin-left: 8px;
+	}
+}
+
+.mce-floatpanel .mce-menu-item.mce-active {
+	border-left-color: #0002 !important;
+
+	.mce-text {
+		color: white !important;
+	}
+}
+
+#tinymce {
+	font-family: fonts.$body;
+
+	> * {
+		margin-block-start: 0;
+		margin-block-end: 0;
+
+		&:not(:first-child) {
+			margin-top: 0.5em;
+		}
+
+		&:not(:last-child) {
+			margin-bottom: 0.5em;
+		}
+	}
+
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		&:not(:first-child) {
+			margin-top: fluid(20, 40);
+		}
+
+		&:not(:last-child) {
+			margin-bottom: fluid(20, 40);
+		}
+	}
+}

@@ -1,0 +1,43 @@
+.edit-post-visual-editor {
+	.core-block-preview {
+		padding: 30px;
+		color: gray;
+		text-align: center;
+		border: 2px dashed fade-out(black, 0.5);
+	}
+
+	.acf-block-fields > .acf-field > .acf-accordion-content > .acf-fields > .acf-tab-wrap > .acf-tab-group {
+		display: flex;
+		margin: 0;
+		padding: 0;
+		border: none;
+
+		li {
+			margin: 0;
+
+			&:nth-child(1) {
+				width: 100%;
+			}
+
+			&:nth-child(2) {
+				flex-shrink: 0;
+			}
+
+			a {
+				padding: 5px 20px 4px;
+				font-size: 10px;
+				font-weight: bold;
+				text-transform: uppercase;
+				border: none;
+			}
+
+			&:not(.active) a {
+				background: fade-out(black, 0.97);
+
+				&:hover {
+					background: fade-out(black, 0.99);
+				}
+			}
+		}
+	}
+}

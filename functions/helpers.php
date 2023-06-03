@@ -152,6 +152,13 @@ function skel_get_phone_url( $phone_number = false ) {
 ////////////////////////////////////////////////
 // add_theme_support('post-thumbnails');
 
+// Insert page into another page
+////////////////////////////////////////////////
+function skel_insert_page($id) {
+	$post = get_page($id);
+	$content = apply_filters('the_content', $post->post_content);
+	return $content;
+}
 
 // Faster WordPress
 // Disable if Autoptimize is enabled

@@ -16,21 +16,11 @@ $(".header-nav-close").click(function (e) {
 $(".header-nav-parent-menu li.menu-item-has-children > a").append(
 	"<span></span>"
 )
+
 $(".header-nav-parent-menu li.menu-item-has-children > a span").on(
 	"click",
 	function (e) {
 		e.preventDefault()
-		$(this).toggleClass("js-active")
-		$(this).parent("a").siblings(".sub-menu").toggleClass("js-active")
-		$(this)
-			.parent("a")
-			.siblings(".sub-menu")
-			.find("span.js-active")
-			.removeClass("js-active")
-		$(this)
-			.parent("a")
-			.siblings(".sub-menu")
-			.find(".sub-menu.js-active")
-			.removeClass("js-active")
+		$(this).parents("li.menu-item-has-children").toggleClass("js-active")
 	}
 )

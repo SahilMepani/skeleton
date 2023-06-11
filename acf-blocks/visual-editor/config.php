@@ -2,11 +2,11 @@
 
 return [
 	'title' => 'Visual Editor',
-	'icon' => 'align-left',
 	'fields' => [
 		[
 			'key' => 'field_45656654',
 			'label' => 'Title',
+			'name' => 'title',
 			'type' => 'text',
 			'instructions' => '',
 			'required' => 0,
@@ -20,6 +20,7 @@ return [
 		[
 			'key' => 'field_1',
 			'label' => 'Text',
+			'name' => 'text',
 			'type' => 'text',
 			'instructions' => '',
 			'required' => 0,

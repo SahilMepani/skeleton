@@ -3112,6 +3112,122 @@ img.mfp-img {
   padding: 0.625rem 1.25rem;
 }
 
+.section {
+  overflow: hidden;
+}
+.section.spacing-top-small {
+  padding-top: min(
+			1.25rem +
+				1.25 *
+				((100vw - 23.4375rem) / 64.0625)
+		, 2.5rem);
+}
+.section.spacing-bottom-small {
+  padding-bottom: min(
+			1.25rem +
+				1.25 *
+				((100vw - 23.4375rem) / 64.0625)
+		, 2.5rem);
+}
+.section.spacing-top-normal {
+  padding-top: min(
+			2.5rem +
+				2.5 *
+				((100vw - 23.4375rem) / 64.0625)
+		, 5rem);
+}
+.section.spacing-bottom-normal {
+  padding-bottom: min(
+			2.5rem +
+				2.5 *
+				((100vw - 23.4375rem) / 64.0625)
+		, 5rem);
+}
+.section.spacing-top-large {
+  padding-top: min(
+			4.375rem +
+				4.375 *
+				((100vw - 23.4375rem) / 64.0625)
+		, 8.75rem);
+}
+.section.spacing-bottom-large {
+  padding-bottom: min(
+			4.375rem +
+				4.375 *
+				((100vw - 23.4375rem) / 64.0625)
+		, 8.75rem);
+}
+.section.spacing-top-custom {
+  padding-top: min(var(--spacing-top-custom) / 2 * 1px + (var(--spacing-top-custom) / 16 - var(--spacing-top-custom) / 2 / 16) * (100vw - 375px) / 100, var(--spacing-top-custom) * 1px);
+}
+.section.spacing-bottom-custom {
+  padding-bottom: min(var(--spacing-bottom-custom) / 2 * 1px + (var(--spacing-bottom-custom) / 16 - var(--spacing-bottom-custom) / 2 / 16) * (100vw - 375px) / 100, var(--spacing-bottom-custom) * 1px);
+}
+
+.spacing-top-small {
+  padding-top: min(
+			1.25rem +
+				1.25 *
+				((100vw - 23.4375rem) / 64.0625)
+		, 2.5rem);
+}
+
+.spacing-bottom-small {
+  padding-bottom: min(
+			1.25rem +
+				1.25 *
+				((100vw - 23.4375rem) / 64.0625)
+		, 2.5rem);
+}
+
+.spacing-top-medium {
+  padding-top: min(
+			2.5rem +
+				2.5 *
+				((100vw - 23.4375rem) / 64.0625)
+		, 5rem);
+}
+
+.spacing-bottom-medium {
+  padding-bottom: min(
+			2.5rem +
+				2.5 *
+				((100vw - 23.4375rem) / 64.0625)
+		, 5rem);
+}
+
+.spacing-top-large {
+  padding-top: min(
+			3.75rem +
+				3.75 *
+				((100vw - 23.4375rem) / 64.0625)
+		, 7.5rem);
+}
+
+.spacing-bottom-large {
+  padding-bottom: min(
+			3.75rem +
+				3.75 *
+				((100vw - 23.4375rem) / 64.0625)
+		, 7.5rem);
+}
+
+.spacing-top-xlarge {
+  padding-top: min(
+			3.75rem +
+				6.25 *
+				((100vw - 23.4375rem) / 64.0625)
+		, 10rem);
+}
+
+.spacing-bottom-xlarge {
+  padding-bottom: min(
+			3.75rem +
+				6.25 *
+				((100vw - 23.4375rem) / 64.0625)
+		, 10rem);
+}
+
 .bg-video {
   min-width: 100%;
   height: 100%;

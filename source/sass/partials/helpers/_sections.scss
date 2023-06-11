@@ -1,3 +1,6 @@
+@use 'sass:math';
+@use 'sass:map';
+
 .section {
 	$sizes: map.set($section-spacings, "custom", 0);
 
@@ -13,7 +16,7 @@
 					padding-#{$position}: min(
 						calc($min-s * 1px) +
 							calc(($max-s / 16) - ($min-s / 16)) *
-							((100vw - 320px) / 100),
+							((100vw - 375px) / 100),
 						calc($max-s * 1px)
 					);
 				} @else {

@@ -50,6 +50,7 @@ $mobile-sub-menu-link-padding-x: rem-calc(20);
 	}
 
 	@include media-breakpoint-down(lg) {
+		background-color: $mobile-sidebar-bg-color;
 		font-size: regular;
 		width: 100%;
 		padding: rem-calc(90) 0 rem-calc(40);
@@ -61,7 +62,6 @@ $mobile-sub-menu-link-padding-x: rem-calc(20);
 		transform: translateX(-100%);
 		transition: 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946);
 		overflow: auto;
-		background-color: $mobile-sidebar-bg-color;
 		overscroll-behavior: contain; // avoid scroll chaining
 
 		&.js-active {
@@ -75,6 +75,7 @@ $mobile-sub-menu-link-padding-x: rem-calc(20);
 	@include media-breakpoint-down(lg) {
 		> li {
 			> a {
+				background-color: $mobile-parent-menu-link-bg-color;
 				color: $mobile-parent-menu-link-color;
 				font-size: $mobile-parent-menu-item-font-size;
 				text-align: center;
@@ -83,7 +84,6 @@ $mobile-sub-menu-link-padding-x: rem-calc(20);
 				padding: $mobile-parent-menu-item-padding-y
 					$mobile-parent-menu-item-padding-x;
 				position: relative;
-				background-color: $mobile-parent-menu-link-bg-color;
 
 				&:hover,
 				&:focus {
@@ -169,6 +169,7 @@ $mobile-sub-menu-link-padding-x: rem-calc(20);
 			text-align: center;
 
 			> a {
+				background-color: $mobile-sub-menu-link-bg-color;
 				color: $mobile-sub-menu-link-color;
 				font-size: $mobile-sub-menu-font-size;
 				letter-spacing: rem-calc(1);
@@ -177,7 +178,6 @@ $mobile-sub-menu-link-padding-x: rem-calc(20);
 				display: block;
 				padding: $mobile-sub-menu-link-padding-y
 					$mobile-sub-menu-link-padding-x;
-				background-color: $mobile-sub-menu-link-bg-color;
 
 				&:hover,
 				&:focus {
@@ -230,25 +230,25 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 			&:hover,
 			&:focus {
 				> a {
-					color: $desktop-parent-menu-link-hover-color;
 					background-color: $desktop-parent-menu-link-hover-bg-color;
+					color: $desktop-parent-menu-link-hover-color;
 				}
 			}
 
 			> a {
+				background-color: $desktop-parent-menu-link-bg-color;
 				color: $desktop-parent-menu-link-color;
 				display: block;
 				padding: $desktop-parent-menu-item-padding-y
 					$desktop-parent-menu-item-padding-x;
-				background-color: $desktop-parent-menu-link-bg-color;
 			}
 		}
 
 		> li.current-page-ancestor > a,
 		> li.current-menu-parent > a,
 		> li.current-menu-item > a {
-			color: $desktop-parent-menu-current-item-link-color;
 			background-color: $desktop-parent-menu-current-item-link-bg-color;
+			color: $desktop-parent-menu-current-item-link-color;
 		}
 
 		> li.menu-item-has-children {
@@ -317,12 +317,13 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 				&:hover,
 				&:focus {
 					> a {
-						color: $desktop-sub-menu-link-hover-color;
 						background-color: $desktop-sub-menu-link-hover-bg-color;
+						color: $desktop-sub-menu-link-hover-color;
 					}
 				}
 
 				> a {
+					background-color: $desktop-sub-menu-link-bg-color;
 					color: $desktop-sub-menu-link-color;
 					font-size: $desktop-sub-menu-font-size;
 					display: block;
@@ -330,13 +331,12 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 						$desktop-sub-menu-link-padding-x;
 					border-bottom: rem-calc(1) solid
 						$desktop-sub-menu-link-bg-color;
-					background-color: $desktop-sub-menu-link-bg-color;
 				}
 			}
 
 			> li.current-menu-item > a {
-				color: $desktop-sub-menu-current-item-link-color;
 				background-color: $desktop-sub-menu-current-item-link-bg-color;
+				color: $desktop-sub-menu-current-item-link-color;
 			}
 		}
 

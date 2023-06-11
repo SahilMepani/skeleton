@@ -25,6 +25,7 @@
 	transition: 0.2s;
 
 	&::after {
+		background-color: $border-color;
 		height: rem-calc(1);
 		position: absolute;
 		right: 0;
@@ -33,7 +34,6 @@
 		transform: scale(0);
 		transition: 0.25s transform ease-out;
 		content: "";
-		background-color: $border-color;
 	}
 
 	&:hover,
@@ -56,6 +56,7 @@
 	transition: 0.2s;
 
 	&::after {
+		background-color: $border-color;
 		height: rem-calc(1);
 		position: absolute;
 		right: 0;
@@ -64,7 +65,6 @@
 		transform: scaleX(0);
 		transition: 0.3s transform;
 		content: "";
-		background-color: $border-color;
 		transform-origin: 100% 100%;
 	}
 

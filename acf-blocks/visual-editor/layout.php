@@ -9,6 +9,7 @@
 
 <?php
 	// Block options
+	$title = get_field( 'title' );
 	$text = get_field( 'text' );
 	// Developer options
 	$spacing_top    = get_field( 'spacing_top' );
@@ -21,5 +22,6 @@
 <section class="<?php $spacing_top . ' ' . $spacing_bottom . ' ' . $custom_classes; ?>"
 	style="<?php echo $custom_css; ?>" id="<?php echo $unique_id; ?>">
 	<h1>Testing</h1>
+	<h1><?php echo $title; ?> </h1>
 	<h1><?php echo $text; ?> </h1>
 </section>

@@ -141,10 +141,10 @@ output {
 }
 
 code {
+	background-color: $gray-100;
 	font-weight: 400;
 	display: inline-block;
 	padding: rem-calc(5);
-	background-color: $gray-100;
 }
 
 /* ----------  Lists  ---------- */

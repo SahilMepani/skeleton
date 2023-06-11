@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Prepare blocks
+ * Prepare block
  * @param string $dir_name
  * @return array
  */
@@ -15,7 +15,7 @@ function skel_prepare_block( $dir_name ) {
 	// block options
 	return [
 		'name'            => $dir_name,
-		'title'           => $data['title'],
+		'title'           => $data['title'] ?? $dir_name,
 		'icon'            => [
 			'background' => '#2271b1',
 			'foreground' => '#fff',
@@ -27,7 +27,7 @@ function skel_prepare_block( $dir_name ) {
 			'attributes' => [
 				'mode' => 'preview',
 				'data' => [
-					'preview_image' => get_template_directory_uri() . '/acf-blocks/' . $dir_name . '/preview.jpg'
+					'preview_image' => BLOCKS_DIR . $dir_name . '/preview.jpg'
 				]
 			]
 		],
@@ -41,7 +41,38 @@ function skel_prepare_block( $dir_name ) {
 }
 
 /**
- * Prepare field group options
+ * Register block type
+ * @uses skel_prepare_block
+ * @uses acf_register_block_type()
+ */
+function skel_register_block() {
+
+	// prepare block settings
+	$blocks_settings = array_map( 'skel_prepare_block', BLOCK_DIR_NAMES );
+
+	// var_dump($blocks_settings);
+
+	// register blocks
+	foreach( $blocks_settings as $block ) {
+		acf_register_block_type( $block );
+	}
+
+}
+
+/**
+ * Prepare fields
+ * @uses skel_refactor_fields
+ * @param array $fields
+ * @param string $dir_name
+ * @return array
+ */
+function skel_prepare_fields( $fields, $dir_name ) {
+	$refactor_fields = array_map( 'refactor_fields', $fields );
+}
+
+/**
+ * Prepare block field group
+ * @uses skel_prepare_fields
  * @param string $dir_name
  * @return array
  */
@@ -53,9 +84,9 @@ function skel_prepare_block_field_group( $dir_name ) {
 	if ( ! $data ) return;
 
 	return [
-		'title'          => $data['title'],
-		'key'            => 'field_group_' . md5( $dir_name ),
-		'fields'         => [],
+		'title'          => $data['title'] ?? $dir_name,
+		'key'            => 'group_' . substr(md5( $dir_name ), 0, 13),
+		'fields'         => $data['fields'],
 		'hide_on_screen' => $data['hide_on_screen'] ?? ['the_content'],
 		'active'         => $data['active'] ?? true,
 		'description'    => $data['description'] ?? '',
@@ -74,42 +105,25 @@ function skel_prepare_block_field_group( $dir_name ) {
 }
 
 /**
- * Register block type
- * @uses acf_register_block_type()
- */
-function skel_register_block() {
-
-	// prepare block options
-	$blocks_type_options = array_map( 'skel_prepare_block', BLOCK_DIR_NAMES );
-
-	// arrange the blocks in ascending order
-	sort( $blocks_type_options );
-
-	// register blocks
-	foreach( $blocks_type_options as $block ) {
-		acf_register_block_type( $block );
-	}
-
-}
-
-/**
  * Register block field group
+ * @uses skel_prepare_block_field_group()
  * @uses acf_add_local_field_group()
  */
 function skel_register_block_field_group() {
 
-	// prepare block options
-	$blocks_type_options = array_map( 'skel_prepare_block', BLOCK_DIR_NAMES );
+	// prepare block field options
+	$blocks_field_group = array_map( 'skel_prepare_block_field_group', BLOCK_DIR_NAMES );
 
-	// arrange the blocks in ascending order
-	sort( $blocks_type_options );
+	var_dump($blocks_field_group);
 
-	// register blocks
-	foreach( $blocks_type_options as $block ) {
-		acf_add_local_field_group( $block );
+	// register field groups
+	foreach( $blocks_field_group as $block_field_group ) {
+		acf_add_local_field_group( $block_field_group );
 	}
 
 }
+
+
 
 // run if acf is activated
 add_action( 'acf/init', 'skel_register_block' );

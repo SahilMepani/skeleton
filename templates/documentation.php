@@ -442,7 +442,7 @@
 .btn {
 	background: green;
 	.icon {
-		margin-right: 10px;
+		margin-inline-end: 10px;
 	}
 	font-weight: bold;
 	@include transition(background 0.5s ease);
@@ -458,7 +458,7 @@
 	@include transition(background 0.5s ease);
 
 	.icon {
-		margin-right: 10px;
+		margin-inline-end: 10px;
 	}
 }
 </pre>

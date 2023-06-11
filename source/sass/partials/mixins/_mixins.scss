@@ -25,10 +25,11 @@
 		overflow: hidden;
 
 		.swiper {
+			overflow: visible;
+
 			// show atleast (padding-right-value) of last card on the right
 			// it will add (padding-right-value) extra scrolling space on the right
-			padding-right: calc((100vw - var(--container-max-width)) / 2);
-			overflow: visible;
+			padding-inline-end: calc((100vw - var(--container-max-width)) / 2);
 		}
 
 		.swiper-slide {
@@ -41,7 +42,7 @@
 		.swiper {
 			// show atleast (padding-right-value) of last card on the right
 			// it will add (padding-right-value) extra scrolling space on the right
-			padding-right: rem-calc(
+			padding-inline-end: rem-calc(
 				30px
 			); // important to add 0 or any other value
 			// max-width: 80vw;

@@ -22,35 +22,9 @@
 @import "partials/mixins/input";
 @import "partials/mixins/animations";
 
-@import "partials/breakpoints";
-
-// Bootstrap 5.2
-@import "partials/bootstrap/mixins/banner";
-
-// Configuration - same order
-@import "partials/bootstrap/functions";
-@import "partials/bootstrap/variables";
-@import "partials/bootstrap/maps";
-@import "partials/bootstrap/mixins";
-
-// BS variables overwrite - same order
-@import "partials/bs-variables-overwrite";
-
-// BS utilities overwrite - same order
-@import "partials/bootstrap/utilities";
-@import "partials/bs-utilities-overwrite";
-
-@import "partials/bootstrap/root";
-@import "partials/bootstrap/reboot";
-@import "partials/bootstrap/containers";
-@import "partials/bootstrap/grid";
-@import "partials/bootstrap/tables";
-@import "partials/bootstrap/buttons";
-@import "partials/bootstrap/helpers";
-@import "partials/bootstrap/utilities/api";
-
-// Project variables
-@import "partials/variables";
+@import "partials/reset";
+@import "partials/reboot";
+@import "partials/base-selectors";
 
 // Mixins
 @import "partials/mixins/mixins";

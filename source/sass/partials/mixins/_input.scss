@@ -1,4 +1,4 @@
-@mixin input-placeholder($color) {
+@mixin input-placeholder($color: #999) {
 	&:placeholder {
 		color: $color;
 	} // Firefox 4-18
@@ -10,69 +10,73 @@
 	} // Safari and Chrome
 }
 
-@mixin input-text {
-	background: $input-bg;
-	color: $input-color;
-	line-height: $input-line-height; // same as button
-	padding: $input-padding-y-sm $input-padding-x-sm;
-	border: $input-btn-border-width solid $input-border-color;
-	border-radius: $input-border-radius;
-	transition: $input-transition;
-	@include input-placeholder($input-placeholder-color);
+@mixin input-text(
+	$background: #fff,
+	$color: $body-color,
+	$border: #a6a6a6,
+	$border-focus: $blue,
+	$placeholder: #aaa
+) {
+	background: var(--input-background, $background);
+	color: var(--input-color, $color);
+	font-weight: 700;
+	line-height: 1.3 !important; // same as button
+	padding: fluid(12, 24) fluid(10, 24);
+	border: rem-calc(1) solid var(--input-border, $border);
+	border-radius: rem-calc(8);
+	transition: 0.25s;
 
-	overflow: hidden;
+	// overflow hidden breaks select enhance user interface
 	appearance: none;
+	@include input-placeholder(var(--input-placeholder, $placeholder));
 
 	&:focus {
-		border-color: $input-focus-border-color;
-		@if $input-focus-width == 0 {
-			outline: none;
-		}
-	}
-	@include media-breakpoint-up(md) {
-		padding: $input-padding-y $input-padding-x;
+		border-color: var(--input-border-focus, $border-focus);
+		outline: none;
 	}
 
-	/* stylelint-disable */
-	//required to disable auto zoom in iOS when font is less than 16px
+	// required to disable auto zoom in iOS when font is less than 1 rem
 	@media screen and (min-device-pixel-ratio: 0) and (max-width: 767) {
-		font-size: 16px !important;
+		font-size: rem-calc(16) !important;
 	}
-	/* stylelint-enable */
 }
 
-@mixin custom-select-block($color: #666) {
-	// add to select wrapper
-	background: #fff;
-	background-image: linear-gradient(45deg, transparent 50%, $color 50%),
-		linear-gradient(135deg, $color 50%, transparent 50%);
-	background-size: rem-calc(7) rem-calc(7), rem-calc(7) rem-calc(7);
-	background-position: calc(100% - 2rem) 50%, calc(100% - 1.3rem) 50%;
-	background-repeat: no-repeat;
+@mixin custom-select-block {
+	@include input-text;
 
-	// background: none; // make dropdown icon visible, if after is enabled, disable all the above bg rules
+	padding: 0;
 	position: relative;
+
+	&::after {
+		background-color: #999;
+		width: rem-calc(20);
+		height: rem-calc(10);
+		border-radius: rem-calc(5);
+		position: absolute;
+		top: 50%;
+		right: fluid(10, 20);
+		transform: translateY(-50%);
+		content: "";
+		clip-path: polygon(
+			0 0,
+			rem-calc(3) 0,
+			50% rem-calc(7),
+			calc(100% - 3px) 0,
+			100% 0,
+			50% 100%
+		);
+	}
 
 	select {
 		background: transparent;
 		width: 100%; // make dropdown sit on top of select
-		padding-right: rem-calc(40);
+		border: 0 !important;
+		position: relative;
+		z-index: 1;
 		appearance: none;
 	}
 
 	select::-ms-expand {
 		display: none;
 	}
-
-	// &:after { // chevron icon
-	// 	@include icon-font-properties;
-	// 	content: $i-dropdown;
-	// 	font-size: rem-calc(18);
-	// 	display: block;
-	// 	position: absolute;
-	// 	right: rem-calc(15);
-	// 	top: 50%;
-	// 	z-index: -1;
-	// 	transform: translateY(-50%);
-	// }
 }

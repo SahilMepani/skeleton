@@ -27,13 +27,13 @@
 .swiper,
 .swiper-rtl {
 	padding: 0;
-	margin-right: auto;
 	margin-left: auto;
 	position: relative;
 
 	/* Fix of Webkit flickering */
 	z-index: 1;
 	overflow: hidden;
+	margin-inline-end: auto;
 	list-style: none;
 }
 

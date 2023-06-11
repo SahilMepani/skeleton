@@ -87,7 +87,7 @@ textarea.wp-editor-area,
 
 /* Increase block editor sidebar */
 .edit-post-layout.is-sidebar-opened .edit-post-layout__content {
-	margin-right: 25vw !important;
+	margin-inline-end: 25vw !important;
 }
 
 .edit-post-layout.is-sidebar-opened .edit-post-plugin-sidebar__sidebar-layout,

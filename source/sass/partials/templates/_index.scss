@@ -4,7 +4,7 @@
 	}
 
 	input[type="text"] {
-		padding-right: rem-calc(45);
+		padding-inline-end: rem-calc(45);
 	}
 
 	.submit-block {
@@ -173,8 +173,8 @@
 
 		.img-block {
 			flex: 0 0 35%;
-			padding-right: rem-calc(40);
 			margin-bottom: 0;
+			padding-inline-end: rem-calc(40);
 			@media all and (-ms-high-contrast: none),
 				(-ms-high-contrast: active) {
 				/* IE10 and IE11 rule sets go here */

@@ -45,7 +45,7 @@
 //           }
 //           .#{$abbrev}r#{$infix}-#{$size}vw,
 //           .#{$abbrev}x#{$infix}-#{$size}vw {
-//             #{$prop}-right: $length !important;
+//             #{$prop}-inline-end: $length !important;
 //           }
 //           .#{$abbrev}b#{$infix}-#{$size}vw,
 //           .#{$abbrev}y#{$infix}-#{$size}vw {
@@ -69,7 +69,7 @@
 //             }
 //             .mr#{$infix}-n#{$size}vw,
 //             .mx#{$infix}-n#{$size}vw {
-//               margin-right: -$length !important;
+//               margin-inline-end: -$length !important;
 //             }
 //             .mb#{$infix}-n#{$size}vw,
 //             .my#{$infix}-n#{$size}vw {

@@ -19,3 +19,17 @@ $container-max-widths: (
 	xxl: 93vw,
 	xxxl: 90rem
 );
+$section-spacings: (
+	"small": (
+		20,
+		40
+	),
+	"normal": (
+		40,
+		80
+	),
+	"large": (
+		70,
+		140
+	)
+);

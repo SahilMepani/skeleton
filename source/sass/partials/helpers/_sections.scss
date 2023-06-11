@@ -1,0 +1,61 @@
+.section {
+	$sizes: map.set($section-spacings, "custom", 0);
+
+	overflow: hidden;
+
+	@each $size, $values in $sizes {
+		@each $position in ("top", "bottom") {
+			&.spacing-#{$position}-#{$size} {
+				@if $size == "custom" {
+					$max-s: var(--spacing-#{$position}-custom);
+					$min-s: calc($max-s / 2);
+
+					padding-#{$position}: min(
+						calc($min-s * 1px) +
+							calc(($max-s / 16) - ($min-s / 16)) *
+							((100vw - 320px) / 100),
+						calc($max-s * 1px)
+					);
+				} @else {
+					padding-#{$position}: fluid($values...);
+				}
+			}
+		}
+	}
+}
+
+// Small
+.spacing-top-small {
+	padding-top: fluid(20, 40);
+}
+
+.spacing-bottom-small {
+	padding-bottom: fluid(20, 40);
+}
+
+// Normal
+.spacing-top-medium {
+	padding-top: fluid(40, 80);
+}
+
+.spacing-bottom-medium {
+	padding-bottom: fluid(40, 80);
+}
+
+// Large
+.spacing-top-large {
+	padding-top: fluid(60, 120);
+}
+
+.spacing-bottom-large {
+	padding-bottom: fluid(60, 120);
+}
+
+// XLarge
+.spacing-top-xlarge {
+	padding-top: fluid(60, 160);
+}
+
+.spacing-bottom-xlarge {
+	padding-bottom: fluid(60, 160);
+}

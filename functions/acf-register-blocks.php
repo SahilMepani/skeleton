@@ -127,4 +127,4 @@ function skel_register_block_field_group() {
 
 // run if acf is activated
 add_action( 'acf/init', 'skel_register_block' );
-add_action( 'acf/init', 'skel_register_block_field_group' );
+// add_action( 'acf/init', 'skel_register_block_field_group' );

@@ -16,18 +16,17 @@
 @import "partials/config/typography";
 @import "partials/config/variables";
 @import "partials/mixins/breakpoints";
+@import "partials/mixins/placeholders";
 @import "partials/mixins/containers";
 @import "partials/mixins/buttons";
 @import "partials/mixins/miscellaneous";
 @import "partials/mixins/input";
 @import "partials/mixins/animations";
+@import "partials/mixins/keyframes";
 
 @import "partials/reset";
 @import "partials/reboot";
 @import "partials/base-selectors";
-
-// Mixins
-@import "partials/mixins/mixins";
 
 // JS plugins
 @import "partials/js-plugins/swiper";
@@ -53,10 +52,7 @@
 // Templates
 @import "partials/templates/index";
 @import "partials/templates/front-page";
-@import "partials/templates/page";
 @import "partials/templates/single";
-@import "partials/templates/search";
-@import "partials/templates/404";
 
 // WP plugins
 @import "partials/wp-plugins/gravity-forms";

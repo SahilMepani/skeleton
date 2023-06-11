@@ -9,19 +9,22 @@
 
 <?php
 	// Block options
-	$title = get_field( 'title' );
-	$text = get_field( 'text' );
 	// Developer options
-	$spacing_top    = get_field( 'spacing_top' );
-	$spacing_bottom = get_field( 'spacing_bottom' );
+	$spacing        = get_field('spacing');
+	$spacing_top    = $spacing['top']['spacing_top'];
+	$spacing_bottom = $spacing['bottom']['spacing_bottom'];
+	// if ( $spacing_top == 'custom' ) {
+	// 	$spacing_top_custom = --spacing-top-custom:
+	// }
 	$custom_classes = get_field( 'custom_classes' );
 	$custom_css     = get_field( 'custom_css' );
 	$unique_id      = get_field( 'unique_id' );
 ?>
 
-<section class="<?php $spacing_top . ' ' . $spacing_bottom . ' ' . $custom_classes; ?>"
-	style="<?php echo $custom_css; ?>" id="<?php echo $unique_id; ?>">
-	<h1>Testing</h1>
-	<h1><?php echo $title; ?> </h1>
-	<h1><?php echo $text; ?> </h1>
+<section class="visual-editor-section <?php $spacing_top . ' ' . $spacing_bottom . ' ' . $custom_classes; ?>" style="<?php echo $custom_css; ?>" id="<?php echo $unique_id; ?>">
+	<div class="container">
+
+		<h1>Testing</h1>
+
+	</div> <!-- .container -->
 </section>

@@ -37,7 +37,7 @@ define('BLOCK_DIR_NAMES', array_map( 'basename', BLOCK_DIR_PATHS ));
 // require_once get_template_directory() . '/functions/custom-login.php';
 require_once get_template_directory() . '/functions/acf-register-blocks.php';
 // require_once get_template_directory() . '/functions/block-editor-settings.php';
-// require_once get_template_directory() . '/functions/enqueue-scripts.php';
+require_once get_template_directory() . '/functions/enqueue-scripts.php';
 // require_once get_template_directory() . '/functions/remove-junk-from-head.php';
 // require_once get_template_directory() . '/functions/wp-plugins.php';
 // require_once get_template_directory() . '/functions/security.php';

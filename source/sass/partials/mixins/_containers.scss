@@ -2,7 +2,7 @@
 @each $breakpoint, $container-max-width in $container-max-widths {
 	// @debug 'breakpoint';
 	.container-#{$breakpoint} {
-		@extend .container;
+		@extend %container;
 	}
 
 	@include media-breakpoint-up($breakpoint, $grid-breakpoints) {

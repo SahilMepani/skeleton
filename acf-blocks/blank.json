@@ -1,12 +1,13 @@
 [
 	{
-		"key": "group_5efc495acb65b",
+		"key": "group_647cfe61db5eb",
 		"title": "Blank",
 		"fields": [
 			{
-				"key": "field_5efc496c42921",
+				"key": "field_647cfe61e34c1",
 				"label": "Block Options",
 				"name": "",
+				"aria-label": "",
 				"type": "tab",
 				"instructions": "",
 				"required": 0,
@@ -20,11 +21,12 @@
 				"endpoint": 0
 			},
 			{
-				"key": "field_5efc495ad475a",
+				"key": "field_647cfe61e34fc",
 				"label": "Developer Options",
 				"name": "",
+				"aria-label": "",
 				"type": "tab",
-				"instructions": "If unsure, do not edit.",
+				"instructions": "",
 				"required": 0,
 				"conditional_logic": 0,
 				"wrapper": {
@@ -36,99 +38,230 @@
 				"endpoint": 0
 			},
 			{
-				"key": "field_5efc495ad4b67",
-				"label": "Spacing Top",
-				"name": "spacing_top",
-				"type": "text",
-				"instructions": "Separate multiple classes with spaces. Starts with pt-{breakpoint}-{number}. The {number} can be a 1 from 20.",
-				"required": 0,
-				"conditional_logic": 0,
-				"wrapper": {
-					"width": "",
-					"class": "",
-					"id": ""
-				},
-				"default_value": "pt-5 pt-md-10",
-				"placeholder": "",
-				"prepend": "",
-				"append": "",
-				"maxlength": ""
-			},
-			{
-				"key": "field_5efc495ad4f14",
-				"label": "Spacing Bottom",
-				"name": "spacing_bottom",
-				"type": "text",
-				"instructions": "Separate multiple classes with spaces. Starts with pb-{breakpoint}-{number}. The number can be 1 from 20.",
-				"required": 0,
-				"conditional_logic": 0,
-				"wrapper": {
-					"width": "",
-					"class": "",
-					"id": ""
-				},
-				"default_value": "pb-5 pb-md-10",
-				"placeholder": "",
-				"prepend": "",
-				"append": "",
-				"maxlength": ""
-			},
-			{
-				"key": "field_5efc495ad533c",
-				"label": "Custom CSS",
-				"name": "custom_css",
-				"type": "text",
+				"key": "field_647cfe61e3534",
+				"label": "Spacing",
+				"name": "spacing",
+				"aria-label": "",
+				"type": "group",
 				"instructions": "",
 				"required": 0,
 				"conditional_logic": 0,
 				"wrapper": {
 					"width": "",
+					"class": "",
+					"id": ""
+				},
+				"layout": "block",
+				"sub_fields": [
+					{
+						"key": "field_647cfe61ed087",
+						"label": "Top",
+						"name": "top",
+						"aria-label": "",
+						"type": "group",
+						"instructions": "",
+						"required": 1,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"layout": "block",
+						"sub_fields": [
+							{
+								"key": "field_647cfe61ef03c",
+								"label": "Spacing Top",
+								"name": "spacing_top",
+								"aria-label": "",
+								"type": "button_group",
+								"instructions": "",
+								"required": 1,
+								"conditional_logic": 0,
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"choices": {
+									"none": "None",
+									"spacing-top-small": "Small",
+									"spacing-top-medium": "Medium",
+									"spacing-top-large": "Large",
+									"spacing-top-xlarge": "X-Large",
+									"custom": "Custom"
+								},
+								"default_value": "spacing-top-medium",
+								"return_format": "value",
+								"allow_null": 0,
+								"layout": "horizontal"
+							},
+							{
+								"key": "field_647cfe61ef078",
+								"label": "Custom Value",
+								"name": "custom_value",
+								"aria-label": "",
+								"type": "range",
+								"instructions": "",
+								"required": 1,
+								"conditional_logic": [
+									[
+										{
+											"field": "field_647cfe61ef03c",
+											"operator": "==",
+											"value": "custom"
+										}
+									]
+								],
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"default_value": "",
+								"min": 1,
+								"max": 400,
+								"step": "",
+								"prepend": "",
+								"append": ""
+							}
+						]
+					},
+					{
+						"key": "field_647cfe61ed0c6",
+						"label": "Bottom",
+						"name": "bottom",
+						"aria-label": "",
+						"type": "group",
+						"instructions": "",
+						"required": 1,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"layout": "block",
+						"sub_fields": [
+							{
+								"key": "field_647cfe620212d",
+								"label": "Spacing Bottom",
+								"name": "spacing_bottom",
+								"aria-label": "",
+								"type": "button_group",
+								"instructions": "",
+								"required": 1,
+								"conditional_logic": 0,
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"choices": {
+									"none": "None",
+									"spacing-bottom-small": "Small",
+									"spacing-bottom-medium": "Medium",
+									"spacing-bottom-large": "Large",
+									"spacing-bottom-xlarge": "X-Large",
+									"custom": "Custom"
+								},
+								"default_value": "spacing-bottom-medium",
+								"return_format": "value",
+								"allow_null": 0,
+								"layout": "horizontal"
+							},
+							{
+								"key": "field_647cfe6202174",
+								"label": "Custom Value",
+								"name": "custom_value",
+								"aria-label": "",
+								"type": "range",
+								"instructions": "",
+								"required": 1,
+								"conditional_logic": [
+									[
+										{
+											"field": "field_647cfe620212d",
+											"operator": "==",
+											"value": "custom"
+										}
+									]
+								],
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"default_value": "",
+								"min": 1,
+								"max": 400,
+								"step": "",
+								"prepend": "",
+								"append": ""
+							}
+						]
+					}
+				]
+			},
+			{
+				"key": "field_647cfe61e356d",
+				"label": "Custom CSS",
+				"name": "custom_css",
+				"aria-label": "",
+				"type": "text",
+				"instructions": "",
+				"required": 0,
+				"conditional_logic": 0,
+				"wrapper": {
+					"width": "34",
 					"class": "",
 					"id": ""
 				},
 				"default_value": "",
+				"maxlength": "",
 				"placeholder": "",
 				"prepend": "",
-				"append": "",
-				"maxlength": ""
+				"append": ""
 			},
 			{
-				"key": "field_5efc495ad56c8",
+				"key": "field_647cfe61e35a5",
 				"label": "Custom Class(es)",
 				"name": "custom_classes",
+				"aria-label": "",
 				"type": "text",
 				"instructions": "Separate multiple classes with spaces",
 				"required": 0,
 				"conditional_logic": 0,
 				"wrapper": {
-					"width": "",
+					"width": "33",
 					"class": "",
 					"id": ""
 				},
 				"default_value": "",
+				"maxlength": "",
 				"placeholder": "",
 				"prepend": "",
-				"append": "",
-				"maxlength": ""
+				"append": ""
 			},
 			{
-				"key": "field_608ff20426105",
+				"key": "field_647cfe61e35dd",
 				"label": "Unique ID",
 				"name": "unique_id",
+				"aria-label": "",
 				"type": "text",
-				"instructions": "Add only one ID",
+				"instructions": "One word allowed",
 				"required": 0,
 				"conditional_logic": 0,
 				"wrapper": {
-					"width": "",
+					"width": "33",
 					"class": "",
 					"id": ""
 				},
 				"default_value": "",
+				"maxlength": "",
 				"placeholder": "",
 				"prepend": "",
-				"append": "",
-				"maxlength": ""
+				"append": ""
 			}
 		],
 		"location": [

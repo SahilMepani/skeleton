@@ -156,14 +156,14 @@ dl {
 
 ul,
 ol {
-	margin-left: rem-calc(20);
+	margin-inline-start: rem-calc(20);
 	list-style-position: outside;
 
 	ul,
 	ol {
 		margin: 0;
 		margin-top: rem-calc(5);
-		margin-left: rem-calc(40);
+		margin-inline-start: rem-calc(40);
 	}
 
 	ol {

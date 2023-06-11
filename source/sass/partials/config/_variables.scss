@@ -1,0 +1,16 @@
+// Text selection
+$text-selection-bg-color: beige;
+$text-selection-color: $body-color;
+
+// Custom Scrollbar
+$custom-scrollbar-enable: true;
+$track-width: 0.5rem;
+$track-background: #eee;
+$track-border-radius: 100vw;
+$track-margin-top: rem-calc(5);
+$track-margin-bottom: rem-calc(5);
+$thumb-background: #aaa;
+$thumb-border-radius: 100vw;
+
+// Custom ease
+$custom-ease: cubic-bezier(0.215, 0, 0, 0.995);

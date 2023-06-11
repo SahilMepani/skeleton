@@ -126,15 +126,15 @@ $mobile-sub-menu-link-padding-x: rem-calc(20);
 
 					&::after {
 						margin-top: rem-calc(-4);
-						margin-left: rem-calc(-6);
 						border: rem-calc(8) solid transparent;
 						border-top-color: $mobile-parent-menu-dropdown-icon-color;
 						border-right-width: rem-calc(6);
-						border-left-width: rem-calc(6);
 						position: absolute;
 						top: 50%;
 						left: 50%;
 						content: "";
+						margin-inline-start: rem-calc(-6);
+						border-inline-start-width: rem-calc(6);
 					}
 
 					&:hover,
@@ -356,12 +356,12 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 					margin-top: rem-calc(-4);
 					border: $desktop-parent-menu-dropdown-icon-border solid
 						transparent;
-					border-left-color: $desktop-parent-menu-dropdown-icon-hover-color;
 					position: absolute;
 					top: $desktop-parent-menu-item-padding-x;
 					right: $desktop-parent-menu-item-padding-y;
 					transition: $btn-transition;
 					content: "";
+					border-inline-start-color: $desktop-parent-menu-dropdown-icon-hover-color;
 				}
 			}
 		}

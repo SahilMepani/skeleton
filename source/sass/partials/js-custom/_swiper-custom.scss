@@ -28,11 +28,11 @@
 		display: inline-block;
 		width: rem-calc(40);
 		height: rem-calc(4);
-		margin-left: rem-calc(5);
 		border-radius: 0;
 		position: relative;
 		opacity: 1;
 		overflow: hidden;
+		margin-inline-start: rem-calc(5);
 		cursor: pointer;
 
 		&:not(:last-child) {

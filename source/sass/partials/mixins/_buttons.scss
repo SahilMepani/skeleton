@@ -38,9 +38,13 @@
 		fill: currentcolor;
 		width: rem-calc(24);
 		height: rem-calc(24);
-		margin-left: rem-calc(20);
+		margin-inline-start: rem-calc(20);
 	}
 }
+
+// @mixin btn-primary {
+// 	@include btn-green;
+// }
 
 @mixin btn-sm {
 	padding: rem-calc(10) rem-calc(20);

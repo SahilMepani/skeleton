@@ -114,7 +114,7 @@ function skel_register_block_field_group() {
 	// prepare block field options
 	$blocks_field_group = array_map( 'skel_prepare_block_field_group', BLOCK_DIR_NAMES );
 
-	var_dump($blocks_field_group);
+	// var_dump($blocks_field_group);
 
 	// register field groups
 	foreach( $blocks_field_group as $block_field_group ) {

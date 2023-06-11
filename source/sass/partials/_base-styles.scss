@@ -1,10 +1,21 @@
 /* ----------  Required  ---------- */
 .container {
-	@media screen and (min-width: $xxxl) {
-		// added over to avoid generating utility classes for this breakpoint. for eg. pt-xxxl-1 etc
-		max-width: rem-calc(1440); // change this value as per design
-	}
+	width: 100%;
+	padding-right: fluid(20, 40);
+	padding-left: fluid(20, 40);
+	margin-right: auto;
+	margin-left: auto;
 }
+
+.container-fluid {
+	padding: 0 5vw;
+}
+
+// .container-small {
+// 	@extend .container;
+
+// 	max-width: rem-calc(1100);
+// }
 
 /* show focus ring on form controls only when keyboard tabbing is used, using what-input js */
 [data-whatintent="keyboard"] *:focus {

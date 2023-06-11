@@ -47,10 +47,5 @@
 }
 
 .list-unstyled {
-	margin-top: 0;
-	margin-left: 0;
-
-	> li {
-		list-style: none;
-	}
+	@include list-unstyled;
 }

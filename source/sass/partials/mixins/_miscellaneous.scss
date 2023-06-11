@@ -28,3 +28,12 @@
 	-webkit-line-clamp: #{$lines};
 	text-overflow: ellipsis;
 }
+
+@mixin list-unstyled {
+	margin-top: 0;
+	margin-left: 0;
+
+	> li {
+		list-style: none;
+	}
+}

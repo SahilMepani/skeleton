@@ -22,7 +22,7 @@ module.exports = function (grunt) {
 				// dev
 				tasks: ["concat"]
 				// prod
-				// tasks: [ "concat",  "babel", "uglify" ]
+				// tasks: [ "eslint", "concat",  "babel", "uglify" ]
 			},
 			livereload: {
 				files: [
@@ -241,7 +241,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks("grunt-stylelint")
 	grunt.loadNpmTasks("grunt-eslint")
 	// grunt.loadNpmTasks('grunt-browser-sync');
-	grunt.registerTask("default", ["stylelint", "eslint", "watch"])
+	grunt.registerTask("default", ["watch"])
 	// grunt.registerTask("build", [
 	// 	"rtlcss",
 	// 	"postcss",

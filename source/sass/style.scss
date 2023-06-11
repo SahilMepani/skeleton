@@ -29,17 +29,13 @@
 // Mixins
 @import "partials/mixins/mixins";
 
-// Base Selectors
-@import "partials/base-selectors";
-
-// JS custom
-// @import "partials/js-plugins/swiper";
-// @import "partials/js-plugins/swiper-custom";
-// @import "partials/js-plugins/magnific-popup";
-// @import "partials/js-plugins/magnific-popup-custom";
-// @import "partials/js-plugins/aos-custom";
-
 // JS plugins
+@import "partials/js-plugins/swiper";
+@import "partials/js-plugins/magnific-popup";
+@import "partials/js-plugins/swiper-custom";
+@import "partials/js-plugins/magnific-popup-custom";
+
+// @import "partials/js-plugins/aos-custom";
 
 // Base
 @import "partials/font-face";
@@ -68,16 +64,7 @@
 // Helpers
 @import "partials/helpers/buttons";
 @import "partials/helpers/helpers";
-@import "partials/helpers/animations";
 
 // Utilities
 @import "partials/utilities/images";
-@import "partials/utilities/sizing";
-@import "partials/utilities/spacing";
-@import "partials/utilities/text";
-@import "partials/utilities/alert";
-@import "partials/utilities/miscellaneous";
 @import "partials/utilities/rtl";
-
-// Last minute changes
-@import "partials/shame";

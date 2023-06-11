@@ -18,13 +18,13 @@
 	// -- Enqueue editor script
 	function skel_gutenberg_scripts() {
 		// plugins
-		wp_enqueue_script(
-			'skel-editor-plugins',
-			get_stylesheet_directory_uri() . '/js/plugins.js',
-			['jquery'],
-			filemtime( get_stylesheet_directory() . '/js/plugins.js' ),
-			true
-		);
+		// wp_enqueue_script(
+		// 	'skel-editor-plugins',
+		// 	get_stylesheet_directory_uri() . '/js/plugins.js',
+		// 	['jquery'],
+		// 	filemtime( get_stylesheet_directory() . '/js/plugins.js' ),
+		// 	true
+		// );
 		// editor js - Npt required anymore
 		// https://developer.wordpress.org/block-editor/developers/filters/block-filters/#using-a-blacklist
 		// wp_enqueue_script (
@@ -37,110 +37,80 @@
 		// typekit fonts
 		// wp_enqueue_style( 'typekit-fonts', '//use.typekit.net/soi0ors.css', 'all' );
 	}
-	add_action( 'enqueue_block_editor_assets', 'skel_gutenberg_scripts' );
+	// add_action( 'enqueue_block_editor_assets', 'skel_gutenberg_scripts' );
 
 	// -- Load custom css in editor
-function skel_editor_css() {?>
-<style type="text/css">
-/* change the root font size as all selector values are rem unit */
-html {
-	font-size: 10px;
-}
+	function skel_editor_css() {?>
+	<style type="text/css">
 
-body#tinymce {
-	margin: 10px;
-	/* required */
-}
-
-/* change editor post title height */
-textarea#post-title-0 {
-	height: 75px;
-}
-
-/* Post title */
-.wp-block-post-title {
-	font-size: 3.6rem !important;
-}
-
-/* change the font styles as per project */
-#editorcontainer #content,
-#wp_mce_fullscreen,
-textarea.wp-editor-area,
-.block-editor-writing-flow {
-	font-family: 'Montserrat', $font-family-sans-serif;
-	/* this font should be imported editor-style.css */
-	font-size: 1.8rem;
-	line-height: 1.55;
-}
-
-.acf-block-preview p,
-.acf-block-preview table,
-.acf-block-preview ul,
-.acf-block-preview ol,
-.acf-block-preview dl,
-.acf-block-preview dd,
-.acf-block-preview pre,
-.acf-block-preview blockquote,
-.acf-block-preview address {
-	font-size: 1.8rem !important;
-}
-
-/* Increase block editor sidebar */
-.edit-post-layout.is-sidebar-opened .edit-post-layout__content {
-	margin-inline-end: 25vw !important;
-}
-
-.edit-post-layout.is-sidebar-opened .edit-post-plugin-sidebar__sidebar-layout,
-.edit-post-layout.is-sidebar-opened .edit-post-sidebar,
-.edit-post-toggle-publish-panel {
-	width: 25vw !important;
-}
-
-/* Main column width */
-.wp-block {
-	max-width: 100%;
-}
-
-/* Width of "wide" blocks */
-.wp-block[data-align="wide"] {
-	max-width: 108rem;
-}
-
-/* Width of "full-wide" blocks */
-.wp-block[data-align="full"] {
-	max-width: none;
-}
-
-/* Overwrites */
-.acf-tab-group li {
-	margin-bottom: 0 !important;
-}
-
-/* Overwrite sreveal visibility hidden to visible */
-.sreveal-stagger-item,
-[data-sreveal] {
-	visibility: visible !important;
-}
-
-.swiper-slide.wait-for-sreveal .aos-stagger-item,
-.swiper-slide.wait-for-sreveal [data-aos],
-.swiper-wrapper[data-sreveal="trigger"] .aos-stagger-item,
-.swiper-wrapper[data-sreveal="trigger"] [data-aos] {
-	opacity: 1 !important;
-	transform: none !important;
-	visibility: visible !important;
-}
-</style>
-<?php
+	.edit-post-visual-editor .core-block-preview {
+		padding: 30px;
+		color: gray;
+		text-align: center;
+		border: 2px dashed rgba(0,0,0, 0.5);
 	}
-	add_action( 'admin_head-post.php', 'skel_editor_css' );
-	add_action( 'admin_head-post-new.php', 'skel_editor_css' );
 
-	// -- Remove Gutenberg Block Library CSS from loading on the frontend
-	function skel_remove_wp_block_library_css() {
-		wp_dequeue_style( 'wp-block-library' );
-		wp_dequeue_style( 'wp-block-library-theme' );
+	.edit-post-visual-editor .acf-block-fields > .acf-field > .acf-accordion-content > .acf-fields > .acf-tab-wrap > .acf-tab-group {
+		display: flex;
+		margin: 0;
+		padding: 0;
+		border: none;
 	}
-	add_action( 'wp_enqueue_scripts', 'skel_remove_wp_block_library_css' );
+
+	.edit-post-visual-editor .acf-block-fields > .acf-field > .acf-accordion-content > .acf-fields > .acf-tab-wrap > .acf-tab-group li {
+		margin: 0;
+	}
+
+	.edit-post-visual-editor .acf-block-fields > .acf-field > .acf-accordion-content > .acf-fields > .acf-tab-wrap > .acf-tab-group li:nth-child(1) {
+		width: 100%;
+	}
+
+	.edit-post-visual-editor .acf-block-fields > .acf-field > .acf-accordion-content > .acf-fields > .acf-tab-wrap > .acf-tab-group li:nth-child(2) {
+		flex-shrink: 0;
+	}
+
+	.edit-post-visual-editor .acf-block-fields > .acf-field > .acf-accordion-content > .acf-fields > .acf-tab-wrap > .acf-tab-group li a {
+		padding: 5px 20px 4px;
+		font-size: 10px;
+		font-weight: bold;
+		text-transform: uppercase;
+		border: none;
+	}
+
+	.edit-post-visual-editor .acf-block-fields > .acf-field > .acf-accordion-content > .acf-fields > .acf-tab-wrap > .acf-tab-group li:not(.active) a {
+		background: rgba(0,0,0, 0.03);
+	}
+
+	.edit-post-visual-editor .acf-block-fields > .acf-field > .acf-accordion-content > .acf-fields > .acf-tab-wrap > .acf-tab-group li:not(.active) a:hover {
+		background: rgba(0,0,0, 0.01);
+	}
+
+
+	/* Overwrite sreveal visibility hidden to visible */
+	.sreveal-stagger-item,
+	[data-sreveal] {
+		visibility: visible !important;
+	}
+
+	.swiper-slide.wait-for-sreveal .aos-stagger-item,
+	.swiper-slide.wait-for-sreveal [data-aos],
+	.swiper-wrapper[data-sreveal="trigger"] .aos-stagger-item,
+	.swiper-wrapper[data-sreveal="trigger"] [data-aos] {
+		opacity: 1 !important;
+		transform: none !important;
+		visibility: visible !important;
+	}
+	</style>
+	<?php
+		}
+		add_action( 'admin_head-post.php', 'skel_editor_css' );
+		add_action( 'admin_head-post-new.php', 'skel_editor_css' );
+
+		// -- Remove Gutenberg Block Library CSS from loading on the frontend
+		function skel_remove_wp_block_library_css() {
+			wp_dequeue_style( 'wp-block-library' );
+			wp_dequeue_style( 'wp-block-library-theme' );
+		}
+		add_action( 'wp_enqueue_scripts', 'skel_remove_wp_block_library_css' );
 
 ?>

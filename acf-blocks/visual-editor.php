@@ -8,8 +8,7 @@
 
 <?php
 	// Block options
-	$title                 = get_field('title');
-	$text                 = get_field('text');
+	$content               = get_field('content');
 	// Developer options
 	$spacing               = get_field('spacing');
 	$spacing_top           = $spacing['top']['spacing_top'];
@@ -33,10 +32,7 @@
 <section class="visual-editor-section section <?php echo $spacing_top . ' ' . $spacing_bottom . ' ' . $custom_classes; ?>" style="<?php echo $spacing_top_custom; ?> <?php echo $spacing_bottom_custom; ?> <?php echo $custom_css; ?>" id="<?php echo $unique_id; ?>">
 	<div class="container">
 
-		<h1>Testing</h1>
-
-		<?php echo $title; ?>
-		<?php echo $text; ?>
+		<?php echo $content; ?>
 
 	</div> <!-- .container -->
 </section>

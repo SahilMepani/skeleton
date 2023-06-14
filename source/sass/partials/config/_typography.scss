@@ -5,6 +5,7 @@ $body-font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", roboto,
 	"Helvetica Neue", "Noto Sans", "Liberation Sans", arial, sans-serif,
 	"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 $heading-font-family: inherit;
+$paragraph-line-height: 1.5;
 $paragraph-margin-bottom: rem-calc(32);
 $heading-margin-bottom: rem-calc(32);
 $headings: h1, h2, h3, h4, h5, h6;
@@ -80,7 +81,7 @@ $typography-styles: (
 		$size
 	);
 	font-weight: 400;
-	line-height: 1.6;
+	line-height: $paragraph-line-height;
 
 	p {
 		font-size: inherit;

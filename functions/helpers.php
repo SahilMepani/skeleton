@@ -93,14 +93,9 @@ function skel_get_text_shorter( $input, $length ) {
  */
 function skel_get_the_terms( $post_id, $taxonomy, $separator ) {
 	$terms   = get_the_terms( $post_id, $taxonomy ); // Returns objects array
-	$ar_term = []; // Initialize an array
-	if ( $terms ) {
-		foreach ( $terms as $term ) {
-			$ar_term[] = $term->name; // Store term name
-		}
-	}
-	$seperator = ( $seperator ) ? $seperator : ' ';
-	$result    = join( $seperator, $ar_term ); // Join all terms name
+	$ar_term = wp_list_pluck( $terms, 'name');
+	$separator = ( $separator ) ? $separator : ' ';
+	$result    = join( $separator, $ar_term ); // Join all terms name
 
 	return $result;
 }

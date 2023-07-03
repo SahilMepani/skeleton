@@ -54,10 +54,7 @@ function skel_enqueue_scripts() {
 	//   'skeleton-plugins', // file name without extension where we want to use the localize_var
 	//   'localize_var',
 	//   array(
-	//     'ajax_url' => admin_url( 'admin-ajax.php' ),
-	//     // security
-	//     'nonce'    => wp_create_nonce( 'nonce_name' ),
-	//   )
+	//     'adminUrl' => admin_url( 'admin-ajax.php' ),
 	// );
 
 }

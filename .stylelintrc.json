@@ -38,6 +38,7 @@
 		],
 		"order/properties-order": [
 			[
+				"aspect-ratio",
 				"background",
 				"background-color",
 				"background-image",

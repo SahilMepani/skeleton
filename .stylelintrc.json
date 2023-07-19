@@ -34,7 +34,8 @@
 		"order/order": [
 			"dollar-variables",
 			"custom-properties",
-			"declarations"
+			"declarations",
+			"at-rules"
 		],
 		"order/properties-order": [
 			[

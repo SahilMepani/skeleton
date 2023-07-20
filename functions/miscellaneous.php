@@ -36,29 +36,25 @@ add_action( 'admin_menu', function() {
 // Blog Pagination
 // http://wp.tutsplus.com/tutorials/wordpress-pagination-a-primer
 /* ========================================== */
-// function skel_posts_pagination( $pages ) {
-//   $total_pages = $pages;
-
-//   if ( $total_pages > 1 ) {
-
-//     $current_page = max( 1, get_query_var( 'paged' ) );
-
-//     echo '<div class="posts-pagination">';
-
-//     echo '<span class="index"> Page ' . $current_page . ' of ' . $total_pages . "</span>";
-
-//     echo paginate_links(array(
-//         'base'      => get_pagenum_link( 1 ) . '%_%',
-//         'format'    => 'page/%#%/',
-//         'current'   => $current_page,
-//         'total'     => $total_pages,
-//         'type'      => 'list', // plain, array, list
-//         'prev_text' => '&lsaquo; Previous',
-//         'next_text' => 'Next &rsaquo;',
-//     ));
-//     echo '</div>';
-//   }
-// }
+function skel_posts_pagination( $total_pages ) {
+	if ( $total_pages > 1 ) {
+		$current_page = max( 1, get_query_var( 'paged' ) );
+		echo '<div classs="posts-pagination">';
+		$big = 999999999;
+		echo paginate_links(array(
+			'base' => str_replace( $big, '%#%', html_entity_decode( get_pagenum_link( $big ) ) ),
+			'format' => '?paged=%#%',
+			'current' => max( 1, get_query_var('paged') ),
+			'total' => $total_pages,
+			'prev_text' => svg('arrow-left'),
+			'next_text' => svg('arrow-right'),
+			'mid_size' => 1,
+			'start_size' => 0,
+			'end_size' => 0,
+		));
+		echo '</div>';
+	}
+}
 
 // Add attributes to enqueue styles
 ////////////////////////////////////////////////

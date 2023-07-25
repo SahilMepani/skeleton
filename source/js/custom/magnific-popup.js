@@ -56,30 +56,29 @@
 /*==============================================
 =            Magnific Popup - Video            =
 ==============================================*/
-// $( '.popup-video' ).magnificPopup( {
-// 	type: 'iframe',
+// $(".popup-video").magnificPopup({
+// 	type: "iframe",
 // 	removalDelay: 300,
-// 	mainClass: 'mfp-fade',
+// 	mainClass: "mfp-fade",
 // 	fixedContentPos: false, // disable scrollbar
-// iframe: {
-//   patterns: {
-//     youtube: {
-//       index: 'youtube.com/', // String that detects type of video (in this case YouTube). Simply via url.indexOf(index).
-//       id: 'v=', // String that splits URL in a two parts, second part should be %id%
-// Or null - full URL will be returned
-// Or a function that should return %id%, for example:
-// id: function(url) { return 'parsed id'; }
-//       src: '//www.youtube.com/embed/%id%?autoplay=1&rel=0' // URL that will be set as a source for iframe.
-//     }
-//     ,
-//     vimeo: {
-//       index: 'vimeo.com/',
-//       id: '/',
-//       src: '//player.vimeo.com/video/%id%?autoplay=1'
-//     }
-//   }
-// }
-// } );
+// 	iframe: {
+// 		patterns: {
+// 			youtube: {
+// 				index: "youtube.com/", // String that detects type of video (in this case YouTube). Simply via url.indexOf(index).
+// 				id: "v=" // String that splits URL in a two parts, second part should be %id%
+// 				// Or null - full URL will be returned
+// 				// Or a function that should return %id%, for example:
+// 				// id: function(url) { return 'parsed id'; }
+// 				// src: '//www.youtube.com/embed/%id%?autoplay=1&rel=0' // URL that will be set as a source for iframe.
+// 			},
+// 			vimeo: {
+// 				index: "vimeo.com/",
+// 				id: "/",
+// 				src: "//player.vimeo.com/video/%id%?autoplay=1"
+// 			}
+// 		}
+// 	}
+// })
 
 /*====================================================
 =            Magnific Popup - Members Bio            =
@@ -91,7 +90,7 @@
   removalDelay: 500, // delay removal by X to allow out-animation
   midClick: true,
   gallery: {
-    enabled: true
+	enabled: true
   }
 } );*/
 

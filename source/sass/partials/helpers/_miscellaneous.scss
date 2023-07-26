@@ -29,9 +29,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	gap: fluid(5, 10);
 	padding-block: fluid(30, 50);
 	border-bottom: rem(1) solid fade-out(, 0.75);
-	gap: fluid(5, 10);
 
 	.page-numbers {
 		display: flex;
@@ -47,6 +47,10 @@
 
 		&.current:first-child {
 			margin-left: auto;
+		}
+
+		&.current:last-child {
+			margin-right: auto;
 		}
 
 		&:hover {

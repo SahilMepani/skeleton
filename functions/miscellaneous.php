@@ -39,7 +39,7 @@ add_action( 'admin_menu', function() {
 function skel_posts_pagination( $total_pages ) {
 	if ( $total_pages > 1 ) {
 		$current_page = max( 1, get_query_var( 'paged' ) );
-		echo '<div classs="posts-pagination">';
+		echo '<div class="posts-pagination">';
 		$big = 999999999;
 		echo paginate_links(array(
 			'base' => str_replace( $big, '%#%', html_entity_decode( get_pagenum_link( $big ) ) ),

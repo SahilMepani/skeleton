@@ -10,7 +10,7 @@ module.exports = {
 	rules: {
 		"arrow-parens": [2, "as-needed"],
 		"quote-props": [2, "consistent"],
-		"semi": [2, "never"],
+		// "semi": [2, "never"],
 		"quotes": [2, "double"],
 		"comma-dangle": [2, "never"],
 		"array-bracket-spacing": [2, "never"]
@@ -19,4 +19,4 @@ module.exports = {
 		sourceType: "module",
 		ecmaVersion: 9
 	}
-}
+};

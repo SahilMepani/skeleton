@@ -97,15 +97,15 @@
 /*====================================================
 =            Open a popup after 2 seconds            =
 ====================================================*/
-// setTimeout( function() {
-// 	$.magnificPopup.open( {
+// setTimeout(function () {
+// 	$.magnificPopup.open({
 // 		items: {
-// 			src: '#subscribe-modal'
+// 			src: "#subscribe-modal"
 // 		},
 // 		removalDelay: 300,
-// 		mainClass: 'mfp-fade',
-// 	} );
-// }, 2000 );
+// 		mainClass: "mfp-fade"
+// 	});
+// }, 2000);
 
 /*====================================
 =            Custom Title            =

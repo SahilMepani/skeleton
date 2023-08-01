@@ -2,9 +2,9 @@
 
 <?php
 	/**
-	 * @param int (Search page slug)
+	 * @param int (Search page ID)
 	 */
-	echo skel_insert_page('search')
+	echo skel_insert_page(807)
 ?>
 
 <?php get_footer();?>

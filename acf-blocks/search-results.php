@@ -32,7 +32,10 @@
 
 	<div class="container">
 
-		<?php $s = $_GET['s']; ?>
+		<?php
+			$s = $_GET['s'];
+			$post_type = ($_GET['post_type']) ?? ['page'];
+		?>
 
 		<h5><?php _e('Showing Results for', 'skel'); ?> "<span><?php echo $s ?></span>"</h5>
 

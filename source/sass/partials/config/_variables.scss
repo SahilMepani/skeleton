@@ -14,3 +14,23 @@ $thumb-border-radius: 100vw;
 
 // Custom ease
 $custom-ease: cubic-bezier(0.215, 0, 0, 0.995);
+
+// Container padding
+$container-padding-x: fluid(20, 40);
+
+/* Do not edit anything below */
+
+// Same as grid breakpoints before $two-k
+// @each $breakpoint, $value in $grid-breakpoint {
+// 	$#{$breakpoint}: #{$value};
+// }
+
+// $sm: 576px;
+// $md: 768px;
+// $lg: 992px;
+// $xl: 1200px;
+// $xxl: 1400px;
+// $xxxl: 1600px;
+// $two-k: 1920px;
+// $three-k: 2560px;
+// $four-k: 3840px;

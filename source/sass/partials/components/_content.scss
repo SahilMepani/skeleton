@@ -1,8 +1,0 @@
-.site-wrapper { // body
-  @include display-flex;
-  @include flex-direction( column );
-}
-
-.site-content {
-  @include flex( 1 0 auto );
-}

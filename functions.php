@@ -3,8 +3,8 @@
 require_once( get_template_directory() . '/functions/acf.php' );
 require_once( get_template_directory() . '/functions/actions.php' );
 require_once( get_template_directory() . '/functions/filters.php' );
-require_once( get_template_directory() . '/functions/register-acf-blocks.php' );
-require_once( get_template_directory() . '/functions/block-editor-settings.php' );
+// require_once( get_template_directory() . '/functions/register-acf-blocks.php' );
+// require_once( get_template_directory() . '/functions/block-editor-settings.php' );
 
 
 /* ===============================================
@@ -56,3 +56,14 @@ add_editor_style();
 ////////////////////////////////////////////////
 // http://wordpress.org/support/topic/insert-image-default-to-no-link
 update_option('image_default_link_type', 'none');
+
+
+
+// remove the "Add to Cart" button from all product pages
+add_filter( 'woocommerce_is_purchasable', '__return_false' );
+
+// remove the price from all product pages
+add_filter( 'woocommerce_get_price_html', 'remove_price' );
+function remove_price( $price ) {
+    return '';
+}

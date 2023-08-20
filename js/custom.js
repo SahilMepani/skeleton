@@ -1,20 +1,20 @@
-// Media queries constant
-const smMQ   = window.matchMedia( '(min-width: 575px)' );
-const mdMQ   = window.matchMedia( '(min-width: 768px)' );
-const lgMQ   = window.matchMedia( '(min-width: 992px)' );
-const xlMQ   = window.matchMedia( '(min-width: 1200px)' );
-const xxlMQ  = window.matchMedia( '(min-width: 1400px)' );
-const xxxlMQ = window.matchMedia( '(min-width: 1600px)' );
 
-jQuery( document ).ready( function( $ ) {;
+jQuery(document).ready(function ($) {
+  
+    $("#owl-demo").owlCarousel({
+ 
+      autoPlay: 3000, //Set AutoPlay to 3 seconds
+ 
+      items : 4,
+      itemsDesktop : [1199,3],
+      itemsDesktopSmall : [979,3]
+ 
+  });
+
+
 } ); // Document Ready
 
 
-/*=================================
-=            Buggyfill            =
-=================================*/
-/* Polyfill for vh,vw units on iphone4,5 */
-window.viewportUnitsBuggyfill.init( {
-  refreshDebounceWait: 50,
-  hacks: window.viewportUnitsBuggyfillHacks
-} );
+
+
+

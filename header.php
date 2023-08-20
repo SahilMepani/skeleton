@@ -13,12 +13,55 @@
   <?php if ( is_singular() && pings_open( get_queried_object() ) ) : ?>
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
   <?php endif; ?>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <?php wp_head(); ?>
 </head>
 
 <body <?php body_class( 'site-wrapper' ); ?>>
 
-<header class="site-header clearfix">
-</header> <!-- .site-header -->
+<header>
+
+    <div class="sub-header">
+        <ul>
+            <li><i class="bi bi-telephone me-1"></i>
+                0472-256256</li>
+            <li><i class="bi bi-envelope ms-1"></i>
+                mail@lpl.com</li>
+        </ul>
+    </div>
+
+    <nav class="navbar navbar-expand-sm">
+        <a class="" href="<?php echo site_url(); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/svg/kpl-logo.svg" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse flex-wrap" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+
+            <li class="nav-item <?php if (is_page('home')) echo 'active'; ?>">
+                <a class="nav-link" href="<?php echo site_url(); ?>">
+                    HOME</a>
+            </li>
+
+            <li class="nav-item <?php if (is_page('about-us')) echo 'active'; ?>">
+                <a class="nav-link" href="<?php echo site_url().'/about-us'; ?>">
+                    ABOUT US</a>
+            </li>
+
+            <li class="nav-item <?php if (is_page('products')) echo 'active'; ?>">
+                <a class="nav-link" href="<?php echo site_url().'/products'; ?>">
+                    PRODUCTS</a>
+            </li>
+
+            <li class="nav-item <?php if (is_page('contact-us')) echo 'active'; ?>">
+                <a class="nav-link" href="<?php echo site_url().'/contact-us'; ?>">
+                    CONTACT US</a>
+            </li>
+
+
+            </ul>
+        </div>
+    </nav>
+</header>
 
 <section class="site-content">

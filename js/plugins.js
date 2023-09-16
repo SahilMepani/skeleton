@@ -43,99 +43,99 @@ var ScrollReveal=function(){"use strict";var r={delay:0,distance:"0",duration:60
  //# sourceMappingURL=what-input.min.js.map;
 jQuery( document ).ready( function ( $ ) {
 ;
-var btnMorePost = $("#ajax-more-post")
-var formSearchPost = $("#ajax-search-post")
-var loadingDots = $(".loading-dots")
+var btnMorePost = $("#ajax-more-post");
+var formSearchPost = $("#ajax-search-post");
+var loadingDots = $(".loading-dots");
 
 // Load More Post
 ////////////////////////////////////////////////
 btnMorePost.on("click", function (e) {
-	e.preventDefault()
+	e.preventDefault();
 
 	// disable load more button
-	btnMorePost.addClass("disabled")
+	btnMorePost.addClass("disabled");
 
-	update_post($(this), "filter_more")
-})
+	update_post($(this), "filter_more");
+});
 
 // Filter Search Post
 ////////////////////////////////////////////////
 formSearchPost.submit(function (e) {
-	e.preventDefault()
+	e.preventDefault();
 
 	// remove search icon
-	$("#ajax-submit-block").addClass("d-none")
+	$("#ajax-submit-block").addClass("d-none");
 	// remove close icon
-	$("#ajax-search-clear").removeClass("js-active")
+	$("#ajax-search-clear").removeClass("js-active");
 	// show spinner inside input
-	$(this).find(".loading-spinner").addClass("js-active")
+	$(this).find(".loading-spinner").addClass("js-active");
 
 	// save the search value in hidden input
-	var searchValue = formSearchPost.find(".input-search").val()
-	$("#filter-search").val(searchValue)
+	var searchValue = formSearchPost.find(".input-search").val();
+	$("#filter-search").val(searchValue);
 
-	update_post($(this), "filter_search")
-})
+	update_post($(this), "filter_search");
+});
 
 // Clear Search Post
 ////////////////////////////////////////////////
 $("#ajax-search-clear").click(function (e) {
-	e.preventDefault()
+	e.preventDefault();
 
 	// clear input value
-	formSearchPost.find(".input-search").val("")
+	formSearchPost.find(".input-search").val("");
 	// remove value from hidden input
-	$("#filter-search").val("")
+	$("#filter-search").val("");
 	// submit the form
-	formSearchPost.trigger("submit")
-})
+	formSearchPost.trigger("submit");
+});
 
 // Filter Categories Post
 ////////////////////////////////////////////////
 $("#ajax-filter-cat").on("change", function (e) {
-	e.preventDefault()
+	e.preventDefault();
 
 	// save the value in hidden input
-	var selectedCat = $("option:selected").data("term")
-	$("#filter-term").val(selectedCat)
+	var selectedCat = $("option:selected").data("term");
+	$("#filter-term").val(selectedCat);
 
-	update_post($("option:selected", this), "filter_term")
-})
+	update_post($("option:selected", this), "filter_term");
+});
 
 // Update Post
 ////////////////////////////////////////////////
 function update_post($this, trigger) {
 	// remove no data heading
-	$("#alert-no-data").addClass("d-none")
+	$("#alert-no-data").addClass("d-none");
 	// show loading dots
-	loadingDots.addClass("js-active")
+	loadingDots.addClass("js-active");
 
 	if (trigger == "filter_search" || trigger == "filter_term") {
 		// hide the load more button
-		btnMorePost.hide()
+		btnMorePost.hide();
 		// remove the list items
 		$("#ajax-list-post > li").fadeOut(400, function () {
-			$("#ajax-list-post > li").remove()
-		})
+			$("#ajax-list-post > li").remove();
+		});
 
-		$("#filter-pagenum").val(1) // when user clicks load more, pagenum get sets to +1, so we need to reset it back to 1 to load first set of posts.
+		$("#filter-pagenum").val(1); // when user clicks load more, pagenum get sets to +1, so we need to reset it back to 1 to load first set of posts.
 
-		var pageNumber = ""
+		var pageNumber = "";
 	}
 
 	if (trigger == "filter_more") {
-		var pageNumber = $("#filter-pagenum").val()
+		var pageNumber = $("#filter-pagenum").val();
 	}
 
-	var cpt = $this.data("cpt")
-	var tax = $this.data("tax")
-	var term = $("#filter-term").val()
-	var authorID = $("#filter-author-id").val()
-	var tagID = $("#filter-tag-id").val()
-	var search = $("#filter-search").val()
-	var pageNumber = $("#filter-pagenum").val()
-	var postsPerPage = $("#filter-posts-per-page").val()
-	var unseenPostCount = $("#filter-unseen-post-count").val()
+	var cpt = $this.data("cpt");
+	var tax = $this.data("tax");
+	var term = $("#filter-term").val();
+	var authorID = $("#filter-author-id").val();
+	var tagID = $("#filter-tag-id").val();
+	var search = $("#filter-search").val();
+	var pageNumber = $("#filter-pagenum").val();
+	var postsPerPage = $("#filter-posts-per-page").val();
+	var unseenPostCount = $("#filter-unseen-post-count").val();
 
 	$.ajax({
 		type: "POST",
@@ -153,19 +153,19 @@ function update_post($this, trigger) {
 			postsPerPage: postsPerPage
 		},
 		success: function (data) {
-			var $data = $(data)
+			var $data = $(data);
 
 			if ($.trim(data) != "" && $.trim(data) != 0) {
-				loadingDots.removeClass("js-active")
+				loadingDots.removeClass("js-active");
 
 				/*----------- Filter More -----------*/
 				if (trigger == "filter_more") {
-					unseenPostCount = unseenPostCount - $data.length
+					unseenPostCount = unseenPostCount - $data.length;
 
-					$("#filter-pagenum").val(parseInt(pageNumber) + 1)
-					$("#filter-unseen-post-count").val(unseenPostCount)
+					$("#filter-pagenum").val(parseInt(pageNumber) + 1);
+					$("#filter-unseen-post-count").val(unseenPostCount);
 
-					$("#ajax-list-post").append($data)
+					$("#ajax-list-post").append($data);
 
 					// scroll to newly appended data object
 					$("html,body").animate(
@@ -173,78 +173,78 @@ function update_post($this, trigger) {
 							scrollTop: $($data).offset().top - 40
 						},
 						0
-					)
+					);
 				}
 
 				/*----------  Filter Search  ----------*/
 				if (trigger == "filter_search") {
 					setTimeout(function () {
 						if (search != "") {
-							$("#ajax-search-clear").addClass("js-active")
+							$("#ajax-search-clear").addClass("js-active");
 						} else {
-							$("#ajax-submit-block").removeClass("d-none")
+							$("#ajax-submit-block").removeClass("d-none");
 						}
-						$(".loading-spinner").removeClass("js-active")
-						$("#ajax-list-post").append($data)
-						$("#ajax-list-post").fadeIn(400)
-						btnMorePost.fadeIn(400)
-					}, 300)
+						$(".loading-spinner").removeClass("js-active");
+						$("#ajax-list-post").append($data);
+						$("#ajax-list-post").fadeIn(400);
+						btnMorePost.fadeIn(400);
+					}, 300);
 				}
 
 				/*----------  Filter Cat  ----------*/
 				if (trigger == "filter_term") {
-					$("#ajax-list-post > li").remove()
+					$("#ajax-list-post > li").remove();
 
 					setTimeout(function () {
-						$("#ajax-list-post").append($data)
-						$("#ajax-list-post").fadeIn(400)
-						btnMorePost.fadeIn(400)
-					}, 300)
+						$("#ajax-list-post").append($data);
+						$("#ajax-list-post").fadeIn(400);
+						btnMorePost.fadeIn(400);
+					}, 300);
 				}
 
 				if (unseenPostCount) {
-					btnMorePost.removeClass("disabled")
+					btnMorePost.removeClass("disabled");
 				}
 			} else {
 				if ($(".loading-spinner").hasClass("js-active")) {
-					$("#ajax-search-clear").addClass("js-active")
+					$("#ajax-search-clear").addClass("js-active");
 				}
-				$(".loading-spinner").removeClass("js-active")
-				$("#alert-no-data").removeClass("d-none")
-				loadingDots.removeClass("js-active")
-				btnMorePost.hide()
+				$(".loading-spinner").removeClass("js-active");
+				$("#alert-no-data").removeClass("d-none");
+				loadingDots.removeClass("js-active");
+				btnMorePost.hide();
 			} // trim
 		} //success
-	}) //ajax
-	return false
+	}); //ajax
+	return false;
 }
 ;
 $(".header-nav-toggle").click(function (e) {
-	$(this).toggleClass("js-active")
-	$(".header-nav").toggleClass("js-active")
-	$("body").toggleClass("js-popup-active")
-	e.preventDefault()
-})
+	$(this).toggleClass("js-active");
+	$(".header-nav").toggleClass("js-active");
+	$("body").toggleClass("js-popup-active");
+	e.preventDefault();
+});
 
 $(".header-nav-close").click(function (e) {
-	$(".header-nav-toggle").toggleClass("js-active")
-	$(".header-nav").toggleClass("js-active")
-	$("body").removeClass("js-popup-active")
-	e.preventDefault()
-})
+	$(".header-nav-toggle").toggleClass("js-active");
+	$(".header-nav").toggleClass("js-active");
+	$("body").removeClass("js-popup-active");
+	e.preventDefault();
+});
 
 /* Add dropdown arrow for mobile parent menu */
 $(".header-nav-parent-menu li.menu-item-has-children > a").append(
 	"<span></span>"
-)
+);
 
 $(".header-nav-parent-menu li.menu-item-has-children > a span").on(
 	"click",
 	function (e) {
-		e.preventDefault()
-		$(this).parents("li.menu-item-has-children").toggleClass("js-active")
+		e.preventDefault();
+		$(this).parents("li.menu-item-has-children").toggleClass("js-active");
 	}
-)
+);
 ;
 /*==============================================
 =            Magnific Popup - Basic            =
@@ -304,30 +304,29 @@ $(".header-nav-parent-menu li.menu-item-has-children > a span").on(
 /*==============================================
 =            Magnific Popup - Video            =
 ==============================================*/
-// $( '.popup-video' ).magnificPopup( {
-// 	type: 'iframe',
+// $(".popup-video").magnificPopup({
+// 	type: "iframe",
 // 	removalDelay: 300,
-// 	mainClass: 'mfp-fade',
+// 	mainClass: "mfp-fade",
 // 	fixedContentPos: false, // disable scrollbar
-// iframe: {
-//   patterns: {
-//     youtube: {
-//       index: 'youtube.com/', // String that detects type of video (in this case YouTube). Simply via url.indexOf(index).
-//       id: 'v=', // String that splits URL in a two parts, second part should be %id%
-// Or null - full URL will be returned
-// Or a function that should return %id%, for example:
-// id: function(url) { return 'parsed id'; }
-//       src: '//www.youtube.com/embed/%id%?autoplay=1&rel=0' // URL that will be set as a source for iframe.
-//     }
-//     ,
-//     vimeo: {
-//       index: 'vimeo.com/',
-//       id: '/',
-//       src: '//player.vimeo.com/video/%id%?autoplay=1'
-//     }
-//   }
-// }
-// } );
+// 	iframe: {
+// 		patterns: {
+// 			youtube: {
+// 				index: "youtube.com/", // String that detects type of video (in this case YouTube). Simply via url.indexOf(index).
+// 				id: "v=" // String that splits URL in a two parts, second part should be %id%
+// 				// Or null - full URL will be returned
+// 				// Or a function that should return %id%, for example:
+// 				// id: function(url) { return 'parsed id'; }
+// 				// src: '//www.youtube.com/embed/%id%?autoplay=1&rel=0' // URL that will be set as a source for iframe.
+// 			},
+// 			vimeo: {
+// 				index: "vimeo.com/",
+// 				id: "/",
+// 				src: "//player.vimeo.com/video/%id%?autoplay=1"
+// 			}
+// 		}
+// 	}
+// })
 
 /*====================================================
 =            Magnific Popup - Members Bio            =
@@ -339,22 +338,22 @@ $(".header-nav-parent-menu li.menu-item-has-children > a span").on(
   removalDelay: 500, // delay removal by X to allow out-animation
   midClick: true,
   gallery: {
-    enabled: true
+	enabled: true
   }
 } );*/
 
 /*====================================================
 =            Open a popup after 2 seconds            =
 ====================================================*/
-// setTimeout( function() {
-// 	$.magnificPopup.open( {
+// setTimeout(function () {
+// 	$.magnificPopup.open({
 // 		items: {
-// 			src: '#subscribe-modal'
+// 			src: "#subscribe-modal"
 // 		},
 // 		removalDelay: 300,
-// 		mainClass: 'mfp-fade',
-// 	} );
-// }, 2000 );
+// 		mainClass: "mfp-fade"
+// 	});
+// }, 2000);
 
 /*====================================
 =            Custom Title            =

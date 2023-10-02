@@ -1,5 +1,5 @@
 <!doctype html>
-<html      <?php language_attributes();?>>
+<html <?php language_attributes();?>>
 
 <head>
 	<!-- HTML Boilerplte v8.00 -->
@@ -30,7 +30,7 @@
 
 			<div class="header-logo">
 				<a href="<?php echo esc_url( home_url() ); ?>" title="<?php esc_attr_e( get_bloginfo( 'name' ) );?>"
-					aria-label="Go to Home"					                        <?php echo ( is_front_page() ) ? 'aria-current="page"' : ''; ?>>
+					aria-label="Go to Home"	<?php echo ( is_front_page() ) ? 'aria-current="page"' : ''; ?>>
 					<span><?php bloginfo( 'description' );?></span>
 					<?php include 'images/svg/header-logo.svg'?>
 				</a>

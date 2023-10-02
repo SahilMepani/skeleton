@@ -1,5 +1,4 @@
 # Notes --- ✄ -----------------------:
-☐ All the spacing will be at the interval of 5px because of utility classes
 ☐ If we need pixel perfect spacing we need to remove the extra line-height in design
 ☐ Anything outside the container gets overlayed on smaller screens, generally the slider arrows
 ☐ Changing font-size at later stage breaks the heirarchy

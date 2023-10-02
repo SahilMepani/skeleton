@@ -24,7 +24,7 @@
 
 			&:hover,
 			&:focus-visible {
-				color: $green;
+				color: #f00;
 				text-decoration: underline;
 			}
 		}
@@ -59,7 +59,7 @@
 
 			.title-wrapper {
 				.title {
-					color: $green;
+					color: #f00;
 					font-weight: bold;
 					@include media-breakpoint-up(sm) {
 						font-weight: normal;

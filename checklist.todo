@@ -13,12 +13,6 @@
 	☐ Get old website URL
 	☐ Get the new website pages slug
 
-CSS:
-	☐ Remove spacers classes which are not used
-	☐ Remove gutter classes which are not used
-	☐ Remove negative spacer classes which are not used
-	☐ Remove spacer classes for higher breakpoints which are not used (xxl)
-
 # FINALIZE --- ✄ -----------------------:
 	☐ Check for PHP warnings or errors with debug to true or use Query monitor plugin
 	☐ Activate "Redirection" plugin and redirect all CPT slug to plural URL and use custom template to list all CPT posts. Also click check for al logs include 404 and monitor all Post Types
@@ -35,7 +29,6 @@ CSS:
 	☐ Check for any console errors on every page
 	☐ Check for any PHP error using Query Monitor plugin
 	☐ Please take a backup and Optimize database using "WP Optimize" plugin.
-	☐ Remove unwanted icons
 	☐ Remove unwanted/extra code from each file one by one
 	☐ Remove unwanted plugins
 	☐ Add all preview for acf-blocks
@@ -54,15 +47,12 @@ CSS:
 	☐ Add skel_direction_class to swiper-navigation class if site has arabic language
 	☐ Add skel_swiper_direction_class to swiper class if site has arabic langauge
 
-
 # Content Editor:
 	☐ All images need to have keyword focused lowercase names
 	☐ All images need to have ALT text explaining the image content in detail
 	☐ Do not upload same image again and to use it on another page. Use the existing one from the media library
 
-
 KINSTA STAGING:
-
 
 Kinsta LIVE:
 	☐ Add the domain to live environment and check the www checkbox
@@ -87,7 +77,7 @@ FROM `wp_options`
 WHERE `autoload` = 'yes'
 AND `option_name` LIKE '%wpml%'
 
-Delete	all options with the name jetpack in option_name:
+Delete all options with the name jetpack in option_name:
 DELETE
 FROM `wp_options`
 WHERE `autoload` = 'yes'

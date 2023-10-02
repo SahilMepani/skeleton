@@ -2,5 +2,6 @@
 	"arrowParens": "avoid",
 	"quoteProps": "consistent",
 	"tabWidth": 4,
-	"trailingComma": "none"
+	"trailingComma": "es5",
+	"singleQuote": true
 }

@@ -31,7 +31,7 @@
 	justify-content: center;
 	gap: fluid(5, 10);
 	padding-block: fluid(30, 50);
-	border-bottom: rem(1) solid fade-out(, 0.75);
+	border-bottom: rem-calc(1) solid fade-out(#000, 0.75);
 
 	.page-numbers {
 		display: flex;
@@ -41,7 +41,7 @@
 		height: fluid(30, 50);
 		transition: 250ms ease-out;
 
-		&[class~="dots"] {
+		&[class~='dots'] {
 			pointer-events: none;
 		}
 
@@ -66,7 +66,7 @@
 		&.next {
 			width: fluid(30, 60);
 			height: fluid(30, 60);
-			border: rem(1) solid $primary;
+			border: rem-calc(1) solid $primary;
 			border-radius: 50%;
 
 			svg {

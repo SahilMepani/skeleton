@@ -51,7 +51,7 @@ if (current_url.indexOf('#') != -1) {
 		setTimeout(function () {
 			element.scrollIntoView({
 				behavior: 'smooth',
-				block: 'center',
+				block: 'center'
 			});
 		}, 100);
 	}

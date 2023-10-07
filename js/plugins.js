@@ -43,19 +43,19 @@ var ScrollReveal=function(){"use strict";var r={delay:0,distance:"0",duration:60
  //# sourceMappingURL=what-input.min.js.map;
 jQuery( document ).ready( function ( $ ) {
 ;
-var btnMorePost = $("#ajax-more-post");
-var formSearchPost = $("#ajax-search-post");
-var loadingDots = $(".loading-dots");
+var btnMorePost = $('#ajax-more-post');
+var formSearchPost = $('#ajax-search-post');
+var loadingDots = $('.loading-dots');
 
 // Load More Post
 ////////////////////////////////////////////////
-btnMorePost.on("click", function (e) {
+btnMorePost.on('click', function (e) {
 	e.preventDefault();
 
 	// disable load more button
-	btnMorePost.addClass("disabled");
+	btnMorePost.addClass('disabled');
 
-	update_post($(this), "filter_more");
+	update_post($(this), 'filter_more');
 });
 
 // Filter Search Post
@@ -64,85 +64,85 @@ formSearchPost.submit(function (e) {
 	e.preventDefault();
 
 	// remove search icon
-	$("#ajax-submit-block").addClass("d-none");
+	$('#ajax-submit-block').addClass('d-none');
 	// remove close icon
-	$("#ajax-search-clear").removeClass("js-active");
+	$('#ajax-search-clear').removeClass('js-active');
 	// show spinner inside input
-	$(this).find(".loading-spinner").addClass("js-active");
+	$(this).find('.loading-spinner').addClass('js-active');
 
 	// save the search value in hidden input
-	var searchValue = formSearchPost.find(".input-search").val();
-	$("#filter-search").val(searchValue);
+	var searchValue = formSearchPost.find('.input-search').val();
+	$('#filter-search').val(searchValue);
 
-	update_post($(this), "filter_search");
+	update_post($(this), 'filter_search');
 });
 
 // Clear Search Post
 ////////////////////////////////////////////////
-$("#ajax-search-clear").click(function (e) {
+$('#ajax-search-clear').click(function (e) {
 	e.preventDefault();
 
 	// clear input value
-	formSearchPost.find(".input-search").val("");
+	formSearchPost.find('.input-search').val('');
 	// remove value from hidden input
-	$("#filter-search").val("");
+	$('#filter-search').val('');
 	// submit the form
-	formSearchPost.trigger("submit");
+	formSearchPost.trigger('submit');
 });
 
 // Filter Categories Post
 ////////////////////////////////////////////////
-$("#ajax-filter-cat").on("change", function (e) {
+$('#ajax-filter-cat').on('change', function (e) {
 	e.preventDefault();
 
 	// save the value in hidden input
-	var selectedCat = $("option:selected").data("term");
-	$("#filter-term").val(selectedCat);
+	var selectedCat = $('option:selected').data('term');
+	$('#filter-term').val(selectedCat);
 
-	update_post($("option:selected", this), "filter_term");
+	update_post($('option:selected', this), 'filter_term');
 });
 
 // Update Post
 ////////////////////////////////////////////////
 function update_post($this, trigger) {
 	// remove no data heading
-	$("#alert-no-data").addClass("d-none");
+	$('#alert-no-data').addClass('d-none');
 	// show loading dots
-	loadingDots.addClass("js-active");
+	loadingDots.addClass('js-active');
 
-	if (trigger == "filter_search" || trigger == "filter_term") {
+	if (trigger == 'filter_search' || trigger == 'filter_term') {
 		// hide the load more button
 		btnMorePost.hide();
 		// remove the list items
-		$("#ajax-list-post > li").fadeOut(400, function () {
-			$("#ajax-list-post > li").remove();
+		$('#ajax-list-post > li').fadeOut(400, function () {
+			$('#ajax-list-post > li').remove();
 		});
 
-		$("#filter-pagenum").val(1); // when user clicks load more, pagenum get sets to +1, so we need to reset it back to 1 to load first set of posts.
+		$('#filter-pagenum').val(1); // when user clicks load more, pagenum get sets to +1, so we need to reset it back to 1 to load first set of posts.
 
-		var pageNumber = "";
+		var pageNumber = '';
 	}
 
-	if (trigger == "filter_more") {
-		var pageNumber = $("#filter-pagenum").val();
+	if (trigger == 'filter_more') {
+		var pageNumber = $('#filter-pagenum').val();
 	}
 
-	var cpt = $this.data("cpt");
-	var tax = $this.data("tax");
-	var term = $("#filter-term").val();
-	var authorID = $("#filter-author-id").val();
-	var tagID = $("#filter-tag-id").val();
-	var search = $("#filter-search").val();
-	var pageNumber = $("#filter-pagenum").val();
-	var postsPerPage = $("#filter-posts-per-page").val();
-	var unseenPostCount = $("#filter-unseen-post-count").val();
+	var cpt = $this.data('cpt');
+	var tax = $this.data('tax');
+	var term = $('#filter-term').val();
+	var authorID = $('#filter-author-id').val();
+	var tagID = $('#filter-tag-id').val();
+	var search = $('#filter-search').val();
+	var pageNumber = $('#filter-pagenum').val();
+	var postsPerPage = $('#filter-posts-per-page').val();
+	var unseenPostCount = $('#filter-unseen-post-count').val();
 
 	$.ajax({
-		type: "POST",
-		dataType: "html",
+		type: 'POST',
+		dataType: 'html',
 		url: localize_var.ajax_url,
 		data: {
-			action: "update_post_ajax",
+			action: 'update_post_ajax',
 			cpt: cpt,
 			tax: tax,
 			term: term,
@@ -155,20 +155,20 @@ function update_post($this, trigger) {
 		success: function (data) {
 			var $data = $(data);
 
-			if ($.trim(data) != "" && $.trim(data) != 0) {
-				loadingDots.removeClass("js-active");
+			if ($.trim(data) != '' && $.trim(data) != 0) {
+				loadingDots.removeClass('js-active');
 
 				/*----------- Filter More -----------*/
-				if (trigger == "filter_more") {
+				if (trigger == 'filter_more') {
 					unseenPostCount = unseenPostCount - $data.length;
 
-					$("#filter-pagenum").val(parseInt(pageNumber) + 1);
-					$("#filter-unseen-post-count").val(unseenPostCount);
+					$('#filter-pagenum').val(parseInt(pageNumber) + 1);
+					$('#filter-unseen-post-count').val(unseenPostCount);
 
-					$("#ajax-list-post").append($data);
+					$('#ajax-list-post').append($data);
 
 					// scroll to newly appended data object
-					$("html,body").animate(
+					$('html,body').animate(
 						{
 							scrollTop: $($data).offset().top - 40
 						},
@@ -177,41 +177,41 @@ function update_post($this, trigger) {
 				}
 
 				/*----------  Filter Search  ----------*/
-				if (trigger == "filter_search") {
+				if (trigger == 'filter_search') {
 					setTimeout(function () {
-						if (search != "") {
-							$("#ajax-search-clear").addClass("js-active");
+						if (search != '') {
+							$('#ajax-search-clear').addClass('js-active');
 						} else {
-							$("#ajax-submit-block").removeClass("d-none");
+							$('#ajax-submit-block').removeClass('d-none');
 						}
-						$(".loading-spinner").removeClass("js-active");
-						$("#ajax-list-post").append($data);
-						$("#ajax-list-post").fadeIn(400);
+						$('.loading-spinner').removeClass('js-active');
+						$('#ajax-list-post').append($data);
+						$('#ajax-list-post').fadeIn(400);
 						btnMorePost.fadeIn(400);
 					}, 300);
 				}
 
 				/*----------  Filter Cat  ----------*/
-				if (trigger == "filter_term") {
-					$("#ajax-list-post > li").remove();
+				if (trigger == 'filter_term') {
+					$('#ajax-list-post > li').remove();
 
 					setTimeout(function () {
-						$("#ajax-list-post").append($data);
-						$("#ajax-list-post").fadeIn(400);
+						$('#ajax-list-post').append($data);
+						$('#ajax-list-post').fadeIn(400);
 						btnMorePost.fadeIn(400);
 					}, 300);
 				}
 
 				if (unseenPostCount) {
-					btnMorePost.removeClass("disabled");
+					btnMorePost.removeClass('disabled');
 				}
 			} else {
-				if ($(".loading-spinner").hasClass("js-active")) {
-					$("#ajax-search-clear").addClass("js-active");
+				if ($('.loading-spinner').hasClass('js-active')) {
+					$('#ajax-search-clear').addClass('js-active');
 				}
-				$(".loading-spinner").removeClass("js-active");
-				$("#alert-no-data").removeClass("d-none");
-				loadingDots.removeClass("js-active");
+				$('.loading-spinner').removeClass('js-active');
+				$('#alert-no-data').removeClass('d-none');
+				loadingDots.removeClass('js-active');
 				btnMorePost.hide();
 			} // trim
 		} //success
@@ -219,30 +219,30 @@ function update_post($this, trigger) {
 	return false;
 }
 ;
-$(".header-nav-toggle").click(function (e) {
-	$(this).toggleClass("js-active");
-	$(".header-nav").toggleClass("js-active");
-	$("body").toggleClass("js-popup-active");
+$('.header-nav-toggle').click(function (e) {
+	$(this).toggleClass('js-active');
+	$('.header-nav').toggleClass('js-active');
+	$('body').toggleClass('js-popup-active');
 	e.preventDefault();
 });
 
-$(".header-nav-close").click(function (e) {
-	$(".header-nav-toggle").toggleClass("js-active");
-	$(".header-nav").toggleClass("js-active");
-	$("body").removeClass("js-popup-active");
+$('.header-nav-close').click(function (e) {
+	$('.header-nav-toggle').toggleClass('js-active');
+	$('.header-nav').toggleClass('js-active');
+	$('body').removeClass('js-popup-active');
 	e.preventDefault();
 });
 
 /* Add dropdown arrow for mobile parent menu */
-$(".header-nav-parent-menu li.menu-item-has-children > a").append(
-	"<span></span>"
+$('.header-nav-parent-menu li.menu-item-has-children > a').append(
+	'<span></span>'
 );
 
-$(".header-nav-parent-menu li.menu-item-has-children > a span").on(
-	"click",
+$('.header-nav-parent-menu li.menu-item-has-children > a span').on(
+	'click',
 	function (e) {
 		e.preventDefault();
-		$(this).parents("li.menu-item-has-children").toggleClass("js-active");
+		$(this).parents('li.menu-item-has-children').toggleClass('js-active');
 	}
 );
 ;
@@ -407,8 +407,8 @@ $(".header-nav-parent-menu li.menu-item-has-children > a span").on(
  * Check if the user's screen primary input device is touch or not
  * https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript
  */
-if (!window.matchMedia("(pointer: coarse)").matches) {
-	document.documentElement.classList.add("js-no-touchevents")
+if (!window.matchMedia('(pointer: coarse)').matches) {
+	document.documentElement.classList.add('js-no-touchevents');
 }
 
 /**
@@ -416,49 +416,49 @@ if (!window.matchMedia("(pointer: coarse)").matches) {
  * scroll-padding-top css property
  */
 const resizeHeaderHeight = () => {
-	const headerHeight = document.querySelector(".site-header").offsetHeight
+	const headerHeight = document.querySelector('.site-header').offsetHeight;
 	document.documentElement.style.setProperty(
-		"--scroll-padding-top",
-		headerHeight + "px"
-	)
-}
-resizeHeaderHeight()
-window.addEventListener("resize", resizeHeaderHeight)
+		'--scroll-padding-top',
+		headerHeight + 'px'
+	);
+};
+resizeHeaderHeight();
+window.addEventListener('resize', resizeHeaderHeight);
 
 /**
  * Check if user scrolled
  */
 let pageScroll = function () {
-	let scroll = window.scrollY
-	const siteHeader = document.querySelector(".site-header")
+	let scroll = window.scrollY;
+	const siteHeader = document.querySelector('.site-header');
 	if (siteHeader) {
 		if (scroll > 0) {
-			siteHeader.classList.add("js-fixed")
+			siteHeader.classList.add('js-fixed');
 		} else {
-			siteHeader.classList.remove("js-fixed")
+			siteHeader.classList.remove('js-fixed');
 		}
 	}
-}
+};
 // need to run once, as sometimes the page is already scrolled down on load
-pageScroll()
+pageScroll();
 // run on scroll
-window.addEventListener("scroll", pageScroll)
+window.addEventListener('scroll', pageScroll);
 
 /**
  * Scroll to a specific section from #ID at the end of Window URL
  */
-const current_url = window.location.href
-if (current_url.indexOf("#") != -1) {
-	let hash_index = current_url.indexOf("#")
-	element_id = current_url.substring(hash_index + 1)
-	let element = document.getElementById(element_id)
+const current_url = window.location.href;
+if (current_url.indexOf('#') != -1) {
+	let hash_index = current_url.indexOf('#');
+	element_id = current_url.substring(hash_index + 1);
+	let element = document.getElementById(element_id);
 	if (element) {
 		setTimeout(function () {
 			element.scrollIntoView({
-				behavior: "smooth",
-				block: "center"
-			})
-		}, 100)
+				behavior: 'smooth',
+				block: 'center'
+			});
+		}, 100);
 	}
 }
 ;
@@ -469,196 +469,203 @@ if (current_url.indexOf("#") != -1) {
 window.sr = ScrollReveal({
 	// set defaults
 	duration: 1000,
-	easing: "ease",
-	distance: "50px",
+	easing: 'ease',
+	distance: '50px',
 	delay: 200,
 	beforeReveal: function (el) {
-		el.style.animationName = ""
-		el.classList.add("sreveal-in-view")
+		el.style.animationName = '';
+		el.classList.add('sreveal-in-view');
 	}
-})
+});
 
 /* Define custom animations */
 var fade = {
 	distance: 0
-}
+};
 
 var fadeUp = {
 	// it means fade from Up
-	origin: "bottom"
-}
+	origin: 'bottom'
+};
 
 var fadeDown = {
-	origin: "top"
-}
+	origin: 'top'
+};
 
 var fadeRight = {
-	origin: "left"
-}
+	origin: 'left'
+};
 
 var fadeLeft = {
-	origin: "right"
-}
+	origin: 'right'
+};
 
 var slideUp = {
-	origin: "bottom",
+	origin: 'bottom',
 	opacity: null
-}
+};
 
 var slideUpFull = {
-	origin: "bottom",
-	distance: "100%",
+	origin: 'bottom',
+	distance: '100%',
 	opacity: null
-}
+};
 
 var slideDown = {
-	origin: "top",
+	origin: 'top',
 	opacity: null
-}
+};
 
 var slideDownFull = {
-	origin: "top",
-	distance: "100%",
+	origin: 'top',
+	distance: '100%',
 	opacity: null
-}
+};
 
 var slideRight = {
-	origin: "left",
+	origin: 'left',
 	opacity: null
-}
+};
 
 var slideRightFull = {
-	origin: "left",
-	distance: "100%",
+	origin: 'left',
+	distance: '100%',
 	opacity: null
-}
+};
 
 var slideLeft = {
-	origin: "right",
+	origin: 'right',
 	opacity: null
-}
+};
 
 var slideLeftFull = {
-	origin: "right",
-	distance: "100%",
+	origin: 'right',
+	distance: '100%',
 	opacity: null
-}
+};
 
 var zoomOut = {
-	scale: "1.2",
+	scale: '1.2',
 	distance: 0,
 	opacity: null
-}
+};
 
 var zoomFadeOut = {
-	scale: "1.2",
+	scale: '1.2',
 	distance: 0
-}
+};
 
 // Project Specific
 var slideDownMarkers = {
 	opacity: null,
-	distance: "-30rem",
-	origin: "bottom"
-}
+	distance: '-30rem',
+	origin: 'bottom'
+};
 
 // do nothing, useful for adding just class
 var trigger = {
 	// overwrite defaults
 	duration: 0,
-	easing: "ease",
+	easing: 'ease',
 	distance: 0,
 	delay: 0,
 	opacity: null
-}
+};
 
 /* Invoke stagger animation */
 let srevealStagger100 = document.querySelectorAll(
-	"body:not(.wp-admin) .sreveal-stagger-100"
-)
+	'body:not(.wp-admin) .sreveal-stagger-100'
+);
 for (const item of srevealStagger100) {
 	let srevealStaggerItem = item.querySelectorAll(
-		"body:not(.wp-admin) .sreveal-stagger-item"
-	)
+		'body:not(.wp-admin) .sreveal-stagger-item'
+	);
 	sr.reveal(srevealStaggerItem, {
 		interval: 100
-	})
+	});
 }
 
 let srevealStagger200 = document.querySelectorAll(
-	"body:not(.wp-admin) .sreveal-stagger-200"
-)
+	'body:not(.wp-admin) .sreveal-stagger-200'
+);
 for (const item of srevealStagger200) {
 	let srevealStaggerItem = item.querySelectorAll(
-		"body:not(.wp-admin) .sreveal-stagger-item"
-	)
+		'body:not(.wp-admin) .sreveal-stagger-item'
+	);
 	sr.reveal(srevealStaggerItem, {
 		interval: 200
-	})
+	});
 }
 
 /* Invoke custom animations */
-sr.reveal("body:not(.wp-admin) [data-sreveal='trigger']", trigger)
-sr.reveal("body:not(.wp-admin) [data-sreveal='fade']", fade)
-sr.reveal("body:not(.wp-admin) [data-sreveal='fade-up']", fadeUp)
-sr.reveal("body:not(.wp-admin) [data-sreveal='fade-down']", fadeDown)
-sr.reveal("body:not(.wp-admin) [data-sreveal='fade-right']", fadeRight)
-sr.reveal("body:not(.wp-admin) [data-sreveal='fade-left']", fadeLeft)
-sr.reveal("body:not(.wp-admin) [data-sreveal='slide-up']", slideUp)
-sr.reveal("body:not(.wp-admin) [data-sreveal='slide-up']", slideUp)
-sr.reveal("body:not(.wp-admin) [data-sreveal='slide-up-full']", slideUpFull)
-sr.reveal("body:not(.wp-admin) [data-sreveal='slide-down']", slideDown)
-sr.reveal("body:not(.wp-admin) [data-sreveal='slide-down-full']", slideDownFull)
-sr.reveal("body:not(.wp-admin) [data-sreveal='slide-right']", slideRight)
+/* eslint-disable */
+sr.reveal("body:not(.wp-admin) [data-sreveal='trigger']", trigger);
+sr.reveal("body:not(.wp-admin) [data-sreveal='fade']", fade);
+sr.reveal("body:not(.wp-admin) [data-sreveal='fade-up']", fadeUp);
+sr.reveal("body:not(.wp-admin) [data-sreveal='fade-down']", fadeDown);
+sr.reveal("body:not(.wp-admin) [data-sreveal='fade-right']", fadeRight);
+sr.reveal("body:not(.wp-admin) [data-sreveal='fade-left']", fadeLeft);
+sr.reveal("body:not(.wp-admin) [data-sreveal='slide-up']", slideUp);
+sr.reveal("body:not(.wp-admin) [data-sreveal='slide-up']", slideUp);
+sr.reveal("body:not(.wp-admin) [data-sreveal='slide-up-full']", slideUpFull);
+sr.reveal("body:not(.wp-admin) [data-sreveal='slide-down']", slideDown);
+sr.reveal(
+	"body:not(.wp-admin) [data-sreveal='slide-down-full']",
+	slideDownFull
+);
+sr.reveal("body:not(.wp-admin) [data-sreveal='slide-right']", slideRight);
 sr.reveal(
 	"body:not(.wp-admin) [data-sreveal='slide-right-full']",
 	slideRightFull
-)
-sr.reveal("body:not(.wp-admin) [data-sreveal='slide-left']", slideLeft)
-sr.reveal("body:not(.wp-admin) [data-sreveal='slide-left-full']", slideLeftFull)
-sr.reveal("body:not(.wp-admin) [data-sreveal='zoom-out']", zoomOut)
-sr.reveal("body:not(.wp-admin) [data-sreveal='zoom-fade-out']", zoomFadeOut)
+);
+sr.reveal("body:not(.wp-admin) [data-sreveal='slide-left']", slideLeft);
+sr.reveal(
+	"body:not(.wp-admin) [data-sreveal='slide-left-full']",
+	slideLeftFull
+);
+sr.reveal("body:not(.wp-admin) [data-sreveal='zoom-out']", zoomOut);
+sr.reveal("body:not(.wp-admin) [data-sreveal='zoom-fade-out']", zoomFadeOut);
 sr.reveal(
 	"body:not(.wp-admin) [data-sreveal='slide-down-markers']",
 	slideDownMarkers
-)
-
+);
+/* eslint-enable */
 /* Enable data-attributes */
-$("body:not(.wp-admin) [data-sreveal]").each(function () {
-	var el = $(this)
+$('body:not(.wp-admin) [data-sreveal]').each(function () {
+	var el = $(this);
 
 	// options can be used as postfix. For eg. data-sreveal-option.
 	// option with two words should be separated using '-'. For eg. viewFactor can be written as data-sreveal-view-factor.
 	var options = [
-		"delay",
-		"distance",
-		"duration",
-		"easing",
-		"interval",
-		"opacity",
-		"origin",
-		"rotate",
-		"scale",
-		"desktop",
-		"mobile",
-		"reset",
-		"useDelay",
-		"viewFactor",
-		"viewOffset"
-	]
+		'delay',
+		'distance',
+		'duration',
+		'easing',
+		'interval',
+		'opacity',
+		'origin',
+		'rotate',
+		'scale',
+		'desktop',
+		'mobile',
+		'reset',
+		'useDelay',
+		'viewFactor',
+		'viewOffset'
+	];
 
-	var settings = {}
-	var interval = 0
+	var settings = {};
+	var interval = 0;
 
 	$(options).each(function (index, element) {
-		if (el.data("sreveal-" + options[index])) {
-			var option = options[index]
-			settings[option] = el.data("sreveal-" + option)
+		if (el.data('sreveal-' + options[index])) {
+			var option = options[index];
+			settings[option] = el.data('sreveal-' + option);
 		}
-	})
+	});
 
-	sr.reveal(el, settings)
-})
+	sr.reveal(el, settings);
+});
 
 /* Disable animation, if not mobile */
 // $( 'html.js:not(.is-mobile) .sreveal' ).css( 'animation-name', 'none' );
@@ -700,15 +707,15 @@ beforeReveal: function (el) {},
 /*=============================================
 =            General scroll to any            =
 =============================================*/
-$(".scroll-to").click(function (e) {
-	e.preventDefault()
-	$("html,body").animate(
+$('.scroll-to').click(function (e) {
+	e.preventDefault();
+	$('html,body').animate(
 		{
 			scrollTop: $(this.hash).offset().top
 		},
 		500
-	)
-})
+	);
+});
 
 /*=====================================
 =            Scroll to top            =
@@ -718,18 +725,18 @@ var scrollToTop = debounce(function () {
 	if ($(this).width() > 767) {
 		// if scrollTop offset is greater
 		if ($(this).scrollTop() > 200) {
-			$(".scroll-to-top").fadeIn(200)
+			$('.scroll-to-top').fadeIn(200);
 		} else {
-			$(".scroll-to-top").fadeOut(200)
+			$('.scroll-to-top').fadeOut(200);
 		}
 	}
-}, 200)
+}, 200);
 
 // run on page load
-scrollToTop()
+scrollToTop();
 
 // run on scroll
-window.addEventListener("scroll", scrollToTop)
+window.addEventListener('scroll', scrollToTop);
 ;
 ;
 } ); // Document Ready

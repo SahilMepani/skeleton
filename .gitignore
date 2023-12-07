@@ -11,3 +11,4 @@ sftp-config.json
 sftp-config-live.json
 sftp-config-dev.json
 /nbproject/private/
+node_modules

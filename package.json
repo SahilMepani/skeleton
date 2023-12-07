@@ -33,7 +33,6 @@
 		"grunt-rtlcss": "^2.0.2",
 		"grunt-sass": "*",
 		"grunt-stylelint": "^0.18.0",
-		"node-sass": "^5.0.0",
 		"postcss": "^8.4.21",
 		"prettier": "2.2.1",
 		"prettier-eslint": "15.0.1",

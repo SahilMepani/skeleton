@@ -23,45 +23,6 @@
 }
 
 /* ----------  Swiper Arrow Navigation  ---------- */
-.swiper-arrow-navigation {
-	.btn {
-		color: $primary;
-		position: absolute;
-		transition: 0.2s ease-in-out;
-
-		&.swiper-button-disabled {
-			opacity: 0.4;
-			pointer-events: none;
-		}
-	}
-
-	.btn-next {
-		right: rem-calc(15);
-
-		&::before {
-			left: 0;
-			transform: translateX(100%);
-		}
-	}
-
-	.btn-prev {
-		left: rem-calc(15);
-
-		&::before {
-			right: 0;
-			transform: translateX(100%);
-		}
-	}
-	@include media-breakpoint-up(sm) {
-		.btn {
-			&::after {
-				font-size: rem-calc(60);
-			}
-		}
-	}
-}
-
-/* ----------  Swiper Arrow Navigation  ---------- */
 .swiper-navigation {
 	display: flex;
 }
@@ -102,47 +63,8 @@
 	}
 }
 
-/* ----------  Circle Navigation  ---------- */
-.swiper-navigation {
-	display: flex;
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-	line-height: rem-calc(52);
-	width: rem-calc(52);
-	height: rem-calc(52);
-	margin: 0;
-	border: rem-calc(2) solid red;
-	border-radius: 50%;
-	position: relative;
-	top: auto;
-	right: auto;
-	left: auto;
-	z-index: 10;
-	transition: 0.2s ease-out;
-
-	&::after {
-		color: red;
-		font-size: rem-calc(18);
-	}
-}
-
-.swiper-button-prev {
-	margin-right: rem-calc(8);
-	@include media-breakpoint-up(md) {
-		margin-right: rem-calc(16);
-	}
-}
-
-.swiper-button-disabled {
-	border-color: black;
-
-	&::after {
-		color: black;
-	}
-}
-
+// Floating
+////////////////////////////////////////////////
 .swiper-navigation-floating {
 	.swiper-button-prev,
 	.swiper-button-next {

@@ -102,23 +102,6 @@
 	}
 }
 
-.swiper-navigation-floating {
-	.swiper-button-prev,
-	.swiper-button-next {
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-	}
-
-	.swiper-button-prev {
-		left: 0;
-	}
-
-	.swiper-button-next {
-		right: 0;
-	}
-}
-
 /* ----------  Circle Navigation  ---------- */
 .swiper-navigation {
 	display: flex;

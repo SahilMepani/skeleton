@@ -30,7 +30,7 @@
 @each $spacing, $value in $section-spacings {
 	@each $position in ("top", "bottom") {
 		.spacing-top-#{$spacing} {
-			padding-top: map.get($section-spacings, $value)
+			padding-#{$spacing}: map.get($section-spacings, $value)
 		}
 	}
 }

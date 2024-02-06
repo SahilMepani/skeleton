@@ -20,6 +20,14 @@ function skel_direction_class() {
 	}
 }
 
+
+// Call svg files
+////////////////////////////////////////////////
+function svg($image) {
+    $file = get_template_directory_uri() . '/images/svg/' . $image . '.svg';
+	return file_get_contents($file);
+}
+
 // Generate working youtube  link for magnific popup
 // Replace youtu.be to youtube.com
 ////////////////////////////////////////////////

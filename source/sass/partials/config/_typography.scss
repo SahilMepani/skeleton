@@ -102,6 +102,9 @@ $typography-styles: (
 	}
 }
 
+/**
+* Generate headings class.. .h1, .h2...
+*/
 @if $typography-styles {
 	@each $style, $_value in $typography-styles {
 		.#{$style} {
@@ -110,11 +113,13 @@ $typography-styles: (
 	}
 }
 
+/**
+* Generate headings.. h1, h2...
+*/
 @each $heading in $headings {
 	#{$heading} {
-		@include font($heading);
-
 		color: $heading-color;
+		@include font($heading);
 
 		&:not(:last-child) {
 			margin-bottom: $heading-margin-bottom;

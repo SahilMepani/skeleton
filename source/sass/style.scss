@@ -29,6 +29,7 @@
 @import 'partials/base-selectors';
 
 // JS plugins
+// Added at the top of other files for easy overwrite
 @import 'partials/js-plugins/swiper';
 @import 'partials/js-plugins/magnific-popup';
 @import 'partials/js-plugins/swiper-custom';
@@ -59,7 +60,7 @@
 
 // Helpers
 @import 'partials/helpers/buttons';
-@import 'partials/helpers/sections';
+@import 'partials/helpers/section-spacing';
 @import 'partials/helpers/miscellaneous';
 
 // Utilities

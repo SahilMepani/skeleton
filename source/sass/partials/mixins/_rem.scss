@@ -3,6 +3,7 @@
 @use 'sass:map';
 
 // Rem Calculation of Pixel Values
+// Never change this value
 $rem-base: 16px;
 
 @function strip-unit($number) {
@@ -81,8 +82,8 @@ $rem-base: 16px;
 	@if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
 		$fluid-base: calc(
 			#{$base-min-value} +
-				#{(strip-unit($base-max-value) - strip-unit($base-min-value))} *
-				((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+			#{(strip-unit($base-max-value) - strip-unit($base-min-value))} *
+			((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
 		);
 
 		@if $min-value < $max-value {

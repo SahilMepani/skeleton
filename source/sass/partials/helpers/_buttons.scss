@@ -30,6 +30,6 @@
 	@include btn-lg;
 }
 
-// &.disabled {
-//	 // Already avaiable in bootstrap by default
-// }
+.btn.disabled {
+	pointer-events: none;
+}

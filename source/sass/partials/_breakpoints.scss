@@ -1,9 +1,17 @@
-$rem-base-unitless: 16;
-$xs: 0;
-$ph: calc(375 / 16) * 1rem;
-$sm: calc(576 / 16) * 1rem;
-$md: calc(768 / 16) * 1rem;
-$lg: calc(992 / 16) * 1rem;
-$xl: calc(1200 / 16) * 1rem;
-$xxl: calc(1400 / 16) * 1rem;
-$xxxl: calc(1600 / 16) * 1rem;
+/**
+ * Create breakpoint variables in SASS
+ * Useful if we need to use breakpoint variable in SASS in the project
+ *? Below code doesn't work, need to fix it
+*/
+// @each $breakpoint, $value in $grid-breakpoints {
+// 	$#{$breakpoint}: #{$value};
+// }
+
+$xs: map.get($grid-breakpoints, "xs");
+$ph: map.get($grid-breakpoints, "ph");
+$sm: map.get($grid-breakpoints, "sm");
+$md: map.get($grid-breakpoints, "md");
+$lg: map.get($grid-breakpoints, "lg");
+$xl: map.get($grid-breakpoints, "xl");
+$xxl: map.get($grid-breakpoints, "xxl");
+$xxxl: map.get($grid-breakpoints, "xxxl");

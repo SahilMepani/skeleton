@@ -9,6 +9,9 @@
 * License: GPL
 * License URI: http://wordpress.org/about/gpl/
 */
+/**
+* Generate headings class.. .h1, .h2...
+*/
 .h1 {
   font-family: inherit;
   font-size: min(2.75rem + 1.75 * (100vw - 23.4375rem) / 64.0625, 4.5rem);
@@ -75,67 +78,70 @@
   letter-spacing: -0.4px;
 }
 
+/**
+* Generate headings.. h1, h2...
+*/
 h1 {
+  color: inherit;
   font-family: inherit;
   font-size: min(2.75rem + 1.75 * (100vw - 23.4375rem) / 64.0625, 4.5rem);
   font-weight: 400;
   line-height: 1.066;
-  color: inherit;
 }
 h1:not(:last-child) {
   margin-bottom: 2rem;
 }
 
 h2 {
+  color: inherit;
   font-family: inherit;
   font-size: min(2.25rem + 1.75 * (100vw - 23.4375rem) / 64.0625, 4rem);
   font-weight: 400;
   line-height: 1.1;
-  color: inherit;
 }
 h2:not(:last-child) {
   margin-bottom: 2rem;
 }
 
 h3 {
+  color: inherit;
   font-family: inherit;
   font-size: min(2rem + 1.5 * (100vw - 23.4375rem) / 64.0625, 3.5rem);
   font-weight: 400;
   line-height: 1.14;
-  color: inherit;
 }
 h3:not(:last-child) {
   margin-bottom: 2rem;
 }
 
 h4 {
+  color: inherit;
   font-family: inherit;
   font-size: min(1.5rem + 1 * (100vw - 23.4375rem) / 64.0625, 2.5rem);
   font-weight: 400;
   line-height: 1.2;
-  color: inherit;
 }
 h4:not(:last-child) {
   margin-bottom: 2rem;
 }
 
 h5 {
+  color: inherit;
   font-family: inherit;
   font-size: min(1.25rem + 0.75 * (100vw - 23.4375rem) / 64.0625, 2rem);
   font-weight: 400;
   line-height: 1.25;
-  color: inherit;
 }
 h5:not(:last-child) {
   margin-bottom: 2rem;
 }
 
 h6 {
+  color: inherit;
   font-family: inherit;
   font-size: min(1rem + 0.5 * (100vw - 23.4375rem) / 64.0625, 1.5rem);
   font-weight: 400;
   line-height: 1.3333;
-  color: inherit;
 }
 h6:not(:last-child) {
   margin-bottom: 2rem;
@@ -1815,91 +1821,6 @@ img.mfp-img {
 }
 
 /* ----------  Swiper Arrow Navigation  ---------- */
-.swiper-arrow-navigation .btn {
-  color: #1f2261;
-  position: absolute;
-  transition: 0.2s ease-in-out;
-}
-.swiper-arrow-navigation .btn.swiper-button-disabled {
-  opacity: 0.4;
-  pointer-events: none;
-}
-.swiper-arrow-navigation .btn-next {
-  right: 0.9375rem;
-}
-.swiper-arrow-navigation .btn-next::before {
-  left: 0;
-  transform: translateX(100%);
-}
-.swiper-arrow-navigation .btn-prev {
-  left: 0.9375rem;
-}
-.swiper-arrow-navigation .btn-prev::before {
-  right: 0;
-  transform: translateX(100%);
-}
-@media (min-width: 36rem) {
-  .swiper-arrow-navigation .btn::after {
-    font-size: 3.75rem;
-  }
-}
-
-/* ----------  Swiper Arrow Navigation  ---------- */
-.swiper-navigation {
-  display: flex;
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-  line-height: 3.25rem;
-  width: 3.25rem;
-  height: 3.25rem;
-  margin: 0;
-  border: 2px solid red;
-  border-radius: 50%;
-  position: relative;
-  top: auto;
-  right: auto;
-  left: auto;
-  z-index: 10;
-  transition: 0.2s ease-out;
-}
-.swiper-button-prev::after,
-.swiper-button-next::after {
-  color: red;
-  font-size: 1.125rem;
-}
-
-.swiper-button-prev {
-  margin-right: 0.5rem;
-}
-@media (min-width: 48rem) {
-  .swiper-button-prev {
-    margin-right: 1rem;
-  }
-}
-
-.swiper-button-disabled {
-  border-color: black;
-}
-.swiper-button-disabled::after {
-  color: black;
-}
-
-.swiper-navigation-floating .swiper-button-prev,
-.swiper-navigation-floating .swiper-button-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.swiper-navigation-floating .swiper-button-prev {
-  left: 0;
-}
-.swiper-navigation-floating .swiper-button-next {
-  right: 0;
-}
-
-/* ----------  Circle Navigation  ---------- */
 .swiper-navigation {
   display: flex;
 }
@@ -3225,6 +3146,10 @@ img.mfp-img {
   padding: 0.625rem 1.25rem;
 }
 
+.btn.disabled {
+  pointer-events: none;
+}
+
 .section {
   overflow: hidden;
 }
@@ -3251,38 +3176,6 @@ img.mfp-img {
 }
 .section.spacing-bottom-custom {
   padding-bottom: min(var(--spacing-bottom-custom) / 2 * 1px + (var(--spacing-bottom-custom) / 16 - var(--spacing-bottom-custom) / 2 / 16) * (100vw - 375px) / 100, var(--spacing-bottom-custom) * 1px);
-}
-
-.spacing-top-small {
-  padding-top: min(1.25rem + 1.25 * (100vw - 23.4375rem) / 64.0625, 2.5rem);
-}
-
-.spacing-bottom-small {
-  padding-bottom: min(1.25rem + 1.25 * (100vw - 23.4375rem) / 64.0625, 2.5rem);
-}
-
-.spacing-top-medium {
-  padding-top: min(2.5rem + 2.5 * (100vw - 23.4375rem) / 64.0625, 5rem);
-}
-
-.spacing-bottom-medium {
-  padding-bottom: min(2.5rem + 2.5 * (100vw - 23.4375rem) / 64.0625, 5rem);
-}
-
-.spacing-top-large {
-  padding-top: min(3.75rem + 3.75 * (100vw - 23.4375rem) / 64.0625, 7.5rem);
-}
-
-.spacing-bottom-large {
-  padding-bottom: min(3.75rem + 3.75 * (100vw - 23.4375rem) / 64.0625, 7.5rem);
-}
-
-.spacing-top-xlarge {
-  padding-top: min(3.75rem + 6.25 * (100vw - 23.4375rem) / 64.0625, 10rem);
-}
-
-.spacing-bottom-xlarge {
-  padding-bottom: min(3.75rem + 6.25 * (100vw - 23.4375rem) / 64.0625, 10rem);
 }
 
 .bg-video {

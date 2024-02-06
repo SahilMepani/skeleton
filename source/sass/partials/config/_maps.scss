@@ -1,12 +1,13 @@
+$rem-base-unitless: strip-unit($rem-base);
 $grid-breakpoints: (
 	"xs": 0,
-	"ph": calc(375 / 16) * 1rem,
-	"sm": calc(576 / 16) * 1rem,
-	"md": calc(768 / 16) * 1rem,
-	"lg": calc(992 / 16) * 1rem,
-	"xl": calc(1200 / 16) * 1rem,
-	"xxl": calc(1400 / 16) * 1rem,
-	"xxxl": calc(1600 / 16) * 1rem
+	"ph": calc(375 / $rem-base-unitless) * 1rem,
+	"sm": calc(576 / $rem-base-unitless) * 1rem,
+	"md": calc(768 / $rem-base-unitless) * 1rem,
+	"lg": calc(992 / $rem-base-unitless) * 1rem,
+	"xl": calc(1200 / $rem-base-unitless) * 1rem,
+	"xxl": calc(1400 / $rem-base-unitless) * 1rem,
+	"xxxl": calc(1600 / $rem-base-unitless) * 1rem
 );
 $container-max-widths: (
 	// max-width value needs to be less than the (breakpoint value(xxl) - $container-padding)

@@ -16,7 +16,6 @@
 }
 
 %fill-cover {
-	@extend %fill;
-
 	object-fit: cover;
+	@extend %fill;
 }

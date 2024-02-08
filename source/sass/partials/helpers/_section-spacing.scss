@@ -8,7 +8,7 @@
 
 	@each $size, $values in $sizes {
 		@each $position in ("top", "bottom") {
-			&.spacing-#{$position}-#{$size} {
+			.spacing-#{$position}-#{$size} {
 				@if $size == "custom" {
 					$max-s: var(--spacing-#{$position}-custom);
 					$min-s: calc($max-s / 2);
@@ -27,10 +27,10 @@
 	}
 }
 
-@each $spacing, $value in $section-spacings {
+@each $spacing, $values in $section-spacings {
 	@each $position in ("top", "bottom") {
-		.spacing-top-#{$spacing} {
-			padding-#{$spacing}: map.get($section-spacings, $value)
+		.spacing-#{$position}-#{$spacing} {
+			padding-#{$position}: fluid($values...);
 		}
 	}
 }

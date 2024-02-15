@@ -8,7 +8,7 @@
 
 	@each $size, $values in $sizes {
 		@each $position in ("top", "bottom") {
-			.spacing-#{$position}-#{$size} {
+			&.spacing-#{$position}-#{$size} {
 				@if $size == "custom" {
 					$max-s: var(--spacing-#{$position}-custom);
 					$min-s: calc($max-s / 2);
@@ -27,6 +27,7 @@
 	}
 }
 
+// Incase if you want to use spacing-top-classes different for other places except the section
 @each $spacing, $values in $section-spacings {
 	@each $position in ("top", "bottom") {
 		.spacing-#{$position}-#{$spacing} {

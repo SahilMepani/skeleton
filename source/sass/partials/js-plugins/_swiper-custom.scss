@@ -5,7 +5,13 @@
 
 /* ----------  Swiper Dot Pagination  ---------- */
 .swiper-dot-pagination {
+	all: unset; // overwrite default from swiper
+	display: flex;
+	justify-content: center;
+	gap: rem-calc(10);
+
 	span {
+		all: unset; // overwrite default from swiper
 		background-color: rgb(255 255 255 / 40%);
 		display: inline-block;
 		width: rem-calc(10);
@@ -43,8 +49,7 @@
 	transition: 0.2s ease-out;
 
 	&::after {
-		color: red;
-		font-size: rem-calc(18);
+		display: none; // overwrite arrow
 	}
 }
 

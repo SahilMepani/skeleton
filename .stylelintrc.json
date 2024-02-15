@@ -39,6 +39,7 @@
 		],
 		"order/properties-order": [
 			[
+				"all",
 				"aspect-ratio",
 				"background",
 				"background-color",
@@ -136,11 +137,11 @@
 				"border-left-color",
 				"border-radius",
 				"position",
+				"inset",
 				"top",
 				"right",
 				"bottom",
 				"left",
-				"inset",
 				"z-index",
 				"opacity",
 				"box-shadow",

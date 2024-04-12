@@ -12,6 +12,8 @@
 <a href="#" class="scroll-to-top scroll-to" aria-label="<?php _e( 'Scroll to Top', 'skel' );?>"></a>
 
 <?php wp_footer();?>
+
+<!-- Testing commit -->
 </body>
 
 </html>

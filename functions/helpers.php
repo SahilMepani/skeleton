@@ -1,7 +1,12 @@
 <?php
 
-// Swiper class depending on the direction
-////////////////////////////////////////////////
+/**
+ * Swiper direction class based on language used
+ * on swiper slide
+ * @requires WPML plugin
+ *
+ * @return string
+ */
 function skel_swiper_direction_class() {
 	if ( ICL_LANGUAGE_CODE == 'en' ) {
 		return 'swiper';
@@ -10,7 +15,12 @@ function skel_swiper_direction_class() {
 	}
 }
 
-// Language direction class
+/**
+ * Language direction based class used on elements
+ * @requires WPML plugin
+ *
+ * @return string
+ */
 ////////////////////////////////////////////////
 function skel_direction_class() {
 	if ( ICL_LANGUAGE_CODE == 'en' ) {
@@ -43,8 +53,12 @@ function skel_get_yt_link( $url ) {
 	return $url;
 }
 
-// Validate Youtube link for Magnific Popup
-////////////////////////////////////////////////
+/**
+ * Validate Youtube link for Magnific Popup
+ *
+ * @param string $link
+ * @return string
+ */
 function skel_get_validate_youtube_link( $link ) {
 	preg_match( "#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $link, $matches );
 	$link = 'https://www.youtube.com/watch?v=' . $matches[0];
@@ -52,8 +66,13 @@ function skel_get_validate_youtube_link( $link ) {
 	return $link;
 }
 
-// Custom excerpt function with length argument
-////////////////////////////////////////////////
+/**
+ * Custom excerpt function with length argument
+ *
+ * @param int $post_id
+ * @param int $limit
+ * @return string
+ */
 function skel_get_the_excerpt( $post_id, $limit ) {
 	$excerpt = explode( ' ', get_the_excerpt( $post_id ), $limit );
 	if ( count( $excerpt ) >= $limit ) {
@@ -65,12 +84,6 @@ function skel_get_the_excerpt( $post_id, $limit ) {
 	$excerpt = preg_replace( '`\[[^\]]*\]`', '', $excerpt );
 
 	return $excerpt;
-}
-
-// Tiny URL
-////////////////////////////////////////////////
-function skel_get_tiny_url( $url ) {
-	return file_get_contents( 'http://tinyurl.com/api-create.php?url=' . $url );
 }
 
 // Text Shorter
@@ -96,21 +109,24 @@ function skel_get_text_shorter( $input, $length ) {
 
 /**
  * Return terms without link
- * @param int $post_id, string $taxonomy, string $separator
+ * @param int $post_id
+ * @param string $taxonomy
+ * @param string $separator
  * @return string term 1, term 2
  */
 function skel_get_the_terms( $post_id, $taxonomy, $separator ) {
-	$terms   = get_the_terms( $post_id, $taxonomy ); // Returns objects array
+	$terms   = get_the_terms( $post_id, $taxonomy ); // returns objects array
 	$ar_term = wp_list_pluck( $terms, 'name');
 	$separator = ( $separator ) ? $separator : ' ';
-	$result    = join( $separator, $ar_term ); // Join all terms name
+	$result    = join( $separator, $ar_term ); // join all terms name
 
 	return $result;
 }
 
 /**
  * Return terms without link
- * @param  int   $post_id, string $taxonomy
+ * @param int $post_id
+ * @param string $taxonomy
  * @return array [name = 'term', 'id' = 3]
  */
 function skel_get_the_terms_data( $post_id, $taxonomy ) {
@@ -130,7 +146,7 @@ function skel_get_the_terms_data( $post_id, $taxonomy ) {
 
 /**
  * Phone URL
- * @param  string $phone_number, ex: (555) 123-4568
+ * @param string $phone_number, ex: (555) 123-4568
  * @return string $phone_url, ex: tel:5551234568
  */
 function skel_get_phone_url( $phone_number = false ) {

@@ -40,12 +40,6 @@ TRIVIA:
 ☐ Set font weight and line-height for each heading.
 ☐ Set all the font icons.
 
-Set the variables in avocode --- ✄ -----------------------:
-  replace method must include the property too. e.g font-size: 18px to font-size: h4
-  ☐ Colors
-  ☐  Font sizes
-  ☐  Font family
-
 BACKEND --- ✄ -----------------------:
  ☐ Make the backend custom styled like white label depending on the site color scheme.
 

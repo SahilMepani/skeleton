@@ -13,9 +13,9 @@ module.exports = function (grunt) {
 					'source/sass/_partials/**/*.{scss,sass}'
 				],
 				// dev
-				tasks: ['sass']
+				// tasks: ['sass']
 				// prod
-				// tasks: [ "sass", "stylelint", "purgecss", "rtlcss", "postcss" ]
+				tasks: ['sass', 'stylelint', 'purgecss', 'rtlcss', 'postcss']
 			},
 			js: {
 				files: ['source/js/**/*.js'],
@@ -47,10 +47,7 @@ module.exports = function (grunt) {
 			},
 			src: [
 				'source/sass/**/*.scss',
-				'!source/sass/partials/bootstrap/**/*.scss',
 				'!source/sass/partials/js-plugins/**/*.scss',
-				'!source/sass/partials/_bs-utilities-overwrite.scss',
-				'!source/sass/partials/_bs-variables-overwrite.scss',
 				'!source/sass/partials/mixins/_rem.scss'
 			]
 		},
@@ -159,6 +156,7 @@ module.exports = function (grunt) {
 		postcss: {
 			options: {
 				processors: [
+					require('postcss-merge-rules'),
 					require('autoprefixer')({
 						overrideBrowserslist: browserList
 					}),

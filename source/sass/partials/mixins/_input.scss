@@ -42,10 +42,9 @@
 }
 
 @mixin custom-select-block {
-	@include input-text;
-
 	padding: 0;
 	position: relative;
+	@include input-text;
 
 	&::after {
 		background-color: #999;

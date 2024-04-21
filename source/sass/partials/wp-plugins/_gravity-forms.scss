@@ -251,10 +251,9 @@
 		margin: 0;
 
 		button[type="submit"] {
+			border: rem-calc(2) solid $primary;
 			@include btn;
 			@include btn-rarr;
-
-			border: rem-calc(2) solid $primary;
 
 			&:hover,
 			&:focus {

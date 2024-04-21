@@ -7,6 +7,7 @@ editor-style.css
 style-rtl.css.map
 *.css.map
 Thumbs.db
+vendor
 acf-json
 source/bower_components
 node_modules

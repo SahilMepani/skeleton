@@ -1,4 +1,5 @@
-<?php function skel_login_logo() { ?>
+<?php function skel_login_logo() {
+	?>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&display=swap">
 	<style type="text/css">
 		body.login {
@@ -115,7 +116,8 @@
 add_action( 'login_enqueue_scripts', 'skel_login_logo' );
 
 function skel_login_logo_url() {
-	return home_url();
+
+	return home_url( '/' );
 }
 add_filter( 'login_headerurl', 'skel_login_logo_url' );
 ?>

@@ -4,9 +4,8 @@
 }
 
 .container-fluid {
-	@extend %container;
-
 	padding: 0 5vw;
+	@extend %container;
 }
 
 // .container-small {

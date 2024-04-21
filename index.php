@@ -1,4 +1,19 @@
-<?php get_header();?>
+<?php
+/**
+ * The main template file
+ *
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * E.g., it puts together the home page when no home.php file exists.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package WordPress
+ * @since 1.0.0
+ */
+
+get_header(); ?>
 
 <section class="py-xs-2 py-4">
 	<div class="container">
@@ -9,19 +24,19 @@
 				<div class="custom-select-block">
 					<select id="ajax-filter-cat">
 						<option data-cpt="post" data-tax="category" data-term="">
-							<?php _e( 'Show All Categories', 'skel' );?>
+							<?php _e( 'Show All Categories', 'skel' ); ?>
 						</option>
 						<?php
-							$cats_args = [
-								'taxonomy' => 'insight-category'
-							];
-							$cats = get_categories( $cats_args );
-							foreach ( $cats as $cat ):
-						?>
+							$cats_args = array(
+								'taxonomy' => 'insight-category',
+							);
+							$cats      = get_categories( $cats_args );
+							foreach ( $cats as $cat ) :
+								?>
 						<option data-cpt="post" data-tax="insight-category" data-term="<?php echo $cat->slug; ?>">
-							<?php echo $cat->name; ?>
+								<?php echo $cat->name; ?>
 						</option>
-						<?php endforeach;?>
+						<?php endforeach; ?>
 					</select>
 				</div> <!-- .custom-select-block -->
 			</div> <!-- .filters__item-select -->
@@ -30,25 +45,25 @@
 				<div class="custom-select-block">
 					<select id="ajax-filter-cat">
 						<option data-cpt="post" data-tax="category" data-term="">
-							<?php _e( 'Show All Topics', 'skel' );?>
+							<?php _e( 'Show All Topics', 'skel' ); ?>
 						</option>
 						<?php
-							$cats_args = [
-								'taxonomy' => 'insight-topic'
-							];
-							$cats = get_categories( $cats_args );
-							foreach ( $cats as $cat ):
-						?>
+							$cats_args = array(
+								'taxonomy' => 'insight-topic',
+							);
+							$cats      = get_categories( $cats_args );
+							foreach ( $cats as $cat ) :
+								?>
 						<option data-cpt="post" data-tax="insight-topic" data-term="<?php echo $cat->slug; ?>">
-							<?php echo $cat->name; ?>
+								<?php echo $cat->name; ?>
 						</option>
-						<?php endforeach;?>
+						<?php endforeach; ?>
 					</select>
 				</div> <!-- .custom-select-block -->
 			</div> <!-- .filters__item-select -->
 
 			<div class="filters__item--search col-sm-4">
-				<form action="<?php echo home_url(); ?>/" method="get" id="ajax-search-post" data-cpt="post"
+				<form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get" id="ajax-search-post" data-cpt="post"
 					data-tax="category">
 					<input type="search" name="s" placeholder="Search for" class="input-search w-100" />
 					<div id="ajax-submit-block" class="submit-block">
@@ -93,43 +108,43 @@
 			query_posts( $query_string . '&posts_per_page=' . $posts_per_page . '&post_status=publish' );
 			// echo $total_post_count;
 			$post_count = $wp_query->post_count; // updated query posts count
-			if ( is_category() ) {
-				$term = get_query_var( 'cat' );
-			}
-			if ( is_author() ) {
-				$author_id = get_query_var( 'author' );
-			}
-			if ( is_tag() ) {
-				$tag_id = get_query_var( 'tag_id' );
-			}
-			if ( is_search() ) {
-				$search = get_query_var( 's' );
-			}
+		if ( is_category() ) {
+			$term = get_query_var( 'cat' );
+		}
+		if ( is_author() ) {
+			$author_id = get_query_var( 'author' );
+		}
+		if ( is_tag() ) {
+			$tag_id = get_query_var( 'tag_id' );
+		}
+		if ( is_search() ) {
+			$search = get_query_var( 's' );
+		}
 		?>
 
-		<?php if ( is_category() ) {?>
+		<?php if ( is_category() ) { ?>
 		<input type="hidden" id="filter-term" value="<?php echo $term; ?>" />
-		<?php } else {?>
+		<?php } else { ?>
 		<input type="hidden" id="filter-term" value="" />
-		<?php }?>
+		<?php } ?>
 
-		<?php if ( is_author() ) {?>
+		<?php if ( is_author() ) { ?>
 		<input type="hidden" id="filter-author-id" value="<?php echo $author_id; ?>" />
-		<?php } else {?>
+		<?php } else { ?>
 		<input type="hidden" id="filter-author-id" value="" />
-		<?php }?>
+		<?php } ?>
 
-		<?php if ( is_tag() ) {?>
+		<?php if ( is_tag() ) { ?>
 		<input type="hidden" id="filter-tag-id" value="<?php echo $tag_id; ?>" />
-		<?php } else {?>
+		<?php } else { ?>
 		<input type="hidden" id="filter-tag-id" value="" />
-		<?php }?>
+		<?php } ?>
 
-		<?php if ( is_search() ) {?>
+		<?php if ( is_search() ) { ?>
 		<input type="hidden" id="filter-search" value="<?php echo $search; ?>" />
-		<?php } else {?>
+		<?php } else { ?>
 		<input type="hidden" id="filter-search" value="" />
-		<?php }?>
+		<?php } ?>
 
 		<input type="hidden" id="filter-pagenum" value="1" />
 		<input type="hidden" id="filter-total-post-count" value="<?php echo $total_post_count; ?>" />
@@ -138,13 +153,16 @@
 
 		<ul id="ajax-list-post" class="list-blog-post mb-0">
 
-			<?php if ( have_posts() ): ?>
-			<?php while ( have_posts() ): the_post();?>
+			<?php if ( have_posts() ) : ?>
+				<?php
+				while ( have_posts() ) :
+					the_post();
+					?>
 
-			<?php get_template_part( 'template-parts/post-card' );?>
+					<?php get_template_part( 'template-parts/post-card' ); ?>
 
-			<?php endwhile;?>
-			<?php endif;?>
+			<?php endwhile; ?>
+			<?php endif; ?>
 
 		</ul> <!-- .list-blog-post -->
 
@@ -152,7 +170,7 @@
 
 			<div class="loading-dots"></div>
 
-			<?php //echo $post_count; ?>
+			<?php // echo $post_count; ?>
 
 			<div class="clear">
 				<h4 id="alert-no-data" class="d-none">Sorry, there are no available post matching your filters.</h4>
@@ -167,4 +185,4 @@
 	</div> <!-- .container -->
 </section>
 
-<?php get_footer();?>
+<?php get_footer(); ?>

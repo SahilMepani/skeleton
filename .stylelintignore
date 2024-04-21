@@ -1,3 +1,3 @@
-source/sass/partials/bootstrap/**/*.scss
+source/sass/partials/mixins/**/*.scss
 style.css
 style-rtl.css

@@ -2,34 +2,35 @@
 @use 'sass:map';
 
 .section {
-	$sizes: map.set($section-spacings, "custom", 0);
+	$sizes: map.set($section-spacings, 'custom', 0);
 
 	overflow: hidden;
 
 	@each $size, $values in $sizes {
-		@each $position in ("top", "bottom") {
+		@each $position in ('top', 'bottom') {
+			/* stylelint-disable */
 			&.spacing-#{$position}-#{$size} {
-				@if $size == "custom" {
+				@if $size == 'custom' {
 					$max-s: var(--spacing-#{$position}-custom);
 					$min-s: calc($max-s / 2);
-
 					padding-#{$position}: min(
 						calc($min-s * 1px) +
-						calc(($max-s / 16) - ($min-s / 16)) *
-						((100vw - 375px) / 100),
+							calc(($max-s / 16) - ($min-s / 16)) *
+							((100vw - 375px) / 100),
 						calc($max-s * 1px)
 					);
 				} @else {
 					padding-#{$position}: fluid($values...);
 				}
 			}
+			/* stylelint-enable */
 		}
 	}
 }
 
 // Incase if you want to use spacing-top-classes different for other places except the section
 @each $spacing, $values in $section-spacings {
-	@each $position in ("top", "bottom") {
+	@each $position in ('top', 'bottom') {
 		.spacing-#{$position}-#{$spacing} {
 			padding-#{$position}: fluid($values...);
 		}

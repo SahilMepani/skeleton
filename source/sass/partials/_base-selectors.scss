@@ -89,9 +89,9 @@ a {
 
 a,
 button,
-input[type="submit"],
-input[type="button"],
-input[type="reset"] {
+input[type='submit'],
+input[type='button'],
+input[type='reset'] {
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
 		border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -234,16 +234,16 @@ form {
 		border: 0;
 	}
 
-	input[type="text"],
-	input[type="tel"],
-	input[type="url"],
-	input[type="number"],
-	input[type="password"],
-	input[type="email"],
-	input[type="range"],
-	input[type="file"],
-	input[type="date"],
-	input[type="search"],
+	input[type='text'],
+	input[type='tel'],
+	input[type='url'],
+	input[type='number'],
+	input[type='password'],
+	input[type='email'],
+	input[type='range'],
+	input[type='file'],
+	input[type='date'],
+	input[type='search'],
 	textarea,
 	select {
 		// @include input-text;
@@ -251,15 +251,15 @@ form {
 		max-width: 100%;
 	}
 
-	input[type="submit"] {
+	input[type='submit'] {
 		background-color: #fff;
 	}
 
-	input[type="search"] {
+	input[type='search'] {
 		appearance: none;
 	}
 
-	input[type="date"] {
+	input[type='date'] {
 		line-height: rem-calc(32);
 	}
 
@@ -269,8 +269,8 @@ form {
 		resize: vertical;
 	}
 
-	input[type="checkbox"],
-	input[type="radio"] {
+	input[type='checkbox'],
+	input[type='radio'] {
 		line-height: normal;
 		margin: 0;
 		margin-top: rem-calc(4);
@@ -282,18 +282,18 @@ form {
 		height: auto;
 	}
 
-	input[type="file"] {
+	input[type='file'] {
 		display: block;
 	}
 
-	input[type="range"] {
+	input[type='range'] {
 		display: block;
 		width: 100%;
 	}
 
-	input[type="file"]:focus,
-	input[type="radio"]:focus,
-	input[type="checkbox"]:focus {
+	input[type='file']:focus,
+	input[type='radio']:focus,
+	input[type='checkbox']:focus {
 		outline: rem-calc(5) auto -webkit-focus-ring-color;
 		outline-offset: rem-calc(-2);
 	}

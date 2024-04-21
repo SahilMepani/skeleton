@@ -1,10 +1,12 @@
-<?php get_header();?>
-
 <?php
-	/**
-	 * @param int (Search page ID)
-	 */
-	echo skel_insert_page(807)
-?>
+/**
+ * File comment
+ *
+ * @package category
+ */
 
-<?php get_footer();?>
+get_header();
+
+echo skel_insert_page( 807 );
+
+get_footer();

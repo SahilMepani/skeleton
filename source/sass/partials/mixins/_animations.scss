@@ -10,7 +10,7 @@
 		$delay: $delay + $interval;
 
 		&:nth-child(#{$i}) {
-			animation-delay: $delay + "ms";
+			animation-delay: $delay + 'ms';
 		}
 	}
 }
@@ -33,7 +33,7 @@
 		left: 0;
 		transform: scale(0);
 		transition: 0.25s transform ease-out;
-		content: "";
+		content: '';
 	}
 
 	&:hover,
@@ -64,7 +64,7 @@
 		left: 0;
 		transform: scaleX(0);
 		transition: 0.3s transform;
-		content: "";
+		content: '';
 		transform-origin: 100% 100%;
 	}
 

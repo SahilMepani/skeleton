@@ -1,7 +1,13 @@
 <?php
+/**
+ * Load functions
+ *
+ * @package WordPress
+ * @subpackage Skeleton
+ * @since 1.0.0
+ */
 
-
-// require_once( get_template_directory() . '/functions/shortcodes.php' );
+// require_once get_template_directory() . '/functions/shortcodes.php';.
 require_once get_template_directory() . '/functions/register-nav-menus.php';
 require_once get_template_directory() . '/functions/miscellaneous.php';
 require_once get_template_directory() . '/functions/helpers.php';
@@ -26,4 +32,4 @@ require_once get_template_directory() . '/functions/skip-dashboard.php';
 // require_once( get_template_directory() . '/functions/admin-ajax.php' );
 // require_once( get_template_directory() . '/functions/remove-admin-menu-items.php' );
 // only if amp plugin available
-// require_once( get_template_directory() . '/functions/amp.php' )
+// require_once( get_template_directory() . '/functions/amp.php' );

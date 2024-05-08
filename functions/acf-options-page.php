@@ -1,4 +1,11 @@
 <?php
+/**
+ * Register ACF options page
+ *
+ * @package WordPress
+ * @subpackage Skeleton
+ * @since 1.0.0
+ */
 
 if ( function_exists( 'acf_add_options_page' ) ) {
 

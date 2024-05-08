@@ -1,39 +1,51 @@
 <?php
+/**
+ * Visual editor block
+ *
+ * @package WordPress
+ * @subpackage Skeleton
+ * @since 1.0.0
+ */
 
-// Set preview.
+// Set thumbnail preview in backend.
 if ( isset( $block['data']['preview_image'] ) ) {
 	echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
 	return; // required.
 }
-?>
 
-<?php
 // Block options.
 $content = get_field( 'content' );
+
 // Developer options.
-$spacing               = get_field( 'spacing' );
-$spacing_top           = $spacing['top']['spacing_top'];
-$spacing_bottom        = $spacing['bottom']['spacing_bottom'];
-$spacing_top_custom    = '';
-$spacing_bottom_custom = '';
-$custom_classes        = get_field( 'custom_classes' );
-$custom_css            = get_field( 'custom_css' );
-$unique_id             = get_field( 'unique_id' );
+$spacing        = get_field( 'spacing' );
+$spacing_top    = $spacing['top']['spacing_top'];
+$spacing_bottom = $spacing['bottom']['spacing_bottom'];
+$custom_classes = get_field( 'custom_classes' );
+$custom_css     = get_field( 'custom_css' );
+$unique_id      = get_field( 'unique_id' );
 // Custom Spacing.
-if ( $spacing_top == 'custom' ) {
+if ( 'custom' === $spacing_top ) {
 	$spacing_top        = 'spacing-top-custom';
-	$spacing_top_custom = '--spacing-top-custom:' . $spacing['top']['custom_value'] . ';';
+	$spacing_top_custom = "--spacing-top-custom:' {$spacing['top']['custom_value']};";
+} else {
+	$spacing_top_custom = '';
 }
-if ( $spacing_bottom == 'custom' ) {
+if ( 'custom' === $spacing_bottom ) {
 	$spacing_bottom        = 'spacing-bottom-custom';
-	$spacing_bottom_custom = '--spacing-bottom-custom:' . $spacing['bottom']['custom_value'] . ';';
+	$spacing_bottom_custom = "--spacing-bottom-custom:' {$spacing['bottom']['custom_value']};";
+} else {
+	$spacing_bottom_custom = '';
 }
 ?>
 
-<section class="visual-editor-section section <?php echo $spacing_top . ' ' . $spacing_bottom . ' ' . $custom_classes; ?>" style="<?php echo $spacing_top_custom; ?> <?php echo $spacing_bottom_custom; ?> <?php echo $custom_css; ?>" id="<?php echo $unique_id; ?>">
+<section
+	class="search-results-section section <?php echo esc_attr( "{$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
+	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
+	id="<?php echo esc_attr( $unique_id ); ?>">
+
 	<div class="container">
 
-		<?php echo $content; ?>
+		<?php echo wp_kses_post( $content ); ?>
 
-	</div> <!-- .container -->
+	</div><!-- .container -->
 </section>

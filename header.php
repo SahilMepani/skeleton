@@ -16,9 +16,10 @@
 <head>
 	<!-- HTML Boilerplte v8.00 -->
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title><?php wp_title( '-', true, 'right' ); ?></title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- favicon -->
 	<link rel="icon" href="<?php echo esc_attr( get_template_directory_uri() ); ?>/favicon.png" type="image/png">
 	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 	<!-- remove below link if google fonts are not used -->
@@ -59,7 +60,7 @@
 				aria-haspopup="true"
 				aria-expanded="false"
 				aria-controls="siteMenu">
-					<i class="i-font-before i-menu"></i><?php esc_html_e( 'Menu', 'skel' ); ?>
+				<?php esc_html_e( 'Menu', 'skel' ); ?>
 			</button>
 
 			<nav class="header-nav" role="navigation" aria-label="<?php esc_attr_e( 'primary navigation', 'skel' ); ?>">
@@ -70,7 +71,6 @@
 					aria-haspopup="true"
 					aria-expanded="true"
 					aria-controls="siteMenu">
-					<i class="i-font-before i-x"></i>
 				</button>
 
 				<?php

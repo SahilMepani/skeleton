@@ -1,8 +1,18 @@
 <?php
+/**
+ * Creat custom post types and taxonomies
+ *
+ * @package WordPress
+ * @subpackage Skeleton
+ * @since 1.0.0
+ */
 
-// Custom post type
-//
-function skel_create_post_type() {
+/**
+ * Create post type
+ *
+ * @return void
+ */
+function skel_create_post_type(): void {
 	$cpt_project_labels = array(
 		'name'               => __( 'Projects' ),
 		'all_items'          => __( 'All Projects' ),
@@ -25,17 +35,12 @@ function skel_create_post_type() {
 		'hierarchical'  => true, // simple page ordering.
 		'has_archive'   => true, // pagination & archive page.
 		'menu_position' => 20, // below pages.
-		'menu_icon'     => 'dashicons-welcome-view-site', // defaults to post icon
-		// Uncomment the following line to change the slug
-		// You must also save your permalink structure to prevent 404 errors
-		// 'rewrite' => array( 'slug' => 'project/%skills%', 'with_front' => false ),
+		'menu_icon'     => 'dashicons-welcome-view-site', // defaults to post icon.
 		'supports'      => array( 'title', 'editor', 'thumbnail', 'page-attributes', 'custom-fields' ),
-		// enable gutenberg
-		// 'show_in_rest' => true,
+		'show_in_rest'  => true, // enable gutenberg.
 	);
 
 	register_post_type( 'project', $cpt_project_args );
-	// flush_rewrite_rules();
 }
 
 /*
@@ -49,7 +54,12 @@ $reference_default_args = array(
 );
  */
 
-function skel_build_taxonomies() {
+/**
+ * Register taxonomy
+ *
+ * @return void
+ */
+function skel_build_taxonomies(): void {
 
 	/*----------  First Tax  ----------*/
 	$category_labels = array(
@@ -58,7 +68,6 @@ function skel_build_taxonomies() {
 		'singular_name'              => __( 'Category' ),
 		'search_items'               => __( 'Search Categories' ),
 		'popular_items'              => __( 'Popular Categories' ),
-		'all_items'                  => __( 'All Categories' ),
 		'parent_item'                => __( 'Parent Category' ),
 		'parent_item_colon'          => __( 'Parent Category:' ),
 		'edit_item'                  => __( 'Edit Category' ),

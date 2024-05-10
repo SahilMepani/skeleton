@@ -13,34 +13,36 @@
  *
  * @since 2.7.0
  */
-$core_acf_custom_fields = [
+$core_acf_custom_fields = array(
 
 	// * Type: Button
-	'button' => function( $value ) {
-		if ( $value['link'] ) $value['link']['style'] = $value['style'];
-		$value = $value['link'];
+	'button'           => function ( $value ) {
+		if ( $value['link'] ) {
+			$value['link']['style'] = $value['style'];
+		}
+		$value                                        = $value['link'];
 
 		return $value;
 	},
 
 	// * Type: Dynamic Image
-	'dynamic_image' => function( $value ) {
-		$ratio = $value['ratio'];
-		$value = $value['image'];
+	'dynamic_image'    => function ( $value ) {
+		$ratio          = $value['ratio'];
+		$value          = $value['image'];
 		$value['ratio'] = $ratio;
 
 		return $value;
 	},
 
 	// * Type: Hidden
-	'hidden' => function( $_value, $field ) {
+	'hidden'           => function ( $_value, $field ) {
 		return $field['value'];
 	},
 
 	// * Type: Post Content
-	'post_content' => function( $value ) {
+	'post_content'     => function ( $value ) {
 		$custom = $value['content_type'] === 'custom';
-		$value = $custom ? $value['custom'] : $value['post'];
+		$value  = $custom ? $value['custom'] : $value['post'];
 
 		// Format the custom value.
 		if ( $custom ) {
@@ -59,18 +61,20 @@ $core_acf_custom_fields = [
 			}
 
 			// Move custom fields into the `fields` variable.
-			$post_field_names = [
+			$post_field_names = array(
 				'thumbnail',
 				'title',
 				'excerpt',
-				'permalink'
-			];
+				'permalink',
+			);
 
 			foreach ( $value as $field_name => $field_value ) {
-				if ( in_array( $field_name, $post_field_names ) ) continue;
+				if ( in_array( $field_name, $post_field_names ) ) {
+					continue;
+				}
 
 				if ( ! array_key_exists( 'fields', $value ) ) {
-					$value['fields'] = [];
+					$value['fields'] = array();
 				}
 
 				$value['fields'][ $field_name ] = $field_value;
@@ -81,7 +85,7 @@ $core_acf_custom_fields = [
 	},
 
 	// * Type: Post List
-	'post_list' => function( $value ) {
+	'post_list'        => function ( $value ) {
 		if ( $value['query_type'] === 'custom' ) {
 			return $value['post_number'] > 1 ? $value['posts'] : $value['post'];
 		}
@@ -93,25 +97,28 @@ $core_acf_custom_fields = [
 		 *
 		 * @var array
 		 */
-		$query_args = [
-			'post_type' => array_column( $post_types, 'slug' ),
+		$query_args = array(
+			'post_type'      => array_column( $post_types, 'slug' ),
 			'posts_per_page' => $value['post_number'],
-			'fields' => 'ids'
-		];
+			'fields'         => 'ids',
+		);
 
 		// Run query.
 		$query = new WP_Query( $query_args );
 
 		// Check if the list is empty.
 		if ( empty( $query->posts ) ) {
-			return $value['post_number'] > 1 ? [] : null;
+			return $value['post_number'] > 1 ? array() : null;
 		}
 
 		// Format and save the posts.
 		if ( $value['post_number'] > 1 ) {
-			$value = array_map( function( $post ) {
-				return core_format_post_object( $post, false );
-			}, $query->posts );
+			$value = array_map(
+				function ( $post ) {
+					return core_format_post_object( $post, false );
+				},
+				$query->posts
+			);
 		} else {
 			$value = core_format_post_object( $query->posts[0], false );
 		}
@@ -121,7 +128,7 @@ $core_acf_custom_fields = [
 	},
 
 	// * Type: Post Type Select
-	'post_type_select' => function( $value ) {
+	'post_type_select' => function ( $value ) {
 		if ( is_array( $value ) ) {
 			return array_map( 'core_get_post_type', array_unique( $value ) );
 		} elseif ( is_string( $value ) ) {
@@ -132,7 +139,7 @@ $core_acf_custom_fields = [
 	},
 
 	// * Type: Taxonomy Select
-	'taxonomy_select' => function( $value ) {
+	'taxonomy_select'  => function ( $value ) {
 		if ( is_array( $value ) ) {
 			return array_map( 'core_get_taxonomy', array_unique( $value ) );
 		} elseif ( is_string( $value ) ) {
@@ -140,8 +147,8 @@ $core_acf_custom_fields = [
 		} else {
 			return $value;
 		}
-	}
-];
+	},
+);
 
 /**
  * Automatically loop through all formatting methods, adding

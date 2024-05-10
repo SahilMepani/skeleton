@@ -1,4 +1,18 @@
-<?php function skel_login_logo() {
+<?php
+/**
+ * Custom login
+ *
+ * @package WordPress
+ * @subpackage Skeleton
+ * @since 1.0.0
+ */
+
+/**
+ * Add logo
+ *
+ * @return void
+ */
+function skel_login_logo(): void {
 	?>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&display=swap">
 	<style type="text/css">
@@ -47,10 +61,10 @@
 			outline: 0 !important;
 		}
 		.wp-pwd input[type="password"] + button {
-			background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/login-icon-eye.svg') !important;
+			background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/login-icon-eye.svg') !important;
 		}
 		.wp-pwd input[type="text"] + button {
-			background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/login-icon-eye-strike.svg') !important;
+			background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/login-icon-eye-strike.svg') !important;
 		}
 		#login input[type="text"], #login input[type="password"] {
 			font-size: 20px;
@@ -83,7 +97,7 @@
 			box-shadow: none;
 		}
 		#login h1 a, .login h1 a {
-			background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/header-logo.svg');
+			background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/header-logo.svg');
 			width: auto;
 			height: 90px;
 			background-size: contain;
@@ -110,14 +124,20 @@
 			display: none;
 		}
 	</style>
-<?php } ?>
+	<?php } ?>
 
 <?php
+// Add action.
 add_action( 'login_enqueue_scripts', 'skel_login_logo' );
 
-function skel_login_logo_url() {
 
+/**
+ * Add URL to logo
+ *
+ * @return string
+ */
+function skel_login_logo_url(): string {
 	return home_url( '/' );
 }
+// Add filter.
 add_filter( 'login_headerurl', 'skel_login_logo_url' );
-?>

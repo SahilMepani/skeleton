@@ -47,7 +47,6 @@ if ( 'custom' === $spacing_bottom ) {
 
 	<div class="container">
 		<?php foreach ( $flexible_content as $layout ) : ?>
-
 			<?php if ( 'post_details' === $layout['acf_fc_layout'] ) : ?>
 
 				<?php
@@ -62,7 +61,7 @@ if ( 'custom' === $spacing_bottom ) {
 
 					// Output the back link.
 					?>
-					<a href="<?php echo $news_updates_permalink; ?>" class="back-link">
+					<a href="<?php echo esc_url( $news_updates_permalink ); ?>" class="back-link">
 						<?php echo esc_html( skel_get_svg_content( 'arrow-left' ) ) . 'Back'; ?>
 					</a>
 
@@ -106,7 +105,6 @@ if ( 'custom' === $spacing_bottom ) {
 				</div>
 
 			<?php endif; ?>
-
 		<?php endforeach; ?>
 	</div><!-- .container -->
 

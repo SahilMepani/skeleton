@@ -96,3 +96,6 @@ ACF-JSON:
 2. Compilation time is less
 5. Smaller footprint
 6. No learning curve
+
+
+Refactor code for better readability, Yoda condition, Prevent WPCS warnings or error, escaping text, security concerns, accessibility fixes and anything you feel right

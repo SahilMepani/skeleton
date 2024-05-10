@@ -1,5 +1,14 @@
-<?php /* Template Name: Custom Select */ ?>
-<?php get_header(); ?>
+<?php
+/**
+ * Custom Select
+ *
+ * @package WordPress
+ * @subpackage Skeleton
+ * @since 1.0.0
+ */
+
+get_header();
+?>
 
 <div class="container-fluid padding-4">
 
@@ -11,27 +20,27 @@
 			<option value="
 			<?php echo esc_url( home_url( '/news-and-events/' ) ); ?>">All</option>
 			<?php
-				$cats_args = array(
+				$taxonomy_args = array(
 					'taxonomy'   => 'category',
 					'hide_empty' => true,
 				);
-				$cats      = get_categories( $cats_args );
-				foreach ( $cats as $cat ) :
+				$taxonomies    = get_categories( $taxonomy_args );
+				foreach ( $taxonomies as $taxonomy_term ) :
 					?>
 			<option value="
 					<?php echo esc_url( home_url( '/category/' ) ); ?>
-					<?php echo $cat->slug; ?>"
+					<?php echo esc_html( $taxonomy_term->slug ); ?>"
 					<?php
-					if ( is_category( $cat->slug ) ) {
-							echo ' selected="selected"';}
+					if ( is_category( $taxonomy_term->slug ) ) {
+						echo ' selected="selected"';}
 					?>
-					>
-					<?php echo $cat->name; ?>
+				>
+					<?php echo esc_attr( $taxonomy_term->name ); ?>
 			</option>
 			<?php endforeach; ?>
 		</select>
 	</div> <!-- .redirect-select-block -->
 
-</div> <!-- .container-fluid padding-4 -->
+</div> <!-- .container-fluid -->
 
 <?php get_footer(); ?>

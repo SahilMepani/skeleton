@@ -7,6 +7,14 @@
  * @since 1.0.0
  */
 
+// Verify nonce.
+if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'search_nonce' ) ) {
+	// Nonce verification failed, handle the error or exit gracefully.
+	// Redirect the user to a safe page.
+	wp_safe_redirect( home_url() );
+	exit;
+}
+
 // Set thumbnail preview in backend.
 if ( isset( $block['data']['preview_image'] ) ) {
 	echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
@@ -61,7 +69,6 @@ if ( 'custom' === $spacing_bottom ) {
 			)
 		);
 		$post_count   = $custom_query->post_count;
-		// print_r($custom_query).
 		?>
 
 

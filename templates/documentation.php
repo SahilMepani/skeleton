@@ -1,13 +1,17 @@
-<?php /* Template Name: Documentation */?>
-
-<?php get_header();?>
-
-<?php the_content(); ?>
-
 <?php
-// $registered_block_slugs = array_keys( WP_Block_Type_Registry::get_instance()->get_all_registered() );
-// echo '<pre>' . print_r( $registered_block_slugs, true ) . '</pre>';
- ?>
+/**
+ * The header.
+ *
+ * This is the template that displays all of the <head> section and everything up until main.
+ *
+ * @package WordPress
+ * @subpackage Skeleton
+ * @since 1.0.0
+ */
+
+get_header();
+the_content();
+?>
 
 <div class="container">
 
@@ -621,4 +625,4 @@ h6 {
 	<p>Each number gets multiplied by 10px. So a class "me-2" will set margin of 20px to the right of the element</p>
 </section>
 
-<?php get_footer();?>
+<?php get_footer(); ?>

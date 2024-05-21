@@ -119,7 +119,7 @@ function skel_get_validate_youtube_link( string $link ): string|false {
  * @param int $limit   The maximum number of words in the excerpt.
  * @return string The customized excerpt of the specified post.
  */
-function skel_get_the_excerpt( int $post_id, int $limit ): string {
+function skel_get_the_excerpt( int $post_id, int $limit = 50 ): string {
 	// Retrieve the excerpt of the specified post.
 	$excerpt = explode( ' ', get_the_excerpt( $post_id ), $limit );
 

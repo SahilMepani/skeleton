@@ -1,5 +1,15 @@
-<?php get_header(); ?>
 <?php
+/**
+ * Taxonomy skills
+ *
+ * This is a archive templaet for taxonomy skills
+ *
+ * @package WordPress
+ * @subpackage Skeleton
+ * @since 1.0.0
+ */
+
+get_header();
 $current_term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
 ?>
 
@@ -13,7 +23,7 @@ $current_term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'ta
 		<?php single_cat_title(); ?></h1>
 
 		<?php
-			$paged        = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+			$paging       = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 			$args         = array(
 				'post_type'      => 'portfolio',
 				'posts_per_page' => -1,
@@ -25,15 +35,13 @@ $current_term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'ta
 						'terms'    => $current_term->slug,
 					),
 				),
-				'paged'          => $paged,
+				'paged'          => $paging,
 			);
 			$custom_query = new WP_Query( $args );
 			?>
 
 		<?php
 		if ( have_posts() ) :
-			?>
-			<?php
 			while ( $custom_query->have_posts() ) :
 				$custom_query->the_post();
 				?>
@@ -56,13 +64,13 @@ $current_term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'ta
 							</h2>
 
 							<div class="post-meta">
-								Published by								            							             <?php the_author_posts_link(); ?> on
+								Published by <?php the_author_posts_link(); ?> on
 								<time pubdate><?php the_time( 'F j, Y' ); ?></time> under<?php skel_get_the_terms( $post->ID, 'skills' ); ?>
 							</div> <!-- .post-meta -->
 						</header>
 
 						<div class="excerpt-block">
-							<p class="excerpt">							                   						                    <?php echo skel_get_the_excerpt( 55 ); ?> </p>
+							<p class="excerpt"><?php echo esc_html( skel_get_the_excerpt( 55 ) ); ?> </p>
 							<a href="<?php the_permalink(); ?>" class="btn btn-sm btn-more">Read More</a>
 						</div> <!-- .excerpt-block -->
 

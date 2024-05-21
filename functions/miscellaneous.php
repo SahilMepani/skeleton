@@ -1,18 +1,21 @@
 <?php
 /**
- * Hide admin toolbar
+ * The header.
+ *
+ * This file contains filters and actions for various purpose
+ *
+ * @package WordPress
+ * @subpackage Skeleton
+ * @since 1.0.0
  */
 
+// Hide admin toolbar.
 add_filter( 'show_admin_bar', '__return_false' );
 
-/**
- * Disable WordPress all sitemaps - /wp-sitemap.xml
- */
+// Disable WordPress all sitemaps - /wp-sitemap.xml.
 add_filter( 'wp_sitemaps_enabled', '__return_false' );
 
-/**
- * Disable the customizer page and theme editor.
- */
+// Disable the customizer page and theme editor.
 add_action(
 	'admin_menu',
 	function () {
@@ -33,8 +36,7 @@ add_action(
 //
 // add_filter('jpeg_quality', function($arg){return 100;});
 
-/*
-----------  Enable login captcha  ----------*/
+/* ----------  Enable login captcha  ----------*/
 // function is_login_page() {
 // return in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'));
 // }

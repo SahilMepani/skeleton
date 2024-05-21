@@ -12,61 +12,108 @@
 // Hide admin toolbar.
 add_filter( 'show_admin_bar', '__return_false' );
 
-// Disable WordPress all sitemaps - /wp-sitemap.xml.
+// Disable the sitemaps feature - /wp-sitemap.xml.
 add_filter( 'wp_sitemaps_enabled', '__return_false' );
 
-// Disable the customizer page and theme editor.
+/**
+ * Disable the Customizer page and Theme Editor in the WordPress admin.
+ */
 add_action(
 	'admin_menu',
 	function () {
+		// Build the customizer URL to remove.
 		$customizer_url = add_query_arg(
 			'return',
-			urlencode( remove_query_arg( wp_removable_query_args(), wp_unslash( $_SERVER['REQUEST_URI'] ) ) ),
+			rawurlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) ),
 			'customize.php'
 		);
 
+		// Remove the Customizer and Theme Editor submenu pages.
 		remove_submenu_page( 'themes.php', $customizer_url );
 		remove_submenu_page( 'themes.php', 'theme-editor.php' );
 	},
 	999
 );
 
-// Disable image compression in WordPress
-// WordPress sets it to 82% by default
-//
-// add_filter('jpeg_quality', function($arg){return 100;});
 
-/* ----------  Enable login captcha  ----------*/
-// function is_login_page() {
-// return in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'));
-// }
-// if ( is_login_page() ) {
-// require_once( get_template_directory() . '/functions/captcha.php' );
-// }
+/**
+ * Filter callback to set JPEG image quality to 100.
+ *
+ * This function is used as a callback for the 'jpeg_quality' filter hook.
+ * It sets the quality of JPEG images to 100.
+ *
+ * @param int $arg The current JPEG quality level.
+ * @return int The updated JPEG quality level (100).
+ */
+add_filter(
+	'jpeg_quality',
+	function ( $quality = 100 ) {
+		return $quality;
+	}
+);
 
-// Blog Pagination
-// http://wp.tutsplus.com/tutorials/wordpress-pagination-a-primer
-/* ========================================== */
-function skel_posts_pagination( $total_pages ) {
-	if ( $total_pages > 1 ) {
+/**
+ * Check if the current page is the login or registration page.
+ *
+ * @return bool True if the current page is the login or registration page, false otherwise.
+ */
+function is_login_or_registration_page(): bool {
+	return in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ), true );
+}
+
+if ( is_login_or_registration_page() ) {
+	require_once get_template_directory() . '/functions/captcha.php';
+}
+
+
+/**
+ * Display pagination for posts.
+ * http://wp.tutsplus.com/tutorials/wordpress-pagination-a-primer
+ *
+ * @param int $total_pages The total number of pages.
+ */
+function skel_posts_pagination( int $total_pages ): void {
+	if ( 1 < $total_pages ) {
 		$current_page = max( 1, get_query_var( 'paged' ) );
-		echo '<div class="posts-pagination">';
-		$big = 999999999;
+
+		echo '<nav class="posts-pagination" role="navigation" aria-label="' . esc_attr__( 'Posts Pagination', 'text-domain' ) . '">';
+
+		$big = 999999999; // A large number for replacing in the pagination link.
 		echo paginate_links(
 			array(
-				'base'       => str_replace( $big, '%#%', html_entity_decode( get_pagenum_link( $big ) ) ),
+				'base'       => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
 				'format'     => '?paged=%#%',
-				'current'    => max( 1, get_query_var( 'paged' ) ),
+				'current'    => $current_page,
 				'total'      => $total_pages,
-				'prev_text'  => svg( 'arrow-left' ),
-				'next_text'  => svg( 'arrow-right' ),
+				'prev_text'  => svg( 'arrow-left', array( 'aria-hidden' => 'true' ) ) . '<span class="screen-reader-text">' . esc_html__( 'Previous page', 'text-domain' ) . '</span>',
+				'next_text'  => svg( 'arrow-right', array( 'aria-hidden' => 'true' ) ) . '<span class="screen-reader-text">' . esc_html__( 'Next page', 'text-domain' ) . '</span>',
 				'mid_size'   => 1,
 				'start_size' => 0,
 				'end_size'   => 0,
 			)
 		);
-		echo '</div>';
+
+		echo '</nav>';
 	}
+}
+
+/**
+ * Generates an SVG icon.
+ *
+ * @param string $icon The icon name.
+ * @param array  $attributes Additional attributes for the SVG element.
+ * @return string SVG HTML.
+ */
+function svg( $icon, $attributes = array() ) {
+	$svg = '<svg class="icon icon-' . esc_attr( $icon ) . '"';
+
+	foreach ( $attributes as $key => $value ) {
+		$svg .= ' ' . esc_attr( $key ) . '="' . esc_attr( $value ) . '"';
+	}
+
+	$svg .= '><use xlink:href="#icon-' . esc_attr( $icon ) . '"></use></svg>';
+
+	return $svg;
 }
 
 // Add attributes to enqueue styles
@@ -80,81 +127,35 @@ DO NOT USE with Autoptimizer or any contact plugin */
 // }
 // add_filter('style_loader_tag', 'add_style_attribute', 10, 2);
 
-// Featured image size
-//
-// function add_featured_image_display_settings( $content, $post_id ) {
-// $screen = get_current_screen();
 
-// if ($screen->post_type == 'post'):
-// $field_text  = esc_html__( 'Recommended Image Size: 1900 x 1080 (WxH) in px.', 'Uss Kidd' );
 
-// $field_label = sprintf(
-// '<p><label>%1$s</label></p>',
-// $field_text
-// );
-
-// return $content .= $field_label;
-// endif;
-
-// return $content;
-// }
-// add_filter( 'admin_post_thumbnail_html', 'add_featured_image_display_settings', 10, 2 );
-
-// Customize img srcset sizes
-//
-// https://viastudio.com/optimizing-your-theme-for-wordpress-4-4s-responsive-images/
-
-// Content Images
-// function skel_content_image_sizes_attr($sizes, $size) {
-// $width = $size[0];
-// if (get_page_template_slug() === 'template-full_width.php') {
-// if ($width > 910) {
-// return '(max-width: 768px) 92vw, (max-width: 992px) 690px, (max-width: 1200px) 910px, 1110px';
-// }
-// if ($width < 910 && $width > 690) {
-// return '(max-width: 768px) 92vw, (max-width: 992px) 690px, 910px';
-// }
-// return '(max-width: ' . $width . 'px) 92vw, ' . $width . 'px';
-// }
-// return '(max-width: ' . $width . 'px) 92vw, ' . $width . 'px';
-// }
-// add_filter('wp_calculate_image_sizes', 'skel_content_image_sizes_attr', 10 , 2);
-
-// Featured Images
-// function skel_post_thumbnail_sizes_attr($attr, $attachment, $size) {
-// Calculate Image Sizes by type and breakpoint
-// Header Images
-// if ($size === 'header-thumb') {
-// $attr['sizes'] = '(max-width: 768px) 92vw, (max-width: 992px) 450px, (max-width: 1200px) 597px, 730px';
-// Blog Thumbnails
-// } else if ($size === 'blog-thumb') {
-// $attr['sizes'] = '(max-width: 992px) 200px, (max-width: 1200px) 127px, 160px';
-// }
-// return $attr;
-// }
-// add_filter('wp_get_attachment_image_attributes', 'skel_post_thumbnail_sizes_attr', 10 , 3);
-
-// Remove jquery migrate
-//
-// Not useful if autoptimize for JS with concatenation is enabled
-// If any jquery dependent script is loaded at top then the jquery is forced by WP to load at top for e.g Gravity forms
-function dequeue_jquery_migrate( &$scripts ) {
+/**
+ * Remove jQuery Migrate script.
+ *
+ * The jQuery Migrate is not useful if autoptimize for JS with concatenation is enabled.
+ * If any jQuery-dependent script is loaded at the top, then jQuery is forced by WordPress
+ * to load at the top, e.g., Gravity Forms.
+ *
+ * @param WP_Scripts $scripts The WP_Scripts object.
+ */
+function remove_jquery_migrate( &$scripts ) {
 	if ( ! is_admin() ) {
 		$scripts->remove( 'jquery' );
 		$scripts->add( 'jquery', false, array( 'jquery-core' ), '1.10.2' );
 	}
 }
-add_filter( 'wp_default_scripts', 'dequeue_jquery_migrate' );
+add_filter( 'wp_default_scripts', 'remove_jquery_migrate' );
+
 
 // Remove query string from static files
-//
-// function skel_remove_cssjs_ver( $src ) {
-// if( strpos( $src, '?ver=' ) )
-// $src = remove_query_arg( 'ver', $src );
-// return $src;
-// }
-// add_filter( 'style_loader_src', 'skel_remove_cssjs_ver', 10, 2 );
-// add_filter( 'script_loader_src', 'skel_remove_cssjs_ver', 10, 2 );
+function skel_remove_cssjs_ver( $src ) {
+	if ( strpos( $src, '?ver=' ) ) {
+		$src = remove_query_arg( 'ver', $src );
+	}
+	return $src;
+}
+add_filter( 'style_loader_src', 'skel_remove_cssjs_ver', 10, 2 );
+add_filter( 'script_loader_src', 'skel_remove_cssjs_ver', 10, 2 );
 
 // Redirect to result, if search query one result
 //

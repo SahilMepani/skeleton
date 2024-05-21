@@ -98,4 +98,4 @@ ACF-JSON:
 6. No learning curve
 
 
-Refactor code for better readability, Yoda condition, Prevent WPCS warnings or error, escaping text, security concerns, accessibility fixes and anything you feel right
+Add docblock and Refactor code for better readability, Yoda condition, type hinting, Prevent WPCS warnings or error, escaping text, security concerns, accessibility fixes, use strict argument whenever possible, add dot after single line comment if available and anything you feel right for the following codes pasted till the session is active

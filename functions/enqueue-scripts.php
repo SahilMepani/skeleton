@@ -1,4 +1,13 @@
 <?php
+/**
+ * Enqueue scripts
+ *
+ * It will enqueue script and styles
+ *
+ * @package WordPress
+ * @subpackage Skeleton
+ * @since 1.0.0
+ */
 function skel_enqueue_scripts() {
 
 	/* Load google fonts */
@@ -15,7 +24,8 @@ function skel_enqueue_scripts() {
 	wp_scripts()->add_data( 'jquery', 'group', 1 );
 	wp_scripts()->add_data( 'jquery-core', 'group', 1 );
 
-	/* wp_enqueue_script(
+	/*
+	wp_enqueue_script(
 	'identifier',
 	'url',
 	'dependency',
@@ -26,7 +36,7 @@ function skel_enqueue_scripts() {
 	wp_enqueue_style(
 		'skeleton-style',
 		get_stylesheet_uri(),
-		[],
+		array(),
 		filemtime( get_template_directory() . '/style.css' )
 	);
 
@@ -36,53 +46,53 @@ function skel_enqueue_scripts() {
 	wp_enqueue_script(
 		'skeleton-plugins',
 		get_template_directory_uri() . '/js/plugins.js',
-		[ 'jquery' ],
+		array( 'jquery' ),
 		filemtime( get_template_directory() . '/js/plugins.js' ),
 		true
 	);
 
 	// wp_enqueue_script(
-	// 	'match-height',
-	// 	get_template_directory_uri() . '/js/vendor/match-height.js',
-	// 	[ 'jquery' ],
-	// 	filemtime( get_template_directory() . '/js/vendor/match-height.js' ),
-	// 	true
+	// 'match-height',
+	// get_template_directory_uri() . '/js/vendor/match-height.js',
+	// [ 'jquery' ],
+	// filemtime( get_template_directory() . '/js/vendor/match-height.js' ),
+	// true
 	// );
 
 	// localize scripts
 	// wp_localize_script(
-	//   'skeleton-plugins', // file name without extension where we want to use the localize_var
-	//   'localize_var',
-	//   array(
-	//     'adminUrl' => admin_url( 'admin-ajax.php' ),
+	// 'skeleton-plugins', // file name without extension where we want to use the localize_var
+	// 'localize_var',
+	// array(
+	// 'adminUrl' => admin_url( 'admin-ajax.php' ),
 	// );
-
 }
 add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
 
 
 /**
  * Add defer attribute to the scripts to set the resource priority to low
+ * Do not load in backend
+ *
  * @param string $tag
  * @param string $handle
  * @param string $src
- *
- * @return $tag
+ * @return void
  */
 function skel_defer_scripts( string $tag, string $handle, string $src ) {
-	$defer = [
+	$defer = array(
 		// 'jquery',
 		// 'jquery-core',
 		'plugins',
-		'match-height'
-	];
+		'match-height',
+	);
 	if ( in_array( $handle, $defer ) ) {
 		return '<script src="' . $src . '" defer="defer" type="text/javascript"></script>' . "\n";
 	}
 
 	return $tag;
 }
-/* Do not load in backend */
+// Do not load in backend.
 if ( ! is_admin() ) {
 	add_filter( 'script_loader_tag', 'skel_defer_scripts', 10, 3 );
 }

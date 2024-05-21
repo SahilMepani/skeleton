@@ -1,6 +1,6 @@
 <?php
 /**
- * Flexible content
+ * Flexible content ACF block
  *
  * @package WordPress
  * @subpackage Skeleton

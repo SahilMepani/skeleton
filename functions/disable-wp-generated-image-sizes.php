@@ -16,10 +16,12 @@ update_option( 'medium_size_h', 0 );
 update_option( 'large_size_h', 0 );
 
 /**
- * Disable image sizes
+ * Disable specific image sizes.
  *
- * @param array $sizes
- * @return array
+ * This function removes certain default image sizes from the list of available sizes.
+ *
+ * @param array $sizes Associative array of registered image sizes.
+ * @return array Filtered associative array of image sizes.
  */
 function skel_disable_image_sizes( array $sizes ): array {
 
@@ -46,7 +48,7 @@ add_filter( 'big_image_size_threshold', '__return_false' );
 function skel_disable_other_image_sizes(): void {
 
 	remove_image_size( 'post-thumbnail' ); // disable images added via set_post_thumbnail_size()
-	// remove_image_size('another-size');   // disable any other added image sizes
+	// remove_image_size('another-size'); // disable any other added image sizes.
 }
 // Add action.
 add_action( 'init', 'skel_disable_other_image_sizes' );

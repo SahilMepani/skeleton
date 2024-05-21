@@ -1,6 +1,6 @@
 <?php
 /**
- * Visual editor block
+ * Visual editor ACF block
  *
  * @package WordPress
  * @subpackage Skeleton

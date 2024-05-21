@@ -1,6 +1,6 @@
 <?php
 /**
- * Search result block
+ * Search result ACF block
  *
  * @package WordPress
  * @subpackage Skeleton

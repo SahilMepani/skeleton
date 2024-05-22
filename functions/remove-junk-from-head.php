@@ -1,20 +1,43 @@
 <?php
-// Remove junk from head
-////////////////////////////////////////////////
-remove_action( 'wp_head', 'rsd_link' ); // remove really simple discovery link
-remove_action( 'wp_head', 'wp_generator' ); // remove wordpress version
-remove_action( 'wp_head', 'feed_links', 2 ); // remove rss feed links (make sure you add them in yourself if youre using feedblitz or an rss service)
-remove_action( 'wp_head', 'feed_links_extra', 3 ); // removes all extra rss feed links
-remove_action( 'wp_head', 'index_rel_link' ); // remove link to index page
-remove_action( 'wp_head', 'wlwmanifest_link' ); // remove wlwmanifest.xml (needed to support windows live writer)
-remove_action( 'wp_head', 'start_post_rel_link', 10, 0 ); // remove random post link
-remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 ); // remove parent post link
-remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // remove the next and previous post links
-remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
-remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
+/**
+ * Description: Removes unnecessary items from the head section of the website.
+ *
+ * @package WordPress
+ * @subpackage Skeleton
+ * @since 1.0.0
+ */
 
-// Remove Emoji
-////////////////////////////////////////////////
+/**
+ * Remove unnecessary items from the head section.
+ *
+ * This function removes various items from the head section of the website such as RSD link,
+ * WordPress version, RSS feed links, index link, Windows Live Writer link, random post link,
+ * parent post link, next and previous post links, and shortlinks.
+ *
+ * @return void
+ */
+function skel_remove_junk_from_head() {
+	remove_action( 'wp_head', 'rsd_link' );
+	remove_action( 'wp_head', 'wp_generator' );
+	remove_action( 'wp_head', 'feed_links', 2 );
+	remove_action( 'wp_head', 'feed_links_extra', 3 );
+	remove_action( 'wp_head', 'index_rel_link' );
+	remove_action( 'wp_head', 'wlwmanifest_link' );
+	remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );
+	remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 );
+	remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 );
+	remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
+	remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
+}
+add_action( 'init', 'skel_remove_junk_from_head' );
+
+/**
+ * Disable Emojis.
+ *
+ * This function disables emojis from the website to reduce unnecessary overhead.
+ *
+ * @return void
+ */
 function skel_disable_emojis() {
 	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
@@ -28,27 +51,31 @@ function skel_disable_emojis() {
 }
 add_action( 'init', 'skel_disable_emojis' );
 
-// Remove the tinymce emoji plugin
-////////////////////////////////////////////////
+/**
+ * Remove the TinyMCE emoji plugin.
+ *
+ * @param array $plugins Array of TinyMCE plugins.
+ * @return array Modified array of TinyMCE plugins.
+ */
 function disable_emojis_tinymce( $plugins ) {
 	if ( is_array( $plugins ) ) {
-		return array_diff( $plugins, ['wpemoji'] );
+		return array_diff( $plugins, array( 'wpemoji' ) );
 	} else {
-		return [];
+		return array();
 	}
 }
 
-// Remove emoji CDN hostname from DNS prefetching hints
-////////////////////////////////////////////////
+/**
+ * Remove emoji CDN hostname from DNS prefetching hints.
+ *
+ * @param array  $urls Array of URLs.
+ * @param string $relation_type The relation type.
+ * @return array Modified array of URLs.
+ */
 function disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
-	if ( 'dns-prefetch' == $relation_type ) {
-		/**
-		 * This filter is documented in wp-includes/formatting.php
-		 */
+	if ( 'dns-prefetch' === $relation_type ) {
 		$emoji_svg_url = apply_filters( 'emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/' );
-
-		$urls = array_diff( $urls, [$emoji_svg_url] );
+		$urls          = array_diff( $urls, array( $emoji_svg_url ) );
 	}
-
 	return $urls;
 }

@@ -5,8 +5,10 @@
  * This is the template that displays all of the <head> section and everything up until main.
  *
  * @package WordPress
+ * @subpackage Skeleton
  * @since 1.0.0
  */
+
 
 /**
  * Retrieve the Swiper direction-based class for slides.

@@ -30,23 +30,21 @@ Dev to Design handoff:
 	☐ Any CPT
 
 Frontend Developer:
-	☐ Finish each block at a time that includes responsive etc
-	☐ Each section will be independent. Spacing for sections need not be tied with css but classes so that we can use the section at any other place
-	☐ If a section has different variation both the variations needs to be added as a part of same section unless and until it asks for a separate section
-	☐ All images should be a part of img tag. They cannot be a part of background image css. We will use responsive images
-	☐ Use reusable components whenever possible
-	☐ If heading has some text with different color. Use utility class and not inline CSS
-	☐ Add JS in a way that if same block added multiple times on the page should work
-	☐ No margin between the sections
-	☐ Use img srcset
-	☐ Traingle background should be separate and we need to add background color to each section
-	☐ Newsletter section will be using gravity forms
-	☐ If more columns in a row.. and content increases of one.. make sure the other increases too as same height
-	☐ Use svg and not font icons please
-	☐ Do not use ID
-	☐ All lowercase classes names separated by dash
-	☐ Cannot use SVG code as a part of the file. Instead use img tag
-	☐ If any place there are repeating items. Do not target using classes like first, second etc instead use nth-child css
+	☐ Each section should be independent. Use classes for section spacing instead of tying it to CSS so the section can be reused elsewhere.
+	☐ If a section has multiple variations, include all variations within the same section unless a separate section is explicitly required.
+	☐ All images should be included using the <img> tag rather than as background images in CSS. Implement responsive images.
+	☐ Use reusable components whenever possible.
+	☐ Avoid inline CSS.
+	☐ Ensure that JavaScript works correctly even if the same block is added multiple times on the page.
+	☐ Do not add margin between sections.
+	☐ Utilize img srcset for responsive images.
+	☐ Use Swiper for all sliders.
+	☐ When a row has multiple columns, ensure that all columns maintain the same height if the content of one column increases.
+	☐ Do not use font icons; instead, use SVGs.
+	☐ Avoid using IDs unless absolutely necessary.
+	☐ All class names should be lowercase and separated by dashes.
+	☐ Do not include SVG code within the file; use the <img> tag for SVGs.
+	☐ For repeating items, use nth-child for targeting instead of classes like first, second, etc.css
 
 Developer Options:
 	Create a clone initially with default settings but for every block you may have to create all the dev options manually because of different defaults
@@ -98,4 +96,4 @@ ACF-JSON:
 6. No learning curve
 
 
-Add docblock and Refactor code for better readability, Yoda condition, type hinting, Prevent WPCS warnings or error, escaping text, security concerns, accessibility fixes, use strict argument whenever possible, add dot after single line comment if available and anything you feel right for the following codes pasted till the session is active
+Add file comment, Add docblock and Refactor code for better readability, Yoda condition, type hinting, strict comparison, sanitize and validate data as per WPCS, Prevent WPCS warnings or error, escaping text, security concerns, accessibility fixes, use strict argument whenever possible, add dot after single line comment if available and anything you feel right for the following codes pasted till the session is active

@@ -13,9 +13,9 @@ module.exports = function (grunt) {
 					'source/sass/_partials/**/*.{scss,sass}'
 				],
 				// dev
-				// tasks: ['sass']
+				tasks: ['sass']
 				// prod
-				tasks: ['sass', 'stylelint', 'purgecss', 'rtlcss', 'postcss']
+				// tasks: ['sass', 'stylelint', 'purgecss', 'rtlcss', 'postcss']
 			},
 			js: {
 				files: ['source/js/**/*.js'],

@@ -1,11 +1,17 @@
-<?php get_header();?>
-
-
 <?php
-	/**
-	 * @param int (404 page ID)
-	 */
-	echo skel_insert_page(50)
-?>
+/**
+ * 404 page
+ *
+ * @package Skeleton
+ */
 
-<?php get_footer();?>
+get_header();
+
+/**
+ * Add the page content from ID
+ *
+ * @param int (404 page ID)
+ */
+skel_insert_page( 50, true );
+
+get_footer();

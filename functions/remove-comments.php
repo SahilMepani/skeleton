@@ -28,14 +28,3 @@ function skel_remove_comment_support(): void {
 	remove_post_type_support( 'page', 'comments' );
 }
 add_action( 'init', 'skel_remove_comment_support', 100 );
-
-/**
- * Remove comments from the admin bar.
- *
- * @param WP_Admin_Bar $wp_admin_bar The WP_Admin_Bar instance.
- * @return void
- */
-function skel_admin_bar_render( WP_Admin_Bar $wp_admin_bar ): void {
-	$wp_admin_bar->remove_menu( 'comments' );
-}
-add_action( 'wp_before_admin_bar_render', 'skel_admin_bar_render' );

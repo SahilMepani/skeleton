@@ -1,6 +1,10 @@
 @use 'sass:math';
 @use 'sass:map';
 
+.section-display-off {
+	display: none !important;
+}
+
 .section {
 	$sizes: map.set($section-spacings, 'custom', 0);
 

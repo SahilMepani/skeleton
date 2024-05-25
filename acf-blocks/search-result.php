@@ -2,9 +2,8 @@
 /**
  * Search result ACF block
  *
- * @package WordPress
- * @subpackage Skeleton
- * @since 1.0.0
+ * @package Skeleton
+ * @subpackage ACF
  */
 
 // Verify nonce.
@@ -21,6 +20,9 @@ if ( isset( $block['data']['preview_image'] ) ) {
 
 	return; // required.
 }
+
+// Data options.
+$display = get_field( 'display' );
 
 // Developer options.
 $spacing        = get_field( 'spacing' );
@@ -42,10 +44,10 @@ if ( 'custom' === $spacing_bottom ) {
 } else {
 	$spacing_bottom_custom = '';
 }
-?>
 
+if ( 'on' === $display ) { ?>
 <section
-	class="search-results-section section <?php echo esc_attr( "{$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
+	class="search-results-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
 	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
 	id="<?php echo esc_attr( $unique_id ); ?>">
 
@@ -158,3 +160,4 @@ if ( 'custom' === $spacing_bottom ) {
 	</div> <!-- .container -->
 
 </section>
+<?php } ?>

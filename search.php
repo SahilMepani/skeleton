@@ -1,12 +1,12 @@
 <?php
 /**
- * File comment
+ * Search
  *
- * @package category
+ * @package Skeleton
  */
 
 get_header();
 
-echo skel_insert_page( 807 );
+skel_insert_page( 807 );
 
 get_footer();

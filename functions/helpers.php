@@ -6,9 +6,7 @@
  *
  * @package WordPress
  * @subpackage Skeleton
- * @since 1.0.0
  */
-
 
 /**
  * Retrieve the Swiper direction-based class for slides.
@@ -263,21 +261,27 @@ add_theme_support( 'post-thumbnails' );
  * It then applies the content filters using `apply_filters('the_content', $content)` to ensure
  * that any necessary transformations are applied, such as shortcode processing.
  *
- * @param int $id The ID of the page to retrieve and insert into another page.
- * @return string|null The content of the specified page, or null if the page with the provided ID does not exist.
+ * @param int  $id The ID of the page to retrieve and insert into another page.
+ * @param bool $display Whether to echo the output. Default is false.
+ * @return string|null The content of the specified page,
+ * or null if the page with the provided ID does not exist.
  */
-function skel_insert_page( int $id ): ?string {
+function skel_insert_page( int $id, bool $display = false ): ?string {
 	// Retrieve the post object based on the provided ID.
-	$post = get_post( $id );
+	$post   = get_post( $id );
+	$output = null;
 
 	// If the post exists, retrieve its content and apply content filters.
 	if ( $post ) {
-		$content = apply_filters( 'the_content', $post->post_content );
-		return $content;
-	} else {
-		// If the post doesn't exist, return null.
-		return null;
+		$output = apply_filters( 'the_content', $post->post_content );
 	}
+
+	if ( $display ) {
+		// phpcs:ignore
+		echo $output;
+	}
+
+	return $output;
 }
 
 

@@ -1,10 +1,9 @@
 <?php
 /**
- * Registers ACF gutenberg blocks
+ * Register ACF options page
  *
- * @package WordPress
- * @subpackage Skeleton
- * @since 1.0.0
+ * @package Skeleton
+ * @subpackage ACF
  */
 
 /**

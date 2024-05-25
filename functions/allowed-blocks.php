@@ -9,8 +9,6 @@
  * @since 1.0.0
  */
 
-add_filter( 'allowed_block_types_all', 'skel_allowed_block_types', 25, 2 );
-
 
 /**
  * Filter the allowed block types for all contexts.
@@ -47,3 +45,5 @@ function skel_allowed_block_types(): array {
 
 	return $allowed_blocks;
 }
+
+add_filter( 'allowed_block_types_all', 'skel_allowed_block_types', 25, 2 );

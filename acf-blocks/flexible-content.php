@@ -2,9 +2,8 @@
 /**
  * Flexible content ACF block
  *
- * @package WordPress
- * @subpackage Skeleton
- * @since 1.0.0
+ * @package Skeleton
+ * @subpackage ACF
  */
 
 // Set thumbnail preview in backend.
@@ -14,7 +13,8 @@ if ( isset( $block['data']['preview_image'] ) ) {
 	return; // required.
 }
 
-// Block options.
+// Data options.
+$display          = get_field( 'display' );
 $flexible_content = get_field( 'flexible_content' );
 
 // Developer options.
@@ -37,10 +37,10 @@ if ( 'custom' === $spacing_bottom ) {
 } else {
 	$spacing_bottom_custom = '';
 }
-?>
 
+if ( 'on' === $display ) { ?>
 <section
-	class="search-results-section section <?php echo esc_attr( "{$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
+	class="search-results-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
 	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
 	id="<?php echo esc_attr( $unique_id ); ?>">
 
@@ -109,3 +109,4 @@ if ( 'custom' === $spacing_bottom ) {
 	</div><!-- .container -->
 
 </section>
+<?php } ?>

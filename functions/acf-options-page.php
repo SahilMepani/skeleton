@@ -2,9 +2,8 @@
 /**
  * Register ACF options page
  *
- * @package WordPress
- * @subpackage Skeleton
- * @since 1.0.0
+ * @package Skeleton
+ * @subpackage ACF
  */
 
 if ( function_exists( 'acf_add_options_page' ) ) {

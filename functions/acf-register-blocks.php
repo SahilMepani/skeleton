@@ -83,5 +83,6 @@ function skel_register_acf_blocks(): void {
 	}
 }
 
-// Hook the function into the 'acf/init' action.
-add_action( 'acf/init', 'skel_register_acf_blocks' );
+if ( has_action( 'acf/init' ) ) {
+	add_action( 'acf/init', 'skel_register_acf_blocks' );
+}

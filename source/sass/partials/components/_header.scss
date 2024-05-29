@@ -11,6 +11,19 @@
 	}
 }
 
+.skip-link {
+	text-transform: uppercase;
+	margin-inline: auto;
+	position: fixed;
+	top: rem-calc(-200);
+	right: 0;
+	left: 0;
+
+	&:focus {
+		top: 0;
+	}
+}
+
 .header-logo {
 	float: left;
 	width: rem-calc(151);

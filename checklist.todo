@@ -20,6 +20,7 @@
 	☐ Activate "Admin columns" plugin and add slug as columns for all Post types
 	☐ Activate "WebP express" plugin and copy the settings form DallahTrading
 	☐ Activate "Autoptimize" plugin and copy the settings from DallahTrading
+	☐ Remove swiper js modules which are not used.
 	☐ Activate "Wordfence" security plugin and import settings using
 	8e6a436f1f47f5c500fc0a4f7885b5cbecb71bbe75b4abfb31b22d49643f8183cb2906d9f75e85fa073da4be9e79eaeed4fb0630d5765222902dbb8657457d44
 	☐ Activate "WP Hardened" plugin

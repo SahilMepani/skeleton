@@ -132,7 +132,7 @@ $mobile-sub-menu-link-padding-x: rem-calc(20);
 						position: absolute;
 						top: 50%;
 						left: 50%;
-						content: "";
+						content: '';
 						margin-inline-start: rem-calc(-6);
 						border-inline-start-width: rem-calc(6);
 					}
@@ -225,7 +225,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 	@include media-breakpoint-up(lg) {
 		> li {
 			float: left;
-			margin-right: rem-calc(5);
+			margin-inline-end: rem-calc(5);
 
 			&:hover,
 			&:focus {
@@ -255,7 +255,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 			position: relative;
 
 			> a {
-				// padding-right: $desktop-parent-menu-item-padding-y +
+				// padding-inline-end: $desktop-parent-menu-item-padding-y +
 				// 	$desktop-parent-menu-dropdown-icon-border +
 				// 	$desktop-parent-menu-dropdown-icon-border +
 				// 	$desktop-parent-menu-space-between-text-and-arrow; //dropdown icon
@@ -268,7 +268,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 					top: 50%;
 					right: $desktop-parent-menu-item-padding-y;
 					transition: 250ms color, 250ms background-color;
-					content: "";
+					content: '';
 				}
 			}
 
@@ -346,7 +346,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 			left: 0;
 
 			> li.menu-item-has-children > a {
-				// padding-right: $desktop-parent-menu-item-padding-y +
+				// padding-inline-end: $desktop-parent-menu-item-padding-y +
 				// 	$desktop-parent-menu-dropdown-icon-border +
 				// 	$desktop-parent-menu-dropdown-icon-border +
 				// 	$desktop-parent-menu-space-between-text-and-arrow; //chevron icon
@@ -360,7 +360,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 					top: $desktop-parent-menu-item-padding-x;
 					right: $desktop-parent-menu-item-padding-y;
 					transition: 250ms color, 250ms background-color;
-					content: "";
+					content: '';
 					border-inline-start-color: $desktop-parent-menu-dropdown-icon-hover-color;
 				}
 			}

@@ -46,11 +46,11 @@
 		}
 
 		&.current:first-child {
-			margin-left: auto;
+			margin-inline-start: auto;
 		}
 
 		&.current:last-child {
-			margin-right: auto;
+			margin-inline-end: auto;
 		}
 
 		&:hover {
@@ -80,11 +80,11 @@
 		}
 
 		&.prev {
-			margin-right: auto;
+			margin-inline-end: auto;
 		}
 
 		&.next {
-			margin-left: auto;
+			margin-inline-start: auto;
 		}
 	}
 }

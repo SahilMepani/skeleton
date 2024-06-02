@@ -65,7 +65,7 @@
 			position: relative;
 
 			a {
-				padding-left: rem-calc(25);
+				padding-inline-start: rem-calc(25);
 
 				// &:before {
 				//   @include icon-font-properties;
@@ -129,8 +129,8 @@
 		float: left;
 		min-width: rem-calc(10);
 		padding: rem-calc(7) rem-calc(10);
-		margin-left: rem-calc(4);
 		border: rem-calc(1) solid #e7e7e7;
+		margin-inline-start: rem-calc(4);
 	}
 
 	a:hover,

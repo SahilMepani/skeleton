@@ -68,11 +68,10 @@ body {
 	-webkit-tap-highlight-color: rgba(#000, 0);
 
 	.js-no-touchevents &.js-popup-active {
-		padding-right: $track-width;
-
 		// make the space for hidden scrollbar on body
 		// same as width set for custom scrollbar
 		overflow-y: hidden;
+		padding-inline-end: $track-width;
 	}
 }
 
@@ -158,14 +157,14 @@ dl {
 
 ul,
 ol {
-	margin-left: rem-calc(20);
+	margin-inline-start: rem-calc(20);
 	list-style-position: outside;
 
 	ul,
 	ol {
 		margin: 0;
 		margin-top: rem-calc(5);
-		margin-left: rem-calc(40);
+		margin-inline-start: rem-calc(40);
 	}
 
 	ol {
@@ -205,7 +204,7 @@ dt {
 /* ----------  Form  ---------- */
 form {
 	ul {
-		padding-left: 0;
+		padding-inline-start: 0;
 		list-style: none;
 	}
 
@@ -215,7 +214,7 @@ form {
 			margin-bottom: rem-calc(15);
 
 			> label {
-				margin-right: rem-calc(10);
+				margin-inline-end: rem-calc(10);
 			}
 		}
 	}
@@ -274,7 +273,7 @@ form {
 		line-height: normal;
 		margin: 0;
 		margin-top: rem-calc(4);
-		margin-right: rem-calc(5);
+		margin-inline-end: rem-calc(5);
 	}
 
 	select[multiple],

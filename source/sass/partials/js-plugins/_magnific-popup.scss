@@ -36,7 +36,7 @@
 	vertical-align: middle;
 	display: inline-block;
 	height: 100%;
-	content: "";
+	content: '';
 }
 
 .mfp-align-top .mfp-container::before {
@@ -173,8 +173,8 @@ button::-moz-focus-inner {
 	color: #fff;
 	text-align: right;
 	width: 100%;
-	padding-right: rem-calc(6);
 	right: rem-calc(-6);
+	padding-inline-end: rem-calc(6);
 }
 
 .mfp-counter {
@@ -214,12 +214,12 @@ button::-moz-focus-inner {
 	width: 0;
 	height: 0;
 	margin-top: rem-calc(35);
-	margin-left: rem-calc(35);
 	border: medium inset transparent;
 	position: absolute;
 	top: 0;
 	left: 0;
-	content: "";
+	content: '';
+	margin-inline-start: rem-calc(35);
 }
 
 .mfp-arrow::after {
@@ -238,27 +238,27 @@ button::-moz-focus-inner {
 	left: 0;
 }
 
-.mfp-arrow-left::after {
-	margin-left: rem-calc(31);
-	border-right: rem-calc(17) solid #fff;
+.mfp-arrow-inline-start::after {
+	border-inline-end: rem-calc(17) solid #fff;
+	margin-inline-start: rem-calc(31);
 }
 
-.mfp-arrow-left::before {
-	margin-left: rem-calc(25);
-	border-right: rem-calc(27) solid #3f3f3f;
+.mfp-arrow-inline-start::before {
+	border-inline-end: rem-calc(27) solid #3f3f3f;
+	margin-inline-start: rem-calc(25);
 }
 
 .mfp-arrow-right {
 	right: 0;
 }
 
-.mfp-arrow-right::after {
-	margin-left: rem-calc(39);
-	border-left: rem-calc(17) solid #fff;
+.mfp-arrow-inline-end::after {
+	margin-inline-start: rem-calc(39);
+	border-inline-start: rem-calc(17) solid #fff;
 }
 
-.mfp-arrow-right::before {
-	border-left: rem-calc(27) solid #3f3f3f;
+.mfp-arrow-inline-end::before {
+	border-inline-start: rem-calc(27) solid #3f3f3f;
 }
 
 .mfp-iframe-holder {
@@ -321,7 +321,7 @@ img.mfp-img {
 	left: 0;
 	z-index: -1;
 	box-shadow: 0 0 rem-calc(8) rgb(0 0 0 / 60%);
-	content: "";
+	content: '';
 }
 
 .mfp-figure small {
@@ -349,7 +349,7 @@ img.mfp-img {
 	line-height: rem-calc(18);
 	text-align: left;
 	word-wrap: break-word;
-	padding-right: rem-calc(36);
+	padding-inline-end: rem-calc(36);
 }
 
 .mfp-image-holder .mfp-content {
@@ -362,8 +362,8 @@ img.mfp-img {
 @media screen and (max-width: rem-calc(800)) and (orientation: landscape),
 	screen and (max-height: rem-calc(300)) {
 	.mfp-img-mobile .mfp-image-holder {
-		padding-right: 0;
-		padding-left: 0;
+		padding-inline-end: 0;
+		padding-inline-start: 0;
 	}
 
 	.mfp-img-mobile img.mfp-img {
@@ -377,7 +377,7 @@ img.mfp-img {
 
 	.mfp-img-mobile .mfp-figure small {
 		display: inline;
-		margin-left: rem-calc(5);
+		margin-inline-start: rem-calc(5);
 	}
 
 	.mfp-img-mobile .mfp-bottom-bar {
@@ -425,7 +425,7 @@ img.mfp-img {
 	}
 
 	.mfp-container {
-		padding-right: rem-calc(6);
-		padding-left: rem-calc(6);
+		padding-inline-end: rem-calc(6);
+		padding-inline-start: rem-calc(6);
 	}
 }

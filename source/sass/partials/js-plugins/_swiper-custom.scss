@@ -16,9 +16,9 @@
 		display: inline-block;
 		width: rem-calc(10);
 		height: rem-calc(10);
-		margin-left: rem-calc(10);
 		border-radius: 50%;
 		position: relative;
+		margin-inline-start: rem-calc(10);
 		cursor: pointer;
 
 		&.swiper-pagination-bullet-active {
@@ -54,9 +54,9 @@
 }
 
 .swiper-button-prev {
-	margin-right: rem-calc(8);
+	margin-inline-end: rem-calc(8);
 	@include media-breakpoint-up(md) {
-		margin-right: rem-calc(16);
+		margin-inline-end: rem-calc(16);
 	}
 }
 
@@ -106,7 +106,7 @@
 // }
 
 // .btn-prev {
-//   margin-right: rem-calc( 10px );
+//   margin-inline-end: rem-calc( 10px );
 //   &:before {
 //     content: '\e616';
 //   }

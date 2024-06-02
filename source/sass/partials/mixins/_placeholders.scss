@@ -1,9 +1,9 @@
 %container {
 	width: 100%;
-	padding-right: fluid(20, 40);
-	padding-left: fluid(20, 40);
-	margin-right: auto;
-	margin-left: auto;
+	padding-inline-end: fluid(20, 40);
+	padding-inline-start: fluid(20, 40);
+	margin-inline-end: auto;
+	margin-inline-start: auto;
 }
 
 %fill {

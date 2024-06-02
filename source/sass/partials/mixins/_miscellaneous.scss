@@ -33,7 +33,7 @@
 
 @mixin list-unstyled {
 	margin-top: 0;
-	margin-left: 0;
+	margin-inline-start: 0;
 
 	> li {
 		list-style: none;

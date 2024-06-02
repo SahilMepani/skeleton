@@ -33,6 +33,7 @@
 	☐ Remove unwanted/extra code from each file one by one
 	☐ Remove unwanted plugins
 	☐ Add all preview for acf-blocks
+	☐ Add acf-json folder and save all the field groups in it from plugin settings. It will significantly improve the load time on frontend as it will make less database queries for fields
 	☐ Hide unwanted options from admin menu sidebar using "Admin menu editor" plugin
 	☐ Make the WP JPG resize quality filter percent to 70 if not planning to use Image Optimize plugin
 	☐ Setup SMTP for email delivery to Inbox

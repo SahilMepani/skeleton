@@ -13,7 +13,7 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
 const resizeHeaderHeight = () => {
 	const headerHeight = document.querySelector('.site-header').offsetHeight;
 	document.documentElement.style.setProperty(
-		'--scroll-padding-top',
+		'--header-height',
 		headerHeight + 'px'
 	);
 };

@@ -55,7 +55,7 @@ html {
 	 * Useful for fixed header
 	 * Leave fixed header space when scrolled using scroll snapping
 	 */
-	scroll-padding-top: var(--scroll-padding-top, rem-calc(65));
+	scroll-padding-top: var(--header-height, rem-calc(65));
 }
 
 body {

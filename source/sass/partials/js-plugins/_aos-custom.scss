@@ -1,16 +1,47 @@
 // Animations variables
-$aos-distance: rem-calc(50) !default; // same from custom/scroll-reveal.js
-$sreveal-default-delay: 200; // same from custom/scroll-reveal.js
+$stagger-limit: 20;
 
-@media screen {
+:root {
+	--aos-duration: 750;
+	--aos-delay: 0;
+	--aos-stagger-interval: 100;
+	--aos-distance: 40px;
+	--aos-linear: cubic-bezier(0.25, 0.25, 0.75, 0.75);
+	--aos-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+	--aos-ease-in: cubic-bezier(0.42, 0, 1, 1);
+	--aos-ease-out: cubic-bezier(0, 0, 0.58, 1);
+	--aos-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+	--aos-ease-in-back: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	--aos-ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	--aos-ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	--aos-ease-in-sine: cubic-bezier(0.47, 0, 0.745, 0.715);
+	--aos-ease-out-sine: cubic-bezier(0.39, 0.575, 0.565, 1);
+	--aos-ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	--aos-ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+	--aos-ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	--aos-ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	--aos-ease-in-cubic: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+	--aos-ease-out-cubic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	--aos-ease-in-out-cubic: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	--aos-ease-in-quart: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+	--aos-ease-out-quart: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	--aos-ease-in-out-quart: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	--aos-timing-function: var(--aos-ease-out);
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
 	// set defaults
 	[data-aos] {
 		visibility: hidden;
-		transition-duration: 1s;
+		transition-duration: calc(var(--aos-duration) * 1ms);
+		transition-timing-function: calc(var(--aos-timing-function) * 1ms);
+		transition-delay: calc(var(--aos-delay) * 1ms);
+		pointer-events: none;
 
-		.sreveal-in-view &,
-		.swiper-slide-active:not(.wait-for-sreveal) & {
+		&[data-inview='true'],
+		[data-inview='true'] & {
 			visibility: visible;
+			pointer-events: auto;
 		}
 	}
 
@@ -21,63 +52,75 @@ $sreveal-default-delay: 200; // same from custom/scroll-reveal.js
   * fade-up-right, fade-up-left, fade-down-right, fade-down-left
   */
 
-	[data-aos^="fade"] {
+	[data-aos^='fade'] {
 		opacity: 0;
 		transition-property: opacity, transform;
 
-		.sreveal-in-view &,
-		.swiper-slide-active:not(.wait-for-sreveal) & {
+		&[data-inview='true'],
+		[data-inview='true'] & {
 			opacity: 1;
 			transform: none;
 		}
 	}
 
-	[data-aos="fade-up"] {
-		transform: translate3d(0, $aos-distance, 0);
+	[data-aos='fade-up'] {
+		transform: translate3d(0, var(--aos-distance), 0);
 	}
 
-	[data-aos="fade-down"] {
-		transform: translate3d(0, -$aos-distance, 0);
+	[data-aos='fade-down'] {
+		transform: translate3d(0, calc(var(--aos-distance) * -1), 0);
 	}
 
-	[data-aos="fade-right"] {
-		transform: translate3d(-$aos-distance, 0, 0);
+	[data-aos='fade-right'] {
+		transform: translate3d(calc(var(--aos-distance) * -1), 0, 0);
 	}
 
-	[data-aos="fade-left-full"] {
+	[data-aos='fade-left-full'] {
 		transform: translate3d(100%, 0, 0);
 	}
 
-	[data-aos="fade-up-full"] {
+	[data-aos='fade-up-full'] {
 		transform: translate3d(0, 100%, 0);
 	}
 
-	[data-aos="fade-down-full"] {
+	[data-aos='fade-down-full'] {
 		transform: translate3d(0, -100%, 0);
 	}
 
-	[data-aos="fade-right-full"] {
+	[data-aos='fade-right-full'] {
 		transform: translate3d(-100%, 0, 0);
 	}
 
-	[data-aos="fade-left"] {
-		transform: translate3d($aos-distance, 0, 0);
+	[data-aos='fade-left'] {
+		transform: translate3d(var(--aos-distance), 0, 0);
 	}
 
-	[data-aos="fade-up-right"] {
-		transform: translate3d(-$aos-distance, $aos-distance, 0);
+	[data-aos='fade-up-right'] {
+		transform: translate3d(
+			calc(var(--aos-distance) * -1),
+			var(--aos-distance),
+			0
+		);
 	}
 
-	[data-aos="fade-up-left"] {
-		transform: translate3d($aos-distance, $aos-distance, 0);
+	[data-aos='fade-up-left'] {
+		transform: translate3d(var(--aos-distance), var(--aos-distance), 0);
 	}
 
-	[data-aos="fade-down-right"] {
-		transform: translate3d(-$aos-distance, -$aos-distance, 0);
+	[data-aos='fade-down-right'] {
+		transform: translate3d(
+			calc(var(--aos-distance) * -1),
+			calc(var(--aos-distance) * -1),
+			0
+		);
 	}
 
-	[data-aos="fade-down-left"] {
-		transform: translate3d($aos-distance, -$aos-distance, 0);
+	[data-aos='fade-down-left'] {
+		transform: translate3d(
+			var(--aos-distance),
+			calc(var(--aos-distance) * -1),
+			0
+		);
 	}
 
 	/**
@@ -86,106 +129,104 @@ $sreveal-default-delay: 200; // same from custom/scroll-reveal.js
   * zoom-out, zoom-out-up, zoom-out-down, zoom-out-left, zoom-out-right
   */
 
-	[data-aos^="zoom"] {
+	[data-aos^='zoom'] {
 		opacity: 0;
 		transition-property: opacity, transform;
 
-		.sreveal-in-view &,
-		.swiper-slide-active:not(.wait-for-sreveal) & {
+		&[data-inview='true'],
+		[data-inview='true'] & {
 			opacity: 1;
 			transform: translate3d(0, 0, 0) scale(1);
 		}
 	}
 
-	[data-aos="zoom-in"] {
+	[data-aos='zoom-in'] {
 		transform: scale(0.6);
 	}
 
-	[data-aos="zoom-in-up"] {
-		transform: translate3d(0, $aos-distance, 0) scale(0.6);
+	[data-aos='zoom-in-up'] {
+		transform: translate3d(0, var(--aos-distance), 0) scale(0.6);
 	}
 
-	[data-aos="zoom-in-down"] {
-		transform: translate3d(0, -$aos-distance, 0) scale(0.6);
+	[data-aos='zoom-in-down'] {
+		transform: translate3d(0, calc(var(--aos-distance) * -1), 0) scale(0.6);
 	}
 
-	[data-aos="zoom-in-right"] {
-		transform: translate3d(-$aos-distance, 0, 0) scale(0.6);
+	[data-aos='zoom-in-right'] {
+		transform: translate3d(calc(var(--aos-distance) * -1), 0, 0) scale(0.6);
 	}
 
-	[data-aos="zoom-in-left"] {
-		transform: translate3d($aos-distance, 0, 0) scale(0.6);
+	[data-aos='zoom-in-left'] {
+		transform: translate3d(var(--aos-distance), 0, 0) scale(0.6);
 	}
 
-	[data-aos="zoom-out"] {
+	[data-aos='zoom-out'] {
 		opacity: 1;
 		transform: scale(1.2);
 	}
 
-	[data-aos="zoom-fade-out"] {
+	[data-aos='zoom-fade-out'] {
 		transform: scale(1.2);
 	}
 
-	[data-aos="zoom-out-up"] {
-		transform: translate3d(0, $aos-distance, 0) scale(1.2);
+	[data-aos='zoom-out-up'] {
+		transform: translate3d(0, var(--aos-distance), 0) scale(1.2);
 	}
 
-	[data-aos="zoom-out-down"] {
-		transform: translate3d(0, -$aos-distance, 0) scale(1.2);
+	[data-aos='zoom-out-down'] {
+		transform: translate3d(0, calc(var(--aos-distance) * -1), 0) scale(1.2);
 	}
 
-	[data-aos="zoom-out-right"] {
-		transform: translate3d(-$aos-distance, 0, 0) scale(1.2);
+	[data-aos='zoom-out-right'] {
+		transform: translate3d(calc(var(--aos-distance) * -1), 0, 0) scale(1.2);
 	}
 
-	[data-aos="zoom-out-left"] {
-		transform: translate3d($aos-distance, 0, 0) scale(1.2);
+	[data-aos='zoom-out-left'] {
+		transform: translate3d(var(--aos-distance), 0, 0) scale(1.2);
 	}
 
 	/**
   * Slide animations
   */
 
-	[data-aos^="slide"] {
-		visibility: hidden;
+	[data-aos^='slide'] {
 		transition-property: transform;
 
-		.sreveal-in-view &,
-		.swiper-slide-active:not(.wait-for-sreveal) & {
-			visibility: visible;
+		&[data-inview='true'],
+		[data-inview='true'] & {
 			transform: translate3d(0, 0, 0);
 		}
 	}
 
-	[data-aos="slide-up"] {
-		transform: translate3d(0, $aos-distance, 0);
+	[data-aos='slide-up'] {
+		transform: translate3d(0, var(--aos-distance), 0);
 	}
 
-	[data-aos="slide-down"] {
-		transform: translate3d(0, -$aos-distance, 0);
+	[data-aos='slide-down'] {
+		transform: translate3d(0, calc(var(--aos-distance) * -1), 0);
 	}
 
-	[data-aos="slide-right"] {
-		transform: translate3d(-$aos-distance, 0, 0);
+	[data-aos='slide-right'] {
+		transform: translate3d(calc(var(--aos-distance) * -1), 0, 0);
 	}
 
-	[data-aos="slide-left"] {
-		transform: translate3d($aos-distance, 0, 0);
+	[data-aos='slide-left'] {
+		transform: translate3d(var(--aos-distance), 0, 0);
 	}
 
-	[data-aos="slide-up-full"] {
+	[data-aos='slide-up-full'] {
 		transform: translate3d(0, 100%, 0);
 	}
 
-	[data-aos="slide-down-full"] {
+	[data-aos='slide-down-full'] {
 		transform: translate3d(0, -100%, 0);
 	}
 
-	[data-aos="slide-right-full"] {
+	[data-aos='slide-right-full'] {
 		transform: translate3d(-100%, 0, 0);
 	}
 
-	[data-aos="slide-left-full"] {
+	[data-aos='slide-left-full'] {
 		transform: translate3d(100%, 0, 0);
 	}
 
@@ -194,147 +235,122 @@ $sreveal-default-delay: 200; // same from custom/scroll-reveal.js
   * flip-left, flip-right, flip-up, flip-down
   */
 
-	[data-aos^="flip"] {
+	[data-aos^='flip'] {
 		transition-property: opacity, transform;
 		backface-visibility: hidden;
 	}
 
-	[data-aos="flip-left"] {
+	[data-aos='flip-left'] {
 		opacity: 0;
 		transform: perspective(2500) rotateY(-100deg);
 
-		.sreveal-in-view &,
-		.swiper-slide-active:not(.wait-for-sreveal) & {
+		&[data-inview='true'],
+		[data-inview='true'] & {
 			opacity: 1;
 			transform: perspective(2500) rotateY(0);
 		}
 	}
 
-	[data-aos="flip-right"] {
+	[data-aos='flip-right'] {
 		transform: perspective(2500) rotateY(100deg);
 
-		.sreveal-in-view &,
-		.swiper-slide-active:not(.wait-for-sreveal) & {
+		&[data-inview='true'],
+		[data-inview='true'] & {
 			transform: perspective(2500) rotateY(0);
 		}
 	}
 
-	[data-aos="flip-up"] {
+	[data-aos='flip-up'] {
 		transform: perspective(2500) rotateX(-100deg);
 
-		.sreveal-in-view &,
-		.swiper-slide-active:not(.wait-for-sreveal) & {
+		&[data-inview='true'],
+		[data-inview='true'] & {
 			transform: perspective(2500) rotateX(0);
 		}
 	}
 
-	[data-aos="flip-down"] {
+	[data-aos='flip-down'] {
 		transform: perspective(2500) rotateX(100deg);
 
-		.sreveal-in-view &,
-		.swiper-slide-active:not(.wait-for-sreveal) & {
+		&[data-inview='true'],
+		[data-inview='true'] & {
 			transform: perspective(2500) rotateX(0);
 		}
 	}
 
 	// Rotate
 	////////////////////////////////////////////////
-	[data-aos="rotate-360"] {
+	[data-aos='rotate-360'] {
 		transform: rotate(360deg);
 		animation-timing-function: $custom_ease;
 	}
-}
 
-// Generate Duration && Delay
-@for $i from 1 through 20 {
-	[data-aos-delay="#{$i * 100}"] {
-		transition-delay: 0s;
+	// Stagger
+	////////////////////////////////////////////////
+	@for $i from 1 through $stagger-limit {
+		$counter: $i - 1;
 
-		.sreveal-in-view &,
-		.swiper-slide-active:not(.wait-for-sreveal) & {
-			transition-delay: #{$i * 100}ms;
-		}
-	}
-}
-
-@for $i from 1 through 20 {
-	[data-aos-duration="#{$i * 500}"] {
-		transition-duration: #{$i * 500}ms;
-	}
-}
-
-[data-aos] {
-	pointer-events: none;
-
-	.sreveal-in-view &,
-	.swiper-slide-active:not(.wait-for-sreveal) & {
-		pointer-events: auto;
-	}
-}
-
-$aos-easing: (
-	linear: cubic-bezier(0.25, 0.25, 0.75, 0.75),
-	ease: cubic-bezier(0.25, 0.1, 0.25, 1),
-	ease-in: cubic-bezier(0.42, 0, 1, 1),
-	ease-out: cubic-bezier(0, 0, 0.58, 1),
-	ease-in-out: cubic-bezier(0.42, 0, 0.58, 1),
-	ease-in-back: cubic-bezier(0.6, -0.28, 0.735, 0.045),
-	ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275),
-	ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55),
-	ease-in-sine: cubic-bezier(0.47, 0, 0.745, 0.715),
-	ease-out-sine: cubic-bezier(0.39, 0.575, 0.565, 1),
-	ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95),
-	ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53),
-	ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94),
-	ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955),
-	ease-in-cubic: cubic-bezier(0.55, 0.085, 0.68, 0.53),
-	ease-out-cubic: cubic-bezier(0.25, 0.46, 0.45, 0.94),
-	ease-in-out-cubic: cubic-bezier(0.455, 0.03, 0.515, 0.955),
-	ease-in-quart: cubic-bezier(0.55, 0.085, 0.68, 0.53),
-	ease-out-quart: cubic-bezier(0.25, 0.46, 0.45, 0.94),
-	ease-in-out-quart: cubic-bezier(0.455, 0.03, 0.515, 0.955)
-);
-
-// Easings implementations
-// Default timing function: 'ease'
-
-@each $key, $val in $aos-easing {
-	[data-aos-easing="#{$key}"] {
-		transition-timing-function: $val;
-	}
-}
-
-// Stagger
-////////////////////////////////////////////////
-@for $i from 1 through 20 {
-	$counter: $i - 1;
-
-	.sreveal-in-view {
-		.aos-stagger-item {
-			&:nth-child(#{$i}) {
-				transition-delay: #{$sreveal-default-delay + $counter * 100}ms;
+		[data-inview='true'] {
+			[data-aos-stagger-item] {
+				&:nth-child(#{$counter}) {
+					/* stylelint-disable-next-line */
+					/* prettier-ignore */
+					transition-delay: calc(
+						1ms * (#{$counter} * var(--aos-stagger-interval))
+					);
+				}
 			}
 		}
 	}
-}
 
-// we don't want any default delay because
-// slides changes when they are already in view
-@for $i from 1 through 20 {
-	$counter: $i - 1;
+	// Clip path X
+	[data-aos='clip-path-right'] {
+		transition-property: clip-path;
+		clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
 
-	.swiper-slide-active:not(.wait-for-sreveal) {
-		.aos-stagger-item {
-			&:nth-child(#{$i}) {
-				transition-delay: #{$counter * 100}ms;
-			}
+		&[data-inview='true'],
+		[data-inview='true'] & {
+			clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 		}
 	}
-}
 
-// Custom
-////////////////////////////////////////////////
-[data-aos="slide-down-markers"] {
-	transform: translate3d(0, -30rem, 0);
-	transition-duration: 300;
+	[data-aos='clip-path-left'] {
+		transition-property: clip-path;
+		clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+
+		&[data-inview='true'],
+		[data-inview='true'] & {
+			clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+		}
+	}
+
+	[data-aos='clip-path-up'] {
+		transition-property: clip-path;
+		clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+
+		&[data-inview='true'],
+		[data-inview='true'] & {
+			clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+		}
+	}
+
+	[data-aos='clip-path-down'] {
+		transition-property: clip-path;
+		clip-path: polygon(0 0%, 100% 0%, 100% 0%, 0% 0%);
+
+		&[data-inview='true'],
+		[data-inview='true'] & {
+			clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+		}
+	}
+
+	[data-aos='clip-path-open'] {
+		transition-property: clip-path;
+		clip-path: polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%);
+
+		&[data-inview='true'],
+		[data-inview='true'] & {
+			clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+		}
+	}
 }

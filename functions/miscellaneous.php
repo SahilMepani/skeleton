@@ -379,3 +379,51 @@ function skel_get_the_excerpt_more( string $more ): string {
 }
 
 add_filter( 'excerpt_more', 'skel_get_the_excerpt_more' );
+
+
+
+/**
+ * Automatically insert preselected blocks into new posts of the 'accommodation' custom post type.
+ *
+ * This function hooks into the 'wp_insert_post' action to add a predefined set of blocks
+ * to the post content when a new post of type 'accommodation' is created.
+ *
+ * @param int     $post_id The ID of the post being created or updated.
+ * @param WP_Post $post    The post object.
+ * @param bool    $update  Whether this is an existing post being updated.
+ */
+function create_template_with_preselected_blocks( $post_id, $post, $update ) {
+	// Check if the post type is 'accommodation' and it's a new post (not an update).
+	if ( 'custom_type' === get_post_type( $post_id ) && ! $update ) {
+		// Define the default blocks as an array of block names and attributes.
+		$default_blocks = array(
+			array(
+				'blockName' => 'acf/text-image-video',
+				'attrs'     => array( 'content' => 'This is a preselected paragraph block.' ),
+			),
+			array(
+				'blockName' => 'acf/scroll-navigation',
+				'attrs'     => array( 'content' => 'This is a preselected heading block.' ),
+			),
+		);
+
+		// Initialize the default content variable.
+		$default_content = '';
+
+		// Convert each block to a serialized string and append to the default content.
+		foreach ( $default_blocks as $block ) {
+			$default_content .= serialize_block( $block );
+		}
+
+		// Update the post content with the default blocks.
+		wp_update_post(
+			array(
+				'ID'           => $post_id,
+				'post_content' => $default_content,
+			)
+		);
+	}
+}
+
+// Hook the function to the 'wp_insert_post' action.
+add_action( 'wp_insert_post', 'create_template_with_preselected_blocks', 10, 3 );

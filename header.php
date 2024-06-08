@@ -50,7 +50,6 @@
 			<div class="header-logo">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_html( get_bloginfo( 'name' ) ); ?>"
 					aria-label="Go to Home"	<?php echo is_front_page() ? 'aria-current="page"' : ''; ?>>
-					<span><?php bloginfo( 'description' ); ?></span>
 					<?php require 'images/svg/header-logo.svg'; ?>
 				</a>
 			</div>

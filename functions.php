@@ -24,6 +24,7 @@ require_once get_template_directory() . '/functions/remove-post-type.php';
 require_once get_template_directory() . '/functions/allowed-blocks.php';
 require_once get_template_directory() . '/functions/disable-blocks-directory.php';
 require_once get_template_directory() . '/functions/skip-dashboard.php';
+require_once get_template_directory() . '/functions/dequeue-scripts.php';
 // require_once get_template_directory() . '/functions/security.php';
 // require_once get_template_directory() . '/functions/acf-options-page.php';
 // require_once get_template_directory() . '/functions/custom-login.php';

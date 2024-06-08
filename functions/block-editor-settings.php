@@ -135,15 +135,3 @@ function skel_editor_css(): void {
 }
 add_action( 'admin_head-post.php', 'skel_editor_css' );
 add_action( 'admin_head-post-new.php', 'skel_editor_css' );
-
-
-/**
- * Remove Gutenberg Block Library CSS from loading on the frontend
- *
- * @return void
- */
-function skel_remove_wp_block_library_css(): void {
-	wp_dequeue_style( 'wp-block-library' );
-	wp_dequeue_style( 'wp-block-library-theme' );
-}
-add_action( 'wp_enqueue_scripts', 'skel_remove_wp_block_library_css' );

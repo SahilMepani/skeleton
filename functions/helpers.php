@@ -286,22 +286,6 @@ function skel_insert_page( int $id, bool $display = false ): ?string {
 
 
 /**
- * Provide hints for faster WordPress loading.
- *
- * Adds a link header to provide hints for faster WordPress loading.
- * It includes a link to the current theme's stylesheet URI.
- *
- * Should be disabled if Autoptimize is enabled to avoid conflicts.
- *
- * @link https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link
- */
-function skel_provide_loading_hints() {
-	header( 'Link: <' . get_stylesheet_uri() . '>; rel=preload; as=style', false );
-}
-add_action( 'send_headers', 'skel_provide_loading_hints' );
-
-
-/**
  * Set up theme localization.
  *
  * Registers the theme's text domain for translation and loads the translation files.

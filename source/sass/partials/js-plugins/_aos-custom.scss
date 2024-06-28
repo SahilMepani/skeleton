@@ -3,9 +3,9 @@ $stagger-limit: 20;
 
 :root {
 	--aos-duration: 750;
-	--aos-delay: 0;
-	--aos-stagger-interval: 100;
-	--aos-distance: 40px;
+	--aos-delay: 50;
+	--aos-distance: 20px;
+	--aos-stagger-interval: 100; // works best
 	--aos-linear: cubic-bezier(0.25, 0.25, 0.75, 0.75);
 	--aos-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
 	--aos-ease-in: cubic-bezier(0.42, 0, 1, 1);
@@ -27,21 +27,26 @@ $stagger-limit: 20;
 	--aos-ease-out-quart: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 	--aos-ease-in-out-quart: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 	--aos-timing-function: var(--aos-ease-out);
+
+	@include media-breakpoint-up(md) {
+		--aos-distance: 40px;
+	}
 }
 
 @media screen and (prefers-reduced-motion: no-preference) {
 	// set defaults
 	[data-aos] {
 		visibility: hidden;
-		transition-duration: calc(var(--aos-duration) * 1ms);
-		transition-timing-function: calc(var(--aos-timing-function) * 1ms);
-		transition-delay: calc(var(--aos-delay) * 1ms);
+		transition-delay: unset;
 		pointer-events: none;
 
 		&[data-inview='true'],
 		[data-inview='true'] & {
 			visibility: visible;
 			pointer-events: auto;
+			transition-duration: calc(var(--aos-duration) * 1ms);
+			transition-timing-function: calc(var(--aos-timing-function) * 1ms);
+			transition-delay: calc(var(--aos-delay) * 1ms);
 		}
 	}
 
@@ -141,7 +146,7 @@ $stagger-limit: 20;
 	}
 
 	[data-aos='zoom-in'] {
-		transform: scale(0.6);
+		transform: scale(0.1);
 	}
 
 	[data-aos='zoom-in-up'] {
@@ -166,7 +171,7 @@ $stagger-limit: 20;
 	}
 
 	[data-aos='zoom-fade-out'] {
-		transform: scale(1.2);
+		transform: scale(2);
 	}
 
 	[data-aos='zoom-out-up'] {
@@ -288,22 +293,20 @@ $stagger-limit: 20;
 	// Stagger
 	////////////////////////////////////////////////
 	@for $i from 1 through $stagger-limit {
-		$counter: $i - 1;
+		[data-aos-stagger-item] {
+			&[data-inview='true']:nth-child(#{$i}),
+			[data-inview='true'] &:nth-child(#{$i}) {
+				/* stylelint-disable-next-line */
+				/* prettier-ignore */
 
-		[data-inview='true'] {
-			[data-aos-stagger-item] {
-				&:nth-child(#{$counter}) {
-					/* stylelint-disable-next-line */
-					/* prettier-ignore */
-					transition-delay: calc(
-						1ms * (#{$counter} * var(--aos-stagger-interval))
-					);
-				}
+				transition-delay: calc(
+					1ms * (#{$i} * var(--aos-stagger-interval))
+				);
 			}
 		}
 	}
 
-	// Clip path X
+	// Clip path
 	[data-aos='clip-path-right'] {
 		transition-property: clip-path;
 		clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);

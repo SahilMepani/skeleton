@@ -68,10 +68,11 @@ body {
 	-webkit-tap-highlight-color: rgba(#000, 0);
 
 	.js-no-touchevents &.js-popup-active {
+		padding-inline-end: $track-width;
+
 		// make the space for hidden scrollbar on body
 		// same as width set for custom scrollbar
 		overflow-y: hidden;
-		padding-inline-end: $track-width;
 	}
 }
 
@@ -163,8 +164,8 @@ ol {
 	ul,
 	ol {
 		margin: 0;
-		margin-top: rem-calc(5);
 		margin-inline-start: rem-calc(40);
+		margin-top: rem-calc(5);
 	}
 
 	ol {
@@ -272,8 +273,8 @@ form {
 	input[type='radio'] {
 		line-height: normal;
 		margin: 0;
-		margin-top: rem-calc(4);
 		margin-inline-end: rem-calc(5);
+		margin-top: rem-calc(4);
 	}
 
 	select[multiple],

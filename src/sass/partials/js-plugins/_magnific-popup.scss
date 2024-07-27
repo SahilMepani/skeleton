@@ -173,8 +173,8 @@ button::-moz-focus-inner {
 	color: #fff;
 	text-align: right;
 	width: 100%;
-	right: rem-calc(-6);
 	padding-inline-end: rem-calc(6);
+	right: rem-calc(-6);
 }
 
 .mfp-counter {
@@ -213,13 +213,13 @@ button::-moz-focus-inner {
 	display: block;
 	width: 0;
 	height: 0;
+	margin-inline-start: rem-calc(35);
 	margin-top: rem-calc(35);
 	border: medium inset transparent;
 	position: absolute;
 	top: 0;
 	left: 0;
 	content: '';
-	margin-inline-start: rem-calc(35);
 }
 
 .mfp-arrow::after {
@@ -239,13 +239,13 @@ button::-moz-focus-inner {
 }
 
 .mfp-arrow-inline-start::after {
-	border-inline-end: rem-calc(17) solid #fff;
 	margin-inline-start: rem-calc(31);
+	border-inline-end: rem-calc(17) solid #fff;
 }
 
 .mfp-arrow-inline-start::before {
-	border-inline-end: rem-calc(27) solid #3f3f3f;
 	margin-inline-start: rem-calc(25);
+	border-inline-end: rem-calc(27) solid #3f3f3f;
 }
 
 .mfp-arrow-right {
@@ -362,8 +362,8 @@ img.mfp-img {
 @media screen and (max-width: rem-calc(800)) and (orientation: landscape),
 	screen and (max-height: rem-calc(300)) {
 	.mfp-img-mobile .mfp-image-holder {
-		padding-inline-end: 0;
 		padding-inline-start: 0;
+		padding-inline-end: 0;
 	}
 
 	.mfp-img-mobile img.mfp-img {
@@ -425,7 +425,7 @@ img.mfp-img {
 	}
 
 	.mfp-container {
-		padding-inline-end: rem-calc(6);
 		padding-inline-start: rem-calc(6);
+		padding-inline-end: rem-calc(6);
 	}
 }

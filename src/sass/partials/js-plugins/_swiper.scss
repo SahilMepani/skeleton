@@ -27,13 +27,13 @@
 .swiper,
 .swiper-rtl {
 	padding: 0;
+	margin-inline-start: auto;
+	margin-inline-end: auto;
 	position: relative;
 
 	/* Fix of Webkit flickering */
 	z-index: 1;
 	overflow: hidden;
-	margin-inline-start: auto;
-	margin-inline-end: auto;
 	list-style: none;
 }
 
@@ -121,8 +121,8 @@
 }
 
 .swiper-centered.swiper-horizontal
-	> .swiper-wrapper
-	> .swiper-slide:first-child {
+> .swiper-wrapper
+> .swiper-slide:first-child {
 	margin-inline-start: var(--swiper-centered-offset-before);
 }
 
@@ -334,7 +334,7 @@ button.swiper-pagination-bullet {
 
 .swiper-vertical > .swiper-pagination-bullets .swiper-pagination-bullet,
 .swiper-pagination-vertical.swiper-pagination-bullets
-	.swiper-pagination-bullet {
+.swiper-pagination-bullet {
 	display: block;
 	margin: var(--swiper-pagination-bullet-vertical-gap, 6) 0;
 }
@@ -347,22 +347,22 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-vertical
-	> .swiper-pagination-bullets.swiper-pagination-bullets-dynamic
-	.swiper-pagination-bullet,
+> .swiper-pagination-bullets.swiper-pagination-bullets-dynamic
+.swiper-pagination-bullet,
 .swiper-pagination-vertical.swiper-pagination-bullets.swiper-pagination-bullets-dynamic
-	.swiper-pagination-bullet {
+.swiper-pagination-bullet {
 	display: inline-block;
 	transition: 200ms transform, 200ms top;
 }
 
 .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
 .swiper-pagination-horizontal.swiper-pagination-bullets
-	.swiper-pagination-bullet {
+.swiper-pagination-bullet {
 	margin: 0 var(--swiper-pagination-bullet-horizontal-gap, 4);
 }
 
 .swiper-horizontal
-	> .swiper-pagination-bullets.swiper-pagination-bullets-dynamic,
+> .swiper-pagination-bullets.swiper-pagination-bullets-dynamic,
 .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
 	white-space: nowrap;
 	left: 50%;
@@ -370,16 +370,16 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-horizontal
-	> .swiper-pagination-bullets.swiper-pagination-bullets-dynamic
-	.swiper-pagination-bullet,
+> .swiper-pagination-bullets.swiper-pagination-bullets-dynamic
+.swiper-pagination-bullet,
 .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic
-	.swiper-pagination-bullet {
+.swiper-pagination-bullet {
 	transition: 200ms transform, 200ms left;
 }
 
 .swiper-horizontal.swiper-rtl
-	> .swiper-pagination-bullets-dynamic
-	.swiper-pagination-bullet {
+> .swiper-pagination-bullets-dynamic
+.swiper-pagination-bullet {
 	transition: 200ms transform, 200ms right;
 }
 
@@ -406,7 +406,7 @@ button.swiper-pagination-bullet {
 .swiper-horizontal > .swiper-pagination-progressbar,
 .swiper-pagination-progressbar.swiper-pagination-horizontal,
 .swiper-vertical
-	> .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite,
+> .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite,
 .swiper-pagination-progressbar.swiper-pagination-vertical.swiper-pagination-progressbar-opposite {
 	width: 100%;
 	height: 4px;
@@ -417,7 +417,7 @@ button.swiper-pagination-bullet {
 .swiper-vertical > .swiper-pagination-progressbar,
 .swiper-pagination-progressbar.swiper-pagination-vertical,
 .swiper-horizontal
-	> .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite,
+> .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite,
 .swiper-pagination-progressbar.swiper-pagination-horizontal.swiper-pagination-progressbar-opposite {
 	width: 4px;
 	height: 100%;
@@ -502,6 +502,7 @@ button.swiper-pagination-bullet {
 .swiper-lazy-preloader {
 	width: 42px;
 	height: 42px;
+	margin-inline-start: -21px;
 	margin-top: -21px;
 	border: 4px solid var(--swiper-preloader-color, var(--swiper-theme-color));
 	border-top-color: transparent;
@@ -511,7 +512,6 @@ button.swiper-pagination-bullet {
 	left: 50%;
 	z-index: 10;
 	animation: swiper-preloader-spin 1s infinite linear;
-	margin-inline-start: -21px;
 	transform-origin: 50%;
 	box-sizing: border-box;
 }
@@ -549,8 +549,8 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-grid-column > .swiper-wrapper {
-	flex-direction: column;
 	flex-wrap: wrap;
+	flex-direction: column;
 }
 
 .swiper-fade.swiper-free-mode .swiper-slide {

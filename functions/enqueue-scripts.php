@@ -20,7 +20,7 @@ function skel_enqueue_scripts() {
 
 	// load jquery at bottom
 	// https://wordpress.stackexchange.com/questions/173601/enqueue-core-jquery-in-the-footer
-	// ths will break gravity forms on some pages, be careful
+	// ths will break gravity forms on some pages, be careful.
 	wp_scripts()->add_data( 'jquery', 'group', 1 );
 	wp_scripts()->add_data( 'jquery-core', 'group', 1 );
 
@@ -40,7 +40,7 @@ function skel_enqueue_scripts() {
 		filemtime( get_template_directory() . '/style.css' )
 	);
 
-	// load style-rtl for rtl languages
+	// load style-rtl for rtl languages.
 	wp_style_add_data( 'skeleton-style', 'rtl', 'replace' );
 
 	wp_enqueue_script(

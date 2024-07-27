@@ -16,9 +16,9 @@
 		display: inline-block;
 		width: rem-calc(10);
 		height: rem-calc(10);
+		margin-inline-start: rem-calc(10);
 		border-radius: 50%;
 		position: relative;
-		margin-inline-start: rem-calc(10);
 		cursor: pointer;
 
 		&.swiper-pagination-bullet-active {

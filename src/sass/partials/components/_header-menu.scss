@@ -125,6 +125,7 @@ $mobile-sub-menu-link-padding-x: rem-calc(20);
 					}
 
 					&::after {
+						margin-inline-start: rem-calc(-6);
 						margin-top: rem-calc(-4);
 						border: rem-calc(8) solid transparent;
 						border-top-color: $mobile-parent-menu-dropdown-icon-color;
@@ -133,7 +134,6 @@ $mobile-sub-menu-link-padding-x: rem-calc(20);
 						top: 50%;
 						left: 50%;
 						content: '';
-						margin-inline-start: rem-calc(-6);
 						border-inline-start-width: rem-calc(6);
 					}
 

@@ -1,18 +1,18 @@
 #Ignore folder
 .phpintel
-.sass-cache
 .vscode
-style.css.map
-editor-style.css
-style-rtl.css.map
+*.map
 *.css.map
 Thumbs.db
 vendor
 acf-json
-source/bower_components
 node_modules
 sftp.json
-/nbproject/private/
 *.todo
 .eslintcache
 .stylelintcache
+editor-style.css
+style.css
+style-rtl.css
+js/plugins.js
+js/custom.js

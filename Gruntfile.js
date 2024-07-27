@@ -69,10 +69,9 @@ module.exports = function (grunt) {
 		sass: {
 			frontend: {
 				options: {
-					sourceMap: true,
+					sourceMap: true, // Enable source maps for faster rebuilds during development
 					implementation: sass,
 					outputStyle: 'expanded' // must be compact or expanded to avoid merge conflict in git and also for source maps to work
-					// importer: compass
 				},
 				files: {
 					'style.css': 'source/sass/style.scss'
@@ -82,9 +81,7 @@ module.exports = function (grunt) {
 			// 	options: {
 			// 		sourceMap: false,
 			// 		implementation: sass,
-			// 		// must be compact or expanded to avoid merge conflict in git and also for source maps to work
 			// 		outputStyle: "compressed",
-			// 		// importer: compass
 			// 	},
 			// 	files: {
 			// 		"editor-style.css": "source/sass/style.scss",
@@ -92,36 +89,15 @@ module.exports = function (grunt) {
 			// },
 		},
 
-		// Frontend JS
-		concat: {
+		// Combine Media Queries configuration
+		cmq: {
 			options: {
-				separator: ';\n'
+				log: false
 			},
-			plugin: {
-				src: ['source/js/plugins/*.js', 'source/js/custom/*.js'],
-				dest: 'js/plugins.js'
-			}
-			// custom: {
-			//   src: 'js/custom/*.js',
-			//   dest: 'js/custom.js',
-			// },
-		},
-
-		// Uglify
-		uglify: {
-			options: {
-				output: {
-					comments: 'false'
+			your_target: {
+				files: {
+					'style.css': ['style.css']
 				}
-			},
-			dist: {
-				files: [
-					{
-						expand: true,
-						src: ['js/plugins.js'],
-						dest: 'js/'
-					}
-				]
 			}
 		},
 
@@ -193,6 +169,39 @@ module.exports = function (grunt) {
 			}
 		},
 
+		// Frontend JS
+		concat: {
+			options: {
+				separator: ';\n'
+			},
+			plugin: {
+				src: ['source/js/plugins/*.js', 'source/js/custom/*.js'],
+				dest: 'js/plugins.js'
+			}
+			// custom: {
+			//   src: 'js/custom/*.js',
+			//   dest: 'js/custom.js',
+			// },
+		},
+
+		// Uglify
+		uglify: {
+			options: {
+				output: {
+					comments: 'false'
+				}
+			},
+			dist: {
+				files: [
+					{
+						expand: true,
+						src: ['js/plugins.js'],
+						dest: 'js/'
+					}
+				]
+			}
+		},
+
 		// Babel
 		babel: {
 			options: {
@@ -240,12 +249,17 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-eslint');
 	// grunt.loadNpmTasks('grunt-browser-sync');
 	grunt.registerTask('default', ['watch']);
-	// grunt.registerTask("build", [
-	// 	"rtlcss",
-	// 	"postcss",
-	// 	"concat",
-	// 	"babel",
-	// 	"uglify",
-	// ]);
+	grunt.registerTask('build', [
+		// 'stylelint',
+		// 'eslint',
+		'sass',
+		'cmq',
+		'rtlcss',
+		'postcss',
+		'purgecss',
+		'concat',
+		'babel',
+		'uglify'
+	]);
 	// grunt.registerTask( 'devUpdate', [ 'devUpdate' ] );
 };

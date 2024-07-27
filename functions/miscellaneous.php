@@ -234,23 +234,17 @@ add_filter( 'pre_get_posts', 'searchfilter' );
 
 
 /**
- * Add async attribute to the specified script handle.
+ * Adds preload hints to the response headers for specified CSS files.
  *
- * This function adds the async attribute to the script tag for the 'modernizr' handle.
+ * This function adds HTTP Link headers to preload specified CSS files.
+ * Preloading helps the browser prioritize fetching these resources, improving page load performance.
  *
- * @param string $tag    The script tag for the enqueued script.
- * @param string $handle The handle of the enqueued script.
- * @return string Modified script tag with async attribute.
+ * The 'send_headers' action hook ensures these headers are included in the HTTP response.
  */
-function add_script_attribute( string $tag, string $handle ): string {
-	if ( 'modernizr' !== $handle ) {
-		return $tag;
-	}
-	return str_replace( ' src', ' async="async" src', $tag );
-}
-
-add_filter( 'script_loader_tag', 'add_script_attribute', 10, 2 );
-
+// function hints() {
+// header( 'link:' . get_template_directory() . '/style.css; rel=preload' );
+// }
+// add_action( 'send_headers', 'hints' );
 
 //
 // ! REQUIRED - Do not edit below

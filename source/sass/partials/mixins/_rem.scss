@@ -7,7 +7,7 @@
 $rem-base: 16px;
 
 @function strip-unit($number) {
-	@if type-of($number) == "number" and not unitless($number) {
+	@if type-of($number) == 'number' and not unitless($number) {
 		@return math.div($number, ($number * 0 + 1));
 	}
 
@@ -15,9 +15,9 @@ $rem-base: 16px;
 }
 
 @function convert-to-rem($value, $base-value: $rem-base, $limit: true) {
-	@if abs($value) < 8 and $limit {
-		@return $value * 1px;
-	}
+	// @if abs($value) < 8 and $limit {
+	// 	@return $value * 1px;
+	// }
 
 	$value: math.div(strip-unit($value), strip-unit($base-value)) * 1rem;
 
@@ -46,8 +46,8 @@ $rem-base: 16px;
 @function fluid(
 	$min-value,
 	$max-value,
-	$min-breakpoint: "ph",
-	$max-breakpoint: "xxl"
+	$min-breakpoint: 'ph',
+	$max-breakpoint: 'xxl'
 ) {
 	@if $min-value == 0 {
 		$min-value: 0.001;
@@ -82,8 +82,8 @@ $rem-base: 16px;
 	@if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
 		$fluid-base: calc(
 			#{$base-min-value} +
-			#{(strip-unit($base-max-value) - strip-unit($base-min-value))} *
-			((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+				#{(strip-unit($base-max-value) - strip-unit($base-min-value))} *
+				((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
 		);
 
 		@if $min-value < $max-value {

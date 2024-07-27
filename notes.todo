@@ -13,8 +13,17 @@ Swiper Events Order
 // slideChangeTransitionEnd
 
 ACF:
-	Recommended: Minimum width: 1920px | Aspect ratio: Landscape | Format: JPG
 	DO NOT COPY-PASTE TEXT ON THE "VISUAL" TAB. USE "TEXT" TAB INSTEAD
+
+	Minimum (WxH): 700x335 px. Upload JPG image
+
+	auto : Auto
+	custom : Custom
+	selected : Selected
+
+	<b>Auto</b>: Show all.
+	<b>Custom</b>: Add content.
+	<b>Selected</b>: Select manually.
 
 Dev to Design handoff:
 	☐ Styleguide - including mobile typography. Any color or typography needs to be documentated, Buttons and hover styles

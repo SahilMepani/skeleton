@@ -28,7 +28,7 @@ function update_post() {
 	);
 
 	// Check if pagenumber is set for load more.
-	if ( isset( $data['pageNumber'] ) && '' !== $data['pageNumber'] ) {
+	if ( isset( $data['pageNumber'] ) && ! empty( $data['pageNumber'] ) ) {
 		$args['paged'] = $data['pageNumber'] + 1;
 	}
 

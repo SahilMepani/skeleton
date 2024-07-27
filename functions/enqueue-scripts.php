@@ -51,6 +51,14 @@ function skel_enqueue_scripts() {
 		true
 	);
 
+	wp_enqueue_script(
+		'skeleton-custom',
+		get_template_directory_uri() . '/js/custom.js',
+		array( 'jquery' ),
+		filemtime( get_template_directory() . '/js/custom.js' ),
+		true
+	);
+
 	// wp_enqueue_script(
 	// 'match-height',
 	// get_template_directory_uri() . '/js/vendor/match-height.js',
@@ -70,29 +78,70 @@ function skel_enqueue_scripts() {
 add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
 
 
+
 /**
- * Add defer attribute to the scripts to set the resource priority to low
- * Do not load in backend
+ * Modify script tags to add defer, async, or type="module" attributes.
  *
- * @param string $tag
- * @param string $handle
- * @param string $src
- * @return void
+ * Adds defer, async, or type="module" attributes to specified script handles.
+ * - 'defer' for scripts listed in the $defer array.
+ * - 'async' for the 'modernizr' handle.
+ * - 'type="module"' for scripts listed in the $modules array.
+ *
+ * This function only applies modifications on the frontend (not in the admin area).
+ *
+ * @param string $tag The script tag for the enqueued script.
+ * @param string $handle The handle of the enqueued script.
+ * @param string $src The source URL of the enqueued script.
+ * @return string Modified script tag with the added attributes.
  */
-function skel_defer_scripts( string $tag, string $handle, string $src ) {
-	$defer = array(
-		// 'jquery',
-		// 'jquery-core',
-		'plugins',
-		'match-height',
+function modify_script_attributes( $tag, $handle ) {
+	// Arrays of script handles to modify.
+	$defer        = array(
+		'jquery',
+		'jquery-core',
+		'skel-plugins',
+		'skel-custom',
 	);
-	if ( in_array( $handle, $defer ) ) {
-		return '<script src="' . $src . '" defer="defer" type="text/javascript"></script>' . "\n";
+	$async        = array();
+	$priority_low = array(
+		// 'skel-lottie-player',
+	);
+	$priority_high = array(
+		// 'skel-lottie-player',
+	);
+	$modules = array(
+		// 'skel-lottie-player',
+	);
+	// Add defer attribute.
+	if ( in_array( $handle, $defer, true ) ) {
+		$tag = str_replace( ' src', ' defer="defer" src', $tag );
 	}
 
+	// Add async attribute.
+	if ( in_array( $handle, $async, true ) ) {
+		$tag = str_replace( ' src', ' async="async" src', $tag );
+	}
+
+	// Add fetchpriority attribute to low.
+	if ( in_array( $handle, $priority_low, true ) ) {
+		$tag = str_replace( ' src', ' fetchpriority="low" src', $tag );
+	}
+
+	// Add fetchpriority attribute to high.
+	if ( in_array( $handle, $priority_high, true ) ) {
+		$tag = str_replace( ' src', ' fetchpriority="high" src', $tag );
+	}
+
+	// Add type="module" attribute.
+	if ( in_array( $handle, $modules, true ) ) {
+		$tag = str_replace( ' type="text/javascript"', ' type="module"', $tag );
+	}
+
+	// Return the original tag if no modifications are needed.
 	return $tag;
 }
-// Do not load in backend.
+
+// Apply the filter only on the frontend.
 if ( ! is_admin() ) {
-	add_filter( 'script_loader_tag', 'skel_defer_scripts', 10, 3 );
+	add_filter( 'script_loader_tag', 'modify_script_attributes', 10, 3 );
 }

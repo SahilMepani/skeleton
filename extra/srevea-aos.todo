@@ -1,1 +1,0 @@
-☐ use data-sreveal="trigger" with swiper only when you know the swiper is NOT above the fold. We also have to use init and onslidechange function along with data-sreveal="trigger". Follow CXG code

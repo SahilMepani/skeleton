@@ -16,13 +16,19 @@ import stylelint from 'gulp-stylelint';
 import { deleteAsync } from 'del';
 import browserSync from 'browser-sync';
 
+// Load environment variables from .env file
+import { config } from 'dotenv';
+
+// Load environment variables from .env file
+config();
+
 const browserSyncInstance = browserSync.create();
 const gulpSassInstance = gulpSass(sass);
 
 // BrowserSync task
 function serve(done) {
 	browserSyncInstance.init({
-		proxy: 'http://skeleton.local' // Adjust this to your local WordPress URL
+		proxy: process.env.LOCAL_URL // Adjust this to your local WordPress URL
 	});
 	done();
 }
@@ -35,7 +41,7 @@ function clean() {
 // Sass task
 function sassTask() {
 	return gulp
-		.src('src/sass/style.scss')
+		.src('source/sass/style.scss')
 		.pipe(sourcemaps.init())
 		.pipe(
 			gulpSassInstance({ outputStyle: 'compressed' }).on(
@@ -90,7 +96,7 @@ function rtlCssTask() {
 // JavaScript tasks
 function pluginsJsTask() {
 	return gulp
-		.src('src/js/plugins/*.js')
+		.src('source/js/plugins/*.js')
 		.pipe(sourcemaps.init())
 		.pipe(concat('plugins.js'))
 		.pipe(uglify())
@@ -101,7 +107,7 @@ function pluginsJsTask() {
 
 function customJsTask() {
 	return gulp
-		.src('src/js/custom/*.js')
+		.src('source/js/custom/*.js')
 		.pipe(sourcemaps.init())
 		.pipe(concat('custom.js'))
 		.pipe(uglify())
@@ -112,7 +118,7 @@ function customJsTask() {
 
 // Lint tasks
 function lintCSS() {
-	return gulp.src('src/sass/**/*.scss').pipe(
+	return gulp.src('source/sass/**/*.scss').pipe(
 		stylelint({
 			reporters: [{ formatter: 'string', console: true }]
 		})
@@ -122,9 +128,9 @@ function lintCSS() {
 function lintJS() {
 	return gulp
 		.src([
-			'src/js/custom/*.js',
-			'!src/js/!document.ready.js',
-			'!src/js/Ιdocument.close.js'
+			'source/js/custom/*.js',
+			'!source/js/!document.ready.js',
+			'!source/js/Ιdocument.close.js'
 		])
 		.pipe(eslint())
 		.pipe(eslint.format());
@@ -133,8 +139,8 @@ function lintJS() {
 
 // Watch task
 function watch() {
-	gulp.watch('src/sass/**/*.{scss,sass}', gulp.series(sassTask));
-	gulp.watch('src/js/**/*.js', gulp.series(jsTask));
+	gulp.watch('source/sass/**/*.{scss,sass}', gulp.series(sassTask));
+	gulp.watch('source/js/**/*.js', gulp.series(jsTasks));
 	gulp.watch([
 		'*.html',
 		'*.php',
@@ -145,10 +151,10 @@ function watch() {
 }
 
 // Define complex tasks
-const jsTask = gulp.series(pluginsJsTask, customJsTask);
+const jsTasks = gulp.series(pluginsJsTask, customJsTask);
 const build = gulp.series(
 	sassTask,
-	gulp.parallel(lintCSS, purgeCSSTask, rtlCssTask, lintJS, jsTask)
+	gulp.parallel(lintCSS, purgeCSSTask, rtlCssTask, lintJS, jsTasks)
 );
 const dev = gulp.series(build, serve, watch);
 
@@ -158,7 +164,7 @@ export {
 	sassTask as sass,
 	purgeCSSTask as purgecss,
 	rtlCssTask as rtlcss,
-	jsTask as js,
+	jsTasks as js,
 	lintCSS,
 	lintJS,
 	build

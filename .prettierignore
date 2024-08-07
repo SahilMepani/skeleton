@@ -1,8 +1,6 @@
 *.html
 js/**/*.js
-source/js/plugins
-source/sass/partials/bootstrap
-source/node_modules
+src/js/plugins
 extra/**/*.js
 style.css
 style-rtl.css

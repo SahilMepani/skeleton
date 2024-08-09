@@ -67,7 +67,7 @@ if ( 'on' === $display ) { ?>
 				's'              => $search_term, /* search query */
 				'post_type'      => $cpt,
 				'posts_per_page' => -1,
-				'field'          => 'ID',
+				'fields'         => 'ids',
 			)
 		);
 		$post_count   = $custom_query->post_count;
@@ -103,7 +103,7 @@ if ( 'on' === $display ) { ?>
 				's'              => $s, // search query.
 				'post_type'      => 'news',
 				'posts_per_page' => -1,
-				'field'          => 'ID',
+				'fields'         => 'ids',
 			)
 		);
 		$post_count   = $custom_query->post_count;

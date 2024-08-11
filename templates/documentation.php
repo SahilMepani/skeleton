@@ -141,7 +141,7 @@ the_content();
 				</li>
 				<li>Download the skeleton theme and not clone
 					<div class="mt-1">
-						<code>https://bitbucket.org/threesixtyeight/skeleton-reloaded/src/master/</code>
+						<code>https://bitbucket.org/threesixtyeight/skeleton-reloaded/source/master/</code>
 					</div>
 				</li>
 				<li>Rename the theme folder to match the project name <small>(ask manager)</small></li>

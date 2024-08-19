@@ -4,7 +4,6 @@
 *.map
 *.css.map
 Thumbs.db
-vendor
 acf-json
 node_modules
 sftp.json

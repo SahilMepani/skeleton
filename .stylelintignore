@@ -1,4 +1,4 @@
-source/sass/partials/mixins/**/*.scss
-source/sass/partials/js-plugins/**/*.scss
+src/sass/partials/mixins/**/*.scss
+src/sass/partials/js-plugins/**/*.scss
 style.css
 style-rtl.css

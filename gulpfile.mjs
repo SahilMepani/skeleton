@@ -41,7 +41,7 @@ function clean() {
 // Sass task
 function sassTask() {
 	return gulp
-		.src('source/sass/style.scss')
+		.src('src/sass/style.scss')
 		.pipe(sourcemaps.init())
 		.pipe(
 			gulpSassInstance({ outputStyle: 'compressed' }).on(
@@ -96,7 +96,7 @@ function rtlCssTask() {
 // JavaScript tasks
 function pluginsJsTask() {
 	return gulp
-		.src('source/js/plugins/*.js')
+		.src('src/js/plugins/*.js')
 		.pipe(sourcemaps.init())
 		.pipe(concat('plugins.js'))
 		.pipe(uglify())
@@ -107,7 +107,7 @@ function pluginsJsTask() {
 
 function customJsTask() {
 	return gulp
-		.src('source/js/custom/*.js')
+		.src('src/js/custom/*.js')
 		.pipe(sourcemaps.init())
 		.pipe(concat('custom.js'))
 		.pipe(uglify())
@@ -118,7 +118,7 @@ function customJsTask() {
 
 // Lint tasks
 function lintCSS() {
-	return gulp.src('source/sass/**/*.scss').pipe(
+	return gulp.src('src/sass/**/*.scss').pipe(
 		stylelint({
 			reporters: [{ formatter: 'string', console: true }]
 		})
@@ -128,9 +128,9 @@ function lintCSS() {
 function lintJS() {
 	return gulp
 		.src([
-			'source/js/custom/*.js',
-			'!source/js/!document.ready.js',
-			'!source/js/Ιdocument.close.js'
+			'src/js/custom/*.js',
+			'!src/js/!document.ready.js',
+			'!src/js/Ιdocument.close.js'
 		])
 		.pipe(eslint())
 		.pipe(eslint.format());
@@ -139,8 +139,8 @@ function lintJS() {
 
 // Watch task
 function watch() {
-	gulp.watch('source/sass/**/*.{scss,sass}', gulp.series(sassTask));
-	gulp.watch('source/js/**/*.js', gulp.series(jsTasks));
+	gulp.watch('src/sass/**/*.{scss,sass}', gulp.series(sassTask));
+	gulp.watch('src/js/**/*.js', gulp.series(jsTasks));
 	gulp.watch([
 		'*.html',
 		'*.php',

@@ -141,7 +141,7 @@ the_content();
 				</li>
 				<li>Download the skeleton theme and not clone
 					<div class="mt-1">
-						<code>https://bitbucket.org/threesixtyeight/skeleton-reloaded/source/master/</code>
+						<code>https://bitbucket.org/threesixtyeight/skeleton-reloaded/src/master/</code>
 					</div>
 				</li>
 				<li>Rename the theme folder to match the project name <small>(ask manager)</small></li>
@@ -150,7 +150,7 @@ the_content();
 				<li>Run <code>node -v</code> anywhere to check if you have Node.js installed in your system. If not,
 					download from <a href="https://nodejs.org/en/" target="_blank">Node.js</a> and install </li>
 				<li>Install grunt <br /> <code>npm install grunt</code></li>
-				<li>Go to theme source folder <br /> <code>cd /path/to/your/wp-content/themes/theme-name/source</code>
+				<li>Go to theme src folder <br /> <code>cd /path/to/your/wp-content/themes/theme-name/src</code>
 				</li>
 				<li>Run the following command to install all the necessary packages to run grunt tasks <br />
 					<code>npm install</code>
@@ -159,13 +159,13 @@ the_content();
 				<li>
 					Run the following command for grunt to compile all the scss/js files <br />
 					<div class="mb-1">
-						<code>cd /path/to/your/wp-content/themes/skeleton/source</code> <br />
+						<code>cd /path/to/your/wp-content/themes/skeleton/src</code> <br />
 						<code>grunt</code>
 					</div>
-					<p>All the scss files are created inside the source/sass/partials/ folder and its sub-folders. All
-						the js files are divided into two folders source/js/plugins and source/js/custom. Grunt will
-						compile all the source/sass/partials/.scss files into a single file named style.css and
-						source/js/plugins/.js files into js/plugins.js file and source/js/custom/.js files into
+					<p>All the scss files are created inside the src/sass/partials/ folder and its sub-folders. All
+						the js files are divided into two folders src/js/plugins and src/js/custom. Grunt will
+						compile all the src/sass/partials/.scss files into a single file named style.css and
+						src/js/plugins/.js files into js/plugins.js file and src/js/custom/.js files into
 						js/custom.js file.
 				</li>
 				<li>Make the Initial Commit</li>
@@ -198,7 +198,7 @@ the_content();
 
 			<h3 id="skeleton-sass">Skeleton SASS</h3>
 
-			<p>All sass files are stored inside source/sass/partials folder and its subfolders except the style.scss
+			<p>All sass files are stored inside src/sass/partials folder and its subfolders except the style.scss
 				file</p>
 
 			<ul>

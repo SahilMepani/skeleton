@@ -8,6 +8,10 @@
  * @subpackage Skeleton
  */
 
+if ( defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG && 'local' === wp_get_environment_type() ) {
+	ini_set( 'error_log', get_stylesheet_directory() . '/debug.log' );
+}
+
 /**
  * Retrieve the Swiper direction-based class for slides.
  *

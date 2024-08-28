@@ -27,6 +27,8 @@ require get_template_directory() . '/functions/allowed-blocks.php';
 require get_template_directory() . '/functions/disable-blocks-directory.php';
 require get_template_directory() . '/functions/skip-dashboard.php';
 require get_template_directory() . '/functions/dequeue-scripts.php';
+require get_template_directory() . '/functions/protected-pages.php';
+require get_template_directory() . '/functions/admin-notices.php';
 // require get_template_directory() . '/functions/security.php';
 // require get_template_directory() . '/functions/acf-options-page.php';
 // require get_template_directory() . '/functions/custom-login.php';

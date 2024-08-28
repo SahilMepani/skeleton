@@ -17,6 +17,7 @@ function skel_create_acf_block_files( array $block_types ): void {
 	$js_directory   = get_template_directory() . '/src/js/custom/acf-blocks/';
 	$sass_directory = get_template_directory() . '/src/sass/partials/acf-blocks/';
 	$style_file     = get_template_directory() . '/src/sass/style.scss';
+	$template_file  = $php_directory . 'blank.php';
 
 	// Initialize an array to hold the new import statements.
 	$sass_imports = array();
@@ -33,9 +34,23 @@ function skel_create_acf_block_files( array $block_types ): void {
 
 		// Check if the PHP file already exists. If not, create it.
 		if ( ! file_exists( $php_file_path ) ) {
-			// Create the file and add a basic PHP template.
-			if ( ! $wp_filesystem->put_contents( $php_file_path, '', FS_CHMOD_FILE ) ) {
-				echo 'error saving PHP file!';
+			// Check if the template file exists.
+			if ( file_exists( $template_file ) ) {
+				// Get the content of the template file.
+				$php_content = $wp_filesystem->get_contents( $template_file );
+				if ( false !== $php_content ) {
+					// Replace the placeholder string with the sanitized block name.
+					$php_content = str_replace( 'blank-section', $sanitize_title . '-section', $php_content );
+					$php_content = str_replace( 'Blank ACF block', $block . ' ACF Block', $php_content );
+					// Create the new PHP file with the modified content.
+					if ( ! $wp_filesystem->put_contents( $php_file_path, $php_content, FS_CHMOD_FILE ) ) {
+						echo 'Error saving PHP file!';
+					}
+				} else {
+					echo 'Error reading template file!';
+				}
+			} else {
+				echo 'Template file does not exist!';
 			}
 		}
 
@@ -49,9 +64,10 @@ function skel_create_acf_block_files( array $block_types ): void {
 
 		// Check if the SASS file already exists. If not, create it.
 		if ( ! file_exists( $sass_file_path ) ) {
-			// Create the file and add a basic SASS template.
-			if ( ! $wp_filesystem->put_contents( $sass_file_path, '', FS_CHMOD_FILE ) ) {
-				echo 'error saving SASS file!';
+			$sass_content = '.' . $sanitize_title . '-section {' . "\r\n\r\n" . '}';
+			// Create the new SASS file with the modified content.
+			if ( ! $wp_filesystem->put_contents( $sass_file_path, $sass_content, FS_CHMOD_FILE ) ) {
+				echo 'Error saving SASS file!';
 			}
 		}
 

@@ -9,19 +9,16 @@
  * @since 1.0.0
  */
 
+if ( defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG && 'local' == wp_get_environment_type() ) {
+	ini_set( 'error_log', WP_CONTENT_DIR . '/themes/skeleton/debug.log' );
+}
+
 // Hide admin toolbar.
-add_filter( 'show_admin_bar', '__return_false' );
+// add_filter( 'show_admin_bar', '__return_false' );
 
 // Disable the sitemaps feature - /wp-sitemap.xml.
 add_filter( 'wp_sitemaps_enabled', '__return_false' );
 
-/**
- * Disable the Customizer page and Theme Editor in the WordPress admin.
- *
- * This function removes the Customizer and Theme Editor submenu pages from the admin menu.
- *
- * @return void
- */
 /**
  * Disable the Customizer page and Theme Editor in the WordPress admin.
  *

@@ -97,8 +97,9 @@ add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
 function modify_script_attributes( $tag, $handle ) {
 	// Arrays of script handles to modify.
 	$defer        = array(
-		'jquery',
-		'jquery-core',
+		// uncomment for production
+		// 'jquery',
+		// 'jquery-core',
 		'skel-plugins',
 		'skel-custom',
 	);

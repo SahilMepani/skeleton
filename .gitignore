@@ -16,4 +16,5 @@ style-rtl.css
 js/plugins.js
 js/custom.js
 .env
+debug.log
 package-lock.json

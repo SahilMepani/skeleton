@@ -1,6 +1,6 @@
 <?php
 /**
- * Register ACF options page
+ * Register ACF Blocks
  *
  * @package Skeleton
  * @subpackage ACF
@@ -13,7 +13,16 @@
 $block_types = array(
 	'Visual Editor',
 	'Search Result',
+	'Flexible Editor',
+	'Spacer',
+	'Two Columns',
 );
+
+// Hash the current block types array.
+$blocks_current_hash = md5( wp_json_encode( $block_types ) );
+
+// Get the stored hash.
+$blocks_stored_hash = get_option( 'acf_block_types_hash' );
 
 /**
  * Create block options.
@@ -85,4 +94,16 @@ function skel_register_acf_blocks(): void {
 
 if ( has_action( 'acf/init' ) ) {
 	add_action( 'acf/init', 'skel_register_acf_blocks' );
+}
+
+if ( $blocks_current_hash !== $blocks_stored_hash ) {
+
+	// Update the stored hash with the current hash.
+	update_option( 'acf_block_types_hash', $blocks_current_hash );
+
+	// Call the helper function with the block types array.
+	if ( 'local' === wp_get_environment_type() ) {
+		skel_create_acf_block_files( $block_types );
+		skel_delete_unwanted_acf_block_files( $block_types );
+	}
 }

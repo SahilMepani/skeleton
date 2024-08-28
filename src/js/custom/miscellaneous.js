@@ -7,39 +7,6 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
 }
 
 /**
- * Find the header height and set to
- * scroll-padding-top css property
- */
-const resizeHeaderHeight = () => {
-	const headerHeight = document.querySelector('.site-header').offsetHeight;
-	document.documentElement.style.setProperty(
-		'--header-height',
-		headerHeight + 'px'
-	);
-};
-resizeHeaderHeight();
-window.addEventListener('resize', resizeHeaderHeight);
-
-/**
- * Check if user scrolled
- */
-let pageScroll = function () {
-	let scroll = window.scrollY;
-	const siteHeader = document.querySelector('.site-header');
-	if (siteHeader) {
-		if (scroll > 0) {
-			siteHeader.classList.add('js-fixed');
-		} else {
-			siteHeader.classList.remove('js-fixed');
-		}
-	}
-};
-// need to run once, as sometimes the page is already scrolled down on load
-pageScroll();
-// run on scroll
-window.addEventListener('scroll', pageScroll);
-
-/**
  * Scroll to a specific section from #ID at the end of Window URL
  */
 const current_url = window.location.href;

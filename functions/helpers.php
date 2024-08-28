@@ -274,6 +274,8 @@ function skel_insert_page( int $id, bool $display = false ): ?string {
 	// If the post exists, retrieve its content and apply content filters.
 	if ( $post ) {
 		$output = apply_filters( 'the_content', $post->post_content );
+	} else {
+		echo esc_html( "Cannot Find Page ID: {$id}" );
 	}
 
 	if ( $display ) {
@@ -304,6 +306,42 @@ function skel_theme_setup() {
 	load_theme_textdomain( 'skel', get_template_directory() . '/lang' );
 }
 
+/**
+ * Extracts the src attribute value from an oembed ACF field.
+ *
+ * This function uses a regular expression to find the src attribute in an iframe tag
+ * and returns its value. If no src attribute is found, it returns null.
+ *
+ * @param string $html The HTML string containing the iframe element.
+ *
+ * @return string|null The value of the src attribute, or null if not found.
+ */
+function skel_extract_oembed_src( $html ) {
+	if ( ! $html ) {
+		return null;
+	}
+
+	// Regular expression to match the src attribute in the iframe tag.
+	$regex = '/<iframe[^>]*src=["\']([^"\']+)["\']/';
+
+	// Check if there's a match.
+	if ( preg_match( $regex, $html, $matches ) ) {
+		// Return the first capture group, which is the value of the src attribute.
+		$src = $matches[1];
+
+		// Replace youtube.com with youtube-nocookie.com.
+		$src = str_replace( 'youtube.com', 'youtube-nocookie.com', $src );
+
+		// Remove ?feature=oembed from the src attribute.
+		$src = preg_replace( '/\?feature=oembed/', '', $src );
+
+		// Return the modified src attribute.
+		return $src;
+	}
+
+	// Return null if no match is found.
+	return null;
+}
 
 /**
  * Get list of all registered blocks and modify allowed block types.

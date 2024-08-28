@@ -107,7 +107,7 @@ function pluginsJsTask() {
 
 function customJsTask() {
 	return gulp
-		.src('src/js/custom/*.js')
+		.src('src/js/custom/**/*.js')
 		.pipe(sourcemaps.init())
 		.pipe(concat('custom.js'))
 		.pipe(uglify())

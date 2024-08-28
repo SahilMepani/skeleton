@@ -7,11 +7,13 @@
  */
 
 // Verify nonce.
-if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'search_nonce' ) ) {
-	// Nonce verification failed, handle the error or exit gracefully.
-	// Redirect the user to a safe page.
-	wp_safe_redirect( home_url() );
-	exit;
+if ( isset( $_GET['s'] ) ) {
+	if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'search_nonce' ) ) {
+		// Nonce verification failed, handle the error or exit gracefully.
+		// Redirect the user to a safe page.
+		wp_safe_redirect( home_url() );
+		exit;
+	}
 }
 
 // Set thumbnail preview in backend.
@@ -45,116 +47,65 @@ if ( 'custom' === $spacing_bottom ) {
 	$spacing_bottom_custom = '';
 }
 
-if ( 'on' === $display ) { ?>
+if ( 'on' === $display && isset( $_GET['s'] ) ) { ?>
 <section
-	class="search-results-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
+	class="search-result-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
 	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
 	id="<?php echo esc_attr( $unique_id ); ?>">
 
+	<?php $search_term = isset( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : ''; ?>
+
 	<div class="container">
 
-		<?php
-		$search_term = isset( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : '';
-		$cpt         = isset( $_GET['post_type'] ) ? sanitize_text_field( wp_unslash( $_GET['post_type'] ) ) : 'page';
-		?>
-
-		<h5><?php esc_html_e( 'Showing Results for', 'skel' ); ?> "<span><?php esc_html( $s ); ?></span>"</h5>
+		<?php get_search_form(); ?>
 
 		<?php
-		// Pages.
-		$custom_query = new WP_Query(
-			array(
-				's'              => $search_term, /* search query */
-				'post_type'      => $cpt,
-				'posts_per_page' => -1,
-				'fields'         => 'ids',
-			)
-		);
-		$post_count   = $custom_query->post_count;
-		?>
-
-
-		<?php if ( ! empty( $custom_query->posts ) ) { ?>
-			<h6 class="cpt-heading"><?php esc_html_e( 'Pages', 'skel' ); ?> (<?php echo esc_html( $post_count ); ?>)</h6>
-
-			<ul class="list-pages list-unstyled">
-				<?php
-				foreach ( $custom_query->posts as $post_item ) :
-					setup_postdata( $post_item );
-					?>
+		if ( $search_term ) {
+			$custom_query = new WP_Query(
+				array(
+					's'              => $search_term, /* search query */
+					'post_type'      => array( 'post', 'page' ),
+					'posts_per_page' => -1,
+					'post_status'    => 'publish',
+					'fields'         => 'ids',
+				)
+			);
+			$post_count   = $custom_query->post_count;
+			?>
+			<?php if ( isset( $custom_query ) && ! empty( $custom_query->posts ) ) { ?>
+				<p>
 					<?php
-					$post_title = get_the_title( $post_item );
-					$permalink  = get_permalink( $post_item );
+						echo esc_html( $post_count );
+						esc_html_e( ' Search results found', 'skel' );
 					?>
-					<li>
-						<a href="<?php echo esc_url( $permalink ); ?>" class="h6 title"><?php echo esc_html( $post_title ); ?></a>
-					</li>
+				</p>
+
+				<ul class="list-result list-unstyled" data-inview>
 					<?php
-				endforeach;
-				wp_reset_postdata();
-				?>
-			</ul>
-		<?php } ?>
-
-		<!-- News -->
-		<?php
-		$custom_query = new WP_Query(
-			array(
-				's'              => $s, // search query.
-				'post_type'      => 'news',
-				'posts_per_page' => -1,
-				'fields'         => 'ids',
-			)
-		);
-		$post_count   = $custom_query->post_count;
-		?>
-
-		<?php if ( ! empty( $custom_query->posts ) ) { ?>
-			<h6 class="cpt-heading"><?php esc_html_e( 'News', 'skel' ); ?> (<?php echo esc_html( $post_count ); ?>)</h6>
-
-			<ul class="list-news list-unstyled">
-				<?php
-				foreach ( $custom_query->posts as $post_item ) :
-					setup_postdata( $post_item );
+					foreach ( $custom_query->posts as $post_item ) :
+						$item_post_type = get_post_type( $post_item );
+						$post_type_obj  = get_post_type_object( $item_post_type );
+						$post_title     = get_the_title( $post_item );
+						$post_permalink = get_permalink( $post_item );
+						?>
+						<li data-aos="fade-up" data-aos-stagger-item>
+							<a href="<?php echo esc_url( $post_permalink ); ?>">
+								<div class="post-type">
+									<?php
+									echo esc_html( $post_type_obj->labels->singular_name );
+									?>
+								</div>
+								<h6 class="title"><?php echo esc_html( $post_title ); ?></h6>
+							</a>
+						</li>
+						<?php
+					endforeach;
+					wp_reset_postdata();
 					?>
-					<?php
-					$excerpt    = get_the_excerpt( $post_item );
-					$post_title = get_the_title( $post_item );
-					$date       = get_the_date( 'F d Y', $post_item );
-					$post_link  = get_permalink( $post_item );
-					?>
-					<li class="card">
-						<div class="img-cover-block">
-							<?php
-							$image_id   = get_post_thumbnail_id( $post_item );
-							$image_data = wp_get_attachment_image_src( $image_id, 'w768' );
-							$image_alt  = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
-							?>
-							<img src="<?php echo esc_url( wp_get_attachment_image_url( $image_id, 'w768' ) ); ?>"
-								srcset="<?php echo esc_attr( wp_get_attachment_image_srcset( $image_id ) ); ?>"
-								sizes="45rem"
-								alt="<?php echo esc_attr( $image_alt ); ?>"
-								width="<?php echo esc_attr( $image_data[1] ); ?>"
-								height="<?php echo esc_attr( $image_data[2] ); ?>"
-								class="img-cover"
-								loading="lazy" />
-						</div>
-
-						<p class="date"><?php echo esc_html( $date ); ?></p>
-						<div class="title-wrapper">
-							<a href="<?php echo esc_url( $post_link ); ?>" class="h6 title"><?php echo esc_html( $post_title ); ?></a>
-						</div>
-						<p class="excerpt"><?php echo esc_html( $excerpt ); ?></p>
-					</li>
-					<?php
-				endforeach;
-				wp_reset_postdata();
-				?>
-			</ul>
-		<?php } ?>
-
-		<?php if ( empty( $custom_query->posts ) ) { ?>
-			<h5 class="h5"><?php esc_html_e( 'No records matching your search criteria, please check again later!', 'skel' ); ?></h5>
+				</ul>
+			<?php } else { ?>
+				<p><?php esc_html_e( 'No search results found', 'skel' ); ?></p>
+			<?php } ?>
 		<?php } ?>
 
 	</div> <!-- .container -->

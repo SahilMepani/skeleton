@@ -1,0 +1,70 @@
+/*!
+* Theme Name: Skeleton
+* Theme URI: http://www.sahilmepani.com
+* Description: Responsive custom theme
+* Text Domain: skel
+* Version: 1.0
+* Author: Sahil Mepani
+* Author URI: www.sahilmepani.com
+* License: GPL
+* License URI: http://wordpress.org/about/gpl/
+*/
+
+@import 'partials/mixins/rem';
+@import 'partials/config/maps';
+@import 'partials/config/colors';
+@import 'partials/config/typography';
+@import 'partials/config/variables';
+@import 'partials/mixins/breakpoints';
+@import 'partials/mixins/placeholders';
+@import 'partials/mixins/containers';
+@import 'partials/mixins/buttons';
+@import 'partials/mixins/miscellaneous';
+@import 'partials/mixins/input';
+@import 'partials/mixins/animations';
+@import 'partials/mixins/keyframes';
+
+@import 'partials/reset';
+@import 'partials/reboot';
+@import 'partials/base-selectors';
+
+// JS plugins
+// Added at the top of other files for easy overwrite
+@import 'partials/js-plugins/swiper';
+@import 'partials/js-plugins/magnific-popup';
+@import 'partials/js-plugins/swiper-custom';
+@import 'partials/js-plugins/magnific-popup-custom';
+@import 'partials/js-plugins/lenis';
+
+// @import "partials/js-plugins/aos-custom";
+
+// Base
+@import 'partials/font-face';
+@import 'partials/base-styles';
+
+// Components
+@import 'partials/components/content';
+@import 'partials/components/header';
+@import 'partials/components/header-menu';
+@import 'partials/components/footer';
+
+// ACF Blocks
+// @import 'partials/acf-blocks/search-results';
+// END ACF Blocks
+
+// Templates
+@import 'partials/templates/index';
+@import 'partials/templates/front-page';
+@import 'partials/templates/single';
+
+// WP plugins
+@import 'partials/wp-plugins/gravity-forms';
+
+// Helpers
+@import 'partials/helpers/buttons';
+@import 'partials/helpers/section-spacing';
+@import 'partials/helpers/miscellaneous';
+
+// Utilities
+@import 'partials/utilities/images';
+@import 'partials/utilities/rtl';

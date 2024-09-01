@@ -104,7 +104,7 @@ function update_style_scss( string $style_file, array $sass_imports ): void {
 	$pattern = '/(\/\/ ACF Blocks)(.*?)(\/\/ END ACF Blocks)/s';
 
 	// Create the new block content with the import statements.
-	$new_block = "// ACF Blocks\n" . implode( "\n", $sass_imports ) . "\n// END ACF Blocks";
+	$new_block = "// ACF Blocks\n" . implode( "\n", $sass_imports ) . "\n\n// END ACF Blocks";
 
 	// Replace the existing block with the new one.
 	$updated_content = preg_replace( $pattern, $new_block, $styles_content );

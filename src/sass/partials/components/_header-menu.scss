@@ -10,8 +10,8 @@ $mobile-parent-menu-link-color: green;
 $mobile-parent-menu-link-hover-bg-color: rgba(#000, 0.1);
 $mobile-parent-menu-link-hover-color: green;
 $mobile-parent-menu-item-font-size: rem-calc(24);
-$mobile-parent-menu-item-padding-y: rem-calc(13);
-$mobile-parent-menu-item-padding-x: rem-calc(20);
+$mobile-parent-menu-item-padding-block: rem-calc(13);
+$mobile-parent-menu-item-padding-inline: rem-calc(20);
 $mobile-parent-menu-current-item-link-bg-color: green;
 $mobile-parent-menu-current-item-link-color: #fff;
 $mobile-parent-menu-dropdown-bg-color: teal;
@@ -26,10 +26,10 @@ $mobile-sub-menu-link-bg-color: transparent;
 $mobile-sub-menu-link-hover-bg-color: rgba(#000, 0.5);
 $mobile-sub-menu-link-color: green;
 $mobile-sub-menu-link-hover-color: #000;
-$mobile-sub-menu-link-padding-y: rem-calc(13);
+$mobile-sub-menu-link-padding-block: rem-calc(13);
 
 // usually this is same as parent menu
-$mobile-sub-menu-link-padding-x: rem-calc(20);
+$mobile-sub-menu-link-padding-inline: rem-calc(20);
 
 .header-nav {
 	ul {
@@ -81,8 +81,8 @@ $mobile-sub-menu-link-padding-x: rem-calc(20);
 				text-align: center;
 				text-decoration: none;
 				display: block;
-				padding: $mobile-parent-menu-item-padding-y
-					$mobile-parent-menu-item-padding-x;
+				padding: $mobile-parent-menu-item-padding-block
+					$mobile-parent-menu-item-padding-inline;
 				position: relative;
 
 				&:hover,
@@ -176,8 +176,8 @@ $mobile-sub-menu-link-padding-x: rem-calc(20);
 				text-decoration: none;
 				text-transform: uppercase;
 				display: block;
-				padding: $mobile-sub-menu-link-padding-y
-					$mobile-sub-menu-link-padding-x;
+				padding: $mobile-sub-menu-link-padding-block
+					$mobile-sub-menu-link-padding-inline;
 
 				&:hover,
 				&:focus {
@@ -198,26 +198,26 @@ $desktop-parent-menu-link-bg-color: #ccc;
 $desktop-parent-menu-link-color: #000;
 $desktop-parent-menu-link-hover-bg-color: green;
 $desktop-parent-menu-link-hover-color: #fff;
-$desktop-parent-menu-item-padding-y: 15px;
-$desktop-parent-menu-item-padding-x: 20px;
+$desktop-parent-menu-item-padding-block: rem-calc(15);
+$desktop-parent-menu-item-padding-inline: rem-calc(20);
 $desktop-parent-menu-current-item-link-bg-color: red;
 $desktop-parent-menu-current-item-link-color: #fff;
-$desktop-parent-menu-dropdown-icon-color: #999;
+$desktop-parent-menu-dropdown-icon-color: black;
 $desktop-parent-menu-dropdown-icon-hover-color: #fff;
 $desktop-parent-menu-dropdown-icon-border: rem-calc(5);
 $desktop-parent-menu-space-between-text-and-arrow: rem-calc(10);
 
 /* ----------  Sub Menu  ---------- */
 $desktop-sub-menu-width: rem-calc(250);
-$desktop-sub-menu-link-bg-color: green;
+$desktop-sub-menu-link-bg-color: black;
 $desktop-sub-menu-link-color: #fff;
-$desktop-sub-menu-link-hover-bg-color: $desktop-sub-menu-link-bg-color;
+$desktop-sub-menu-link-hover-bg-color: orange;
 $desktop-sub-menu-link-hover-color: $desktop-sub-menu-link-color;
-$desktop-sub-menu-current-item-link-bg-color: $desktop-sub-menu-link-bg-color;
-$desktop-sub-menu-current-item-link-color: transparent;
+$desktop-sub-menu-current-item-link-bg-color: purple;
+$desktop-sub-menu-current-item-link-color: #fff;
 $desktop-sub-menu-font-size: rem-calc(16);
-$desktop-sub-menu-link-padding-y: rem-calc(12);
-$desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usually this is same as parent menu
+$desktop-sub-menu-link-padding-block: rem-calc(12);
+$desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline; // usually this is same as parent menu
 
 // Desktop Parent Menu
 ////////////////////////////////////////////////
@@ -239,8 +239,8 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 				background-color: $desktop-parent-menu-link-bg-color;
 				color: $desktop-parent-menu-link-color;
 				display: block;
-				padding: $desktop-parent-menu-item-padding-y
-					$desktop-parent-menu-item-padding-x;
+				padding: $desktop-parent-menu-item-padding-block
+					$desktop-parent-menu-item-padding-inline;
 			}
 		}
 
@@ -255,10 +255,10 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 			position: relative;
 
 			> a {
-				// padding-inline-end: $desktop-parent-menu-item-padding-y +
-				// 	$desktop-parent-menu-dropdown-icon-border +
-				// 	$desktop-parent-menu-dropdown-icon-border +
-				// 	$desktop-parent-menu-space-between-text-and-arrow; //dropdown icon
+				padding-inline-end: $desktop-parent-menu-item-padding-block +
+					$desktop-parent-menu-dropdown-icon-border +
+					$desktop-parent-menu-dropdown-icon-border +
+					$desktop-parent-menu-space-between-text-and-arrow; //dropdown icon
 				&::after {
 					margin-top: rem-calc(-2);
 					border: $desktop-parent-menu-dropdown-icon-border solid
@@ -266,8 +266,10 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 					border-top-color: $desktop-parent-menu-dropdown-icon-color;
 					position: absolute;
 					top: 50%;
-					right: $desktop-parent-menu-item-padding-y;
-					transition: 250ms color, 250ms background-color;
+					right: $desktop-parent-menu-item-padding-block;
+					transition:
+						250ms color,
+						250ms background-color;
 					content: '';
 				}
 			}
@@ -308,7 +310,10 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 			position: absolute;
 			z-index: -1;
 			opacity: 0;
-			transition: 250ms color, 250ms background-color, opacity 0.15s;
+			transition:
+				250ms color,
+				250ms background-color,
+				opacity 0.15s;
 			pointer-events: none;
 
 			> li {
@@ -327,8 +332,8 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 					color: $desktop-sub-menu-link-color;
 					font-size: $desktop-sub-menu-font-size;
 					display: block;
-					padding: $desktop-sub-menu-link-padding-y
-						$desktop-sub-menu-link-padding-x;
+					padding: $desktop-sub-menu-link-padding-block
+						$desktop-sub-menu-link-padding-inline;
 					border-bottom: rem-calc(1) solid
 						$desktop-sub-menu-link-bg-color;
 				}
@@ -346,7 +351,7 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 			left: 0;
 
 			> li.menu-item-has-children > a {
-				// padding-inline-end: $desktop-parent-menu-item-padding-y +
+				// padding-inline-end: $desktop-parent-menu-item-padding-block +
 				// 	$desktop-parent-menu-dropdown-icon-border +
 				// 	$desktop-parent-menu-dropdown-icon-border +
 				// 	$desktop-parent-menu-space-between-text-and-arrow; //chevron icon
@@ -357,9 +362,11 @@ $desktop-sub-menu-link-padding-x: $desktop-parent-menu-item-padding-x; // usuall
 					border: $desktop-parent-menu-dropdown-icon-border solid
 						transparent;
 					position: absolute;
-					top: $desktop-parent-menu-item-padding-x;
-					right: $desktop-parent-menu-item-padding-y;
-					transition: 250ms color, 250ms background-color;
+					top: $desktop-parent-menu-item-padding-inline;
+					right: $desktop-parent-menu-item-padding-block;
+					transition:
+						250ms color,
+						250ms background-color;
 					content: '';
 					border-inline-start-color: $desktop-parent-menu-dropdown-icon-hover-color;
 				}

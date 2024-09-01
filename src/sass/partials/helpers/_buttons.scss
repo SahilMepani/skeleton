@@ -1,35 +1,35 @@
-.btn {
+:where(.btn) {
 	@include btn;
 }
 
-// .btn-input-clone {
+// :where(.btn-input-clone) {
 // 	@include btn-input-clone(transparent);
 // }
 
-.btn-reset {
+:where(.btn-reset) {
 	@include btn-reset;
 }
 
-.btn-rarr {
+:where(.btn-rarr) {
 	@include btn-rarr;
 }
 
-// .btn-primary {
+// :where(.btn-primary) {
 // 	@include btn-primary;
 // }
 
-.btn-sm {
+:where(.btn-sm) {
 	@include btn-sm;
 }
 
-.btn-md {
+:where(.btn-md) {
 	@include btn-md;
 }
 
-.btn-lg {
+:where(.btn-lg) {
 	@include btn-lg;
 }
 
-.btn.disabled {
+:where(.btn-disabled) {
 	pointer-events: none;
 }

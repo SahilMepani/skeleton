@@ -15,11 +15,10 @@ import stylelint from 'gulp-stylelint';
 // import exec from 'gulp-exec';
 import { deleteAsync } from 'del';
 import browserSync from 'browser-sync';
+import wrapper from 'gulp-wrapper';
 
 // Load environment variables from .env file
 import { config } from 'dotenv';
-
-// Load environment variables from .env file
 config();
 
 const browserSyncInstance = browserSync.create();
@@ -110,6 +109,12 @@ function customJsTask() {
 		.src('src/js/custom/**/*.js')
 		.pipe(sourcemaps.init())
 		.pipe(concat('custom.js'))
+		.pipe(
+			wrapper({
+				header: 'jQuery(document).ready(function($) {',
+				footer: '});'
+			})
+		)
 		.pipe(uglify())
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('./js'))

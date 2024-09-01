@@ -262,8 +262,8 @@ button::-moz-focus-inner {
 }
 
 .mfp-iframe-holder {
-	padding-top: rem-calc(40);
-	padding-bottom: rem-calc(40);
+	padding-block-start: rem-calc(40);
+	padding-block-end: rem-calc(40);
 }
 
 .mfp-iframe-holder .mfp-content {
@@ -279,7 +279,7 @@ button::-moz-focus-inner {
 .mfp-iframe-scaler {
 	width: 100%;
 	height: 0;
-	padding-top: 56.25%;
+	padding-block-start: 56.25%;
 	overflow: hidden;
 }
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Blank ACF block
+ * Not Found 404 ACF Block
  *
  * @package Skeleton
  * @subpackage ACF
@@ -13,6 +13,7 @@ if ( isset( $block['data']['preview_image'] ) ) {
 }
 
 // Data options.
+$heading = get_field( 'heading' );
 
 // Developer options.
 $display        = get_field( 'display' );
@@ -40,13 +41,15 @@ if ( 'custom' === $spacing_bottom ) {
 
 if ( 'on' === $display ) { ?>
 <section
-	class="blank-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
+	class="not-found-404-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
 	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
 	id="<?php echo esc_attr( $unique_id ); ?>">
 
 	<div class="container">
 
-
+		<?php if ( $heading ) { ?>
+			<h1><?php echo esc_html( $heading ); ?></h1>
+		<?php } ?>
 
 	</div><!-- .container -->
 </section>

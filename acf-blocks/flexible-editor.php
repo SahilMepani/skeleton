@@ -38,7 +38,7 @@ if ( 'custom' === $spacing_bottom ) {
 	$spacing_bottom_custom = '';
 }
 
-if ( 'on' === $display ) { ?>
+if ( 'on' === $display && is_array( $flexible_editor ) ) { ?>
 <section
 	class="flexible-editor-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
 	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"

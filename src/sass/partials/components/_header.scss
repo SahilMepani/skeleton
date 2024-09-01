@@ -1,13 +1,18 @@
 .site-header {
-	background-color: black;
-	padding-top: rem-calc(10);
-	padding-bottom: rem-calc(10);
+	background-color: #eee;
+	padding-block: rem-calc(10) rem-calc(10);
 	transition: 0.3s ease;
 
 	&.js-fixed {
 		position: sticky;
 		top: 0;
 		z-index: 99;
+	}
+
+	.container-fluid {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 	}
 }
 
@@ -27,10 +32,15 @@
 .header-logo {
 	display: flex;
 	align-items: center;
-	width: rem-calc(259);
-	height: rem-calc(15);
+	width: rem-calc(100);
 	margin-bottom: 0;
 	position: relative;
+
+	svg,
+	img {
+		aspect-ratio: 100/125;
+		width: 100%;
+	}
 }
 
 .header-nav-toggle {
@@ -41,6 +51,9 @@
 	float: right;
 	padding: rem-calc(10) rem-calc(15) rem-calc(10) rem-calc(50) !important;
 	position: relative;
+	@include media-breakpoint-up(lg) {
+		display: none;
+	}
 
 	.i-menu {
 		font-size: rem-calc(24);
@@ -50,24 +63,16 @@
 		left: rem-calc(15); // same as padding right
 		transform: translateY(-50%);
 	}
-	@include media-breakpoint-up(lg) {
-		display: none;
-	}
 }
 
 .header-nav-close {
-	background: none;
+	background: red;
 	text-decoration: none;
-	padding: rem-calc(10);
+	padding: rem-calc(20);
 	border: 0;
 	position: absolute;
 	top: 0;
 	right: 0;
-
-	.i-x {
-		font-size: rem-calc(36);
-		line-height: rem-calc(36);
-	}
 
 	&:hover,
 	&:focus {
@@ -75,5 +80,24 @@
 	}
 	@include media-breakpoint-up(lg) {
 		display: none;
+	}
+}
+
+.header-search-form {
+	background-color: #fff;
+	padding-block: fluid(24, 50);
+	border-top: rem-calc(1) solid #ddd;
+	position: fixed;
+	top: fluid(55, 62, 'md');
+	right: 0;
+	left: 0;
+	z-index: 99;
+	opacity: 0;
+	transition: 0.25s ease-out;
+	pointer-events: none;
+
+	&.js-active {
+		opacity: 1;
+		pointer-events: auto;
 	}
 }

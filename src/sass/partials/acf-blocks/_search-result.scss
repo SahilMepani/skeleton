@@ -1,78 +1,72 @@
-.search-results-section {
-	.cpt-heading {
-		font-weight: 700;
-		margin-top: fluid(20, 50);
+.search-result-section {
+	.search-container {
+		max-width: rem-calc(800);
 	}
 
-	.list-pages {
-		display: grid;
-		grid-template-columns: 1fr;
+	.search-form {
+		margin-bottom: rem-calc(24);
+	}
 
-		@include media-breakpoint-up(sm) {
-			grid-template-columns: repeat(2, 1fr);
-		}
+	.list-result {
+		margin-bottom: rem-calc(40);
 
-		@include media-breakpoint-up(md) {
-			grid-template-columns: repeat(3, 1fr);
+		> li:last-child {
+			a {
+				border-bottom: none;
+			}
 		}
 
 		a {
-			color: $body-color;
+			display: block;
+			padding-block: rem-calc(16);
+			padding-inline-end: rem-calc(60);
+			border-bottom: rem-calc(1) solid #ddd;
+			position: relative;
 
 			&:hover,
 			&:focus-visible {
-				color: #f00;
-				text-decoration: underline;
-			}
-		}
-	}
-
-	.list-news {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: fluid(20, 40);
-
-		@include media-breakpoint-up(md) {
-			grid-template-columns: repeat(2, 1fr);
-		}
-
-		@include media-breakpoint-up(lg) {
-			grid-template-columns: repeat(3, 1fr);
-		}
-
-		.card {
-			border-bottom: rem-calc(1) solid grey;
-
-			.img-cover-block {
-				padding-bottom: 63%;
-				margin-bottom: rem-calc(32);
-				border-radius: rem-calc(16);
-			}
-
-			.date {
-				font-size: rem-calc(16);
-				margin-bottom: rem-calc(24);
-			}
-
-			.title-wrapper {
-				.title {
-					color: #f00;
-					font-weight: bold;
-					@include media-breakpoint-up(sm) {
-						font-weight: normal;
+				.arrow-block {
+					&::before {
+						opacity: 1;
 					}
 				}
 			}
 
-			.excerpt {
-				margin-block: rem-calc(32);
-			}
+			.arrow-block {
+				width: rem-calc(44);
+				position: absolute;
+				inset: rem-calc(-1) 0 rem-calc(-1) auto;
 
-			a {
-				&:hover {
-					text-decoration: underline;
+				&::before {
+					background: #ffd600;
+					position: absolute;
+					inset: 0;
+					opacity: 0;
+					transition: opacity 0.2s ease-out;
+					content: '';
+				}
+
+				.chevron {
+					aspect-ratio: 6 / 10;
+					width: rem-calc(6);
+					margin: auto;
+					position: absolute;
+					inset: 0;
 				}
 			}
+		}
+
+		.post-type {
+			font-size: rem-calc(14);
+			text-transform: capitalize;
+			margin-bottom: rem-calc(12);
+		}
+
+		.title {
+			font-family: $heading-font-family;
+			font-weight: 700;
+			text-transform: uppercase;
+			margin-bottom: 0;
 		}
 	}
 }

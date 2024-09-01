@@ -47,12 +47,12 @@ if ( 'custom' === $spacing_bottom ) {
 if ( 'on' === $display ) { ?>
 <section
 	class="two-columns-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes} {$section_background}" ); ?>"
-	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>" id="<?php echo esc_attr( $unique_id ); ?>">
+	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
+	id="<?php echo esc_attr( $unique_id ); ?>">
 
 	<div
 		class="container"
-		style="--grid-first-col: <?php echo esc_html( $column_width ); ?>;"
-	>
+		style="--grid-first-col: <?php echo esc_html( $column_width ); ?>;">
 
 		<?php if ( $section_heading ) { ?>
 			<h3 class="h2 section-heading">
@@ -65,7 +65,7 @@ if ( 'on' === $display ) { ?>
 
 		<div class="row <?php echo esc_attr( $column_order ); ?>" data-inview data-aos="fade-up">
 			<?php
-			if ( is_array( $columns ) && ! empty( $columns ) ) :
+			if ( is_array( $columns ) && ! empty( $columns ) ) {
 				foreach ( $columns as $col ) :
 					$col_content_type = $col['content_type'];
 					$col_text         = $col['text'];
@@ -77,18 +77,18 @@ if ( 'on' === $display ) { ?>
 					?>
 
 					<div class="col">
-						<?php
-						if ( 'text' === $col_content_type && $col_text ) {
-							echo wp_kses_post( $col_text );
-						}
-						?>
+					<?php
+					if ( 'text' === $col_content_type && $col_text ) {
+						echo wp_kses_post( $col_text );
+					}
+					?>
 
-						<?php
-						if ( ( 'text' !== $col_content_type ) && $col_image ) {
-							$image_data = wp_get_attachment_image_src( $col_image, 'w768' );
-							$image_alt  = get_post_meta( $col_image, '_wp_attachment_image_alt', true );
-							$image_alt  = trim( wp_strip_all_tags( $image_alt ) );
-							?>
+					<?php
+					if ( ( 'text' !== $col_content_type ) && $col_image ) {
+						$image_data = wp_get_attachment_image_src( $col_image, 'w768' );
+						$image_alt  = get_post_meta( $col_image, '_wp_attachment_image_alt', true );
+						$image_alt  = trim( wp_strip_all_tags( $image_alt ) );
+						?>
 							<div class="img-dialog-block">
 								<img
 									src="<?php echo esc_attr( wp_get_attachment_image_url( $col_image, 'w768' ) ); ?>"
@@ -101,7 +101,7 @@ if ( 'on' === $display ) { ?>
 									loading="lazy"
 								/>
 
-								<?php if ( 'video' === $col_content_type ) { ?>
+							<?php if ( 'video' === $col_content_type ) { ?>
 									<button class="btn btn-reset btn-dialog-open js-dialog-open">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 249 239" fill="none">
 											<path d="M248.857 119.332L0.609375 0.166016V238.499L248.857 119.332Z" fill="#fff" />
@@ -131,10 +131,12 @@ if ( 'on' === $display ) { ?>
 						<?php } ?>
 					</div> <!-- .col -->
 
-				<?php endforeach; ?>
-			<?php endif; ?>
+					<?php
+				endforeach;
+			}
+			?>
 		</div> <!-- .row -->
 
 	</div><!-- .container -->
 </section>
-<?php } ?>
+	<?php } ?>

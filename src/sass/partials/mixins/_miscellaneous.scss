@@ -9,7 +9,7 @@
 	&::after {
 		display: inline-block;
 		width: 100%;
-		padding-top: math.div($height, $width) * 100%;
+		padding-block-start: math.div($height, $width) * 100%;
 		content: '';
 	}
 

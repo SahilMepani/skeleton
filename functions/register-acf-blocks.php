@@ -16,6 +16,7 @@ $block_types = array(
 	'Flexible Editor',
 	'Spacer',
 	'Two Columns',
+	'Not Found 404',
 );
 
 // Hash the current block types array.

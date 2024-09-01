@@ -7,11 +7,6 @@
 
 get_header();
 
-/**
- * Add the page content from ID
- *
- * @param int (page ID)
- */
-skel_insert_page( 126, true );
+skel_insert_page( 222, true );
 
 get_footer();

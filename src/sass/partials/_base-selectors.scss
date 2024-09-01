@@ -55,7 +55,7 @@ html {
 	 * Useful for fixed header
 	 * Leave fixed header space when scrolled using scroll snapping
 	 */
-	scroll-padding-top: var(--header-height, rem-calc(65));
+	scroll-padding-block-start: var(--header-height, rem-calc(65));
 }
 
 body {
@@ -92,8 +92,11 @@ button,
 input[type='submit'],
 input[type='button'],
 input[type='reset'] {
-	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-		border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	transition:
+		color 0.15s ease-in-out,
+		background-color 0.15s ease-in-out,
+		border-color 0.15s ease-in-out,
+		box-shadow 0.15s ease-in-out;
 }
 
 p,
@@ -139,7 +142,7 @@ address {
 output {
 	color: #555;
 	line-height: 1.4285;
-	padding-top: rem-calc(30);
+	padding-block-start: rem-calc(30);
 }
 
 code {

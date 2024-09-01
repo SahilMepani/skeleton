@@ -46,10 +46,17 @@
 @import 'partials/components/content';
 @import 'partials/components/header';
 @import 'partials/components/header-menu';
+@import 'partials/components/search-form';
 @import 'partials/components/footer';
 
 // ACF Blocks
-// @import 'partials/acf-blocks/search-results';
+@import 'partials/acf-blocks/visual-editor';
+@import 'partials/acf-blocks/search-result';
+@import 'partials/acf-blocks/flexible-editor';
+@import 'partials/acf-blocks/spacer';
+@import 'partials/acf-blocks/two-columns';
+@import 'partials/acf-blocks/not-found-404';
+
 // END ACF Blocks
 
 // Templates

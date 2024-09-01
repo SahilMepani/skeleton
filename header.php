@@ -50,12 +50,12 @@
 			<div class="header-logo">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_html( get_bloginfo( 'name' ) ); ?>"
 					aria-label="Go to Home"	<?php echo is_front_page() ? 'aria-current="page"' : ''; ?>>
-					<?php require 'images/svg/header-logo.svg'; ?>
+					<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/svg/logo.svg" alt="">
 				</a>
 			</div>
 
 			<button
-				class="header-nav-toggle btn"
+				class="header-nav-toggle btn-reset"
 				aria-label="<?php esc_attr_e( 'show primary navigation', 'skel' ); ?>"
 				aria-haspopup="true"
 				aria-expanded="false"
@@ -86,6 +86,12 @@
 			</nav> <!-- .header-nav -->
 
 		</div> <!-- .container-fluid -->
+
+		<div class="header-search-form" data-toggle-link="search-form">
+			<div class="container">
+				<?php get_search_form(); ?>
+			</div> <!-- .container -->
+		</div>
 	</header> <!-- .site-header -->
 
 	<main id="site-content" class="site-content" role="main">

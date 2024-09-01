@@ -2,7 +2,8 @@
  * Find the header height and set to
  * scroll-padding-top css property
  */
-const headerHeight = document.querySelector('.site-header').offsetHeight;
+const siteHeader = document.querySelector('.site-header');
+const headerHeight = siteHeader.offsetHeight;
 const resizeHeaderHeight = () => {
 	document.documentElement.style.setProperty(
 		'--header-height',

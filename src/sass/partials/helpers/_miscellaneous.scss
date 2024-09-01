@@ -89,6 +89,30 @@
 	}
 }
 
+.loader {
+	display: inline-block;
+	width: fluid(24, 48);
+	height: fluid(24, 48);
+	border: fluid(3, 5) solid #333;
+	border-bottom-color: transparent;
+	border-radius: 50%;
+	animation: rotation 1s linear infinite;
+	box-sizing: border-box;
+	pointer-events: none;
+
+	&.small {
+		width: rem-calc(24);
+		height: rem-calc(24);
+	}
+
+	&.center {
+		margin: auto;
+		border-width: rem-calc(3);
+		position: absolute;
+		inset: 0;
+	}
+}
+
 /* ----------  Required  ---------- */
 .list-unstyled {
 	@include list-unstyled;

@@ -1,7 +1,5 @@
 <?php
 /**
- * The header.
- *
  * This file contains filters and actions for various purpose
  *
  * @package WordPress
@@ -9,12 +7,8 @@
  * @since 1.0.0
  */
 
-if ( defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG && 'local' == wp_get_environment_type() ) {
-	ini_set( 'error_log', WP_CONTENT_DIR . '/themes/skeleton/debug.log' );
-}
-
 // Hide admin toolbar.
-// add_filter( 'show_admin_bar', '__return_false' );
+// add_filter( 'show_admin_bar', '__return_false' );.
 
 // Disable the sitemaps feature - /wp-sitemap.xml.
 add_filter( 'wp_sitemaps_enabled', '__return_false' );
@@ -47,8 +41,6 @@ add_action(
 );
 
 
-
-
 /**
  * Filter callback to set JPEG image quality to 100.
  *
@@ -65,70 +57,6 @@ add_filter(
 	}
 );
 
-/**
- * Check if the current page is the login or registration page.
- *
- * @return bool True if the current page is the login or registration page, false otherwise.
- */
-function is_login_or_registration_page(): bool {
-	return in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ), true );
-}
-
-if ( is_login_or_registration_page() ) {
-	require_once get_template_directory() . '/functions/captcha.php';
-}
-
-
-/**
- * Display pagination for posts.
- * http://wp.tutsplus.com/tutorials/wordpress-pagination-a-primer
- *
- * @param int $total_pages The total number of pages.
- */
-function skel_posts_pagination( int $total_pages ): void {
-	if ( 1 < $total_pages ) {
-		$current_page = max( 1, get_query_var( 'paged' ) );
-
-		echo '<nav class="posts-pagination" role="navigation" aria-label="' . esc_attr__( 'Posts Pagination', 'text-domain' ) . '">';
-
-		$big = 999999999; // A large number for replacing in the pagination link.
-		// phpcs:ignore -- Allow non escaping html
-		echo paginate_links(
-			array(
-				'base'       => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-				'format'     => '?paged=%#%',
-				'current'    => $current_page,
-				'total'      => $total_pages,
-				'prev_text'  => svg( 'arrow-left', array( 'aria-hidden' => 'true' ) ) . '<span class="screen-reader-text">' . esc_html__( 'Previous page', 'text-domain' ) . '</span>',
-				'next_text'  => svg( 'arrow-right', array( 'aria-hidden' => 'true' ) ) . '<span class="screen-reader-text">' . esc_html__( 'Next page', 'text-domain' ) . '</span>',
-				'mid_size'   => 1,
-				'start_size' => 0,
-				'end_size'   => 0,
-			)
-		);
-
-		echo '</nav>';
-	}
-}
-
-/**
- * Generates an SVG icon.
- *
- * @param string $icon The icon name.
- * @param array  $attributes Additional attributes for the SVG element.
- * @return string SVG HTML.
- */
-function svg( $icon, $attributes = array() ) {
-	$svg = '<svg class="icon icon-' . esc_attr( $icon ) . '"';
-
-	foreach ( $attributes as $key => $value ) {
-		$svg .= ' ' . esc_attr( $key ) . '="' . esc_attr( $value ) . '"';
-	}
-
-	$svg .= '><use xlink:href="#icon-' . esc_attr( $icon ) . '"></use></svg>';
-
-	return $svg;
-}
 
 /**
  * Add attributes to enqueued styles.
@@ -231,6 +159,18 @@ add_filter( 'pre_get_posts', 'searchfilter' );
 
 
 /**
+ * Theme setup function for localization.
+ *
+ * Registers the theme's text domain 'skel' for translation and
+ * loads the translation files from the '/lang' directory within the theme.
+ */
+function skel_theme_setup() {
+	// Load the theme's text domain for translation.
+	load_theme_textdomain( 'skel', get_template_directory() . '/lang' );
+}
+add_action( 'after_setup_theme', 'skel_theme_setup' );
+
+/**
  * Adds preload hints to the response headers for specified CSS files.
  *
  * This function adds HTTP Link headers to preload specified CSS files.
@@ -243,11 +183,7 @@ add_filter( 'pre_get_posts', 'searchfilter' );
 // }
 // add_action( 'send_headers', 'hints' );
 
-//
 // ! REQUIRED - Do not edit below
-//
-
-
 /**
  * Wrap embedded oEmbed HTML in a responsive container.
  *
@@ -362,15 +298,13 @@ add_filter( 'excerpt_length', 'skel_get_the_excerpt_length' );
  *
  * This function modifies the excerpt "more" string to display an ellipsis.
  *
- * @param string $more The string shown within the more link.
  * @return string Modified "more" string.
  */
-function skel_get_the_excerpt_more( string $more ): string {
+function skel_get_the_excerpt_more(): string {
 	return '... ';
 }
 
 add_filter( 'excerpt_more', 'skel_get_the_excerpt_more' );
-
 
 
 /**
@@ -415,6 +349,12 @@ function create_template_with_preselected_blocks( $post_id, $post, $update ) {
 		);
 	}
 }
-
-// Hook the function to the 'wp_insert_post' action.
 add_action( 'wp_insert_post', 'create_template_with_preselected_blocks', 10, 3 );
+
+/**
+ * Update default image link type option.
+ *
+ * This function updates the default image link type option to 'none'.
+ * It removes the link from images inserted into posts by default.
+ */
+update_option( 'image_default_link_type', 'none' );

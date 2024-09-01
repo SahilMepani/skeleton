@@ -225,7 +225,10 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 	@include media-breakpoint-up(lg) {
 		> li {
 			float: left;
-			margin-inline-end: rem-calc(5);
+
+			&:not(:last-child) {
+				margin-inline-end: rem-calc(20);
+			}
 
 			&:hover,
 			&:focus {

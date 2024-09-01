@@ -2,14 +2,52 @@
 /**
  * The header.
  *
- * This is the template that displays all of the <head> section and everything up until main.
+ * This file contains filters and actions for various purpose
  *
  * @package WordPress
  * @subpackage Skeleton
+ * @since 1.0.0
  */
 
-if ( defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG && 'local' === wp_get_environment_type() ) {
-	ini_set( 'error_log', get_stylesheet_directory() . '/debug.log' );
+/**
+ * Check if the current page is the login or registration page.
+ *
+ * @return bool True if the current page is the login or registration page, false otherwise.
+ */
+function is_login_or_registration_page(): bool {
+	return in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ), true );
+}
+
+/**
+ * Display pagination for posts.
+ * http://wp.tutsplus.com/tutorials/wordpress-pagination-a-primer
+ *
+ * @param int $total_pages The total number of pages.
+ */
+function skel_posts_pagination( int $total_pages ): void {
+	if ( 1 < $total_pages ) {
+		$current_page = max( 1, get_query_var( 'paged' ) );
+
+		echo '<nav class="posts-pagination" role="navigation" aria-label="' . esc_attr__( 'Posts Pagination', 'text-domain' ) . '">';
+
+		$big = 999999999; // A large number for replacing in the pagination link.
+		// phpcs:ignore -- Allow non escaping html
+		echo paginate_links(
+			array(
+				'base'       => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+				'format'     => '?paged=%#%',
+				'current'    => $current_page,
+				'total'      => $total_pages,
+				'prev_text'  => svg( 'arrow-left', array( 'aria-hidden' => 'true' ) ) . '<span class="screen-reader-text">' . esc_html__( 'Previous page', 'text-domain' ) . '</span>',
+				'next_text'  => svg( 'arrow-right', array( 'aria-hidden' => 'true' ) ) . '<span class="screen-reader-text">' . esc_html__( 'Next page', 'text-domain' ) . '</span>',
+				'mid_size'   => 1,
+				'start_size' => 0,
+				'end_size'   => 0,
+			)
+		);
+
+		echo '</nav>';
+	}
 }
 
 /**
@@ -71,6 +109,25 @@ function skel_get_svg_content( string $image ): string|false {
 		// If the file does not exist or cannot be read, return FALSE.
 		return false;
 	}
+}
+
+/**
+ * Generates an SVG icon.
+ *
+ * @param string $icon The icon name.
+ * @param array  $attributes Additional attributes for the SVG element.
+ * @return string SVG HTML.
+ */
+function svg( $icon, $attributes = array() ) {
+	$svg = '<svg class="icon icon-' . esc_attr( $icon ) . '"';
+
+	foreach ( $attributes as $key => $value ) {
+		$svg .= ' ' . esc_attr( $key ) . '="' . esc_attr( $value ) . '"';
+	}
+
+	$svg .= '><use xlink:href="#icon-' . esc_attr( $icon ) . '"></use></svg>';
+
+	return $svg;
 }
 
 /**
@@ -292,25 +349,6 @@ function skel_insert_page( int $id, bool $display = false ): ?string {
 
 
 /**
- * Set up theme localization.
- *
- * Registers the theme's text domain for translation and loads the translation files.
- * This function is hooked into the 'after_setup_theme' action.
- */
-add_action( 'after_setup_theme', 'skel_theme_setup' );
-
-/**
- * Theme setup function for localization.
- *
- * Registers the theme's text domain 'skel' for translation and
- * loads the translation files from the '/lang' directory within the theme.
- */
-function skel_theme_setup() {
-	// Load the theme's text domain for translation.
-	load_theme_textdomain( 'skel', get_template_directory() . '/lang' );
-}
-
-/**
  * Extracts the src attribute value from an oembed ACF field.
  *
  * This function uses a regular expression to find the src attribute in an iframe tag
@@ -348,30 +386,52 @@ function skel_extract_oembed_src( $html ) {
 }
 
 /**
- * Get list of all registered blocks and modify allowed block types.
+ * Get Full URL.
  *
- * This code retrieves all registered block types and outputs the
- * list of block slugs for debugging purposes.
- * It also filters the allowed block types for all contexts by calling
- * the 'skel_allowed_block_types' function.
+ * This function constructs a full URL based on the current request URI
  *
- * @return void
+ * @return string full_url
  */
-function skel_all_block_types(): array {
-	// Retrieve all registered block types.
-	$block_types = array_keys( WP_Block_Type_Registry::get_instance()->get_all_registered() );
+function skel_get_full_url() {
+	// Get the current URI.
+	// phpcs:ignore
+	$server_uri  = $_SERVER['REQUEST_URI'];
+	$server_port = $_SERVER['SERVER_PORT'];
+	$server_host = $_SERVER['HTTP_HOST'];
 
-	// Output the list of registered block slugs for debugging purposes.
-	return $block_types;
+	// Determine the protocol.
+	$protocol = ( ( ! empty( $_SERVER['HTTPS'] ) && 'off' !== $_SERVER['HTTPS'] ) || 443 === $server_port ) ? 'https://' : 'http://';
+
+	// Construct the full URL.
+	$full_url = $protocol . $server_host . $server_uri;
+
+	return $full_url;
 }
 
-
-/*----------  REQUIRED - Do not edit  ----------*/
-
 /**
- * Update default image link type option.
+ * Replaces a text placeholder with an icon HTML in the provided text.
  *
- * This function updates the default image link type option to 'none'.
- * It removes the link from images inserted into posts by default.
+ * This function searches for the placeholder '[i-play]' in the given text
+ * and replaces it with the corresponding HTML for an icon. If the echo
+ * parameter is set to true, it also outputs the modified text.
+ *
+ * @param string $text The text in which to replace the placeholder with an icon.
+ * @param bool   $display Whether to echo the output. If true, the output is echoed.
+ * @return string The modified text with the placeholder replaced by the icon HTML.
  */
-update_option( 'image_default_link_type', 'none' );
+function skel_replace_text_with_icon( string $text ) {
+	// Check if the text is not falsy.
+	if ( ! $text ) {
+		echo '';
+	}
+
+	// Replace the placeholder '[play]' with the HTML for the icon.
+	$output = str_replace( '[play]', '<i class="i-play"></i>', $text );
+
+	if ( str_contains( $output, '[play-image]' ) ) {
+		// Replace the placeholder '[play-image]' with the HTML for the icon.
+		$output = str_replace( '[play-image]', '<i class="i-play w-image"></i>', $text );
+	}
+	// phpcs:ignore
+	echo $output;
+}

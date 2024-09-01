@@ -47,16 +47,18 @@
 }
 
 @mixin animate-line-on-hover(
+	$padding: rem-calc(1),
+	$line-height: rem-calc(1),
 	$text-color: currentColor,
-	$border-color: currentColor
+	$line-color: currentColor
 ) {
 	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
-	padding-block-end: rem-calc(1);
+	padding-bottom: $padding;
 	position: relative;
 	transition: 0.2s;
 
 	&::after {
-		background-color: $border-color;
+		background-color: $line-color;
 		height: rem-calc(1);
 		position: absolute;
 		right: 0;

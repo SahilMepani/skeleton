@@ -1,0 +1,63 @@
+.swiper-navigation {
+	display: flex;
+	gap: rem-calc(4);
+
+	&.style-light {
+		.swiper-button-prev,
+		.swiper-button-next {
+			background: rgb(0 0 0 / 14%);
+			border: rem-calc(1) solid rgb(255 255 255 / 40%);
+			backdrop-filter: blur(6px);
+
+			svg {
+				color: #fff;
+			}
+		}
+	}
+
+	.swiper-button-prev,
+	.swiper-button-next {
+		background-color: #f2f2f2;
+		line-height: fluid(44, 56);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: fluid(44, 56);
+		height: fluid(44, 56);
+		margin: 0;
+		position: relative;
+		top: auto;
+		right: auto;
+		left: auto;
+		z-index: 10;
+		transition: 0.2s ease-out;
+		user-select: none;
+
+		svg {
+			color: $coal;
+			max-width: fluid(16, 24);
+		}
+
+		&::after {
+			display: none; // overwrite arrow
+		}
+	}
+
+	.swiper-button-prev {
+		&:hover,
+		&:focus-visible {
+			svg {
+				animation: micro-left 0.3s cubic-bezier(0.17, 0.67, 0.63, 1.55);
+			}
+		}
+	}
+
+	.swiper-button-next {
+		&:hover,
+		&:focus-visible {
+			svg {
+				animation: micro-right 0.3s cubic-bezier(0.17, 0.67, 0.63, 1.55);
+			}
+		}
+	}
+}

@@ -16,17 +16,19 @@
 }
 
 @mixin animate-underline-on-hover(
+	$padding: rem-calc(1),
+	$line-height: rem-calc(1),
 	$text-color: currentColor,
-	$border-color: currentColor
+	$line-color: currentColor
 ) {
 	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
-	padding-block-end: rem-calc(1);
+	padding-block-end: $padding;
 	position: relative;
 	transition: 0.2s;
 
 	&::after {
-		background-color: $border-color;
-		height: rem-calc(1);
+		background-color: $line-color;
+		height: $line-height;
 		position: absolute;
 		right: 0;
 		bottom: 0;
@@ -59,7 +61,7 @@
 
 	&::after {
 		background-color: $line-color;
-		height: rem-calc(1);
+		height: $line-height;
 		position: absolute;
 		right: 0;
 		bottom: 0;

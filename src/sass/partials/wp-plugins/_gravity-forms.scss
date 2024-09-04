@@ -57,11 +57,11 @@
 						position: absolute;
 						top: 0;
 						left: 0;
-						content: "";
+						content: '';
 					}
 				}
 
-				input[type="checkbox"] {
+				input[type='checkbox'] {
 					&:checked {
 						+ label {
 							&::before {
@@ -155,9 +155,9 @@
 			@include custom-select-block;
 		}
 
-		input[type="text"],
-		input[type="tel"],
-		input[type="email"],
+		input[type='text'],
+		input[type='tel'],
+		input[type='email'],
 		select,
 		textarea {
 			color: $body-color;
@@ -250,10 +250,10 @@
 		padding: 0;
 		margin: 0;
 
-		button[type="submit"] {
+		button[type='submit'] {
 			border: rem-calc(2) solid $primary;
-			@include btn;
-			@include btn-rarr;
+			@extend %btn;
+			@extend %btn-rarr;
 
 			&:hover,
 			&:focus {
@@ -290,9 +290,9 @@
 		padding: 0;
 
 		.gform-body {
-			input[type="text"],
-			input[type="tel"],
-			input[type="email"],
+			input[type='text'],
+			input[type='tel'],
+			input[type='email'],
 			select,
 			textarea {
 				// height: rem-calc( 60px );

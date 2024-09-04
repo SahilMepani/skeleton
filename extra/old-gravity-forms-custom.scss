@@ -1406,9 +1406,9 @@ table.gfield_list {
 //       margin-bottom: rem-calc( 10px );
 //     }
 //     input[type="submit"] {
-//       @include btn;
-//       @include btn-md;
-//       @include btn-primary;
+//       @extend %btn;
+//       @extend %btn-md;
+//       @extend %btn-primary;
 //       width: 100%;
 //       &:hover, &:active {
 //         background: #000;

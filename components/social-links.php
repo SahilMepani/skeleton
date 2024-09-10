@@ -1,13 +1,13 @@
 <?php
 $social_links = $args['social_links'] ?? '';
 if ( is_array( $social_links ) && ! empty( $social_links ) ) :
-	$instagram    = $social_links['instagram'];
-	$facebook     = $social_links['facebook'];
-	$linkedin     = $social_links['linkedin'];
-	$youtube      = $social_links['youtube'];
-	$spotify      = $social_links['spotify'];
-	$trip_advisor = $social_links['trip_advisor'];
-	$x            = $social_links['x'];
+	$instagram    = $social_links['instagram'] ?? '';
+	$facebook     = $social_links['facebook'] ?? '';
+	$linkedin     = $social_links['linkedin'] ?? '';
+	$youtube      = $social_links['youtube'] ?? '';
+	$spotify      = $social_links['spotify'] ?? '';
+	$trip_advisor = $social_links['trip_advisor'] ?? '';
+	$x            = $social_links['x'] ?? '';
 	?>
 	<ul class="list-social-links list-unstyled">
 		<?php if ( $instagram ) { ?>

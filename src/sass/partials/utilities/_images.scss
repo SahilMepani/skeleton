@@ -1,5 +1,6 @@
 .img-fluid,
-.img-responsive {
+.img-responsive,
+img[class*='wp-image-'] {
 	width: auto;
 	height: auto;
 	max-height: 100%;

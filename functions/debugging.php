@@ -35,10 +35,49 @@ if ( defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG && 'local' == wp_get_environment_
  *
  * @return array
  */
-function skel_all_block_types(): array {
+function skel_list_block_types(): array {
 	// Retrieve all registered block types.
 	$block_types = array_keys( WP_Block_Type_Registry::get_instance()->get_all_registered() );
 
 	// Output the list of registered block slugs for debugging purposes.
 	return $block_types;
+}
+
+
+/**
+ * Hooks into the 'wp_print_styles' action to list all enqueued styles.
+ *
+ * This function outputs the handles of all currently enqueued styles on the page.
+ * It is useful for debugging and identifying styles for dequeuing.
+ *
+ * @return void
+ */
+add_action( 'wp_print_styles', 'list_enqueued_styles' );
+
+function skel_list_enqueued_styles() {
+	global $wp_styles;
+
+	// Loop through the enqueued styles and output their handles.
+	foreach ( $wp_styles->queue as $handle ) {
+		echo $handle . '<br>';
+	}
+}
+
+/**
+ * Hooks into the 'wp_print_scripts' action to list all enqueued scripts.
+ *
+ * This function outputs the handles of all currently enqueued scripts on the page.
+ * It is useful for debugging and identifying scripts for dequeuing.
+ *
+ * @return void
+ */
+add_action( 'wp_print_scripts', 'list_enqueued_scripts' );
+
+function skel_list_enqueued_scripts() {
+	global $wp_scripts;
+
+	// Loop through the enqueued scripts and output their handles.
+	foreach ( $wp_scripts->queue as $handle ) {
+		echo $handle . '<br>';
+	}
 }

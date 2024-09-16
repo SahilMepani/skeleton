@@ -1,60 +1,70 @@
-(() => {
-	const verticalAccordion = function verticalAccordion(section) {
-		const accordions = section.querySelectorAll('.accordion');
-		const accHeadings = section.querySelectorAll('.accordion-heading');
-		const accContents = section.querySelectorAll('.accordion-content');
+(function () {
+	function initAccordions(section) {
+		const accordionContainer = section.querySelector('.list-accordions');
+		let activeAccordion = null;
 
-		// Adjust the height of the active accordion content after resize
-		const activeAccordions = section.querySelectorAll(
-			'.accordion.js-active'
-		);
-		activeAccordions.forEach(el => {
-			const accContent = el.querySelector('.accordion-content');
-			accContent.style.maxHeight = accContent.scrollHeight + 'px';
-		});
+		function toggleAccordion(accordion) {
+			const content = accordion.querySelector('.accordion-content');
+			const isOpening = !accordion.classList.contains('js-active');
 
-		const activateAccordion = index => {
-			accordions.forEach((accordion, i) => {
-				const accContent =
-					accordion.querySelector('.accordion-content');
-				if (i === index) {
-					if (accordion.classList.contains('js-active')) {
-						accordion.classList.remove('js-active');
-						accContent.style.maxHeight = null;
-					} else {
-						accordion.classList.add('js-active');
-						accContent.style.maxHeight =
-							accContent.scrollHeight + 'px';
-					}
-				} else {
-					accordion.classList.remove('js-active');
-					accContent.style.maxHeight = null;
-				}
-			});
-		};
+			// Close the previously active accordion
+			if (activeAccordion && activeAccordion !== accordion) {
+				activeAccordion.classList.remove('js-active');
+				activeAccordion.querySelector(
+					'.accordion-content'
+				).style.maxHeight = null;
+			}
 
-		// Loop over headings and add a click event listener
-		accHeadings.forEach((accHeading, index) => {
-			accHeading.addEventListener('click', () => {
-				activateAccordion(index);
-			});
-		});
+			// Toggle the clicked accordion
+			accordion.classList.toggle('js-active');
+			content.style.maxHeight = isOpening
+				? `${content.scrollHeight}px`
+				: null;
 
-		// Set the first accordion and image to active by default
-		if (accordions.length > 0) {
-			activateAccordion(0);
+			activeAccordion = isOpening ? accordion : null;
 		}
-	};
 
-	const initVerticalAccordions = () => {
-		const sections = document.querySelectorAll('.faqs-section');
-		sections.forEach(section => verticalAccordion(section));
-	};
+		// Use event delegation for click events
+		accordionContainer.addEventListener('click', function (event) {
+			const heading = event.target.closest('.accordion-heading');
+			if (heading) {
+				toggleAccordion(heading.closest('.accordion'));
+			}
+		});
 
-	initVerticalAccordions();
-	window.addEventListener('resize', debounce(initVerticalAccordions, 200));
-	window.addEventListener(
-		'orientationchange',
-		debounce(initVerticalAccordions, 200)
-	);
+		// Open the first accordion by default
+		const firstAccordion = accordionContainer.querySelector('.accordion');
+		if (firstAccordion) {
+			toggleAccordion(firstAccordion);
+		}
+
+		// Debounce function
+		function debounce(func, wait) {
+			let timeout;
+			return function executedFunction(...args) {
+				const later = () => {
+					clearTimeout(timeout);
+					func(...args);
+				};
+				clearTimeout(timeout);
+				timeout = setTimeout(later, wait);
+			};
+		}
+
+		// Function to update max-height on resize or orientation change
+		const updateMaxHeight = debounce(function () {
+			if (activeAccordion) {
+				const content =
+					activeAccordion.querySelector('.accordion-content');
+				content.style.maxHeight = `${content.scrollHeight}px`;
+			}
+		}, 250);
+
+		// Add event listeners for resize and orientationchange
+		window.addEventListener('resize', updateMaxHeight);
+		window.addEventListener('orientationchange', updateMaxHeight);
+	}
+
+	// Initialize accordions for each .faqs-section
+	document.querySelectorAll('.faqs-section').forEach(initAccordions);
 })();

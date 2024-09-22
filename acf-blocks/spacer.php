@@ -15,8 +15,8 @@ if ( isset( $block['data']['preview_image'] ) ) {
 // Developer options.
 $display        = get_field( 'display' );
 $spacing        = get_field( 'spacing' );
-$spacing_top    = $spacing['top']['spacing_top'];
-$spacing_bottom = $spacing['bottom']['spacing_bottom'];
+$spacing_top    = $spacing['top']['spacing_top'] ?? '';
+$spacing_bottom = $spacing['bottom']['spacing_bottom'] ?? '';
 $custom_classes = get_field( 'custom_classes' );
 $custom_css     = get_field( 'custom_css' );
 $unique_id      = get_field( 'unique_id' );

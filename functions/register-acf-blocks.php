@@ -17,6 +17,7 @@ $block_types = array(
 	'Spacer',
 	'Two Columns',
 	'Not Found 404',
+	'Hero Slider',
 );
 
 // Hash the current block types array.

@@ -45,39 +45,39 @@ function skel_list_block_types(): array {
 
 
 /**
- * Hooks into the 'wp_print_styles' action to list all enqueued styles.
- *
- * This function outputs the handles of all currently enqueued styles on the page.
- * It is useful for debugging and identifying styles for dequeuing.
+ * Hooks into the 'wp_print_styles' action to list all enqueued styles,
+ * but only when a specific query parameter (e.g., 'debug_styles') is present.
  *
  * @return void
  */
-add_action( 'wp_print_styles', 'list_enqueued_styles' );
+add_action( 'wp_print_styles', 'skel_list_enqueued_styles' );
 
 function skel_list_enqueued_styles() {
-	global $wp_styles;
+	if ( isset( $_GET['debug_styles'] ) && $_GET['debug_styles'] === 'true' ) {
+		global $wp_styles;
 
-	// Loop through the enqueued styles and output their handles.
-	foreach ( $wp_styles->queue as $handle ) {
-		echo $handle . '<br>';
+		// Loop through the enqueued styles and output their handles.
+		foreach ( $wp_styles->queue as $handle ) {
+			echo $handle . '<br>';
+		}
 	}
 }
 
 /**
- * Hooks into the 'wp_print_scripts' action to list all enqueued scripts.
- *
- * This function outputs the handles of all currently enqueued scripts on the page.
- * It is useful for debugging and identifying scripts for dequeuing.
+ * Hooks into the 'wp_print_scripts' action to list all enqueued scripts,
+ * but only when a specific query parameter (e.g., 'debug_scripts') is present.
  *
  * @return void
  */
-add_action( 'wp_print_scripts', 'list_enqueued_scripts' );
+add_action( 'wp_print_scripts', 'skel_list_enqueued_scripts' );
 
 function skel_list_enqueued_scripts() {
-	global $wp_scripts;
+	if ( isset( $_GET['debug_scripts'] ) && $_GET['debug_scripts'] === 'true' ) {
+		global $wp_scripts;
 
-	// Loop through the enqueued scripts and output their handles.
-	foreach ( $wp_scripts->queue as $handle ) {
-		echo $handle . '<br>';
+		// Loop through the enqueued scripts and output their handles.
+		foreach ( $wp_scripts->queue as $handle ) {
+			echo $handle . '<br>';
+		}
 	}
 }

@@ -1,0 +1,13 @@
+.hero-slider-section {
+	position: relative;
+
+	.img-cover-block {
+		height: calc(100vh - var(--header-height, rem-calc(65)));
+	}
+
+	.swiper-pagination-dot {
+		position: absolute;
+		bottom: rem-calc(24);
+		z-index: 10;
+	}
+}

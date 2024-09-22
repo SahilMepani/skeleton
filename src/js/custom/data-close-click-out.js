@@ -1,4 +1,4 @@
-function clickOutsideHandler() {
+(() => {
 	const elements = document.querySelectorAll('[data-close-click-out]');
 
 	// Add event listener to the document for detecting clicks out
@@ -21,7 +21,4 @@ function clickOutsideHandler() {
 			}
 		});
 	});
-}
-
-// Call the function to initiate the listener
-clickOutsideHandler();
+})();

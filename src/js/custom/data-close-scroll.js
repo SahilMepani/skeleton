@@ -1,4 +1,4 @@
-function removeClassOnScroll() {
+(() => {
 	// Add scroll event listener to the window
 	window.addEventListener('scroll', function () {
 		// Check if the user has scrolled more than 10px
@@ -12,7 +12,4 @@ function removeClassOnScroll() {
 			});
 		}
 	});
-}
-
-// Call the function to initiate the scroll listener
-removeClassOnScroll();
+})();

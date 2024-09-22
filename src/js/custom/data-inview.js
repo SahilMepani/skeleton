@@ -1,4 +1,4 @@
-(function inViewPlugin() {
+(() => {
 	const elements = document.querySelectorAll(
 		'[data-inview], [data-inview-repeat]'
 	);
@@ -15,9 +15,8 @@
 	// IntersectionObserver callback
 	function handleIntersect(entries, observer) {
 		entries.forEach(entry => {
-			const inviewRepeat = entry.target.hasAttribute(
-				'data-inview-repeat'
-			);
+			const inviewRepeat =
+				entry.target.hasAttribute('data-inview-repeat');
 			if (entry.isIntersecting) {
 				entry.target.dataset.inview = 'true';
 			} else if (inviewRepeat) {

@@ -31,7 +31,7 @@
 	justify-content: center;
 	gap: fluid(5, 10);
 	padding-block: fluid(30, 50);
-	border-bottom: rem-calc(1) solid fade-out(#000, 0.75);
+	border-bottom: rem-calc(1) solid rgba(#000, 0.75);
 
 	.page-numbers {
 		display: flex;
@@ -54,7 +54,7 @@
 		}
 
 		&:hover {
-			background-color: fade-out(#999, 0.75);
+			background-color: rgba(#999, 0.75);
 		}
 
 		&.current {

@@ -1,4 +1,4 @@
-(() {
+(() => {
 	function initAccordions(section) {
 		const accordionContainer = section.querySelector('.list-accordions');
 		let activeAccordion = null;

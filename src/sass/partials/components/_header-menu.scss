@@ -258,10 +258,13 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 			position: relative;
 
 			> a {
+				/* stylelint-disable scss/operator-no-newline-after */
 				padding-inline-end: $desktop-parent-menu-item-padding-block +
 					$desktop-parent-menu-dropdown-icon-border +
 					$desktop-parent-menu-dropdown-icon-border +
-					$desktop-parent-menu-space-between-text-and-arrow; //dropdown icon
+					$desktop-parent-menu-space-between-text-and-arrow;
+				/* stylelint-enable scss/operator-no-newline-after */
+
 				&::after {
 					margin-top: rem-calc(-2);
 					border: $desktop-parent-menu-dropdown-icon-border solid

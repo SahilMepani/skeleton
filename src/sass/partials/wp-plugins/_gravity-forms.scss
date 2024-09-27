@@ -253,7 +253,7 @@
 		button[type='submit'] {
 			border: rem-calc(2) solid $primary;
 			@extend %btn;
-			@extend %btn-rarr;
+			@include btn-rarr;
 
 			&:hover,
 			&:focus {

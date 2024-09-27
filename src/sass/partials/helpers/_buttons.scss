@@ -3,31 +3,31 @@
 }
 
 // .btn-input-clone {
-// 	@extend %btn-input-clone(transparent);
+// 	@include btn-input-clone(transparent);
 // }
 
 .btn-reset {
-	@extend %btn-reset;
+	@include btn-reset;
 }
 
 .btn-rarr {
-	@extend %btn-rarr;
+	@include btn-rarr;
 }
 
 // .btn-primary {
-// 	@extend %btn-primary;
+// 	@include btn-primary;
 // }
 
 .btn-sm {
-	@extend %btn-sm;
+	@include btn-sm;
 }
 
 .btn-md {
-	@extend %btn-md;
+	@include btn-md;
 }
 
 .btn-lg {
-	@extend %btn-lg;
+	@include btn-lg;
 }
 
 .btn-disabled {

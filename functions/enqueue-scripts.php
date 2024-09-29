@@ -11,7 +11,7 @@
 function skel_enqueue_scripts() {
 
 	/* Load google fonts */
-	wp_enqueue_style( 'google-fonts', '//fonts.googleapis.com/css?family=Montserrat&display=swap', 'all' );
+	wp_enqueue_style( 'google-font', '//fonts.googleapis.com/css?family=Montserrat&display=swap', 'all' );
 
 	/* Do not load in backend */
 	if ( is_admin() ) {

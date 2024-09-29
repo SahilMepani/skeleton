@@ -1,9 +1,21 @@
-@use "sass:map";
+@use 'sass:map';
 
 $body-font-size: rem-calc(20);
-$body-font-family: 'Montserrat', -apple-system, blinkmacsystemfont,
-	'avenir next', 'avenir, segoe ui', 'helvetica neue', helvetica, ubuntu,
-	roboto, noto, arial, sans-serif;
+/* stylelint-disable scss/operator-no-newline-after */
+$body-font-family:
+	'Montserrat',
+	-apple-system,
+	blinkmacsystemfont,
+	'avenir next',
+	'avenir, segoe ui',
+	'helvetica neue',
+	helvetica,
+	ubuntu,
+	roboto,
+	noto,
+	arial,
+	sans-serif;
+/* stylelint-enable scss/operator-no-newline-after */
 $heading-font-family: inherit;
 $paragraph-line-height: 1.5;
 $paragraph-margin-bottom: rem-calc(32);

@@ -12,11 +12,16 @@ if ( isset( $block['data']['preview_image'] ) ) {
 	return; // required.
 }
 
+// Return early if display is off.
+$display = get_field( 'display' );
+if ( 'on' !== $display ) {
+	return;
+}
+
 // Data options.
 $heading = get_field( 'heading' );
 
 // Developer options.
-$display        = get_field( 'display' );
 $spacing        = get_field( 'spacing' );
 $spacing_top    = $spacing['top']['spacing_top'] ?? '';
 $spacing_bottom = $spacing['bottom']['spacing_bottom'] ?? '';
@@ -25,21 +30,10 @@ $custom_css     = get_field( 'custom_css' );
 $unique_id      = get_field( 'unique_id' );
 
 // Custom Spacing.
-if ( 'custom' === $spacing_top ) {
-	$spacing_top        = 'spacing-top-custom';
-	$spacing_top_custom = "--spacing-top-custom:' {$spacing['top']['custom_value']};";
-} else {
-	$spacing_top_custom = '';
-}
-if ( 'custom' === $spacing_bottom ) {
-	$spacing_bottom        = 'spacing-bottom-custom';
-	$spacing_bottom_custom = "--spacing-bottom-custom:' {$spacing['bottom']['custom_value']};";
-} else {
-	$spacing_bottom_custom = '';
-}
+$spacing_top_custom    = 'custom' === $spacing_top ? "--spacing-top-custom: {$spacing['top']['custom_value']};" : '';
+$spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom: {$spacing['bottom']['custom_value']};" : '';
+?>
 
-
-if ( 'on' === $display ) { ?>
 <section
 	class="not-found-404-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
 	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
@@ -53,4 +47,3 @@ if ( 'on' === $display ) { ?>
 
 	</div><!-- .container -->
 </section>
-<?php } ?>

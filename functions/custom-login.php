@@ -14,40 +14,39 @@
  */
 function skel_login_logo(): void {
 	?>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&display=swap">
+	<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&display=swap"> -->
 	<style type="text/css">
 		body.login {
-			background-color: #e9e9e9;
-			font-family: "Josefin Sans", "-apple-system", BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+			--page-background: #baa78f;
+			--color: #18151d;
+			--form-background: #fff;
+			--input-background: #f7f7f9;
+			--input-color: #333;
+			--input-border: #baa78f;
+			--input-border-focus: #baa78f;
+			--submit-background: #baa78f;
+			--submit-color: #fff;
+			--link-color: #fff;
+			background-color: var(--page-background);
+			font-family: Verdana, "-apple-system", BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 			position: relative;
 			overflow: hidden;
 		}
-		/* body.login::before {
-			content: '';
-			background-blend
-			display: block;
-			width: 500px;
-			height: 300px;
-			background-color: red;
-			position: absolute;
-			left: 0;
-			bottom: 0;
-		} */
 		body.login #login_error, #login .message {
-			color: #18151d;
+			color: var(--color);
 			font-size: 16px;
 			border-radius: 5px;
 			border: 0;
 			padding: 12px 20px;
 		}
 		#login form {
-			background: #fff;
+			background: var(--form-background);
 			border-color: transparent;
 			border-radius: 12px;
 			padding: 24px 24px 28px;
 		}
 		#login label {
-			color: #18151d;
+			color: var(--color);
 		}
 		#login .wp-pwd {
 			margin-bottom: 5px;
@@ -68,22 +67,22 @@ function skel_login_logo(): void {
 		}
 		#login input[type="text"], #login input[type="password"] {
 			font-size: 20px;
-			background: #f7f7f9;
-			color: #18151d;
+			background: var(--input-background);
+			color: var(--input-color);
 			padding: 8px 15px;
-			border-color: #737384;
+			border-color: var(--input-border);
 			border-radius: 4px;
 		}
 		.dashicons.dashicons {
 			display: none;
 		}
 		#login input[type="text"]:focus, #login input[type="password"]:focus {
-			border-color: #6432be;
+			border-color: var(--input-border-focus);
 			box-shadow: none !important;
 		}
 		#login input[type="submit"] {
-			background: #6432be;
-			color: #fff;
+			background: var(--submit-background);
+			color: var(--submit-color);
 			text-transform: uppercase;
 			min-width: 89px;
 			height: 39px;
@@ -97,7 +96,7 @@ function skel_login_logo(): void {
 			box-shadow: none;
 		}
 		#login h1 a, .login h1 a {
-			background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/header-logo.svg');
+			background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/logo-dark.png');
 			width: auto;
 			height: 90px;
 			background-size: contain;
@@ -114,10 +113,10 @@ function skel_login_logo(): void {
 			margin-top: 18px;
 		}
 		#login #nav a, #login #backtoblog a, .privacy-policy-page-link a {
-			color: #6432be;
+			color: var(--link-color);
 		}
 		#login #nav a:hover, #login #backtoblog a:hover, .privacy-policy-page-link a:hover {
-			color: #6432be;
+			color: var(--link-color);
 			text-decoration: underline;
 		}
 		.privacy-policy-link {

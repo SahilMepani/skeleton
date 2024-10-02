@@ -71,7 +71,7 @@ function skel_create_acf_block_files( array $block_types ): void {
 			}
 		}
 
-		// Add the import statement to the array
+		// Add the import statement to the array.
 		$sass_imports[] = "@import 'partials/acf-blocks/" . $sanitize_title . "';";
 
 		// Update the style.scss file.

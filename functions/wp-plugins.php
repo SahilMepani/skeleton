@@ -5,11 +5,11 @@
 
 // ACF plugin, increase the backend loading performance
 //
-add_filter( 'acf/settings/remove_wp_meta_box', '__return_true' );
+// add_filter( 'acf/settings/remove_wp_meta_box', '__return_true' );
 
 // Dequeue search wp styles
-wp_dequeue_style( 'searchwp-forms' );
-wp_deregister_style( 'searchwp-forms' );
+// wp_dequeue_style( 'searchwp-forms' );
+// wp_deregister_style( 'searchwp-forms' );
 
 /**
  * Gravity Form

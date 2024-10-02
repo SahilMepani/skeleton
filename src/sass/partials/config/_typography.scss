@@ -2,6 +2,7 @@
 
 $body-font-size: rem-calc(20);
 /* stylelint-disable scss/operator-no-newline-after */
+/* stylelint-disable scss/dollar-variable-colon-space-after */
 $body-font-family:
 	'Montserrat',
 	-apple-system,
@@ -15,6 +16,7 @@ $body-font-family:
 	noto,
 	arial,
 	sans-serif;
+/* stylelint-enable scss/dollar-variable-colon-space-after */
 /* stylelint-enable scss/operator-no-newline-after */
 $heading-font-family: inherit;
 $paragraph-line-height: 1.5;

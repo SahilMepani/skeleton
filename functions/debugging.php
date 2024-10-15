@@ -7,7 +7,6 @@
  * @since 1.0.0
  */
 
-
 /**
  * Configure error logging for local WordPress development environment.
  *
@@ -50,8 +49,6 @@ function skel_list_block_types(): array {
  *
  * @return void
  */
-add_action( 'wp_print_styles', 'skel_list_enqueued_styles' );
-
 function skel_list_enqueued_styles() {
 	if ( isset( $_GET['debug_styles'] ) && $_GET['debug_styles'] === 'true' ) {
 		global $wp_styles;
@@ -62,6 +59,8 @@ function skel_list_enqueued_styles() {
 		}
 	}
 }
+add_action( 'wp_print_styles', 'skel_list_enqueued_styles' );
+
 
 /**
  * Hooks into the 'wp_print_scripts' action to list all enqueued scripts,
@@ -69,8 +68,6 @@ function skel_list_enqueued_styles() {
  *
  * @return void
  */
-add_action( 'wp_print_scripts', 'skel_list_enqueued_scripts' );
-
 function skel_list_enqueued_scripts() {
 	if ( isset( $_GET['debug_scripts'] ) && $_GET['debug_scripts'] === 'true' ) {
 		global $wp_scripts;
@@ -78,6 +75,29 @@ function skel_list_enqueued_scripts() {
 		// Loop through the enqueued scripts and output their handles.
 		foreach ( $wp_scripts->queue as $handle ) {
 			echo $handle . '<br>';
+		}
+	}
+}
+add_action( 'wp_print_scripts', 'skel_list_enqueued_scripts' );
+
+
+/**
+ * Debugging function to display all meta keys for the current post.
+ */
+function skel_show_meta_keys() {
+	if ( is_singular() ) {
+		$post_id   = get_the_ID();
+		$meta_data = get_post_meta( $post_id );
+
+		if ( ! empty( $meta_data ) ) {
+			echo '<pre>';
+			echo 'Meta keys for post ID ' . $post_id . ':<br>';
+			foreach ( $meta_data as $meta_key => $meta_value ) {
+				echo esc_html( $meta_key ) . '<br>';
+			}
+			echo '</pre>';
+		} else {
+			echo '<pre>No meta keys found for post ID ' . $post_id . '.</pre>';
 		}
 	}
 }

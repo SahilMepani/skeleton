@@ -51,6 +51,8 @@
 	☐ Make sure the editor style is matching the theme style. Edit block-editor-settings.php
 	☐ Add skel_direction_class to swiper-navigation class if site has arabic language
 	☐ Add skel_swiper_direction_class to swiper class if site has arabic langauge
+	☐ Define various constants like WP_CACHE, CONCATENATE_SCRIPTS, COMPRESS_SCRIPTS, COMPRESS_CSS to true. Use Query Monitor - Environment and check if the constants are enabled or disabled
+	☐ Add custom post type ordering for all CPTs
 
 # Content Editor:
 	☐ All images need to have keyword focused lowercase names

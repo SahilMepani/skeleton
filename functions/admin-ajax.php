@@ -34,6 +34,7 @@ function update_post() {
 
 	// Add taxonomy query if category is set.
 	if ( '' !== $data['cat'] ) {
+		// phpcs:ignore -- Detected use of tax query - possible slow query
 		$args['tax_query'] = array(
 			array(
 				'taxonomy' => $data['tax'],

@@ -1,6 +1,6 @@
 <?php
 /**
- * Whitelist specific Gutenberg blocks (paragraph, heading, image and lists)
+ * Whitelist all acf blocks and some core/image Gutenberg blocks
  *
  * @link https://rudrastyh.com/gutenberg/remove-default-blocks.html#allowed_block_types_all
  *
@@ -8,7 +8,6 @@
  * @subpackage Skeleton
  * @since 1.0.0
  */
-
 
 /**
  * Filter the allowed block types for all contexts.

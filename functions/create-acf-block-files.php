@@ -2,6 +2,12 @@
 /**
  * Helper function to create .php files for ACF blocks.
  *
+ * @package WordPress
+ * @subpackage Skeleton
+ * @since 1.0.0
+ */
+
+/**
  * This function checks the $block_types values, sanitizes the block names,
  * and creates a new .php file inside the acf-blocks folder in the root directory
  * with the corresponding name. Only creates the file if it doesn't exist.

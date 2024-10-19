@@ -2,8 +2,6 @@
 /**
  * Admin Notices
  *
- * This is the template that displays all of the <head> section and everything up until main.
- *
  * @package WordPress
  * @subpackage Skeleton
  * @since 1.0.0
@@ -17,12 +15,13 @@
  * The notice is triggered by the presence of a 'protected_post=true' query parameter
  * in the URL, which is set when a protected post is attempted to be deleted.
  */
-function show_custom_admin_notice() {
+function skel_custom_admin_notice() {
+	// phpcs:ignore -- Processing form data without nonce verification
 	if ( isset( $_GET['protected_post'] ) && $_GET['protected_post'] == 'true' ) {
 		// Display the custom admin notice.
 		echo '<div id="custom-admin-notice" class="notice notice-warning is-dismissible">
-            <p>This page is protected and cannot be deleted.</p>
-        </div>';
+				<p>This page is protected and cannot be deleted.</p>
+			</div>';
 	}
 }
-add_action( 'admin_notices', 'show_custom_admin_notice' );
+add_action( 'admin_notices', 'skel_custom_admin_notice' );

@@ -25,6 +25,5 @@ add_image_size( 'w1920', 1920, 9999 );
  *
  * This line adds support for featured images (post thumbnails) to all post types,
  * including custom post types registered by themes or plugins.
- * This enables you to set featured images for posts and display them in your theme.
  */
 add_theme_support( 'post-thumbnails' );

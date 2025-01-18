@@ -1,7 +1,7 @@
 /* ==============================
 =            Mobile            =
 ============================== */
-$mobile-sidebar-bg-color: teal;
+$mobile-sidebar-bg-color: #ddd;
 
 /* ----------  Parent Menu  ---------- */
 $mobile-parent-menu-item-border-bottom: rem-calc(1) solid rgba(#000, 0.1);
@@ -14,7 +14,7 @@ $mobile-parent-menu-item-padding-block: rem-calc(13);
 $mobile-parent-menu-item-padding-inline: rem-calc(20);
 $mobile-parent-menu-current-item-link-bg-color: green;
 $mobile-parent-menu-current-item-link-color: #fff;
-$mobile-parent-menu-dropdown-bg-color: teal;
+$mobile-parent-menu-dropdown-bg-color: #000;
 $mobile-parent-menu-dropdown-icon-color: green;
 $mobile-parent-menu-dropdown-hover-bg-color: #fff;
 $mobile-parent-menu-dropdown-hover-icon-color: green;
@@ -51,8 +51,8 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 
 	@include media-breakpoint-down(lg) {
 		background-color: $mobile-sidebar-bg-color;
-		font-size: regular;
 		width: 100%;
+		height: 100vh;
 		padding: rem-calc(90) 0 rem-calc(40);
 		position: fixed;
 		top: 0;
@@ -103,6 +103,13 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 		// Submenu
 		> li.menu-item-has-children {
 			position: relative;
+
+			&.js-active {
+				.sub-menu {
+					visibility: visible;
+					height: auto;
+				}
+			}
 		}
 
 		.menu-item-has-children {
@@ -155,11 +162,6 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 		background: $mobile-sub-menu-bg-color;
 		visibility: hidden;
 		height: 0;
-
-		&.js-active {
-			visibility: visible;
-			height: auto;
-		}
 
 		.sub-menu {
 			background-color: #fff;

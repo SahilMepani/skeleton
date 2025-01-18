@@ -1,0 +1,31 @@
+.visual-editor-section {
+	&.bg-offwhite {
+		background-color: #ddd;
+		color: #fff;
+	}
+
+	&.layout-small {
+		.inner-container {
+			max-width: rem-calc(600);
+			margin: 0 auto;
+		}
+	}
+
+	&.layout-medium {
+		.inner-container {
+			max-width: rem-calc(800);
+			margin: 0 auto;
+		}
+	}
+
+	&.layout-large {
+		.inner-container {
+			max-width: rem-calc(1000);
+			margin: 0 auto;
+		}
+	}
+
+	a:not([class]) {
+		color: blue;
+	}
+}

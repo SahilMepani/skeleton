@@ -18,3 +18,9 @@
 		transform: rotate(360deg);
 	}
 }
+
+@keyframes play {
+	50% {
+		transform: scale(0.75);
+	}
+}

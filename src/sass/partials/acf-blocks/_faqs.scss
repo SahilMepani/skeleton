@@ -1,7 +1,6 @@
 .faqs-section {
 	.section-heading {
 		text-align: center;
-		margin-bottom: rem-calc(36);
 	}
 
 	.accordion {
@@ -33,11 +32,8 @@
 	}
 
 	.accordion-heading {
-		font-family: $heading-font-family;
-		font-size: fluid(16, 24);
-		font-weight: 700;
 		line-height: 1.3;
-		padding-block: fluid(20, 24);
+		padding-block: fluid(16, 24);
 		padding-inline-end: rem-calc(50);
 		margin-bottom: 0;
 		position: relative;
@@ -64,7 +60,7 @@
 
 	.accordion-content {
 		.inner-block {
-			padding-bottom: fluid(20, 24);
+			padding-bottom: fluid(16, 24);
 		}
 	}
 

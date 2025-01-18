@@ -55,7 +55,7 @@
 			</div>
 
 			<button
-				class="header-nav-toggle btn-reset"
+				class="header-nav-toggle"
 				aria-label="<?php esc_attr_e( 'show primary navigation', 'skel' ); ?>"
 				aria-haspopup="true"
 				aria-expanded="false"

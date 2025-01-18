@@ -4,7 +4,6 @@
 	}
 
 	.section-heading {
-		margin-bottom: fluid(40, 48);
 	}
 
 	.row {
@@ -21,7 +20,7 @@
 
 		@include media-breakpoint-up(md) {
 			grid-template-columns: repeat(12, 1fr);
-			column-gap: rem-calc(20);
+			column-gap: fluid(24, 48);
 
 			> .col:nth-child(1) {
 				grid-column: 1 / calc(var(--grid-first-col) + 1);
@@ -100,5 +99,11 @@
 			aspect-ratio: 16/9;
 			width: 75vw;
 		}
+	}
+}
+
+@keyframes play {
+	50% {
+		transform: scale(0.75);
 	}
 }

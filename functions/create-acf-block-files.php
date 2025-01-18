@@ -18,6 +18,13 @@
 function skel_create_acf_block_files( array $block_types ): void {
 	global $wp_filesystem;
 
+	// Initialize the WordPress filesystem API.
+	if ( ! function_exists( 'WP_Filesystem' ) ) {
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+	}
+
+	WP_Filesystem();
+
 	// Define the directory where the block files will be created.
 	$php_directory  = get_template_directory() . '/acf-blocks/';
 	$js_directory   = get_template_directory() . '/src/js/custom/acf-blocks/';

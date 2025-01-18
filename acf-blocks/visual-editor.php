@@ -19,7 +19,9 @@ if ( 'on' !== $display ) {
 }
 
 // Data options.
-$content = get_field( 'content' );
+$background = get_field( 'background' );
+$layout     = get_field( 'layout' );
+$content    = get_field( 'content' );
 
 // Developer options.
 $spacing        = get_field( 'spacing' );
@@ -35,13 +37,15 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 ?>
 
 <section
-	class="visual-editor-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
+	class="visual-editor-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes} layout-{$layout} bg-{$background}" ); ?>"
 	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
 	id="<?php echo esc_attr( $unique_id ); ?>">
 
 	<div class="container">
 
-		<?php echo wp_kses_post( $content ); ?>
+		<div class="inner-container">
+			<?php echo $content; ?>
+		</div> <!-- .inner-container -->
 
 	</div><!-- .container -->
 </section>

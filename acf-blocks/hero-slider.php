@@ -39,10 +39,10 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 ?>
 
 <section
-	class="page-hero-slider-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>" style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?> "
+	class="hero-slider-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>" style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?> "
 	id="<?php echo esc_attr( $unique_id ); ?>" data-inview data-aos="fade">
 
-	<div class="swiper page-hero-slider">
+	<div class="swiper hero-slider">
 		<!-- Additional required wrapper -->
 		<div class="swiper-wrapper">
 			<?php

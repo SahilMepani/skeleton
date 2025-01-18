@@ -2,7 +2,6 @@
 
 -   [Download WordPress](https://wordpress.org/latest.zip) and install it on your local server
 -   [Download the Theme](https://github.com/SahilMepani/skeleton/archive/refs/heads/blocks.zip) and move it inside _wp-content/themes/_
--   Rename the folder to match **“five-palm-hr”**
 -   Run `node -v` anywhere in the terminal to check if you have Node installed in your system. If not, [Download Node](https://nodejs.org/en/) and install
 -   Install all the required packages
 

@@ -30,6 +30,7 @@ require get_template_directory() . '/functions/skip-dashboard.php';
 require get_template_directory() . '/functions/dequeue-scripts.php';
 require get_template_directory() . '/functions/protected-pages.php';
 require get_template_directory() . '/functions/admin-notices.php';
+require get_template_directory() . '/functions/add-svg-support.php';
 // if ( is_login_or_registration_page() ) {
 // require_once get_template_directory() . '/functions/captcha.php';
 // }

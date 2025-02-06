@@ -40,4 +40,4 @@ require get_template_directory() . '/functions/add-svg-support.php';
 // require( get_template_directory() . '/functions/custom-post-types.php' );
 // require( get_template_directory() . '/functions/custom-admin-columns.php' );
 // require( get_template_directory() . '/functions/admin-ajax.php' );
-// require( get_template_directory() . '/functions/remove-admin-menu-items.php' );
+// require get_template_directory() . '/functions/remove-admin-menu-items.php';

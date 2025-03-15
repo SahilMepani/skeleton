@@ -4,7 +4,7 @@ module.exports = {
 		commonjs: true,
 		es6: true,
 		node: true,
-		jquery: true,
+		jquery: true
 	},
 	extends: ['prettier'],
 	rules: {
@@ -13,10 +13,10 @@ module.exports = {
 		// "semi": [2, "never"],
 		'quotes': [2, 'single'],
 		'comma-dangle': [2, 'never'],
-		'array-bracket-spacing': [2, 'never'],
+		'array-bracket-spacing': [2, 'never']
 	},
 	parserOptions: {
 		sourceType: 'module',
-		ecmaVersion: 9,
-	},
+		ecmaVersion: 9
+	}
 };

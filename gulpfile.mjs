@@ -11,8 +11,6 @@ import cssnano from 'cssnano';
 import purgecss from 'gulp-purgecss';
 import rtlcss from 'gulp-rtlcss';
 import eslint from 'gulp-eslint';
-import stylelint from 'gulp-stylelint';
-// import exec from 'gulp-exec';
 import { deleteAsync } from 'del';
 import browserSync from 'browser-sync';
 import wrapper from 'gulp-wrapper';
@@ -121,15 +119,6 @@ function customJsTask() {
 		.pipe(browserSyncInstance.stream());
 }
 
-// Lint tasks
-function lintCSS() {
-	return gulp.src('src/sass/**/*.scss').pipe(
-		stylelint({
-			reporters: [{ formatter: 'string', console: true }]
-		})
-	);
-}
-
 function lintJS() {
 	return gulp
 		.src([
@@ -159,7 +148,7 @@ function watch() {
 const jsTasks = gulp.series(pluginsJsTask, customJsTask);
 const build = gulp.series(
 	sassTask,
-	gulp.parallel(lintCSS, purgeCSSTask, rtlCssTask, lintJS, jsTasks)
+	gulp.parallel(purgeCSSTask, rtlCssTask, lintJS, jsTasks)
 );
 const dev = gulp.series(build, serve, watch);
 
@@ -170,7 +159,6 @@ export {
 	purgeCSSTask as purgecss,
 	rtlCssTask as rtlcss,
 	jsTasks as js,
-	lintCSS,
 	lintJS,
 	build
 };

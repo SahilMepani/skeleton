@@ -32,7 +32,7 @@
 
 	&:focus {
 		border-color: var(--input-border-focus, $border-focus);
-		outline: none;
+		outline-color: transparent;
 	}
 
 	// required to disable auto zoom in iOS when font is less than 1 rem
@@ -55,7 +55,7 @@
 		top: 50%;
 		right: fluid(10, 20);
 		transform: translateY(-50%);
-		content: "";
+		content: '';
 		clip-path: polygon(
 			0 0,
 			rem-calc(3) 0,

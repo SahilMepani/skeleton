@@ -15,56 +15,35 @@
 	}
 }
 
-@mixin animate-underline-on-hover(
-	$padding: rem-calc(1),
+@mixin animate-line-on-hover(
+	$gap: rem-calc(1),
+	$pseudo-padding: 0,
 	$line-height: rem-calc(1),
 	$text-color: currentColor,
 	$line-color: currentColor
 ) {
 	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
-	padding-block-end: $padding;
+	padding-block-start: $pseudo-padding;
+	padding-block-end: $gap;
+	margin-block-end: $pseudo-padding;
 	position: relative;
 	transition: 0.2s;
 
-	&::after {
-		background-color: $line-color;
-		height: $line-height;
+	&::before {
+		// pseudo padding at bottom
+		width: 100%;
+		height: $pseudo-padding;
 		position: absolute;
-		right: 0;
 		bottom: 0;
-		left: 0;
-		transform: scale(0);
-		transition: 0.25s transform ease-out;
 		content: '';
 	}
 
-	&:hover,
-	&:active {
-		color: $text-color;
-
-		&::after {
-			transform: scale(1);
-		}
-	}
-}
-
-@mixin animate-line-on-hover(
-	$padding: rem-calc(1),
-	$line-height: rem-calc(1),
-	$text-color: currentColor,
-	$line-color: currentColor
-) {
-	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
-	padding-bottom: $padding;
-	position: relative;
-	transition: 0.2s;
-
 	&::after {
 		background-color: $line-color;
 		height: $line-height;
 		position: absolute;
 		right: 0;
-		bottom: 0;
+		bottom: $pseudo-padding;
 		left: 0;
 		transform: scaleX(0);
 		transition: 0.3s transform;

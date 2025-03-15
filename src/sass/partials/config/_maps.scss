@@ -1,16 +1,16 @@
 $rem-base-unitless: strip-unit($rem-base);
 $grid-breakpoints: (
-	"xs": 0,
-	"ph": calc(375 / $rem-base-unitless) * 1rem,
-	"sm": calc(576 / $rem-base-unitless) * 1rem,
-	"md": calc(768 / $rem-base-unitless) * 1rem,
-	"lg": calc(992 / $rem-base-unitless) * 1rem,
-	"xl": calc(1200 / $rem-base-unitless) * 1rem,
-	"xxl": calc(1400 / $rem-base-unitless) * 1rem,
-	"xxxl": calc(1600 / $rem-base-unitless) * 1rem
+	'xs': 0,
+	'ph': calc(375 / $rem-base-unitless) * 1rem,
+	'sm': calc(576 / $rem-base-unitless) * 1rem,
+	'md': calc(768 / $rem-base-unitless) * 1rem,
+	'lg': calc(992 / $rem-base-unitless) * 1rem,
+	'xl': calc(1200 / $rem-base-unitless) * 1rem,
+	'xxl': calc(1400 / $rem-base-unitless) * 1rem,
+	'xxxl': calc(1600 / $rem-base-unitless) * 1rem
 );
 $container-max-widths: (
-	// max-width value needs to be less than the (breakpoint value(xxl) - $container-padding)
+	// max-width value needs to be less than the (grid-breakpoints value(xxl) - $container-padding)
 	// any property added here should also be added to grid breakpoints
 	ph: 100vw,
 	sm: 100vw,
@@ -18,22 +18,22 @@ $container-max-widths: (
 	lg: 93vw,
 	xl: 93vw,
 	xxl: 93vw,
-	xxxl: 90rem
+	xxxl: 90rem // 1440px
 );
 $section-spacings: (
-	"small": (
+	'small': (
 		20,
 		40
 	),
-	"medium": (
+	'medium': (
 		40,
 		70
 	),
-	"large": (
+	'large': (
 		70,
 		140
 	),
-	"xlarge": (
+	'xlarge': (
 		100,
 		160
 	)

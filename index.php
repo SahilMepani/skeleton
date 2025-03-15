@@ -34,7 +34,7 @@ get_header(); ?>
 							foreach ( $cats as $cat ) :
 								?>
 						<option data-cpt="post" data-tax="insight-category" data-term="<?php echo $cat->slug; ?>">
-								<?php echo $cat->name; ?>
+							<?php echo $cat->name; ?>
 						</option>
 						<?php endforeach; ?>
 					</select>
@@ -55,7 +55,7 @@ get_header(); ?>
 							foreach ( $cats as $cat ) :
 								?>
 						<option data-cpt="post" data-tax="insight-topic" data-term="<?php echo $cat->slug; ?>">
-								<?php echo $cat->name; ?>
+							<?php echo $cat->name; ?>
 						</option>
 						<?php endforeach; ?>
 					</select>
@@ -63,8 +63,8 @@ get_header(); ?>
 			</div> <!-- .filters__item-select -->
 
 			<div class="filters__item--search col-sm-4">
-				<form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get" id="ajax-search-post" data-cpt="post"
-					data-tax="category">
+				<form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get" id="ajax-search-post"
+					data-cpt="post" data-tax="category">
 					<input type="search" name="s" placeholder="Search for" class="input-search w-100" />
 					<div id="ajax-submit-block" class="submit-block">
 						<div class="search-icon-block">
@@ -154,12 +154,12 @@ get_header(); ?>
 		<ul id="ajax-list-post" class="list-blog-post mb-0">
 
 			<?php if ( have_posts() ) : ?>
-				<?php
+			<?php
 				while ( have_posts() ) :
 					the_post();
 					?>
 
-					<?php get_template_part( 'template-parts/post-card' ); ?>
+			<?php get_template_part( 'template-parts/post-card' ); ?>
 
 			<?php endwhile; ?>
 			<?php endif; ?>

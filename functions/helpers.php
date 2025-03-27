@@ -67,6 +67,7 @@ function skel_swiper_direction_class(): string|null {
 	} elseif ( ICL_LANGUAGE_CODE === 'ar' ) {
 		return 'swiper-rtl';
 	}
+	return null;
 }
 
 /**
@@ -86,6 +87,7 @@ function skel_direction_class(): string|null {
 	} elseif ( ICL_LANGUAGE_CODE === 'ar' ) {
 		return 'dir-rtl';
 	}
+	return null;
 }
 
 /**

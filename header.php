@@ -38,7 +38,7 @@
 
 	<?php wp_body_open(); ?>
 
-	<a class="skip-link screen-reader-text" href="#site-content">
+	<a class="skip-link screen-reader-text" href="#site-content" tabindex="0">
 		<?php esc_html_e( 'Skip to content', 'skel' ); ?>
 	</a>
 

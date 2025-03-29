@@ -30,32 +30,34 @@
 	transition: 0.2s;
 
 	&::before {
-		// pseudo padding at bottom
-		width: 100%;
-		height: $pseudo-padding;
-		position: absolute;
-		bottom: 0;
-		content: '';
-	}
-
-	&::after {
 		background-color: $line-color;
 		height: $line-height;
 		position: absolute;
 		right: 0;
-		bottom: $pseudo-padding;
+		bottom: 0;
 		left: 0;
 		transform: scaleX(0);
 		transition: 0.3s transform;
 		content: '';
 		transform-origin: 100% 100%;
+		z-index: 1;
+	}
+
+	&::after {
+		// pseudo padding at bottom
+		width: 100%;
+		height: $pseudo-padding;
+		position: absolute;
+		left: 0;
+		bottom: $pseudo-padding * -1;
+		content: '';
 	}
 
 	&:hover,
 	&:active {
 		color: $text-color;
 
-		&::after {
+		&::before {
 			transform: scaleX(1);
 			transform-origin: 0 0;
 		}

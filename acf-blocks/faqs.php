@@ -38,12 +38,15 @@ $spacing_top_custom    = 'custom' === $spacing_top ? "--spacing-top-custom: {$sp
 $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom: {$spacing['bottom']['custom_value']};" : '';
 ?>
 
-<section class="faqs-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>" style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>" id="<?php echo esc_attr( $unique_id ); ?>">
+<section
+	class="faqs-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
+	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
+	id="<?php echo esc_attr( $unique_id ); ?>">
 
 	<div class="container">
 
 		<?php if ( $section_heading ) : ?>
-			<h4 class="section-heading h3" data-inview data-aos="fade-up"><?php echo esc_html( $section_heading ); ?></h4>
+		<h4 class="section-heading h3" data-inview data-aos="fade-up"><?php echo esc_html( $section_heading ); ?></h4>
 		<?php endif; ?>
 
 		<div class="list-accordions" data-inview>
@@ -54,19 +57,19 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 					$question = $faq['question'] ?? '';
 					$answer   = $faq['answer'] ?? '';
 					?>
-					<div class="accordion" data-aos-stagger-item data-aos="fade-up">
+			<div class="accordion" data-aos-stagger-item data-aos="fade-up">
 					<?php if ( $question ) : ?>
-							<p class="accordion-heading"><?php echo esc_html( $question ); ?></p>
-						<?php endif; ?>
+				<p class="accordion-heading"><?php echo esc_html( $question ); ?></p>
+				<?php endif; ?>
 
-						<?php if ( $answer ) : ?>
-							<div class="accordion-content">
-								<div class="inner-block">
-									<?php echo wp_kses_post( $answer ); ?>
-								</div> <!-- .inner-block -->
-							</div>
-						<?php endif; ?>
-					</div>
+					<?php if ( $answer ) : ?>
+				<div class="accordion-content">
+					<div class="inner-block">
+						<?php echo wp_kses_post( $answer ); ?>
+					</div> <!-- .inner-block -->
+				</div>
+				<?php endif; ?>
+			</div>
 					<?php
 				}
 			endif;
@@ -91,19 +94,19 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 					$question = get_the_title( $faq_id );
 					$answer   = get_the_content( null, null, $faq_id );
 					?>
-					<div class="accordion" data-aos-stagger-item data-aos="fade-up">
-						<?php if ( $question ) : ?>
-							<p class="accordion-heading"><?php echo esc_html( $question ); ?></p>
-						<?php endif; ?>
+			<div class="accordion" data-aos-stagger-item data-aos="fade-up">
+					<?php if ( $question ) : ?>
+				<p class="accordion-heading"><?php echo esc_html( $question ); ?></p>
+				<?php endif; ?>
 
-						<?php if ( $answer ) : ?>
-							<div class="accordion-content">
-								<div class="inner-block">
-									<p><?php echo $answer; ?></p>
-								</div> <!-- .inner-block -->
-							</div>
-						<?php endif; ?>
-					</div>
+					<?php if ( $answer ) : ?>
+				<div class="accordion-content">
+					<div class="inner-block">
+						<p><?php echo $answer; ?></p>
+					</div> <!-- .inner-block -->
+				</div>
+				<?php endif; ?>
+			</div>
 					<?php
 				}
 			endif;
@@ -111,17 +114,15 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 		</div>
 
 		<?php if ( is_array( $button ) && $button['url'] ) { ?>
-			<div data-inview data-aos="fade-up">
-				<a
-					href="<?php echo esc_url( $button['url'] ); ?>"
-					target="<?php echo esc_attr( $button['target'] ); ?>"
-					class="btn  btn-cta">
-					<?php
+		<div data-inview data-aos="fade-up">
+			<a href="<?php echo esc_url( $button['url'] ); ?>" target="<?php echo esc_attr( $button['target'] ); ?>"
+				class="btn  btn-cta">
+				<?php
 					$text = ( $button['title'] ) ? $button['title'] : __( 'View More', 'skel' );
 					echo esc_html( $text );
-					?>
-				</a>
-			</div>
+				?>
+			</a>
+		</div>
 		<?php } ?>
 
 	</div> <!-- .container -->

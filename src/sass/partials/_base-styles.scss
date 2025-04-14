@@ -5,7 +5,35 @@
 
 .container-fluid {
 	padding: 0 5vw;
+
 	@extend %container;
+}
+
+.modal-backdrop {
+	background: rgb(0 0 0 / 50%);
+	visibility: hidden;
+	position: fixed;
+	inset: 0;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+
+	&.js-active {
+		visibility: visible;
+		z-index: 99;
+		opacity: 1;
+	}
+}
+
+select {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23333' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E"); // Basic arrow
+	background-size: rem-calc(12) rem-calc(12);
+	background-position: right rem-calc(15) center;
+	background-repeat: no-repeat;
+	appearance: none;
+}
+
+option:first-child {
+	color: black;
 }
 
 // .container-small {

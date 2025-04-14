@@ -4,7 +4,9 @@
 		// Check if the key pressed is the Escape key
 		if (event.key === 'Escape' || event.key === 'Esc') {
 			// Select all elements that have the attribute data-esc
-			const elements = document.querySelectorAll('[data-esc]');
+			const elements = document.querySelectorAll(
+				'[data-toogle-click], [data-toggle-link], .modal-backdrop'
+			);
 
 			// Loop through each of the selected elements
 			elements.forEach(element => {

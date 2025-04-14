@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 @function breakpoint-next(
 	$name,
 	$breakpoints: $grid-breakpoints,
@@ -9,23 +11,23 @@
 	}
 	@return if(
 		$n < length($breakpoint-names),
-		nth($breakpoint-names, $n + 1),
+		list.nth($breakpoint-names, $n + 1),
 		null
 	);
 }
 
 @function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
-	$min: map-get($breakpoints, $name);
+	$min: map.get($breakpoints, $name);
 	@return if($min != 0, $min, null);
 }
 
 @function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
-	$max: map-get($breakpoints, $name);
+	$max: map.get($breakpoints, $name);
 	@return if($max and $max > 0, $max - 0.02, null);
 }
 
 @function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
-	@return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+	@return if(breakpoint-min($name, $breakpoints) == null, '', '-#{$name}');
 }
 
 @mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {

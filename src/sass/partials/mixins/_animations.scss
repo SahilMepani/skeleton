@@ -16,7 +16,7 @@
 }
 
 @mixin animate-line-on-hover(
-	$gap: rem-calc(1),
+	$space-above-line: rem-calc(1),
 	$pseudo-padding: 0,
 	$line-height: rem-calc(1),
 	$text-color: currentColor,
@@ -24,7 +24,7 @@
 ) {
 	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
 	padding-block-start: $pseudo-padding;
-	padding-block-end: $gap;
+	padding-block-end: $space-above-line;
 	margin-block-end: $pseudo-padding;
 	position: relative;
 	transition: 0.2s;
@@ -54,7 +54,7 @@
 	}
 
 	&:hover,
-	&:active {
+	&:focus {
 		color: $text-color;
 
 		&::before {

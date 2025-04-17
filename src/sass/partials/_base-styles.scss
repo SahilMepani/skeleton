@@ -17,7 +17,7 @@
 	opacity: 0;
 	transition: opacity 0.3s ease;
 
-	&.js-active {
+	body:has([data-modal-backdrop].js-active) & {
 		visibility: visible;
 		z-index: 99;
 		opacity: 1;

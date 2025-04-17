@@ -42,6 +42,8 @@
 		<?php esc_html_e( 'Skip to content', 'skel' ); ?>
 	</a>
 
+	<div class="modal-backdrop"></div>
+
 	<header class="site-header">
 		<div class="container-fluid">
 

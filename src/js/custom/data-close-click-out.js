@@ -1,24 +1,59 @@
 (() => {
-	const elements = document.querySelectorAll('[data-close-click-out]');
+	function handleClickToggle(element) {
+		const toggleClick = element.getAttribute('data-toggle-click');
+		const toggleGroup = element.getAttribute('data-toggle-group');
 
-	// Add event listener to the document for detecting clicks out
-	document.addEventListener('click', function (event) {
-		// Log the clicked element to the console
-		// console.log('Clicked element:', event.target);
+		if (!toggleClick) return;
 
-		// Check if the clicked element itself or its immediate parent has the 'data-toggle-click' attribute
-		if (
-			event.target.hasAttribute('data-toggle-click') ||
-			event.target.closest('[data-toggle-click]')
-		) {
-			return;
+		// First, remove js-active from all elements with same data-toggle-click value
+		document
+			.querySelectorAll(`[data-toggle-click="${toggleClick}"]`)
+			.forEach(function (el) {
+				if (el !== element) {
+					el.classList.remove('js-active');
+				}
+			});
+
+		// Then toggle js-active on the clicked element
+		element.classList.toggle('js-active');
+
+		// If toggleGroup is used, also remove js-active from others in the same group
+		if (toggleGroup) {
+			document
+				.querySelectorAll(`[data-toggle-group="${toggleGroup}"]`)
+				.forEach(function (groupElement) {
+					if (groupElement !== element) {
+						groupElement.classList.remove('js-active');
+
+						const otherToggleClick =
+							groupElement.getAttribute('data-toggle-click');
+						if (otherToggleClick) {
+							document
+								.querySelectorAll(
+									`[data-toggle-link="${otherToggleClick}"]`
+								)
+								.forEach(function (linkedEl) {
+									linkedEl.classList.remove('js-active');
+								});
+						}
+					}
+				});
 		}
 
-		elements.forEach(function (element) {
-			// Check if the clicked element is outside the target element
-			if (!element.contains(event.target)) {
-				element.classList.remove('js-active');
-			}
+		// Then toggle the linked element
+		document
+			.querySelectorAll(`[data-toggle-link="${toggleClick}"]`)
+			.forEach(function (linkedElement) {
+				linkedElement.classList.toggle('js-active');
+			});
+	}
+
+	// Attach click event
+	document
+		.querySelectorAll('[data-toggle-click]')
+		.forEach(function (element) {
+			element.addEventListener('click', function () {
+				handleClickToggle(element);
+			});
 		});
-	});
 })();

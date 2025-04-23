@@ -39,7 +39,8 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 ?>
 
 <section
-	class="hero-slider-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>" style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?> "
+	class="hero-slider-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
+	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?> "
 	id="<?php echo esc_attr( $unique_id ); ?>" data-inview data-aos="fade">
 
 	<div class="swiper hero-slider">
@@ -48,27 +49,40 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 			<?php
 			$i = 1;
 			foreach ( $slider as $slide ) {
-				$image_id = $slide['image'] ?? '';
+				$desktop_image = $slide['image'] ?? '';
+				$mobile_image  = $slide['mobile_image'] ?? '';
+				$mobile_class  = $mobile_image ? 'has-mobile' : '';
 				?>
-				<div class="swiper-slide slide">
-					<div class="img-cover-block">
-						<?php
-							$image_data = wp_get_attachment_image_src( $image_id, 'w1920' );
-							$image_alt  = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
-							$image_alt  = trim( wp_strip_all_tags( $image_alt ) );
+			<div class="swiper-slide slide">
+				<div class="img-cover-block">
+					<?php
+						$image_data = wp_get_attachment_image_src( $desktop_image, 'w1920' );
+						$image_alt  = get_post_meta( $desktop_image, '_wp_attachment_image_alt', true );
+						$image_alt  = trim( wp_strip_all_tags( $image_alt ) );
+					?>
+					<img src="<?php echo esc_attr( wp_get_attachment_image_url( $desktop_image, 'w1920' ) ); ?>"
+						srcset="<?php echo esc_attr( wp_get_attachment_image_srcset( $desktop_image ) ); ?>"
+						sizes="100vw" alt="<?php echo esc_attr( $image_alt ); ?>"
+						width="<?php echo esc_attr( $image_data[1] ); ?>"
+						height="<?php echo esc_attr( $image_data[2] ); ?>"
+						class="img-cover img-desktop <?php echo esc_html( $mobile_class ); ?>"
+						<?php echo ( 0 !== $i ) ? 'loading="lazy"' : 'fetchpriority="high"'; ?> />
+
+					<?php
+					if ( $mobile_image ) {
+						$image_data = wp_get_attachment_image_src( $mobile_image, 'w1920' );
+						$image_alt  = get_post_meta( $mobile_image, '_wp_attachment_image_alt', true );
+						$image_alt  = trim( wp_strip_all_tags( $image_alt ) );
 						?>
-						<img
-							src="<?php echo esc_attr( wp_get_attachment_image_url( $image_id, 'w1920' ) ); ?>"
-							srcset="<?php echo esc_attr( wp_get_attachment_image_srcset( $image_id ) ); ?>"
-							sizes="100vw"
-							alt="<?php echo esc_attr( $image_alt ); ?>"
-							width="<?php echo esc_attr( $image_data[1] ); ?>"
-							height="<?php echo esc_attr( $image_data[2] ); ?>"
-							class="img-cover"
-							<?php echo ( 0 !== $i ) ? 'loading="lazy"' : 'fetchpriority="high"'; ?>
-						/>
-					</div>
+					<img src="<?php echo esc_attr( wp_get_attachment_image_url( $mobile_image, 'w1920' ) ); ?>"
+						srcset="<?php echo esc_attr( wp_get_attachment_image_srcset( $mobile_image ) ); ?>"
+						sizes="100vw" alt="<?php echo esc_attr( $image_alt ); ?>"
+						width="<?php echo esc_attr( $image_data[1] ); ?>"
+						height="<?php echo esc_attr( $image_data[2] ); ?>" class="img-cover img-mobile"
+						<?php echo ( 0 !== $i ) ? 'loading="lazy"' : 'fetchpriority="high"'; ?> />
+					<?php } ?>
 				</div>
+			</div>
 			<?php } ?>
 		</div> <!-- .swiper-wrapper -->
 

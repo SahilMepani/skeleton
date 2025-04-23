@@ -3,6 +3,20 @@
 
 	.img-cover-block {
 		height: calc(100vh - var(--header-height, rem-calc(65)));
+
+		.img-desktop.has-mobile {
+			display: none;
+		}
+
+		@include media-breakpoint-up(md) {
+			.img-mobile {
+				display: none;
+			}
+
+			.img-desktop.has-mobile {
+				display: block;
+			}
+		}
 	}
 
 	.swiper-pagination-dot {

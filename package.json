@@ -3,6 +3,7 @@
 	"devDependencies": {
 		"autoprefixer": "^10.4.19",
 		"browser-sync": "^3.0.2",
+		"cross-env": "^7.0.3",
 		"cssnano": "^7.0.4",
 		"del": "^7.1.0",
 		"dotenv": "^16.4.5",
@@ -12,6 +13,7 @@
 		"gulp-clean-css": "^4.3.0",
 		"gulp-concat": "^2.6.1",
 		"gulp-eslint": "^6.0.0",
+		"gulp-if": "^3.0.0",
 		"gulp-postcss": "^10.0.0",
 		"gulp-purgecss": "^6.0.0",
 		"gulp-rtlcss": "^2.0.0",
@@ -35,7 +37,9 @@
 		"js": "gulp js",
 		"lint:css": "gulp lintCSS",
 		"lint:js": "gulp lintJS",
-		"build": "gulp build",
+		"build": "cross-env NODE_ENV=production gulp buildProd",
+		"build:dev": "gulp buildDev",
+		"dev": "gulp",
 		"start": "gulp"
 	}
 }

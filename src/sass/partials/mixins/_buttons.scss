@@ -1,9 +1,10 @@
 %btn {
-	font-size: rem-calc(18);
+	font-size: rem-calc(16);
 	font-weight: 600;
 	line-height: 1.3;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	width: fit-content;
 	span {
 		text-box: trim-both cap alphabetic;
@@ -50,13 +51,16 @@
 // }
 
 @mixin btn-sm {
-	padding: rem-calc(10) rem-calc(20);
+	height: rem-calc(36);
+	padding-inline: rem-calc(20);
 }
 
 @mixin btn-md {
-	padding: rem-calc(10) rem-calc(20);
+	height: rem-calc(44);
+	padding-inline: rem-calc(20);
 }
 
 @mixin btn-lg {
-	padding: rem-calc(10) rem-calc(20);
+	height: rem-calc(60);
+	padding-inline: rem-calc(20);
 }

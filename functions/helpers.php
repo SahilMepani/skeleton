@@ -28,7 +28,7 @@ function skel_posts_pagination( int $total_pages ): void {
 	if ( 1 < $total_pages ) {
 		$current_page = max( 1, get_query_var( 'paged' ) );
 
-		echo '<nav class="posts-pagination" role="navigation" aria-label="' . esc_attr__( 'Posts Pagination', 'text-domain' ) . '">';
+		echo '<nav class="posts-pagination" role="navigation" aria-label="' . esc_attr__( 'Posts Pagination', 'skel' ) . '">';
 
 		$big = 999999999; // A large number for replacing in the pagination link.
 		// phpcs:ignore -- Allow non escaping html

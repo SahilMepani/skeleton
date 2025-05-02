@@ -19,7 +19,7 @@
 	☐ All images have width and height - especially img-responsive
 	☐ Check for PHP warnings or errors with debug to true or use Query monitor plugin
 	☐ Activate "Redirection" plugin and redirect all CPT slug to plural URL and use custom template to list all CPT posts. Also click check for al logs include 404 and monitor all Post Types
-	☐ Add Recaptcha to Forms
+☐ Add Recaptcha to Forms
 	☐ Remove Comments from all HTML/PHP
 	☐ Disable Archive and Single page template for CPT where it is not required
 	☐ Activate "Admin columns" plugin and add slug as columns for all Post types
@@ -29,6 +29,7 @@
 	☐ Activate "Wordfence" security plugin and import settings using
 	8e6a436f1f47f5c500fc0a4f7885b5cbecb71bbe75b4abfb31b22d49643f8183cb2906d9f75e85fa073da4be9e79eaeed4fb0630d5765222902dbb8657457d44
 	☐ Activate "WP Hardened" plugin
+	☐ Check the site on https://developer.mozilla.org/en-US/observatory
 	☐ Make sure all the content is editable from backend, if not please mention
 	☐ Change WP_DEBUG variable to false in wp-config.php file in root
 	☐ Go to Settings -> Reading and Uncheck "Discourage search engine..."

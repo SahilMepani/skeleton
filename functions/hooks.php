@@ -164,11 +164,11 @@ add_filter( 'pre_get_posts', 'searchfilter' );
  * Registers the theme's text domain 'skel' for translation and
  * loads the translation files from the '/lang' directory within the theme.
  */
-function skel_theme_setup() {
-	// Load the theme's text domain for translation.
+function skel_load_theme_textdomain() {
 	load_theme_textdomain( 'skel', get_template_directory() . '/lang' );
 }
-add_action( 'after_setup_theme', 'skel_theme_setup' );
+add_action( 'init', 'skel_load_theme_textdomain' );
+
 
 /**
  * Adds preload hints to the response headers for specified CSS files.

@@ -1,14 +1,25 @@
 (() => {
 	const allDialog = document.querySelectorAll('.js-dialog');
 
+	const resetIframe = dialog => {
+		const iframe = dialog.querySelector('.js-iframe');
+		if (iframe) {
+			const newIframe = iframe.cloneNode(true);
+			iframe.parentNode.replaceChild(newIframe, iframe);
+		}
+	};
+
 	allDialog.forEach(dialog => {
 		const dialogParent = dialog.parentElement;
 		const dialogOpen = dialogParent.querySelector('.js-dialog-open');
-		const dialogClose = dialog.querySelector('.js-dialog-close');
-		const video = dialog.querySelector('.js-video');
-		const iframe = dialog.querySelector('.js-iframe');
 
 		dialogOpen.addEventListener('click', () => {
+			lenis.stop();
+			document.body.setAttribute('inert', '');
+
+			const video = dialog.querySelector('.js-video');
+			const iframe = dialog.querySelector('.js-iframe');
+
 			if (video) {
 				video.play();
 			}
@@ -20,33 +31,53 @@
 				const embedOptions = baseVideoURL.includes('youtube')
 					? youtubeOptions
 					: baseVideoURL.includes('vimeo')
-					? vimeoOptions
-					: '';
+						? vimeoOptions
+						: '';
 				const autoplayVideoURL = `${baseVideoURL}${embedOptions}`;
 				iframe.src = autoplayVideoURL;
 			}
+
+			// Show dialog
 			dialog.showModal();
+
+			// Re-attach close event each time in case DOM changed
+			const dialogClose = dialog.querySelector('.js-dialog-close');
+			if (dialogClose) {
+				dialogClose.addEventListener(
+					'click',
+					() => {
+						document.body.removeAttribute('inert');
+						if (video) {
+							video.pause();
+							video.currentTime = 0;
+						}
+						resetIframe(dialog);
+						dialog.close();
+					},
+					{ once: true }
+				); // Ensures it's not added multiple times
+			}
 		});
 
-		dialogClose.addEventListener('click', () => {
-			if (video) {
-				video.pause();
-				video.currentTime = 0; // Reset video to start
+		// Close when clicking outside the dialog content
+		dialog.addEventListener('click', event => {
+			if (event.target === dialog) {
+				document.body.removeAttribute('inert');
+				resetIframe(dialog);
+				dialog.close();
 			}
-			if (iframe) {
-				iframe.src = '';
-			}
-			dialog.close();
 		});
 
 		dialog.addEventListener('close', () => {
+			lenis.start();
+			document.body.removeAttribute('inert');
+
+			const video = dialog.querySelector('.js-video');
 			if (video) {
 				video.pause();
-				video.currentTime = 0; // Reset video to start
+				video.currentTime = 0;
 			}
-			if (iframe) {
-				iframe.src = '';
-			}
+			resetIframe(dialog);
 		});
 	});
 })();

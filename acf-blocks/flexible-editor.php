@@ -40,37 +40,137 @@ if ( 'on' === $display && is_array( $flexible_editor ) ) { ?>
 	id="<?php echo esc_attr( $unique_id ); ?>">
 	<div class="container">
 		<?php
-		foreach ( $flexible_editor as $layout ) {
+		foreach ( $flexible_editor as $layout ) :
 
-			if ( 'text' === $layout['acf_fc_layout'] ) {
+			switch ( $layout['acf_fc_layout'] ) {
+				case 'text':
+					echo '<div class="text-block">' . wp_kses_post( $layout['text'] ) . '</div>';
 
-				echo wp_kses_post( $layout['text'] );
+					break;
 
-			} elseif ( 'heading' === $layout['acf_fc_layout'] ) {
-				$heading_markup = $layout['heading_markup'];
-				$heading_style  = $layout['heading_style'];
-				$heading        = $layout['heading'];
-				?>
+				case 'heading':
+					$heading_markup = $layout['heading_markup'] ?? '';
+					$heading_style  = $layout['heading_style'] ?? '';
+					$heading        = $layout['heading'] ?? '';
 
-		<<?php echo esc_html( $heading_markup ); ?> class="<?php echo esc_html( $heading_style ); ?>">
-				<?php echo esc_html( $heading ); ?>
-		</<?php echo esc_html( $heading_markup ); ?>>
+					echo '<' . esc_html( $heading_markup ) . ' class="' . esc_attr( $heading_style ) . '">';
+					echo '<div class="heading-block">' . esc_html( $heading ) . '</div>';
+					echo '</' . esc_html( $heading_markup ) . '>';
 
-				<?php
-			} elseif ( 'image' === $layout['acf_fc_layout'] ) {
-						$image_id   = $layout['image'];
-						$image_data = wp_get_attachment_image_src( $image_id, 'w1920' );
-						$image_alt  = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
-						$image_alt  = trim( wp_strip_all_tags( $image_alt ) );
-				?>
-		<img src="<?php echo esc_attr( wp_get_attachment_image_url( $image_id, 'w1920' ) ); ?>"
-			srcset="<?php echo esc_attr( wp_get_attachment_image_srcset( $image_id ) ); ?>" sizes="100vw"
-			alt="<?php echo esc_attr( $image_alt ); ?>" width="<?php echo esc_attr( $image_data[1] ); ?>"
-			height="<?php echo esc_attr( $image_data[2] ); ?>" class="img-responsive" loading="lazy" />
+					break;
 
-		<?php } ?>
+				case 'check_list':
+					$list = $layout['list'];
+					if ( $list ) {
+						echo '<div class="checklist-block">';
+						echo '<ul class="list-checklist">';
+						foreach ( $list as $item ) {
+							echo '<li>' . esc_html( $item['text'] ) . '</li>';
+						}
+						echo '</ul>';
+						echo '</div>';
+					}
+					break;
 
-		<?php } ?>
+				case 'media':
+					$media_type   = $layout['media_type'] ?? '';
+					$enable_popup = $layout['enable_popup'] ?? '';
+					$video        = $layout['video'] ?? '';
+					$video_type   = $video['video_type'] ?? '';
+					$video_file   = esc_url( $video['video_file'] );
+					$stream_url   = esc_url( skel_extract_oembed_src( $video['stream_url'] ) );
+
+
+					echo '<div class="media-block">';
+
+					if ( 'yes' === $enable_popup ) {
+						$image        = $layout['image'] ?? '';
+						$image_data   = wp_get_attachment_image_src( $image, 'w1200' );
+						$image_alt    = trim( wp_strip_all_tags( get_post_meta( $image, '_wp_attachment_image_alt', true ) ) );
+						$image_src    = esc_attr( wp_get_attachment_image_url( $image, 'w768' ) );
+						$image_srcset = esc_attr( wp_get_attachment_image_srcset( $image ) );
+						$image_alt    = esc_attr( $image_alt ) ?? '';
+						$image_width  = esc_attr( $image_data[1] ) ?? '';
+						$image_height = esc_attr( $image_data[2] ) ?? '';
+
+						$image_tag = <<<HTML
+							<img src="{$image_src}"
+								srcset="{$image_srcset}"
+								sizes="100vw"
+								alt="{$image_alt}"
+								width="{$image_width}"
+								height="{$image_height}"
+								class="img-responsive"
+								loading="lazy" />
+							HTML;
+						echo $image_tag; // phpcs:ignore
+
+						if ( 'video' === $media_type ) {
+							$button_play_html = <<<HTML
+								<button class="btn btn-reset btn-dialog-open js-dialog-open">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 249 239" fill="none">
+										<path d="M248.857 119.332L0.609375 0.166016V238.499L248.857 119.332Z" fill="currentColor" />
+									</svg>
+								</button>
+								HTML;
+							echo $button_play_html; // phpcs:ignore
+
+							echo '<dialog class="dialog js-dialog">';
+
+							$dialog_close_button = <<<HTML
+								<button class="btn btn-reset btn-dialog-close js-dialog-close">
+									<svg viewBox="0 0 24 24" fill="none">
+										<path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z" fill="currentColor"></path>
+									</svg>
+								</button>
+								HTML;
+							echo $dialog_close_button; // phpcs:ignore
+
+							if ( 'file' === $video_type && $video_file ) {
+								$video_html = <<<HTML
+								<video class="js-video" autoplay controls preload="none">
+									<source src="{$video_file}" type="video/mp4">
+									Your browser does not support the video tag.
+								</video>
+								HTML;
+								echo $video_html; // phpcs:ignore
+							} elseif ( 'file' !== $video_type && $stream_url ) {
+								$iframe_html = <<<HTML
+								<iframe class="js-iframe" frameborder="0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy" allowfullscreen data-video-url="{$stream_url}"></iframe>
+								HTML;
+								echo $iframe_html;
+							}
+
+							echo '</dialog>';
+						}
+					}
+
+					if ( 'no' === $enable_popup ) {
+						if ( 'file' === $video_type && $video_file ) {
+							$video_html = <<<HTML
+								<video playsinline controls preload="metadata">
+									<source src="{$video_file}" type="video/mp4">
+									Your browser does not support the video tag.
+								</video>
+								HTML;
+							echo $video_html; // phpcs:ignore
+
+						} elseif ( 'file' !== $video_type && $stream_url ) {
+							$iframe_html = <<<HTML
+								<iframe class="js-iframe" frameborder="0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy" allowfullscreen src="{$stream_url}"></iframe>
+								HTML;
+							echo $iframe_html;
+						}
+					}
+
+					echo '</div>';
+
+					break;
+
+			}
+
+		endforeach;
+		?>
 	</div> <!-- .container -->
 </section>
 <?php } ?>

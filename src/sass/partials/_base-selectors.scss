@@ -5,6 +5,7 @@
 
 	scroll-behavior: smooth;
 	scrollbar-gutter: stable;
+
 	@each $breakpoint, $container-max-width in $container-max-widths {
 		@include media-breakpoint-up($breakpoint) {
 			$half-width: calc(
@@ -14,7 +15,8 @@
 			--container-max-width: #{$container-max-width};
 			--container-half-width: #{$half-width};
 			--container-margin-x: calc(
-				((100% - #{$container-max-width}) * 0.5) - #{$container-padding-x}
+				((100% - #{$container-max-width}) * 0.5) -
+					#{$container-padding-x}
 			);
 		}
 	}
@@ -69,11 +71,7 @@ body {
 	-webkit-tap-highlight-color: rgba(#000, 0);
 
 	.js-no-touchevents &.js-popup-active {
-		padding-inline-end: $track-width;
-
-		// make the space for hidden scrollbar on body
-		// same as width set for custom scrollbar
-		overflow-y: hidden;
+		overflow: hidden;
 	}
 }
 

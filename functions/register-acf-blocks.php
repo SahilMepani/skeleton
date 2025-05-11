@@ -22,6 +22,15 @@ $block_types = array(
 	'Logo Slider',
 );
 
+/**
+ * Define allowed post types per block.
+ */
+$block_post_type_map = array(
+	'Visual Editor' => array( 'page' ),
+	'Search Result' => array( 'page' ),
+	// Default post types will be used for blocks not listed here.
+);
+
 // Hash the current block types array.
 $blocks_current_hash = md5( wp_json_encode( $block_types ) );
 
@@ -37,8 +46,13 @@ $blocks_stored_hash = get_option( 'acf_block_types_hash' );
  * @return array An array of options for the custom block.
  */
 function skel_create_block_options( string $block ): array {
+	global $block_post_type_map;
+
 	// Sanitize the block name.
 	$sanitize_block = sanitize_title( $block );
+
+	// Check if specific post types are defined for this block.
+	$post_types = $block_post_type_map[ $block ] ?? array( 'page', 'lp_course', 'lp_lesson' );
 
 	// Define the options for the custom block.
 	$options = array(
@@ -49,7 +63,7 @@ function skel_create_block_options( string $block ): array {
 			'foreground' => '#333',
 			'src'        => 'layout',
 		),
-		'post_types'      => array( 'page' ),
+		'post_types'      => $post_types, // Use specific post types.
 		'category'        => 'uncategorized',
 		'mode'            => 'edit',
 		'render_template' => 'acf-blocks/' . $sanitize_block . '.php',

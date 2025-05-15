@@ -15,24 +15,53 @@ $block_types = array(
 	'Search Result',
 	'Flexible Editor',
 	'Spacer',
-	'Two Columns',
 	'Not Found 404',
-	'Hero Slider',
 	'Faqs',
-	'Logo Slider',
+	'Home Hero',
+	'About Mentor',
+	'Popular Course Slider',
+	'Categories List',
+	'Features',
+	'Reviews Slider',
+	'Latest News Slider',
+	'Text + Form',
+	'Text + Image',
+	'Latest Course',
+);
+
+/**
+ * Blocks that require JavaScript files.
+ */
+$blocks_with_js = array(
+	'Faqs',
+	'Popular Course Slider',
+	'Reviews Slider',
+	'Latest News Slider',
 );
 
 /**
  * Define allowed post types per block.
  */
 $block_post_type_map = array(
-	'Visual Editor' => array( 'page' ),
-	'Search Result' => array( 'page' ),
+	'Home Hero'             => array( 'page' ),
+	'Latest Course'         => array( 'page' ),
+	'About Mentor'          => array( 'page' ),
+	'Popular Course Slider' => array( 'page' ),
+	'Categories List'       => array( 'page' ),
+	'Features'              => array( 'page' ),
+	'Reviews Slider'        => array( 'page' ),
+	'Latest News Slider'    => array( 'page' ),
+	'Text + Form'           => array( 'page' ),
+	'Faqs'                  => array( 'page' ),
+	'Not Found 404'         => array( 'page' ),
+	'Search Result'         => array( 'page' ),
+	'Text + Image'          => array( 'page' ),
 	// Default post types will be used for blocks not listed here.
 );
 
 // Hash the current block types array.
 $blocks_current_hash = md5( wp_json_encode( $block_types ) );
+
 
 // Get the stored hash.
 $blocks_stored_hash = get_option( 'acf_block_types_hash' );
@@ -52,7 +81,7 @@ function skel_create_block_options( string $block ): array {
 	$sanitize_block = sanitize_title( $block );
 
 	// Check if specific post types are defined for this block.
-	$post_types = $block_post_type_map[ $block ] ?? array( 'page', 'lp_course', 'lp_lesson' );
+	$post_types = $block_post_type_map[ $block ] ?? array( 'page', 'lp_course', 'lp_lesson', 'blog' );
 
 	// Define the options for the custom block.
 	$options = array(
@@ -98,15 +127,17 @@ function skel_create_block_options( string $block ): array {
 function skel_register_acf_blocks(): void {
 	global $block_types;
 
-	// Create block options for each block type.
-	$blocks = array_map( 'skel_create_block_options', $block_types );
+	if ( $block_types ) {
+		// Create block options for each block type.
+		$blocks = array_map( 'skel_create_block_options', $block_types );
 
-	// Sort blocks in ascending order.
-	sort( $blocks );
+		// Sort blocks in ascending order.
+		sort( $blocks );
 
-	// Register each block.
-	foreach ( $blocks as $block ) {
-		acf_register_block_type( $block );
+		// Register each block.
+		foreach ( $blocks as $block ) {
+			acf_register_block_type( $block );
+		}
 	}
 }
 
@@ -115,13 +146,12 @@ if ( has_action( 'acf/init' ) ) {
 }
 
 if ( $blocks_current_hash !== $blocks_stored_hash ) {
-
 	// Update the stored hash with the current hash.
 	update_option( 'acf_block_types_hash', $blocks_current_hash );
 
 	// Call the helper function with the block types array.
 	if ( 'local' === wp_get_environment_type() ) {
-		skel_create_acf_block_files( $block_types );
+		skel_create_acf_block_files( $block_types, $blocks_with_js );
 		skel_delete_unwanted_acf_block_files( $block_types );
 	}
 }

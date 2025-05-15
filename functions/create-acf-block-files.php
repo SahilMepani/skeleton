@@ -15,7 +15,7 @@
  * @param array $block_types An array of block names.
  * @return void
  */
-function skel_create_acf_block_files( array $block_types ): void {
+function skel_create_acf_block_files( array $block_types, array $blocks_with_js = array() ): void {
 	global $wp_filesystem;
 
 	// Initialize the WordPress filesystem API.
@@ -67,11 +67,12 @@ function skel_create_acf_block_files( array $block_types ): void {
 			}
 		}
 
-		// Check if the JS file already exists. If not, create it.
-		if ( ! file_exists( $js_file_path ) ) {
-			// Create the file and add a basic JS template.
-			if ( ! $wp_filesystem->put_contents( $js_file_path, '', FS_CHMOD_FILE ) ) {
-				echo 'error saving JS file!';
+		// Only create JS file if it's listed in $blocks_with_js.
+		if ( in_array( $block, $blocks_with_js, true ) ) {
+			if ( ! file_exists( $js_file_path ) ) {
+				if ( ! $wp_filesystem->put_contents( $js_file_path, '', FS_CHMOD_FILE ) ) {
+					echo 'error saving JS file!';
+				}
 			}
 		}
 

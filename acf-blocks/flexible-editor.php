@@ -43,6 +43,10 @@ if ( 'on' === $display && is_array( $flexible_editor ) ) { ?>
 		foreach ( $flexible_editor as $layout ) :
 
 			switch ( $layout['acf_fc_layout'] ) {
+				case 'spacing':
+					echo '<div role="presentation" class="spacing-block" style="margin-bottom: ' . esc_html( $layout['spacing'] ) . 'px"></div>';
+
+					break;
 				case 'text':
 					echo '<div class="text-block">' . wp_kses_post( $layout['text'] ) . '</div>';
 
@@ -78,12 +82,12 @@ if ( 'on' === $display && is_array( $flexible_editor ) ) { ?>
 					$video        = $layout['video'] ?? '';
 					$video_type   = $video['video_type'] ?? '';
 					$video_file   = esc_url( $video['video_file'] );
-					$stream_url   = esc_url( skel_extract_oembed_src( $video['stream_url'] ) );
-
+					$stream_url   = esc_url( skel_extract_oembed_src( $video['stream_url'] ) ?? '' );
 
 					echo '<div class="media-block">';
 
 					if ( 'yes' === $enable_popup ) {
+						// even if when $media is selected as image. Enable popup is Yes because that is its default value set in the ACF backend.
 						$image        = $layout['image'] ?? '';
 						$image_data   = wp_get_attachment_image_src( $image, 'w1200' );
 						$image_alt    = trim( wp_strip_all_tags( get_post_meta( $image, '_wp_attachment_image_alt', true ) ) );
@@ -167,6 +171,28 @@ if ( 'on' === $display && is_array( $flexible_editor ) ) { ?>
 
 					break;
 
+				case 'reviews':
+					$reviews = $layout['reviews'];
+
+					echo '<div class="reviews-block">';
+					if ( $reviews ) {
+						foreach ( $reviews as $review ) {
+							$quote       = $review['quote'] ?? '';
+							$name        = $review['name'] ?? '';
+							$review_html = <<<HTML
+							<div class="review">
+								<blockquote>
+									<p>{$quote}<p>
+								</blockquote>
+								<p class="name">{$name}</p>
+							</div>
+							HTML;
+							echo $review_html;
+						}
+					}
+					echo '</div>';
+
+					break;
 			}
 
 		endforeach;

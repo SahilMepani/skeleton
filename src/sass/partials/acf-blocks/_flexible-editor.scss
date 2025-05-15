@@ -85,7 +85,7 @@
 	}
 
 	.heading-block {
-		margin-bottom: rem-calc(24);
+		margin-bottom: rem-calc(16);
 	}
 
 	.checklist-block {
@@ -114,6 +114,35 @@
 					height: rem-calc(21);
 					content: '';
 				}
+			}
+		}
+	}
+
+	.reviews-block {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: rem-calc(16);
+		margin-bottom: rem-calc(32);
+
+		.review {
+			padding: rem-calc(12) rem-calc(16);
+			border: rem-calc(1) solid $grey-30;
+		}
+
+		blockquote {
+			color: $grey-100;
+			font-weight: 500;
+		}
+
+		.name {
+			color: $grey-70;
+			font-size: rem-calc(14);
+			display: flex;
+			gap: rem-calc(4);
+
+			&::before {
+				flex-shrink: 0;
+				content: '\2014';
 			}
 		}
 	}

@@ -1,17 +1,21 @@
-# START --- ✄ -----------------------:
+# SETUP --- ✄ -----------------------:
 	☐ Open Site Shell using Local
 	☐ Paste WP Run - Local.bat file into Shell
 	☐ Change the PROJECTNAME to "Your project" in WP Paste - Local.bat file
 	☐ Paste WP Paste - Local.bat file into Shell
 	☐ Undo the project name in WP Paste - Local.bat and save the file
 		☐ Setup repo
-	☐ Copy the first time connection code from Repo
-		☐ Replace the screenshot
-		☐ Create site pages and register CPT and taxonomies
-	☐ Make sure the editor style is matching the theme style. Edit block-editor-settings.php
+	☐ Set define( 'WP_DEBUG', TRUE ); // config file
+	☐ Set define( 'WP_DEBUG_LOG', TRUE ); // config file
+	☐ Change the folder name from skeleton to your theme folder in debugging.php file
+
+# START --- ✄ -----------------------:
+	☐ Add theme screenshot
+	☐ Add Favicon
 	☐ Get Google Analytics code form Client
 	☐ Get old website URL
 	☐ Get the new website pages slug
+
 
 # FINALIZE --- ✄ -----------------------:
 	☐ Load swiper first slider image as fetchpriority="high" and others as lazy

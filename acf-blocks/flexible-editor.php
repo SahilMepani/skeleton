@@ -48,7 +48,7 @@ if ( 'on' === $display && is_array( $flexible_editor ) ) { ?>
 
 					break;
 				case 'text':
-					echo '<div class="text-block">' . wp_kses_post( $layout['text'] ) . '</div>';
+					echo '<div class="text-block">' . $layout['text'] . '</div>';
 
 					break;
 

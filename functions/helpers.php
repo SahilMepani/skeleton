@@ -10,6 +10,21 @@
  */
 
 /**
+ * Retrieves the thumbnail ID for a given post.
+ *
+ * If the specified post has a featured image (thumbnail), its ID is returned.
+ * Otherwise, a default image thumbnail ID is returned.
+ *
+ * @param int $post_id The ID of the post to retrieve the thumbnail for.
+ * @return int The ID of the post thumbnail or the default thumbnail ID (2231).
+ */
+function skel_get_post_thumbnail_id( $post_id ) {
+	if ( has_post_thumbnail( $post_id ) ) {
+		return get_post_thumbnail_id( $post_id );
+	}
+	return defined( 'DEFAULT_THUMBNAIL_ID' ) ? DEFAULT_THUMBNAIL_ID : '';}
+
+/**
  * Check if the current page is the login or registration page.
  *
  * @return bool True if the current page is the login or registration page, false otherwise.
@@ -182,7 +197,7 @@ function skel_get_validate_youtube_link( string $link ): string|false {
  * @param int $limit   The maximum number of words in the excerpt.
  * @return string The customized excerpt of the specified post.
  */
-function skel_get_the_excerpt( ?int $post_id = null, int $limit = 50 ): string {
+function skel_get_the_excerpt( int $limit = 50, ?int $post_id = null ): string {
 
 	if ( 'null' === $post_id ) {
 		$post_id = get_the_ID();

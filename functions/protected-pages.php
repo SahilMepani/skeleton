@@ -19,8 +19,9 @@
  * @param int $postid The ID of the post being trashed.
  */
 function prevent_post_deletion( $postid ) {
-	// 404, search.
-	$protected_posts = array( 7, 8 ); // Array of post IDs to protect.
+	$protected_posts                                 = array();
+	defined( 'PAGE_404_ID' ) ? $protected_posts[]    = PAGE_404_ID : '';
+	defined( 'PAGE_SEARCH_ID' ) ? $protected_posts[] = PAGE_SEARCH_ID : '';
 
 	if ( in_array( $postid, $protected_posts, true ) ) {
 		// Redirect to the page list in the admin area with a protected_post flag.

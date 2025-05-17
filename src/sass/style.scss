@@ -47,21 +47,30 @@
 @import 'partials/components/content';
 @import 'partials/components/header';
 @import 'partials/components/header-menu';
-@import 'partials/components/search-form';
-@import 'partials/components/swiper-navigation';
-@import 'partials/components/social-links';
 @import 'partials/components/footer';
+
+// Template Parts
+@import 'partials/template-parts/search-form';
+@import 'partials/template-parts/swiper-navigation';
+@import 'partials/template-parts/social-links';
 
 // ACF Blocks
 @import 'partials/acf-blocks/visual-editor';
 @import 'partials/acf-blocks/search-result';
 @import 'partials/acf-blocks/flexible-editor';
 @import 'partials/acf-blocks/spacer';
-@import 'partials/acf-blocks/two-columns';
 @import 'partials/acf-blocks/not-found-404';
-@import 'partials/acf-blocks/hero-slider';
 @import 'partials/acf-blocks/faqs';
-@import 'partials/acf-blocks/logo-slider';
+@import 'partials/acf-blocks/home-hero';
+@import 'partials/acf-blocks/about-mentor';
+@import 'partials/acf-blocks/popular-course-slider';
+@import 'partials/acf-blocks/categories-list';
+@import 'partials/acf-blocks/features';
+@import 'partials/acf-blocks/reviews-slider';
+@import 'partials/acf-blocks/latest-news-slider';
+@import 'partials/acf-blocks/text-form';
+@import 'partials/acf-blocks/text-image';
+@import 'partials/acf-blocks/latest-course';
 
 // END ACF Blocks
 

@@ -1,4 +1,4 @@
-<li id="post-<?php the_ID(); ?>"<?php post_class( 'type-post--blog clearfix bg-grey' ); ?>>
+<li id="post-<?php the_ID(); ?>" <?php post_class( 'type-post--blog clearfix bg-grey' ); ?>>
 
 	<?php if ( has_post_thumbnail() ) { ?>
 	<aside class="img-block">
@@ -20,7 +20,7 @@
 				class="author"><?php echo get_the_author(); ?></span> under<?php the_category( ' / ' ); ?>
 		</div> <!-- .post-meta -->
 
-		<p class="excerpt"><?php echo esc_html( skel_get_the_excerpt( get_the_ID(), 20 ) ); ?></p>
+		<p class="excerpt"><?php echo esc_html( skel_get_the_excerpt( 20 ) ); ?></p>
 
 		<a href="<?php the_permalink(); ?>" class="more-link clear">Read More</a>
 

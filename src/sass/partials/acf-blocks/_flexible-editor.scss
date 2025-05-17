@@ -96,7 +96,7 @@
 			gap: fluid(24, 48);
 			padding: rem-calc(20) rem-calc(24);
 			column-count: 2;
-			column-rule: rem-calc(1) solid $grey-30;
+			column-rule: rem-calc(1) solid #333;
 
 			@include list-unstyled;
 
@@ -126,16 +126,16 @@
 
 		.review {
 			padding: rem-calc(12) rem-calc(16);
-			border: rem-calc(1) solid $grey-30;
+			border: rem-calc(1) solid #666;
 		}
 
 		blockquote {
-			color: $grey-100;
+			color: #222;
 			font-weight: 500;
 		}
 
 		.name {
-			color: $grey-70;
+			color: #999;
 			font-size: rem-calc(14);
 			display: flex;
 			gap: rem-calc(4);

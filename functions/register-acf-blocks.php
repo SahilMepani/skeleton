@@ -15,47 +15,28 @@ $block_types = array(
 	'Search Result',
 	'Flexible Editor',
 	'Spacer',
+	'Two Columns',
 	'Not Found 404',
+	'Hero Slider',
 	'Faqs',
-	'Home Hero',
-	'About Mentor',
-	'Popular Course Slider',
-	'Categories List',
-	'Features',
-	'Reviews Slider',
-	'Latest News Slider',
-	'Text + Form',
-	'Text + Image',
-	'Latest Course',
+	'Logo Slider',
 );
 
 /**
  * Blocks that require JavaScript files.
  */
 $blocks_with_js = array(
+	'Hero Slider',
 	'Faqs',
-	'Popular Course Slider',
-	'Reviews Slider',
-	'Latest News Slider',
+	'Logo Slider',
 );
 
 /**
  * Define allowed post types per block.
  */
 $block_post_type_map = array(
-	'Home Hero'             => array( 'page' ),
-	'Latest Course'         => array( 'page' ),
-	'About Mentor'          => array( 'page' ),
-	'Popular Course Slider' => array( 'page' ),
-	'Categories List'       => array( 'page' ),
-	'Features'              => array( 'page' ),
-	'Reviews Slider'        => array( 'page' ),
-	'Latest News Slider'    => array( 'page' ),
-	'Text + Form'           => array( 'page' ),
-	'Faqs'                  => array( 'page' ),
-	'Not Found 404'         => array( 'page' ),
-	'Search Result'         => array( 'page' ),
-	'Text + Image'          => array( 'page' ),
+	'Visual Editor' => array( 'page' ),
+	'Search Result' => array( 'page' ),
 	// Default post types will be used for blocks not listed here.
 );
 
@@ -81,7 +62,7 @@ function skel_create_block_options( string $block ): array {
 	$sanitize_block = sanitize_title( $block );
 
 	// Check if specific post types are defined for this block.
-	$post_types = $block_post_type_map[ $block ] ?? array( 'page', 'lp_course', 'lp_lesson', 'blog' );
+	$post_types = $block_post_type_map[ $block ] ?? array( 'page' );
 
 	// Define the options for the custom block.
 	$options = array(

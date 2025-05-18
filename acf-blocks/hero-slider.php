@@ -1,6 +1,6 @@
 <?php
 /**
- * Categories List ACF Block
+ * Hero Slider ACF Block
  *
  * @package Skeleton
  * @subpackage ACF
@@ -34,7 +34,7 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 ?>
 
 <section
-	class="categories-list-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
+	class="hero-slider-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
 	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
 	id="<?php echo esc_attr( $unique_id ); ?>">
 

@@ -16,6 +16,9 @@
 			return;
 		}
 
+		// Determine if we are activating or deactivating
+		const isNowActive = !element.classList.contains('js-active');
+
 		// 1. Deactivate other items in the same group
 		if (toggleGroup) {
 			document
@@ -23,12 +26,23 @@
 				.forEach(groupElement => {
 					if (groupElement !== element) {
 						groupElement.classList.remove('js-active');
+						groupElement.setAttribute('aria-expanded', 'false');
 					}
 				});
 		}
 
-		// 2. Toggle js-active on clicked element
-		element.classList.toggle('js-active');
+		// 2. Toggle all elements with the same data-toggle-click
+		if (toggleClick) {
+			document
+				.querySelectorAll(`[data-toggle-click="${toggleClick}"]`)
+				.forEach(toggleElement => {
+					toggleElement.classList.toggle('js-active', isNowActive);
+					toggleElement.setAttribute(
+						'aria-expanded',
+						isNowActive ? 'true' : 'false'
+					);
+				});
+		}
 
 		// 3. Toggle corresponding data-toggle-link elements
 		if (toggleClick) {
@@ -47,18 +61,24 @@
 							.forEach(sibling => {
 								if (sibling !== linkedElement) {
 									sibling.classList.remove('js-active');
+									sibling.setAttribute('aria-hidden', 'true');
 								}
 							});
 					}
 
-					// Activate linked element
-					linkedElement.classList.toggle('js-active');
+					// Apply new state
+					linkedElement.classList.toggle('js-active', isNowActive);
+					linkedElement.setAttribute(
+						'aria-hidden',
+						isNowActive ? 'false' : 'true'
+					);
 				});
 		}
 	}
 
 	document.querySelectorAll('[data-toggle-click]').forEach(element => {
-		element.addEventListener('click', event => {
+		element.addEventListener('click', function (event) {
+			event.preventDefault(); // prevent form submission or anchor behavior
 			handleClickToggle(event.currentTarget);
 		});
 	});

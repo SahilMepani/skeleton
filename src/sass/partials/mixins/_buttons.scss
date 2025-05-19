@@ -43,6 +43,7 @@
 		fill: currentcolor;
 		width: rem-calc(24);
 		height: rem-calc(24);
+		flex-shrink: 0;
 		margin-inline-start: rem-calc(20);
 	}
 }

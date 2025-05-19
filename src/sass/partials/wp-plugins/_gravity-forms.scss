@@ -162,12 +162,22 @@ div.gform_wrapper.gravity-theme {
 					padding: rem-calc(5);
 					padding-left: 0;
 
+					@include media-breakpoint-up(sm) {
+						display: flex;
+						gap: rem-calc(2);
+
+						&::before {
+							margin-bottom: 0;
+						}
+					}
+
 					&::before {
 						display: block;
 						flex-shrink: 0;
 						width: rem-calc(20);
 						height: rem-calc(20);
 						margin-right: rem-calc(12);
+						margin-bottom: rem-calc(4);
 						border: rem-calc(1) solid #ccc;
 						border-radius: rem-calc(4);
 						content: '';

@@ -7,6 +7,8 @@
 
 get_header();
 
-skel_insert_page( 222, true );
+if ( defined( 'PAGE_SEARCH_ID' ) ) {
+	skel_insert_page( PAGE_SEARCH_ID, true );
+}
 
 get_footer();

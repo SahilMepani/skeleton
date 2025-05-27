@@ -13,33 +13,6 @@
 // Disable the sitemaps feature - /wp-sitemap.xml.
 add_filter( 'wp_sitemaps_enabled', '__return_false' );
 
-/**
- * Disable the Customizer page and Theme Editor in the WordPress admin.
- *
- * This function removes the Customizer and Theme Editor submenu pages from the admin menu.
- *
- * @return void
- */
-add_action(
-	'admin_menu',
-	function () {
-		// Check if REQUEST_URI is set before using it.
-		if ( isset( $_SERVER['REQUEST_URI'] ) ) {
-			// Build the customizer URL to remove.
-			$customizer_url = add_query_arg(
-				'return',
-				rawurlencode( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ),
-				'customize.php'
-			);
-
-			// Remove the Customizer and Theme Editor submenu pages.
-			remove_submenu_page( 'themes.php', $customizer_url );
-			remove_submenu_page( 'themes.php', 'theme-editor.php' );
-		}
-	},
-	999
-);
-
 
 /**
  * Filter callback to set JPEG image quality to 100.

@@ -22,7 +22,7 @@
 <body <?php body_class( 'site-wrapper' ); ?>>
 	<?php wp_body_open(); ?>
 	<div class="container">
-		<div class=""><?php esc_html_e( 'Base Colors', 'text-domain' ); ?></div>
+		<div class=""><?php esc_html_e( 'Base Colors', 'skel' ); ?></div>
 		<hr class="">
 		<ul class="">
 			<?php foreach ( array( 'blue', 'indigo', 'purple', 'pink', 'red' ) as $color ) : ?>
@@ -37,20 +37,20 @@
 		<div class="row row-cols-2 gx-5 mb-10">
 			<!-- Typography section omitted for brevity -->
 		</div>
-		<div class="fs-4 mb-1 text-gray-600 fw-bold"><?php esc_html_e( 'Buttons with Hover', 'text-domain' ); ?></div>
+		<div class="fs-4 mb-1 text-gray-600 fw-bold"><?php esc_html_e( 'Buttons with Hover', 'skel' ); ?></div>
 		<hr class="mb-4">
 		<!-- Button styles section omitted for brevity -->
-		<div class="fs-4 mb-1 text-gray-600 fw-bold"><?php esc_html_e( 'Alerts', 'text-domain' ); ?></div>
+		<div class="fs-4 mb-1 text-gray-600 fw-bold"><?php esc_html_e( 'Alerts', 'skel' ); ?></div>
 		<hr class="mb-4">
 		<div class="mb-6">
 			<!-- Alert section omitted for brevity -->
 		</div>
-		<div class="fs-4 mb-1 text-gray-600 fw-bold"><?php esc_html_e( 'Table', 'text-domain' ); ?></div>
+		<div class="fs-4 mb-1 text-gray-600 fw-bold"><?php esc_html_e( 'Table', 'skel' ); ?></div>
 		<hr class="mb-4">
 		<div class="row mb-5">
 			<!-- Table section omitted for brevity -->
 		</div>
-		<h4><?php esc_html_e( 'Form', 'text-domain' ); ?></h4>
+		<h4><?php esc_html_e( 'Form', 'skel' ); ?></h4>
 		<?php gravity_form( 1, false, false, false, null, true, 10 ); ?>
 	</div>
 	<?php get_footer(); ?>

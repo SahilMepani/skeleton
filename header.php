@@ -62,7 +62,7 @@
 
 			<nav class="header-nav" role="navigation" aria-label="<?php esc_attr_e( 'primary navigation', 'skel' ); ?>">
 
-				<button class="header-nav-close" aria-label="<?php esc_attr_e( 'close primary navigation' ); ?>"
+				<button class="header-nav-close" aria-label="<?php esc_attr_e( 'close primary navigation', 'skel' ); ?>"
 					aria-haspopup="true" aria-expanded="true" aria-controls="siteMenu">
 				</button>
 

@@ -52,6 +52,8 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 
 	@include media-breakpoint-down(lg) {
 		background-color: $mobile-sidebar-bg-color;
+		inline-size: 100%;
+		block-size: 100vh;
 		padding: rem-calc(90) 0 rem-calc(40);
 		position: fixed;
 		top: 0;
@@ -61,8 +63,6 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 		transform: translateX(-100%);
 		transition: 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946);
 		overflow: auto;
-		block-size: 100vh;
-		inline-size: 100%;
 		overscroll-behavior: contain; // avoid scroll chaining
 
 		&.js-active {
@@ -119,11 +119,11 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 
 				span {
 					background: $mobile-parent-menu-dropdown-bg-color;
+					inline-size: rem-calc(45);
 					position: absolute;
 					top: 0;
 					right: 0;
 					bottom: 0;
-					inline-size: rem-calc(45);
 
 					&.js-active {
 						&::after {
@@ -211,7 +211,7 @@ $desktop-parent-menu-dropdown-icon-border: rem-calc(5);
 $desktop-parent-menu-space-between-text-and-arrow: rem-calc(10);
 
 /* ----------  Sub Menu  ---------- */
-$desktop-sub-menu-inline-size: rem-calc(250);
+$desktop-sub-menu-width: rem-calc(250);
 $desktop-sub-menu-link-bg-color: black;
 $desktop-sub-menu-link-color: #fff;
 $desktop-sub-menu-link-hover-bg-color: orange;
@@ -315,6 +315,7 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 	@include media-breakpoint-up(lg) {
 		.sub-menu {
 			visibility: hidden;
+			inline-size: $desktop-sub-menu-width;
 			position: absolute;
 			z-index: -1;
 			opacity: 0;
@@ -322,7 +323,6 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 				250ms color,
 				250ms background-color,
 				opacity 0.15s;
-			inline-size: $desktop-sub-menu-width;
 			pointer-events: none;
 
 			> li {
@@ -370,6 +370,7 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 					margin-block-start: rem-calc(-4);
 					border: $desktop-parent-menu-dropdown-icon-border solid
 						transparent;
+					border-inline-start-color: $desktop-parent-menu-dropdown-icon-hover-color;
 					position: absolute;
 					top: $desktop-parent-menu-item-padding-inline;
 					right: $desktop-parent-menu-item-padding-block;
@@ -377,18 +378,17 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 						250ms color,
 						250ms background-color;
 					content: '';
-					border-inline-start-color: $desktop-parent-menu-dropdown-icon-hover-color;
 				}
 			}
 		}
 
 		// second sub menu
 		.sub-menu .sub-menu {
-			top: 0;
-			left: $desktop-sub-menu-width;
 			inline-size: fit-content;
 			min-inline-size: $desktop-sub-menu-width;
 			max-inline-size: 40vw;
+			top: 0;
+			left: $desktop-sub-menu-width;
 		}
 	}
 }

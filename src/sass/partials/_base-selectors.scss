@@ -8,12 +8,12 @@
 
 	@each $breakpoint, $container-max-width in $container-max-widths {
 		@include media-breakpoint-up($breakpoint) {
-			$half-inline-size: calc(
+			$half-width: calc(
 				(#{$container-max-width} * 0.5) - #{$container-padding-x}
 			);
 
 			--container-max-inline-size: #{$container-max-width};
-			--container-half-inline-size: #{$half-width};
+			--container-half-width: #{$half-width};
 			--container-margin-x: calc(
 				((100% - #{$container-max-width}) * 0.5) -
 					#{$container-padding-x}
@@ -222,10 +222,10 @@ form {
 	}
 
 	fieldset {
+		min-inline-size: 0;
 		padding: 0;
 		margin: 0;
 		border: 0;
-		min-inline-size: 0;
 	}
 
 	legend {

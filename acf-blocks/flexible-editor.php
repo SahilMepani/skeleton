@@ -8,7 +8,7 @@
 
 // Set thumbnail preview in backend.
 if ( isset( $block['data']['preview_image'] ) ) {
-	echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
+	echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '" style="inline-size:100%; block-size:auto;">';
 	return; // required.
 }
 
@@ -44,7 +44,7 @@ if ( 'on' === $display && is_array( $flexible_editor ) ) { ?>
 
 			switch ( $layout['acf_fc_layout'] ) {
 				case 'spacing':
-					echo '<div role="presentation" class="spacing-block" style="margin-bottom: ' . esc_html( $layout['spacing'] ) . 'px"></div>';
+					echo '<div role="presentation" class="spacing-block" style="margin-block-end: ' . esc_html( $layout['spacing'] ) . 'px"></div>';
 
 					break;
 				case 'text':

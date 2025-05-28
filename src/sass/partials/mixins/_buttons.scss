@@ -5,7 +5,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: fit-content;
+	inline-size: fit-content;
+	border: 0;
 	span {
 		text-box: trim-both cap alphabetic;
 	}
@@ -32,7 +33,7 @@
 	padding: 0;
 	margin: 0;
 	border: 0;
-	width: unset;
+	inline-size: unset;
 	cursor: pointer;
 }
 
@@ -41,8 +42,8 @@
 
 	svg {
 		fill: currentcolor;
-		width: rem-calc(24);
-		height: rem-calc(24);
+		inline-size: rem-calc(24);
+		block-size: rem-calc(24);
 		flex-shrink: 0;
 		margin-inline-start: rem-calc(20);
 	}
@@ -53,16 +54,16 @@
 // }
 
 @mixin btn-sm {
-	height: rem-calc(36);
+	block-size: rem-calc(36);
 	padding-inline: rem-calc(20);
 }
 
 @mixin btn-md {
-	height: rem-calc(44);
+	block-size: rem-calc(44);
 	padding-inline: rem-calc(20);
 }
 
 @mixin btn-lg {
-	height: rem-calc(60);
+	block-size: rem-calc(60);
 	padding-inline: rem-calc(20);
 }

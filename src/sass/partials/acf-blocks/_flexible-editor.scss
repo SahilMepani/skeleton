@@ -1,15 +1,15 @@
 .flexible-editor-section {
 	.text-block {
-		margin-bottom: rem-calc(24);
+		margin-block-end: rem-calc(24);
 	}
 
 	.media-block {
 		&:not(:first-child) {
-			margin-top: rem-calc(32);
+			margin-block-start: rem-calc(32);
 		}
 
 		&:not(:last-child) {
-			margin-bottom: rem-calc(32);
+			margin-block-end: rem-calc(32);
 		}
 
 		position: relative;
@@ -22,8 +22,8 @@
 
 			svg {
 				color: $primary;
-				max-width: fluid(44, 80);
 				opacity: 0.8;
+				max-inline-size: fluid(44, 80);
 			}
 
 			&:hover,
@@ -36,13 +36,13 @@
 
 		.dialog {
 			background-color: #333;
-			max-width: 75%;
 			padding: 0;
 			margin: auto;
 			border: 0;
 			z-index: 10;
 			transition: 0.25s ease-out;
 			overflow: hidden;
+			max-inline-size: 75%;
 			user-select: none;
 
 			// overflow: hidden;
@@ -58,34 +58,34 @@
 				display: block;
 				align-items: center;
 				justify-content: center;
-				width: rem-calc(40);
-				height: rem-calc(40);
 				border-radius: rem-calc(5);
 				position: absolute;
 				inset-inline-end: rem-calc(15);
 				inset-block-start: rem-calc(15);
 				z-index: 1;
+				block-size: rem-calc(40);
+				inline-size: rem-calc(40);
 
 				svg {
-					width: rem-calc(24);
+					inline-size: rem-calc(24);
 				}
 			}
 
 			video,
 			iframe {
-				width: 75vw;
+				inline-size: 75vw;
 			}
 		}
 
 		video,
 		iframe {
 			aspect-ratio: 16/9;
-			width: 100%;
+			inline-size: 100%;
 		}
 	}
 
 	.heading-block {
-		margin-bottom: rem-calc(16);
+		margin-block-end: rem-calc(16);
 	}
 
 	.checklist-block {
@@ -103,16 +103,16 @@
 			> li {
 				display: flex;
 				gap: rem-calc(12);
-				margin-bottom: rem-calc(16);
+				margin-block-end: rem-calc(16);
 				position: relative;
 
 				&::before {
 					background: url('images/check.svg') no-repeat center;
 					display: block;
 					flex-shrink: 0;
-					width: rem-calc(20);
-					height: rem-calc(21);
 					content: '';
+					block-size: rem-calc(21);
+					inline-size: rem-calc(20);
 				}
 			}
 		}
@@ -122,7 +122,7 @@
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		gap: rem-calc(16);
-		margin-bottom: rem-calc(32);
+		margin-block-end: rem-calc(32);
 
 		.review {
 			padding: rem-calc(12) rem-calc(16);

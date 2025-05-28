@@ -28,7 +28,7 @@ div.gform_wrapper.gravity-theme {
 		}
 
 		.gfield {
-			margin-bottom: rem-calc(20);
+			margin-block-end: rem-calc(20);
 
 			::placeholder {
 				color: #000;
@@ -55,7 +55,7 @@ div.gform_wrapper.gravity-theme {
 		}
 
 		select {
-			height: rem-calc(49);
+			block-size: rem-calc(49);
 		}
 
 		.chosen-choices {
@@ -75,7 +75,7 @@ div.gform_wrapper.gravity-theme {
 
 			// grid-template-columns: repeat(3, 1fr);
 			gap: fluid(10, 20);
-			margin-top: rem-calc(10);
+			margin-block-start: rem-calc(10);
 
 			.gchoice {
 				display: flex;
@@ -102,17 +102,17 @@ div.gform_wrapper.gravity-theme {
 					display: flex;
 					flex-shrink: 0;
 					gap: rem-calc(12);
-					width: 100%;
 					padding: rem-calc(5);
-					padding-left: 0;
+					padding-inline-start: 0;
+					inline-size: 100%;
 
 					&::before {
 						display: block;
-						width: rem-calc(20);
-						height: rem-calc(20);
 						border: rem-calc(1) solid #ccc;
 						border-radius: rem-calc(4);
 						content: '';
+						block-size: rem-calc(20);
+						inline-size: rem-calc(20);
 					}
 				}
 			}
@@ -140,7 +140,7 @@ div.gform_wrapper.gravity-theme {
 
 				input {
 					display: none;
-					margin-top: rem-calc(2);
+					margin-block-start: rem-calc(2);
 
 					&:checked + label {
 						&::before {
@@ -160,27 +160,27 @@ div.gform_wrapper.gravity-theme {
 					display: flex;
 					gap: rem-calc(2);
 					padding: rem-calc(5);
-					padding-left: 0;
+					padding-inline-start: 0;
 
 					@include media-breakpoint-up(sm) {
 						display: flex;
 						gap: rem-calc(2);
 
 						&::before {
-							margin-bottom: 0;
+							margin-block-end: 0;
 						}
 					}
 
 					&::before {
 						display: block;
 						flex-shrink: 0;
-						width: rem-calc(20);
-						height: rem-calc(20);
-						margin-right: rem-calc(12);
-						margin-bottom: rem-calc(4);
+						margin-inline-end: rem-calc(12);
+						margin-block-end: rem-calc(4);
 						border: rem-calc(1) solid #ccc;
 						border-radius: rem-calc(4);
 						content: '';
+						block-size: rem-calc(20);
+						inline-size: rem-calc(20);
 					}
 
 					a {
@@ -225,8 +225,8 @@ div.gform_wrapper.gravity-theme {
 	font-family: $heading-font-family;
 	font-size: fluid(24, 36);
 	text-align: center;
-	max-width: rem-calc(700);
 	padding: rem-calc(40);
 	margin: 0 auto;
 	border: rem-calc(2) solid #000;
+	max-inline-size: rem-calc(700);
 }

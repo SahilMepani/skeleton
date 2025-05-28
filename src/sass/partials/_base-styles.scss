@@ -25,8 +25,8 @@
 }
 
 body:has([data-modal-backdrop].js-active) {
-	height: 100svh;
 	overflow: hidden;
+	block-size: 100svh;
 }
 
 select {
@@ -44,5 +44,5 @@ option:first-child {
 // .container-small {
 // 	@extend .container;
 
-// 	max-width: rem-calc(1100);
+// 	max-inline-size: rem-calc(1100);
 // }

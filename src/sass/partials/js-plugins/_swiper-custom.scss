@@ -1,6 +1,6 @@
 // Make all slides equal height
 .swiper-slide {
-	height: auto;
+	block-size: auto;
 }
 
 /* ----------  Swiper Dot Pagination  ---------- */
@@ -14,8 +14,8 @@
 		all: unset; // overwrite default from swiper
 		background-color: rgb(255 255 255 / 40%);
 		display: inline-block;
-		width: rem-calc(10);
-		height: rem-calc(10);
+		inline-size: rem-calc(10);
+		block-size: rem-calc(10);
 		margin-inline-start: rem-calc(10);
 		border-radius: 50%;
 		position: relative;
@@ -32,8 +32,8 @@
 //   text-align: center;
 //   color: transparent;
 //   font: 0/0 a;
-//   width: 40px;
-//   height: 40px;
+//   inline-size: 40px;
+//   block-size: 40px;
 //   float: left;
 //   border: 1px solid #ccc;
 //   &.swiper-button-disabled {

@@ -20,8 +20,8 @@ $body-font-family:
 /* stylelint-enable scss/operator-no-newline-after */
 $heading-font-family: inherit;
 $paragraph-line-height: 1.5;
-$paragraph-margin-bottom: rem-calc(32);
-$heading-margin-bottom: rem-calc(32);
+$paragraph-margin-block-end: rem-calc(32);
+$heading-margin-block-end: rem-calc(32);
 $headings: h1, h2, h3, h4, h5, h6;
 
 // Typography styles.
@@ -111,7 +111,7 @@ $typography-styles: (
 		line-height: inherit;
 
 		&:not(:last-child) {
-			margin-bottom: $paragraph-margin-bottom;
+			margin-block-end: $paragraph-margin-block-end;
 		}
 	}
 }
@@ -142,10 +142,11 @@ $typography-styles: (
 @each $heading in $headings {
 	#{$heading} {
 		color: $heading-color;
+
 		@include font($heading);
 
 		&:not(:last-child) {
-			margin-bottom: $heading-margin-bottom;
+			margin-block-end: $heading-margin-block-end;
 		}
 	}
 }

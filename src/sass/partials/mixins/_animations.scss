@@ -30,7 +30,7 @@
 
 	&::before {
 		background-color: $line-color;
-		height: $line-height;
+		block-size: $line-height;
 		position: absolute;
 		right: 0;
 		bottom: 0;
@@ -41,7 +41,7 @@
 
 	&::after {
 		background-color: $hover-line-color;
-		height: $line-height;
+		block-size: $line-height;
 		position: absolute;
 		right: 0;
 		bottom: 0;
@@ -80,7 +80,7 @@
 
 	&::before {
 		background-color: $line-color;
-		height: $line-height;
+		block-size: $line-height;
 		position: absolute;
 		right: 0;
 		bottom: 0;
@@ -94,8 +94,8 @@
 
 	&::after {
 		// pseudo padding at bottom
-		width: 100%;
-		height: $pseudo-padding;
+		inline-size: 100%;
+		block-size: $pseudo-padding;
 		position: absolute;
 		left: 0;
 		bottom: $pseudo-padding * -1;

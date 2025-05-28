@@ -17,7 +17,7 @@ $gf-field-label-font-size: rem-calc(14px);
 	letter-spacing: rem-calc(2px);
 	text-transform: uppercase;
 	display: block;
-	margin-bottom: rem-calc(10px);
+	margin-block-end: rem-calc(10px);
 
 	// required field indicator (span)
 	.gfield_required {
@@ -35,7 +35,7 @@ $gf-field-label-font-size: rem-calc(14px);
 
 // contains the form title and description (div)
 .gform_heading {
-	margin-bottom: rem-calc(15px);
+	margin-block-end: rem-calc(15px);
 }
 
 .gform_title {
@@ -56,11 +56,11 @@ $gf-field-label-font-size: rem-calc(14px);
 
 	// individual list items containing each form element (li)
 	.gfield {
-		margin-bottom: $gf-field-mb;
+		margin-block-end: $gf-field-mb;
 
 		ul {
+			margin-block-start: 0;
 			margin-inline-start: 0;
-			margin-top: 0;
 		}
 
 		// wraps the actual form element inside the containing list item (div)
@@ -76,14 +76,13 @@ $gf-field-label-font-size: rem-calc(14px);
 
 		&.field_description_above {
 			.gfield_description {
-				margin-top: rem-calc(-10px); //compensate label bottom margin
-				margin-bottom: rem-calc(10px);
+				margin-block: rem-calc(-10px) rem-calc(10px); //compensate label bottom margin
 			}
 		}
 
 		&.field_description_below {
 			.gfield_description {
-				// margin-top: rem-calc( 5px );
+				// margin-block-start: rem-calc( 5px );
 			}
 		}
 
@@ -98,7 +97,7 @@ $gf-field-label-font-size: rem-calc(14px);
 			span {
 				display: inline-block;
 				margin-inline-end: rem-calc(10px);
-				margin-bottom: rem-calc(5px);
+				margin-block-end: rem-calc(5px);
 			}
 
 			//sub labels
@@ -112,13 +111,13 @@ $gf-field-label-font-size: rem-calc(14px);
 		&.field_sublabel_above {
 			.ginput_complex {
 				label {
-					margin-bottom: rem-calc(2px);
+					margin-block-end: rem-calc(2px);
 				}
 
 				//if any field has sublable the dropdown gets shifted below because its using top: 50%; and sublable is included in the height.
 				span {
 					&::after {
-						margin-top: rem-calc(12px);
+						margin-block-start: rem-calc(12px);
 					}
 				}
 			}
@@ -133,7 +132,7 @@ $gf-field-label-font-size: rem-calc(14px);
 				//if any field has sublable the dropdown gets shifted below because its using top: 50%; and sublable is included in the height.
 				span {
 					&::after {
-						margin-top: rem-calc(-12px);
+						margin-block-start: rem-calc(-12px);
 					}
 				}
 			}
@@ -149,7 +148,7 @@ $gf-field-label-font-size: rem-calc(14px);
 	.ginput_counter {
 		color: $gf-field-description-color;
 		font-size: $gf-field-description-font-size;
-		margin-top: rem-calc(2px);
+		margin-block-start: rem-calc(2px);
 	}
 
 	.wp-editor-container .ginput_counter {
@@ -162,35 +161,34 @@ $gf-field-label-font-size: rem-calc(14px);
 =============================== */
 .gfield.gsection {
 	padding-block-start: rem-calc(40px);
-	margin-top: rem-calc(50px);
-	margin-bottom: rem-calc(50px);
+	margin-block: rem-calc(50px);
 	border-top: rem-calc(1px) solid rgba(#000, 0.2);
 
 	&:first-child {
 		padding-block-start: 0;
-		margin-top: 0;
+		margin-block-start: 0;
 		border-top: none;
 	}
 }
 
 .gsection_title {
 	padding-block-end: rem-calc(15px);
-	margin-bottom: 0;
+	margin-block-end: 0;
 	position: relative;
 
 	&::before {
 		background-color: red;
-		width: rem-calc(45px);
-		height: rem-calc(5px);
 		position: absolute;
 		bottom: 0;
 		left: 0;
 		content: '';
+		block-size: rem-calc(5px);
+		inline-size: rem-calc(45px);
 	}
 }
 
 .gsection_description {
-	margin-top: rem-calc(15px);
+	margin-block-start: rem-calc(15px);
 }
 
 // Name
@@ -200,7 +198,7 @@ $gf-field-label-font-size: rem-calc(14px);
 }
 
 .name_suffix {
-	max-width: rem-calc(100px);
+	max-inline-size: rem-calc(100px);
 }
 
 // Radio and checkbox
@@ -209,10 +207,10 @@ $gf-field-label-font-size: rem-calc(14px);
 	overflow: hidden;
 
 	> li {
-		margin-bottom: rem-calc(10px);
+		margin-block-end: rem-calc(10px);
 
 		&:last-child {
-			margin-bottom: 0;
+			margin-block-end: 0;
 		}
 	}
 }
@@ -220,7 +218,7 @@ $gf-field-label-font-size: rem-calc(14px);
 .gfield_radio {
 	input[type='text'] {
 		// other input
-		min-width: auto;
+		min-inline-size: auto;
 	}
 }
 
@@ -229,14 +227,16 @@ $gf-field-label-font-size: rem-calc(14px);
 	.ginput_container_radio {
 		//other choice
 		input[type='text'] {
-			padding-block: rem-calc(10px) rem-calc(10px); //same as padding for gf-list-enhanced //same as padding for gf-list-enhanced
+			padding-block: rem-calc(
+				10px
+			); //same as padding for gf-list-enhanced //same as padding for gf-list-enhanced
 		}
 
 		//radio
 		input[type='radio'][value='gf_other_choice'] {
-			width: 0;
-			height: 0;
 			position: absolute;
+			block-size: 0;
+			inline-size: 0;
 		}
 
 		label {
@@ -250,7 +250,7 @@ $gf-field-label-font-size: rem-calc(14px);
 	@include custom-select-block;
 
 	select {
-		width: 100%; //important make the dropdown icon sit inside the select
+		inline-size: 100%; //important make the dropdown icon sit inside the select
 	}
 
 	.gf-enhanced-select & {
@@ -270,6 +270,7 @@ $gf-field-label-font-size: rem-calc(14px);
 	option {
 		padding: rem-calc(10px);
 	}
+
 	@include media-breakpoint-up(md) {
 		option {
 			padding: rem-calc(10px);
@@ -297,10 +298,11 @@ $gf-field-label-font-size: rem-calc(14px);
 		text-decoration: none;
 		white-space: nowrap;
 		display: block;
-		width: 100%;
 		margin: 0;
 		position: relative;
+		inline-size: 100%;
 		cursor: pointer;
+
 		@include input-text;
 
 		// select value
@@ -312,21 +314,21 @@ $gf-field-label-font-size: rem-calc(14px);
 
 		// contain the dropdown icon
 		div {
-			height: 100%;
 			position: absolute;
 			top: 0;
 			right: 0;
+			block-size: 100%;
 		}
 	}
 
 	// contains the entire dropdown
 	.chosen-drop {
 		display: none;
-		width: 100%;
 		position: absolute;
 		top: 100%;
 		left: 0;
 		z-index: 99;
+		inline-size: 100%;
 
 		.chosen-search {
 			white-space: nowrap;
@@ -380,12 +382,12 @@ $gf-field-label-font-size: rem-calc(14px);
 		// contain the dropdown icon
 		div {
 			//display: none; //avoid double dropdown icons. First one is called standard select.
-			width: rem-calc(50px);
+			inline-size: rem-calc(50px);
 
 			// dropdown icon
 			b {
+				margin-block-start: rem-calc(5px);
 				margin-inline-start: rem-calc(-5px);
-				margin-top: rem-calc(5px);
 				position: absolute;
 				top: 50%;
 				left: 50%;
@@ -412,15 +414,15 @@ $gf-field-label-font-size: rem-calc(14px);
 	//contains the entire dropdown
 	.chosen-drop {
 		background-color: #fafafa;
-		margin-top: rem-calc(-1px);
+		margin-block-start: rem-calc(-1px);
 
-		// min-width: $input_min_width;
+		// min-inline-size: $input_min_width;
 		border: rem-calc(1px) solid rgb(150 150 150 / 70%);
 		border-top: none;
 
 		.chosen-results {
-			max-height: rem-calc(190px);
 			padding: rem-calc(4px);
+			max-block-size: rem-calc(190px);
 
 			li {
 				line-height: 1.2;
@@ -444,16 +446,17 @@ $gf-field-label-font-size: rem-calc(14px);
 		//   font-size: rem-calc( 21 );
 		//   content: $i-search;
 		//   right: rem-calc(15px);
-		//   margin-top: rem-calc(-10px);
+		//   margin-block-start: rem-calc(-10px);
 		// }
 		input {
-			width: 100%;
-			min-width: auto; //overwrite default min-width
 			padding: rem-calc(10px) rem-calc(35px) rem-calc(10px) rem-calc(10px);
+			inline-size: 100%;
+			min-inline-size: auto; //overwrite default min-width
 
 			// border: $input_focus_border;
 		}
 	}
+
 	@include media-breakpoint-down(md) {
 		// iOS fix, chosen plugin not used by default
 		.chosen-single {
@@ -474,10 +477,10 @@ $gf-field-label-font-size: rem-calc(14px);
 			font-size: rem-calc(16px);
 			letter-spacing: rem-calc(1px);
 			text-transform: capitalize;
-			width: 100%;
-			max-width: 100%;
-			padding-inline: rem-calc(15px) rem-calc(15px);
+			padding-inline: rem-calc(15px);
 			border: $input-border-width solid $input-border-color;
+			inline-size: 100%;
+			max-inline-size: 100%;
 		}
 	}
 } // gfrom-wrapper
@@ -487,7 +490,7 @@ $gf-field-label-font-size: rem-calc(14px);
 	.chosen-choices {
 		// input container (li)
 		.search-field {
-			margin-bottom: 0;
+			margin-block-end: 0;
 			position: relative;
 
 			// dropdown icon
@@ -503,7 +506,7 @@ $gf-field-label-font-size: rem-calc(14px);
 			//   transform: translateY(-50%);
 			// }
 			input {
-				width: 100% !important; //overwrite inline style
+				inline-size: 100% !important; //overwrite inline style
 			}
 		}
 
@@ -511,9 +514,10 @@ $gf-field-label-font-size: rem-calc(14px);
 		.search-choice {
 			background-color: #f5f5f5;
 			padding: rem-calc(5px) rem-calc(10px);
-			margin-bottom: rem-calc(5px);
+			margin-block-end: rem-calc(5px);
 			border: rem-calc(1px) solid #e8e8e8;
 			position: relative;
+
 			@include media-breakpoint-up(md) {
 				// padding: rem-calc( 10px ) $input_py_md;
 			}
@@ -523,12 +527,12 @@ $gf-field-label-font-size: rem-calc(14px);
 		.search-choice-close {
 			text-align: center;
 			display: block;
-			width: rem-calc(20px);
-			height: rem-calc(20px);
 			position: absolute;
 			top: 50%;
 			right: rem-calc(10px);
 			transform: translateY(-50%);
+			block-size: rem-calc(20px);
+			inline-size: rem-calc(20px);
 			cursor: pointer;
 
 			&:hover {
@@ -572,13 +576,13 @@ $gf-field-label-font-size: rem-calc(14px);
 
 		input[type='text'],
 		input[type='number'] {
-			width: rem-calc(100px) !important; // overwrite
-			min-width: auto; //overwrite default
+			inline-size: rem-calc(100px) !important; // overwrite
+			min-inline-size: auto; //overwrite default
 		}
 
 		select {
-			width: auto;
-			min-width: auto; // overwrite default
+			inline-size: auto;
+			min-inline-size: auto; // overwrite default
 		}
 	}
 }
@@ -598,7 +602,7 @@ $gf-field-label-font-size: rem-calc(14px);
 	position: relative;
 
 	input[type='text'] {
-		width: 100%; //so the icon stays on top of it
+		inline-size: 100%; //so the icon stays on top of it
 	}
 
 	// &:before {
@@ -615,11 +619,11 @@ $gf-field-label-font-size: rem-calc(14px);
 // Contain entire calendar
 .datepicker-container {
 	background-color: #fff;
-	width: rem-calc(300px);
-	max-width: 100%;
 	padding: rem-calc(5px);
 	border: rem-calc(1px) solid rgba(#000, 0.2);
 	position: absolute;
+	inline-size: rem-calc(300px);
+	max-inline-size: 100%;
 }
 
 .datepicker-panel[data-view*='years'] {
@@ -629,7 +633,7 @@ $gf-field-label-font-size: rem-calc(14px);
 	}
 
 	[data-view*='prev'] {
-		width: rem-calc(50px);
+		inline-size: rem-calc(50px);
 	}
 
 	[data-view*='current'] {
@@ -637,7 +641,7 @@ $gf-field-label-font-size: rem-calc(14px);
 	}
 
 	[data-view*='next'] {
-		width: rem-calc(50px);
+		inline-size: rem-calc(50px);
 	}
 }
 
@@ -654,11 +658,11 @@ $gf-field-label-font-size: rem-calc(14px);
 
 	// months & years
 	select {
-		width: 49%;
-		min-width: auto;
 		padding: rem-calc(10px) rem-calc(12px);
-		margin: 0 0 rem-calc(5px) 0;
+		margin: 0 0 rem-calc(5px);
 		border-color: #ccc;
+		inline-size: 49%;
+		min-inline-size: auto;
 	}
 
 	.ui-datepicker-month {
@@ -721,6 +725,7 @@ table.ui-datepicker-calendar {
 		background-position:
 			calc(100% - 3.2rem) calc(50% - 1.5rem),
 			calc(100% - 2.5rem) calc(50% - 1.5rem);
+
 		@include custom-select-block;
 	}
 }
@@ -730,7 +735,7 @@ table.ui-datepicker-calendar {
 	.gf-address-col-3 {
 		// contain all the input & label
 		.ginput_complex {
-			margin-inline: rem-calc(-10px) rem-calc(-10px);
+			margin-inline: rem-calc(-10px);
 
 			.address_country {
 				// dropdown icon
@@ -748,7 +753,7 @@ table.ui-datepicker-calendar {
 
 			input,
 			select {
-				width: 100%;
+				inline-size: 100%;
 			}
 		}
 	}
@@ -756,14 +761,14 @@ table.ui-datepicker-calendar {
 	// 2 col
 	.gf-address-col-2 {
 		.ginput_complex span {
-			width: 50%;
+			inline-size: 50%;
 		}
 	}
 
 	// 3 col
 	.gf-address-col-3 {
 		.ginput_complex span {
-			width: 33.333333%;
+			inline-size: 33.333333%;
 		}
 	}
 }
@@ -771,15 +776,15 @@ table.ui-datepicker-calendar {
 // File upload
 
 // .gf-upload {
-// 	margin-top: rem-calc(15px);
+// 	margin-block-start: rem-calc(15px);
 // 	.gfield_label {
 // 		text-align: center;
-// 		margin-bottom: rem-calc( 8px );
+// 		margin-block-end: rem-calc( 8px );
 // 	}
 // }
 
 input[type='file'] {
-	width: auto;
+	inline-size: auto;
 }
 
 .ginput_container_fileupload {
@@ -787,6 +792,7 @@ input[type='file'] {
 	input[type='file'],
 	.gform_button_select_files {
 		border: $input-border-width solid $input-border-color;
+
 		@extend .btn;
 	}
 
@@ -800,7 +806,7 @@ input[type='file'] {
 		//single file container
 		background-color: #f5f5f5;
 		padding: rem-calc(7px) rem-calc(10px);
-		margin-bottom: rem-calc(5px);
+		margin-block-end: rem-calc(5px);
 		border: rem-calc(1px) solid #e8e8e8;
 
 		// cancel file
@@ -826,7 +832,7 @@ input[type='file'] {
 	.validation_message {
 		background-color: transparent;
 		padding: 0;
-		margin-bottom: rem-calc(10px);
+		margin-block-end: rem-calc(10px);
 
 		ul {
 			margin: 0;
@@ -844,6 +850,7 @@ input[type='file'] {
 
 .gform_drop_area {
 	display: inline-block;
+
 	@include input-text;
 
 	input[type='button'] {
@@ -856,7 +863,7 @@ input[type='file'] {
 .gform_drop_instructions {
 	color: #aaa;
 	display: block;
-	margin-bottom: rem-calc(10px);
+	margin-block-end: rem-calc(10px);
 }
 
 // List
@@ -899,6 +906,7 @@ table.gfield_list {
 	.gform_save_link {
 		// @extend .btn-primary;
 		margin-inline-start: rem-calc(20px);
+
 		@extend .btn;
 
 		&:hover,
@@ -915,7 +923,7 @@ table.gfield_list {
 	line-height: 1.4;
 	text-align: center;
 	padding: rem-calc(15px);
-	margin-bottom: $paragraph-margin-bottom;
+	margin-block-end: $paragraph-margin-block-end;
 	border: rem-calc(1px) solid darken(#dbffd9, 20%);
 }
 
@@ -925,7 +933,7 @@ table.gfield_list {
 	line-height: 1.4;
 	text-align: center;
 	padding: rem-calc(15px);
-	margin-bottom: $paragraph-margin-bottom;
+	margin-block-end: $paragraph-margin-block-end;
 	border: rem-calc(1px) solid darken(#ffffd9, 47%);
 }
 
@@ -939,9 +947,9 @@ table.gfield_list {
 	display: inline-block;
 	clear: both;
 	padding: rem-calc(3px) rem-calc(5px);
+	margin-block-start: 0 !important;
 	margin-inline-start: 0 !important;
-	margin-top: 0 !important;
-	margin-bottom: rem-calc(5px);
+	margin-block-end: rem-calc(5px);
 	position: relative;
 	top: rem-calc(5px);
 }
@@ -952,23 +960,21 @@ table.gfield_list {
 	line-height: 1.4;
 	text-align: center;
 	padding: rem-calc(15px);
-	margin-bottom: $paragraph-margin-bottom;
+	margin-block-end: $paragraph-margin-block-end;
 	border: rem-calc(1px) solid darken(#dbffd9, 20%);
 
 	&:last-child {
-		margin-bottom: 0;
+		margin-block-end: 0;
 	}
 }
 
 .gfield.gform_hidden {
-	margin-bottom: 0 !important;
+	margin-block-end: 0 !important;
 }
 
 //form submission loading
 .gform_ajax_spinner {
 	display: inline-block;
-	width: rem-calc(40px);
-	height: rem-calc(40px);
 	border: rem-calc(4) solid #eee;
 	border-radius: 50%;
 	position: absolute;
@@ -976,8 +982,11 @@ table.gfield_list {
 	right: 0;
 	transform: translateY(-50%);
 	animation: gf-ajax-spinner 1.1s infinite linear;
+	block-size: rem-calc(40px);
+	inline-size: rem-calc(40px);
 	border-inline-start: rem-calc(4) solid #745c97;
 }
+
 @keyframes gf-ajax-spinner {
 	0% {
 		transform: rotate(0deg);
@@ -992,8 +1001,7 @@ table.gfield_list {
 // wraps the section break elements inside the containing list item
 .gfield_html {
 	&.gf-divider {
-		margin-top: rem-calc(60px);
-		margin-bottom: rem-calc(50px);
+		margin-block: rem-calc(60px) rem-calc(50px);
 		border-top: rem-calc(1px) solid rgba(#000, 0.2);
 	}
 }
@@ -1006,7 +1014,7 @@ table.gfield_list {
 	.gform_drop_area,
 	table {
 		//table for list field
-		width: 100%;
+		inline-size: 100%;
 	}
 }
 
@@ -1022,16 +1030,16 @@ table.gfield_list {
 	textarea,
 	.gform_drop_area,
 	.gfield_list {
-		width: 100%;
+		inline-size: 100%;
 	}
 
 	.gfield_list {
 		.gfield_list_cell {
-			width: 75%;
+			inline-size: 75%;
 		}
 
 		.gfield_list_icons {
-			width: 25%;
+			inline-size: 25%;
 		}
 	}
 }
@@ -1064,8 +1072,8 @@ table.gfield_list {
 
 			> li {
 				float: left;
-				width: 50%;
 				padding: 0 rem-calc(15px);
+				inline-size: 50%;
 
 				&:nth-child(2n + 1) {
 					clear: both;
@@ -1093,7 +1101,7 @@ table.gfield_list {
 	.gfield_checkbox,
 	.gfield_radio {
 		> li {
-			margin-bottom: 0;
+			margin-block-end: 0;
 			position: relative;
 		}
 
@@ -1103,15 +1111,16 @@ table.gfield_list {
 			display: inline-block;
 			padding: rem-calc(10px) rem-calc(15px) rem-calc(10px) rem-calc(30px);
 			margin-inline-start: 0; //overwrite standard above
-			margin-bottom: 0;
+			margin-block-end: 0;
 
 			&::before {
 				font-size: rem-calc(22);
-				margin-top: rem-calc(-2px);
+				margin-block-start: rem-calc(-2px);
 				position: absolute;
 				top: 50%;
 				left: 0;
 				transform: translateY(-50%);
+
 				@include icon-font-properties;
 			}
 		}
@@ -1123,7 +1132,7 @@ table.gfield_list {
 			// position: absolute;
 			// left: rem-calc( 10px );
 			// top: 50%;
-			// margin-top: rem-calc(-7);
+			// margin-block-start: rem-calc(-7);
 			&:checked {
 				+ label {
 					// background-color: #000;
@@ -1145,7 +1154,7 @@ table.gfield_list {
 
 		//other choice
 		input[type='text'] {
-			width: 100%;
+			inline-size: 100%;
 		}
 	}
 }
@@ -1194,7 +1203,7 @@ table.gfield_list {
 .gfield.gf-list-enhanced:not([class*='gf-list-inline']) {
 	//other choice
 	input[type='text'] {
-		margin-top: rem-calc(10px);
+		margin-block-start: rem-calc(10px);
 	}
 }
 
@@ -1203,20 +1212,21 @@ table.gfield_list {
 	.gf-row {
 		padding: 0; //overwrite gfield_html
 		ul {
-			margin-top: 0;
+			margin-block-start: 0;
+
 			@include list-unstyled;
 			@include clearfix;
 		}
 
 		> ul {
-			margin-inline: rem-calc(-10px) rem-calc(-10px);
+			margin-inline: rem-calc(-10px);
 		}
 
 		input[type='text'],
 		input[type='email'],
 		textarea,
 		select {
-			width: 100%;
+			inline-size: 100%;
 		}
 
 		.gfield_html {
@@ -1228,13 +1238,14 @@ table.gfield_list {
 			> ul {
 				.gfield {
 					&:nth-last-child(2) {
-						margin-bottom: 0;
+						margin-block-end: 0;
 					}
 				}
 			}
 		}
+
 		@include media-breakpoint-up(md) {
-			margin-inline: rem-calc(-10px) rem-calc(-10px);
+			margin-inline: rem-calc(-10px);
 
 			> ul {
 				display: flex;
@@ -1242,7 +1253,7 @@ table.gfield_list {
 				.gfield {
 					flex: 1 1 100%;
 					padding: 0 rem-calc(10px);
-					margin-bottom: 0;
+					margin-block-end: 0;
 
 					&.gf-col-3 {
 						flex: 0 0 25%;
@@ -1265,16 +1276,18 @@ table.gfield_list {
 	}
 
 	.gf-block-row {
-		margin-top: 0;
+		margin-block-start: 0;
+
 		@include list-unstyled;
 		@include clearfix;
+
 		@include media-breakpoint-up(md) {
-			margin-inline: rem-calc(-15px) rem-calc(-15px);
+			margin-inline: rem-calc(-15px);
 
 			.gf-block-col-2 {
 				float: left;
-				width: 50%;
 				padding: 0 rem-calc(15px);
+				inline-size: 50%;
 			}
 		}
 
@@ -1287,11 +1300,11 @@ table.gfield_list {
 		input,
 		textarea,
 		select {
-			width: 100%;
+			inline-size: 100%;
 		}
 
 		.gfield_html {
-			margin-bottom: 0;
+			margin-block-end: 0;
 		}
 	}
 }
@@ -1309,9 +1322,9 @@ table.gfield_list {
 	.hidden_label > .gfield-label {
 		font-size: 0;
 		visibility: hidden;
-		height: 0;
-		margin-bottom: 0;
+		margin-block-end: 0;
 		opacity: 0;
+		block-size: 0;
 	}
 
 	.gfield.gf-label-transparent .gfield_label {
@@ -1336,6 +1349,7 @@ table.gfield_list {
 			display: none !important;
 		}
 	}
+
 	@include media-breakpoint-up(md) {
 		.gfield.gf-label-inline {
 			display: flex;
@@ -1344,12 +1358,12 @@ table.gfield_list {
 
 			.gfield_label {
 				margin-inline-end: rem-calc(20px);
-				margin-bottom: 0;
+				margin-block-end: 0;
 			}
 
 			.gfield_description {
 				margin-inline-start: rem-calc(10px);
-				margin-bottom: 0;
+				margin-block-end: 0;
 			}
 		}
 	}
@@ -1374,10 +1388,10 @@ table.gfield_list {
 // .form_saved_message {
 //   text-align: center;
 //   p {
-//     margin-bottom: rem-calc(15px);
+//     margin-block-end: rem-calc(15px);
 //   }
 //   .link-block {
-//     margin-bottom: rem-calc(30px);
+//     margin-block-end: rem-calc(30px);
 //     a {
 //       background-color: #ffffd9;
 //       border: rem-calc(1px) solid darken( #ffffd9, 47% );
@@ -1401,15 +1415,15 @@ table.gfield_list {
 //     }
 //     input[type="text"] {
 //       background-color: #fff;
-//       width: 100%;
+//       inline-size: 100%;
 //       padding: rem-calc(22) rem-calc(15px);
-//       margin-bottom: rem-calc( 10px );
+//       margin-block-end: rem-calc( 10px );
 //     }
 //     input[type="submit"] {
 //       @extend %btn;
 //       @extend %btn-md;
 //       @extend %btn-primary;
-//       width: 100%;
+//       inline-size: 100%;
 //       &:hover, &:active {
 //         background: #000;
 //         color: #fff;
@@ -1419,12 +1433,12 @@ table.gfield_list {
 //   @include breakpoint( $min_480 ) {
 //     .email-block {
 //       input[type="text"] {
-//         width: rem-calc(270px);
+//         inline-size: rem-calc(270px);
 //         border-inline-end: none !important;
 //         margin: rem-calc(-4) 0 0 rem-calc(-5px);
 //       }
 //       input[type="submit"] {
-//         width: auto;
+//         inline-size: auto;
 //       }
 //     }
 //   }
@@ -1463,9 +1477,10 @@ $padding: rem-calc(10px);
 	.gf_right_half,
 	.gf-left-half,
 	.gf-right-half {
-		width: 100%;
+		inline-size: 100%;
+
 		@include media-breakpoint-up(sm) {
-			width: 50%;
+			inline-size: 50%;
 		}
 	}
 
@@ -1475,9 +1490,10 @@ $padding: rem-calc(10px);
 	.gf-left-third,
 	.gf-middle-third,
 	.gf-right-third {
-		width: 100%;
+		inline-size: 100%;
+
 		@include media-breakpoint-up(md) {
-			width: 33.333333%;
+			inline-size: 33.333333%;
 		}
 	}
 
@@ -1489,12 +1505,14 @@ $padding: rem-calc(10px);
 	.gf-second-quarter,
 	.gf-third-quarter,
 	.gf-fourth-quarter {
-		width: 100%;
+		inline-size: 100%;
+
 		@include media-breakpoint-up(sm) {
-			width: 50%;
+			inline-size: 50%;
 		}
+
 		@include media-breakpoint-up(md) {
-			width: 25%;
+			inline-size: 25%;
 		}
 	}
 
@@ -1573,9 +1591,9 @@ $padding: rem-calc(10px);
 
 	.gf_inline,
 	.gf-inline {
-		width: auto;
-		min-width: auto;
 		padding-inline-end: $padding * 2;
+		inline-size: auto;
+		min-inline-size: auto;
 	}
 
 	.gf_list_2col,
@@ -1603,9 +1621,10 @@ $padding: rem-calc(10px);
 		.gfield_radio li,
 		.gfield-checkbox li,
 		.gfield-radio li {
-			width: 100%;
+			inline-size: 100%;
+
 			@include media-breakpoint-up(sm) {
-				width: 50%;
+				inline-size: 50%;
 			}
 		}
 	}
@@ -1616,9 +1635,10 @@ $padding: rem-calc(10px);
 		.gfield_radio li,
 		.gfield-checkbox li,
 		.gfield-radio li {
-			width: 100%;
+			inline-size: 100%;
+
 			@include media-breakpoint-up(md) {
-				width: 33.333333%;
+				inline-size: 33.333333%;
 			}
 		}
 	}
@@ -1629,12 +1649,14 @@ $padding: rem-calc(10px);
 		.gfield_radio li,
 		.gfield-checkbox li,
 		.gfield-radio li {
-			width: 100%;
+			inline-size: 100%;
+
 			@include media-breakpoint-up(sm) {
-				width: 50%;
+				inline-size: 50%;
 			}
+
 			@include media-breakpoint-up(md) {
-				width: 25%;
+				inline-size: 25%;
 			}
 		}
 	}
@@ -1645,12 +1667,14 @@ $padding: rem-calc(10px);
 		.gfield_radio li,
 		.gfield-checkbox li,
 		.gfield-radio li {
-			width: 100%;
+			inline-size: 100%;
+
 			@include media-breakpoint-up(sm) {
-				width: 50%;
+				inline-size: 50%;
 			}
+
 			@include media-breakpoint-up(md) {
-				width: 20%;
+				inline-size: 20%;
 			}
 		}
 	}
@@ -1661,7 +1685,7 @@ $padding: rem-calc(10px);
 		.gfield-radio li,
 		.gfield-checkbox li,
 		.gfield-radio li {
-			height: rem-calc(25px);
+			block-size: rem-calc(25px);
 		}
 	}
 
@@ -1671,7 +1695,7 @@ $padding: rem-calc(10px);
 		.gfield-radio li,
 		.gfield-checkbox li,
 		.gfield-radio li {
-			height: rem-calc(50px);
+			block-size: rem-calc(50px);
 		}
 	}
 
@@ -1681,7 +1705,7 @@ $padding: rem-calc(10px);
 		.gfield_radio li,
 		.gfield-checkbox li,
 		.gfield-radio li {
-			height: rem-calc(75px);
+			block-size: rem-calc(75px);
 		}
 	}
 
@@ -1691,7 +1715,7 @@ $padding: rem-calc(10px);
 		.gfield_radio li,
 		.gfield-checkbox li,
 		.gfield-radio li {
-			height: rem-calc(100px);
+			block-size: rem-calc(100px);
 		}
 	}
 
@@ -1701,7 +1725,7 @@ $padding: rem-calc(10px);
 		.gfield_radio li,
 		.gfield-checkbox li,
 		.gfield-radio li {
-			height: rem-calc(125px);
+			block-size: rem-calc(125px);
 		}
 	}
 
@@ -1711,16 +1735,16 @@ $padding: rem-calc(10px);
 		.gfield_radio li,
 		.gfield-checkbox li,
 		.gfield-radio li {
-			height: rem-calc(150px);
+			block-size: rem-calc(150px);
 		}
 	}
 
 	.gf_scroll_text,
 	.gf-scroll-text {
-		height: rem-calc(240px);
 		padding: $padding * 2;
 		border: rem-calc(1px) solid #ddd;
 		overflow: hidden scroll;
+		block-size: rem-calc(240px);
 	}
 
 	.gf_hide_ampm .gfield_time_ampm,

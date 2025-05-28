@@ -6,22 +6,22 @@
 
 	&.layout-small {
 		.inner-container {
-			max-width: rem-calc(600);
 			margin: 0 auto;
+			max-inline-size: rem-calc(600);
 		}
 	}
 
 	&.layout-medium {
 		.inner-container {
-			max-width: rem-calc(800);
 			margin: 0 auto;
+			max-inline-size: rem-calc(800);
 		}
 	}
 
 	&.layout-large {
 		.inner-container {
-			max-width: rem-calc(1000);
 			margin: 0 auto;
+			max-inline-size: rem-calc(1000);
 		}
 	}
 

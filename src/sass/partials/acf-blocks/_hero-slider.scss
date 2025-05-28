@@ -2,7 +2,7 @@
 	position: relative;
 
 	.img-cover-block {
-		height: calc(100vh - var(--header-height, rem-calc(65)));
+		block-size: calc(100vh - var(--header-height, rem-calc(65)));
 
 		.img-desktop.has-mobile {
 			display: none;

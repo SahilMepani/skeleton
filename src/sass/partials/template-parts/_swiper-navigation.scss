@@ -27,8 +27,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: fluid(44, 56);
-		height: fluid(44, 56);
 		margin: 0;
 		border: rem-calc(1) solid #ddd;
 		position: relative;
@@ -37,6 +35,8 @@
 		left: auto;
 		z-index: 10;
 		transition: 0.2s ease-out;
+		block-size: fluid(44, 56);
+		inline-size: fluid(44, 56);
 		box-sizing: border-box;
 		user-select: none;
 		cursor: pointer;
@@ -48,7 +48,7 @@
 
 		svg {
 			color: #333;
-			max-width: fluid(16, 24);
+			max-inline-size: fluid(16, 24);
 		}
 
 		&::after {

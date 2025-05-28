@@ -36,7 +36,7 @@
 	}
 
 	// required to disable auto zoom in iOS when font is less than 1 rem
-	@media screen and (min-device-pixel-ratio: 0) and (max-width: 767) {
+	@media screen and (min-device-pixel-ratio: 0) and (max-inline-size: 767) {
 		font-size: rem-calc(16) !important;
 	}
 }
@@ -48,8 +48,8 @@
 
 	&::after {
 		background-color: #999;
-		width: rem-calc(20);
-		height: rem-calc(10);
+		inline-size: rem-calc(20);
+		block-size: rem-calc(10);
 		border-radius: rem-calc(5);
 		position: absolute;
 		top: 50%;
@@ -68,7 +68,7 @@
 
 	select {
 		background: transparent;
-		width: 100%; // make dropdown sit on top of select
+		inline-size: 100%; // make dropdown sit on top of select
 		border: 0 !important;
 		position: relative;
 		z-index: 1;

@@ -37,22 +37,21 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 	}
 
 	li {
-		margin-bottom: 0;
+		margin-block-end: 0;
 	}
 
 	a {
 		text-decoration: none;
 		display: block;
-		height: 100%;
+		block-size: 100%;
 	}
+
 	@include media-breakpoint-up(lg) {
 		float: right;
 	}
 
 	@include media-breakpoint-down(lg) {
 		background-color: $mobile-sidebar-bg-color;
-		width: 100%;
-		height: 100vh;
 		padding: rem-calc(90) 0 rem-calc(40);
 		position: fixed;
 		top: 0;
@@ -62,6 +61,8 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 		transform: translateX(-100%);
 		transition: 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946);
 		overflow: auto;
+		block-size: 100vh;
+		inline-size: 100%;
 		overscroll-behavior: contain; // avoid scroll chaining
 
 		&.js-active {
@@ -107,7 +108,7 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 			&.js-active {
 				.sub-menu {
 					visibility: visible;
-					height: auto;
+					block-size: auto;
 				}
 			}
 		}
@@ -118,30 +119,30 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 
 				span {
 					background: $mobile-parent-menu-dropdown-bg-color;
-					width: rem-calc(45);
 					position: absolute;
 					top: 0;
 					right: 0;
 					bottom: 0;
+					inline-size: rem-calc(45);
 
 					&.js-active {
 						&::after {
-							border-top-width: 0;
 							border-bottom-color: $mobile-parent-menu-dropdown-icon-color;
+							border-top-inline-size: 0;
 						}
 					}
 
 					&::after {
+						margin-block-start: rem-calc(-4);
 						margin-inline-start: rem-calc(-6);
-						margin-top: rem-calc(-4);
 						border: rem-calc(8) solid transparent;
 						border-top-color: $mobile-parent-menu-dropdown-icon-color;
-						border-right-width: rem-calc(6);
 						position: absolute;
 						top: 50%;
 						left: 50%;
 						content: '';
-						border-inline-start-width: rem-calc(6);
+						border-right-inline-size: rem-calc(6);
+						border-inline-start-inline-size: rem-calc(6);
 					}
 
 					&:hover,
@@ -161,7 +162,7 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 	@include media-breakpoint-down(lg) {
 		background: $mobile-sub-menu-bg-color;
 		visibility: hidden;
-		height: 0;
+		block-size: 0;
 
 		.sub-menu {
 			background-color: #fff;
@@ -210,7 +211,7 @@ $desktop-parent-menu-dropdown-icon-border: rem-calc(5);
 $desktop-parent-menu-space-between-text-and-arrow: rem-calc(10);
 
 /* ----------  Sub Menu  ---------- */
-$desktop-sub-menu-width: rem-calc(250);
+$desktop-sub-menu-inline-size: rem-calc(250);
 $desktop-sub-menu-link-bg-color: black;
 $desktop-sub-menu-link-color: #fff;
 $desktop-sub-menu-link-hover-bg-color: orange;
@@ -268,7 +269,7 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 				/* stylelint-enable scss/operator-no-newline-after */
 
 				&::after {
-					margin-top: rem-calc(-2);
+					margin-block-start: rem-calc(-2);
 					border: $desktop-parent-menu-dropdown-icon-border solid
 						transparent;
 					border-top-color: $desktop-parent-menu-dropdown-icon-color;
@@ -314,7 +315,6 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 	@include media-breakpoint-up(lg) {
 		.sub-menu {
 			visibility: hidden;
-			width: $desktop-sub-menu-width;
 			position: absolute;
 			z-index: -1;
 			opacity: 0;
@@ -322,6 +322,7 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 				250ms color,
 				250ms background-color,
 				opacity 0.15s;
+			inline-size: $desktop-sub-menu-width;
 			pointer-events: none;
 
 			> li {
@@ -366,7 +367,7 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 				position: relative;
 
 				&::after {
-					margin-top: rem-calc(-4);
+					margin-block-start: rem-calc(-4);
 					border: $desktop-parent-menu-dropdown-icon-border solid
 						transparent;
 					position: absolute;
@@ -383,11 +384,11 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 
 		// second sub menu
 		.sub-menu .sub-menu {
-			width: fit-content;
-			min-width: $desktop-sub-menu-width;
-			max-width: 40vw;
 			top: 0;
 			left: $desktop-sub-menu-width;
+			inline-size: fit-content;
+			min-inline-size: $desktop-sub-menu-width;
+			max-inline-size: 40vw;
 		}
 	}
 }

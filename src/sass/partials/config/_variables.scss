@@ -4,11 +4,11 @@ $text-selection-color: $body-color;
 
 // Custom Scrollbar
 $custom-scrollbar-enable: false;
-$track-width: 0.5rem;
+$track-inline-size: 0.5rem;
 $track-background: #eee;
 $track-border-radius: 100vw;
-$track-margin-top: rem-calc(5);
-$track-margin-bottom: rem-calc(5);
+$track-margin-block-start: rem-calc(5);
+$track-margin-block-end: rem-calc(5);
 $thumb-background: #aaa;
 $thumb-border-radius: 100vw;
 

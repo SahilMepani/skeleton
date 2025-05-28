@@ -8,11 +8,11 @@
 	}
 
 	.submit-block {
-		width: rem-calc(45);
 		position: absolute;
 		top: 0;
 		right: 0;
 		bottom: 0;
+		inline-size: rem-calc(45);
 
 		.search-icon-block {
 			svg {
@@ -26,11 +26,11 @@
 
 		input[type='submit'] {
 			background: transparent;
-			width: 100%;
 			position: absolute;
 			top: 0;
 			right: 0;
 			bottom: 0;
+			inline-size: 100%;
 		}
 	}
 
@@ -50,12 +50,13 @@
 	.clear-search {
 		display: block;
 		visibility: hidden;
-		width: rem-calc(45);
 		position: absolute;
 		top: 0;
 		right: 0;
 		bottom: 0;
 		opacity: 0;
+		inline-size: rem-calc(45);
+
 		@extend %btn;
 
 		.clear-icon-block {
@@ -102,13 +103,13 @@
 
 		a {
 			display: inline-block;
-			height: 100%;
 			overflow: hidden;
+			block-size: 100%;
 
 			img {
 				vertical-align: top;
-				height: auto;
 				transition: 0.4s cubic-bezier(0.33, 0, 0.2, 1);
+				block-size: auto;
 				backface-visibility: hidden;
 			}
 
@@ -123,7 +124,7 @@
 	.meta-block {
 		color: #999;
 		line-height: 1.4;
-		margin-bottom: rem-calc(20);
+		margin-block-end: rem-calc(20);
 		overflow: hidden;
 
 		.author {
@@ -144,7 +145,7 @@
 		font-size: rem-calc(22);
 		font-weight: 700;
 		line-height: 1.3;
-		margin-bottom: rem-calc(10);
+		margin-block-end: rem-calc(10);
 
 		a {
 			color: $heading-color;
@@ -166,6 +167,7 @@
 			border-bottom-color: $body-color;
 		}
 	}
+
 	@include media-breakpoint-up(md) {
 		display: flex;
 		padding: rem-calc(50);
@@ -173,14 +175,15 @@
 		.img-block {
 			flex: 0 0 35%;
 			padding-inline-end: rem-calc(40);
-			margin-bottom: 0;
+			margin-block-end: 0;
+
 			@media all and (-ms-high-contrast: none),
 				(-ms-high-contrast: active) {
 				/* IE10 and IE11 rule sets go here */
-				max-width: 35%;
+				max-inline-size: 35%;
 
 				a {
-					max-width: 100%;
+					max-inline-size: 100%;
 				}
 			}
 		}

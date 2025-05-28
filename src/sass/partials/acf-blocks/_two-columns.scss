@@ -36,7 +36,7 @@
 	}
 
 	.btn-dialog-open {
-		width: 100% !important;
+		inline-size: 100% !important;
 	}
 }
 
@@ -50,7 +50,7 @@
 		z-index: 1;
 
 		svg {
-			max-width: fluid(44, 80);
+			max-inline-size: fluid(44, 80);
 		}
 
 		&:hover,
@@ -63,13 +63,13 @@
 
 	.dialog {
 		background-color: #333;
-		max-width: 75%;
 		padding: 0;
 		margin: auto;
 		border: 0;
 		z-index: 10;
 		transition: 0.25s ease-out;
 		overflow: hidden;
+		max-inline-size: 75%;
 		user-select: none;
 
 		// overflow: hidden;
@@ -85,23 +85,23 @@
 			display: block;
 			align-items: center;
 			justify-content: center;
-			width: rem-calc(40);
-			height: rem-calc(40);
 			border-radius: rem-calc(5);
 			position: absolute;
 			inset-inline-end: rem-calc(15);
 			inset-block-start: rem-calc(15);
 			z-index: 1;
+			block-size: rem-calc(40);
+			inline-size: rem-calc(40);
 
 			svg {
-				width: rem-calc(24);
+				inline-size: rem-calc(24);
 			}
 		}
 
 		video,
 		iframe {
 			aspect-ratio: 16/9;
-			width: 75vw;
+			inline-size: 75vw;
 		}
 	}
 }

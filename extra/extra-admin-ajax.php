@@ -151,7 +151,7 @@ function filter_post_by_dual_cat() {
 		endwhile;
 		wp_reset_postdata();
 	else :
-		echo '<li class="padding-top-2"><h4 class="text-center">Nothing Found.</h4></li>';
+		echo '<li class="padding-block-start-2"><h4 class="text-center">Nothing Found.</h4></li>';
 	endif;
 }
 

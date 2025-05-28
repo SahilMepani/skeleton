@@ -199,7 +199,7 @@ function skel_show_meta_keys() {
 function debug_wp_admin_menus_slugs() {
 	global $submenu; // This global variable holds all submenu items.
 
-	echo '<div style="background: #FFF; border: 2px solid red; padding: 10px; margin: 20px; overflow: auto; max-height: 400px; font-family: monospace;">';
+	echo '<div style="background: #FFF; border: 2px solid red; padding: 10px; margin: 20px; overflow: auto; max-block-size: 400px; font-family: monospace;">';
 	echo '<h2>Appearance Submenus Slugs:</h2>';
 	echo '<pre>';
 	// The parent slug for the Appearance menu is 'themes.php'.

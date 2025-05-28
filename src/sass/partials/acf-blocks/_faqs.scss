@@ -35,7 +35,7 @@
 		line-height: 1.3;
 		padding-block: fluid(16, 24);
 		padding-inline-end: rem-calc(50);
-		margin-bottom: 0;
+		margin-block-end: 0;
 		position: relative;
 		cursor: pointer;
 		user-select: none;
@@ -44,13 +44,13 @@
 		&::after {
 			background: #000;
 			display: block;
-			width: rem-calc(15);
-			height: rem-calc(2);
 			position: absolute;
 			top: fluid(30, 36);
 			right: rem-calc(3);
 			transition: 0.25s ease-out;
 			content: '';
+			block-size: rem-calc(2);
+			inline-size: rem-calc(15);
 		}
 
 		&::after {
@@ -60,15 +60,15 @@
 
 	.accordion-content {
 		.inner-block {
-			padding-bottom: fluid(16, 24);
+			padding-block-end: fluid(16, 24);
 		}
 	}
 
 	// Required
 	.accordion-content {
-		max-height: 0;
 		transition: max-height 0.25s ease-out;
 		overflow: hidden;
+		max-block-size: 0;
 		will-change: max-height;
 	}
 

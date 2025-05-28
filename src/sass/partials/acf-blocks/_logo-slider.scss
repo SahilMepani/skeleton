@@ -14,12 +14,12 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: auto;
+		inline-size: auto;
 		user-select: none;
 
 		.logo-block {
 			img {
-				width: fluid(100, 150);
+				inline-size: fluid(100, 150);
 			}
 		}
 	}

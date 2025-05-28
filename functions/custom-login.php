@@ -49,7 +49,7 @@ function skel_login_logo(): void {
 			color: var(--color);
 		}
 		#login .wp-pwd {
-			margin-bottom: 5px;
+			margin-block-end: 5px;
 		}
 		.wp-pwd button {
 			background-position: center center !important;
@@ -84,8 +84,8 @@ function skel_login_logo(): void {
 			background: var(--submit-background);
 			color: var(--submit-color);
 			text-transform: uppercase;
-			min-width: 89px;
-			height: 39px;
+			min-inline-size: 89px;
+			block-size: 39px;
 			line-height: 39px;
 			letter-spacing: 0.84px;
 			border-radius: 22px;
@@ -97,8 +97,8 @@ function skel_login_logo(): void {
 		}
 		#login h1 a, .login h1 a {
 			background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/logo-dark.png');
-			width: auto;
-			height: 90px;
+			inline-size: auto;
+			block-size: 90px;
 			background-size: contain;
 			background-repeat: no-repeat;
 			margin: 0 auto 30px;
@@ -107,10 +107,10 @@ function skel_login_logo(): void {
 			text-align: center;
 		}
 		#login #nav {
-			margin-top: 30px;
+			margin-block-start: 30px;
 		}
 		#login #backtoblog {
-			margin-top: 18px;
+			margin-block-start: 18px;
 		}
 		#login #nav a, #login #backtoblog a, .privacy-policy-page-link a {
 			color: var(--link-color);

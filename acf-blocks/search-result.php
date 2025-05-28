@@ -18,7 +18,7 @@ if ( isset( $_GET['s'] ) ) {
 
 // Set thumbnail preview in backend.
 if ( isset( $block['data']['preview_image'] ) ) {
-	echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
+	echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '" style="inline-size:100%; block-size:auto;">';
 
 	return; // required.
 }

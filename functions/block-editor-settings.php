@@ -93,7 +93,7 @@ function skel_editor_css(): void {
 	}
 
 	.edit-post-visual-editor .acf-block-fields > .acf-field > .acf-accordion-content > .acf-fields > .acf-tab-wrap > .acf-tab-group li:nth-child(1) {
-		width: 100%;
+		inline-size: 100%;
 	}
 
 	.edit-post-visual-editor .acf-block-fields > .acf-field > .acf-accordion-content > .acf-fields > .acf-tab-wrap > .acf-tab-group li:nth-child(2) {

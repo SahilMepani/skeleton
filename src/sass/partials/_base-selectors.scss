@@ -8,12 +8,12 @@
 
 	@each $breakpoint, $container-max-width in $container-max-widths {
 		@include media-breakpoint-up($breakpoint) {
-			$half-width: calc(
+			$half-inline-size: calc(
 				(#{$container-max-width} * 0.5) - #{$container-padding-x}
 			);
 
-			--container-max-width: #{$container-max-width};
-			--container-half-width: #{$half-width};
+			--container-max-inline-size: #{$container-max-width};
+			--container-half-inline-size: #{$half-width};
 			--container-margin-x: calc(
 				((100% - #{$container-max-width}) * 0.5) -
 					#{$container-padding-x}
@@ -31,16 +31,15 @@
 // Custom Scrollbars
 @if $custom-scrollbar-enable {
 	.js-no-touchevents body::-webkit-scrollbar {
-		width: $track-width;
+		inline-size: $track-width;
 
 		// height used for horizonal scrollbars
-		// height: 1em;
+		// block-size: 1em;
 	}
 
 	.js-no-touchevents body::-webkit-scrollbar-track {
 		background: $track-background;
-		margin-top: $track-margin-top;
-		margin-bottom: $track-margin-bottom;
+		margin-block: $track-margin-block-start $track-margin-block-end;
 		border-radius: $track-border-radius;
 	}
 
@@ -114,7 +113,7 @@ h4,
 h5,
 h6 {
 	&:last-child {
-		margin-bottom: 0;
+		margin-block-end: 0;
 	}
 }
 
@@ -135,7 +134,7 @@ dd,
 pre,
 blockquote,
 address {
-	margin: 0 0 $paragraph-margin-bottom;
+	margin: 0 0 $paragraph-margin-block-end;
 }
 
 output {
@@ -166,8 +165,8 @@ ol {
 	ul,
 	ol {
 		margin: 0;
+		margin-block-start: rem-calc(5);
 		margin-inline-start: rem-calc(40);
-		margin-top: rem-calc(5);
 	}
 
 	ol {
@@ -179,7 +178,7 @@ ol {
 
 		li {
 			line-height: 1;
-			margin-bottom: 0;
+			margin-block-end: 0;
 			list-style: none;
 		}
 	}
@@ -195,7 +194,7 @@ ol {
 
 li {
 	line-height: 1.3;
-	margin-bottom: rem-calc(15);
+	margin-block-end: rem-calc(15);
 }
 
 dt {
@@ -214,7 +213,7 @@ form {
 	> ul {
 		> li {
 			clear: both;
-			margin-bottom: rem-calc(15);
+			margin-block-end: rem-calc(15);
 
 			> label {
 				margin-inline-end: rem-calc(10);
@@ -223,16 +222,16 @@ form {
 	}
 
 	fieldset {
-		min-width: 0;
 		padding: 0;
 		margin: 0;
 		border: 0;
+		min-inline-size: 0;
 	}
 
 	legend {
 		font-weight: 700;
 		display: block;
-		margin-bottom: rem-calc(15);
+		margin-block-end: rem-calc(15);
 		border: 0;
 	}
 
@@ -250,7 +249,7 @@ form {
 	select {
 		// @include input-text;
 
-		max-width: 100%;
+		max-inline-size: 100%;
 	}
 
 	input[type='submit'] {
@@ -267,7 +266,7 @@ form {
 
 	textarea {
 		line-height: 1.3;
-		height: rem-calc(150);
+		block-size: rem-calc(150);
 		resize: vertical;
 	}
 
@@ -275,13 +274,13 @@ form {
 	input[type='radio'] {
 		line-height: normal;
 		margin: 0;
+		margin-block-start: rem-calc(4);
 		margin-inline-end: rem-calc(5);
-		margin-top: rem-calc(4);
 	}
 
 	select[multiple],
 	select[size] {
-		height: auto;
+		block-size: auto;
 	}
 
 	input[type='file'] {
@@ -290,7 +289,7 @@ form {
 
 	input[type='range'] {
 		display: block;
-		width: 100%;
+		inline-size: 100%;
 	}
 
 	input[type='file']:focus,
@@ -305,12 +304,12 @@ form {
 img,
 iframe,
 svg {
-	max-width: 100%;
+	max-inline-size: 100%;
 }
 
 svg {
 	// fix for safari mobile
-	width: 100%;
+	inline-size: 100%;
 }
 
 audio,

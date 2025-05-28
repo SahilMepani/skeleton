@@ -2,22 +2,22 @@
 	position: relative;
 
 	.search {
-		width: 100%;
 		padding: rem-calc(20) rem-calc(16);
 		border: rem-calc(1) solid #d1d1d1;
+		inline-size: 100%;
 	}
 
 	.submit {
 		background-color: transparent;
-		width: rem-calc(44);
 		border: none;
 		position: absolute;
 		top: 0;
 		right: 0;
 		bottom: 0;
+		inline-size: rem-calc(44);
 
 		svg {
-			width: rem-calc(24);
+			inline-size: rem-calc(24);
 		}
 	}
 }

@@ -1,8 +1,4 @@
 .bg-video {
-	min-width: 100%;
-	height: 100%;
-	min-height: 56.25vw;
-
 	/* 100 * 9 / 16 */
 	position: absolute;
 
@@ -10,10 +6,13 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	block-size: 100%;
+	min-block-size: 56.25vw;
+	min-inline-size: 100%;
 
 	/* % of current element */
 	@media screen and (orientation: landscape) {
-		width: 177.7778vh;
+		inline-size: 177.7778vh;
 
 		/* 100 * 16 / 9 */
 	}
@@ -37,9 +36,9 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: fluid(30, 50);
-		height: fluid(30, 50);
 		transition: 250ms ease-out;
+		block-size: fluid(30, 50);
+		inline-size: fluid(30, 50);
 
 		&[class~='dots'] {
 			pointer-events: none;
@@ -64,13 +63,13 @@
 
 		&.prev,
 		&.next {
-			width: fluid(30, 60);
-			height: fluid(30, 60);
 			border: rem-calc(1) solid $primary;
 			border-radius: 50%;
+			block-size: fluid(30, 60);
+			inline-size: fluid(30, 60);
 
 			svg {
-				width: fluid(6, 12);
+				inline-size: fluid(6, 12);
 			}
 
 			&:hover {
@@ -91,25 +90,25 @@
 
 .loader {
 	display: inline-block;
-	width: fluid(24, 48);
-	height: fluid(24, 48);
 	border: fluid(3, 5) solid #333;
 	border-bottom-color: transparent;
 	border-radius: 50%;
 	animation: rotation 1s linear infinite;
+	block-size: fluid(24, 48);
+	inline-size: fluid(24, 48);
 	box-sizing: border-box;
 	pointer-events: none;
 
 	&.small {
-		width: rem-calc(24);
-		height: rem-calc(24);
+		block-size: rem-calc(24);
+		inline-size: rem-calc(24);
 	}
 
 	&.center {
 		margin: auto;
-		border-width: rem-calc(3);
 		position: absolute;
 		inset: 0;
+		border-inline-size: rem-calc(3);
 	}
 }
 

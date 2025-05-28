@@ -22,7 +22,7 @@
 	<title><?php wp_title( '-', true, 'right' ); ?></title>
 	<!-- favicon -->
 	<link rel="icon" href="<?php echo esc_attr( get_template_directory_uri() ); ?>/favicon.png" type="image/png">
-	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="<?php echo esc_attr( get_template_directory_uri() ); ?>/favicon.svg" type="image/svg+xml">
 	<!-- remove below link if google fonts are not used -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,10 +60,10 @@
 				<?php esc_html_e( 'Menu', 'skel' ); ?>
 			</button>
 
-			<nav class="header-nav" role="navigation" aria-label="<?php esc_attr_e( 'primary navigation', 'skel' ); ?>">
+			<nav class="header-nav" data-esc aria-label="<?php esc_attr_e( 'primary navigation', 'skel' ); ?>">
 
 				<button class="header-nav-close" aria-label="<?php esc_attr_e( 'close primary navigation', 'skel' ); ?>"
-					aria-haspopup="true" aria-expanded="true" aria-controls="siteMenu">
+					aria-haspopup="true" aria-expanded="false" aria-controls="siteMenu">
 				</button>
 
 				<?php

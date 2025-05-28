@@ -1,8 +1,8 @@
 .site-header {
 	background-color: #eee;
-	padding-block: rem-calc(10) rem-calc(10);
+	padding-block: rem-calc(10);
 	position: sticky;
-	top: 0;
+	inset-block-start: 0;
 	z-index: 99;
 	box-shadow: 0 rem-calc(4) rem-calc(12) 0 rgb(0 0 0 / 4%);
 	transition: 0.3s ease-out;
@@ -12,7 +12,8 @@
 		transform: translateY(-100%);
 	}
 
-	.container-fluid {
+	.container-fluid,
+	.container {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -23,26 +24,25 @@
 	text-transform: uppercase;
 	margin-inline: auto;
 	position: fixed;
-	top: rem-calc(-200);
-	right: 0;
-	left: 0;
+	inset-block-start: rem-calc(-200);
+	inset-inline: 0;
 
 	&:focus {
-		top: 0;
+		inset-block-start: 0;
 	}
 }
 
 .header-logo {
 	display: flex;
 	align-items: center;
-	width: rem-calc(100);
-	margin-bottom: 0;
+	margin-block-end: 0;
 	position: relative;
+	inline-size: rem-calc(100);
 
 	svg,
 	img {
 		aspect-ratio: 100/125;
-		width: 100%;
+		inline-size: 100%;
 	}
 }
 
@@ -54,6 +54,7 @@
 	float: right;
 	padding: rem-calc(10) rem-calc(15) rem-calc(10) rem-calc(50) !important;
 	position: relative;
+
 	@include media-breakpoint-up(lg) {
 		display: none;
 	}
@@ -62,8 +63,8 @@
 		font-size: rem-calc(24);
 		line-height: rem-calc(24);
 		position: absolute;
-		top: 50%;
-		left: rem-calc(15); // same as padding right
+		inset-inline-start: rem-calc(15); // same as padding right
+		inset-block-start: 50%;
 		transform: translateY(-50%);
 	}
 }
@@ -74,13 +75,14 @@
 	padding: rem-calc(20);
 	border: 0;
 	position: absolute;
-	top: 0;
-	right: 0;
+	inset-inline-end: 0;
+	inset-block-start: 0;
 
 	&:hover,
 	&:focus {
 		background-color: #fff;
 	}
+
 	@include media-breakpoint-up(lg) {
 		display: none;
 	}
@@ -89,14 +91,13 @@
 .header-search-form {
 	background-color: #fff;
 	padding-block: fluid(24, 50);
-	border-top: rem-calc(1) solid #ddd;
 	position: fixed;
-	top: fluid(55, 62, 'md');
-	right: 0;
-	left: 0;
+	inset-block-start: fluid(55, 62, 'md');
 	z-index: 99;
 	opacity: 0;
 	transition: 0.25s ease-out;
+	inset-inline: 0;
+	border-block-start: rem-calc(1) solid #ddd;
 	pointer-events: none;
 
 	&.js-active {

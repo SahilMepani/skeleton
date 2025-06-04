@@ -1,7 +1,4 @@
 .two-columns-section {
-}
-
-.two-columns-section {
 	&.has-bg {
 		background-color: #f9f9f9;
 	}
@@ -63,13 +60,13 @@
 
 	.dialog {
 		background-color: #333;
+		max-inline-size: 75%;
 		padding: 0;
 		margin: auto;
 		border: 0;
 		z-index: 10;
 		transition: 0.25s ease-out;
 		overflow: hidden;
-		max-inline-size: 75%;
 		user-select: none;
 
 		// overflow: hidden;
@@ -85,13 +82,13 @@
 			display: block;
 			align-items: center;
 			justify-content: center;
+			inline-size: rem-calc(40);
+			block-size: rem-calc(40);
 			border-radius: rem-calc(5);
 			position: absolute;
 			inset-inline-end: rem-calc(15);
 			inset-block-start: rem-calc(15);
 			z-index: 1;
-			block-size: rem-calc(40);
-			inline-size: rem-calc(40);
 
 			svg {
 				inline-size: rem-calc(24);

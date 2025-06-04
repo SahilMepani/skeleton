@@ -30,7 +30,7 @@
 	appearance: none;
 	@include input-placeholder(var(--input-placeholder, $placeholder));
 
-	&:focus {
+	&:focus-visible {
 		border-color: var(--input-border-focus, $border-focus);
 		outline-color: transparent;
 	}

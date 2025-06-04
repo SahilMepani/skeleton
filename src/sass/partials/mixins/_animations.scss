@@ -54,7 +54,7 @@
 	}
 
 	&:hover,
-	&:focus {
+	&:focus-visible {
 		color: $hover-text-color;
 
 		&::after {
@@ -103,7 +103,7 @@
 	}
 
 	&:hover,
-	&:focus {
+	&:focus-visible {
 		color: $text-color;
 
 		&::before {

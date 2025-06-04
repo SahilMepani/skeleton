@@ -156,7 +156,7 @@ button::-moz-focus-inner {
 }
 
 .mfp-close:hover,
-.mfp-close:focus {
+.mfp-close:focus-visible {
 	opacity: 1;
 }
 
@@ -204,7 +204,7 @@ button::-moz-focus-inner {
 }
 
 .mfp-arrow:hover,
-.mfp-arrow:focus {
+.mfp-arrow:focus-visible {
 	opacity: 1;
 }
 

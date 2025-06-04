@@ -292,9 +292,9 @@ form {
 		inline-size: 100%;
 	}
 
-	input[type='file']:focus,
-	input[type='radio']:focus,
-	input[type='checkbox']:focus {
+	input[type='file']:focus-visible,
+	input[type='radio']:focus-visible,
+	input[type='checkbox']:focus-visible {
 		outline: rem-calc(5) auto -webkit-focus-ring-color;
 		outline-offset: rem-calc(-2);
 	}

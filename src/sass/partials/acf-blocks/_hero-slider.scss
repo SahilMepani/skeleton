@@ -1,8 +1,14 @@
 .hero-slider-section {
 	position: relative;
 
-	.img-cover-block {
+	.swiper-slide {
 		block-size: calc(100vh - var(--header-height, rem-calc(65)));
+		position: relative;
+	}
+
+	.img-cover-block {
+		position: absolute;
+		inset: 0;
 
 		.img-desktop.has-mobile {
 			display: none;

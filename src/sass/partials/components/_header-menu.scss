@@ -87,7 +87,7 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 				position: relative;
 
 				&:hover,
-				&:focus {
+				&:focus-visible {
 					background: $mobile-parent-menu-link-hover-bg-color;
 					color: $mobile-parent-menu-link-hover-color;
 				}
@@ -146,7 +146,7 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 					}
 
 					&:hover,
-					&:focus {
+					&:focus-visible {
 						// background: $mobile-parent-menu-dropdown-hover-bg-color;
 						&::after {
 							border-top-color: $mobile-parent-menu-dropdown-hover-icon-color;
@@ -183,7 +183,7 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 					$mobile-sub-menu-link-padding-inline;
 
 				&:hover,
-				&:focus {
+				&:focus-visible {
 					background: $mobile-sub-menu-link-hover-bg-color;
 					color: $mobile-sub-menu-link-hover-color;
 				}
@@ -234,7 +234,7 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 			}
 
 			&:hover,
-			&:focus {
+			&:focus-visible {
 				> a {
 					background-color: $desktop-parent-menu-link-hover-bg-color;
 					color: $desktop-parent-menu-link-hover-color;
@@ -284,7 +284,7 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 			}
 
 			&:hover,
-			&:focus {
+			&:focus-visible {
 				> a {
 					color: $desktop-parent-menu-link-hover-color;
 
@@ -297,7 +297,7 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 
 		li.menu-item-has-children {
 			&:hover,
-			&focus {
+			&focus-visible {
 				> .sub-menu {
 					visibility: visible;
 					z-index: 10;
@@ -329,7 +329,7 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 				line-height: 1.3;
 
 				&:hover,
-				&:focus {
+				&:focus-visible {
 					> a {
 						background-color: $desktop-sub-menu-link-hover-bg-color;
 						color: $desktop-sub-menu-link-hover-color;

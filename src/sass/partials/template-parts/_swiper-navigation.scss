@@ -27,16 +27,12 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin: 0;
+		inline-size: fluid(44, 56);
+		block-size: fluid(44, 56);
 		border: rem-calc(1) solid #ddd;
 		position: relative;
-		top: auto;
-		right: auto;
-		left: auto;
 		z-index: 10;
 		transition: 0.2s ease-out;
-		block-size: fluid(44, 56);
-		inline-size: fluid(44, 56);
 		box-sizing: border-box;
 		user-select: none;
 		cursor: pointer;
@@ -47,7 +43,7 @@
 		}
 
 		svg {
-			color: #333;
+			color: currentcolor;
 			max-inline-size: fluid(16, 24);
 		}
 

@@ -27,7 +27,7 @@
 	inset-block-start: rem-calc(-200);
 	inset-inline: 0;
 
-	&:focus {
+	&:focus-visible {
 		inset-block-start: 0;
 	}
 }
@@ -35,9 +35,9 @@
 .header-logo {
 	display: flex;
 	align-items: center;
+	inline-size: rem-calc(100);
 	margin-block-end: 0;
 	position: relative;
-	inline-size: rem-calc(100);
 
 	svg,
 	img {
@@ -79,7 +79,7 @@
 	inset-block-start: 0;
 
 	&:hover,
-	&:focus {
+	&:focus-visible {
 		background-color: #fff;
 	}
 
@@ -91,13 +91,13 @@
 .header-search-form {
 	background-color: #fff;
 	padding-block: fluid(24, 50);
+	border-block-start: rem-calc(1) solid #ddd;
 	position: fixed;
 	inset-block-start: fluid(55, 62, 'md');
 	z-index: 99;
 	opacity: 0;
 	transition: 0.25s ease-out;
 	inset-inline: 0;
-	border-block-start: rem-calc(1) solid #ddd;
 	pointer-events: none;
 
 	&.js-active {

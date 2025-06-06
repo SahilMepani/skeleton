@@ -223,14 +223,14 @@ button::-moz-focus-inner {
 }
 
 .mfp-arrow::after {
-	border-top-inline-size: rem-calc(13);
-	border-bottom-inline-size: rem-calc(13);
+	border-top-width: rem-calc(13);
+	border-bottom-width: rem-calc(13);
 	top: rem-calc(8);
 }
 
 .mfp-arrow::before {
-	border-top-inline-size: rem-calc(21);
-	border-bottom-inline-size: rem-calc(21);
+	border-top-width: rem-calc(21);
+	border-bottom-width: rem-calc(21);
 	opacity: 0.7;
 }
 

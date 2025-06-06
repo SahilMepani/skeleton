@@ -79,9 +79,9 @@ tfoot,
 tr,
 td,
 th {
+	border-width: 0;
 	border-style: solid;
 	border-color: inherit;
-	border-inline-size: 0;
 }
 
 // Remove the default `border-radius` that macOS Chrome adds.
@@ -171,10 +171,10 @@ textarea {
 // 2. Reset the default outline behavior of fieldsets so they don't affect page layout.
 
 fieldset {
+	min-inline-size: 0; // 1
 	padding: 0; // 2
 	margin: 0; // 2
 	border: 0; // 2
-	min-inline-size: 0; // 1
 }
 
 // 1. Correct the outline style in Safari.

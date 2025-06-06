@@ -4,7 +4,7 @@
 $mobile-sidebar-bg-color: #ddd;
 
 /* ----------  Parent Menu  ---------- */
-$mobile-parent-menu-item-border-bottom: rem-calc(1) solid rgba(#000, 0.1);
+
 $mobile-parent-menu-link-bg-color: transparent;
 $mobile-parent-menu-link-color: green;
 $mobile-parent-menu-link-hover-bg-color: rgba(#000, 0.1);
@@ -46,19 +46,17 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 		block-size: 100%;
 	}
 
-	@include media-breakpoint-up(lg) {
+	@include media-breakpoint-up($menu-breakpoint) {
 		float: right;
 	}
 
-	@include media-breakpoint-down(lg) {
+	@include media-breakpoint-down($menu-breakpoint) {
 		background-color: $mobile-sidebar-bg-color;
 		inline-size: 100%;
 		block-size: 100vh;
 		padding: rem-calc(90) 0 rem-calc(40);
 		position: fixed;
-		top: 0;
-		right: 0;
-		bottom: 0;
+		inset: 0;
 		z-index: 9999;
 		transform: translateX(-100%);
 		transition: 350ms transform cubic-bezier(0.465, 0.183, 0.153, 0.946);
@@ -66,14 +64,13 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 		overscroll-behavior: contain; // avoid scroll chaining
 
 		&.js-active {
-			box-shadow: 0 0 rem-calc(10) rgba(#999, 0.3);
 			transform: translateX(0);
 		}
 	}
 }
 
 .header-nav-parent-menu {
-	@include media-breakpoint-down(lg) {
+	@include media-breakpoint-down($menu-breakpoint) {
 		> li {
 			> a {
 				background-color: $mobile-parent-menu-link-bg-color;
@@ -102,54 +99,68 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 		}
 
 		// Submenu
+		// Submenu
 		> li.menu-item-has-children {
 			position: relative;
 
 			&.js-active {
+				> a {
+					span {
+						transform: rotate(180deg);
+
+						&::after {
+							background-color: $mobile-parent-menu-dropdown-hover-icon-color;
+						}
+					}
+				}
+
 				.sub-menu {
 					visibility: visible;
 					block-size: auto;
+					position: relative;
 				}
 			}
 		}
 
 		.menu-item-has-children {
 			> a {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: rem-calc(12);
 				position: relative;
 
 				span {
 					background: $mobile-parent-menu-dropdown-bg-color;
-					inline-size: rem-calc(45);
-					position: absolute;
-					top: 0;
-					right: 0;
-					bottom: 0;
-
-					&.js-active {
-						&::after {
-							border-bottom-color: $mobile-parent-menu-dropdown-icon-color;
-							border-top-inline-size: 0;
-						}
-					}
+					display: inline-block;
+					inline-size: rem-calc(20);
+					height: rem-calc(20);
+					position: relative;
+					transition: 0.2s $custom-ease;
 
 					&::after {
-						margin-block-start: rem-calc(-4);
-						margin-inline-start: rem-calc(-6);
-						border: rem-calc(8) solid transparent;
-						border-top-color: $mobile-parent-menu-dropdown-icon-color;
+						aspect-ratio: 6/4;
+						background-color: $mobile-parent-menu-dropdown-icon-color;
+						inline-size: rem-calc(10);
 						position: absolute;
 						top: 50%;
 						left: 50%;
+						transform: translate(-50%, -50%);
 						content: '';
-						border-right-inline-size: rem-calc(6);
-						border-inline-start-inline-size: rem-calc(6);
+						clip-path: polygon(
+							0% 0%,
+							20% 0%,
+							50% 50%,
+							80% 0%,
+							100% 0%,
+							50% 80%
+						);
 					}
 
 					&:hover,
 					&:focus-visible {
-						// background: $mobile-parent-menu-dropdown-hover-bg-color;
 						&::after {
-							border-top-color: $mobile-parent-menu-dropdown-hover-icon-color;
+							background-color: $mobile-parent-menu-dropdown-hover-icon-color;
 						}
 					}
 				}
@@ -159,7 +170,7 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 }
 
 .header-nav .sub-menu {
-	@include media-breakpoint-down(lg) {
+	@include media-breakpoint-down($menu-breakpoint) {
 		background: $mobile-sub-menu-bg-color;
 		visibility: hidden;
 		block-size: 0;
@@ -225,7 +236,7 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 // Desktop Parent Menu
 ////////////////////////////////////////////////
 .header-nav-parent-menu {
-	@include media-breakpoint-up(lg) {
+	@include media-breakpoint-up($menu-breakpoint) {
 		> li {
 			float: left;
 
@@ -274,8 +285,8 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 						transparent;
 					border-top-color: $desktop-parent-menu-dropdown-icon-color;
 					position: absolute;
-					top: 50%;
-					right: $desktop-parent-menu-item-padding-block;
+					inset-inline-end: $desktop-parent-menu-item-padding-block;
+					inset-block-start: 50%;
 					transition:
 						250ms color,
 						250ms background-color;
@@ -294,25 +305,13 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 				}
 			}
 		}
-
-		li.menu-item-has-children {
-			&:hover,
-			&focus-visible {
-				> .sub-menu {
-					visibility: visible;
-					z-index: 10;
-					opacity: 1;
-					pointer-events: auto;
-				}
-			}
-		}
 	} // breakpoint
 }
 
 // Desktop Sub Menu
 ////////////////////////////////////////////////
 .header-nav-parent-menu {
-	@include media-breakpoint-up(lg) {
+	@include media-breakpoint-up($menu-breakpoint) {
 		.sub-menu {
 			visibility: hidden;
 			inline-size: $desktop-sub-menu-width;
@@ -372,8 +371,8 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 						transparent;
 					border-inline-start-color: $desktop-parent-menu-dropdown-icon-hover-color;
 					position: absolute;
-					top: $desktop-parent-menu-item-padding-inline;
-					right: $desktop-parent-menu-item-padding-block;
+					inset-inline-end: $desktop-parent-menu-item-padding-block;
+					inset-block-start: $desktop-parent-menu-item-padding-inline;
 					transition:
 						250ms color,
 						250ms background-color;

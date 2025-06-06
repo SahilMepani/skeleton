@@ -1,10 +1,11 @@
-(function () {
+(() => {
 	function initAccordions(section) {
 		const accordionContainer = section.querySelector('.list-accordions');
 		let activeAccordion = null;
 
 		function toggleAccordion(accordion) {
 			const content = accordion.querySelector('.accordion-content');
+			const heading = accordion.querySelector('.accordion-heading');
 			const isOpening = !accordion.classList.contains('js-active');
 
 			// Close the previously active accordion
@@ -22,6 +23,25 @@
 				: null;
 
 			activeAccordion = isOpening ? accordion : null;
+
+			// Delay visibility check to allow layout update (especially for expanded content)
+			if (isOpening) {
+				setTimeout(() => {
+					const rect = heading.getBoundingClientRect();
+					const isFullyVisible =
+						rect.top >= 0 &&
+						rect.bottom <=
+							(window.innerHeight ||
+								document.documentElement.clientHeight);
+
+					if (!isFullyVisible) {
+						heading.scrollIntoView({
+							behavior: 'smooth',
+							block: 'start'
+						});
+					}
+				}, 250); // Slight delay to allow CSS transition / layout update
+			}
 		}
 
 		// Use event delegation for click events
@@ -33,10 +53,11 @@
 		});
 
 		// Open the first accordion by default
-		const firstAccordion = accordionContainer.querySelector('.accordion');
-		if (firstAccordion) {
-			toggleAccordion(firstAccordion);
-		}
+		// If you uncomment then the window will scroll on page load whereever the FAQ block is used
+		// const firstAccordion = accordionContainer.querySelector('.accordion');
+		// if (firstAccordion) {
+		// 	toggleAccordion(firstAccordion);
+		// }
 
 		// Function to update max-height on resize or orientation change
 		const updateMaxHeight = debounce(function () {

@@ -1,4 +1,8 @@
 .bg-video {
+	min-inline-size: 100%;
+	block-size: 100%;
+	min-block-size: 56.25vw;
+
 	/* 100 * 9 / 16 */
 	position: absolute;
 
@@ -6,9 +10,6 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	block-size: 100%;
-	min-block-size: 56.25vw;
-	min-inline-size: 100%;
 
 	/* % of current element */
 	@media screen and (orientation: landscape) {
@@ -36,9 +37,9 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		transition: 250ms ease-out;
-		block-size: fluid(30, 50);
 		inline-size: fluid(30, 50);
+		block-size: fluid(30, 50);
+		transition: 250ms ease-out;
 
 		&[class~='dots'] {
 			pointer-events: none;
@@ -63,10 +64,10 @@
 
 		&.prev,
 		&.next {
+			inline-size: fluid(30, 60);
+			block-size: fluid(30, 60);
 			border: rem-calc(1) solid $primary;
 			border-radius: 50%;
-			block-size: fluid(30, 60);
-			inline-size: fluid(30, 60);
 
 			svg {
 				inline-size: fluid(6, 12);
@@ -90,25 +91,25 @@
 
 .loader {
 	display: inline-block;
+	inline-size: fluid(24, 48);
+	block-size: fluid(24, 48);
 	border: fluid(3, 5) solid #333;
 	border-bottom-color: transparent;
 	border-radius: 50%;
 	animation: rotation 1s linear infinite;
-	block-size: fluid(24, 48);
-	inline-size: fluid(24, 48);
 	box-sizing: border-box;
 	pointer-events: none;
 
 	&.small {
-		block-size: rem-calc(24);
 		inline-size: rem-calc(24);
+		block-size: rem-calc(24);
 	}
 
 	&.center {
 		margin: auto;
+		border-width: rem-calc(3);
 		position: absolute;
 		inset: 0;
-		border-inline-size: rem-calc(3);
 	}
 }
 

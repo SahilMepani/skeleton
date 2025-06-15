@@ -66,11 +66,17 @@ function purgeCSSTask() {
 						/^style-(.*)?$/,
 						/^nav-(.*)?$/,
 						/^spacing-(.*)?$/,
-						/^style-(.*)?$/,
 						/^swiper-(.*)?$/,
 						/^js-(.*)?$/
 					],
-					deep: [/rtl$/, /^lenis/, /^mfp/, /^gform_(.*)?$/],
+					deep: [
+						/rtl$/,
+						/nav$/,
+						/^lenis/,
+						/^mfp/,
+						/^sub-menu/,
+						/^gform_(.*)?$/
+					],
 					greedy: [],
 					keyframes: true,
 					variables: true

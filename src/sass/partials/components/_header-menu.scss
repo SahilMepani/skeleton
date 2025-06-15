@@ -237,11 +237,16 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 ////////////////////////////////////////////////
 .header-nav-parent-menu {
 	@include media-breakpoint-up($menu-breakpoint) {
-		> li {
-			float: left;
+		display: flex;
+		gap: rem-calc(20);
 
-			&:not(:last-child) {
-				margin-inline-end: rem-calc(20);
+		> li {
+			> a {
+				background-color: $desktop-parent-menu-link-bg-color;
+				color: $desktop-parent-menu-link-color;
+				display: block;
+				padding: $desktop-parent-menu-item-padding-block
+					$desktop-parent-menu-item-padding-inline;
 			}
 
 			&:hover,
@@ -252,56 +257,66 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 				}
 			}
 
-			> a {
-				background-color: $desktop-parent-menu-link-bg-color;
-				color: $desktop-parent-menu-link-color;
-				display: block;
-				padding: $desktop-parent-menu-item-padding-block
-					$desktop-parent-menu-item-padding-inline;
-			}
-		}
-
-		> li.current-page-ancestor > a,
-		> li.current-menu-parent > a,
-		> li.current-menu-item > a {
-			background-color: $desktop-parent-menu-current-item-link-bg-color;
-			color: $desktop-parent-menu-current-item-link-color;
-		}
-
-		> li.menu-item-has-children {
-			position: relative;
-
-			> a {
-				/* stylelint-disable scss/operator-no-newline-after */
-				padding-inline-end: $desktop-parent-menu-item-padding-block +
-					$desktop-parent-menu-dropdown-icon-border +
-					$desktop-parent-menu-dropdown-icon-border +
-					$desktop-parent-menu-space-between-text-and-arrow;
-				/* stylelint-enable scss/operator-no-newline-after */
-
-				&::after {
-					margin-block-start: rem-calc(-2);
-					border: $desktop-parent-menu-dropdown-icon-border solid
-						transparent;
-					border-top-color: $desktop-parent-menu-dropdown-icon-color;
-					position: absolute;
-					inset-inline-end: $desktop-parent-menu-item-padding-block;
-					inset-block-start: 50%;
-					transition:
-						250ms color,
-						250ms background-color;
-					content: '';
-				}
+			&.current-page-ancestor > a,
+			&.current-menu-parent > a,
+			&.current-menu-item > a {
+				background-color: $desktop-parent-menu-current-item-link-bg-color;
+				color: $desktop-parent-menu-current-item-link-color;
 			}
 
-			&:hover,
-			&:focus-visible {
+			&.menu-item-has-children {
+				position: relative;
+
 				> a {
-					color: $desktop-parent-menu-link-hover-color;
+					/* stylelint-disable scss/operator-no-newline-after */
+					padding-inline-end: $desktop-parent-menu-item-padding-block +
+						$desktop-parent-menu-dropdown-icon-border +
+						$desktop-parent-menu-dropdown-icon-border +
+						$desktop-parent-menu-space-between-text-and-arrow;
+					/* stylelint-enable scss/operator-no-newline-after */
 
 					&::after {
-						border-top-color: $desktop-parent-menu-dropdown-icon-hover-color;
+						aspect-ratio: 6/4;
+						background-color: $desktop-parent-menu-dropdown-icon-color;
+						inline-size: rem-calc(10);
+						margin-block-start: rem-calc(-2);
+						position: absolute;
+						top: 50%;
+						right: $desktop-parent-menu-item-padding-block;
+						content: '';
+						clip-path: polygon(
+							0% 0%,
+							20% 0%,
+							50% 50%,
+							80% 0%,
+							100% 0%,
+							50% 80%
+						);
 					}
+				}
+
+				&:hover,
+				&:focus-visible {
+					> a {
+						color: $desktop-parent-menu-link-hover-color;
+
+						&::after {
+							background-color: $desktop-parent-menu-dropdown-icon-hover-color;
+						}
+					}
+				}
+			}
+		}
+
+		// any level
+		li.menu-item-has-children {
+			&:hover,
+			&focus-visible {
+				> .sub-menu {
+					visibility: visible;
+					z-index: 10;
+					opacity: 1;
+					pointer-events: auto;
 				}
 			}
 		}

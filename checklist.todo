@@ -46,6 +46,8 @@
 	☐ Add acf-json folder and save all the field groups in it from plugin settings. It will significantly improve the load time on frontend as it will make less database queries for fields
 	☐ Hide unwanted options from admin menu sidebar using "Admin menu editor" plugin
 	☐ Make the WP JPG resize quality filter percent to 70 if not planning to use Image Optimize plugin
+	☐ Check all img-srcset code to make sure we are using the correct sizes to load the images.
+	☐ Consolidate all the CSS media queries at end of the file
 	☐ Setup SMTP for email delivery to Inbox
 	☐ Setup Google search console
 	☐ Remove unwanted keyframes

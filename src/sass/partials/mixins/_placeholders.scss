@@ -1,7 +1,7 @@
 %container {
 	inline-size: 100%;
-	padding-inline-end: fluid(20, 40);
-	padding-inline-start: fluid(20, 40);
+	padding-inline-end: $container-padding-x;
+	padding-inline-start: $container-padding-x;
 	margin-inline-end: auto;
 	margin-inline-start: auto;
 }

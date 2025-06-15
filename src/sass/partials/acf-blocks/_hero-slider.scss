@@ -9,20 +9,6 @@
 	.img-cover-block {
 		position: absolute;
 		inset: 0;
-
-		.img-desktop.has-mobile {
-			display: none;
-		}
-
-		@include media-breakpoint-up(md) {
-			.img-mobile {
-				display: none;
-			}
-
-			.img-desktop.has-mobile {
-				display: block;
-			}
-		}
 	}
 
 	.swiper-pagination-dot {

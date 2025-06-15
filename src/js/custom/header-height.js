@@ -4,14 +4,17 @@
  */
 const siteHeader = document.querySelector('.site-header');
 
-(() => {
-	const headerHeight = siteHeader.offsetHeight;
-	const resizeHeaderHeight = () => {
-		document.documentElement.style.setProperty(
-			'--header-height',
-			headerHeight + 'px'
-		);
-	};
-	resizeHeaderHeight();
-	window.addEventListener('resize', resizeHeaderHeight);
-})();
+if (siteHeader) {
+	(() => {
+		const headerHeight = siteHeader.offsetHeight;
+		const resizeHeaderHeight = () => {
+			document.documentElement.style.setProperty(
+				'--header-height',
+				headerHeight + 'px'
+			);
+			console.log('Height');
+		};
+		resizeHeaderHeight();
+		window.addEventListener('resize', resizeHeaderHeight);
+	})();
+}

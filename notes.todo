@@ -1,3 +1,24 @@
+Allowed File Types:
+jpg, jpeg, webp, avif
+
+Desktop Image:
+Minimum width: 1920px. Landscape image.
+
+Mobile Image:
+If blank, desktop image will be used. <br /> Minimum width: 800px. Portrait image.
+
+Visual Editor:
+DO NOT COPY-PASTE TEXT ON THE "VISUAL" TAB. USE "TEXT" TAB INSTEAD
+
+FAQs ACF:
+auto : Auto
+custom : Custom
+selected : Selected
+
+<b>Auto</b>: Show all.
+<b>Custom</b>: Add content.
+<b>Selected</b>: Select manually.
+
 Kinsta:
 	☐ FilemTime functions works on Staging but it doesn't work on Live environment on Kinsta
 	☐ Versioning is not working with Kinsta so we have to use Autoptimize because it does versioning by itself whenever we upload an updated CSS file.
@@ -12,17 +33,6 @@ Swiper Events Order
 // slideChangeTransitionStart
 // slideChangeTransitionEnd
 
-ACF:
-DO NOT COPY-PASTE TEXT ON THE "VISUAL" TAB. USE "TEXT" TAB INSTEAD
-Minimum (WxH): 700x335 px. Upload JPG image
-
-auto : Auto
-custom : Custom
-selected : Selected
-
-<b>Auto</b>: Show all.
-<b>Custom</b>: Add content.
-<b>Selected</b>: Select manually.
 
 Dev to Design handoff:
 	☐ Styleguide - including mobile typography. Any color or typography needs to be documentated, Buttons and hover styles

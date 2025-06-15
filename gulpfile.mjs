@@ -64,18 +64,15 @@ function purgeCSSTask() {
 						'dark-mode-on',
 						'has-bg',
 						/^style-(.*)?$/,
-						/^nav-(.*)?$/,
-						/^spacing-(.*)?$/,
 						/^swiper-(.*)?$/,
 						/^js-(.*)?$/
 					],
 					deep: [
 						/rtl$/,
-						/nav$/,
 						/^lenis/,
 						/^mfp/,
-						/^sub-menu/,
-						/^gform_(.*)?$/
+						/^gform_(.*)?$/,
+						/header-nav/
 					],
 					greedy: [],
 					keyframes: true,

@@ -26,6 +26,7 @@
 		headerNavToggle.classList.add(activeClass);
 		headerNav.classList.add(activeClass);
 		body.classList.add(popupActiveClass);
+		body.setAttribute('data-lenis-prevent', 'true');
 
 		// Update ARIA attributes for accessibility
 		headerNavToggle.setAttribute('aria-expanded', 'true'); // Button now expands
@@ -41,6 +42,7 @@
 		headerNavToggle.classList.remove(activeClass);
 		headerNav.classList.remove(activeClass);
 		body.classList.remove(popupActiveClass);
+		body.removeAttribute('data-lenis-prevent');
 
 		// Update ARIA attributes for accessibility
 		headerNavToggle.setAttribute('aria-expanded', 'false'); // Button now collapses

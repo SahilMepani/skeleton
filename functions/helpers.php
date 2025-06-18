@@ -77,12 +77,12 @@ function skel_posts_pagination( int $total_pages ): void {
  * @return string|null The class name for the Swiper direction, or null if the language code is not supported.
  */
 function skel_swiper_direction_class(): string|null {
-	if ( ICL_LANGUAGE_CODE === 'en' ) {
-		return 'swiper';
-	} elseif ( ICL_LANGUAGE_CODE === 'ar' ) {
-		return 'swiper-rtl';
+	if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
+		if ( ICL_LANGUAGE_CODE === 'ar' ) {
+			return 'swiper-rtl';
+		}
 	}
-	return null;
+	return 'swiper';
 }
 
 /**
@@ -97,12 +97,12 @@ function skel_swiper_direction_class(): string|null {
  * @return string|null The class name for the language direction, or null if the language code is not supported.
  */
 function skel_direction_class(): string|null {
-	if ( ICL_LANGUAGE_CODE === 'en' ) {
-		return 'dir-ltr';
-	} elseif ( ICL_LANGUAGE_CODE === 'ar' ) {
-		return 'dir-rtl';
+	if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
+		if ( ICL_LANGUAGE_CODE === 'ar' ) {
+			return 'dir-rtl';
+		}
 	}
-	return null;
+	return 'dir-ltr';
 }
 
 /**

@@ -2,6 +2,16 @@
 	display: flex;
 	gap: rem-calc(4);
 
+	[dir='rtl'] & {
+		flex-direction: row-reverse;
+	}
+
+	&:has(.swiper-button-prev.swiper-button-disabled):has(
+			.swiper-button-next.swiper-button-disabled
+		) {
+		display: none !important;
+	}
+
 	&.style-floating {
 		.swiper-button-prev,
 		.swiper-button-next {

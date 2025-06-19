@@ -26,6 +26,8 @@ $mobile-sub-menu-link-bg-color: transparent;
 $mobile-sub-menu-link-hover-bg-color: rgba(#000, 0.5);
 $mobile-sub-menu-link-color: green;
 $mobile-sub-menu-link-hover-color: #000;
+$mobile-sub-menu-current-item-link-bg-color: blue;
+$mobile-sub-menu-current-item-link-color: #fff;
 $mobile-sub-menu-link-padding-block: rem-calc(13);
 
 // usually this is same as parent menu
@@ -200,6 +202,11 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 				}
 			}
 		}
+
+		> li.current-menu-item > a {
+			background-color: $mobile-sub-menu-current-item-link-bg-color;
+			color: $mobile-sub-menu-current-item-link-color;
+		}
 	}
 }
 
@@ -311,7 +318,7 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 		// any level
 		li.menu-item-has-children {
 			&:hover,
-			&focus-visible {
+			&:focus-visible {
 				> .sub-menu {
 					visibility: visible;
 					z-index: 10;

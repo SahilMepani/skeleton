@@ -71,6 +71,7 @@ function purgeCSSTask() {
 						/rtl$/,
 						/^lenis/,
 						/^mfp/,
+						/^wpml/,
 						/^gform_(.*)?$/,
 						/header-nav/
 					],

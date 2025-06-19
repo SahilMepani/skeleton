@@ -47,11 +47,12 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 		<!-- Additional required wrapper -->
 		<div class="swiper-wrapper">
 			<?php
-			$i = 1;
+			$i = 0;
 			foreach ( $slider as $slide ) {
 				$desktop_image = $slide['desktop_image'] ?? DEFAULT_THUMBNAIL_ID;
 				$mobile_image  = $slide['mobile_image'] ?? '';
 				$mobile_class  = $mobile_image ? 'has-mobile' : '';
+				++$i;
 				?>
 			<div class="swiper-slide slide">
 				<div class="img-cover-block">
@@ -66,7 +67,8 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 						width="<?php echo esc_attr( $image_data[1] ); ?>"
 						height="<?php echo esc_attr( $image_data[2] ); ?>"
 						class="img-cover img-desktop <?php echo esc_html( $mobile_class ); ?>"
-						<?php echo ( 0 !== $i ) ? 'loading="lazy"' : 'fetchpriority="high"'; ?> />
+						<?php echo ( 1 === $i ) ? 'fetchpriority="high"' : 'loading="lazy"'; ?>
+						/>
 
 					<?php
 					if ( $mobile_image ) {
@@ -79,7 +81,8 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 						sizes="100vw" alt="<?php echo esc_attr( $image_alt ); ?>"
 						width="<?php echo esc_attr( $image_data[1] ); ?>"
 						height="<?php echo esc_attr( $image_data[2] ); ?>" class="img-cover img-mobile"
-						<?php echo ( 0 !== $i ) ? 'loading="lazy"' : 'fetchpriority="high"'; ?> />
+						<?php echo ( 1 === $i ) ? 'fetchpriority="high"' : 'loading="lazy"'; ?>
+						/>
 					<?php } ?>
 				</div>
 			</div>

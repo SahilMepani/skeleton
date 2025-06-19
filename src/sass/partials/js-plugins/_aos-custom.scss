@@ -1,5 +1,5 @@
-// Animations variables
-$stagger-limit: 20;
+// Variables
+$stagger-limit: 10;
 
 :root {
 	--aos-duration: 750;
@@ -33,7 +33,7 @@ $stagger-limit: 20;
 	}
 }
 
-@media screen and (prefers-reduced-motion: no-preference) {
+@media screen {
 	// set defaults
 	[data-aos] {
 		visibility: hidden;
@@ -41,6 +41,8 @@ $stagger-limit: 20;
 		pointer-events: none;
 
 		&[data-inview='true'],
+		[data-slider-inview='true'] &.swiper-slide,
+		[data-slider-inview='true'] .swiper-slide-active &,
 		[data-inview='true'] & {
 			visibility: visible;
 			pointer-events: auto;
@@ -51,17 +53,15 @@ $stagger-limit: 20;
 	}
 
 	/**
-  * Fade animations:
-  * fade
-  * fade-up, fade-down, fade-left, fade-right
-  * fade-up-right, fade-up-left, fade-down-right, fade-down-left
-  */
-
+	 * Fade
+	 */
 	[data-aos^='fade'] {
 		opacity: 0;
 		transition-property: opacity, transform;
 
 		&[data-inview='true'],
+		[data-slider-inview='true'] &.swiper-slide,
+		[data-slider-inview='true'] .swiper-slide-active &,
 		[data-inview='true'] & {
 			opacity: 1;
 			transform: none;
@@ -72,73 +72,75 @@ $stagger-limit: 20;
 		transform: translate3d(0, var(--aos-distance), 0);
 	}
 
-	[data-aos='fade-down'] {
-		transform: translate3d(0, calc(var(--aos-distance) * -1), 0);
-	}
+	// By default all fading mobile animations will be fade/fade-up only
+	@include media-breakpoint-up(md) {
+		[data-aos='fade-down'] {
+			transform: translate3d(0, calc(var(--aos-distance) * -1), 0);
+		}
 
-	[data-aos='fade-right'] {
-		transform: translate3d(calc(var(--aos-distance) * -1), 0, 0);
-	}
+		[data-aos='fade-right'] {
+			transform: translate3d(calc(var(--aos-distance) * -1), 0, 0);
+		}
 
-	[data-aos='fade-left-full'] {
-		transform: translate3d(100%, 0, 0);
-	}
+		[data-aos='fade-left-full'] {
+			transform: translate3d(100%, 0, 0);
+		}
 
-	[data-aos='fade-up-full'] {
-		transform: translate3d(0, 100%, 0);
-	}
+		[data-aos='fade-up-full'] {
+			transform: translate3d(0, 100%, 0);
+		}
 
-	[data-aos='fade-down-full'] {
-		transform: translate3d(0, -100%, 0);
-	}
+		[data-aos='fade-down-full'] {
+			transform: translate3d(0, -100%, 0);
+		}
 
-	[data-aos='fade-right-full'] {
-		transform: translate3d(-100%, 0, 0);
-	}
+		[data-aos='fade-right-full'] {
+			transform: translate3d(-100%, 0, 0);
+		}
 
-	[data-aos='fade-left'] {
-		transform: translate3d(var(--aos-distance), 0, 0);
-	}
+		[data-aos='fade-left'] {
+			transform: translate3d(var(--aos-distance), 0, 0);
+		}
 
-	[data-aos='fade-up-right'] {
-		transform: translate3d(
-			calc(var(--aos-distance) * -1),
-			var(--aos-distance),
-			0
-		);
-	}
+		[data-aos='fade-up-right'] {
+			transform: translate3d(
+				calc(var(--aos-distance) * -1),
+				var(--aos-distance),
+				0
+			);
+		}
 
-	[data-aos='fade-up-left'] {
-		transform: translate3d(var(--aos-distance), var(--aos-distance), 0);
-	}
+		[data-aos='fade-up-left'] {
+			transform: translate3d(var(--aos-distance), var(--aos-distance), 0);
+		}
 
-	[data-aos='fade-down-right'] {
-		transform: translate3d(
-			calc(var(--aos-distance) * -1),
-			calc(var(--aos-distance) * -1),
-			0
-		);
-	}
+		[data-aos='fade-down-right'] {
+			transform: translate3d(
+				calc(var(--aos-distance) * -1),
+				calc(var(--aos-distance) * -1),
+				0
+			);
+		}
 
-	[data-aos='fade-down-left'] {
-		transform: translate3d(
-			var(--aos-distance),
-			calc(var(--aos-distance) * -1),
-			0
-		);
+		[data-aos='fade-down-left'] {
+			transform: translate3d(
+				var(--aos-distance),
+				calc(var(--aos-distance) * -1),
+				0
+			);
+		}
 	}
 
 	/**
-  * Zoom animations:
-  * zoom-in, zoom-in-up, zoom-in-down, zoom-in-left, zoom-in-right
-  * zoom-out, zoom-out-up, zoom-out-down, zoom-out-left, zoom-out-right
-  */
-
+	 * Zoom
+	 */
 	[data-aos^='zoom'] {
 		opacity: 0;
 		transition-property: opacity, transform;
 
 		&[data-inview='true'],
+		[data-slider-inview='true'] &.swiper-slide,
+		[data-slider-inview='true'] .swiper-slide-active &,
 		[data-inview='true'] & {
 			opacity: 1;
 			transform: translate3d(0, 0, 0) scale(1);
@@ -191,13 +193,13 @@ $stagger-limit: 20;
 	}
 
 	/**
-  * Slide animations
-  */
-
+	 * Slide 	 */
 	[data-aos^='slide'] {
 		transition-property: transform;
 
 		&[data-inview='true'],
+		[data-slider-inview='true'] .swiper-slide-active,
+		[data-slider-inview='true'] .swiper-slide-active &,
 		[data-inview='true'] & {
 			transform: translate3d(0, 0, 0);
 		}
@@ -236,10 +238,8 @@ $stagger-limit: 20;
 	}
 
 	/**
-  * Flip animations:
-  * flip-left, flip-right, flip-up, flip-down
-  */
-
+	 * Flip
+	 */
 	[data-aos^='flip'] {
 		transition-property: opacity, transform;
 		backface-visibility: hidden;
@@ -250,6 +250,8 @@ $stagger-limit: 20;
 		transform: perspective(2500) rotateY(-100deg);
 
 		&[data-inview='true'],
+		[data-slider-inview='true'] .swiper-slide-active,
+		[data-slider-inview='true'] .swiper-slide-active &,
 		[data-inview='true'] & {
 			opacity: 1;
 			transform: perspective(2500) rotateY(0);
@@ -260,6 +262,8 @@ $stagger-limit: 20;
 		transform: perspective(2500) rotateY(100deg);
 
 		&[data-inview='true'],
+		[data-slider-inview='true'] .swiper-slide-active,
+		[data-slider-inview='true'] .swiper-slide-active &,
 		[data-inview='true'] & {
 			transform: perspective(2500) rotateY(0);
 		}
@@ -269,6 +273,8 @@ $stagger-limit: 20;
 		transform: perspective(2500) rotateX(-100deg);
 
 		&[data-inview='true'],
+		[data-slider-inview='true'] .swiper-slide-active,
+		[data-slider-inview='true'] .swiper-slide-active &,
 		[data-inview='true'] & {
 			transform: perspective(2500) rotateX(0);
 		}
@@ -278,22 +284,28 @@ $stagger-limit: 20;
 		transform: perspective(2500) rotateX(100deg);
 
 		&[data-inview='true'],
+		[data-slider-inview='true'] .swiper-slide-active,
+		[data-slider-inview='true'] .swiper-slide-active &,
 		[data-inview='true'] & {
 			transform: perspective(2500) rotateX(0);
 		}
 	}
 
-	// Rotate
-	////////////////////////////////////////////////
+	/**
+	 * Rotate
+	 */
 	[data-aos='rotate-360'] {
 		transform: rotate(360deg);
 		animation-timing-function: $custom_ease;
 	}
 
-	// Stagger
-	////////////////////////////////////////////////
+	/**
+	 * Stagger
+	 */
 	@for $i from 1 through $stagger-limit {
 		[data-aos-stagger-item] {
+			&.swiper-slide:nth-child(#{$i}),
+			.swiper-slide &:nth-child(#{$i}),
 			&[data-inview='true']:nth-child(#{$i}),
 			[data-inview='true'] &:nth-child(#{$i}) {
 				/* stylelint-disable-next-line */
@@ -306,54 +318,37 @@ $stagger-limit: 20;
 		}
 	}
 
-	// Clip path
-	[data-aos='clip-path-right'] {
+	/**
+	 * Clip path
+	 */
+	[data-aos^='clip-path-'] {
 		transition-property: clip-path;
-		clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
 
 		&[data-inview='true'],
+		[data-slider-inview='true'] .swiper-slide-active,
+		[data-slider-inview='true'] .swiper-slide-active &,
 		[data-inview='true'] & {
 			clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 		}
+	}
+
+	[data-aos='clip-path-right'] {
+		clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
 	}
 
 	[data-aos='clip-path-left'] {
-		transition-property: clip-path;
 		clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
-
-		&[data-inview='true'],
-		[data-inview='true'] & {
-			clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-		}
 	}
 
 	[data-aos='clip-path-up'] {
-		transition-property: clip-path;
 		clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
-
-		&[data-inview='true'],
-		[data-inview='true'] & {
-			clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
-		}
 	}
 
 	[data-aos='clip-path-down'] {
-		transition-property: clip-path;
 		clip-path: polygon(0 0%, 100% 0%, 100% 0%, 0% 0%);
-
-		&[data-inview='true'],
-		[data-inview='true'] & {
-			clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
-		}
 	}
 
 	[data-aos='clip-path-open'] {
-		transition-property: clip-path;
 		clip-path: polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%);
-
-		&[data-inview='true'],
-		[data-inview='true'] & {
-			clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
-		}
 	}
 }

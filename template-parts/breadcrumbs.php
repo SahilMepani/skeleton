@@ -16,6 +16,11 @@ $cpt_mapping = array(
 	// Add other CPTs here: 'custom_post_type' => defined('PAGE_CPT_ID') ? PAGE_CPT_ID : 0,.
 );
 
+// Search result.
+$search_result_id    = defined( 'PAGE_SEARCH_ID' ) ? PAGE_SEARCH_ID : null;
+$search_result_title = get_the_title( $search_result_id );
+$search_result_link  = get_permalink( $search_result_id );
+
 // Check if the current post type has a corresponding ID defined and is valid.
 $associated_page_id = $cpt_mapping[ $item_post_type ] ?? 0;
 
@@ -26,18 +31,30 @@ if ( $associated_page_id && get_post_status( $associated_page_id ) ) { // Check 
 	);
 }
 ?>
-<div class="breadcrumbs-section">
+<div class="breadcrumbs-section" data-inview data-aos="fade">
 	<div class="container">
 		<div class="inner-container">
 			<nav aria-label="breadcrumbs" class="breadcrumb">
 				<p>
 					<a href="<?php echo esc_url( site_url() ); ?>"><?php echo esc_html( $frontpage_title ); ?></a>
+
 					<span class="separator"></span>
+
 					<?php if ( $cpt_data ) { ?>
-						<a href="<?php echo esc_url( $cpt_data['link'] ); ?>"><?php echo esc_html( $cpt_data['title'] ); ?></a>
+						<a href="<?php echo esc_url( $cpt_data['link'] ); ?>">
+							<?php echo esc_html( $cpt_data['title'] ); ?>
+						</a>
+
 						<span class="separator"></span>
+					<?php } elseif ( is_search() && $search_result_id ) { ?>
+						<a href="<?php echo esc_url( $search_result_link ); ?>" class="last">
+							<?php echo esc_html( $search_result_title ); ?>
+						</a>
 					<?php } ?>
-					<span class="last"><?php echo get_the_title(); //phpcs:ignore ?></span>
+
+					<?php if ( ! is_search() ) { ?>
+						<span class="last"><?php echo esc_html( get_the_title() ); ?></span>
+					<?php } ?>
 				</p>
 			</nav>
 		</div>

@@ -7,6 +7,11 @@
 
 	a {
 		color: $dark-grey;
+
+		&:hover,
+		&:focus-visible {
+			color: $dark-blue;
+		}
 	}
 
 	p {
@@ -38,5 +43,11 @@
 		block-size: rem-calc(24);
 		padding-inline: rem-calc(12);
 		border-radius: rem-calc(40);
+	}
+
+	[dir='rtl'] & {
+		.separator::after {
+			transform: rotate(180deg);
+		}
 	}
 }

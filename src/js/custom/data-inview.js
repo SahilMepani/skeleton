@@ -4,7 +4,7 @@ function observeInviewElements(context = document) {
 	);
 
 	elements.forEach(element => {
-		const offset = element.getAttribute('data-inview-offset') || '15svh';
+		const offset = element.getAttribute('data-inview-offset') || '12svh';
 		const thresholdAttr = element.getAttribute('data-inview-threshold');
 		const threshold = thresholdAttr ? parseFloat(thresholdAttr) : 0.05;
 

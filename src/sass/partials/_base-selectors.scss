@@ -43,10 +43,10 @@
 		border-radius: $track-border-radius;
 	}
 
-	.js-no-touchevents body::-webkit-scrollbar-thumb {
-		background: $thumb-background;
-		border-radius: $thumb-border-radius;
-	}
+	// .js-no-touchevents body::-webkit-scrollbar-thumb {
+	// 	background: $thumb-background;
+	// 	border-radius: $thumb-border-radius;
+	// }
 }
 
 html {
@@ -70,6 +70,11 @@ body {
 	-webkit-tap-highlight-color: rgba(#000, 0);
 
 	.js-no-touchevents &.js-popup-active {
+		overflow: hidden;
+	}
+
+	body:has([data-modal-backdrop].js-active) {
+		height: 100svh;
 		overflow: hidden;
 	}
 }

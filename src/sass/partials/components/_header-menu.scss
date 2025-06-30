@@ -55,7 +55,7 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 	@include media-breakpoint-down($menu-breakpoint) {
 		background-color: $mobile-sidebar-bg-color;
 		inline-size: 100%;
-		block-size: 100vh;
+		block-size: 100svh;
 		padding: rem-calc(90) 0 rem-calc(40);
 		position: fixed;
 		inset: 0;

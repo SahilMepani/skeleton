@@ -62,6 +62,16 @@
 								if (sibling !== linkedElement) {
 									sibling.classList.remove('js-active');
 									sibling.setAttribute('aria-hidden', 'true');
+									// Also manage lenis for siblings if they were linked and active
+									if (
+										sibling.hasAttribute(
+											'data-toggle-lenis'
+										)
+									) {
+										sibling.removeAttribute(
+											'data-lenis-prevent'
+										); // remove data-lenis when inactive
+									}
 								}
 							});
 					}
@@ -72,6 +82,20 @@
 						'aria-hidden',
 						isNowActive ? 'false' : 'true'
 					);
+
+					// === NEW LOGIC FOR DATA-LENIS ===
+					if (linkedElement.hasAttribute('data-toggle-lenis')) {
+						if (isNowActive) {
+							// If it's becoming active, set data-lenis
+							linkedElement.setAttribute(
+								'data-lenis-prevent',
+								'true'
+							);
+						} else {
+							// If it's becoming inactive, remove data-lenis
+							linkedElement.removeAttribute('data-lenis-prevent');
+						}
+					}
 				});
 		}
 	}

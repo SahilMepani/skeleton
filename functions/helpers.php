@@ -185,6 +185,19 @@ function skel_get_validate_youtube_link( string $link ): string|false {
 	}
 }
 
+/**
+ * Random String Generator
+ *
+ * @param int $length   The maximum number of characters.
+ * @return string
+ */
+function skel_get_random_string( int $length = 10 ): string {
+
+	$string = 'abcdefghijklmnopqrstuvwxyz';
+
+	return substr( str_shuffle( $string ), 0, $length );
+}
+
 
 /**
  * Retrieves a customized excerpt for a specified post.

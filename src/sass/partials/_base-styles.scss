@@ -19,7 +19,7 @@
 
 	body:has([data-modal-backdrop].js-active) & {
 		visibility: visible;
-		z-index: 99;
+		z-index: $z-backdrop;
 		opacity: 1;
 	}
 }

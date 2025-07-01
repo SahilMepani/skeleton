@@ -5,7 +5,7 @@
 		if (event.key === 'Escape' || event.key === 'Esc') {
 			// Select all elements that have the attribute data-esc
 			const elements = document.querySelectorAll(
-				'[data-toogle-click], [data-toggle-link], .modal-backdrop'
+				'[data-toggle-click], [data-toggle-group], [data-toggle-link], .modal-backdrop'
 			);
 
 			// Loop through each of the selected elements

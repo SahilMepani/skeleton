@@ -66,6 +66,8 @@ function purgeCSSTask() {
 						/^style-(.*)?$/,
 						/^swiper-(.*)?$/,
 						/^js-(.*)?$/
+						/^layout-(.*)?$/
+						/^bg-(.*)?$/
 					],
 					deep: [
 						/rtl$/,

@@ -20,6 +20,9 @@
 				speed: 300,
 				watchOverflow: true,
 				// effect: 'fade',
+				// fadeEffect: {
+				// 	crossFade: true
+				// },
 				navigation: {
 					prevEl: '.' + prevClass,
 					nextEl: '.' + nextClass

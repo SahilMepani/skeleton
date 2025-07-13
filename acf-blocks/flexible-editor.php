@@ -21,6 +21,7 @@ if ( 'on' !== $display ) {
 // Block options.
 $flexible_editor = get_field( 'flexible_editor' );
 
+
 // Developer options.
 $spacing        = get_field( 'spacing' );
 $spacing_top    = $spacing['top']['spacing_top'] ?? '';
@@ -48,7 +49,7 @@ if ( 'on' === $display && is_array( $flexible_editor ) ) { ?>
 
 					break;
 				case 'text':
-					echo '<div class="text-block">' . $layout['text'] . '</div>';
+					echo '<div class="text-block">' . $layout['text'] . '</div>'; //phpcs:ignore
 
 					break;
 
@@ -110,8 +111,9 @@ if ( 'on' === $display && is_array( $flexible_editor ) ) { ?>
 						echo $image_tag; // phpcs:ignore
 
 						if ( 'video' === $media_type ) {
+							$random_dialog_id = skel_get_random_string();
 							$button_play_html = <<<HTML
-								<button class="btn btn-reset btn-dialog-open js-dialog-open">
+								<button class="btn btn-reset btn-dialog-open js-dialog-open" data-dialog="{$random_dialog_id}">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 249 239" fill="none">
 										<path d="M248.857 119.332L0.609375 0.166016V238.499L248.857 119.332Z" fill="currentColor" />
 									</svg>
@@ -119,10 +121,10 @@ if ( 'on' === $display && is_array( $flexible_editor ) ) { ?>
 								HTML;
 							echo $button_play_html; // phpcs:ignore
 
-							echo '<dialog class="dialog js-dialog">';
+							echo '<dialog class="dialog js-dialog" data-dialog="' . esc_attr( $random_dialog_id ) . '">';
 
 							$dialog_close_button = <<<HTML
-								<button class="btn btn-reset btn-dialog-close js-dialog-close">
+								<button class="btn btn-reset btn-dialog-close js-dialog-close" data-dialog="{$random_dialog_id}">
 									<svg viewBox="0 0 24 24" fill="none">
 										<path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z" fill="currentColor"></path>
 									</svg>

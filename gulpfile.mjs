@@ -65,8 +65,8 @@ function purgeCSSTask() {
 						'has-bg',
 						/^style-(.*)?$/,
 						/^swiper-(.*)?$/,
-						/^js-(.*)?$/
-						/^layout-(.*)?$/
+						/^js-(.*)?$/,
+						/^layout-(.*)?$/,
 						/^bg-(.*)?$/
 					],
 					deep: [

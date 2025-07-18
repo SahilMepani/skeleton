@@ -87,6 +87,8 @@
 				"align-items",
 				"align-self",
 				"justify-content",
+				"place-content",
+				"place-items",
 				"gap",
 				"column-gap",
 				"row-gap",

@@ -30,6 +30,15 @@ if ( $associated_page_id && get_post_status( $associated_page_id ) ) { // Check 
 		'link'  => get_permalink( $associated_page_id ),
 	);
 }
+
+// Parent Page.
+$parent_id   = wp_get_post_parent_id( get_the_ID() );
+$parent_link = $parent_title = '';
+
+if ( $parent_id ) {
+	$parent_link  = get_permalink( $parent_id );
+	$parent_title = get_the_title( $parent_id );
+}
 ?>
 <div class="breadcrumbs-section" data-inview data-aos="fade">
 	<div class="container">
@@ -38,16 +47,30 @@ if ( $associated_page_id && get_post_status( $associated_page_id ) ) { // Check 
 				<p>
 					<a href="<?php echo esc_url( site_url() ); ?>"><?php echo esc_html( $frontpage_title ); ?></a>
 
-					<span class="separator"></span>
+					<span class="separator" role="presentation"></span>
 
 					<?php if ( $cpt_data ) { ?>
-						<a href="<?php echo esc_url( $cpt_data['link'] ); ?>">
-							<?php echo esc_html( $cpt_data['title'] ); ?>
+						<a href="<?php echo esc_url( $cpt_data['link'] ); ?>" title="<?php echo esc_attr( $cpt_data['title'] ); ?>" class="middle">
+							<span class="title"><?php echo esc_html( $cpt_data['title'] ); ?></span>
+
+							<span class="dots" role="presentation">...</span>
 						</a>
 
-						<span class="separator"></span>
-					<?php } elseif ( is_search() && $search_result_id ) { ?>
-						<a href="<?php echo esc_url( $search_result_link ); ?>" class="last">
+						<span class="separator" role="presentation"></span>
+					<?php } ?>
+
+					<?php if ( $parent_id ) { ?>
+						<a href="<?php echo esc_url( $parent_link ); ?>" title="<?php echo esc_attr( $parent_title['title'] ); ?>" class="middle">
+							<span class="title"><?php echo esc_html( $parent_title ); ?></span>
+
+							<span class="dots" role="presentation">...</span>
+						</a>
+
+						<span class="separator" role="presentation"></span>
+					<?php } ?>
+
+					<?php if ( is_search() && $search_result_id ) { ?>
+						<a href="<?php echo esc_url( $search_result_link ); ?>" title="<?php echo esc_attr( $search_result_title['title'] ); ?>" class="last">
 							<?php echo esc_html( $search_result_title ); ?>
 						</a>
 					<?php } ?>

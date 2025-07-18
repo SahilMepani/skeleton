@@ -22,10 +22,10 @@
 
 	.separator {
 		display: grid;
+		place-items: center;
 		inline-size: rem-calc(6);
 		block-size: rem-calc(12);
 		position: relative;
-		place-items: center;
 
 		&::after {
 			background-color: currentcolor;
@@ -33,6 +33,20 @@
 			block-size: rem-calc(12);
 			content: '';
 			clip-path: polygon(100% 50%, 0 100%, 0 80%, 60% 50%, 0 20%, 0 0);
+		}
+	}
+
+	.middle {
+		@include media-breakpoint-down(md) {
+			.title {
+				display: none;
+			}
+		}
+
+		@include media-breakpoint-up(md) {
+			.dots {
+				display: none;
+			}
 		}
 	}
 

@@ -18,6 +18,7 @@
 
 
 # FINALIZE --- ✄ -----------------------:
+	☐ Never define a function inside a acf-block or else if that same block is added twice to the page then it will throw function redeclare error.
 	☐ Load swiper first slider image as fetchpriority="high" and others as lazy
 	☐ Make sure hero section images do not have loading lazy and have fetchpriority="high"
 	☐ Add loading lazy to all other images which are not part of hero

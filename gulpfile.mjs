@@ -75,6 +75,9 @@ function purgeCSSTask() {
 						/^mfp/,
 						/^wpml/,
 						/^gform_(.*)?$/,
+						/^single-(.*)?$/,
+						/^page-(.*)?$/,
+						/^template-(.*)?$/,
 						/header-nav/
 					],
 					greedy: [],

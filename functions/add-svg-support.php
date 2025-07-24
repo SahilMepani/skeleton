@@ -68,3 +68,24 @@ function sanitize_svg_file( $file ) {
 	return $file;
 }
 add_filter( 'wp_handle_upload_prefilter', 'sanitize_svg_file' );
+
+
+
+/**
+ * Adds a custom media filter for SVG files in the WordPress Media Library.
+ *
+ * This function adds an entry to the MIME type filters dropdown
+ * in the Media Library, allowing users to filter by SVG files.
+ *
+ * @param array $post_mime_types Existing MIME type filters in the Media Library.
+ * @return array Modified MIME type filters including SVG.
+ */
+function add_svg_media_filter( $post_mime_types ) {
+	$post_mime_types['image/svg+xml'] = array(
+		__( 'SVGs' ),
+		__( 'SVGs' ),
+		_n_noop( 'SVG <span class="count">(%s)</span>', 'SVGs <span class="count">(%s)</span>' ),
+	);
+	return $post_mime_types;
+}
+add_filter( 'post_mime_types', 'add_svg_media_filter' );

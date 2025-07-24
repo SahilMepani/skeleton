@@ -1,6 +1,8 @@
 .flexible-editor-section {
 	.text-block {
-		margin-block-end: rem-calc(24);
+		&:not(:last-child) {
+			margin-block-end: fluid(32, 48);
+		}
 	}
 
 	.media-block {
@@ -22,8 +24,8 @@
 
 			svg {
 				color: $primary;
-				opacity: 0.8;
 				max-inline-size: fluid(44, 80);
+				opacity: 0.8;
 			}
 
 			&:hover,
@@ -36,13 +38,13 @@
 
 		.dialog {
 			background-color: #333;
+			max-inline-size: 75%;
 			padding: 0;
 			margin: auto;
 			border: 0;
 			z-index: 10;
 			transition: 0.25s ease-out;
 			overflow: hidden;
-			max-inline-size: 75%;
 			user-select: none;
 
 			// overflow: hidden;
@@ -58,13 +60,13 @@
 				display: block;
 				align-items: center;
 				justify-content: center;
+				inline-size: rem-calc(40);
+				block-size: rem-calc(40);
 				border-radius: rem-calc(5);
 				position: absolute;
 				inset-inline-end: rem-calc(15);
 				inset-block-start: rem-calc(15);
 				z-index: 1;
-				block-size: rem-calc(40);
-				inline-size: rem-calc(40);
 
 				svg {
 					inline-size: rem-calc(24);
@@ -85,65 +87,24 @@
 	}
 
 	.heading-block {
-		margin-block-end: rem-calc(16);
-	}
-
-	.checklist-block {
-		margin-block: rem-calc(32);
-
-		.list-checklist {
-			background-color: #fff1ee;
-			gap: fluid(24, 48);
-			padding: rem-calc(20) rem-calc(24);
-			column-count: 2;
-			column-rule: rem-calc(1) solid #333;
-
-			@include list-unstyled;
-
-			> li {
-				display: flex;
-				gap: rem-calc(12);
-				margin-block-end: rem-calc(16);
-				position: relative;
-
-				&::before {
-					background: url('images/check.svg') no-repeat center;
-					display: block;
-					flex-shrink: 0;
-					content: '';
-					block-size: rem-calc(21);
-					inline-size: rem-calc(20);
-				}
-			}
+		&:not(:last-child) {
+			margin-block-end: fluid(32, 48);
 		}
 	}
 
-	.reviews-block {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: rem-calc(16);
-		margin-block-end: rem-calc(32);
-
-		.review {
-			padding: rem-calc(12) rem-calc(16);
-			border: rem-calc(1) solid #666;
+	.text-cards-block {
+		&:not(:last-child) {
+			margin-block-end: fluid(32, 48);
 		}
 
-		blockquote {
-			color: #222;
-			font-weight: 500;
+		.text-card-slider {
+			overflow: visible;
 		}
 
-		.name {
-			color: #999;
-			font-size: rem-calc(14);
-			display: flex;
-			gap: rem-calc(4);
-
-			&::before {
-				flex-shrink: 0;
-				content: '\2014';
-			}
+		.icon-block {
+			inline-size: rem-calc(32);
+			block-size: rem-calc(32);
+			margin-block-end: rem-calc(12);
 		}
 	}
 }

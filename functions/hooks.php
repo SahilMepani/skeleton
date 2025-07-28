@@ -92,28 +92,6 @@ add_filter( 'script_loader_src', 'skel_remove_cssjs_ver', 10, 2 );
 
 
 /**
- * Redirect to the single post if the search query returns only one result.
- *
- * This function checks if the search query has exactly one result and redirects
- * the user to that post's permalink.
- *
- * @return void
- */
-function skel_redirect_single_post(): void {
-	if ( is_search() ) {
-		global $wp_query;
-
-		// Check if the search query returned exactly one post.
-		if ( 1 === $wp_query->post_count && 1 === $wp_query->max_num_pages ) {
-			wp_safe_redirect( get_permalink( $wp_query->posts[0]->ID ) );
-			exit;
-		}
-	}
-}
-add_action( 'template_redirect', 'skel_redirect_single_post' );
-
-
-/**
  * Limit search results to posts only.
  *
  * This function modifies the main query to limit search results to the 'post' post type.

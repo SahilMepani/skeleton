@@ -32,6 +32,7 @@ require get_template_directory() . '/functions/dequeue-scripts.php';
 require get_template_directory() . '/functions/protected-pages.php';
 require get_template_directory() . '/functions/admin-notices.php';
 require get_template_directory() . '/functions/add-svg-support.php';
+require get_template_directory() . '/functions/admin-ajax.php';
 
 // if ( is_login_or_registration_page() ) {
 // require_once get_template_directory() . '/functions/captcha.php';
@@ -41,5 +42,4 @@ require get_template_directory() . '/functions/add-svg-support.php';
 // require get_template_directory() . '/functions/custom-login.php';
 // require( get_template_directory() . '/functions/custom-post-types.php' );
 // require( get_template_directory() . '/functions/custom-admin-columns.php' );
-// require( get_template_directory() . '/functions/admin-ajax.php' );
 // require get_template_directory() . '/functions/remove-admin-menu-items.php';

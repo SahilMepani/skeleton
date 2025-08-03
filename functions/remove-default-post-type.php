@@ -40,3 +40,17 @@ function skel_remove_draft_widget() {
 	remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
 }
 add_action( 'wp_dashboard_setup', 'skel_remove_draft_widget', 999 );
+
+
+/**
+ * Force-remove Posts and Categories from Appearance > Menus using nav_menu_meta_box_object filter.
+ */
+function skel_remove_menu_meta_boxes( $object ) {
+	if ( isset( $object->name ) ) {
+		if ( 'post' === $object->name || 'category' === $object->name ) {
+			return false; // Remove the metabox.
+		}
+	}
+	return $object;
+}
+add_filter( 'nav_menu_meta_box_object', 'skel_remove_menu_meta_boxes' );

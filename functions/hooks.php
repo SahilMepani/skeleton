@@ -13,6 +13,21 @@
 // Disable the sitemaps feature - /wp-sitemap.xml.
 add_filter( 'wp_sitemaps_enabled', '__return_false' );
 
+/**
+ * Adds support for excerpts to the 'page' post type
+ */
+add_post_type_support( 'page', 'excerpt' );
+
+/**
+ * Adds support for post thumbnails (featured images)
+ */
+add_theme_support( 'post-thumbnails' );
+
+/**
+ * Adds support for title
+ */
+add_theme_support( 'title-tag' );
+
 
 /**
  * Filter callback to set JPEG image quality to 100.

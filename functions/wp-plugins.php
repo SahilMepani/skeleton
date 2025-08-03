@@ -1,4 +1,10 @@
 <?php
+/**
+ * Plugin Helpers
+ *
+ * @package Skeleton
+ */
+
 // Search WP plugin, allow big words search
 //
 // add_filter( 'searchwp_big_selects', '__return_true' );
@@ -7,9 +13,14 @@
 //
 // add_filter( 'acf/settings/remove_wp_meta_box', '__return_true' );
 
-// Dequeue search wp styles
+/**
+ * Dequeue Styles
+ */
+// function skel_dequeue_scripts() {
 // wp_dequeue_style( 'searchwp-forms' );
 // wp_deregister_style( 'searchwp-forms' );
+// }
+// add_action( 'wp_enqueue_scripts', 'skel_dequeue_scripts' );
 
 /**
  * Gravity Form
@@ -27,7 +38,7 @@ function input_to_button( $button, $form ) {
 	$new_button = $dom->createElement( 'button' );
 	$new_button->appendChild( $dom->createTextNode( $input->getAttribute( 'value' ) ) );
 	$input->removeAttribute( 'value' );
-	// add custom classes
+	// add custom classes.
 	$classes  = $input->getAttribute( 'class' );
 	$classes .= ' btn';
 	$input->setAttribute( 'class', $classes );

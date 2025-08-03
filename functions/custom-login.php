@@ -68,13 +68,13 @@ body.login #login_error,
 	outline: 0 !important;
 }
 
-.wp-pwd input[type="password"]+button {
+/* .wp-pwd input[type="password"]+button {
 	background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/login-icon-eye.svg') !important;
 }
 
 .wp-pwd input[type="text"]+button {
 	background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/login-icon-eye-strike.svg') !important;
-}
+} */
 
 #login input[type="text"],
 #login input[type="password"] {
@@ -86,9 +86,9 @@ body.login #login_error,
 	border-radius: 4px;
 }
 
-.dashicons.dashicons {
+/* .dashicons.dashicons {
 	display: none;
-}
+} */
 
 #login input[type="text"]:focus-visible,
 #login input[type="password"]:focus-visible {
@@ -115,7 +115,7 @@ body.login #login_error,
 
 #login h1 a,
 .login h1 a {
-	background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/logo-dark.png');
+	background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/login-logo.png');
 	inline-size: auto;
 	block-size: 90px;
 	background-size: contain;

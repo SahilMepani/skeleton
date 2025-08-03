@@ -9,3 +9,11 @@
 	☐ Screenshot.png (1200 x 900)
 	☐ Styleguide
 	☐ Color Names
+
+# CLIENTS --- ✄ -----------------------:
+	☐ Email that will be used to receive all the inquiries through the form across the site
+	☐ Email that will be used to send out emails to users who fills the form across the site
+	☐ SMTP Details - Brevo/Mailgum/Mailchimp account details. It is used to make sure the emails always land on inbox and not spam.
+	☐ Newsletter Service - Brevo/Mailgum/Mailchimp account details
+	☐ Social Account links - Twitter, Instagram, LinkedIn and any more if there
+	☐ Google Analytics code to track visitors

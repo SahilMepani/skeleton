@@ -18,7 +18,7 @@
 
 
 # FINALIZE --- ✄ -----------------------:
-	☐ Never define a function inside a acf-block or else if that same block is added twice to the page then it will throw function redeclare error.
+	☐ Never define a PHP function inside a acf-block or else if that same block is added twice to the page then it will throw function redeclare error.
 	☐ Load swiper first slider image as fetchpriority="high" and others as lazy
 	☐ Make sure hero section images do not have loading lazy and have fetchpriority="high"
 	☐ Add loading lazy to all other images which are not part of hero
@@ -30,15 +30,16 @@
 	☐ Disable Archive and Single page template for CPT where it is not required
 	☐ Activate "Admin columns" plugin and add slug as columns for all Post types
 	☐ Activate "WebP express" plugin and copy the settings form DallahTrading
+	☐ Make sure esc_attr, esc_url at proper places instead of esc_html
 	☐ Activate "Autoptimize" plugin and copy the settings from DallahTrading
 	☐ Remove swiper js modules which are not used.
+	☐ Clean helpers, hooks or any other php file in function folder
 	☐ Activate "Wordfence" security plugin and import settings using
 	8e6a436f1f47f5c500fc0a4f7885b5cbecb71bbe75b4abfb31b22d49643f8183cb2906d9f75e85fa073da4be9e79eaeed4fb0630d5765222902dbb8657457d44
 	☐ Activate "WP Hardened" plugin
 	☐ Check the site on https://developer.mozilla.org/en-US/observatory
 	☐ Make sure all the content is editable from backend, if not please mention
-	☐ Change WP_DEBUG variable to false in wp-config.php file in root
-	☐ Go to Settings -> Reading and Uncheck "Discourage search engine..."
+	☐ Check any PHPCS warning or erorr on each file
 	☐ Check for any console errors on every page
 	☐ Check for any PHP error using Query Monitor plugin
 	☐ Please take a backup and Optimize database using "WP Optimize" plugin.
@@ -63,7 +64,19 @@
 	☐ Add skel_direction_class to swiper-navigation class if site has arabic language
 	☐ Add skel_swiper_direction_class to swiper class if site has arabic langauge
 	☐ Define various constants like WP_CACHE, CONCATENATE_SCRIPTS, COMPRESS_SCRIPTS, COMPRESS_CSS to true. Use Query Monitor - Environment and check if the constants are enabled or disabled
+	☐ Disable REST API
 	☐ Add custom post type ordering for all CPTs
+	☐ Change WP_DEBUG variable to false in wp-config.php file in root
+	☐ Go to Settings -> Reading and Uncheck "Discourage search engine..."
+	☐ https://developer.mozilla.org/en-US/observatory
+	☐ https://securityheaders.com/
+	☐ https://pentest-tools.com/cms-vulnerability-scanning/wordpress-scanner-online-wpscan
+	☐ https://sitereport.netcraft.com/
+	☐ https://csp-evaluator.withgoogle.com/
+	☐ https://www.ssllabs.com/ssltest/
+	☐ https://www.immuniweb.com/ssl/
+	☐ https://earlyhints.dev/
+	☐ https://www.debugbear.com/test
 
 # Content Editor:
 	☐ All images need to have keyword focused lowercase names
@@ -115,3 +128,7 @@ WHERE `option_name` LIKE '_wp_session_%'
 Delete up WordPress Sessions:
 DELETE FROM `wp_options`
 WHERE `option_name` LIKE '_wp_session_%'
+
+
+CSP HTACCESS CODE:
+default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; frame-src 'self' https://www.youtube.com https://player.vimeo.com; connect-src 'self' https:; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self';

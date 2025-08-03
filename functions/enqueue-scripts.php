@@ -34,17 +34,17 @@ function skel_enqueue_scripts() {
 	); */
 
 	wp_enqueue_style(
-		'skeleton-style',
+		'skel-style',
 		get_stylesheet_uri(),
 		array(),
 		filemtime( get_template_directory() . '/style.css' )
 	);
 
 	// load style-rtl for rtl languages.
-	wp_style_add_data( 'skeleton-style', 'rtl', 'replace' );
+	wp_style_add_data( 'skel-style', 'rtl', 'replace' );
 
 	wp_enqueue_script(
-		'skeleton-plugins',
+		'skel-plugins',
 		get_template_directory_uri() . '/js/plugins.js',
 		array( 'jquery' ),
 		filemtime( get_template_directory() . '/js/plugins.js' ),
@@ -52,7 +52,7 @@ function skel_enqueue_scripts() {
 	);
 
 	wp_enqueue_script(
-		'skeleton-custom',
+		'skel-custom',
 		get_template_directory_uri() . '/js/custom.js',
 		array( 'jquery' ),
 		filemtime( get_template_directory() . '/js/custom.js' ),
@@ -69,7 +69,7 @@ function skel_enqueue_scripts() {
 
 	// localize scripts
 	// wp_localize_script(
-	// 'skeleton-plugins', // file name without extension where we want to use the localize_var
+	// 'skel-plugins', // file name without extension where we want to use the localize_var
 	// 'localize_var',
 	// array(
 	// 'adminUrl' => admin_url( 'admin-ajax.php' ),
@@ -96,14 +96,16 @@ add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
  */
 function modify_script_attributes( $tag, $handle ) {
 	// Arrays of script handles to modify.
-	$defer        = array(
-		// uncomment for production
+	$defer = array(
+		// uncomment for production as it doesn't work with Query monitor
 		// 'jquery',
 		// 'jquery-core',
 		'skel-plugins',
 		'skel-custom',
 	);
-	$async        = array();
+	$async = array(
+		// 'skel-lottie-player',
+	);
 	$priority_low = array(
 		// 'skel-lottie-player',
 	);

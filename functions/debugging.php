@@ -214,3 +214,94 @@ function debug_wp_admin_menus_slugs() {
 	die(); // Stops page execution to clearly show the debug output.
 }
 // add_action( 'admin_menu', 'debug_wp_admin_menus_slugs', 9999 );
+
+
+
+
+/**
+ * Register a custom admin menu for the Gutenberg block usage report.
+ */
+add_action(
+	'admin_menu',
+	function () {
+		add_menu_page(
+			'Block Usage Report',        // Page title
+			'Block Usage',               // Menu title in sidebar
+			'manage_options',            // Capability (admin only)
+			'block-usage-report',        // Menu slug (used in URL)
+			'print_block_usage_report',  // Callback function to render content
+			'dashicons-screenoptions',   // Icon
+			99                           // Position
+		);
+	}
+);
+
+/**
+ * Display a formatted report of Gutenberg block usage across posts/pages.
+ *
+ * Outputs an HTML structure showing which blocks are used in each post,
+ * including the post title and ID.
+ */
+function print_block_usage_report() {
+	$usage = get_blocks_by_page();
+
+	echo '<div class="wrap"><h1>Gutenberg Block Usage</h1>';
+
+	if ( empty( $usage ) ) {
+		echo '<p>No blocks found in any page or post.</p></div>';
+		return;
+	}
+
+	foreach ( $usage as $post_id => $blocks ) {
+		$post_title = get_the_title( $post_id );
+		$post_url   = get_edit_post_link( $post_id );
+
+		echo '<div style="margin-bottom: 20px;">';
+		echo '<strong><a href="' . esc_url( $post_url ) . '" target="_blank">' . esc_html( $post_title ) . '</a></strong>';
+		echo ' (ID: ' . intval( $post_id ) . ')';
+		echo '<ul>';
+
+		foreach ( array_unique( $blocks ) as $block_name ) {
+			echo '<li>' . esc_html( $block_name ) . '</li>';
+		}
+
+		echo '</ul></div>';
+	}
+
+	echo '</div>';
+}
+
+/**
+ * Get a list of Gutenberg blocks used on each page or post.
+ *
+ * This function loops through all posts of given post types,
+ * parses the block content using `parse_blocks()`,
+ * and collects block names used in each post.
+ *
+ * @return array Associative array of post ID => array of block names.
+ */
+function get_blocks_by_page() {
+	$block_usage = array();
+
+	$args = array(
+		'post_type'      => array( 'page', 'post' ), // Add custom post types here if needed
+		'post_status'    => 'publish',
+		'posts_per_page' => -1,
+	);
+
+	$query = new WP_Query( $args );
+
+	if ( $query->have_posts() ) {
+		foreach ( $query->posts as $post ) {
+			$blocks = parse_blocks( $post->post_content );
+
+			foreach ( $blocks as $block ) {
+				if ( ! empty( $block['blockName'] ) ) {
+					$block_usage[ $post->ID ][] = $block['blockName'];
+				}
+			}
+		}
+	}
+
+	return $block_usage;
+}

@@ -340,15 +340,6 @@ function skel_get_phone_url( string|false $phone_number = false ): string {
  */
 // define( 'WP_POST_REVISIONS', 5 );.
 
-/**
- * Adds support for excerpts to the 'page' post type
- */
-add_post_type_support( 'page', 'excerpt' );
-
-/**
- * Adds support for post thumbnails (featured images)
- */
-add_theme_support( 'post-thumbnails' );
 
 /**
  * Retrieve the content of a specified page and apply content filters.

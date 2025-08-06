@@ -72,6 +72,7 @@ MISCELLANEOUS --- ✄ -----------------------:
  ☐ Left arrow animation
  ☐ Button animation which is commented on SMHS
  ☐ WP Gallery support
+ ☐ Convert Swiper initiation code to vanilla javascript. Do it in gulpfile too and check the code
 
 
 

@@ -7,6 +7,8 @@
  * @since 1.0.0
  */
 
+
+
 /**
  * Configure error logging for local WordPress development environment.
  *

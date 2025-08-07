@@ -1,23 +1,28 @@
 Allowed File Types:
-jpg, jpeg, webp, avif
+Accepted format: jpg, jpeg, webp, avif.
+Accepted format: SVG only.
+
 
 Desktop Image:
-Minimum width: 1920px. Landscape image.
+Recommended: Landscape image, at least 1920px wide.
 
 Mobile Image:
-If blank, desktop image will be used. <br /> Minimum width: 800px. Portrait image.
+Optional. If not provided, the desktop image will be used instead. Recommended minimum width: 800px. Use a portrait image.
 
 Visual Editor:
-DO NOT COPY-PASTE TEXT ON THE "VISUAL" TAB. USE "TEXT" TAB INSTEAD
+Please do not paste content into the <b>"Visual"</b> tab. Use the <b>"Text"</b> tab instead.
 
 FAQs ACF:
-auto : Auto
-custom : Custom
+latest : Latest
 selected : Selected
+custom : Custom
 
-<b>Auto</b>: Show all.
-<b>Custom</b>: Add content.
-<b>Selected</b>: Select manually.
+<b>Latest</b>: Show all or limit to a number. <br />
+<b>Selected</b>: Manually choose specific items. <br />
+<b>Custom</b>: Add your own custom content.
+
+
+Select the categories from which you want to display the latest FAQs.
 
 Kinsta:
 	☐ FilemTime functions works on Staging but it doesn't work on Live environment on Kinsta

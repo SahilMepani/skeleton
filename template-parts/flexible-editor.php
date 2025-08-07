@@ -26,6 +26,7 @@ if ( is_array( $flexible_editor ) && ! empty( $flexible_editor ) ) :
 			case 'media':
 				$media_type   = $layout['media_type'] ?? '';
 				$enable_popup = $layout['enable_popup'] ?? '';
+				$image        = $layout['image'] ?? '';
 				$video        = $layout['video'] ?? '';
 				$video_type   = $video['video_type'] ?? '';
 				$video_file   = esc_url( $video['video_file'] );
@@ -33,9 +34,8 @@ if ( is_array( $flexible_editor ) && ! empty( $flexible_editor ) ) :
 
 				echo '<div class="media-block" data-inview data-aos="fade">';
 
-				if ( 'yes' === $enable_popup ) {
+				if ( 'yes' === $enable_popup && $image ) {
 					// even if when $media is selected as image. Enable popup is Yes because that is its default value set in the ACF backend.
-					$image        = $layout['image'] ?? '';
 					$image_data   = wp_get_attachment_image_src( $image, 'w1200' );
 					$image_alt    = trim( wp_strip_all_tags( get_post_meta( $image, '_wp_attachment_image_alt', true ) ) );
 					$image_src    = esc_attr( wp_get_attachment_image_url( $image, 'w768' ) );

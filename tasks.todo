@@ -73,6 +73,8 @@ MISCELLANEOUS --- ✄ -----------------------:
  ☐ Button animation which is commented on SMHS
  ☐ WP Gallery support
  ☐ Convert Swiper initiation code to vanilla javascript. Do it in gulpfile too and check the code
+ ☐ See how we can make the swiper more flexible so that same slider works on the pag. We had some issue with Alromaizan website homepage where the dynamic class name was showing errorr.. Tabslider class
+ ☐ Make all code to vanilla javasccript
 
 
 

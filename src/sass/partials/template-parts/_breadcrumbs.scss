@@ -1,16 +1,16 @@
 .breadcrumbs-section {
 	.inner-container {
-		color: $dark-grey;
+		color: $primary;
 		padding-block: rem-calc(16);
-		border-top: rem-calc(1) solid $light-grey-20;
+		border-top: rem-calc(1) solid #eee;
 	}
 
 	a {
-		color: $dark-grey;
+		color: $primary;
 
 		&:hover,
 		&:focus-visible {
-			color: $dark-blue;
+			color: $secondary;
 		}
 	}
 
@@ -51,7 +51,7 @@
 	}
 
 	.last {
-		background-color: $light-blue;
+		background-color: $secondary;
 		color: #fff;
 		font-size: rem-calc(16);
 		block-size: rem-calc(24);

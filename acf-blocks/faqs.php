@@ -20,10 +20,22 @@ if ( 'on' !== $display ) {
 
 // Data options.
 $section_heading = get_field( 'section_heading' );
-$faq_type        = get_field( 'faq_type' );
-$selected_faqs   = get_field( 'selected_faqs' );
+$faq_type        = get_field( 'faqs_type' );
 $custom_faqs     = get_field( 'custom_faqs' );
 $button          = get_field( 'button' );
+
+if ( 'latest' === $faqs_type ) {
+	$faqs_count     = get_field( 'faqs_count' ) ?: -1; // phpcs:ignore
+	$insight_category = get_field( 'insight_category' );
+	$insight_type     = get_field( 'insight_type' );
+}
+if ( 'selected' === $faq_type ) {
+	$selected_faqs = get_field( 'selected_faqs' );
+}
+
+if ( ! $insight_data_type ) {
+	return;
+}
 
 // Developer options.
 $custom_classes = get_field( 'custom_classes' );
@@ -37,7 +49,7 @@ $unique_id      = get_field( 'unique_id' );
 	<div class="container">
 
 		<?php if ( $section_heading ) : ?>
-		<h4 class="section-heading h2" data-inview data-aos="fade-up"><?php echo esc_html( $section_heading ); ?></h4>
+		<h4 class="section-heading h3" data-inview data-aos="fade-up"><?php echo esc_html( $section_heading ); ?></h4>
 		<?php endif; ?>
 
 		<div class="list-accordions" data-inview>
@@ -48,10 +60,10 @@ $unique_id      = get_field( 'unique_id' );
 					$question = $faq['question'] ?? '';
 					$answer   = $faq['answer'] ?? '';
 					?>
-			<div class="accordion" data-aos-stagger-item data-aos="fade-up">
+					<div class="accordion" data-aos-stagger-item data-aos="fade-up">
 					<?php
 					$question_html = <<<HTML
-					<p class="accordion-heading h3">
+					<p class="accordion-heading h5">
 						{$question}
 						<span class="icon"></span>
 					</p>
@@ -66,23 +78,23 @@ $unique_id      = get_field( 'unique_id' );
 					if ( $question ) echo $question_html; //phpcs:ignore
 					if ( $answer ) echo $answer_html; //phpcs:ignore
 					?>
-			</div>
+					</div>
 					<?php
 			endforeach;
 			endif;
 			?>
 
 			<?php
-			// Selected OR Auto.
+			// Selected OR Latest.
 			$faqs = '';
 			if ( 'selected' === $faq_type ) {
 				$faqs = $selected_faqs;
-			} elseif ( 'auto' === $faq_type ) {
+			} elseif ( 'latest' === $faq_type ) {
 				$faqs = get_posts(
 					array(
 						'post_type'      => 'faq',
 						'post_status'    => 'publish',
-						'posts_per_page' => -1,
+						'posts_per_page' => $latest_faqs,
 						'fields'         => 'ids',
 					)
 				);
@@ -96,7 +108,7 @@ $unique_id      = get_field( 'unique_id' );
 			<div class="accordion" data-aos-stagger-item data-aos="fade-up">
 					<?php
 					$question_html = <<<HTML
-					<p class="accordion-heading h3">
+					<p class="accordion-heading h5">
 						{$question}
 						<span class="icon"></span>
 					</p>

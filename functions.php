@@ -43,7 +43,7 @@ require get_template_directory() . '/functions/admin-ajax.php';
 // require( get_template_directory() . '/functions/custom-admin-columns.php' );
 // require get_template_directory() . '/functions/remove-admin-menu-items.php';
 
-if ( 'local' === wp_get_environment_type() && is_admin() ) {
+if ( 'local' === wp_get_environment_type() && current_user_can( 'manage_options' ) ) {
 	require get_template_directory() . '/functions/debugging.php';
 }
 

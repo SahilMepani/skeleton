@@ -41,15 +41,22 @@
 
 	<div class="modal-backdrop"></div>
 
+	<?php
+		$header_options = get_field( 'header', 'option' );
+		$header_logo    = $header_options['logo'] ?? '';
+	?>
+
 	<header class="site-header">
 		<div class="container-fluid">
 
 			<div class="header-logo">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"
+				<?php if ( $header_logo ) { ?>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>"
 					title="<?php echo esc_html( get_bloginfo( 'name' ) ); ?>" aria-label="Go to Home"
 					<?php echo is_front_page() ? 'aria-current="page"' : ''; ?>>
-					<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/svg/logo.svg" alt="">
-				</a>
+						<img src="<?php echo esc_url( $header_logo ); ?>" alt="">
+					</a>
+				<?php } ?>
 			</div>
 
 			<button class="header-nav-toggle" aria-label="<?php esc_attr_e( 'show primary navigation', 'skel' ); ?>"

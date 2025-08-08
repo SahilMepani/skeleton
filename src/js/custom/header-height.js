@@ -12,7 +12,6 @@ if (siteHeader) {
 				'--header-height',
 				headerHeight + 'px'
 			);
-			console.log('Height');
 		};
 		resizeHeaderHeight();
 		window.addEventListener('resize', resizeHeaderHeight);

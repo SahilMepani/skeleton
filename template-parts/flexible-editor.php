@@ -88,7 +88,7 @@ if ( is_array( $flexible_editor ) && ! empty( $flexible_editor ) ) :
 							echo $video_html; // phpcs:ignore
 						} elseif ( 'file' !== $video_type && $stream_url ) {
 							$iframe_html = <<<HTML
-						<iframe class="js-iframe" frameborder="0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy" allowfullscreen data-video-url="{$stream_url}"></iframe>
+						<iframe class="js-iframe" frameborder="0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy"  data-video-url="{$stream_url}"></iframe>
 						HTML;
 							echo $iframe_html;
 						}
@@ -109,7 +109,7 @@ if ( is_array( $flexible_editor ) && ! empty( $flexible_editor ) ) :
 
 					} elseif ( 'file' !== $video_type && $stream_url ) {
 						$iframe_html = <<<HTML
-						<iframe class="js-iframe" frameborder="0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy" allowfullscreen src="{$stream_url}"></iframe>
+						<iframe class="js-iframe" frameborder="0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy"  src="{$stream_url}"></iframe>
 						HTML;
 						echo $iframe_html;
 					}

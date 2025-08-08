@@ -114,7 +114,7 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 								<?php } elseif ( 'file' !== $col_video_type && $col_stream_url ) { ?>
 								<iframe class="js-iframe" frameborder="0"
 									allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy"
-									allowfullscreen data-video-url="<?php echo esc_url( $col_stream_url ); ?>"></iframe>
+									data-video-url="<?php echo esc_url( $col_stream_url ); ?>"></iframe>
 								<?php } ?>
 							</dialog>
 							<?php } ?>

@@ -46,7 +46,7 @@ function skel_gutenberg_scripts(): void {
 	wp_enqueue_script(
 		'skel-editor-plugins',
 		get_stylesheet_directory_uri() . '/js/plugins.js',
-		array( 'jquery' ),
+		array(),
 		filemtime( get_stylesheet_directory() . '/js/plugins.js' ),
 		true
 	);
@@ -59,8 +59,6 @@ function skel_gutenberg_scripts(): void {
 		filemtime( get_stylesheet_directory() . '/js/editor.js' ),
 		true
 	);
-	// Typekit fonts.
-	wp_enqueue_style( 'typekit-fonts', '//use.typekit.net/soi0ors.css', 'all', 1.0 );
 }
 add_action( 'enqueue_block_editor_assets', 'skel_gutenberg_scripts' );
 

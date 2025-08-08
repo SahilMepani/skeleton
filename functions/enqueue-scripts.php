@@ -23,11 +23,15 @@ function skel_enqueue_scripts() {
 		return;
 	}
 
-	// load jquery at bottom
+	// Remove jquery.
+	wp_dequeue_script( 'jquery' );
+	wp_deregister_script( 'jquery' );
+
+	// load jquery at bottom. if you need Jquery
 	// https://wordpress.stackexchange.com/questions/173601/enqueue-core-jquery-in-the-footer
 	// ths will break gravity forms on some pages, be careful.
-	wp_scripts()->add_data( 'jquery', 'group', 1 );
-	wp_scripts()->add_data( 'jquery-core', 'group', 1 );
+	// wp_scripts()->add_data( 'jquery', 'group', 1 );
+	// wp_scripts()->add_data( 'jquery-core', 'group', 1 );
 
 	/*
 	wp_enqueue_script(
@@ -51,7 +55,7 @@ function skel_enqueue_scripts() {
 	wp_enqueue_script(
 		'skel-plugins',
 		get_template_directory_uri() . '/js/plugins.js',
-		array( 'jquery' ),
+		array(),
 		filemtime( get_template_directory() . '/js/plugins.js' ),
 		true
 	);
@@ -59,7 +63,7 @@ function skel_enqueue_scripts() {
 	wp_enqueue_script(
 		'skel-custom',
 		get_template_directory_uri() . '/js/custom.js',
-		array( 'jquery' ),
+		array(),
 		filemtime( get_template_directory() . '/js/custom.js' ),
 		true
 	);
@@ -79,10 +83,6 @@ function skel_enqueue_scripts() {
 	// array(
 	// 'adminUrl' => admin_url( 'admin-ajax.php' ),
 	// );
-
-	// Remove jquery.
-	// wp_dequeue_script( 'jquery' );
-	// wp_deregister_script( 'jquery' );
 }
 add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
 

@@ -1,9 +1,11 @@
 (() => {
-	$('.logo-slider').each(function (i, el) {
-		let swiperClass = 'logo-slider-' + i;
-		$(this).addClass(swiperClass);
+	const sliders = document.querySelectorAll('.logo-slider');
 
-		new Swiper('.' + swiperClass, {
+	sliders.forEach((el, i) => {
+		const swiperClass = `logo-slider-${i}`;
+		el.classList.add(swiperClass);
+
+		new Swiper(`.${swiperClass}`, {
 			speed: 3000,
 			loop: true,
 			autoplay: {

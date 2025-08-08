@@ -4,7 +4,7 @@
 }
 
 /* ----------  Swiper Dot Pagination  ---------- */
-.swiper-pagination-dot {
+.swiper-pagination {
 	all: unset; // overwrite default from swiper
 	display: flex;
 	justify-content: center;
@@ -12,7 +12,7 @@
 
 	span {
 		all: unset; // overwrite default from swiper
-		background-color: rgb(255 255 255 / 40%);
+		background-color: rgba(#000, 40%);
 		display: inline-block;
 		inline-size: rem-calc(10);
 		block-size: rem-calc(10);
@@ -21,7 +21,7 @@
 		cursor: pointer;
 
 		&.swiper-pagination-bullet-active {
-			background-color: #fff;
+			background-color: #000;
 			transition: 0.2s;
 		}
 	}

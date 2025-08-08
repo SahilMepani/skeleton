@@ -1,34 +1,48 @@
 (() => {
-	$('.hero-slider').each(function (i, el) {
-		let swiperClass = 'hero-slider-' + i;
-		$(this).addClass(swiperClass);
+	const sliders = document.querySelectorAll('.hero-slider');
 
-		if ($(this).find('.swiper-slide').length > 1) {
-			// navigation
-			let prevClass = 'hero-button-prev-' + i;
-			let nextClass = 'hero-button-next-' + i;
-			$(this).parent().find('.swiper-button-prev').addClass(prevClass);
-			$(this).parent().find('.swiper-button-next').addClass(nextClass);
+	sliders.forEach((el, i) => {
+		const swiperClass = `hero-slider-${i}`;
+		el.classList.add(swiperClass);
 
-			// pagination
-			let pagination = 'hero-pagination-' + i;
-			$(this).parent().find('.swiper-pagination').addClass(pagination);
+		const slides = el.querySelectorAll('.swiper-slide');
 
-			new Swiper('.' + swiperClass, {
+		if (slides.length <= 0) return;
+
+		if (slides.length === 1) {
+			slides.forEach(slide => slide.classList.add('swiper-slide-active'));
+			return;
+		}
+
+		if (slides.length > 1) {
+			const parent = el.parentElement;
+			const prevClass = `hero-button-prev-${i}`;
+			const nextClass = `hero-button-next-${i}`;
+
+			const prevBtn = parent.querySelector('.swiper-button-prev');
+			const nextBtn = parent.querySelector('.swiper-button-next');
+
+			if (prevBtn) prevBtn.classList.add(prevClass);
+			if (nextBtn) nextBtn.classList.add(nextClass);
+
+			const paginationClass = `hero-pagination-${i}`;
+			const paginationEl = parent.querySelector('.swiper-pagination');
+			if (paginationEl) paginationEl.classList.add(paginationClass);
+
+			new Swiper(`.${swiperClass}`, {
 				slidesPerView: 1,
 				loop: true,
 				speed: 300,
-				watchOverflow: true,
 				// effect: 'fade',
 				// fadeEffect: {
-				// 	crossFade: true
+				//   crossFade: true
 				// },
 				navigation: {
-					prevEl: '.' + prevClass,
-					nextEl: '.' + nextClass
+					prevEl: `.${prevClass}`,
+					nextEl: `.${nextClass}`
 				},
 				pagination: {
-					el: '.' + pagination,
+					el: `.${paginationClass}`,
 					clickable: true
 				},
 				autoplay: {
@@ -36,11 +50,6 @@
 					disableOnInteraction: false
 				}
 			});
-		} else {
-			// when there is only one slide
-			$('.' + swiperClass)
-				.find('.swiper-slide')
-				.addClass('swiper-slide-active');
 		}
 	});
 })();

@@ -13,13 +13,8 @@
 			},
 			slidesPerView: 'auto',
 			spaceBetween: 40,
-			centerInsufficientSlides: true,
 			allowTouchMove: false,
-			disableOnInteraction: false,
-			watchOverflow: true,
-			freeMode: {
-				enabled: true
-			},
+			// disableOnInteraction: false,
 			breakpoints: {
 				992: {
 					spaceBetween: 80

@@ -67,7 +67,8 @@ function purgeCSSTask() {
 						/^swiper-(.*)?$/,
 						/^js-(.*)?$/,
 						/^layout-(.*)?$/,
-						/^bg-(.*)?$/
+						/^bg-(.*)?$/,
+						/^spacing-(.*)?$/
 					],
 					deep: [
 						/rtl$/,
@@ -118,7 +119,7 @@ function customJsTask() {
 		.pipe(concat('custom.js'))
 		.pipe(
 			wrapper({
-				header: 'jQuery(document).ready(function($) {',
+				header: 'document.addEventListener("DOMContentLoaded", function() {',
 				footer: '});'
 			})
 		)

@@ -8,6 +8,11 @@
  * @subpackage Skeleton
  * @since 1.0.0
  */
+
+if ( is_admin() ) {
+	return;
+}
+
 function skel_enqueue_scripts() {
 
 	/* Load google fonts */
@@ -74,6 +79,10 @@ function skel_enqueue_scripts() {
 	// array(
 	// 'adminUrl' => admin_url( 'admin-ajax.php' ),
 	// );
+
+	// Remove jquery.
+	// wp_dequeue_script( 'jquery' );
+	// wp_deregister_script( 'jquery' );
 }
 add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
 

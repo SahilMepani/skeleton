@@ -1,175 +1,193 @@
-var btnMorePost = $('#ajax-more-post');
-var formSearchPost = $('#ajax-search-post');
-var loadingDots = $('.loading-dots');
+(() => {
+	document.addEventListener('DOMContentLoaded', () => {
+		const btnMorePost = document.getElementById('ajax-more-post');
+		const formSearchPost = document.getElementById('ajax-search-post');
+		const loadingDots = document.querySelector('.loading-dots');
+		const ajaxListPost = document.getElementById('ajax-list-post');
 
-// Load More Post
-////////////////////////////////////////////////
-btnMorePost.on('click', function (e) {
-	e.preventDefault();
-
-	// disable load more button
-	btnMorePost.addClass('disabled');
-
-	update_post($(this), 'filter_more');
-});
-
-// Filter Search Post
-////////////////////////////////////////////////
-formSearchPost.submit(function (e) {
-	e.preventDefault();
-
-	// remove search icon
-	$('#ajax-submit-block').addClass('d-none');
-	// remove close icon
-	$('#ajax-search-clear').removeClass('js-active');
-	// show spinner inside input
-	$(this).find('.loading-spinner').addClass('js-active');
-
-	// save the search value in hidden input
-	var searchValue = formSearchPost.find('.input-search').val();
-	$('#filter-search').val(searchValue);
-
-	update_post($(this), 'filter_search');
-});
-
-// Clear Search Post
-////////////////////////////////////////////////
-$('#ajax-search-clear').click(function (e) {
-	e.preventDefault();
-
-	// clear input value
-	formSearchPost.find('.input-search').val('');
-	// remove value from hidden input
-	$('#filter-search').val('');
-	// submit the form
-	formSearchPost.trigger('submit');
-});
-
-// Filter Categories Post
-////////////////////////////////////////////////
-$('#ajax-filter-cat').on('change', function (e) {
-	e.preventDefault();
-
-	// save the value in hidden input
-	var selectedCat = $('option:selected').data('term');
-	$('#filter-term').val(selectedCat);
-
-	update_post($('option:selected', this), 'filter_term');
-});
-
-// Update Post
-////////////////////////////////////////////////
-function update_post($this, trigger) {
-	// remove no data heading
-	$('#alert-no-data').addClass('d-none');
-	// show loading dots
-	loadingDots.addClass('js-active');
-
-	if (trigger == 'filter_search' || trigger == 'filter_term') {
-		// hide the load more button
-		btnMorePost.hide();
-		// remove the list items
-		$('#ajax-list-post > li').fadeOut(400, function () {
-			$('#ajax-list-post > li').remove();
+		// Load More Post
+		btnMorePost?.addEventListener('click', e => {
+			e.preventDefault();
+			btnMorePost.classList.add('disabled');
+			updatePost(e.currentTarget, 'filter_more');
 		});
 
-		$('#filter-pagenum').val(1); // when user clicks load more, pagenum get sets to +1, so we need to reset it back to 1 to load first set of posts.
+		// Filter Search Post
+		formSearchPost?.addEventListener('submit', e => {
+			e.preventDefault();
 
-		var pageNumber = '';
-	}
+			document
+				.getElementById('ajax-submit-block')
+				?.classList.add('d-none');
+			document
+				.getElementById('ajax-search-clear')
+				?.classList.remove('js-active');
 
-	if (trigger == 'filter_more') {
-		var pageNumber = $('#filter-pagenum').val();
-	}
+			formSearchPost
+				.querySelector('.loading-spinner')
+				?.classList.add('js-active');
 
-	var cpt = $this.data('cpt');
-	var tax = $this.data('tax');
-	var term = $('#filter-term').val();
-	var authorID = $('#filter-author-id').val();
-	var tagID = $('#filter-tag-id').val();
-	var search = $('#filter-search').val();
-	var pageNumber = $('#filter-pagenum').val();
-	var postsPerPage = $('#filter-posts-per-page').val();
-	var unseenPostCount = $('#filter-unseen-post-count').val();
+			const searchValue =
+				formSearchPost.querySelector('.input-search')?.value || '';
+			document.getElementById('filter-search').value = searchValue;
 
-	$.ajax({
-		type: 'POST',
-		dataType: 'html',
-		url: localize_var.ajax_url,
-		data: {
-			action: 'update_post_ajax',
-			cpt: cpt,
-			tax: tax,
-			term: term,
-			authorID: authorID,
-			tagID: tagID,
-			search: search,
-			pageNumber: pageNumber,
-			postsPerPage: postsPerPage
-		},
-		success: function (data) {
-			var $data = $(data);
+			updatePost(formSearchPost, 'filter_search');
+		});
 
-			if ($.trim(data) != '' && $.trim(data) != 0) {
-				loadingDots.removeClass('js-active');
+		// Clear Search Post
+		document
+			.getElementById('ajax-search-clear')
+			?.addEventListener('click', e => {
+				e.preventDefault();
 
-				/*----------- Filter More -----------*/
-				if (trigger == 'filter_more') {
-					unseenPostCount = unseenPostCount - $data.length;
+				formSearchPost.querySelector('.input-search').value = '';
+				document.getElementById('filter-search').value = '';
 
-					$('#filter-pagenum').val(parseInt(pageNumber) + 1);
-					$('#filter-unseen-post-count').val(unseenPostCount);
+				formSearchPost.dispatchEvent(
+					new Event('submit', { bubbles: true })
+				);
+			});
 
-					$('#ajax-list-post').append($data);
+		// Filter Categories Post
+		document
+			.getElementById('ajax-filter-cat')
+			?.addEventListener('change', e => {
+				const selected = e.target.options[e.target.selectedIndex];
+				const term = selected?.dataset.term || '';
+				document.getElementById('filter-term').value = term;
+				updatePost(selected, 'filter_term');
+			});
 
-					// scroll to newly appended data object
-					$('html,body').animate(
-						{
-							scrollTop: $($data).offset().top - 40
-						},
-						0
-					);
-				}
+		function updatePost(triggerElement, triggerType) {
+			document.getElementById('alert-no-data')?.classList.add('d-none');
+			loadingDots?.classList.add('js-active');
 
-				/*----------  Filter Search  ----------*/
-				if (trigger == 'filter_search') {
-					setTimeout(function () {
-						if (search != '') {
-							$('#ajax-search-clear').addClass('js-active');
-						} else {
-							$('#ajax-submit-block').removeClass('d-none');
+			const isSearchOrTerm =
+				triggerType === 'filter_search' ||
+				triggerType === 'filter_term';
+
+			if (isSearchOrTerm) {
+				btnMorePost?.style.setProperty('display', 'none');
+				Array.from(ajaxListPost.children).forEach(li => {
+					li.style.opacity = '0';
+					setTimeout(() => li.remove(), 400);
+				});
+				document.getElementById('filter-pagenum').value = 1;
+			}
+
+			const getVal = id => document.getElementById(id)?.value || '';
+			const getData = (el, attr) => el?.dataset?.[attr] || '';
+
+			const data = {
+				action: 'update_post_ajax',
+				cpt: getData(triggerElement, 'cpt'),
+				tax: getData(triggerElement, 'tax'),
+				term: getVal('filter-term'),
+				authorID: getVal('filter-author-id'),
+				tagID: getVal('filter-tag-id'),
+				search: getVal('filter-search'),
+				pageNumber: getVal('filter-pagenum'),
+				postsPerPage: getVal('filter-posts-per-page')
+			};
+
+			let unseenPostCount =
+				parseInt(getVal('filter-unseen-post-count'), 10) || 0;
+
+			fetch(localize_var.ajax_url, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: new URLSearchParams(data)
+			})
+				.then(res => res.text())
+				.then(html => {
+					const temp = document.createElement('div');
+					temp.innerHTML = html.trim();
+					const newItems = Array.from(temp.children);
+
+					if (newItems.length) {
+						loadingDots?.classList.remove('js-active');
+
+						if (triggerType === 'filter_more') {
+							unseenPostCount -= newItems.length;
+							document.getElementById('filter-pagenum').value =
+								parseInt(data.pageNumber) + 1;
+							document.getElementById(
+								'filter-unseen-post-count'
+							).value = unseenPostCount;
+
+							newItems.forEach(el =>
+								ajaxListPost.appendChild(el)
+							);
+
+							window.scrollTo({
+								top: newItems[0].offsetTop - 40,
+								behavior: 'auto'
+							});
 						}
-						$('.loading-spinner').removeClass('js-active');
-						$('#ajax-list-post').append($data);
-						$('#ajax-list-post').fadeIn(400);
-						btnMorePost.fadeIn(400);
-					}, 300);
-				}
 
-				/*----------  Filter Cat  ----------*/
-				if (trigger == 'filter_term') {
-					$('#ajax-list-post > li').remove();
+						if (triggerType === 'filter_search') {
+							setTimeout(() => {
+								if (data.search !== '') {
+									document
+										.getElementById('ajax-search-clear')
+										?.classList.add('js-active');
+								} else {
+									document
+										.getElementById('ajax-submit-block')
+										?.classList.remove('d-none');
+								}
+								formSearchPost
+									.querySelector('.loading-spinner')
+									?.classList.remove('js-active');
+								newItems.forEach(el =>
+									ajaxListPost.appendChild(el)
+								);
+								ajaxListPost.style.opacity = 1;
+								btnMorePost?.style.removeProperty('display');
+							}, 300);
+						}
 
-					setTimeout(function () {
-						$('#ajax-list-post').append($data);
-						$('#ajax-list-post').fadeIn(400);
-						btnMorePost.fadeIn(400);
-					}, 300);
-				}
+						if (triggerType === 'filter_term') {
+							ajaxListPost.innerHTML = '';
+							setTimeout(() => {
+								newItems.forEach(el =>
+									ajaxListPost.appendChild(el)
+								);
+								ajaxListPost.style.opacity = 1;
+								btnMorePost?.style.removeProperty('display');
+							}, 300);
+						}
 
-				if (unseenPostCount) {
-					btnMorePost.removeClass('disabled');
-				}
-			} else {
-				if ($('.loading-spinner').hasClass('js-active')) {
-					$('#ajax-search-clear').addClass('js-active');
-				}
-				$('.loading-spinner').removeClass('js-active');
-				$('#alert-no-data').removeClass('d-none');
-				loadingDots.removeClass('js-active');
-				btnMorePost.hide();
-			} // trim
-		} //success
-	}); //ajax
-	return false;
-}
+						if (unseenPostCount > 0) {
+							btnMorePost?.classList.remove('disabled');
+						}
+					} else {
+						if (
+							formSearchPost
+								.querySelector('.loading-spinner')
+								?.classList.contains('js-active')
+						) {
+							document
+								.getElementById('ajax-search-clear')
+								?.classList.add('js-active');
+						}
+						formSearchPost
+							.querySelector('.loading-spinner')
+							?.classList.remove('js-active');
+						document
+							.getElementById('alert-no-data')
+							?.classList.remove('d-none');
+						loadingDots?.classList.remove('js-active');
+						btnMorePost?.style.setProperty('display', 'none');
+					}
+				})
+				.catch(err => {
+					console.error('AJAX Error:', err);
+					loadingDots?.classList.remove('js-active');
+					btnMorePost?.classList.remove('disabled');
+				});
+		}
+	});
+})();

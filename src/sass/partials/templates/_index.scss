@@ -8,11 +8,11 @@
 	}
 
 	.submit-block {
+		inline-size: rem-calc(45);
 		position: absolute;
 		top: 0;
 		right: 0;
 		bottom: 0;
-		inline-size: rem-calc(45);
 
 		.search-icon-block {
 			svg {
@@ -26,11 +26,11 @@
 
 		input[type='submit'] {
 			background: transparent;
+			inline-size: 100%;
 			position: absolute;
 			top: 0;
 			right: 0;
 			bottom: 0;
-			inline-size: 100%;
 		}
 	}
 
@@ -50,12 +50,12 @@
 	.clear-search {
 		display: block;
 		visibility: hidden;
+		inline-size: rem-calc(45);
 		position: absolute;
 		top: 0;
 		right: 0;
 		bottom: 0;
 		opacity: 0;
-		inline-size: rem-calc(45);
 
 		@extend %btn;
 
@@ -103,13 +103,13 @@
 
 		a {
 			display: inline-block;
-			overflow: hidden;
 			block-size: 100%;
+			overflow: hidden;
 
 			img {
 				vertical-align: top;
-				transition: 0.4s cubic-bezier(0.33, 0, 0.2, 1);
 				block-size: auto;
+				transition: 0.4s cubic-bezier(0.33, 0, 0.2, 1);
 				backface-visibility: hidden;
 			}
 

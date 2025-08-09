@@ -49,9 +49,10 @@
 	}
 }
 
-// @mixin btn-primary {
-// 	@extend %btn-green;
-// }
+@mixin btn-primary {
+	background-color: $primary;
+	color: #fff;
+}
 
 @mixin btn-sm {
 	block-size: rem-calc(36);

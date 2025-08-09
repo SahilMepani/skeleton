@@ -90,16 +90,16 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 							$image_width  = isset( $image_data[1] ) ? $image_data[1] : '';
 							$image_height = isset( $image_data[2] ) ? $image_data[2] : '';
 							?>
-						<img
-							src="<?php echo esc_url( $image_url ); ?>"
-							srcset="<?php echo esc_attr( $image_srcset ); ?>"
-							sizes="100vw"
-							alt="<?php echo esc_attr( $image_alt ); ?>"
-							width="<?php echo esc_attr( $image_width ); ?>"
-							height="<?php echo esc_attr( $image_height ); ?>"
-							class="img-cover img-mobile"
-							<?php echo ( 1 === $i ) ? 'fetchpriority="high"' : 'loading="lazy"'; ?>
-							/>
+							<img
+								src="<?php echo esc_url( $image_url ); ?>"
+								srcset="<?php echo esc_attr( $image_srcset ); ?>"
+								sizes="100vw"
+								alt="<?php echo esc_attr( $image_alt ); ?>"
+								width="<?php echo esc_attr( $image_width ); ?>"
+								height="<?php echo esc_attr( $image_height ); ?>"
+								class="img-cover img-mobile"
+								<?php echo ( 1 === $i ) ? 'fetchpriority="high"' : 'loading="lazy"'; ?>
+								/>
 						<?php } ?>
 					</div>
 

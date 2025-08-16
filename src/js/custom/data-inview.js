@@ -4,9 +4,9 @@ function observeInviewElements(context = document) {
 	);
 
 	elements.forEach(element => {
-		const offset = element.getAttribute('data-inview-offset') || '12svh';
+		const offset = element.getAttribute('data-inview-offset') || '5svh';
 		const thresholdAttr = element.getAttribute('data-inview-threshold');
-		const threshold = thresholdAttr ? parseFloat(thresholdAttr) : 0.05;
+		const threshold = thresholdAttr ? parseFloat(thresholdAttr) : 0.01;
 
 		const offsetPixels = convertOffsetToPixels(offset);
 

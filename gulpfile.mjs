@@ -62,24 +62,30 @@ function purgeCSSTask() {
 					standard: [
 						'wp-post-image',
 						'dark-mode-on',
-						'has-bg',
 						/^style-(.*)?$/,
 						/^swiper-(.*)?$/,
 						/^js-(.*)?$/,
-						/^layout-(.*)?$/,
 						/^bg-(.*)?$/,
-						/^spacing-(.*)?$/
+						/^layout-(.*)?$/,
+						/^has-(.*)?$/,
+						/^grid-(.*)?$/
 					],
 					deep: [
+						// Match any string that ends with rtl
 						/rtl$/,
+						// Match any string that starts with lenis
 						/^lenis/,
-						/^mfp/,
 						/^wpml/,
+						/^mfp/,
+						// Match any string that starts with gform_ and has anything (or nothing) after it.
 						/^gform_(.*)?$/,
 						/^single-(.*)?$/,
 						/^page-(.*)?$/,
 						/^template-(.*)?$/,
-						/header-nav/
+						// Match any string containing header-nav anywhere
+						/header-nav/,
+						/dir-rtl/,
+						/dir-ltr/
 					],
 					greedy: [],
 					keyframes: true,

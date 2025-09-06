@@ -12,7 +12,7 @@
 ?>
 
 <!doctype html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?>  class="<?php echo esc_html( skel_direction_class() ); ?>">
 
 <head>
 	<!-- HTML Boilerplte v8.00 -->

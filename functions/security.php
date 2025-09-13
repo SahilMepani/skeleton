@@ -12,3 +12,6 @@ define( 'DISALLOW_FILE_MODS', true );
 
 // Disable File Editing in WordPress Admin.
 define( 'DISALLOW_FILE_EDIT', true );
+
+// Disable XML-RPC.
+add_filter( 'xmlrpc_enabled', '__return_false' );

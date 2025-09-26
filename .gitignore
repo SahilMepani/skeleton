@@ -1,6 +1,5 @@
 #Ignore folder
 .phpintel
-.vscode
 *.map
 *.css.map
 Thumbs.db

@@ -78,6 +78,8 @@
 	☐ https://www.immuniweb.com/ssl/
 	☐ https://earlyhints.dev/
 	☐ https://www.debugbear.com/test
+	☐ Make sure all the attribute values are added inside esc_attr
+	☐ Make sure text values are translatable in the theme
 
 # Content Editor:
 	☐ All images need to have keyword focused lowercase names

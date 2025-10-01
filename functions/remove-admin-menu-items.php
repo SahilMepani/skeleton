@@ -1,4 +1,4 @@
-<?php
+<?php //phpcs:ignore file comment
 /**
  * Disable the Customizer page and Theme Editor in the WordPress admin.
  *

@@ -1,4 +1,4 @@
-<?php
+<?php //phpcs:ignore file comment
 /**
  * Description: Defines custom shortcodes for the theme.
  *

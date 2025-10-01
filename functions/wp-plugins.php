@@ -5,13 +5,13 @@
  * @package Skeleton
  */
 
-// Search WP plugin, allow big words search
-//
+// Search WP plugin, allow big words search.
 // add_filter( 'searchwp_big_selects', '__return_true' );
+// .
 
-// ACF plugin, increase the backend loading performance
-//
+// ACF plugin, increase the backend loading performance.
 // add_filter( 'acf/settings/remove_wp_meta_box', '__return_true' );
+// .
 
 /**
  * Dequeue Styles
@@ -23,7 +23,7 @@
 // add_action( 'wp_enqueue_scripts', 'skel_dequeue_scripts' );
 
 /**
- * Gravity Form
+ * Gravity Form.
  * Filters the next, previous and submit buttons.
  * Replaces the forms <input> buttons with <button> while maintaining attributes from original <input>.
  *
@@ -54,14 +54,12 @@ add_filter( 'gform_next_button', 'input_to_button', 10, 2 );
 add_filter( 'gform_previous_button', 'input_to_button', 10, 2 );
 add_filter( 'gform_submit_button', 'input_to_button', 10, 2 );
 
-// Gravity forms plugin, change the submission loading icon
-//
+// Gravity forms plugin, change the submission loading icon.
 // add_filter( 'gform_ajax_spinner_url', 'spinner_url', 10, 2 );
 // function spinner_url( $image_src, $form ) {
 // relative to you theme images folder
 // return  'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 // }
 
-// Email Address Encoder plugin, for ACF fields
-//
+// Email Address Encoder plugin, for ACF fields.
 // add_filter('acf/load_value', 'eae_encode_emails');

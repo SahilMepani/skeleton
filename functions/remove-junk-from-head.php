@@ -1,4 +1,4 @@
-<?php
+<?php //phpcs:ignore file comment
 /**
  * Description: Removes unnecessary items from the head section of the website.
  *

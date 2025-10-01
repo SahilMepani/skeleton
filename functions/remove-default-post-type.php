@@ -43,14 +43,22 @@ add_action( 'wp_dashboard_setup', 'skel_remove_draft_widget', 999 );
 
 
 /**
- * Force-remove Posts and Categories from Appearance > Menus using nav_menu_meta_box_object filter.
+ * Removes the "Posts" and "Categories" meta boxes from Appearance → Menus.
+ *
+ * This function hooks into the `nav_menu_meta_box_object` filter and prevents
+ * the default "Posts" and "Categories" sections from appearing in the Menus screen.
+ * Returning `false` for specific objects hides them from the meta box list.
+ *
+ * @since 1.0.0
+ *
+ * @param object $items The current meta box object being processed in the Menus screen.
+ * @return object|false The unmodified object, or false to remove the meta box.
  */
-function skel_remove_menu_meta_boxes( $object ) {
-	if ( isset( $object->name ) ) {
-		if ( 'post' === $object->name || 'category' === $object->name ) {
-			return false; // Remove the metabox.
-		}
+function skel_remove_menu_meta_boxes( $items ) {
+	if ( isset( $items->name ) && ( 'post' === $items->name || 'category' === $items->name ) ) {
+		return false; // Remove the metabox.
 	}
-	return $object;
+
+	return $items;
 }
 add_filter( 'nav_menu_meta_box_object', 'skel_remove_menu_meta_boxes' );

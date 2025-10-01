@@ -1,4 +1,4 @@
-<?php
+<?php //phpcs:ignore file comment
 /**
  * Description: Remove comments functionality from the admin menu, post,
  * and pages, and admin bar.

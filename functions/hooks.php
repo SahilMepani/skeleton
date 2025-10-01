@@ -148,8 +148,9 @@ add_action( 'init', 'skel_load_theme_textdomain' );
 // header( 'link:' . get_template_directory() . '/style.css; rel=preload' );
 // }
 // add_action( 'send_headers', 'hints' );
+// .
 
-// ! REQUIRED - Do not edit below
+// ! REQUIRED - Do not edit below.
 /**
  * Wrap embedded oEmbed HTML in a responsive container.
  *

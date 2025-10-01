@@ -44,7 +44,7 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 	<div class="container">
 
 		<div class="inner-container">
-			<?php echo $content; ?>
+			<?php echo wp_kses_post( $content ); ?>
 		</div> <!-- .inner-container -->
 
 	</div><!-- .container -->

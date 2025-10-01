@@ -7,7 +7,7 @@
  * @since 1.0.0
  */
 
-// require get_template_directory() . '/functions/shortcodes.php';.
+// require get_template_directory() . '/functions/shortcodes.php';
 require get_template_directory() . '/functions/define-constants.php';
 require get_template_directory() . '/functions/register-nav-menus.php';
 require get_template_directory() . '/functions/helpers.php';
@@ -40,7 +40,6 @@ require get_template_directory() . '/functions/admin-ajax.php';
 // require get_template_directory() . '/functions/acf-options-page.php';
 // require get_template_directory() . '/functions/custom-login.php';
 // require( get_template_directory() . '/functions/custom-post-types.php' );
-// require( get_template_directory() . '/functions/custom-admin-columns.php' );
 // require get_template_directory() . '/functions/remove-admin-menu-items.php';
 
 if ( 'local' === wp_get_environment_type() && current_user_can( 'manage_options' ) ) {

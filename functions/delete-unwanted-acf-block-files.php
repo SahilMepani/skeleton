@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore file comment
 /**
  * Helper function to delete unnecessary ACF block files.
  *
@@ -56,27 +56,27 @@ function skel_delete_unwanted_acf_block_files( array $block_types ): void {
 
 	// Delete PHP files that are no longer needed, excluding `blank.php`.
 	foreach ( $existing_php_files as $file ) {
-		if ( $file !== $exclude_php_file && ! in_array( $file, $current_php_files ) ) {
+		if ( $file !== $exclude_php_file && ! in_array( $file, $current_php_files, true ) ) {
 			if ( ! $wp_filesystem->delete( $file, false ) ) {
-				echo "Error deleting PHP file: $file!";
+				printf( 'Error deleting PHP file: %s!', esc_html( $file ) );
 			}
 		}
 	}
 
 	// Delete JS files that are no longer needed.
 	foreach ( $existing_js_files as $file ) {
-		if ( ! in_array( $file, $current_js_files ) ) {
+		if ( ! in_array( $file, $current_js_files, true ) ) {
 			if ( ! $wp_filesystem->delete( $file, false ) ) {
-				echo "Error deleting JS file: $file!";
+				printf( 'Error deleting JS file: %s!', esc_html( $file ) );
 			}
 		}
 	}
 
 	// Delete SASS files that are no longer needed.
 	foreach ( $existing_sass_files as $file ) {
-		if ( ! in_array( $file, $current_sass_files ) ) {
+		if ( ! in_array( $file, $current_sass_files, true ) ) {
 			if ( ! $wp_filesystem->delete( $file, false ) ) {
-				echo "Error deleting SASS file: $file!";
+				printf( 'Error deleting SASS file: %s!', esc_html( $file ) );
 			}
 		}
 	}

@@ -13,10 +13,21 @@ if ( is_admin() ) {
 	return;
 }
 
-function skel_enqueue_scripts() {
+/**
+ * Enqueue and register theme scripts and styles.
+ *
+ * This function loads Google Fonts, theme stylesheets, and JS files.
+ * It also ensures jQuery is deregistered (if needed) and styles are
+ * versioned automatically using their file modification times.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function skel_enqueue_scripts(): void {
 
 	/* Load google fonts */
-	wp_enqueue_style( 'google-font', '//fonts.googleapis.com/css?family=Montserrat&display=swap', 'all' );
+	wp_enqueue_style( 'google-font', '//fonts.googleapis.com/css?family=Montserrat&display=swap', array(), '1.0.0', 'all' );
 
 	/* Do not load in backend */
 	if ( is_admin() ) {
@@ -31,16 +42,7 @@ function skel_enqueue_scripts() {
 	// https://wordpress.stackexchange.com/questions/173601/enqueue-core-jquery-in-the-footer
 	// ths will break gravity forms on some pages, be careful.
 	// wp_scripts()->add_data( 'jquery', 'group', 1 );
-	// wp_scripts()->add_data( 'jquery-core', 'group', 1 );
-
-	/*
-	wp_enqueue_script(
-	'identifier',
-	'url',
-	'dependency',
-	'version',
-	load_in_footer_boolean
-	); */
+	// wp_scripts()->add_data( 'jquery-core', 'group', 1 );.
 
 	wp_enqueue_style(
 		'skel-style',
@@ -68,21 +70,13 @@ function skel_enqueue_scripts() {
 		true
 	);
 
-	// wp_enqueue_script(
-	// 'match-height',
-	// get_template_directory_uri() . '/js/vendor/match-height.js',
-	// [ 'jquery' ],
-	// filemtime( get_template_directory() . '/js/vendor/match-height.js' ),
-	// true
-	// );
-
-	// localize scripts
+	// localize scripts.
 	// wp_localize_script(
 	// 'skel-plugins', // file name without extension where we want to use the localize_var
 	// 'localize_var',
 	// array(
 	// 'adminUrl' => admin_url( 'admin-ajax.php' ),
-	// );
+	// );.
 }
 add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
 
@@ -100,7 +94,6 @@ add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
  *
  * @param string $tag The script tag for the enqueued script.
  * @param string $handle The handle of the enqueued script.
- * @param string $src The source URL of the enqueued script.
  * @return string Modified script tag with the added attributes.
  */
 function modify_script_attributes( $tag, $handle ) {
@@ -109,6 +102,7 @@ function modify_script_attributes( $tag, $handle ) {
 		// uncomment for production as it doesn't work with Query monitor
 		// 'jquery',
 		// 'jquery-core',
+		// .
 		'skel-plugins',
 		'skel-custom',
 	);

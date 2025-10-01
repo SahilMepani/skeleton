@@ -1,4 +1,4 @@
-<?php
+<?php //phpcs:ignore file comment
 /**
  * Remove Gutenberg Block Library CSS from loading on the frontend
  *

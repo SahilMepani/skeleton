@@ -13,6 +13,7 @@
  * with the corresponding name. Only creates the file if it doesn't exist.
  *
  * @param array $block_types An array of block names.
+ * @param array $blocks_with_js An array of block names using js.
  * @return void
  */
 function skel_create_acf_block_files( array $block_types, array $blocks_with_js = array() ): void {

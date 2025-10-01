@@ -84,6 +84,8 @@ function add_svg_media_filter( $post_mime_types ) {
 	$post_mime_types['image/svg+xml'] = array(
 		__( 'SVGs' ),
 		__( 'SVGs' ),
+
+		// translators: %s: Number of SVG files.
 		_n_noop( 'SVG <span class="count">(%s)</span>', 'SVGs <span class="count">(%s)</span>' ),
 	);
 	return $post_mime_types;

@@ -1,6 +1,6 @@
 <?php
 /**
- * The main template file
+ * The main template file.
  *
  * This is the most generic template file in a WordPress theme
  * and one of the two required files for a theme (the other being style.css).
@@ -13,13 +13,14 @@
  * @since 1.0.0
  */
 
-get_header(); ?>
+get_header();
+?>
 
 <section class="py-xs-2 py-4">
 	<div class="container">
-
 		<div class="row">
 
+			<!-- Category Filter -->
 			<div class="filters__item--select col-sm-4">
 				<div class="custom-select-block">
 					<select id="ajax-filter-cat">
@@ -27,162 +28,170 @@ get_header(); ?>
 							<?php esc_html_e( 'Show All Categories', 'skel' ); ?>
 						</option>
 						<?php
-						$cats_args = array(
-							'taxonomy' => 'insight-category',
+						$cats = get_categories(
+							array(
+								'taxonomy' => 'insight-category',
+							)
 						);
-						$cats      = get_categories( $cats_args );
+
 						foreach ( $cats as $skel_cat ) :
 							?>
-						<option data-cpt="post" data-tax="insight-category"
-							data-term="<?php echo esc_attr( $skel_cat->slug ); ?>">
-							<?php echo esc_html( $skel_cat->name ); ?>
-						</option>
+							<option
+								data-cpt="post"
+								data-tax="insight-category"
+								data-term="<?php echo esc_attr( $skel_cat->slug ); ?>">
+								<?php echo esc_html( $skel_cat->name ); ?>
+							</option>
 						<?php endforeach; ?>
 					</select>
-				</div> <!-- .custom-select-block -->
-			</div> <!-- .filters__item-select -->
+				</div>
+			</div>
 
+			<!-- Topic Filter -->
 			<div class="filters__item--select col-sm-4">
 				<div class="custom-select-block">
-					<select id="ajax-filter-cat">
+					<select id="ajax-filter-topic">
 						<option data-cpt="post" data-tax="category" data-term="">
 							<?php esc_html_e( 'Show All Topics', 'skel' ); ?>
 						</option>
 						<?php
-						$cats_args = array(
-							'taxonomy' => 'insight-topic',
+						$topics = get_categories(
+							array(
+								'taxonomy' => 'insight-topic',
+							)
 						);
-						$cats      = get_categories( $cats_args );
-						foreach ( $cats as $skel_cat ) :
+
+						foreach ( $topics as $skel_topic ) :
 							?>
-						<option data-cpt="post" data-tax="insight-topic"
-							data-term="<?php echo esc_html( $skel_cat->slug ); ?>">
-							<?php echo esc_html( $skel_cat->name ); ?>
-						</option>
+							<option
+								data-cpt="post"
+								data-tax="insight-topic"
+								data-term="<?php echo esc_attr( $skel_topic->slug ); ?>">
+								<?php echo esc_html( $skel_topic->name ); ?>
+							</option>
 						<?php endforeach; ?>
 					</select>
-				</div> <!-- .custom-select-block -->
-			</div> <!-- .filters__item-select -->
+				</div>
+			</div>
 
+			<!-- Search Filter -->
 			<div class="filters__item--search col-sm-4">
-				<form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get" id="ajax-search-post"
-					data-cpt="post" data-tax="category">
-					<input type="search" name="s" placeholder="Search for" class="input-search w-100" />
+				<form
+					action="<?php echo esc_url( home_url( '/' ) ); ?>"
+					method="get"
+					id="ajax-search-post"
+					data-cpt="post"
+					data-tax="category">
+
+					<label for="ajax-search-input" class="screen-reader-text">
+						<?php esc_html_e( 'Search for:', 'skel' ); ?>
+					</label>
+
+					<input
+						type="search"
+						id="ajax-search-input"
+						name="s"
+						placeholder="<?php esc_attr_e( 'Search for…', 'skel' ); ?>"
+						class="input-search w-100" />
+
 					<div id="ajax-submit-block" class="submit-block">
-						<div class="search-icon-block">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 18 18">
-								<path fill="#B2993E"
-									d="M11.417 10.042L16 14.625 14.625 16l-4.542-4.583v-.708l-.292-.25c-1.111.944-2.403 1.417-3.875 1.417-1.639 0-3.035-.576-4.188-1.729S-.001 7.598-.001 5.959c0-1.639.576-3.042 1.729-4.208S4.263.001 5.874.001c1.639 0 3.035.583 4.187 1.75S11.79 4.32 11.79 5.959c0 1.472-.472 2.764-1.417 3.875l.292.208h.75zm-5.5 0c1.139 0 2.111-.396 2.917-1.188s1.208-1.757 1.208-2.896-.403-2.111-1.208-2.917-1.778-1.208-2.917-1.208c-1.139 0-2.104.403-2.896 1.208S1.833 4.819 1.833 5.958c0 1.139.396 2.104 1.188 2.896s1.757 1.188 2.896 1.188z" />
+						<div class="search-icon-block" aria-hidden="true">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 18 18">
+								<path fill="#B2993E" d="M11.417 10.042L16 14.625 14.625 16l-4.542-4.583v-.708l-.292-.25c-1.111.944-2.403 1.417-3.875 1.417-1.639 0-3.035-.576-4.188-1.729S-.001 7.598-.001 5.959c0-1.639.576-3.042 1.729-4.208S4.263.001 5.874.001c1.639 0 3.035.583 4.187 1.75S11.79 4.32 11.79 5.959c0 1.472-.472 2.764-1.417 3.875l.292.208h.75z" />
 							</svg>
-						</div> <!-- .search-icon-block -->
+						</div>
 						<input type="submit" value="" class="btn" />
-					</div> <!-- .submit-block -->
+					</div>
 
 					<div class="loading-spinner"></div>
-					<a href="#" id="ajax-search-clear" class="clear-search" title="clear">
-						<div class="clear-icon-block">
+
+					<a href="#" id="ajax-search-clear" class="clear-search" title="<?php esc_attr_e( 'Clear search', 'skel' ); ?>">
+						<div class="clear-icon-block" aria-hidden="true">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 18 18">
-								<path fill="#B2993E"
-									d="M3.727 2.727l10.09 10.09-1.164 1.164-10.09-10.09 1.164-1.164z" />
-								<path fill="#B2993E"
-									d="M13.817 3.891l-10.09 10.09-1.164-1.164 10.09-10.09 1.164 1.164z" />
+								<path fill="#B2993E" d="M3.727 2.727l10.09 10.09-1.164 1.164-10.09-10.09 1.164-1.164z" />
+								<path fill="#B2993E" d="M13.817 3.891l-10.09 10.09-1.164-1.164 10.09-10.09 1.164 1.164z" />
 							</svg>
-						</div> <!-- .clear-svg-block -->
+						</div>
 					</a>
 				</form>
-			</div> <!-- .filters__item-search -->
+			</div>
 
-		</div> <!-- .row -->
-
-	</div> <!-- .container -->
+		</div>
+	</div>
 </section>
 
 <section class="pb-6">
 	<div class="container">
 
 		<?php
-			global $query_string;
-			global $wp_query;
-			query_posts( $query_string . '&posts_per_page=-1&post_status=publish' ); // set to -1 to get total number of posts.
-			$total_post_count  = $wp_query->post_count; // all the posts count.
-			$posts_per_page    = 6;
-			$unseen_post_count = $total_post_count - $posts_per_page; // posts not seen.
-			query_posts( $query_string . '&posts_per_page=' . $posts_per_page . '&post_status=publish' );
-			// echo $total_post_count;.
-			$post_count = $wp_query->post_count; // updated query posts count.
-		if ( is_category() ) {
-			$skel_term = get_query_var( 'cat' );
-		}
-		if ( is_author() ) {
-			$author_id = get_query_var( 'author' );
-		}
-		if ( is_tag() ) {
-			$tag_id = get_query_var( 'tag_id' );
-		}
-		if ( is_search() ) {
-			$skel_search = get_query_var( 's' );
-		}
+		global $wp_query;
+
+		$query_args = wp_parse_args( $wp_query->query );
+
+		$count_query_args                   = $query_args;
+		$count_query_args['posts_per_page'] = -1;
+		$count_query_args['post_status']    = 'publish';
+
+		$count_query      = new WP_Query( $count_query_args );
+		$total_post_count = (int) $count_query->found_posts;
+
+		$posts_per_page    = 6;
+		$unseen_post_count = max( 0, $total_post_count - $posts_per_page );
+
+		$main_query_args                   = $query_args;
+		$main_query_args['posts_per_page'] = $posts_per_page;
+		$main_query_args['post_status']    = 'publish';
+
+		$posts_query = new WP_Query( $main_query_args );
+		$post_count  = $posts_query->post_count;
+
+		$skel_term   = is_category() ? get_query_var( 'cat' ) : '';
+		$author_id   = is_author() ? get_query_var( 'author' ) : '';
+		$tag_id      = is_tag() ? get_query_var( 'tag_id' ) : '';
+		$skel_search = is_search() ? get_query_var( 's' ) : '';
 		?>
 
-		<?php if ( is_category() ) { ?>
 		<input type="hidden" id="filter-term" value="<?php echo esc_attr( $skel_term ); ?>" />
-		<?php } else { ?>
-		<input type="hidden" id="filter-term" value="" />
-		<?php } ?>
-
-		<?php if ( is_author() ) { ?>
 		<input type="hidden" id="filter-author-id" value="<?php echo esc_attr( $author_id ); ?>" />
-		<?php } else { ?>
-		<input type="hidden" id="filter-author-id" value="" />
-		<?php } ?>
-
-		<?php if ( is_tag() ) { ?>
 		<input type="hidden" id="filter-tag-id" value="<?php echo esc_attr( $tag_id ); ?>" />
-		<?php } else { ?>
-		<input type="hidden" id="filter-tag-id" value="" />
-		<?php } ?>
-
-		<?php if ( is_search() ) { ?>
 		<input type="hidden" id="filter-search" value="<?php echo esc_attr( $skel_search ); ?>" />
-		<?php } else { ?>
-		<input type="hidden" id="filter-search" value="" />
-		<?php } ?>
-
 		<input type="hidden" id="filter-pagenum" value="1" />
 		<input type="hidden" id="filter-total-post-count" value="<?php echo esc_attr( $total_post_count ); ?>" />
 		<input type="hidden" id="filter-posts-per-page" value="<?php echo esc_attr( $posts_per_page ); ?>" />
 		<input type="hidden" id="filter-unseen-post-count" value="<?php echo esc_attr( $unseen_post_count ); ?>" />
 
 		<ul id="ajax-list-post" class="list-blog-post mb-0">
-
 			<?php
-			if ( have_posts() ) :
-				while ( have_posts() ) :
-					the_post();
+			if ( $posts_query->have_posts() ) :
+				while ( $posts_query->have_posts() ) :
+					$posts_query->the_post();
 					get_template_part( 'template-parts/post-card' );
 				endwhile;
+				wp_reset_postdata();
 			endif;
 			?>
-
-		</ul> <!-- .list-blog-post -->
+		</ul>
 
 		<div class="text-center clear">
-
 			<div class="loading-dots"></div>
 
-			<?php // echo $post_count; ?>
-
 			<div class="clear">
-				<h4 id="alert-no-data" class="d-none">Sorry, there are no available post matching your filters.</h4>
+				<h4 id="alert-no-data" class="d-none">
+					<?php esc_html_e( 'Sorry, there are no posts matching your filters.', 'skel' ); ?>
+				</h4>
 			</div>
-			<div class="d-flex justify-content-center">
-				<button id="ajax-more-post" data-cpt="post" data-tax="category"
-					class="<?php echo ( $total_post_count <= $posts_per_page ) ? 'disabled' : ''; ?> btn btn-black btn-md">Load
-					More</button>
-			</div> <!-- .d-flex justify-content-center -->
-		</div> <!-- .text-center -->
 
-	</div> <!-- .container -->
+			<div class="d-flex justify-content-center">
+				<button
+					id="ajax-more-post"
+					data-cpt="post"
+					data-tax="category"
+					class="btn btn-black btn-md <?php echo ( $total_post_count <= $posts_per_page ) ? 'disabled' : ''; ?>">
+					<?php esc_html_e( 'Load More', 'skel' ); ?>
+				</button>
+			</div>
+		</div>
+	</div>
 </section>
 
 <?php get_footer(); ?>

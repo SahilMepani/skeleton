@@ -113,20 +113,38 @@ function skel_direction_class(): string|null {
  */
 function skel_get_svg_content( string $image ): string|false {
 	// Construct the full path to the SVG file.
-	$file_path = get_template_directory() . '/images/svg/' . $image . '.svg';
+	$file_path = get_template_directory() . '/images/svg/' . sanitize_file_name( $image ) . '.svg';
 
-	// Check if the file exists and is readable.
-	if ( file_exists( $file_path ) && is_readable( $file_path ) ) {
-		// Read the content of the SVG file.
-		$content = file_get_contents( $file_path );
+	// Ensure the file exists and is within the theme directory (path traversal protection).
+	$real_base = realpath( get_template_directory() . '/images/svg/' );
+	$real_file = realpath( $file_path );
 
-		// Return the content.
-		return $content;
-	} else {
-		// If the file does not exist or cannot be read, return FALSE.
+	if ( false === $real_file || 0 !== strpos( $real_file, $real_base ) ) {
 		return false;
 	}
+
+	// Check if the file exists and is readable.
+	if ( file_exists( $real_file ) && is_readable( $real_file ) ) {
+		// Safely read the file using WP_Filesystem API.
+		global $wp_filesystem;
+
+		if ( ! $wp_filesystem ) {
+			require_once ABSPATH . '/wp-admin/includes/file.php';
+			WP_Filesystem();
+		}
+
+		$content = $wp_filesystem->get_contents( $real_file );
+
+		if ( false === $content ) {
+			return false;
+		}
+
+		return $content;
+	}
+
+	return false;
 }
+
 
 /**
  * Generates an SVG icon.
@@ -206,8 +224,8 @@ function skel_get_random_string( int $length = 10 ): string {
  * It truncates the excerpt to the specified word limit and adds ellipsis (...) if the excerpt exceeds the limit.
  * Additionally, it removes any shortcodes from the excerpt before returning it.
  *
- * @param int $post_id The ID of the post for which to retrieve the excerpt.
  * @param int $limit   The maximum number of words in the excerpt.
+ * @param int $post_id The ID of the post for which to retrieve the excerpt.
  * @return string The customized excerpt of the specified post.
  */
 function skel_get_the_excerpt( int $limit = 50, ?int $post_id = null ): string {
@@ -338,7 +356,9 @@ function skel_get_phone_url( string|false $phone_number = false ): string {
 /**
  * Limit WP Revisions
  */
-// define( 'WP_POST_REVISIONS', 5 );.
+if ( ! defined( 'WP_POST_REVISIONS' ) ) {
+	define( 'WP_POST_REVISIONS', 5 );
+}
 
 
 /**
@@ -412,27 +432,43 @@ function skel_extract_oembed_src( $html ) {
 }
 
 /**
- * Get Full URL.
+ * Get the full URL of the current request.
  *
- * This function constructs a full URL based on the current request URI
+ * Safely constructs the full URL based on the current request, ensuring
+ * all server variables are checked, unslashed, and sanitized.
  *
- * @return string full_url
+ * @since 1.0.0
+ *
+ * @return string The full URL of the current request.
  */
-function skel_get_full_url() {
-	// Get the current URI.
-	// phpcs:ignore
-	$server_uri  = $_SERVER['REQUEST_URI'];
-	$server_port = $_SERVER['SERVER_PORT'];
-	$server_host = $_SERVER['HTTP_HOST'];
+function skel_get_full_url(): string {
+	// Safely get and sanitize the request URI.
+	$server_uri = isset( $_SERVER['REQUEST_URI'] )
+		? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) )
+		: '';
 
-	// Determine the protocol.
-	$protocol = ( ( ! empty( $_SERVER['HTTPS'] ) && 'off' !== $_SERVER['HTTPS'] ) || 443 === $server_port ) ? 'https://' : 'http://';
+	// Safely get and sanitize the server port.
+	$server_port = isset( $_SERVER['SERVER_PORT'] )
+		? absint( wp_unslash( $_SERVER['SERVER_PORT'] ) )
+		: 80;
+
+	// Safely get and sanitize the host.
+	$server_host = isset( $_SERVER['HTTP_HOST'] )
+		? sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) )
+		: 'localhost';
+
+	// Safely determine the protocol.
+	$https_flag = isset( $_SERVER['HTTPS'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTPS'] ) ) : '';
+	$protocol   = ( ! empty( $https_flag ) && 'off' !== strtolower( $https_flag ) ) || 443 === $server_port
+		? 'https://'
+		: 'http://';
 
 	// Construct the full URL.
-	$full_url = $protocol . $server_host . $server_uri;
+	$full_url = esc_url_raw( $protocol . $server_host . $server_uri );
 
 	return $full_url;
 }
+
 
 /**
  * Replaces a text placeholder with an icon HTML in the provided text.
@@ -442,10 +478,9 @@ function skel_get_full_url() {
  * parameter is set to true, it also outputs the modified text.
  *
  * @param string $text The text in which to replace the placeholder with an icon.
- * @param bool   $display Whether to echo the output. If true, the output is echoed.
- * @return string The modified text with the placeholder replaced by the icon HTML.
+ * @return void
  */
-function skel_replace_text_with_icon( string $text ) {
+function skel_replace_text_with_icon( string $text ): void {
 	// Check if the text is not falsy.
 	if ( ! $text ) {
 		echo '';

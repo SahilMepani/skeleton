@@ -14,7 +14,6 @@
  */
 function skel_login_logo(): void {
 	?>
-<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&display=swap"> -->
 <style type="text/css">
 body.login {
 	--page-background: #baa78f;

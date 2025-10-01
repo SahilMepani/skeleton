@@ -1,4 +1,4 @@
-<?php
+<?php //phpcs:ignore file comment
 /**
  * Disable WP generated image sizes
  *

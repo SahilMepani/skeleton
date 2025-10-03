@@ -1,4 +1,7 @@
-<?php get_header(); ?>
+<?php  //phpcs:ignore file comment
+get_header();
+?>
+
 <div class="content-section">
 
 	<div class="container">
@@ -44,14 +47,23 @@
 						</h2>
 
 						<div class="post-meta">
-							Published by							             <?php the_author_posts_link(); ?> on
-							<time pubdate><?php the_time( 'F j, Y' ); ?></time> under<?php the_terms( $post->ID, 'type' ); ?>
+							<?php
+							printf(
+								/* translators: 1: Author link, 2: Published date, 3: Post terms list. */
+								wp_kses_post( __( 'Published by %1$s on %2$s under %3$s', 'skel' ) ),
+								wp_kses_post( get_the_author_posts_link() ),
+								esc_html( get_the_time( 'F j, Y' ) ),
+								wp_kses_post( get_the_term_list( get_the_ID(), 'type', '', ', ', '' ) )
+							);
+							?>
 						</div> <!-- .post-meta -->
 					</header>
 
 					<div class="excerpt-block">
-						<p class="excerpt">						                    <?php echo skel_get_the_excerpt( 55 ); ?> </p>
-						<a href="<?php the_permalink(); ?>" class="btn btn-sm btn-more">Read More</a>
+						<p class="excerpt"><?php echo esc_html( skel_get_the_excerpt( 55 ) ); ?> </p>
+						<a href="<?php the_permalink(); ?>" class="btn btn-sm btn-more">
+							<?php esc_html_e( 'Read More', 'skel' ); ?>
+						</a>
 					</div> <!-- .excerpt-block -->
 
 				</article> <!-- .type-post -->
@@ -66,8 +78,8 @@
 			else :
 				?>
 
-			<h2>Not Found</h2>
-			<p>Sorry, but you are looking for something that isn&#8217;t here.</p>
+			<h2><?php esc_html_e( 'Not Found', 'skel' ); ?></h2>
+			<p><?php esc_html_e( 'Sorry, but you are looking for something that isn&#8217;t here.', 'skel' ); ?></p>
 
 			<?php endif; ?>
 

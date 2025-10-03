@@ -1,8 +1,8 @@
-<?php
+<?php //phpcs:ignore file comment
 /**
  * Taxonomy skills
  *
- * This is a archive templaet for taxonomy skills
+ * This is a archive template for taxonomy skills
  *
  * @package WordPress
  * @subpackage Skeleton
@@ -19,7 +19,7 @@ $current_term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'ta
 
 		<section class="main-content">
 
-		<h1 class="category-title"><span>Skills:</span>
+		<h1 class="category-title"><span><?php esc_html_e( 'Skills:', 'skel' ); ?></span>
 		<?php single_cat_title(); ?></h1>
 
 		<?php
@@ -27,12 +27,13 @@ $current_term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'ta
 			$args         = array(
 				'post_type'      => 'portfolio',
 				'posts_per_page' => -1,
+				//phpcs:ignore if there is large databasets(> 10,000), then we need to need about it.
 				'tax_query'      => array(
 					'relation' => 'AND',
 					array(
 						'taxonomy' => 'skills',
 						'field'    => 'slug',
-						'terms'    => $current_term->slug,
+						'terms'    => sanitize_title( $current_term->slug ),
 					),
 				),
 				'paged'          => $paging,

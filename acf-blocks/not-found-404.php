@@ -8,7 +8,7 @@
 
 // Set thumbnail preview in backend.
 if ( isset( $block['data']['preview_image'] ) ) {
-	echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '" style="inline-size:100%; block-size:auto;">';
+	echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
 	return; // required.
 }
 
@@ -19,7 +19,13 @@ if ( 'on' !== $display ) {
 }
 
 // Data options.
-$heading = get_field( 'heading' );
+$heading     = get_field( 'heading' );
+$heading     = $heading ? $heading : __( 'Page not found.', 'skel' );
+$description = get_field( 'description' );
+$description = $description ? $description : __(
+	'<p>The page you’re looking for might have been removed, had its name changed, or is temporarily unavailable. Please check the URL or return to the homepage.</p>',
+	'skel'
+);
 
 // Developer options.
 $spacing        = get_field( 'spacing' );
@@ -39,10 +45,14 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
 	id="<?php echo esc_attr( $unique_id ); ?>">
 
-	<div class="container">
+	<div class="container-small">
 
 		<?php if ( $heading ) { ?>
-			<h1><?php echo esc_html( $heading ); ?></h1>
+			<h1 class="heading"><?php echo esc_html( $heading ); ?></h1>
+		<?php } ?>
+
+		<?php if ( $description ) { ?>
+			<?php echo wp_kses_post( $description ); ?>
 		<?php } ?>
 
 	</div><!-- .container -->

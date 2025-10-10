@@ -165,7 +165,6 @@ function watch() {
 		'*.html',
 		'*.php',
 		'js/**/*.js',
-		'./style.css',
 		'img/**/*.{png,jpg,jpeg,gif,webp,svg}'
 	]).on('change', browserSyncInstance.reload);
 }

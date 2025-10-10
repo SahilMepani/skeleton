@@ -1,0 +1,19 @@
+// AOS Global Configuration
+$stagger-limit: 10 !default;
+$aos-distance-mobile: 20px !default;
+$aos-distance-desktop: 40px !default;
+
+:root {
+	--aos-duration: 750;
+	--aos-delay: 50;
+	--aos-distance: #{$aos-distance-mobile};
+	--aos-stagger-interval: 100;
+	--aos-ease-out: cubic-bezier(0, 0, 0.58, 1);
+	--aos-timing-function: var(--aos-ease-out);
+}
+
+@include media-breakpoint-up(md) {
+	:root {
+		--aos-distance: #{$aos-distance-desktop};
+	}
+}

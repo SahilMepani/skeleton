@@ -11,6 +11,7 @@ import cssnano from 'cssnano';
 import purgecss from 'gulp-purgecss';
 import rtlcss from 'gulp-rtlcss';
 import eslint from 'gulp-eslint';
+import gulpIf from 'gulp-if'; // Added gulp-if
 import { deleteAsync } from 'del';
 import browserSync from 'browser-sync';
 import wrapper from 'gulp-wrapper';
@@ -21,6 +22,7 @@ config();
 
 const browserSyncInstance = browserSync.create();
 const gulpSassInstance = gulpSass(sass);
+const isProduction = process.env.NODE_ENV === 'production';
 
 // BrowserSync task
 function serve(done) {
@@ -39,15 +41,21 @@ function clean() {
 function sassTask() {
 	return gulp
 		.src('src/sass/style.scss')
-		.pipe(sourcemaps.init())
+		.pipe(gulpIf(!isProduction, sourcemaps.init())) // Sourcemaps only in dev
 		.pipe(
-			gulpSassInstance({ outputStyle: 'compressed' }).on(
-				'error',
-				gulpSassInstance.logError
+			gulpSassInstance({
+				outputStyle: isProduction ? 'compressed' : 'expanded' // Conditional output style
+			}).on('error', gulpSassInstance.logError)
+		)
+		.pipe(
+			postcss(
+				isProduction
+					? [autoprefixer(), cssnano()] // Prod plugins
+					: [autoprefixer()] // Dev plugins (no cssnano)
 			)
 		)
-		.pipe(postcss([autoprefixer(), cssnano()]))
-		.pipe(gulp.dest('./'))
+		.pipe(gulpIf(!isProduction, sourcemaps.write('.'))) // Write sourcemaps only in dev
+		.pipe(gulp.dest('./')) // Output to root for now
 		.pipe(browserSyncInstance.stream());
 }
 
@@ -110,10 +118,10 @@ function rtlCssTask() {
 function pluginsJsTask() {
 	return gulp
 		.src('src/js/plugins/*.js')
-		.pipe(sourcemaps.init())
+		.pipe(gulpIf(!isProduction, sourcemaps.init())) // Sourcemaps only in dev
 		.pipe(concat('plugins.js'))
-		.pipe(uglify())
-		.pipe(sourcemaps.write('.'))
+		.pipe(gulpIf(isProduction, uglify())) // Uglify only in prod
+		.pipe(gulpIf(!isProduction, sourcemaps.write('.'))) // Write sourcemaps only in dev
 		.pipe(gulp.dest('./js'))
 		.pipe(browserSyncInstance.stream());
 }
@@ -121,7 +129,7 @@ function pluginsJsTask() {
 function customJsTask() {
 	return gulp
 		.src('src/js/custom/**/*.js')
-		.pipe(sourcemaps.init())
+		.pipe(gulpIf(!isProduction, sourcemaps.init())) // Sourcemaps only in dev
 		.pipe(concat('custom.js'))
 		.pipe(
 			wrapper({
@@ -129,18 +137,19 @@ function customJsTask() {
 				footer: '});'
 			})
 		)
-		.pipe(uglify())
-		.pipe(sourcemaps.write('.'))
+		.pipe(gulpIf(isProduction, uglify())) // Uglify only in prod
+		.pipe(gulpIf(!isProduction, sourcemaps.write('.'))) // Write sourcemaps only in dev
 		.pipe(gulp.dest('./js'))
 		.pipe(browserSyncInstance.stream());
 }
 
 function lintJS() {
+	// Keep linting in both modes for now
 	return gulp
 		.src([
-			'src/js/custom/*.js',
-			'!src/js/!document.ready.js',
-			'!src/js/Ιdocument.close.js'
+			'src/js/custom/*.js'
+			// '!src/js/!document.ready.js',
+			// '!src/js/Ιdocument.close.js'
 		])
 		.pipe(eslint())
 		.pipe(eslint.format());
@@ -162,11 +171,19 @@ function watch() {
 
 // Define complex tasks
 const jsTasks = gulp.series(pluginsJsTask, customJsTask);
-const build = gulp.series(
+
+// Dev build sequence (no purgecss)
+const buildDev = gulp.series(sassTask, gulp.parallel(lintJS, jsTasks));
+
+// Prod build sequence (includes purgecss)
+const buildProd = gulp.series(
 	sassTask,
-	gulp.parallel(purgeCSSTask, rtlCssTask, lintJS, jsTasks)
+	gulp.parallel(rtlCssTask, lintJS, jsTasks), // Run JS/Lint in parallel with SCSS
+	purgeCSSTask // Run PurgeCSS after initial CSS is built
 );
-const dev = gulp.series(build, serve, watch);
+
+const prod = gulp.series(buildProd, serve, watch);
+const dev = gulp.series(buildDev, serve, watch);
 
 // Export tasks
 export {
@@ -176,6 +193,8 @@ export {
 	rtlCssTask as rtlcss,
 	jsTasks as js,
 	lintJS,
-	build
+	buildDev, // Export dev build
+	buildProd // Export prod build
 };
+
 export default dev;

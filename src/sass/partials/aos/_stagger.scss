@@ -1,0 +1,9 @@
+@mixin aos-stagger($count: $stagger-limit) {
+	@for $i from 1 through $count {
+		[data-aos-stagger-item]:nth-child(#{$i}) {
+			transition-delay: calc(1ms * (#{$i} * var(--aos-stagger-interval)));
+		}
+	}
+}
+
+@include aos-stagger;

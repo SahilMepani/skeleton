@@ -30,7 +30,7 @@
 		const video = targetDialog.querySelector('.js-video');
 		const iframe = targetDialog.querySelector('.js-iframe');
 		const dialogCloseButton =
-			targetDialog.querySelector(`.js-dialog-close`);
+			targetDialog.querySelector('.js-dialog-close');
 
 		dialogOpenButton.addEventListener('click', () => {
 			// Stop lenis (assuming it's globally available)

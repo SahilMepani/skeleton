@@ -1,5 +1,5 @@
 import gulp from 'gulp';
-import * as sass from 'sass';
+import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
 import concat from 'gulp-concat';
@@ -21,7 +21,7 @@ import { config } from 'dotenv';
 config();
 
 const browserSyncInstance = browserSync.create();
-const gulpSassInstance = gulpSass(sass);
+const sassCompiler = gulpSass(dartSass);
 const isProduction = process.env.NODE_ENV === 'production';
 
 // BrowserSync task
@@ -43,9 +43,9 @@ function sassTask() {
 		.src('src/sass/style.scss')
 		.pipe(gulpIf(!isProduction, sourcemaps.init())) // Sourcemaps only in dev
 		.pipe(
-			gulpSassInstance({
+			sassCompiler({
 				outputStyle: isProduction ? 'compressed' : 'expanded' // Conditional output style
-			}).on('error', gulpSassInstance.logError)
+			}).on('error', sassCompiler.logError)
 		)
 		.pipe(
 			postcss(

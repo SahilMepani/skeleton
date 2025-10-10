@@ -2424,7 +2424,7 @@ option:first-child {
 }
 
 .site-header {
-  background-color: #eee;
+  background-color: red;
   padding-block: 0.625rem;
   position: sticky;
   inset-block-start: 0;

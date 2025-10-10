@@ -37,8 +37,8 @@
 		"js": "gulp js",
 		"lint:css": "gulp lintCSS",
 		"lint:js": "gulp lintJS",
-		"build": "cross-env NODE_ENV=production gulp buildProd",
 		"build:dev": "gulp buildDev",
+		"build": "cross-env NODE_ENV=production gulp prod",
 		"dev": "gulp",
 		"start": "gulp"
 	}

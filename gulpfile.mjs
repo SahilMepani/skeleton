@@ -1,5 +1,5 @@
 import gulp from 'gulp';
-import dartSass from 'sass';
+import * as dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
 import concat from 'gulp-concat';
@@ -22,7 +22,9 @@ config();
 
 const browserSyncInstance = browserSync.create();
 const sassCompiler = gulpSass(dartSass);
-const isProduction = process.env.NODE_ENV === 'production';
+const env = process.env.NODE_ENV?.trim() || 'local';
+const isProduction = env === 'production';
+console.log(`[Gulp] Running in ${env.toUpperCase()} mode`);
 
 // BrowserSync task
 function serve(done) {

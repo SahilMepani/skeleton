@@ -65,7 +65,7 @@ function purgeCSSTask() {
 		.src('./style.css')
 		.pipe(
 			purgecss({
-				content: ['**/*.php'],
+				content: ['**/*.php', 'src/js/**/*.js'],
 				safelist: {
 					standard: [
 						'wp-post-image',
@@ -92,8 +92,7 @@ function purgeCSSTask() {
 						/^template-(.*)?$/,
 						// Match any string containing header-nav anywhere
 						/header-nav/,
-						/dir-rtl/,
-						/dir-ltr/
+						/dir-(rtl|ltr)/
 					],
 					greedy: [],
 					keyframes: true,

@@ -35,11 +35,12 @@
 
 	<?php wp_body_open(); ?>
 
-	<a class="skip-link screen-reader-text" href="#site-content" tabindex="0">
+	<!-- this has to be the first item focusable -->
+	<a class="skip-link screen-reader-text" href="#site-content">
 		<?php esc_html_e( 'Skip to content', 'skel' ); ?>
 	</a>
 
-	<div class="modal-backdrop"></div>
+	<div class="modal-backdrop" aria-hidden="true"></div>
 
 	<?php
 		$header_options = get_field( 'header', 'option' );
@@ -67,7 +68,7 @@
 			<nav class="header-nav" data-esc aria-label="<?php esc_attr_e( 'primary navigation', 'skel' ); ?>">
 
 				<button class="header-nav-close" aria-label="<?php esc_attr_e( 'close primary navigation', 'skel' ); ?>"
-					aria-haspopup="true" aria-expanded="false" aria-controls="siteMenu">
+					aria-expanded="false" aria-controls="siteMenu">
 				</button>
 
 				<?php
@@ -91,4 +92,4 @@
 		</div>
 	</header> <!-- .site-header -->
 
-	<main id="site-content" class="site-content" role="main">
+	<main id="site-content" class="site-content">

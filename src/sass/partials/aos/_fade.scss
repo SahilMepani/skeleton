@@ -5,11 +5,6 @@
 
 	@include aos-hidden;
 
-	@include aos-active {
-		@include aos-visible;
-		@include aos-transform(0, 0, 0, 1, 1);
-	}
-
 	&[data-aos='fade-up'] {
 		@include aos-direction(0, var(--aos-distance));
 	}
@@ -71,5 +66,11 @@
 				0
 			);
 		}
+	}
+
+	// Show elements when inview
+	@include aos-active {
+		@include aos-visible;
+		@include aos-transform(0, 0, 0, 1, 1);
 	}
 }

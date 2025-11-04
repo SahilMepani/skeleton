@@ -82,6 +82,7 @@
 	☐ https://speedvitals.com/
 	☐ Make sure all the attribute values are added inside esc_attr()
 	☐ Make sure text values are translatable in the theme
+	☐ Use AI to generate ALT tags for images
 
 # Content Editor:
 	☐ All images need to have keyword focused lowercase names

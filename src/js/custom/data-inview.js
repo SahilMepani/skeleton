@@ -16,9 +16,9 @@
 		);
 
 		elements.forEach(el => {
-			const offset = el.getAttribute('data-inview-offset') || '15svh';
+			const offset = el.getAttribute('data-inview-offset') || '7svh';
 			const thresholdAttr = el.getAttribute('data-inview-threshold');
-			const threshold = thresholdAttr ? parseFloat(thresholdAttr) : 0.05;
+			const threshold = thresholdAttr ? parseFloat(thresholdAttr) : 0;
 			const offsetPixels = convertOffsetToPixels(offset);
 
 			const key = `${offsetPixels}-${threshold}`;

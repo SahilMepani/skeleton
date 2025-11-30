@@ -6,6 +6,7 @@
 	align-items: center;
 	justify-content: center;
 	inline-size: fit-content;
+	user-select: none;
 	border: 0;
 	span {
 		text-box: trim-both cap alphabetic;

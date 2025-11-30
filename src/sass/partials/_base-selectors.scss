@@ -72,11 +72,6 @@ body {
 	.js-no-touchevents &.js-popup-active {
 		overflow: hidden;
 	}
-
-	body:has([data-modal-backdrop].js-active) {
-		height: 100svh;
-		overflow: hidden;
-	}
 }
 
 /* ----------  Content  ---------- */

@@ -41,26 +41,23 @@ function clean() {
 
 // Sass task
 function sassTask() {
-	return (
-		gulp
-			.src('src/sass/style.scss')
-			// .pipe(gulpIf(!isProduction, sourcemaps.init())) // Sourcemaps only in dev
-			.pipe(
-				sassCompiler({
-					outputStyle: isProduction ? 'compressed' : 'expanded' // Conditional output style
-				}).on('error', sassCompiler.logError)
+	return gulp
+		.src('src/sass/style.scss')
+		.pipe(
+			sassCompiler({
+				outputStyle: isProduction ? 'compressed' : 'expanded' // Conditional output style
+			}).on('error', sassCompiler.logError)
+		)
+		.pipe(
+			postcss(
+				isProduction
+					? [autoprefixer(), cssnano()] // Prod plugins
+					: [autoprefixer()] // Dev plugins (no cssnano)
 			)
-			.pipe(
-				postcss(
-					isProduction
-						? [autoprefixer(), cssnano()] // Prod plugins
-						: [autoprefixer()] // Dev plugins (no cssnano)
-				)
-			)
-			.pipe(gulpIf(!isProduction, sourcemaps.write('.'))) // Write sourcemaps only in dev
-			.pipe(gulp.dest('./')) // Output to root for now
-			.pipe(browserSyncInstance.stream())
-	);
+		)
+		.pipe(gulpIf(!isProduction, sourcemaps.write('.'))) // Write sourcemaps only in dev
+		.pipe(gulp.dest('./')) // Output to root for now
+		.pipe(browserSyncInstance.stream());
 }
 
 // PurgeCSS task

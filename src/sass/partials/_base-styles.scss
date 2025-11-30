@@ -16,11 +16,13 @@
 	inset: 0;
 	opacity: 0;
 	transition: opacity 0.3s ease;
+	pointer-events: none;
 
 	body:has([data-modal-backdrop].js-active) & {
 		visibility: visible;
 		z-index: $z-backdrop;
 		opacity: 1;
+		pointer-events: unset;
 	}
 }
 

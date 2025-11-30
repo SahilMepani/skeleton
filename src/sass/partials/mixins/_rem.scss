@@ -47,7 +47,7 @@ $rem-base: 16px;
 @function fluid(
 	$min-value,
 	$max-value,
-	$min-breakpoint: 'ph',
+	$min-breakpoint: 'sm',
 	$max-breakpoint: 'xxl'
 ) {
 	@if $min-value == 0 {
@@ -87,9 +87,15 @@ $rem-base: 16px;
 				((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
 		);
 
+		// clamp so value never goes below the value at the min breakpoint
 		@if $min-value < $max-value {
-			@return min($fluid-base, rem-calc($max-value));
+			@return clamp(
+				rem-calc($min-value),
+				$fluid-base,
+				rem-calc($max-value)
+			);
 		} @else {
+			// when min >= max, keep original logic but still clamp
 			@return clamp(
 				rem-calc($max-value),
 				$fluid-base,

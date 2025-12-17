@@ -8,8 +8,9 @@ This document captures the established design patterns, conventions, and best pr
 3. [PHP Patterns](#php-patterns)
 4. [JavaScript Patterns](#javascript-patterns)
 5. [Component Architecture](#component-architecture)
-6. [Accessibility Standards](#accessibility-standards)
-7. [File Organization](#file-organization)
+6. [Data Attribute System](#data-attribute-system)
+7. [Accessibility Standards](#accessibility-standards)
+8. [File Organization](#file-organization)
 
 ---
 
@@ -30,23 +31,29 @@ This document captures the established design patterns, conventions, and best pr
 ```scss
 // ❌ NEVER
 .component {
-  font-size: 18px;
-  padding: 24px;
-  margin-bottom: 32px;
+	font-size: 18px;
+	padding: 24px;
+	margin-bottom: 32px;
 }
 
-// ✅ ALWAYS use fluid()
+// ✅ Use rem-calc() for fixed values
 .component {
-  font-size: fluid(16px, 18px);
-  padding: fluid(16px, 24px);
-  margin-bottom: fluid(24px, 32px);
+	gap: rem-calc(16);
+	border-radius: rem-calc(8);
+}
+
+// ✅ Use fluid() for responsive values
+.component {
+	font-size: fluid(16, 18);
+	padding: fluid(16, 24);
+	margin-bottom: fluid(24, 32);
 }
 ```
 
 **Exceptions where px is allowed:**
 - `1px` borders
 - Box shadows
-- Border radius (if design requires it)
+- Very small values (under 4px)
 
 #### 3. No @media Breakpoints Directly
 ```scss
@@ -64,24 +71,24 @@ This document captures the established design patterns, conventions, and best pr
 ```scss
 // ❌ NEVER - Desktop-first
 .component {
-  font-size: fluid(24px, 32px);
-  grid-template-columns: repeat(3, 1fr);
+	font-size: fluid(24, 32);
+	grid-template-columns: repeat(3, 1fr);
 
-  @include media-breakpoint-down(md) {
-    font-size: fluid(16px, 20px);
-    grid-template-columns: 1fr;
-  }
+	@include media-breakpoint-down(md) {
+		font-size: fluid(16, 20);
+		grid-template-columns: 1fr;
+	}
 }
 
 // ✅ ALWAYS mobile-first
 .component {
-  font-size: fluid(16px, 20px);
-  grid-template-columns: 1fr;
+	font-size: fluid(16, 20);
+	grid-template-columns: 1fr;
 
-  @include media-breakpoint-up(lg) {
-    font-size: fluid(24px, 32px);
-    grid-template-columns: repeat(3, 1fr);
-  }
+	@include media-breakpoint-up(lg) {
+		font-size: fluid(24, 32);
+		grid-template-columns: repeat(3, 1fr);
+	}
 }
 ```
 
@@ -89,201 +96,163 @@ This document captures the established design patterns, conventions, and best pr
 
 ## SCSS Patterns
 
-### The fluid() Function
+### The rem-calc() Function
 
-**Purpose:** Generate responsive `clamp()` values for fluid typography and spacing.
+Use for single pixel values that don't need responsive scaling.
 
 ```scss
-// Basic usage: fluid(min-size, max-size)
-font-size: fluid(16px, 24px);
-padding: fluid(20px, 40px);
-margin-bottom: fluid(32px, 64px);
-gap: fluid(16px, 32px);
+// rem-calc(value) - converts px to rem
+// Pass the value WITHOUT px unit
 
-// With custom viewport range
-font-size: fluid(16px, 24px, 320px, 1400px);
+border-radius: rem-calc(8);
+gap: rem-calc(16);
+border-width: rem-calc(2);
+padding: rem-calc(24);
+
+// Can accept multiple values
+padding: rem-calc(16) rem-calc(24);
 ```
 
-**Implementation:**
+### The fluid() Function
+
+Use for responsive values that scale between mobile and desktop.
+
 ```scss
-// In abstracts/_functions.scss
-@function strip-unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
-    @return $number / ($number * 0 + 1);
-  }
-  @return $number;
-}
+// fluid(min-value, max-value, min-breakpoint, max-breakpoint)
+// Default breakpoints: 'sm' to 'xxl'
+// Values are unitless (px implied)
 
-@function fluid($min, $max, $min-vw: 320px, $max-vw: 1200px) {
-  $min-val: strip-unit($min);
-  $max-val: strip-unit($max);
-  $min-vw-val: strip-unit($min-vw);
-  $max-vw-val: strip-unit($max-vw);
+// Basic usage (mobile value, desktop value)
+font-size: fluid(16, 24);
+padding: fluid(20, 40);
+margin-bottom: fluid(32, 64);
+gap: fluid(16, 32);
 
-  $slope: ($max-val - $min-val) / ($max-vw-val - $min-vw-val);
-  $y-intercept: $min-val - ($slope * $min-vw-val);
-
-  $min-rem: ($min-val / 16) * 1rem;
-  $max-rem: ($max-val / 16) * 1rem;
-  $preferred: ($y-intercept / 16) * 1rem + ($slope * 100vw);
-
-  @return clamp(#{$min-rem}, #{$preferred}, #{$max-rem});
-}
+// With custom breakpoints (use names, not px)
+font-size: fluid(16, 24, md, xl);
 ```
 
 ### Breakpoint System (Mobile-First ONLY)
 
 ```scss
-// In abstracts/_variables.scss
-$breakpoints: (
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px
+// Available breakpoints
+$grid-breakpoints: (
+	'xs': 0,
+	'ph': 23.4375rem,    // 375px
+	'sm': 36rem,         // 576px
+	'md': 48rem,         // 768px
+	'lg': 62rem,         // 992px
+	'xl': 75rem,         // 1200px
+	'xxl': 87.5rem,      // 1400px
+	'xxxl': 100rem       // 1600px
 );
 
-// In abstracts/_mixins.scss
-@mixin media-breakpoint-up($breakpoint) {
-  $value: map-get($breakpoints, $breakpoint);
-  @if $value {
-    @media (min-width: $value) {
-      @content;
-    }
-  } @else {
-    @warn "Breakpoint `#{$breakpoint}` not found.";
-  }
-}
-
-// ⚠️ DO NOT CREATE media-breakpoint-down mixin
+// Usage (mobile-first ONLY)
+@include media-breakpoint-up(sm) { }   // 576px+
+@include media-breakpoint-up(md) { }   // 768px+
+@include media-breakpoint-up(lg) { }   // 992px+
+@include media-breakpoint-up(xl) { }   // 1200px+
+@include media-breakpoint-up(xxl) { }  // 1400px+
 ```
 
 **Usage Pattern:**
 ```scss
 .component {
-  // Mobile styles (default)
-  display: flex;
-  flex-direction: column;
-  padding: fluid(16px, 20px);
+	// Mobile styles (default)
+	display: flex;
+	flex-direction: column;
+	padding: fluid(16, 20);
 
-  @include media-breakpoint-up(md) {
-    // Tablet and up (768px+)
-    flex-direction: row;
-    padding: fluid(20px, 32px);
-  }
+	@include media-breakpoint-up(md) {
+		// Tablet and up (768px+)
+		flex-direction: row;
+		padding: fluid(20, 32);
+	}
 
-  @include media-breakpoint-up(lg) {
-    // Desktop and up (992px+)
-    padding: fluid(32px, 48px);
-  }
-
-  @include media-breakpoint-up(xl) {
-    // Large desktop and up (1200px+)
-  }
+	@include media-breakpoint-up(lg) {
+		// Desktop and up (992px+)
+		padding: fluid(32, 48);
+	}
 }
 ```
 
-### BEM Naming Convention
+### Naming Conventions
 
 ```scss
-// Block
-.card {
-  background: $color-surface;
-}
+// Use lowercase with hyphens for class names
+.hero-slider-section { }
+.header-nav-toggle { }
+.site-header { }
 
-// Element
-.card__header {
-  padding: fluid(16px, 24px);
-}
+// Section naming (full-width blocks)
+.block-name-section { }
 
-.card__body {
-  padding: fluid(20px, 32px);
-}
+// JS-controlled classes use 'js-' prefix
+.js-active { }
+.js-popup-active { }
 
-.card__footer {
-  border-top: 1px solid $color-border;
-}
-
-// Modifier
-.card--featured {
-  border: 2px solid $color-accent;
-}
-
-.card--compact {
-  .card__body {
-    padding: fluid(12px, 16px);
-  }
-}
-
-// Element with modifier
-.card__header--large {
-  font-size: fluid(20px, 28px);
-}
+// Inner wrappers (rare)
+.inner-section { }
 ```
 
 ### CSS Variables Pattern
 
 ```scss
-// Global variables in :root
+// Global variables
 :root {
-  --color-primary: #{$color-primary};
-  --color-secondary: #{$color-secondary};
-  --color-accent: #{$color-accent};
-  --color-text: #{$color-text};
-  --color-background: #{$color-background};
-
-  --font-family-base: #{$font-family-base};
-  --font-family-heading: #{$font-family-heading};
-
-  --spacing-sm: #{fluid(8px, 12px)};
-  --spacing-md: #{fluid(16px, 24px)};
-  --spacing-lg: #{fluid(32px, 48px)};
-  --spacing-xl: #{fluid(48px, 80px)};
+	--header-height: #{rem-calc(65)};
+	--container-padding-x: #{fluid(20, 40)};
+	--custom-ease: cubic-bezier(0.215, 0, 0, 0.995);
 }
 
 // Component-scoped variables
 .card {
-  --card-padding: #{fluid(16px, 24px)};
-  --card-border-color: var(--color-border);
-
-  padding: var(--card-padding);
-  border: 1px solid var(--card-border-color);
+	--card-padding: #{fluid(16, 24)};
+	padding: var(--card-padding);
 }
 ```
 
 ### Grid Layout Pattern
 ```scss
 .grid {
-  display: grid;
-  gap: fluid(16px, 32px);
-  grid-template-columns: 1fr;
+	display: grid;
+	gap: fluid(16, 32);
+	grid-template-columns: 1fr;
 
-  @include media-breakpoint-up(md) {
-    grid-template-columns: repeat(2, 1fr);
-  }
+	@include media-breakpoint-up(md) {
+		grid-template-columns: repeat(2, 1fr);
+	}
 
-  @include media-breakpoint-up(lg) {
-    grid-template-columns: repeat(3, 1fr);
-  }
+	@include media-breakpoint-up(lg) {
+		grid-template-columns: repeat(3, 1fr);
+	}
 
-  @include media-breakpoint-up(xl) {
-    grid-template-columns: repeat(4, 1fr);
-  }
+	@include media-breakpoint-up(xl) {
+		grid-template-columns: repeat(4, 1fr);
+	}
 }
 ```
 
 ### Flexbox Pattern
 ```scss
 .flex-container {
-  display: flex;
-  flex-direction: column;
-  gap: fluid(12px, 16px);
+	display: flex;
+	flex-direction: column;
+	gap: fluid(12, 16);
 
-  @include media-breakpoint-up(md) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
+	@include media-breakpoint-up(md) {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+```
+
+### Full-Height Section Pattern
+```scss
+.hero-section {
+	block-size: calc(100svh - var(--header-height, rem-calc(65)));
+	position: relative;
 }
 ```
 
@@ -291,12 +260,15 @@ $breakpoints: (
 
 ## PHP Patterns
 
-### Function Naming
+### Theme Prefix & Text Domain
+
 ```php
-// Always prefix with theme name
-function skeleton_get_custom_logo() { }
-function skeleton_register_sidebars() { }
-function skeleton_enqueue_scripts() { }
+// Function prefix: skel_
+// Text domain: 'skel'
+
+function skel_enqueue_scripts() { }
+__( 'Text', 'skel' );
+esc_html_e( 'Skip to content', 'skel' );
 ```
 
 ### Escaping Output (ALWAYS)
@@ -314,8 +286,8 @@ echo esc_html( $text );
 echo wp_kses_post( $html_content );
 
 // Translation with escaping
-echo esc_html__( 'Text', 'skeleton' );
-esc_html_e( 'Text', 'skeleton' );
+echo esc_html__( 'Text', 'skel' );
+esc_html_e( 'Text', 'skel' );
 ```
 
 ### Sanitizing Input (ALWAYS)
@@ -332,221 +304,262 @@ $clean_int = absint( $_GET['id'] );
 get_template_part( 'template-parts/content', get_post_type() );
 
 // With arguments (WordPress 5.5+)
-get_template_part( 'template-parts/card', 'product', array(
-    'product_id' => $product_id,
-    'show_price' => true,
-) );
+get_template_part( 'template-parts/swiper-navigation', null, [
+	'style' => 'floating',
+] );
 
 // In template part
-$product_id = $args['product_id'] ?? 0;
-$show_price = $args['show_price'] ?? false;
+$style = $args['style'] ?? 'default';
+```
+
+### ACF Block Template Pattern
+```php
+<?php
+// Set thumbnail preview in backend.
+if ( isset( $block['data']['preview_image'] ) ) {
+	echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
+	return;
+}
+
+// Return early if display is off.
+$display = get_field( 'display' );
+if ( 'on' !== $display ) {
+	return;
+}
+
+// Data options
+$items = get_field( 'items' );
+
+if ( ! is_array( $items ) || empty( $items ) ) {
+	return;
+}
+
+// Developer options
+$spacing        = get_field( 'spacing' );
+$spacing_top    = $spacing['top']['spacing_top'] ?? '';
+$spacing_bottom = $spacing['bottom']['spacing_bottom'] ?? '';
+$custom_classes = get_field( 'custom_classes' );
+$custom_css     = get_field( 'custom_css' );
+$unique_id      = get_field( 'unique_id' );
+?>
+
+<section
+	class="block-name-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
+	style="<?php echo esc_attr( $custom_css ); ?>"
+	id="<?php echo esc_attr( $unique_id ); ?>"
+	data-inview>
+
+	<div class="container">
+		<?php foreach ( $items as $item ) : ?>
+			<!-- Item content -->
+		<?php endforeach; ?>
+	</div>
+
+</section>
 ```
 
 ### The Loop
 ```php
 <?php if ( have_posts() ) : ?>
-    <?php while ( have_posts() ) : the_post(); ?>
-        <article <?php post_class(); ?>>
-            <?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
-            <?php the_content(); ?>
-        </article>
-    <?php endwhile; ?>
+	<?php while ( have_posts() ) : the_post(); ?>
+		<article <?php post_class(); ?>>
+			<?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
+			<?php the_content(); ?>
+		</article>
+	<?php endwhile; ?>
 
-    <?php the_posts_pagination(); ?>
+	<?php the_posts_pagination(); ?>
 <?php else : ?>
-    <p><?php esc_html_e( 'No posts found.', 'skeleton' ); ?></p>
+	<p><?php esc_html_e( 'No posts found.', 'skel' ); ?></p>
 <?php endif; ?>
 ```
 
 ### Hooks Pattern
 ```php
 // Actions
-add_action( 'after_setup_theme', 'skeleton_setup' );
-add_action( 'wp_enqueue_scripts', 'skeleton_enqueue_scripts' );
-add_action( 'widgets_init', 'skeleton_register_sidebars' );
+add_action( 'after_setup_theme', 'skel_setup' );
+add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
+add_action( 'widgets_init', 'skel_register_sidebars' );
 
 // Filters
-add_filter( 'body_class', 'skeleton_body_classes' );
-add_filter( 'excerpt_length', 'skeleton_excerpt_length' );
+add_filter( 'body_class', 'skel_body_classes' );
+add_filter( 'script_loader_tag', 'modify_script_attributes', 10, 3 );
 ```
 
 ---
 
 ## JavaScript Patterns
 
-### IIFE Pattern (Required)
+### Arrow Function IIFE Pattern (Required)
 ```javascript
-( function() {
-    'use strict';
+(() => {
+	// All code here
+	// 'use strict' is implicit
 
-    const init = () => {
-        // Initialize components
-    };
+	// Cache DOM elements
+	const element = document.querySelector('.element');
 
-    if ( document.readyState === 'loading' ) {
-        document.addEventListener( 'DOMContentLoaded', init );
-    } else {
-        init();
-    }
-} )();
+	// Early return if element doesn't exist
+	if (!element) return;
+
+	// Initialize functionality
+	element.addEventListener('click', handleClick);
+})();
 ```
 
-### Spacing Rules
+### Formatting Rules
 ```javascript
-// Spaces inside parentheses
-if ( condition ) { }
-for ( let i = 0; i < 10; i++ ) { }
-document.querySelector( '.selector' );
-functionName( arg1, arg2 );
+// NO spaces inside parentheses (standard JS)
+if (condition) { }
+document.querySelector('.selector');
+functionName(arg1, arg2);
 
-// Arrays and objects
-const array = [ 1, 2, 3 ];
-const object = { key: 'value' };
+// Tabs for indentation
+const element = document.querySelector('.element');
+
+// camelCase for variables and functions
+const headerNavToggle = document.querySelector('.header-nav-toggle');
+const handleClick = (event) => { };
 ```
 
 ### Event Handling
 ```javascript
-const handleClick = ( event ) => {
-    event.preventDefault();
-    const target = event.currentTarget;
-    // Handle click
+// Named handler functions
+const handleClick = (event) => {
+	event.preventDefault();
+	const target = event.currentTarget;
+	// Handle click
 };
 
-element.addEventListener( 'click', handleClick );
+element.addEventListener('click', handleClick);
 
-// Event delegation
-document.addEventListener( 'click', ( event ) => {
-    const button = event.target.closest( '.js-button' );
-    if ( ! button ) return;
+// Arrow functions in listeners
+headerNavToggle.addEventListener('click', (e) => {
+	e.preventDefault();
+	toggleNavigation();
+});
+```
 
-    handleButtonClick( button );
-} );
+### Class Toggling Pattern
+```javascript
+// Use 'js-' prefix for JS-controlled classes
+const activeClass = 'js-active';
+const popupActiveClass = 'js-popup-active';
+
+// With ARIA attributes
+const openNavigation = () => {
+	headerNavToggle.classList.add(activeClass);
+	headerNav.classList.add(activeClass);
+	body.classList.add(popupActiveClass);
+	body.setAttribute('data-lenis-prevent', 'true');
+
+	headerNavToggle.setAttribute('aria-expanded', 'true');
+	headerNav.setAttribute('aria-hidden', 'false');
+};
+
+const closeNavigation = () => {
+	headerNavToggle.classList.remove(activeClass);
+	headerNav.classList.remove(activeClass);
+	body.classList.remove(popupActiveClass);
+	body.removeAttribute('data-lenis-prevent');
+
+	headerNavToggle.setAttribute('aria-expanded', 'false');
+	headerNav.setAttribute('aria-hidden', 'true');
+};
 ```
 
 ### Async/Await
 ```javascript
-const fetchData = async ( url ) => {
-    try {
-        const response = await fetch( url );
+const fetchData = async (url) => {
+	try {
+		const response = await fetch(url);
 
-        if ( ! response.ok ) {
-            throw new Error( `HTTP error! status: ${response.status}` );
-        }
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
 
-        return await response.json();
-    } catch ( error ) {
-        console.error( 'Fetch error:', error );
-        return null;
-    }
-};
-```
-
-### WordPress AJAX
-```javascript
-const submitForm = async ( formData ) => {
-    try {
-        const response = await fetch( skeletonData.ajaxUrl, {
-            method: 'POST',
-            credentials: 'same-origin',
-            body: new URLSearchParams( {
-                action: 'skeleton_submit_form',
-                nonce: skeletonData.nonce,
-                ...Object.fromEntries( formData ),
-            } ),
-        } );
-
-        const data = await response.json();
-
-        if ( ! data.success ) {
-            throw new Error( data.data.message || 'Unknown error' );
-        }
-
-        return data.data;
-    } catch ( error ) {
-        console.error( 'AJAX error:', error );
-        throw error;
-    }
+		return await response.json();
+	} catch (error) {
+		console.error('Fetch error:', error);
+		return null;
+	}
 };
 ```
 
 ---
 
-## Component Architecture
+## Data Attribute System
 
-### Component Structure (PHP)
-```php
-<section class="component" id="component-<?php echo esc_attr( $unique_id ); ?>">
-    <div class="component__wrapper">
-        <?php if ( $title ) : ?>
-            <h2 class="component__title">
-                <?php echo esc_html( $title ); ?>
-            </h2>
-        <?php endif; ?>
+### Animation Attributes (data-inview, data-aos)
 
-        <div class="component__content">
-            <?php echo wp_kses_post( $content ); ?>
-        </div>
+**`data-inview`**
+- Marks elements to be observed for viewport entry
+- When element enters viewport, `data-inview="true"` is set
 
-        <?php if ( $items ) : ?>
-            <div class="component__grid">
-                <?php foreach ( $items as $item ) : ?>
-                    <div class="component__item">
-                        <?php echo esc_html( $item['name'] ); ?>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
-    </div>
+**`data-inview-repeat`**
+- Similar to `data-inview`, but attribute is removed when element exits viewport
+
+**`data-inview-offset`**
+- Specifies offset for when element is considered in view (px or %)
+
+**`data-inview-threshold`**
+- Proportion of element visible before triggering. Default: `0.05` (5%)
+
+**`data-aos`**
+- Animation type to apply (e.g., "fade-up", "fade")
+- Runs when `data-inview="true"`
+
+**`data-aos-stagger-item`**
+- Used for staggered animations among child elements
+
+### CSS Custom Properties for Animations
+```scss
+--aos-duration: 1000ms;
+--aos-delay: 0ms;
+--aos-stagger-interval: 100ms;
+--aos-distance: 40px;
+```
+
+### Toggle Attributes (data-toggle)
+
+**`data-toggle-click`**
+- Toggles `js-active` class when clicked
+
+**`data-toggle-group`**
+- Groups elements together. Only one has `js-active` at a time
+
+**`data-toggle-link`**
+- Links elements to toggle `js-active` in unison
+
+**`data-toggle-hover`**
+- Toggles `js-active` class on hover
+
+**`data-toggle-lenis`**
+- Adds/removes `data-lenis-prevent` on toggle
+
+### Usage Examples
+```html
+<!-- Click toggle with group -->
+<div data-toggle-click="example" data-toggle-group="group1"></div>
+
+<!-- Linked elements -->
+<div data-toggle-click="example"></div>
+<div data-toggle-link="example"></div>
+
+<!-- Animation on scroll -->
+<section data-inview data-aos="fade-up">
+	<div data-aos-stagger-item>Item 1</div>
+	<div data-aos-stagger-item>Item 2</div>
 </section>
 ```
 
-### Component SCSS
-```scss
-.component {
-  padding-block: fluid(40px, 80px);
-  background-color: var(--color-background);
-}
+### Other Data Attributes
 
-.component__wrapper {
-  max-width: var(--container-width);
-  margin-inline: auto;
-  padding-inline: fluid(16px, 24px);
-}
+**`data-esc`**
+- Element closes on Escape key press
 
-.component__title {
-  font-size: fluid(24px, 40px);
-  font-family: var(--font-family-heading);
-  margin-bottom: fluid(24px, 40px);
-  text-align: center;
-}
-
-.component__content {
-  font-size: fluid(16px, 18px);
-  line-height: 1.6;
-  max-width: 65ch;
-  margin-inline: auto;
-}
-
-.component__grid {
-  display: grid;
-  gap: fluid(16px, 32px);
-  grid-template-columns: 1fr;
-  margin-top: fluid(32px, 48px);
-
-  @include media-breakpoint-up(md) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include media-breakpoint-up(lg) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.component__item {
-  padding: fluid(16px, 24px);
-  background: var(--color-surface);
-}
-```
+**`data-lenis-prevent`**
+- Prevents Lenis smooth scroll on element
 
 ---
 
@@ -559,71 +572,96 @@ const submitForm = async ( formData ) => {
 input,
 select,
 textarea {
-  &:focus-visible {
-    outline: 2px solid var(--color-focus);
-    outline-offset: 2px;
-  }
+	&:focus-visible {
+		outline: 2px solid var(--color-focus);
+		outline-offset: 2px;
+	}
 }
 ```
 
 ### Reduced Motion
 ```scss
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
 }
 ```
 
 ### Screen Reader Text
 ```scss
 .screen-reader-text {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
 
-  &:focus {
-    position: fixed;
-    top: fluid(8px, 12px);
-    left: fluid(8px, 12px);
-    z-index: 100000;
-    width: auto;
-    height: auto;
-    padding: fluid(12px, 16px) fluid(20px, 24px);
-    clip: auto;
-    background: var(--color-background);
-    color: var(--color-text);
-  }
+	&:focus {
+		position: fixed;
+		top: fluid(8, 12);
+		left: fluid(8, 12);
+		z-index: 100000;
+		width: auto;
+		height: auto;
+		padding: fluid(12, 16) fluid(20, 24);
+		clip: auto;
+		background: var(--color-background);
+		color: var(--color-text);
+	}
 }
 ```
 
 ### Form Accessibility
 ```php
 <label for="email-field">
-    <?php esc_html_e( 'Email Address', 'skeleton' ); ?>
-    <span class="required" aria-hidden="true">*</span>
+	<?php esc_html_e( 'Email Address', 'skel' ); ?>
+	<span class="required" aria-hidden="true">*</span>
 </label>
 <input
-    type="email"
-    id="email-field"
-    name="email"
-    required
-    aria-required="true"
-    aria-describedby="email-description"
+	type="email"
+	id="email-field"
+	name="email"
+	required
+	aria-required="true"
+	aria-describedby="email-description"
 >
 <p id="email-description" class="field-description">
-    <?php esc_html_e( 'We will never share your email.', 'skeleton' ); ?>
+	<?php esc_html_e( 'We will never share your email.', 'skel' ); ?>
 </p>
+```
+
+### Skip Link
+```php
+<a class="skip-link screen-reader-text" href="#site-content">
+	<?php esc_html_e( 'Skip to content', 'skel' ); ?>
+</a>
+```
+
+### ARIA Attributes
+```php
+// Navigation toggle
+<button
+	class="header-nav-toggle"
+	aria-label="<?php esc_attr_e( 'show primary navigation', 'skel' ); ?>"
+	aria-haspopup="true"
+	aria-expanded="false"
+	aria-controls="siteMenu">
+	<?php esc_html_e( 'Menu', 'skel' ); ?>
+</button>
+
+<nav
+	class="header-nav"
+	aria-label="<?php esc_attr_e( 'primary navigation', 'skel' ); ?>"
+	aria-hidden="true">
 ```
 
 ---
@@ -633,71 +671,89 @@ textarea {
 ### Theme Structure
 ```
 skeleton/
-├── assets/
-│   ├── scss/
-│   │   ├── abstracts/
-│   │   │   ├── _variables.scss
-│   │   │   ├── _functions.scss
-│   │   │   └── _mixins.scss
-│   │   ├── base/
-│   │   │   ├── _reset.scss
-│   │   │   └── _typography.scss
-│   │   ├── components/
-│   │   ├── layout/
-│   │   └── style.scss
+├── acf-blocks/                 # ACF block templates
+│   └── preview/                # Block preview images
+├── functions/                  # PHP function files
+├── images/
+│   ├── icons/                  # SVG icons
+│   └── svg/                    # SVG assets
+├── js/                         # Compiled JavaScript
+├── src/
 │   ├── js/
-│   │   └── main.js
-│   └── css/
-├── inc/
-│   ├── setup.php
-│   ├── enqueue.php
-│   ├── template-functions.php
-│   └── template-tags.php
+│   │   ├── custom/             # Custom JS files
+│   │   └── plugins/            # Third-party plugins
+│   └── sass/
+│       ├── partials/
+│       │   ├── acf-blocks/
+│       │   ├── components/
+│       │   ├── config/         # colors, maps, typography, variables
+│       │   ├── helpers/
+│       │   ├── mixins/         # breakpoints, rem
+│       │   ├── templates/
+│       │   └── utilities/
+│       └── style.scss
 ├── template-parts/
-│   └── content/
+├── templates/
 ├── functions.php
-├── style.css
-├── index.php
 ├── header.php
 ├── footer.php
-├── single.php
-├── page.php
-├── archive.php
-├── search.php
-└── 404.php
+├── style.css
+└── index.php
 ```
 
 ### SCSS Import Order
 ```scss
-// style.scss
+// 1. Mixins (rem-calc first as it's used by config)
+@import 'partials/mixins/rem';
 
-// 1. Abstracts (no CSS output)
-@import 'abstracts/variables';
-@import 'abstracts/functions';
-@import 'abstracts/mixins';
+// 2. Config
+@import 'partials/config/maps';
+@import 'partials/config/colors';
+@import 'partials/config/typography';
+@import 'partials/config/variables';
 
-// 2. Vendors
-@import 'vendors/normalize';
+// 3. Rest of mixins
+@import 'partials/mixins/breakpoints';
+@import 'partials/mixins/placeholders';
+@import 'partials/mixins/containers';
+// ... other mixins
 
-// 3. Base
-@import 'base/reset';
-@import 'base/typography';
+// 4. Base
+@import 'partials/reset';
+@import 'partials/reboot';
+@import 'partials/base-selectors';
 
-// 4. Layout
-@import 'layout/header';
-@import 'layout/footer';
-@import 'layout/grid';
+// 5. JS Plugins (for easy overwrite)
+@import 'partials/js-plugins/swiper';
+// ... other plugins
 
-// 5. Components
-@import 'components/buttons';
-@import 'components/cards';
-@import 'components/forms';
+// 6. Base styles
+@import 'partials/font-face';
+@import 'partials/base-styles';
 
-// 6. Pages (if needed)
-@import 'pages/home';
+// 7. Components
+@import 'partials/components/content';
+@import 'partials/components/header';
+// ... other components
 
-// 7. Utilities (last)
-@import 'base/utilities';
+// 8. Template Parts
+@import 'partials/template-parts/swiper-navigation';
+// ... other template parts
+
+// 9. ACF Blocks
+@import 'partials/acf-blocks/hero-slider';
+// ... other blocks
+
+// 10. Templates
+@import 'partials/templates/index';
+// ... other templates
+
+// 11. WP Plugins
+@import 'partials/wp-plugins/gravity-forms';
+
+// 12. Helpers & Utilities (last)
+@import 'partials/helpers/buttons';
+@import 'partials/utilities/images';
 ```
 
 ---
@@ -706,17 +762,21 @@ skeleton/
 
 ### SCSS Cheat Sheet
 ```scss
-// Fluid values
-font-size: fluid(16px, 24px);
-padding: fluid(20px, 40px);
-gap: fluid(16px, 32px);
+// Fixed values (use rem-calc)
+gap: rem-calc(16);
+border-radius: rem-calc(8);
+
+// Responsive values (use fluid)
+font-size: fluid(16, 24);
+padding: fluid(20, 40);
+gap: fluid(16, 32);
 
 // Breakpoints (mobile-first ONLY)
-@include media-breakpoint-up(sm) { }  // 576px+
-@include media-breakpoint-up(md) { }  // 768px+
-@include media-breakpoint-up(lg) { }  // 992px+
-@include media-breakpoint-up(xl) { }  // 1200px+
-@include media-breakpoint-up(xxl) { } // 1400px+
+@include media-breakpoint-up(sm) { }   // 576px+
+@include media-breakpoint-up(md) { }   // 768px+
+@include media-breakpoint-up(lg) { }   // 992px+
+@include media-breakpoint-up(xl) { }   // 1200px+
+@include media-breakpoint-up(xxl) { }  // 1400px+
 ```
 
 ### PHP Cheat Sheet
@@ -727,10 +787,10 @@ esc_attr( $attr )
 esc_url( $url )
 wp_kses_post( $html )
 
-// Translate
-__( 'Text', 'skeleton' )
-esc_html__( 'Text', 'skeleton' )
-esc_html_e( 'Text', 'skeleton' )
+// Translate (text domain: 'skel')
+__( 'Text', 'skel' )
+esc_html__( 'Text', 'skel' )
+esc_html_e( 'Text', 'skel' )
 
 // Sanitize input
 sanitize_text_field( $input )
@@ -740,15 +800,17 @@ absint( $number )
 
 ### JavaScript Cheat Sheet
 ```javascript
-// Spacing
-if ( condition ) { }
-document.querySelector( '.class' );
-functionName( arg );
+// Arrow function IIFE
+(() => {
+	// code
+})();
+
+// Standard formatting (NO spaces in parentheses)
+if (condition) { }
+document.querySelector('.class');
+functionName(arg);
 
 // Variables
-const element = document.querySelector( '.el' );
+const element = document.querySelector('.el');
 let counter = 0;
-
-// IIFE wrapper
-( function() { 'use strict'; /* code */ } )();
 ```

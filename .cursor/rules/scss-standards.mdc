@@ -1,6 +1,6 @@
 ---
 description: Writing SCSS styles in .scss files
-globs: "**/*.scss"
+globs: '**/*.scss'
 alwaysApply: false
 ---
 
@@ -9,473 +9,496 @@ alwaysApply: false
 ## Critical Rules - NEVER Violate
 
 ### 1. NEVER Use Raw px Values
+
 ```scss
 // ❌ NEVER do this
 .component {
-  font-size: 18px;
-  padding: 24px;
-  margin-bottom: 32px;
-  gap: 16px;
-  width: 300px;
+	font-size: 18px;
+	padding: 24px;
+	margin-bottom: 32px;
+	gap: 16px;
 }
 
-// ✅ ALWAYS use fluid()
+// ✅ Use rem-calc() for fixed values
 .component {
-  font-size: fluid(16px, 18px);
-  padding: fluid(16px, 24px);
-  margin-bottom: fluid(24px, 32px);
-  gap: fluid(12px, 16px);
-  width: fluid(280px, 300px);
+	border-radius: rem-calc(8);
+	gap: rem-calc(16);
+}
+
+// ✅ Use fluid() for responsive values
+.component {
+	font-size: fluid(16, 18);
+	padding: fluid(16, 24);
+	margin-bottom: fluid(24, 32);
 }
 ```
 
 **Exceptions where px is allowed:**
+
 - `1px` borders
 - Box shadows
-- Border radius (if design requires it)
+- Very small values (under 4px)
 
 ### 2. NEVER Use @media Directly
+
 ```scss
 // ❌ NEVER do this
-@media (min-width: 768px) { }
-@media (max-width: 768px) { }
-@media screen and (min-width: 992px) { }
+@media (min-width: 768px) {
+}
+@media (max-width: 768px) {
+}
+@media screen and (min-width: 992px) {
+}
 
 // ✅ ALWAYS use media-breakpoint-up()
-@include media-breakpoint-up(md) { }
-@include media-breakpoint-up(lg) { }
+@include media-breakpoint-up(md) {
+}
+@include media-breakpoint-up(lg) {
+}
 ```
 
 ### 3. NEVER Use Desktop-First / media-breakpoint-down
+
 ```scss
 // ❌ NEVER do this
 .component {
-  font-size: fluid(24px, 32px);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+	font-size: fluid(24, 32);
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
 
-  @include media-breakpoint-down(md) {
-    font-size: fluid(16px, 20px);
-    grid-template-columns: 1fr;
-  }
+	@include media-breakpoint-down(md) {
+		font-size: fluid(16, 20);
+		grid-template-columns: 1fr;
+	}
 }
 
 // ✅ ALWAYS mobile-first
 .component {
-  font-size: fluid(16px, 20px);
-  display: grid;
-  grid-template-columns: 1fr;
+	font-size: fluid(16, 20);
+	display: grid;
+	grid-template-columns: 1fr;
 
-  @include media-breakpoint-up(lg) {
-    font-size: fluid(24px, 32px);
-    grid-template-columns: repeat(3, 1fr);
-  }
+	@include media-breakpoint-up(lg) {
+		font-size: fluid(24, 32);
+		grid-template-columns: repeat(3, 1fr);
+	}
 }
+```
+
+## The rem-calc() Function
+
+Use for single pixel values that don't need responsive scaling.
+
+```scss
+// rem-calc(value) - converts px to rem
+// Pass the value WITHOUT px unit
+
+border-radius: rem-calc(8);
+gap: rem-calc(16);
+border-width: rem-calc(2);
+padding: rem-calc(24);
+
+// Multiple values
+padding: rem-calc(16) rem-calc(24);
 ```
 
 ## The fluid() Function
 
+Use for responsive values that scale between mobile and desktop.
+
 ### Basic Usage
+
 ```scss
-// fluid(min-size, max-size)
-font-size: fluid(16px, 24px);
-padding: fluid(20px, 40px);
-margin-bottom: fluid(32px, 64px);
+// fluid(min-value, max-value)
+// Values are unitless (px implied)
+font-size: fluid(16, 24);
+padding: fluid(20, 40);
+margin-bottom: fluid(32, 64);
+gap: fluid(16, 32);
 ```
 
-### With Custom Viewport Range
+### With Custom Breakpoints
+
 ```scss
-// fluid(min-size, max-size, min-viewport, max-viewport)
-font-size: fluid(16px, 24px, 320px, 1400px);
+// fluid(min-value, max-value, min-breakpoint, max-breakpoint)
+// Use breakpoint NAMES not px values
+font-size: fluid(16, 24, md, xl);
+padding: fluid(20, 40, sm, xxl);
 ```
 
-### Implementation
+### Implementation (in partials/mixins/\_rem.scss)
+
 ```scss
-// In abstracts/_functions.scss
-@function fluid($min, $max, $min-vw: 320px, $max-vw: 1200px) {
-  $min-val: strip-unit($min);
-  $max-val: strip-unit($max);
-  $min-vw-val: strip-unit($min-vw);
-  $max-vw-val: strip-unit($max-vw);
-
-  $slope: ($max-val - $min-val) / ($max-vw-val - $min-vw-val);
-  $y-intercept: $min-val - ($slope * $min-vw-val);
-
-  $min-rem: ($min-val / 16) * 1rem;
-  $max-rem: ($max-val / 16) * 1rem;
-  $preferred: ($y-intercept / 16) * 1rem + ($slope * 100vw);
-
-  @return clamp(#{$min-rem}, #{$preferred}, #{$max-rem});
-}
-
-@function strip-unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
-    @return $number / ($number * 0 + 1);
-  }
-  @return $number;
+@function fluid(
+	$min-value,
+	$max-value,
+	$min-breakpoint: 'sm',
+	$max-breakpoint: 'xxl'
+) {
+	// Returns clamp() with calculated values
+	// @return clamp(min-rem, preferred, max-rem);
 }
 ```
 
 ## Breakpoint System
 
 ### Available Breakpoints (Mobile-First ONLY)
-```scss
-// In abstracts/_variables.scss
-$breakpoints: (
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px
-);
 
-// In abstracts/_mixins.scss
-@mixin media-breakpoint-up($breakpoint) {
-  $value: map-get($breakpoints, $breakpoint);
-  @if $value {
-    @media (min-width: $value) {
-      @content;
-    }
-  } @else {
-    @warn "Breakpoint `#{$breakpoint}` not found.";
-  }
-}
+```scss
+// In partials/config/_maps.scss
+$grid-breakpoints: (
+	'xs': 0,
+	'ph': 23.4375rem,
+	// 375px
+	'sm': 36rem,
+	// 576px
+	'md': 48rem,
+	// 768px
+	'lg': 62rem,
+	// 992px
+	'xl': 75rem,
+	// 1200px
+	'xxl': 87.5rem,
+	// 1400px
+	'xxxl': 100rem // 1600px
+);
 ```
 
 ### Usage Pattern
+
 ```scss
 .component {
-  // Mobile styles (default)
-  padding: fluid(16px, 20px);
+	// Mobile styles (default)
+	padding: fluid(16, 20);
 
-  @include media-breakpoint-up(sm) {
-    // 576px and up
-  }
+	@include media-breakpoint-up(sm) {
+		// 576px and up
+	}
 
-  @include media-breakpoint-up(md) {
-    // 768px and up
-    padding: fluid(20px, 32px);
-  }
+	@include media-breakpoint-up(md) {
+		// 768px and up
+		padding: fluid(20, 32);
+	}
 
-  @include media-breakpoint-up(lg) {
-    // 992px and up
-    padding: fluid(32px, 48px);
-  }
+	@include media-breakpoint-up(lg) {
+		// 992px and up
+		padding: fluid(32, 48);
+	}
 
-  @include media-breakpoint-up(xl) {
-    // 1200px and up
-  }
+	@include media-breakpoint-up(xl) {
+		// 1200px and up
+	}
+
+	@include media-breakpoint-up(xxl) {
+		// 1400px and up
+	}
 }
 ```
 
-## BEM Naming Convention
+## Naming Convention
 
-### Structure
+### Class Names
+
+```scss
+// Use lowercase with hyphens
+.hero-slider-section {
+}
+.header-nav-toggle {
+}
+.site-header {
+}
+.container-fluid {
+}
+
+// Section naming (full-width blocks)
+.block-name-section {
+}
+
+// Inner wrappers (rare)
+.inner-section {
+}
+
+// JS-controlled classes use 'js-' prefix
+.js-active {
+}
+.js-popup-active {
+}
+```
+
+### BEM (Optional)
+
 ```scss
 // Block
 .card {
-  background: $color-surface;
 }
 
-// Element (child of block)
+// Element
 .card__header {
-  padding: fluid(16px, 24px);
 }
-
 .card__body {
-  padding: fluid(20px, 32px);
 }
 
-.card__footer {
-  border-top: 1px solid $color-border;
-}
-
-// Modifier (variation of block or element)
+// Modifier
 .card--featured {
-  border: 2px solid $color-accent;
 }
-
-.card--compact {
-  .card__body {
-    padding: fluid(12px, 16px);
-  }
-}
-
-.card__header--large {
-  font-size: fluid(20px, 28px);
-}
-```
-
-### Multi-Word Names
-```scss
-// Use single hyphens within block/element/modifier names
-.navigation-menu { }
-.navigation-menu__menu-item { }
-.navigation-menu__menu-item--is-active { }
-
-.product-card { }
-.product-card__add-to-cart { }
-.product-card--on-sale { }
 ```
 
 ## File Organization
 
-### 7-1 Pattern
+### SCSS Structure
+
 ```
-scss/
-├── abstracts/
-│   ├── _variables.scss    // Variables, colors, fonts
-│   ├── _functions.scss    // fluid(), strip-unit(), etc.
-│   └── _mixins.scss       // media-breakpoint-up(), etc.
-├── base/
-│   ├── _reset.scss        // CSS reset/normalize
-│   ├── _typography.scss   // Base typography
-│   └── _utilities.scss    // Utility classes
-├── components/
-│   ├── _buttons.scss
-│   ├── _cards.scss
-│   └── _forms.scss
-├── layout/
-│   ├── _header.scss
-│   ├── _footer.scss
-│   └── _grid.scss
-├── pages/
-│   ├── _home.scss
-│   └── _single.scss
-├── vendors/
-│   └── _plugin-overrides.scss
-└── style.scss             // Main file - imports only
+src/sass/
+├── partials/
+│   ├── config/
+│   │   ├── _colors.scss
+│   │   ├── _maps.scss        # Breakpoints, spacings
+│   │   ├── _typography.scss
+│   │   └── _variables.scss
+│   ├── mixins/
+│   │   ├── _breakpoints.scss
+│   │   ├── _rem.scss         # rem-calc(), fluid()
+│   │   ├── _containers.scss
+│   │   └── ...
+│   ├── acf-blocks/
+│   ├── components/
+│   ├── helpers/
+│   ├── templates/
+│   └── utilities/
+└── style.scss
 ```
 
 ### Import Order in style.scss
+
 ```scss
-// 1. Abstracts (no CSS output)
-@import 'abstracts/variables';
-@import 'abstracts/functions';
-@import 'abstracts/mixins';
+// 1. Mixins (utilities first - rem-calc needs to be first)
+@import 'partials/mixins/rem';
 
-// 2. Vendors
-@import 'vendors/normalize';
+// 2. Config
+@import 'partials/config/maps';
+@import 'partials/config/colors';
+@import 'partials/config/typography';
+@import 'partials/config/variables';
 
-// 3. Base
-@import 'base/reset';
-@import 'base/typography';
+// 3. Rest of mixins
+@import 'partials/mixins/breakpoints';
+@import 'partials/mixins/placeholders';
+// ... other mixins
 
-// 4. Layout
-@import 'base/header';
-@import 'base/footer';
-@import 'base/grid';
+// 4. Base styles
+@import 'partials/reset';
+@import 'partials/reboot';
 
-// 5. Components
-@import 'components/buttons';
-@import 'components/cards';
-@import 'components/forms';
+// 5. JS Plugins (for easy overwrite)
+@import 'partials/js-plugins/swiper';
 
-// 6. Pages
-@import 'pages/home';
+// 6. Components
+@import 'partials/components/header';
 
-// 7. Utilities (last for override capability)
-@import 'base/utilities';
+// 7. ACF Blocks
+@import 'partials/acf-blocks/hero-slider';
+
+// 8. Templates
+@import 'partials/templates/index';
+
+// 9. Helpers & Utilities (last)
+@import 'partials/helpers/buttons';
+@import 'partials/utilities/images';
+```
+
+## Indentation & Formatting
+
+### Use Tabs (Not Spaces)
+
+```scss
+// ✅ Correct - tabs for indentation
+.component {
+	display: flex;
+	gap: rem-calc(16);
+
+	@include media-breakpoint-up(md) {
+		gap: fluid(16, 32);
+	}
+}
 ```
 
 ## CSS Variables Pattern
 
-### Define in :root
 ```scss
+// Global variables
 :root {
-  // Colors
-  --color-primary: #{$color-primary};
-  --color-secondary: #{$color-secondary};
-  --color-accent: #{$color-accent};
+	--header-height: #{rem-calc(65)};
+	--container-padding-x: #{fluid(20, 40)};
+}
 
-  // Typography
-  --font-family-base: #{$font-family-base};
-  --font-family-heading: #{$font-family-heading};
-
-  // Spacing (use fluid values)
-  --spacing-sm: #{fluid(8px, 12px)};
-  --spacing-md: #{fluid(16px, 24px)};
-  --spacing-lg: #{fluid(32px, 48px)};
-  --spacing-xl: #{fluid(48px, 80px)};
+// Use in components
+.component {
+	padding-inline: var(--container-padding-x);
+	margin-top: var(--header-height);
 }
 ```
 
-### Use in Components
+## Common Patterns
+
+### Grid Layout
+
 ```scss
-.component {
-  font-family: var(--font-family-base);
-  padding: var(--spacing-md);
-  color: var(--color-primary);
+.grid {
+	display: grid;
+	gap: fluid(16, 32);
+	grid-template-columns: 1fr;
+
+	@include media-breakpoint-up(md) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@include media-breakpoint-up(lg) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+```
+
+### Flexbox Layout
+
+```scss
+.flex-container {
+	display: flex;
+	flex-direction: column;
+	gap: fluid(12, 16);
+
+	@include media-breakpoint-up(md) {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+```
+
+### Full-Height Section
+
+```scss
+.hero-section {
+	block-size: calc(100svh - var(--header-height, rem-calc(65)));
+	position: relative;
+}
+```
+
+### Image Cover Block
+
+```scss
+.img-cover-block {
+	position: absolute;
+	inset: 0;
+}
+
+.img-cover {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 ```
 
 ## Nesting Rules
 
 ### Maximum 3 Levels
+
 ```scss
 // ✅ Good - Clean and readable
 .card {
-  &__header {
-    font-weight: 600;
-  }
+	padding: fluid(16, 24);
 
-  &__body {
-    padding: fluid(16px, 24px);
-  }
-
-  &--featured {
-    border-color: $color-accent;
-  }
+	.card__title {
+		font-size: fluid(18, 24);
+	}
 }
 
 // ❌ Bad - Too deep
 .card {
-  .card__header {
-    .card__title {
-      .card__title-text {
-        // Too deep!
-      }
-    }
-  }
+	.card__header {
+		.card__title {
+			.card__title-text {
+				// Too deep!
+			}
+		}
+	}
 }
 ```
 
 ### Acceptable Deep Nesting
+
 ```scss
 // Pseudo-classes and media queries don't count toward depth
 .button {
-  background: $color-primary;
+	background: $color-primary;
 
-  &:hover {
-    background: darken($color-primary, 10%);
-  }
+	&:hover {
+		background: darken($color-primary, 10%);
+	}
 
-  &:focus-visible {
-    outline: 2px solid $color-accent;
-    outline-offset: 2px;
-  }
-
-  @include media-breakpoint-up(md) {
-    padding: fluid(16px, 24px);
-  }
+	@include media-breakpoint-up(md) {
+		padding: fluid(16, 24);
+	}
 }
 ```
 
 ## Specificity Rules
 
 ### Keep It Low
-```scss
-// ✅ Good - Single class (specificity: 0,1,0)
-.button { }
-.card__title { }
 
-// ⚠️ Use sparingly - Two classes (specificity: 0,2,0)
-.card.card--featured { }
+```scss
+// ✅ Good - Single class
+.button {
+}
+.card__title {
+}
 
 // ❌ Avoid - High specificity
-#header .navigation .menu-item { }
-div.card > p.text { }
+#header .navigation .menu-item {
+}
+div.card > p.text {
+}
 ```
 
 ### Never Use !important
+
 ```scss
 // ❌ Never
 .component {
-  color: red !important;
+	color: red !important;
 }
 
-// ✅ Instead, fix the specificity issue
-.component {
-  color: red;
-}
+// ✅ Fix the specificity issue instead
 ```
 
 ## Accessibility
 
 ### Focus Styles
+
 ```scss
-// Always provide visible focus
 .button {
-  &:focus-visible {
-    outline: 2px solid $color-accent;
-    outline-offset: 2px;
-  }
+	&:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 2px;
+	}
 }
 
 // Never remove focus outlines without replacement
 // ❌ Never
 *:focus {
-  outline: none;
+	outline: none;
 }
 ```
 
 ### Reduced Motion
+
 ```scss
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-```
-
-### Color Contrast
-```scss
-// Ensure text meets WCAG AA standards
-// Normal text: 4.5:1 contrast ratio
-// Large text (18pt+): 3:1 contrast ratio
-
-$color-text: #1a1a2e;      // Dark text on light backgrounds
-$color-text-light: #ffffff; // Light text on dark backgrounds
-```
-
-## Common Patterns
-
-### Grid Layout
-```scss
-.grid {
-  display: grid;
-  gap: fluid(16px, 32px);
-  grid-template-columns: 1fr;
-
-  @include media-breakpoint-up(md) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include media-breakpoint-up(lg) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-```
-
-### Flexbox Layout
-```scss
-.flex-container {
-  display: flex;
-  flex-direction: column;
-  gap: fluid(12px, 16px);
-
-  @include media-breakpoint-up(md) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-}
-```
-
-### Aspect Ratio Images
-```scss
-.image-container {
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
 }
 ```

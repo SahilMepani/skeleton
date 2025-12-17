@@ -10,47 +10,47 @@ alwaysApply: true
 
 ```
 skeleton/
-├── assets/
-│   ├── scss/
-│   │   ├── abstracts/
-│   │   │   ├── _variables.scss
-│   │   │   ├── _functions.scss    # fluid(), strip-unit()
-│   │   │   └── _mixins.scss       # media-breakpoint-up()
-│   │   ├── base/
-│   │   │   ├── _reset.scss
-│   │   │   └── _typography.scss
-│   │   ├── components/
-│   │   ├── layout/
-│   │   └── style.scss
+├── acf-blocks/                 # ACF block templates
+│   ├── preview/                # Block preview images
+│   ├── hero-slider.php
+│   ├── faqs.php
+│   └── ...
+├── functions/                  # PHP function files
+│   ├── define-constants.php
+│   ├── enqueue-scripts.php
+│   ├── helpers.php
+│   ├── hooks.php
+│   ├── register-acf-blocks.php
+│   ├── register-nav-menus.php
+│   └── ...
+├── images/
+│   ├── icons/                  # SVG icons
+│   └── svg/                    # SVG assets
+├── js/                         # Compiled JavaScript
+│   ├── custom.js
+│   ├── plugins.js
+│   └── vendor/
+├── src/
 │   ├── js/
-│   │   └── main.js
-│   ├── css/                       # Compiled CSS
-│   └── images/
-├── inc/
-│   ├── setup.php                  # Theme setup
-│   ├── enqueue.php                # Scripts & styles
-│   ├── template-functions.php     # Template helpers
-│   ├── template-tags.php          # Custom template tags
-│   └── customizer.php             # Customizer settings
-├── template-parts/
-│   ├── content/
-│   │   ├── content.php
-│   │   ├── content-single.php
-│   │   └── content-none.php
-│   ├── header/
-│   └── footer/
-├── functions.php
-├── style.css                      # Theme header only
-├── index.php
+│   │   ├── custom/             # Custom JS files
+│   │   └── plugins/            # Third-party plugins
+│   └── sass/
+│       ├── partials/
+│       │   ├── acf-blocks/     # Block styles
+│       │   ├── components/     # Component styles
+│       │   ├── config/         # _colors, _maps, _variables
+│       │   ├── helpers/        # Helper classes
+│       │   ├── mixins/         # _breakpoints, _rem
+│       │   ├── templates/      # Template styles
+│       │   └── utilities/      # Utility classes
+│       └── style.scss          # Main stylesheet
+├── template-parts/             # Reusable template parts
+├── templates/                  # Page templates
+├── functions.php               # Main functions loader
 ├── header.php
 ├── footer.php
-├── sidebar.php
-├── single.php
-├── page.php
-├── archive.php
-├── search.php
-├── 404.php
-└── screenshot.png
+├── style.css                   # Compiled CSS
+└── index.php
 ```
 
 ## Critical Rules Summary
@@ -73,9 +73,13 @@ style="color: red;"
 
 ### SCSS - ALWAYS Do These
 ```scss
-// ✅ Use fluid()
-font-size: fluid(16px, 18px);
-padding: fluid(16px, 24px);
+// ✅ Use rem-calc() for fixed values
+gap: rem-calc(16);
+border-radius: rem-calc(8);
+
+// ✅ Use fluid() for responsive values
+font-size: fluid(16, 18);
+padding: fluid(16, 24);
 
 // ✅ Use media-breakpoint-up() only
 @include media-breakpoint-up(md) { }
@@ -83,17 +87,17 @@ padding: fluid(16px, 24px);
 
 // ✅ Mobile-first approach
 .component {
-  // Mobile styles first (default)
-  font-size: fluid(14px, 16px);
+	// Mobile styles first (default)
+	font-size: fluid(14, 16);
 
-  @include media-breakpoint-up(md) {
-    // Tablet and up
-  }
+	@include media-breakpoint-up(md) {
+		// Tablet and up
+	}
 
-  @include media-breakpoint-up(lg) {
-    // Desktop and up
-    font-size: fluid(18px, 24px);
-  }
+	@include media-breakpoint-up(lg) {
+		// Desktop and up
+		font-size: fluid(18, 24);
+	}
 }
 ```
 
@@ -107,120 +111,114 @@ echo esc_url( $url );
 // ✅ Sanitize all input
 $clean = sanitize_text_field( $_POST['field'] );
 
-// ✅ Use text domain
-__( 'Text', 'skeleton' );
+// ✅ Use text domain 'skel'
+__( 'Text', 'skel' );
+esc_html_e( 'Text', 'skel' );
 
-// ✅ Prefix all functions
-function skeleton_function_name() { }
+// ✅ Prefix all functions with skel_
+function skel_function_name() { }
 
 // ✅ Use WordPress hooks
-add_action( 'wp_enqueue_scripts', 'skeleton_enqueue_scripts' );
-add_filter( 'body_class', 'skeleton_body_classes' );
+add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
+add_filter( 'body_class', 'skel_body_classes' );
 ```
 
 ### JavaScript - ALWAYS
 ```javascript
-// ✅ IIFE with strict mode
-( function() {
-    'use strict';
-    // Code here
-} )();
+// ✅ Arrow function IIFE
+(() => {
+	// Code here
+})();
 
-// ✅ Spaces in parentheses
-if ( condition ) { }
-document.querySelector( '.selector' );
+// ✅ NO spaces in parentheses (standard JS)
+if (condition) { }
+document.querySelector('.selector');
 
 // ✅ const/let, never var
-const element = document.querySelector( '.element' );
+const element = document.querySelector('.element');
+
+// ✅ camelCase naming
+const headerNavToggle = document.querySelector('.header-nav-toggle');
 ```
 
 ## Required Theme Files
 
-### style.css (Header Only)
+### style.css (Theme Header)
 ```css
-/*
-Theme Name: Skeleton
-Theme URI: https://example.com/skeleton
-Author: Your Name
-Author URI: https://example.com
-Description: A custom WordPress theme
-Version: 1.0.0
-Requires at least: 6.0
-Tested up to: 6.4
-Requires PHP: 8.0
-License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: skeleton
-Tags: custom-background, custom-logo, custom-menu
+/*!
+* Theme Name: Skeleton
+* Theme URI: http://www.sahilmepani.com
+* Description: Responsive custom theme
+* Text Domain: skel
+* Version: 1.0
+* Author: Sahil Mepani
+* Author URI: www.sahilmepani.com
+* License: GNU General Public License v2 or later
+* License URI: http://wordpress.org/about/gpl/
+* Requires PHP: 7.4
 */
 
-/* Note: All styles should be in assets/css/main.css */
+/* Note: All styles are compiled from src/sass/style.scss */
 ```
 
 ### functions.php
 ```php
 <?php
 /**
- * Theme functions and definitions
+ * Load functions
  *
- * @package Skeleton
+ * @package WordPress
+ * @subpackage Skeleton
+ * @since 1.0.0
  */
 
-// Prevent direct access
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
-
-// Define constants
-define( 'SKELETON_VERSION', '1.0.0' );
-define( 'SKELETON_DIR', get_template_directory() );
-define( 'SKELETON_URI', get_template_directory_uri() );
-
-// Include files
-require SKELETON_DIR . '/inc/setup.php';
-require SKELETON_DIR . '/inc/enqueue.php';
-require SKELETON_DIR . '/inc/template-functions.php';
-require SKELETON_DIR . '/inc/template-tags.php';
+require get_template_directory() . '/functions/define-constants.php';
+require get_template_directory() . '/functions/register-nav-menus.php';
+require get_template_directory() . '/functions/helpers.php';
+require get_template_directory() . '/functions/hooks.php';
+require get_template_directory() . '/functions/enqueue-scripts.php';
+// ... other function files
 
 // Conditional includes
-if ( is_admin() ) {
-    require SKELETON_DIR . '/inc/admin.php';
+if ( 'local' === wp_get_environment_type() && current_user_can( 'manage_options' ) ) {
+	require get_template_directory() . '/functions/debugging.php';
 }
 ```
 
-### index.php
+### header.php Structure
 ```php
 <?php
 /**
- * The main template file
+ * The header.
  *
- * @package Skeleton
+ * @package WordPress
+ * @subpackage Skeleton
+ * @since 1.0.0
  */
-
-get_header();
 ?>
 
-<main id="main-content" class="site-main">
-    <?php
-    if ( have_posts() ) :
-        while ( have_posts() ) :
-            the_post();
-            get_template_part( 'template-parts/content/content', get_post_type() );
-        endwhile;
+<!doctype html>
+<html <?php language_attributes(); ?>>
 
-        the_posts_pagination( array(
-            'prev_text' => esc_html__( 'Previous', 'skeleton' ),
-            'next_text' => esc_html__( 'Next', 'skeleton' ),
-        ) );
-    else :
-        get_template_part( 'template-parts/content/content', 'none' );
-    endif;
-    ?>
-</main>
+<head>
+	<meta charset="<?php bloginfo( 'charset' ); ?>" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<?php wp_head(); ?>
+</head>
 
-<?php
-get_sidebar();
-get_footer();
+<body <?php body_class( 'site-wrapper' ); ?>>
+
+<?php wp_body_open(); ?>
+
+<a class="skip-link screen-reader-text" href="#site-content">
+	<?php esc_html_e( 'Skip to content', 'skel' ); ?>
+</a>
+
+<header class="site-header">
+	<!-- Header content -->
+</header>
+
+<main id="site-content" class="site-content">
 ```
 
 ## Hooks Reference
@@ -228,34 +226,36 @@ get_footer();
 ### Common Actions
 ```php
 // Theme setup
-add_action( 'after_setup_theme', 'skeleton_setup' );
+add_action( 'after_setup_theme', 'skel_setup' );
 
 // Enqueue assets
-add_action( 'wp_enqueue_scripts', 'skeleton_enqueue_scripts' );
+add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
 
 // Widgets
-add_action( 'widgets_init', 'skeleton_register_sidebars' );
+add_action( 'widgets_init', 'skel_register_sidebars' );
 
 // Custom post types
-add_action( 'init', 'skeleton_register_post_types' );
+add_action( 'init', 'skel_register_post_types' );
 
 // Admin
-add_action( 'admin_menu', 'skeleton_add_admin_menu' );
-add_action( 'admin_enqueue_scripts', 'skeleton_admin_scripts' );
+add_action( 'admin_menu', 'skel_add_admin_menu' );
+add_action( 'admin_enqueue_scripts', 'skel_admin_scripts' );
 ```
 
 ### Common Filters
 ```php
 // Body classes
-add_filter( 'body_class', 'skeleton_body_classes' );
+add_filter( 'body_class', 'skel_body_classes' );
 
 // Excerpt
-add_filter( 'excerpt_length', 'skeleton_excerpt_length' );
-add_filter( 'excerpt_more', 'skeleton_excerpt_more' );
+add_filter( 'excerpt_length', 'skel_excerpt_length' );
+add_filter( 'excerpt_more', 'skel_excerpt_more' );
 
 // Navigation
-add_filter( 'nav_menu_css_class', 'skeleton_nav_menu_classes', 10, 4 );
-add_filter( 'nav_menu_link_attributes', 'skeleton_nav_link_attributes', 10, 4 );
+add_filter( 'nav_menu_css_class', 'skel_nav_menu_classes', 10, 4 );
+
+// Script loader
+add_filter( 'script_loader_tag', 'modify_script_attributes', 10, 3 );
 ```
 
 ## Template Hierarchy
@@ -268,10 +268,42 @@ Single Post:  single-{post-type}-{slug}.php → single-{post-type}.php → singl
 Page:         page-{slug}.php → page-{id}.php → page.php → singular.php → index.php
 Archive:      archive-{post-type}.php → archive.php → index.php
 Category:     category-{slug}.php → category-{id}.php → category.php → archive.php → index.php
-Author:       author-{nicename}.php → author-{id}.php → author.php → archive.php → index.php
 Search:       search.php → index.php
 404:          404.php → index.php
 ```
+
+## Breakpoints Reference
+
+```scss
+$grid-breakpoints: (
+	'xs': 0,
+	'ph': 23.4375rem,    // 375px
+	'sm': 36rem,         // 576px
+	'md': 48rem,         // 768px
+	'lg': 62rem,         // 992px
+	'xl': 75rem,         // 1200px
+	'xxl': 87.5rem,      // 1400px
+	'xxxl': 100rem       // 1600px
+);
+```
+
+## Data Attributes System
+
+### Animation Attributes
+- `data-inview` - Element observed for viewport entry
+- `data-inview-repeat` - Animation repeats on re-entry
+- `data-aos` - Animation type (e.g., "fade-up")
+- `data-aos-stagger-item` - Staggered animations
+
+### Toggle Attributes
+- `data-toggle-click` - Toggle on click
+- `data-toggle-group` - Group elements together
+- `data-toggle-link` - Link elements to toggle together
+- `data-toggle-hover` - Toggle on hover
+- `data-esc` - Close on Escape key
+
+### Other Attributes
+- `data-lenis-prevent` - Prevent Lenis smooth scroll
 
 ## Security Checklist
 
@@ -281,26 +313,26 @@ Search:       search.php → index.php
 - [ ] Nonces are used for form submissions
 - [ ] Capability checks before sensitive operations
 - [ ] No direct file access (check ABSPATH)
-- [ ] Text domain used for all translatable strings
+- [ ] Text domain 'skel' used for all translatable strings
 - [ ] No hardcoded URLs or paths
 
 ## Performance Checklist
 
 - [ ] Scripts loaded in footer with `defer`
 - [ ] Styles properly enqueued (not inline)
-- [ ] Images lazy loaded
-- [ ] Critical CSS inlined if needed
-- [ ] No render-blocking resources
-- [ ] Proper caching headers for assets
+- [ ] Images lazy loaded (except first visible)
+- [ ] First image uses `fetchpriority="high"`
+- [ ] jQuery dequeued if not needed
 - [ ] Minified CSS/JS in production
 
 ## Accessibility Checklist
 
-- [ ] Skip link present
+- [ ] Skip link present (`.skip-link`)
 - [ ] Proper heading hierarchy
-- [ ] Focus indicators visible
+- [ ] Focus indicators visible (`:focus-visible`)
 - [ ] Color contrast meets WCAG AA
 - [ ] Alt text for images
-- [ ] ARIA labels where needed
+- [ ] ARIA labels for interactive elements
+- [ ] `aria-expanded` for toggleable content
+- [ ] `aria-hidden` for decorative elements
 - [ ] Keyboard navigation works
-- [ ] Screen reader tested

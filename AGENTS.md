@@ -3,26 +3,62 @@
 ## Project Structure
 
 ```
-theme-name/
-├── assets/
-│   ├── scss/
-│   │   ├── abstracts/
-│   │   │   ├── _variables.scss
-│   │   │   ├── _mixins.scss
-│   │   │   └── _functions.scss
-│   │   ├── base/
-│   │   ├── components/
-│   │   ├── layout/
-│   │   └── style.scss
+skeleton/
+├── acf-blocks/                 # ACF block templates
+│   ├── preview/                # Block preview images
+│   ├── hero-slider.php
+│   ├── faqs.php
+│   └── ...
+├── functions/                  # PHP function files
+│   ├── define-constants.php
+│   ├── enqueue-scripts.php
+│   ├── helpers.php
+│   ├── hooks.php
+│   ├── register-acf-blocks.php
+│   └── ...
+├── images/
+│   ├── icons/                  # SVG icons
+│   ├── placeholder/            # Placeholder images
+│   └── svg/                    # SVG assets
+├── js/                         # Compiled JavaScript
+│   ├── custom.js
+│   ├── plugins.js
+│   └── vendor/
+├── src/
 │   ├── js/
-│   └── images/
-├── inc/
-│   ├── setup.php
-│   ├── enqueue.php
-│   └── template-functions.php
-├── template-parts/
-├── functions.php
-├── style.css
+│   │   ├── custom/             # Custom JavaScript files
+│   │   │   ├── acf-blocks/     # Block-specific JS
+│   │   │   ├── data-toggle.js
+│   │   │   ├── header-menu.js
+│   │   │   └── ...
+│   │   └── plugins/            # Third-party plugins
+│   │       ├── swiper.js
+│   │       ├── lenis.js
+│   │       └── ...
+│   └── sass/
+│       ├── partials/
+│       │   ├── acf-blocks/     # Block styles
+│       │   ├── components/     # Component styles
+│       │   ├── config/         # Configuration
+│       │   │   ├── _colors.scss
+│       │   │   ├── _maps.scss
+│       │   │   ├── _typography.scss
+│       │   │   └── _variables.scss
+│       │   ├── helpers/        # Helper classes
+│       │   ├── mixins/         # SCSS mixins
+│       │   │   ├── _breakpoints.scss
+│       │   │   ├── _rem.scss
+│       │   │   └── ...
+│       │   ├── templates/      # Template styles
+│       │   ├── utilities/      # Utility classes
+│       │   └── ...
+│       └── style.scss          # Main stylesheet
+├── template-parts/             # Reusable template parts
+├── templates/                  # Page templates
+├── functions.php               # Main functions loader
+├── header.php
+├── footer.php
+├── style.css                   # Compiled CSS (auto-generated)
 └── index.php
 ```
 
@@ -41,18 +77,30 @@ theme-name/
 ```scss
 // ❌ NEVER do this
 .component {
-  font-size: 18px;
-  padding: 24px;
-  margin-bottom: 32px;
+	font-size: 18px;
+	padding: 24px;
+	margin-bottom: 32px;
 }
 
-// ✅ Always use fluid()
+// ✅ Use rem-calc() for fixed values
 .component {
-  font-size: fluid(16px, 18px);
-  padding: fluid(16px, 24px);
-  margin-bottom: fluid(24px, 32px);
+	font-size: rem-calc(18);
+	padding: rem-calc(24);
+	margin-bottom: rem-calc(32);
+}
+
+// ✅ Use fluid() for responsive values (mobile, desktop)
+.component {
+	font-size: fluid(16, 18);
+	padding: fluid(16, 24);
+	margin-bottom: fluid(24, 32);
 }
 ```
+
+**Exceptions where px is allowed:**
+- `1px` borders
+- Box shadows
+- Very small values (under 4px)
 
 ### 3. Never Use @media Breakpoints Directly
 ```scss
@@ -61,7 +109,7 @@ theme-name/
 @media (max-width: 768px) { }
 @media screen and (min-width: 992px) { }
 
-// ✅ Always use media-breakpoint-up()
+// ✅ ALWAYS use media-breakpoint-up()
 @include media-breakpoint-up(md) { }
 @include media-breakpoint-up(lg) { }
 @include media-breakpoint-up(xl) { }
@@ -71,122 +119,180 @@ theme-name/
 ```scss
 // ❌ NEVER do this - Desktop-first approach
 .component {
-  font-size: fluid(24px, 32px);
+	font-size: fluid(24, 32);
 
-  @include media-breakpoint-down(md) {
-    font-size: fluid(16px, 20px);
-  }
+	@include media-breakpoint-down(md) {
+		font-size: fluid(16, 20);
+	}
 }
 
 // ✅ Always mobile-first with media-breakpoint-up
 .component {
-  font-size: fluid(16px, 20px);
+	font-size: fluid(16, 20);
 
-  @include media-breakpoint-up(lg) {
-    font-size: fluid(24px, 32px);
-  }
+	@include media-breakpoint-up(lg) {
+		font-size: fluid(24, 32);
+	}
 }
 ```
 
 ## SCSS Standards
 
-### The fluid() Function
-```scss
-// fluid(min-size, max-size, min-viewport, max-viewport)
-// Generates clamp() with calculated values
+### The rem-calc() Function
+Use `rem-calc()` for single pixel values that don't need to scale responsively.
 
-.heading {
-  font-size: fluid(24px, 48px);        // Default viewport range
-  font-size: fluid(24px, 48px, 320px, 1200px); // Custom range
-}
+```scss
+// rem-calc() converts px to rem
+// Usage: rem-calc(value) - without px unit
+
+border-radius: rem-calc(8);
+gap: rem-calc(16);
+border-width: rem-calc(2);
+```
+
+### The fluid() Function
+Use `fluid()` for responsive values that scale between mobile and desktop.
+
+```scss
+// fluid(min-value, max-value, min-breakpoint, max-breakpoint)
+// Breakpoints default to 'sm' and 'xxl'
+
+// Basic usage (mobile value, desktop value)
+font-size: fluid(16, 24);
+padding: fluid(20, 40);
+margin-bottom: fluid(32, 64);
+
+// With custom breakpoints (use breakpoint names, not px)
+font-size: fluid(16, 24, md, xl);
 ```
 
 ### Breakpoint System
+
 ```scss
-// Available breakpoints (mobile-first only)
-@include media-breakpoint-up(sm) { }  // 576px and up
-@include media-breakpoint-up(md) { }  // 768px and up
-@include media-breakpoint-up(lg) { }  // 992px and up
-@include media-breakpoint-up(xl) { }  // 1200px and up
-@include media-breakpoint-up(xxl) { } // 1400px and up
-```
+// Available breakpoints (mobile-first)
+$grid-breakpoints: (
+	'xs': 0,
+	'ph': 23.4375rem,    // 375px
+	'sm': 36rem,         // 576px
+	'md': 48rem,         // 768px
+	'lg': 62rem,         // 992px
+	'xl': 75rem,         // 1200px
+	'xxl': 87.5rem,      // 1400px
+	'xxxl': 100rem       // 1600px
+);
 
-### BEM Naming Convention
-```scss
-// Block
-.card { }
-
-// Element
-.card__header { }
-.card__body { }
-.card__footer { }
-
-// Modifier
-.card--featured { }
-.card--compact { }
-
-// Element with modifier
-.card__header--large { }
+// Usage (mobile-first ONLY)
+@include media-breakpoint-up(sm) { }   // 576px and up
+@include media-breakpoint-up(md) { }   // 768px and up
+@include media-breakpoint-up(lg) { }   // 992px and up
+@include media-breakpoint-up(xl) { }   // 1200px and up
+@include media-breakpoint-up(xxl) { }  // 1400px and up
 ```
 
 ### SCSS File Organization
+
+Import order in `style.scss`:
 ```scss
-// abstracts/_variables.scss
-$color-primary: #1a1a2e;
-$color-secondary: #16213e;
-$color-accent: #e94560;
+// 1. Mixins (utilities first)
+@import 'partials/mixins/rem';
 
-$font-family-base: 'Inter', sans-serif;
-$font-family-heading: 'Poppins', sans-serif;
+// 2. Config (variables, colors, etc.)
+@import 'partials/config/maps';
+@import 'partials/config/colors';
+@import 'partials/config/typography';
+@import 'partials/config/variables';
 
-$breakpoints: (
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px
-);
+// 3. Mixins (rest)
+@import 'partials/mixins/breakpoints';
+@import 'partials/mixins/placeholders';
+@import 'partials/mixins/containers';
+// ... other mixins
 
-// abstracts/_functions.scss
-@function fluid($min, $max, $min-vw: 320px, $max-vw: 1200px) {
-  $min-rem: #{$min / 16px}rem;
-  $max-rem: #{$max / 16px}rem;
-  $slope: ($max - $min) / ($max-vw - $min-vw);
-  $y-intercept: $min - ($slope * $min-vw);
-  $preferred: #{$y-intercept / 16px}rem + #{$slope * 100}vw;
+// 4. Base styles
+@import 'partials/reset';
+@import 'partials/reboot';
+@import 'partials/base-selectors';
 
-  @return clamp(#{$min-rem}, #{$preferred}, #{$max-rem});
-}
+// 5. JS Plugins (for easy overwrite)
+@import 'partials/js-plugins/swiper';
+// ... other plugins
 
-// abstracts/_mixins.scss
-@mixin media-breakpoint-up($breakpoint) {
-  $value: map-get($breakpoints, $breakpoint);
-  @if $value {
-    @media (min-width: $value) {
-      @content;
-    }
-  }
+// 6. Components
+@import 'partials/components/header';
+@import 'partials/components/footer';
+// ... other components
+
+// 7. Template Parts
+@import 'partials/template-parts/swiper-navigation';
+// ... other template parts
+
+// 8. ACF Blocks
+@import 'partials/acf-blocks/hero-slider';
+// ... other blocks
+
+// 9. Templates
+@import 'partials/templates/index';
+// ... other templates
+
+// 10. WP Plugins
+@import 'partials/wp-plugins/gravity-forms';
+
+// 11. Helpers & Utilities (last for override capability)
+@import 'partials/helpers/buttons';
+@import 'partials/utilities/images';
+```
+
+### Naming Conventions
+
+```scss
+// Use lowercase with hyphens for class names
+.hero-slider-section { }
+.header-nav-toggle { }
+
+// Block elements (section naming)
+// Full-width sections: *-section
+<section class="hero-slider-section">
+
+// Inner wrappers: inner-section (rare)
+<div class="inner-section">
+
+// Use tabs for indentation (not spaces)
+.component {
+	display: flex;
+	gap: rem-calc(16);
+
+	@include media-breakpoint-up(md) {
+		gap: fluid(16, 32);
+	}
 }
 ```
 
 ## PHP Standards (WordPress)
 
+### Text Domain & Prefix
+```php
+// Text domain: 'skel'
+// Function prefix: skel_
+
+// ✅ Correct
+function skel_enqueue_scripts() { }
+__( 'Text', 'skel' );
+esc_html_e( 'Skip to content', 'skel' );
+
+// ❌ Wrong
+function skeleton_enqueue_scripts() { }
+__( 'Text', 'skeleton' );
+```
+
 ### Naming Conventions
 ```php
-// Functions: lowercase with underscores, prefixed
-function skeleton_get_custom_logo() { }
-function skeleton_register_sidebars() { }
-
-// Classes: Capitalized words
-class Skeleton_Custom_Walker { }
-class Skeleton_Theme_Setup { }
-
-// Constants: Uppercase with underscores
-define( 'SKELETON_VERSION', '1.0.0' );
-define( 'SKELETON_DIR', get_template_directory() );
+// Functions: lowercase with underscores, prefixed with skel_
+function skel_get_custom_logo() { }
+function skel_enqueue_scripts() { }
 
 // Variables: lowercase with underscores
 $post_id = get_the_ID();
+$header_options = get_field( 'header', 'option' );
 $custom_field = get_post_meta( $post_id, '_custom_field', true );
 ```
 
@@ -201,17 +307,13 @@ function_call( $arg1, $arg2 );
 $result = $a + $b;
 $is_valid = $value === true;
 
-// Array syntax
-$array = array(
-    'key1' => 'value1',
-    'key2' => 'value2',
-);
-
-// Short array syntax (PHP 5.4+)
+// Array syntax (short syntax preferred)
 $array = [
-    'key1' => 'value1',
-    'key2' => 'value2',
+	'key1' => 'value1',
+	'key2' => 'value2',
 ];
+
+// Tabs for indentation
 ```
 
 ### Escaping & Sanitization
@@ -228,147 +330,218 @@ $clean_email = sanitize_email( $_POST['email'] );
 $clean_int = absint( $_GET['id'] );
 ```
 
-### Template Tags
+### Template Structure
 ```php
-// Correct WordPress template structure
-<?php if ( have_posts() ) : ?>
-    <?php while ( have_posts() ) : the_post(); ?>
-        <article <?php post_class(); ?>>
-            <h2><?php the_title(); ?></h2>
-            <?php the_content(); ?>
-        </article>
-    <?php endwhile; ?>
-<?php else : ?>
-    <p><?php esc_html_e( 'No posts found.', 'skeleton' ); ?></p>
-<?php endif; ?>
+// ACF Block template pattern
+<?php
+// Set thumbnail preview in backend.
+if ( isset( $block['data']['preview_image'] ) ) {
+	echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
+	return;
+}
+
+// Return early if display is off.
+$display = get_field( 'display' );
+if ( 'on' !== $display ) {
+	return;
+}
+
+// Data options
+$items = get_field( 'items' );
+
+if ( ! is_array( $items ) || empty( $items ) ) {
+	return;
+}
+
+// Developer options
+$spacing        = get_field( 'spacing' );
+$spacing_top    = $spacing['top']['spacing_top'] ?? '';
+$spacing_bottom = $spacing['bottom']['spacing_bottom'] ?? '';
+$custom_classes = get_field( 'custom_classes' );
+$custom_css     = get_field( 'custom_css' );
+$unique_id      = get_field( 'unique_id' );
+?>
+
+<section
+	class="block-name-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
+	style="<?php echo esc_attr( $custom_css ); ?>"
+	id="<?php echo esc_attr( $unique_id ); ?>"
+	data-inview>
+
+	<div class="container">
+		<!-- Block content -->
+	</div>
+
+</section>
 ```
 
-## JavaScript Standards (WordPress)
+## JavaScript Standards
 
-### IIFE Pattern
+### Arrow Function IIFE Pattern (Required)
 ```javascript
-( function() {
-    'use strict';
+(() => {
+	// All code here - 'use strict' is implicit
+	const init = () => {
+		// Initialize components
+	};
 
-    // All code here
-} )();
+	// Code runs immediately
+	init();
+})();
 ```
 
-### Spacing Rules
+### Formatting Rules
 ```javascript
-// Spaces inside parentheses for control structures
-if ( condition ) { }
-for ( let i = 0; i < 10; i++ ) { }
-while ( condition ) { }
+// NO spaces inside parentheses (standard JS formatting)
+if (condition) { }
+document.querySelector('.selector');
+functionName(arg1, arg2);
 
-// Spaces inside function calls
-functionName( arg1, arg2 );
-document.querySelector( '.selector' );
+// Tabs for indentation
+const element = document.querySelector('.element');
 
-// Spaces around operators
-const result = a + b;
-const isValid = value === true;
-```
+// camelCase for variables and functions
+const headerNavToggle = document.querySelector('.header-nav-toggle');
+const handleClick = (event) => { };
 
-### DOM Ready Pattern
-```javascript
-( function() {
-    'use strict';
-
-    const init = () => {
-        // Initialize components
-    };
-
-    if ( document.readyState === 'loading' ) {
-        document.addEventListener( 'DOMContentLoaded', init );
-    } else {
-        init();
-    }
-} )();
+// Use const by default, let when reassignment needed
+const items = [];
+let counter = 0;
 ```
 
 ### Event Handling
 ```javascript
-const handleClick = ( event ) => {
-    event.preventDefault();
-    const target = event.currentTarget;
-    // Handle click
+// Named handler functions
+const handleClick = (event) => {
+	event.preventDefault();
+	const target = event.currentTarget;
+	// Handle click
 };
 
-element.addEventListener( 'click', handleClick );
+element.addEventListener('click', handleClick);
+
+// Arrow functions in event listeners
+headerNavToggle.addEventListener('click', (e) => {
+	e.preventDefault();
+	toggleNavigation();
+});
 ```
 
-## Accessibility Standards
+### DOM Ready Pattern
+```javascript
+(() => {
+	// Cache DOM elements
+	const element = document.querySelector('.element');
 
-### Semantic HTML
-```php
-<header class="site-header">
-    <nav class="main-navigation" aria-label="<?php esc_attr_e( 'Primary Navigation', 'skeleton' ); ?>">
-    </nav>
-</header>
+	// Early return if element doesn't exist
+	if (!element) return;
 
-<main id="main-content">
-    <article>
-        <h1><?php the_title(); ?></h1>
-    </article>
-</main>
-
-<footer class="site-footer">
-</footer>
+	// Initialize functionality
+	element.addEventListener('click', handleClick);
+})();
 ```
 
-### Skip Links
-```php
-<a class="skip-link screen-reader-text" href="#main-content">
-    <?php esc_html_e( 'Skip to content', 'skeleton' ); ?>
-</a>
+### Class Toggling Pattern
+```javascript
+// Use 'js-' prefix for JS-controlled classes
+const activeClass = 'js-active';
+const popupActiveClass = 'js-popup-active';
+
+element.classList.add(activeClass);
+element.classList.remove(activeClass);
+element.classList.toggle(activeClass);
+element.classList.contains(activeClass);
 ```
 
-### Form Accessibility
-```php
-<label for="email-field">
-    <?php esc_html_e( 'Email Address', 'skeleton' ); ?>
-    <span class="required" aria-hidden="true">*</span>
-</label>
-<input
-    type="email"
-    id="email-field"
-    name="email"
-    required
-    aria-required="true"
-    aria-describedby="email-description"
->
-<p id="email-description" class="field-description">
-    <?php esc_html_e( 'We will never share your email.', 'skeleton' ); ?>
-</p>
+## Animation using data attributes
+
+### Key Data Attributes
+
+**`data-inview`**
+- Marks elements to be observed. When element enters viewport, `data-inview="true"` is set.
+
+**`data-inview-repeat`**
+- Similar to `data-inview`, but attribute is removed when element exits viewport.
+
+**`data-inview-offset`**
+- Specifies offset when element is considered in view. Can be pixel or percentage.
+
+**`data-inview-threshold`**
+- Proportion of element that needs to be visible. Default is `0.05` (5%).
+
+**`data-aos`**
+- Animation type to apply. Runs when `data-inview="true"`.
+- Example: `data-aos="fade-up"`
+
+**`data-aos-stagger-item`**
+- Used for staggered animations among child elements.
+
+### CSS Custom Properties for Animations
+```scss
+// Set on parent element or globally
+--aos-duration: 1000ms;
+--aos-delay: 0ms;
+--aos-stagger-interval: 100ms;  // For staggered items
+--aos-distance: 40px;
+```
+
+## Toggle state/class using data attributes
+
+### Key Data Attributes
+
+**`data-toggle-click`**
+- Toggles `js-active` class when clicked.
+
+**`data-toggle-group`**
+- Groups elements together. Only one element in group has `js-active` at a time.
+
+**`data-toggle-link`**
+- Links elements to toggle `js-active` in unison.
+
+**`data-toggle-hover`**
+- Toggles `js-active` class on hover.
+
+### Usage Examples
+```html
+<!-- Click toggle with group -->
+<div data-toggle-click="example" data-toggle-group="group1"></div>
+
+<!-- Linked elements -->
+<div data-toggle-click="example"></div>
+<div data-toggle-link="example"></div>
+
+<!-- Hover toggle -->
+<div data-toggle-hover="example"></div>
+<div data-toggle-link="example"></div>
 ```
 
 ## Common Mistakes to Avoid
 
 ### SCSS
-- ❌ Using raw `px` values
-- ❌ Using `@media` queries directly
-- ❌ Using `media-breakpoint-down()`
+- ❌ Using raw `px` values - Use `rem-calc()` or `fluid()`
+- ❌ Using `@media` queries directly - Use `@include media-breakpoint-up()`
+- ❌ Using `media-breakpoint-down()` - Use mobile-first approach
 - ❌ Desktop-first approach
-- ❌ Deep nesting (more than 3 levels)
+- ❌ Using spaces for indentation - Use tabs
 - ❌ Using IDs for styling
 
 ### PHP
 - ❌ Not escaping output
 - ❌ Not sanitizing input
-- ❌ Using `echo` without escaping
+- ❌ Using wrong text domain (`skeleton` instead of `skel`)
+- ❌ Using wrong function prefix (`skeleton_` instead of `skel_`)
 - ❌ Hardcoding URLs
-- ❌ Not using text domain for translations
 - ❌ Using short PHP tags `<?`
 
 ### JavaScript
 - ❌ Global variables
-- ❌ Missing 'use strict'
-- ❌ Not using spaces in control structures
 - ❌ Using `var` instead of `const`/`let`
-- ❌ Inline event handlers
+- ❌ Using IIFE with function keyword - Use arrow function IIFE
+- ❌ Inline event handlers in HTML
+- ❌ Using spaces inside parentheses
 
 ## Reference Files
 
 - `.claude/skills/design-patterns.md` - Complete patterns guide
 - `.cursor/rules/` - Technology-specific standards
+- `README - Copy.md` - Setup and formatting guide

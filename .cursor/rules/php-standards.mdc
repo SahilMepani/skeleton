@@ -1,0 +1,519 @@
+---
+description: Writing PHP code in WordPress theme files
+globs: "**/*.php"
+alwaysApply: false
+---
+
+# PHP Standards (WordPress)
+
+## WordPress Coding Standards
+
+Follow the official [WordPress PHP Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/).
+
+## Naming Conventions
+
+### Functions
+```php
+// ✅ Correct - Lowercase with underscores, prefixed with theme name
+function skeleton_get_custom_logo() { }
+function skeleton_register_sidebars() { }
+function skeleton_enqueue_scripts() { }
+function skeleton_setup_theme() { }
+
+// ❌ Wrong - camelCase or unprefixed
+function getCustomLogo() { }
+function register_sidebars() { }
+```
+
+### Classes
+```php
+// ✅ Correct - Capitalized words with underscores, prefixed
+class Skeleton_Custom_Walker extends Walker_Nav_Menu { }
+class Skeleton_Theme_Setup { }
+class Skeleton_Widget_Recent_Posts extends WP_Widget { }
+
+// ❌ Wrong
+class customWalker { }
+class ThemeSetup { }
+```
+
+### Constants
+```php
+// ✅ Correct - Uppercase with underscores
+define( 'SKELETON_VERSION', '1.0.0' );
+define( 'SKELETON_DIR', get_template_directory() );
+define( 'SKELETON_URI', get_template_directory_uri() );
+
+// ❌ Wrong
+define( 'skeletonVersion', '1.0.0' );
+define( 'themeDir', get_template_directory() );
+```
+
+### Variables
+```php
+// ✅ Correct - Lowercase with underscores
+$post_id = get_the_ID();
+$custom_field = get_post_meta( $post_id, '_custom_field', true );
+$menu_items = wp_get_nav_menu_items( 'primary' );
+
+// ❌ Wrong - camelCase
+$postId = get_the_ID();
+$customField = get_post_meta( $postId, '_custom_field', true );
+```
+
+### Files
+```php
+// ✅ Correct - Lowercase with hyphens
+template-parts/content-single.php
+inc/template-functions.php
+inc/customizer-settings.php
+
+// ❌ Wrong
+templateParts/contentSingle.php
+inc/templateFunctions.php
+```
+
+## Spacing & Formatting
+
+### Spaces Inside Parentheses
+```php
+// ✅ Correct - Spaces after opening and before closing
+if ( $condition ) { }
+foreach ( $items as $item ) { }
+while ( have_posts() ) { }
+function_call( $arg1, $arg2 );
+array( 'key' => 'value' );
+
+// ❌ Wrong - No spaces
+if ($condition) { }
+foreach ($items as $item) { }
+function_call($arg1, $arg2);
+```
+
+### Spaces Around Operators
+```php
+// ✅ Correct
+$result = $a + $b;
+$is_valid = $value === true;
+$full_name = $first_name . ' ' . $last_name;
+
+// ❌ Wrong
+$result=$a+$b;
+$is_valid=$value===true;
+```
+
+### Array Syntax
+```php
+// ✅ Correct - Long syntax with trailing comma
+$array = array(
+    'key1' => 'value1',
+    'key2' => 'value2',
+    'key3' => 'value3',
+);
+
+// ✅ Also acceptable - Short syntax (PHP 5.4+)
+$array = [
+    'key1' => 'value1',
+    'key2' => 'value2',
+    'key3' => 'value3',
+];
+
+// ❌ Wrong - No trailing comma, inconsistent spacing
+$array = array('key1'=>'value1','key2'=>'value2');
+```
+
+### Indentation
+```php
+// ✅ Correct - Use TABS, not spaces
+function skeleton_example() {
+	$variable = 'value';
+
+	if ( $condition ) {
+		// Indented with tab
+		do_something();
+	}
+}
+```
+
+### Braces
+```php
+// ✅ Correct - Opening brace on same line
+if ( $condition ) {
+    // code
+} elseif ( $other_condition ) {
+    // code
+} else {
+    // code
+}
+
+// ✅ Correct - Functions and classes
+function skeleton_function_name() {
+    // code
+}
+
+class Skeleton_Class_Name {
+    // code
+}
+```
+
+## Escaping Output
+
+### ALWAYS Escape Output
+```php
+// Text content
+echo esc_html( $text );
+<?php echo esc_html( $variable ); ?>
+
+// HTML attributes
+<div class="<?php echo esc_attr( $class ); ?>">
+<a href="<?php echo esc_url( $url ); ?>">
+
+// JavaScript data
+<script>var data = <?php echo wp_json_encode( $data ); ?>;</script>
+
+// HTML content (allows safe HTML)
+echo wp_kses_post( $html_content );
+
+// Translation with escaping
+echo esc_html__( 'Text to translate', 'skeleton' );
+echo esc_attr__( 'Attribute text', 'skeleton' );
+esc_html_e( 'Text to echo', 'skeleton' );
+```
+
+### Escaping Functions Reference
+```php
+esc_html()     // Escape for HTML text content
+esc_attr()     // Escape for HTML attributes
+esc_url()      // Escape URLs
+esc_js()       // Escape for inline JavaScript
+esc_textarea() // Escape for textarea content
+wp_kses()      // Allow specific HTML tags
+wp_kses_post() // Allow HTML tags valid in post content
+```
+
+## Sanitizing Input
+
+### ALWAYS Sanitize Input
+```php
+// Text fields
+$clean_text = sanitize_text_field( $_POST['field'] );
+
+// Email
+$clean_email = sanitize_email( $_POST['email'] );
+
+// URL
+$clean_url = esc_url_raw( $_POST['url'] );
+
+// Integer
+$clean_int = absint( $_GET['id'] );
+$clean_int = intval( $_GET['id'] );
+
+// Textarea
+$clean_textarea = sanitize_textarea_field( $_POST['message'] );
+
+// File name
+$clean_filename = sanitize_file_name( $_FILES['file']['name'] );
+
+// HTML content
+$clean_html = wp_kses_post( $_POST['content'] );
+```
+
+## Nonces & Security
+
+### Form Nonces
+```php
+// Create nonce field in form
+wp_nonce_field( 'skeleton_action', 'skeleton_nonce' );
+
+// Verify nonce on submission
+if ( ! isset( $_POST['skeleton_nonce'] ) ||
+     ! wp_verify_nonce( $_POST['skeleton_nonce'], 'skeleton_action' ) ) {
+    wp_die( esc_html__( 'Security check failed.', 'skeleton' ) );
+}
+```
+
+### AJAX Nonces
+```php
+// Create nonce for AJAX
+$nonce = wp_create_nonce( 'skeleton_ajax_nonce' );
+
+// Verify in AJAX handler
+check_ajax_referer( 'skeleton_ajax_nonce', 'nonce' );
+```
+
+### Capability Checks
+```php
+// Check user capabilities
+if ( ! current_user_can( 'edit_posts' ) ) {
+    wp_die( esc_html__( 'You do not have permission.', 'skeleton' ) );
+}
+```
+
+## Internationalization (i18n)
+
+### Text Domain
+```php
+// Always use 'skeleton' as text domain
+__( 'Text', 'skeleton' )
+_e( 'Text', 'skeleton' )
+esc_html__( 'Text', 'skeleton' )
+esc_html_e( 'Text', 'skeleton' )
+```
+
+### Translation Functions
+```php
+// Return translated string
+$text = __( 'Hello World', 'skeleton' );
+
+// Echo translated string
+_e( 'Hello World', 'skeleton' );
+
+// With escaping (preferred)
+echo esc_html__( 'Hello World', 'skeleton' );
+esc_html_e( 'Hello World', 'skeleton' );
+
+// Placeholders
+printf(
+    /* translators: %s: User name */
+    esc_html__( 'Hello, %s!', 'skeleton' ),
+    esc_html( $user_name )
+);
+
+// Plural forms
+printf(
+    /* translators: %d: Number of items */
+    esc_html( _n( '%d item', '%d items', $count, 'skeleton' ) ),
+    $count
+);
+```
+
+## Template Structure
+
+### The Loop
+```php
+<?php if ( have_posts() ) : ?>
+    <?php while ( have_posts() ) : the_post(); ?>
+        <article <?php post_class(); ?>>
+            <header class="entry-header">
+                <?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
+            </header>
+
+            <div class="entry-content">
+                <?php the_content(); ?>
+            </div>
+        </article>
+    <?php endwhile; ?>
+
+    <?php the_posts_pagination(); ?>
+
+<?php else : ?>
+    <p><?php esc_html_e( 'No posts found.', 'skeleton' ); ?></p>
+<?php endif; ?>
+```
+
+### Template Parts
+```php
+// Load template part
+get_template_part( 'template-parts/content', get_post_type() );
+
+// With arguments (WordPress 5.5+)
+get_template_part( 'template-parts/card', 'product', array(
+    'product_id' => $product_id,
+    'show_price' => true,
+) );
+
+// In template part, access args
+$product_id = $args['product_id'] ?? 0;
+$show_price = $args['show_price'] ?? false;
+```
+
+### Header & Footer
+```php
+// header.php
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php wp_head(); ?>
+</head>
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+
+// footer.php
+<?php wp_footer(); ?>
+</body>
+</html>
+```
+
+## Functions.php Structure
+
+### Organized Setup
+```php
+<?php
+/**
+ * Theme functions and definitions
+ *
+ * @package Skeleton
+ */
+
+// Define constants
+define( 'SKELETON_VERSION', '1.0.0' );
+define( 'SKELETON_DIR', get_template_directory() );
+define( 'SKELETON_URI', get_template_directory_uri() );
+
+// Include files
+require SKELETON_DIR . '/inc/setup.php';
+require SKELETON_DIR . '/inc/enqueue.php';
+require SKELETON_DIR . '/inc/template-functions.php';
+require SKELETON_DIR . '/inc/template-tags.php';
+
+// Optional includes
+if ( is_admin() ) {
+    require SKELETON_DIR . '/inc/admin.php';
+}
+
+if ( class_exists( 'WooCommerce' ) ) {
+    require SKELETON_DIR . '/inc/woocommerce.php';
+}
+```
+
+### Theme Setup
+```php
+// inc/setup.php
+<?php
+/**
+ * Theme setup
+ *
+ * @package Skeleton
+ */
+
+if ( ! function_exists( 'skeleton_setup' ) ) {
+    /**
+     * Sets up theme defaults and registers support for various WordPress features.
+     */
+    function skeleton_setup() {
+        // Add theme support
+        add_theme_support( 'title-tag' );
+        add_theme_support( 'post-thumbnails' );
+        add_theme_support( 'html5', array(
+            'search-form',
+            'comment-form',
+            'comment-list',
+            'gallery',
+            'caption',
+            'style',
+            'script',
+        ) );
+
+        // Register nav menus
+        register_nav_menus( array(
+            'primary' => esc_html__( 'Primary Menu', 'skeleton' ),
+            'footer'  => esc_html__( 'Footer Menu', 'skeleton' ),
+        ) );
+
+        // Set content width
+        $GLOBALS['content_width'] = 1200;
+    }
+}
+add_action( 'after_setup_theme', 'skeleton_setup' );
+```
+
+### Enqueue Scripts & Styles
+```php
+// inc/enqueue.php
+<?php
+/**
+ * Enqueue scripts and styles
+ *
+ * @package Skeleton
+ */
+
+/**
+ * Enqueue theme styles and scripts.
+ */
+function skeleton_enqueue_scripts() {
+    // Styles
+    wp_enqueue_style(
+        'skeleton-style',
+        get_stylesheet_uri(),
+        array(),
+        SKELETON_VERSION
+    );
+
+    wp_enqueue_style(
+        'skeleton-main',
+        SKELETON_URI . '/assets/css/main.css',
+        array(),
+        SKELETON_VERSION
+    );
+
+    // Scripts
+    wp_enqueue_script(
+        'skeleton-main',
+        SKELETON_URI . '/assets/js/main.js',
+        array(),
+        SKELETON_VERSION,
+        true // Load in footer
+    );
+
+    // Localize script
+    wp_localize_script( 'skeleton-main', 'skeletonData', array(
+        'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+        'nonce'   => wp_create_nonce( 'skeleton_nonce' ),
+    ) );
+}
+add_action( 'wp_enqueue_scripts', 'skeleton_enqueue_scripts' );
+```
+
+## Common Anti-Patterns
+
+### ❌ Never Do This
+```php
+// Direct output without escaping
+echo $variable;
+echo $_GET['param'];
+
+// Using short PHP tags
+<? echo $var; ?>
+<?=$var?>
+
+// Hardcoded URLs
+<link href="/wp-content/themes/skeleton/style.css">
+
+// Direct database queries without preparation
+$wpdb->query( "SELECT * FROM table WHERE id = " . $_GET['id'] );
+
+// Not using text domain
+__( 'Hello' )
+
+// Trusting user input
+$file = $_GET['file'];
+include( $file );
+```
+
+### ✅ Do This Instead
+```php
+// Always escape output
+echo esc_html( $variable );
+echo esc_attr( sanitize_text_field( $_GET['param'] ) );
+
+// Use full PHP tags
+<?php echo esc_html( $var ); ?>
+
+// Use WordPress functions for URLs
+<link href="<?php echo esc_url( get_stylesheet_uri() ); ?>">
+
+// Use prepared statements
+$wpdb->prepare( "SELECT * FROM table WHERE id = %d", absint( $_GET['id'] ) );
+
+// Always use text domain
+__( 'Hello', 'skeleton' )
+
+// Validate and sanitize
+$allowed_files = array( 'header', 'footer', 'sidebar' );
+$file = sanitize_file_name( $_GET['file'] );
+if ( in_array( $file, $allowed_files, true ) ) {
+    include( SKELETON_DIR . '/parts/' . $file . '.php' );
+}
+```

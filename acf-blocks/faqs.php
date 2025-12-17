@@ -41,7 +41,7 @@ $custom_css     = get_field( 'custom_css' );
 $unique_id      = get_field( 'unique_id' );
 ?>
 
-<section class="faqs-section section-overlap <?php echo esc_attr( "section-display-{$display} {$custom_classes}" ); ?>"
+<section class="faq-section js-faq-section section-overlap <?php echo esc_attr( "section-display-{$display} {$custom_classes}" ); ?>"
 	style="<?php echo esc_attr( "{$custom_css}" ); ?>" id="<?php echo esc_attr( $unique_id ); ?>">
 
 	<div class="container">

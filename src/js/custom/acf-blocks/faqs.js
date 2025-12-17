@@ -73,6 +73,6 @@
 		window.addEventListener('orientationchange', updateMaxHeight);
 	}
 
-	// Initialize accordions for each .faqs-section
-	document.querySelectorAll('.faqs-section').forEach(initAccordions);
+	// Initialize accordions for each .faq-section
+	document.querySelectorAll('.js-faq-section').forEach(initAccordions);
 })();

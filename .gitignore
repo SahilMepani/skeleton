@@ -1,4 +1,5 @@
-#Ignore folder
+#Ignore folder starting with dot
+.*/
 .phpintel
 *.map
 *.css.map

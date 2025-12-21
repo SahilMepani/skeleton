@@ -11,25 +11,225 @@ A responsive custom WordPress theme built with vanilla JavaScript, SCSS, and PHP
 
 ```powershell
 cd /path/to/your/wp-content/themes/skeleton
-npm i --force
-npm start
-```
-
-If you get "grunt is not recognized" error:
-
-```powershell
-npm i -g grunt-cli
-# restart terminal
+npm i
 npm start
 ```
 
 ## Theme Activation
 
 1. Rename the theme folder to match your project name
-2. Create `screenshot.png` [600x600]px at the root
+2. Create `screenshot.png` [1200x900]px at the root
 3. Create `favicon.png` and `favicon.ico` at the root
 4. Update theme name and details in `src/sass/style.scss`
 5. Run `npm start` and activate the theme
+
+---
+
+## VS Code - Formatting
+
+1. **Install extensions**
+
+- EditorConfig for VS Code
+- ESLint
+- Formatting Toggle
+- PHP Sniffer & Beautifier
+- PostCSS Sorting
+- Prettier - Code Formatter
+- Stylelint
+- Auto Align
+- Intellicode
+- PHP Intelephense
+- SASS (.sass only)
+- SCSS IntelliSense
+- WordPress Hooks Intellisense
+
+1. **Install PHPCS package in your machine**
+
+```bash
+# phpcs
+composer global require squizlabs/php_codesniffer
+# wpcs and others
+composer g require --dev automattic/vipwpcs dealerdirect/phpcodesniffer-composer-installer
+```
+
+1. \*\*Add the PHPCS to the global PATH(environment variable) on your system
+
+Windows - PowerShell**
+Most probably your PHPCS executable files will be stored in the below folder. But confirm below adding it to the path. **Take a backup of existing environment variables below running the command please\*\*
+
+```powershell
+[System.Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";C:\Users\YOUR_USERNAME\AppData\Roaming\Composer\vendor\bin", [System.EnvironmentVariableTarget]::User)
+```
+
+To verify that the PATH variable has been set correctly, type:
+
+```
+echo $Env:PATH
+```
+
+**Mac - Terminal**
+
+```powershell
+# open the file
+nano ~/.bash_profile
+# add the path
+export PATH="$PATH:/User/YOUR_USERNAME/.composer/vendor/bin"
+# after saving and closing the file
+source ~/.bash_profile
+```
+
+Verify the changes
+
+```powershell
+env
+```
+
+**Add the following code in your settings.json file**
+
+```php
+  "files.trimTrailingWhitespace": true,
+  "editor.trimAutoWhitespace": true,
+  "editor.useTabStops": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
+  "javascript.preferences.quoteStyle": "single",
+  "css.lint.duplicateProperties": "warning",
+  "css.lint.ieHack": "warning",
+  "css.lint.zeroUnits": "warning",
+  "html-css-class-completion.enableFindUsage": true,
+  "html-css-class-completion.enableEmmetSupport": true,
+  "html-css-class-completion.enableScssFindUsage": true,
+  "editor.insertSpaces": false,
+  "editor.indentSize": "tabSize",
+  "autoalign.minSeparationLeft": 1,
+  "autoalign.columnWidth": 1,
+  "autoalign.moveableItems": [
+    "=>",
+    "=",
+    ":",
+    "+=",
+    "-="
+  ],
+  "[php]": {
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.defaultFormatter": "valeryanm.vscode-phpsab",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.tabSize": 4
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features",
+    "editor.formatOnSave": false
+  },
+  // Set Prettier as default formatter
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // Only format if config file found in project
+  "prettier.requireConfig": true,
+  // Auto format on save
+  "editor.formatOnSave": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  // disabled vscode default validation
+  "css.validate": false,
+  "scss.validate": false,
+  "javascript.validate.enable": false,
+  // Run stylelint on save
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": "explicit"
+  },
+  "stylelint.validate": [
+    "css",
+    "postcss",
+    "scss"
+  ],
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+  "intelephense.stubs": [
+    "apache",
+    "bcmath",
+    "bz2",
+    "calendar",
+    "com_dotnet",
+    "Core",
+    "ctype",
+    "curl",
+    "date",
+    "dba",
+    "dom",
+    "enchant",
+    "exif",
+    "FFI",
+    "fileinfo",
+    "filter",
+    "fpm",
+    "ftp",
+    "gd",
+    "gettext",
+    "gmp",
+    "hash",
+    "iconv",
+    "imap",
+    "intl",
+    "json",
+    "ldap",
+    "libxml",
+    "mbstring",
+    "meta",
+    "mysqli",
+    "oci8",
+    "odbc",
+    "openssl",
+    "pcntl",
+    "pcre",
+    "PDO",
+    "pdo_ibm",
+    "pdo_mysql",
+    "pdo_pgsql",
+    "pdo_sqlite",
+    "pgsql",
+    "Phar",
+    "posix",
+    "pspell",
+    "random",
+    "readline",
+    "Reflection",
+    "session",
+    "shmop",
+    "SimpleXML",
+    "snmp",
+    "soap",
+    "sockets",
+    "sodium",
+    "SPL",
+    "sqlite3",
+    "standard",
+    "superglobals",
+    "sysvmsg",
+    "sysvsem",
+    "sysvshm",
+    "tidy",
+    "tokenizer",
+    "xml",
+    "xmlreader",
+    "xmlrpc",
+    "xmlwriter",
+    "xsl",
+    "Zend OPcache",
+    "zip",
+    "zlib",
+    "wordpress"
+  ],
+  // PHPCS
+  "phpsab.standard": "WordPress",
+  "intelephense.environment.includePaths": [
+    // point to any folder in your drive and add the ACF Pro plugin inside it
+    "C:\\Users\\SAHIL\\Desktop\\intelephense"
+  ],
+```
+
+Change the directory structure for some of the settings above to match yours.
 
 ---
 
@@ -50,7 +250,7 @@ npm start
 	border-radius: rem-calc(8);
 }
 
-// ✅ Use fluid() for responsive values
+// ✅ Use fluid() for responsive values. If you don't have the mobileValue then keep its value 0
 .component {
 	font-size: fluid(16, 18);
 	padding: fluid(16, 24);
@@ -60,13 +260,13 @@ npm start
 ### Always Use Mobile-First Breakpoints
 
 ```scss
-// ❌ NEVER
+// ❌ NEVER use values for breakpoint
 @media (min-width: 768px) {
 }
 @include media-breakpoint-down(md) {
 }
 
-// ✅ ALWAYS
+// ✅ ALWAYS use $grid-breakpoints map and custom function alreadt defined
 @include media-breakpoint-up(md) {
 }
 @include media-breakpoint-up(lg) {
@@ -90,11 +290,21 @@ Files automatically compile - no manual imports needed.
 
 **All classes and IDs should be lowercase and separated by a dash.**
 
-Full-width sections use the `section` tag with `-section` suffix:
+Any design that covers the entire viewport(edge to edge) should use the section tag and should be post-fixed using the section. e.g. \*-section. Generally, it sits outside the container.
 
 ```html
 <section class="hero-slider-section">
 	<div class="container"></div>
+</section>
+```
+
+Any tag inside the section that wraps the container should be called inner-section. It happens in a very rare scenario
+
+```html
+<section class="hero-slider-section">
+	<div class="inner-section">
+		<div class="container"></div>
+	</div>
 </section>
 ```
 

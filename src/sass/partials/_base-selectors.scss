@@ -30,23 +30,27 @@
 
 // Custom Scrollbars
 @if $custom-scrollbar-enable {
-	.js-no-touchevents body::-webkit-scrollbar {
-		inline-size: $track-width;
+	/* Firefox */
+	scrollbar-width: thin;
+	scrollbar-color: $track-background $track-background;
+
+	/* Chrome, Edge, Safari */
+	.js-no-touchevents body:-webkit-scrollbar {
+		inline-size: $track-inline-size;
 
 		// height used for horizonal scrollbars
 		// block-size: 1em;
 	}
 
-	.js-no-touchevents body::-webkit-scrollbar-track {
+	.js-no-touchevents body:-webkit-scrollbar-track {
 		background: $track-background;
 		margin-block: $track-margin-block-start $track-margin-block-end;
-		border-radius: $track-border-radius;
 	}
 
-	// .js-no-touchevents body::-webkit-scrollbar-thumb {
-	// 	background: $thumb-background;
-	// 	border-radius: $thumb-border-radius;
-	// }
+	.js-no-touchevents body:-webkit-scrollbar-thumb {
+		background: $thumb-background;
+		border-radius: $track-border-radius;
+	}
 }
 
 html {

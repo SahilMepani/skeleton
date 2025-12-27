@@ -65,6 +65,7 @@ skeleton/
 ## Critical Rules - NEVER Violate
 
 ### 1. Never Use Inline Styles
+
 ```php
 // ❌ NEVER do this
 <div style="color: red; padding: 20px;">
@@ -74,6 +75,7 @@ skeleton/
 ```
 
 ### 2. Never Use Raw px Values in SCSS
+
 ```scss
 // ❌ NEVER do this
 .component {
@@ -98,24 +100,33 @@ skeleton/
 ```
 
 **Exceptions where px is allowed:**
+
 - `1px` borders
 - Box shadows
 - Very small values (under 4px)
 
 ### 3. Never Use @media Breakpoints Directly
+
 ```scss
 // ❌ NEVER do this
-@media (min-width: 768px) { }
-@media (max-width: 768px) { }
-@media screen and (min-width: 992px) { }
+@media (min-width: 768px) {
+}
+@media (max-width: 768px) {
+}
+@media screen and (min-width: 992px) {
+}
 
 // ✅ ALWAYS use media-breakpoint-up()
-@include media-breakpoint-up(md) { }
-@include media-breakpoint-up(lg) { }
-@include media-breakpoint-up(xl) { }
+@include media-breakpoint-up(md) {
+}
+@include media-breakpoint-up(lg) {
+}
+@include media-breakpoint-up(xl) {
+}
 ```
 
 ### 4. Never Use Desktop-First / media-breakpoint-down
+
 ```scss
 // ❌ NEVER do this - Desktop-first approach
 .component {
@@ -139,6 +150,7 @@ skeleton/
 ## SCSS Standards
 
 ### The rem-calc() Function
+
 Use `rem-calc()` for single pixel values that don't need to scale responsively.
 
 ```scss
@@ -151,6 +163,7 @@ border-width: rem-calc(2);
 ```
 
 ### The fluid() Function
+
 Use `fluid()` for responsive values that scale between mobile and desktop.
 
 ```scss
@@ -172,26 +185,38 @@ font-size: fluid(16, 24, md, xl);
 // Available breakpoints (mobile-first)
 $grid-breakpoints: (
 	'xs': 0,
-	'ph': 23.4375rem,    // 375px
-	'sm': 36rem,         // 576px
-	'md': 48rem,         // 768px
-	'lg': 62rem,         // 992px
-	'xl': 75rem,         // 1200px
-	'xxl': 87.5rem,      // 1400px
-	'xxxl': 100rem       // 1600px
+	'ph': 23.4375rem,
+	// 375px
+	'sm': 36rem,
+	// 576px
+	'md': 48rem,
+	// 768px
+	'lg': 62rem,
+	// 992px
+	'xl': 75rem,
+	// 1200px
+	'xxl': 87.5rem,
+	// 1400px
+	'xxxl': 100rem // 1600px
 );
 
 // Usage (mobile-first ONLY)
-@include media-breakpoint-up(sm) { }   // 576px and up
-@include media-breakpoint-up(md) { }   // 768px and up
-@include media-breakpoint-up(lg) { }   // 992px and up
-@include media-breakpoint-up(xl) { }   // 1200px and up
-@include media-breakpoint-up(xxl) { }  // 1400px and up
+@include media-breakpoint-up(sm) {
+} // 576px and up
+@include media-breakpoint-up(md) {
+} // 768px and up
+@include media-breakpoint-up(lg) {
+} // 992px and up
+@include media-breakpoint-up(xl) {
+} // 1200px and up
+@include media-breakpoint-up(xxl) {
+} // 1400px and up
 ```
 
 ### SCSS File Organization
 
 Import order in `style.scss`:
+
 ```scss
 // 1. Mixins (utilities first)
 @import 'partials/mixins/rem';
@@ -246,8 +271,10 @@ Import order in `style.scss`:
 
 ```scss
 // Use lowercase with hyphens for class names
-.hero-slider-section { }
-.header-nav-toggle { }
+.hero-slider-section {
+}
+.header-nav-toggle {
+}
 
 // Block elements (section naming)
 // Full-width sections: *-section
@@ -270,6 +297,7 @@ Import order in `style.scss`:
 ## PHP Standards (WordPress)
 
 ### Text Domain & Prefix
+
 ```php
 // Text domain: 'skel'
 // Function prefix: skel_
@@ -285,6 +313,7 @@ __( 'Text', 'skeleton' );
 ```
 
 ### Naming Conventions
+
 ```php
 // Functions: lowercase with underscores, prefixed with skel_
 function skel_get_custom_logo() { }
@@ -297,6 +326,7 @@ $custom_field = get_post_meta( $post_id, '_custom_field', true );
 ```
 
 ### Spacing & Formatting
+
 ```php
 // Spaces inside parentheses
 if ( $condition ) { }
@@ -317,6 +347,7 @@ $array = [
 ```
 
 ### Escaping & Sanitization
+
 ```php
 // Always escape output
 echo esc_html( $text );
@@ -331,6 +362,7 @@ $clean_int = absint( $_GET['id'] );
 ```
 
 ### Template Structure
+
 ```php
 // ACF Block template pattern
 <?php
@@ -378,6 +410,7 @@ $unique_id      = get_field( 'unique_id' );
 ## JavaScript Standards
 
 ### Arrow Function IIFE Pattern (Required)
+
 ```javascript
 (() => {
 	// All code here - 'use strict' is implicit
@@ -391,9 +424,11 @@ $unique_id      = get_field( 'unique_id' );
 ```
 
 ### Formatting Rules
+
 ```javascript
 // NO spaces inside parentheses (standard JS formatting)
-if (condition) { }
+if (condition) {
+}
 document.querySelector('.selector');
 functionName(arg1, arg2);
 
@@ -402,7 +437,7 @@ const element = document.querySelector('.element');
 
 // camelCase for variables and functions
 const headerNavToggle = document.querySelector('.header-nav-toggle');
-const handleClick = (event) => { };
+const handleClick = event => {};
 
 // Use const by default, let when reassignment needed
 const items = [];
@@ -410,9 +445,10 @@ let counter = 0;
 ```
 
 ### Event Handling
+
 ```javascript
 // Named handler functions
-const handleClick = (event) => {
+const handleClick = event => {
 	event.preventDefault();
 	const target = event.currentTarget;
 	// Handle click
@@ -421,13 +457,14 @@ const handleClick = (event) => {
 element.addEventListener('click', handleClick);
 
 // Arrow functions in event listeners
-headerNavToggle.addEventListener('click', (e) => {
+headerNavToggle.addEventListener('click', e => {
 	e.preventDefault();
 	toggleNavigation();
 });
 ```
 
 ### DOM Ready Pattern
+
 ```javascript
 (() => {
 	// Cache DOM elements
@@ -442,6 +479,7 @@ headerNavToggle.addEventListener('click', (e) => {
 ```
 
 ### Class Toggling Pattern
+
 ```javascript
 // Use 'js-' prefix for JS-controlled classes
 const activeClass = 'js-active';
@@ -458,30 +496,37 @@ element.classList.contains(activeClass);
 ### Key Data Attributes
 
 **`data-inview`**
+
 - Marks elements to be observed. When element enters viewport, `data-inview="true"` is set.
 
 **`data-inview-repeat`**
+
 - Similar to `data-inview`, but attribute is removed when element exits viewport.
 
 **`data-inview-offset`**
+
 - Specifies offset when element is considered in view. Can be pixel or percentage.
 
 **`data-inview-threshold`**
+
 - Proportion of element that needs to be visible. Default is `0.05` (5%).
 
 **`data-aos`**
+
 - Animation type to apply. Runs when `data-inview="true"`.
 - Example: `data-aos="fade-up"`
 
 **`data-aos-stagger-item`**
+
 - Used for staggered animations among child elements.
 
 ### CSS Custom Properties for Animations
+
 ```scss
 // Set on parent element or globally
 --aos-duration: 1000ms;
 --aos-delay: 0ms;
---aos-stagger-interval: 100ms;  // For staggered items
+--aos-stagger-interval: 100ms; // For staggered items
 --aos-distance: 40px;
 ```
 
@@ -490,18 +535,23 @@ element.classList.contains(activeClass);
 ### Key Data Attributes
 
 **`data-toggle-click`**
+
 - Toggles `js-active` class when clicked.
 
 **`data-toggle-group`**
+
 - Groups elements together. Only one element in group has `js-active` at a time.
 
 **`data-toggle-link`**
+
 - Links elements to toggle `js-active` in unison.
 
 **`data-toggle-hover`**
+
 - Toggles `js-active` class on hover.
 
 ### Usage Examples
+
 ```html
 <!-- Click toggle with group -->
 <div data-toggle-click="example" data-toggle-group="group1"></div>
@@ -518,6 +568,7 @@ element.classList.contains(activeClass);
 ## Common Mistakes to Avoid
 
 ### SCSS
+
 - ❌ Using raw `px` values - Use `rem-calc()` or `fluid()`
 - ❌ Using `@media` queries directly - Use `@include media-breakpoint-up()`
 - ❌ Using `media-breakpoint-down()` - Use mobile-first approach
@@ -526,6 +577,7 @@ element.classList.contains(activeClass);
 - ❌ Using IDs for styling
 
 ### PHP
+
 - ❌ Not escaping output
 - ❌ Not sanitizing input
 - ❌ Using wrong text domain (`skeleton` instead of `skel`)
@@ -534,6 +586,7 @@ element.classList.contains(activeClass);
 - ❌ Using short PHP tags `<?`
 
 ### JavaScript
+
 - ❌ Global variables
 - ❌ Using `var` instead of `const`/`let`
 - ❌ Using IIFE with function keyword - Use arrow function IIFE
@@ -544,4 +597,4 @@ element.classList.contains(activeClass);
 
 - `.claude/skills/design-patterns.md` - Complete patterns guide
 - `.cursor/rules/` - Technology-specific standards
-- `README - Copy.md` - Setup and formatting guide
+- `README.md` - Setup and formatting guide

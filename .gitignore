@@ -1,20 +1,17 @@
-#Ignore folder starting with dot
-.*/
-.phpintel
+# ignore all files starting with . or ~
+.*
+~*
+*.todo
+
 *.map
 *.css.map
 Thumbs.db
 acf-json
 node_modules
-sftp.json
-*.todo
-.eslintcache
-.stylelintcache
 editor-style.css
 style.css
 style-rtl.css
 js/plugins.js
 js/custom.js
-.env
 debug.log
 package-lock.json

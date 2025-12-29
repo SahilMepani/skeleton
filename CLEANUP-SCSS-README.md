@@ -21,49 +21,18 @@ node cleanup-unused-scss.cjs
 
 - Node.js (any recent version)
 - The script expects:
-  - `src/sass/style.scss` - Main stylesheet with imports
-  - `src/sass/partials/` - Directory containing SCSS partial files
+    - `src/sass/style.scss` - Main stylesheet with imports
+    - `src/sass/partials/` - Directory containing SCSS partial files
 
 ## How it works
 
 The script:
+
 - Parses `@import` statements in `style.scss` (skips commented lines)
 - Converts import paths to actual file paths (e.g., `partials/mixins/rem` → `mixins/_rem.scss`)
 - Compares imported files with all existing SCSS files
 - Deletes files that are not in the imported list
 - Removes empty directories recursively
-
-## Example Output
-
-```
-🧹 Starting SCSS cleanup...
-
-ℹ️  Step 1: Analyzing imports in style.scss...
-   Found 17 imported files
-ℹ️  Step 2: Scanning for all SCSS files...
-   Found 68 total SCSS files
-ℹ️  Step 3: Identifying unused files...
-   Found 51 unused files:
-     - acf-blocks/_hero-slider.scss
-     - components/_header.scss
-     ...
-
-ℹ️  Step 4: Deleting unused files...
-   Deleted: acf-blocks/_hero-slider.scss
-   ...
-✅ Deleted 51 unused file(s)
-
-ℹ️  Step 5: Removing empty directories...
-   Removed 6 empty directory(ies):
-     - acf-blocks
-     - components
-     ...
-✅ Removed 6 empty directory(ies)
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✨ Cleanup complete!
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
 
 ## Safety
 

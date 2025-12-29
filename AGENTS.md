@@ -62,6 +62,38 @@ skeleton/
 └── index.php
 ```
 
+### HTML/PHP
+
+Class Name:
+Always use lowercase separated by hypens
+
+```html
+// Full-width sections should have a section tag and its class name to end with
+*-section
+<section class="hero-section"></section>
+<section class="banner-section"></section>
+
+// All sections should always have a direct children named .container
+<section class="*-section">
+	<div class="container"></div>
+</section>
+
+// Any wrapper class should be called *-block
+<div class="img-block">
+	<img src="" />
+</div>
+<div class="content-block">
+	<h2>This is a heading</h2>
+	<p>lorem ipsum is a paragraph text</p>
+</div>
+
+// All the images except the background pattern should be added as following. In
+this case the img-cover-block should have a aspect ratio explicitly set
+<div class="img-cover-block">
+	<img src="" class="img-cover" />
+</div>
+```
+
 ## Critical Rules - NEVER Violate
 
 ### 1. Never Use Inline Styles
@@ -71,7 +103,7 @@ skeleton/
 <div style="color: red; padding: 20px;">
 
 // ✅ Always use classes
-<div class="component component--highlighted">
+<div class="component">
 ```
 
 ### 2. Never Use Raw px Values in SCSS
@@ -81,28 +113,26 @@ skeleton/
 .component {
 	font-size: 18px;
 	padding: 24px;
-	margin-bottom: 32px;
+	margin-block-end: 32px;
 }
 
 // ✅ Use rem-calc() for fixed values
 .component {
 	font-size: rem-calc(18);
 	padding: rem-calc(24);
-	margin-bottom: rem-calc(32);
+	margin-block-end: rem-calc(32);
 }
 
 // ✅ Use fluid() for responsive values (mobile, desktop)
 .component {
 	font-size: fluid(16, 18);
 	padding: fluid(16, 24);
-	margin-bottom: fluid(24, 32);
+	margin-block-end: fluid(24, 32);
 }
 ```
 
 **Exceptions where px is allowed:**
 
-- `1px` borders
-- Box shadows
 - Very small values (under 4px)
 
 ### 3. Never Use @media Breakpoints Directly
@@ -168,12 +198,12 @@ Use `fluid()` for responsive values that scale between mobile and desktop.
 
 ```scss
 // fluid(min-value, max-value, min-breakpoint, max-breakpoint)
-// Breakpoints default to 'sm' and 'xxl'
+// Breakpoints default to 'md' and 'xxl'
 
 // Basic usage (mobile value, desktop value)
 font-size: fluid(16, 24);
 padding: fluid(20, 40);
-margin-bottom: fluid(32, 64);
+margin-block-end: fluid(32, 64);
 
 // With custom breakpoints (use breakpoint names, not px)
 font-size: fluid(16, 24, md, xl);
@@ -275,13 +305,6 @@ Import order in `style.scss`:
 }
 .header-nav-toggle {
 }
-
-// Block elements (section naming)
-// Full-width sections: *-section
-<section class="hero-slider-section">
-
-// Inner wrappers: inner-section (rare)
-<div class="inner-section">
 
 // Use tabs for indentation (not spaces)
 .component {

@@ -15,6 +15,24 @@ import gulpIf from 'gulp-if'; // Added gulp-if
 import { deleteAsync } from 'del';
 import browserSync from 'browser-sync';
 import wrapper from 'gulp-wrapper';
+import gulpEsbuild from 'gulp-esbuild';
+
+// Swiper JS task using esbuild
+function swiperJsTask() {
+	return gulp
+		.src('src/js/swiper-init.js')
+		.pipe(
+			gulpEsbuild({
+				bundle: true,
+				minify: isProduction,
+				format: 'iife',
+				sourcemap: !isProduction,
+				outfile: 'swiper-bundle.js'
+			})
+		)
+		.pipe(gulp.dest('./js'))
+		.pipe(browserSyncInstance.stream());
+}
 
 // Load environment variables from .env file
 import { config } from 'dotenv';
@@ -45,7 +63,8 @@ function sassTask() {
 		.src('src/sass/style.scss')
 		.pipe(
 			sassCompiler({
-				outputStyle: isProduction ? 'compressed' : 'expanded' // Conditional output style
+				outputStyle: isProduction ? 'compressed' : 'expanded', // Conditional output style
+				includePaths: ['node_modules']
 			}).on('error', sassCompiler.logError)
 		)
 		.pipe(
@@ -159,6 +178,7 @@ function lintJS() {
 // Watch task
 function watch() {
 	gulp.watch('src/sass/**/*.{scss,sass}', gulp.series(sassTask));
+	gulp.watch('src/js/swiper-init.js', gulp.series(swiperJsTask));
 	gulp.watch('src/js/**/*.js', gulp.series(jsTasks));
 	gulp.watch([
 		'*.html',
@@ -169,7 +189,7 @@ function watch() {
 }
 
 // Define complex tasks
-const jsTasks = gulp.series(pluginsJsTask, customJsTask);
+const jsTasks = gulp.series(swiperJsTask, pluginsJsTask, customJsTask);
 
 // Dev build sequence (no purgecss)
 const buildDev = gulp.series(sassTask, gulp.parallel(lintJS, jsTasks));

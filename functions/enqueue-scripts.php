@@ -55,6 +55,14 @@ function skel_enqueue_scripts(): void {
 	wp_style_add_data( 'skel-style', 'rtl', 'replace' );
 
 	wp_enqueue_script(
+		'skel-swiper',
+		get_template_directory_uri() . '/js/swiper-bundle.js',
+		array(),
+		filemtime( get_template_directory() . '/js/swiper-bundle.js' ),
+		true
+	);
+
+	wp_enqueue_script(
 		'skel-plugins',
 		get_template_directory_uri() . '/js/plugins.js',
 		array(),
@@ -65,7 +73,7 @@ function skel_enqueue_scripts(): void {
 	wp_enqueue_script(
 		'skel-custom',
 		get_template_directory_uri() . '/js/custom.js',
-		array(),
+		array( 'skel-plugins' ),
 		filemtime( get_template_directory() . '/js/custom.js' ),
 		true
 	);
@@ -103,6 +111,7 @@ function modify_script_attributes( $tag, $handle ) {
 		// 'jquery',
 		// 'jquery-core',
 		// .
+		'skel-swiper',
 		'skel-plugins',
 		'skel-custom',
 	);

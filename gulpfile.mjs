@@ -18,18 +18,6 @@ import browserSync from 'browser-sync';
 import wrapper from 'gulp-wrapper';
 import gulpEsbuild from 'gulp-esbuild';
 
-// Cleanup SCSS task
-function cleanupScss(done) {
-	exec(
-		'node tools/cleanup/cleanup-unused-scss.cjs',
-		(err, stdout, stderr) => {
-			if (stdout) console.log(stdout);
-			if (stderr) console.error(stderr);
-			done(err);
-		}
-	);
-}
-
 // Swiper JS task using esbuild
 function swiperJsTask() {
 	return gulp
@@ -209,7 +197,6 @@ const buildDev = gulp.series(sassTask, gulp.parallel(lintJS, jsTasks));
 
 // Prod build sequence (includes purgecss)
 const buildProd = gulp.series(
-	cleanupScss,
 	sassTask,
 	gulp.parallel(rtlCssTask, lintJS, jsTasks), // Run JS/Lint in parallel with SCSS
 	purgeCSSTask // Run PurgeCSS after initial CSS is built

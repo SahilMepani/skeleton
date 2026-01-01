@@ -1,6 +1,8 @@
 (() => {
 	function initAccordions(section) {
 		const accordionContainer = section.querySelector('.list-accordion');
+		if (!accordionContainer) return;
+
 		let activeAccordion = null;
 
 		function toggleAccordion(accordion, autoOpen = false) {
@@ -53,7 +55,6 @@
 		});
 
 		// Open the first accordion by default
-		// If you uncomment then the window will scroll on page load whereever the FAQ block is used
 		const firstAccordion = accordionContainer.querySelector('.accordion');
 		if (firstAccordion) {
 			toggleAccordion(firstAccordion, true);

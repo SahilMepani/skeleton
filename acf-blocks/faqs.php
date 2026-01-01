@@ -41,7 +41,7 @@ $custom_css     = get_field( 'custom_css' );
 $unique_id      = get_field( 'unique_id' );
 ?>
 
-<section class="faq-section js-faq-section section-overlap <?php echo esc_attr( "section-display-{$display} {$custom_classes}" ); ?>"
+<section class="faq-section js-faq-section <?php echo esc_attr( "section-display-{$display} {$custom_classes}" ); ?>"
 	style="<?php echo esc_attr( "{$custom_css}" ); ?>" id="<?php echo esc_attr( $unique_id ); ?>">
 
 	<div class="container">
@@ -50,7 +50,7 @@ $unique_id      = get_field( 'unique_id' );
 			<h4 class="section-heading h3" data-inview data-aos="fade-up"><?php echo esc_html( $section_heading ); ?></h4>
 		<?php } ?>
 
-		<div class="list-accordions" data-inview>
+		<div class="list-accordion" data-inview>
 			<?php
 			// Custom.
 			if ( 'custom' === $faq_type && is_array( $custom_faq ) && ! empty( $custom_faq ) ) :

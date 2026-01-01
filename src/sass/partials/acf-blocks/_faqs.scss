@@ -9,10 +9,10 @@
 		&.js-active {
 			.accordion-heading {
 				.icon {
+
 					&::before,
 					&::after {
-						transform: translateX(-50%) translateY(-50%)
-							rotate(180deg);
+						transform: translateX(-50%) translateY(-50%) rotate(180deg);
 					}
 
 					&::after {

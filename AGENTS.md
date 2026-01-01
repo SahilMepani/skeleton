@@ -616,6 +616,89 @@ element.classList.contains(activeClass);
 - ❌ Inline event handlers in HTML
 - ❌ Using spaces inside parentheses
 
+## ACF Block Registration & Auto-generation
+
+The theme uses an automated system to register and create ACF blocks.
+
+### 1. Registering a Block
+
+Add the block name (Title Case) to the `$block_types` array in `functions/register-acf-blocks.php`.
+
+```php
+$block_types = array(
+	'Hero Slider',
+	'Faqs',
+	'New Block Name', // Add here
+);
+```
+
+### 2. Blocks with JavaScript
+
+If the block requires a dedicated JS file, add it to the `$blocks_with_js` array.
+
+```php
+$blocks_with_js = array(
+	'Hero Slider',
+	'New Block Name',
+);
+```
+
+### 3. Auto-generated Files
+
+On local environments, the system automatically creates the following files based on the sanitized name:
+
+- `acf-blocks/new-block-name.php`
+- `src/sass/partials/acf-blocks/_new-block-name.scss`
+- `src/js/custom/acf-blocks/new-block-name.js` (if in `$blocks_with_js`)
+
+## Key Helper Functions
+
+### SVG Icons
+
+Use the `svg()` function to output SVG icons from the sprite.
+
+```php
+<?php echo svg( 'arrow-right', [ 'class' => 'custom-class' ] ); ?>
+```
+
+### Phone URLs
+
+Sanitize and format phone numbers for `tel:` links.
+
+```php
+<a href="<?php echo skel_get_phone_url( '+971 50 123 4567' ); ?>">Call Us</a>
+```
+
+### Excerpts
+
+Get a customized excerpt with a word limit.
+
+```php
+<?php echo skel_get_the_excerpt( 20 ); ?>
+```
+
+## RTL & Multi-language Support (WPML)
+
+The theme includes helper classes for RTL support, primarily for Arabic.
+
+### Direction Classes
+
+- `skel_direction_class()`: Returns `dir-rtl` or `dir-ltr`.
+- `skel_swiper_direction_class()`: Returns `swiper-rtl` or `swiper`.
+
+```php
+<div class="component <?php echo esc_attr( skel_direction_class() ); ?>">
+	<!-- Content -->
+</div>
+```
+
+## Build & Development Commands
+
+- `npm run dev`: Start development server (BrowserSync + Watch).
+- `npm run build`: Production build (PurgeCSS + Minification).
+- `npm run lint:js`: Lint JavaScript.
+- `npm run lint:css`: Lint SCSS.
+
 ## Reference Files
 
 - `.claude/skills/design-patterns.md` - Complete patterns guide

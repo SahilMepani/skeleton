@@ -16,6 +16,26 @@ Custom WordPress theme built with vanilla JavaScript, SCSS, and PHP following Wo
 - Never use !important
 - Use tabs for indentation (not spaces)
 
+## Build & Development
+
+- `npm run dev` / `npm start`: Start development server with BrowserSync and watch tasks
+- `npm run build`: Production build (includes PurgeCSS and minification)
+- `npm run clean`: Remove `dist` directory
+
+## Linting
+
+- `npm run lint:js`: Lint JavaScript files using ESLint
+- `npm run lint:css`: Lint SCSS files using Stylelint
+
+## ACF Blocks
+
+- **Registration**: Add block names to the `$block_types` array in `functions/register-acf-blocks.php`.
+- **Auto-generation**: On local environments, adding a block to `$block_types` automatically creates:
+    - `acf-blocks/{block-slug}.php` (Template)
+    - `src/sass/partials/acf-blocks/_{block-slug}.scss` (Styles)
+    - `src/js/custom/acf-blocks/{block-slug}.js` (Optional JS, if added to `$blocks_with_js`)
+- **Styles**: Import new block SCSS in `src/sass/style.scss`.
+
 ## Important Patterns
 
 ### SCSS

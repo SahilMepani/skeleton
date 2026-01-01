@@ -14,6 +14,7 @@
  */
 
 get_header();
+
 ?>
 
 <section class="py-xs-2 py-4">

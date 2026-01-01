@@ -37,8 +37,9 @@
 		"js": "gulp js",
 		"lint:css": "gulp lintCSS",
 		"lint:js": "gulp lintJS",
+		"cleanup:scss": "node tools/cleanup/cleanup-unused-scss.cjs",
 		"build:dev": "gulp buildDev",
-		"build": "cross-env NODE_ENV=production gulp prod",
+		"build": "npm run cleanup:scss && cross-env NODE_ENV=production gulp prod",
 		"dev": "gulp",
 		"start": "gulp"
 	},

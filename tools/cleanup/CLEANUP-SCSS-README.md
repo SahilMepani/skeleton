@@ -11,10 +11,16 @@ A Node.js script to automatically remove unused SCSS files and empty directories
 
 ## Usage
 
-Simply run the script from your theme root directory:
+Simply run the script via npm from your theme root directory:
 
 ```bash
-node cleanup-unused-scss.cjs
+npm run cleanup:scss
+```
+
+Or run the script directly:
+
+```bash
+node tools/cleanup/cleanup-unused-scss.cjs
 ```
 
 ## Requirements

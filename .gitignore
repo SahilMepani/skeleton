@@ -1,9 +1,9 @@
 # ignore all files starting with . or ~
-.*
-~*
-*.todo
-
+# .*
+# ~*
+# tools
 *.map
+# *.todo
 *.css.map
 Thumbs.db
 acf-json

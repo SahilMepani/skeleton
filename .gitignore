@@ -2,8 +2,8 @@
 # .*
 # ~*
 # tools
-*.map
 # *.todo
+*.map
 *.css.map
 Thumbs.db
 acf-json

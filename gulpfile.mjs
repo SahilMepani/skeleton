@@ -214,7 +214,9 @@ export {
 	jsTasks as js,
 	lintJS,
 	buildDev, // Export dev build
-	buildProd // Export prod build
+	buildProd, // Export prod build
+	prod,
+	dev
 };
 
 export default isProduction ? prod : dev;

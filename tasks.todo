@@ -7,18 +7,10 @@
 ☐ Masking effect from Uprise
 ☐ CSS Marquee slide from Uprise
 ☐ All custom swiper code to be in javascript
-
-
-PHP:
-New image size in functions.php should be named as per the dimensions, for eg.
-☐ Size with width: 100px and height: 9999px(auto) should be named "w100". Auto dimension is ignored.
-☐ Size with width: 9999px(auto) and height: 400px and crop enabled should be named "h400c". Again auto dimension is ignored
-
+☐ Ajax loading from Blegal/Chapter One/Tawrid
 
 TRIVIA:
 ☐ Stick posts won't work with ajax filters. It will not be at the top once the post/cpt are filtered.
-
-
 
  ☐ Shift keyframes to placeholder and mixin so we can only call the ones we need.
  ☐ Set all headings as mixins.
@@ -35,7 +27,6 @@ MISCELLANEOUS --- ✄ -----------------------:
  ☐ Custom Select
  ☐ Custom Select with different WP options
  ☐ Different plugins integration - Event Calendar, Locations like LDVA & (WooCommerce in future).
- ☐ Flexible Layouts
  ☐ Sitemap
  ☐ 404
  ☐ Sidebar with childpages
@@ -44,11 +35,8 @@ MISCELLANEOUS --- ✄ -----------------------:
  ☐ Left arrow animation
  ☐ Button animation which is commented on SMHS
  ☐ WP Gallery support
- ☐ Convert Swiper initiation code to vanilla javascript. Do it in gulpfile too and check the code
  ☐ See how we can make the swiper more flexible so that same slider works on the pag. We had some issue with Alromaizan website homepage where the dynamic class name was showing errorr.. Tabslider class
  ☐ Make all code to vanilla javasccript
-
-
 
 
  # CONTENT EDITOR --- ✄ -----------------------:

@@ -168,7 +168,7 @@
 		}
 	}
 
-	@include media-breakpoint-up(md) {
+	@media (width >= $md) {
 		display: flex;
 		padding: rem-calc(50);
 

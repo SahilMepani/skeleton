@@ -31,7 +31,7 @@ $aos-distance-desktop: 40px !default;
 	--aos-timing-function: var(--aos-ease-out);
 }
 
-@include media-breakpoint-up(md) {
+@media (width >= $md) {
 	:root {
 		--aos-distance: #{$aos-distance-desktop};
 	}

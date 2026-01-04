@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 $rem-base-unitless: strip-unit($rem-base);
 $grid-breakpoints: (
 	'xs': 0px,
@@ -21,20 +23,22 @@ $container-max-widths: (
 	xxxl: 90rem // 1440px
 );
 $section-spacings: (
-	'small': (
-		20,
-		40
-	),
-	'medium': (
-		40,
-		70
-	),
-	'large': (
-		70,
-		140
-	),
-	'xlarge': (
-		100,
-		160
-	)
+	'small': (20,
+		40),
+	'medium': (40,
+		70),
+	'large': (70,
+		140),
+	'xlarge': (100,
+		160)
 );
+
+// Breakpoint variables
+$xs: map.get($grid-breakpoints, 'xs');
+$ph: map.get($grid-breakpoints, 'ph');
+$sm: map.get($grid-breakpoints, 'sm');
+$md: map.get($grid-breakpoints, 'md');
+$lg: map.get($grid-breakpoints, 'lg');
+$xl: map.get($grid-breakpoints, 'xl');
+$xxl: map.get($grid-breakpoints, 'xxl');
+$xxxl: map.get($grid-breakpoints, 'xxxl');

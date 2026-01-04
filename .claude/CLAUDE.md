@@ -40,7 +40,6 @@ Custom WordPress theme built with vanilla JavaScript, SCSS, and PHP following Wo
 
 ### SCSS
 
-- Use `@include media-breakpoint-up()`, and follow mobile first approach
 - Use `fluid()` for responsive values
 - Use `rem-calc()` for fixed values
 - Use variables or custom properties if defined
@@ -54,11 +53,11 @@ Custom WordPress theme built with vanilla JavaScript, SCSS, and PHP following Wo
 	padding: fluid(16, 32);
 	gap: rem-calc(16);
 
-	@include media-breakpoint-up(md) {
+	@media (width >= $md) {
 		// Tablet and up styles
 	}
 
-	@include media-breakpoint-up(lg) {
+	@media (width >= $lg) {
 		// Desktop and up styles
 	}
 }
@@ -79,12 +78,12 @@ Custom WordPress theme built with vanilla JavaScript, SCSS, and PHP following Wo
 @media screen and (min-width: 992px) {
 }
 
-// ✅ ALWAYS use media-breakpoint-up()
-@include media-breakpoint-up(md) {
+// ✅ ALWAYS use media queries up
+@media (width >= $md) {
 }
-@include media-breakpoint-up(lg) {
+@media (width >= $lg) {
 }
-@include media-breakpoint-up(xl) {
+@media (width >= $xl) {
 }
 ```
 

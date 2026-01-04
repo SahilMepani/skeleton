@@ -12,7 +12,7 @@
 	.img-cover-block {
 		aspect-ratio: 267 / 337;
 
-		@include media-breakpoint-up(md) {
+		@media (width >= $md) {
 			aspect-ratio: 437 / 553;
 		}
 	}
@@ -24,7 +24,7 @@
 	.swiper-navigation {
 		display: none;
 
-		@include media-breakpoint-up(md) {
+		@media (width >= $md) {
 			display: flex;
 			position: absolute;
 			inset-inline-end: 0;

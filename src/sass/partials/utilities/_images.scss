@@ -14,7 +14,7 @@ img[class*='wp-image-'] {
 		display: none;
 	}
 
-	@include media-breakpoint-up(md) {
+	@media (width >= $md) {
 		.img-mobile {
 			display: none;
 		}
@@ -48,7 +48,7 @@ img[class*='wp-image-'] {
 .alignleft {
 	margin-block-end: rem-calc(20);
 
-	@include media-breakpoint-up(md) {
+	@media (width >= $md) {
 		float: left;
 		margin: 0 rem-calc(20) rem-calc(20) 0;
 	}
@@ -57,7 +57,7 @@ img[class*='wp-image-'] {
 .alignright {
 	margin-block-end: rem-calc(20);
 
-	@include media-breakpoint-up(md) {
+	@media (width >= $md) {
 		float: right;
 		margin: 0 0 rem-calc(20) rem-calc(20);
 	}

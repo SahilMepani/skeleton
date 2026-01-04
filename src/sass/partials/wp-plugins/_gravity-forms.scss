@@ -159,7 +159,7 @@ div.gform_wrapper.gravity-theme {
 					padding: rem-calc(5);
 					padding-inline-start: 0;
 
-					@include media-breakpoint-up(sm) {
+					@media (width >= $sm) {
 						display: flex;
 						gap: rem-calc(2);
 

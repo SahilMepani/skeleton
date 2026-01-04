@@ -21,7 +21,7 @@
 	padding-block-start: $input-padding-y;
 	padding-block-end: $input-padding-y;
 	border: rem-calc(1) solid $bg-color;
-	@include media-breakpoint-up(md) {
+	@media (width >= $md) {
 		padding-block-start: $input-padding-y-lg;
 		padding-block-end: $input-padding-y-lg;
 	}

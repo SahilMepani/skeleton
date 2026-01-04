@@ -53,7 +53,7 @@ option:first-child {
 	overflow: hidden;
 	user-select: none;
 
-	@include media-breakpoint-up(md) {
+	@media (width >= $md) {
 		max-inline-size: 75%;
 	}
 

@@ -39,7 +39,7 @@
 .post-nav {
 	display: none;
 
-	@include media-breakpoint-up(sm) {
+	@media (width >= $sm) {
 		background: #fff;
 		color: #222;
 		font-weight: 700;
@@ -128,10 +128,10 @@
 		line-height: 1;
 		text-align: center;
 		float: left;
+		min-inline-size: rem-calc(10);
 		padding: rem-calc(7) rem-calc(10);
 		margin-inline-start: rem-calc(4);
 		border: rem-calc(1) solid #e7e7e7;
-		min-inline-size: rem-calc(10);
 	}
 
 	a:hover,
@@ -159,9 +159,9 @@
 
 .avatar-block {
 	float: left;
+	inline-size: rem-calc(100);
+	block-size: rem-calc(100);
 	padding: rem-calc(2);
 	margin-inline-end: rem-calc(20);
 	border: rem-calc(1) solid #eee;
-	block-size: rem-calc(100);
-	inline-size: rem-calc(100);
 }

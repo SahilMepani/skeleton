@@ -10,7 +10,7 @@
 	}
 
 	// By default all fading mobile animations will be fade/fade-up only
-	@include media-breakpoint-up(md) {
+	@media (width >= $md) {
 		&[data-aos='fade-down'] {
 			@include aos-direction(0, calc(var(--aos-distance) * -1));
 		}

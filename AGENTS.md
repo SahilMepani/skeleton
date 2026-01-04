@@ -146,32 +146,32 @@ this case the img-cover-block should have a aspect ratio explicitly set
 @media screen and (min-width: 992px) {
 }
 
-// ✅ ALWAYS use media-breakpoint-up()
-@include media-breakpoint-up(md) {
+// ✅ ALWAYS use
+@media (width >= $md) {
 }
-@include media-breakpoint-up(lg) {
+@media (width >= $lg) {
 }
-@include media-breakpoint-up(xl) {
+@media (width >= $xl) {
 }
 ```
 
-### 4. Never Use Desktop-First / media-breakpoint-down
+### 4. Never Use Desktop-First mediq queries
 
 ```scss
 // ❌ NEVER do this - Desktop-first approach
 .component {
 	font-size: fluid(24, 32);
 
-	@include media-breakpoint-down(md) {
+	@media (width < $md) {
 		font-size: fluid(16, 20);
 	}
 }
 
-// ✅ Always mobile-first with media-breakpoint-up
+// ✅ Always mobile-first with media-queries-up
 .component {
 	font-size: fluid(16, 20);
 
-	@include media-breakpoint-up(lg) {
+	@media (width >= $lg) {
 		font-size: fluid(24, 32);
 	}
 }
@@ -231,15 +231,15 @@ $grid-breakpoints: (
 );
 
 // Usage (mobile-first ONLY)
-@include media-breakpoint-up(sm) {
+@media (width >= $sm) {
 } // 576px and up
-@include media-breakpoint-up(md) {
+@media (width >= $md) {
 } // 768px and up
-@include media-breakpoint-up(lg) {
+@media (width >= $lg) {
 } // 992px and up
-@include media-breakpoint-up(xl) {
+@media (width >= $xl) {
 } // 1200px and up
-@include media-breakpoint-up(xxl) {
+@media (width >= $xxl) {
 } // 1400px and up
 ```
 
@@ -311,7 +311,7 @@ Import order in `style.scss`:
 	display: flex;
 	gap: rem-calc(16);
 
-	@include media-breakpoint-up(md) {
+	@media (width >= $md) {
 		gap: fluid(16, 32);
 	}
 }
@@ -593,8 +593,6 @@ element.classList.contains(activeClass);
 ### SCSS
 
 - ❌ Using raw `px` values - Use `rem-calc()` or `fluid()`
-- ❌ Using `@media` queries directly - Use `@include media-breakpoint-up()`
-- ❌ Using `media-breakpoint-down()` - Use mobile-first approach
 - ❌ Desktop-first approach
 - ❌ Using spaces for indentation - Use tabs
 - ❌ Using IDs for styling

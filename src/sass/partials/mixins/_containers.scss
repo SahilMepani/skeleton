@@ -1,11 +1,20 @@
+@use 'sass:map';
+
+// Helper function to get breakpoint infix
+@function breakpoint-infix($name) {
+	$min: map.get($grid-breakpoints, $name);
+	@return if($min != 0, '-#{$name}', '');
+}
+
 // Responsive containers that are 100% wide until a breakpoint
 @each $breakpoint, $container-max-width in $container-max-widths {
-	// @debug 'breakpoint';
 	.container-#{$breakpoint} {
 		@extend %container;
 	}
 
-	@include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+	$breakpoint-value: map.get($grid-breakpoints, $breakpoint);
+
+	@media (width >= $breakpoint-value) {
 		%responsive-container-#{$breakpoint} {
 			max-inline-size: $container-max-width;
 		}
@@ -15,7 +24,7 @@
 
 		@each $name, $width in $grid-breakpoints {
 			@if $extend-breakpoint {
-				.container#{breakpoint-infix($name, $grid-breakpoints)} {
+				.container#{breakpoint-infix($name)} {
 					@extend %responsive-container-#{$breakpoint};
 				}
 

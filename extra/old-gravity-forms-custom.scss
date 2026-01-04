@@ -96,8 +96,8 @@ $gf-field-label-font-size: rem-calc(14px);
 			//input container
 			span {
 				display: inline-block;
-				margin-inline-end: rem-calc(10px);
 				margin-block-end: rem-calc(5px);
+				margin-inline-end: rem-calc(10px);
 			}
 
 			//sub labels
@@ -178,12 +178,12 @@ $gf-field-label-font-size: rem-calc(14px);
 
 	&::before {
 		background-color: red;
+		inline-size: rem-calc(45px);
+		block-size: rem-calc(5px);
 		position: absolute;
 		bottom: 0;
 		left: 0;
 		content: '';
-		block-size: rem-calc(5px);
-		inline-size: rem-calc(45px);
 	}
 }
 
@@ -234,9 +234,9 @@ $gf-field-label-font-size: rem-calc(14px);
 
 		//radio
 		input[type='radio'][value='gf_other_choice'] {
-			position: absolute;
-			block-size: 0;
 			inline-size: 0;
+			block-size: 0;
+			position: absolute;
 		}
 
 		label {
@@ -271,7 +271,7 @@ $gf-field-label-font-size: rem-calc(14px);
 		padding: rem-calc(10px);
 	}
 
-	@include media-breakpoint-up(md) {
+	@media (width >= $md) {
 		option {
 			padding: rem-calc(10px);
 		}
@@ -298,9 +298,9 @@ $gf-field-label-font-size: rem-calc(14px);
 		text-decoration: none;
 		white-space: nowrap;
 		display: block;
+		inline-size: 100%;
 		margin: 0;
 		position: relative;
-		inline-size: 100%;
 		cursor: pointer;
 
 		@include input-text;
@@ -314,21 +314,21 @@ $gf-field-label-font-size: rem-calc(14px);
 
 		// contain the dropdown icon
 		div {
+			block-size: 100%;
 			position: absolute;
 			top: 0;
 			right: 0;
-			block-size: 100%;
 		}
 	}
 
 	// contains the entire dropdown
 	.chosen-drop {
 		display: none;
+		inline-size: 100%;
 		position: absolute;
 		top: 100%;
 		left: 0;
 		z-index: 99;
-		inline-size: 100%;
 
 		.chosen-search {
 			white-space: nowrap;
@@ -421,8 +421,8 @@ $gf-field-label-font-size: rem-calc(14px);
 		border-top: none;
 
 		.chosen-results {
-			padding: rem-calc(4px);
 			max-block-size: rem-calc(190px);
+			padding: rem-calc(4px);
 
 			li {
 				line-height: 1.2;
@@ -449,15 +449,15 @@ $gf-field-label-font-size: rem-calc(14px);
 		//   margin-block-start: rem-calc(-10px);
 		// }
 		input {
-			padding: rem-calc(10px) rem-calc(35px) rem-calc(10px) rem-calc(10px);
 			inline-size: 100%;
 			min-inline-size: auto; //overwrite default min-width
+			padding: rem-calc(10px) rem-calc(35px) rem-calc(10px) rem-calc(10px);
 
 			// border: $input_focus_border;
 		}
 	}
 
-	@include media-breakpoint-down(md) {
+	@media (width < $md) {
 		// iOS fix, chosen plugin not used by default
 		.chosen-single {
 			// &:after {
@@ -477,10 +477,10 @@ $gf-field-label-font-size: rem-calc(14px);
 			font-size: rem-calc(16px);
 			letter-spacing: rem-calc(1px);
 			text-transform: capitalize;
-			padding-inline: rem-calc(15px);
-			border: $input-border-width solid $input-border-color;
 			inline-size: 100%;
 			max-inline-size: 100%;
+			padding-inline: rem-calc(15px);
+			border: $input-border-width solid $input-border-color;
 		}
 	}
 } // gfrom-wrapper
@@ -518,7 +518,7 @@ $gf-field-label-font-size: rem-calc(14px);
 			border: rem-calc(1px) solid #e8e8e8;
 			position: relative;
 
-			@include media-breakpoint-up(md) {
+			@media (width >= $md) {
 				// padding: rem-calc( 10px ) $input_py_md;
 			}
 		}
@@ -527,12 +527,12 @@ $gf-field-label-font-size: rem-calc(14px);
 		.search-choice-close {
 			text-align: center;
 			display: block;
+			inline-size: rem-calc(20px);
+			block-size: rem-calc(20px);
 			position: absolute;
 			top: 50%;
 			right: rem-calc(10px);
 			transform: translateY(-50%);
-			block-size: rem-calc(20px);
-			inline-size: rem-calc(20px);
 			cursor: pointer;
 
 			&:hover {
@@ -619,11 +619,11 @@ $gf-field-label-font-size: rem-calc(14px);
 // Contain entire calendar
 .datepicker-container {
 	background-color: #fff;
+	inline-size: rem-calc(300px);
+	max-inline-size: 100%;
 	padding: rem-calc(5px);
 	border: rem-calc(1px) solid rgba(#000, 0.2);
 	position: absolute;
-	inline-size: rem-calc(300px);
-	max-inline-size: 100%;
 }
 
 .datepicker-panel[data-view*='years'] {
@@ -658,11 +658,11 @@ $gf-field-label-font-size: rem-calc(14px);
 
 	// months & years
 	select {
+		inline-size: 49%;
+		min-inline-size: auto;
 		padding: rem-calc(10px) rem-calc(12px);
 		margin: 0 0 rem-calc(5px);
 		border-color: #ccc;
-		inline-size: 49%;
-		min-inline-size: auto;
 	}
 
 	.ui-datepicker-month {
@@ -730,7 +730,7 @@ table.ui-datepicker-calendar {
 	}
 }
 
-@include media-breakpoint-up(md) {
+@media (width >= $md) {
 	.gf-address-col-2,
 	.gf-address-col-3 {
 		// contain all the input & label
@@ -948,8 +948,8 @@ table.gfield_list {
 	clear: both;
 	padding: rem-calc(3px) rem-calc(5px);
 	margin-block-start: 0 !important;
-	margin-inline-start: 0 !important;
 	margin-block-end: rem-calc(5px);
+	margin-inline-start: 0 !important;
 	position: relative;
 	top: rem-calc(5px);
 }
@@ -975,16 +975,16 @@ table.gfield_list {
 //form submission loading
 .gform_ajax_spinner {
 	display: inline-block;
+	inline-size: rem-calc(40px);
+	block-size: rem-calc(40px);
 	border: rem-calc(4) solid #eee;
+	border-inline-start: rem-calc(4) solid #745c97;
 	border-radius: 50%;
 	position: absolute;
 	top: 50%;
 	right: 0;
 	transform: translateY(-50%);
 	animation: gf-ajax-spinner 1.1s infinite linear;
-	block-size: rem-calc(40px);
-	inline-size: rem-calc(40px);
-	border-inline-start: rem-calc(4) solid #745c97;
 }
 
 @keyframes gf-ajax-spinner {
@@ -1047,7 +1047,7 @@ table.gfield_list {
 // Custom checkbox and radio
 
 // Inline
-@include media-breakpoint-up(md) {
+@media (width >= $md) {
 	.gfield.gf-list-inline {
 		.gfield_checkbox,
 		.gfield_radio {
@@ -1064,7 +1064,7 @@ table.gfield_list {
 }
 
 // Two columns
-@include media-breakpoint-up(md) {
+@media (width >= $md) {
 	.gfield.gf-list-col-2 {
 		.gfield_checkbox,
 		.gfield_radio {
@@ -1072,8 +1072,8 @@ table.gfield_list {
 
 			> li {
 				float: left;
-				padding: 0 rem-calc(15px);
 				inline-size: 50%;
+				padding: 0 rem-calc(15px);
 
 				&:nth-child(2n + 1) {
 					clear: both;
@@ -1085,7 +1085,7 @@ table.gfield_list {
 
 // Covered
 .gfield.gf-list-enhanced {
-	@include media-breakpoint-up(md) {
+	@media (width >= $md) {
 		&.gf-list-col-2 {
 			.gfield_checkbox,
 			.gfield_radio {
@@ -1110,8 +1110,8 @@ table.gfield_list {
 			line-height: 1.3;
 			display: inline-block;
 			padding: rem-calc(10px) rem-calc(15px) rem-calc(10px) rem-calc(30px);
-			margin-inline-start: 0; //overwrite standard above
 			margin-block-end: 0;
+			margin-inline-start: 0; //overwrite standard above
 
 			&::before {
 				font-size: rem-calc(22);
@@ -1234,7 +1234,7 @@ table.gfield_list {
 		}
 
 		// Breakpoint
-		@include media-breakpoint-down(sm) {
+		@media (width < $sm) {
 			> ul {
 				.gfield {
 					&:nth-last-child(2) {
@@ -1244,7 +1244,7 @@ table.gfield_list {
 			}
 		}
 
-		@include media-breakpoint-up(md) {
+		@media (width >= $md) {
 			margin-inline: rem-calc(-10px);
 
 			> ul {
@@ -1281,13 +1281,13 @@ table.gfield_list {
 		@include list-unstyled;
 		@include clearfix;
 
-		@include media-breakpoint-up(md) {
+		@media (width >= $md) {
 			margin-inline: rem-calc(-15px);
 
 			.gf-block-col-2 {
 				float: left;
-				padding: 0 rem-calc(15px);
 				inline-size: 50%;
+				padding: 0 rem-calc(15px);
 			}
 		}
 
@@ -1322,9 +1322,9 @@ table.gfield_list {
 	.hidden_label > .gfield-label {
 		font-size: 0;
 		visibility: hidden;
+		block-size: 0;
 		margin-block-end: 0;
 		opacity: 0;
-		block-size: 0;
 	}
 
 	.gfield.gf-label-transparent .gfield_label {
@@ -1350,20 +1350,20 @@ table.gfield_list {
 		}
 	}
 
-	@include media-breakpoint-up(md) {
+	@media (width >= $md) {
 		.gfield.gf-label-inline {
 			display: flex;
 			flex-wrap: wrap;
 			align-items: center;
 
 			.gfield_label {
-				margin-inline-end: rem-calc(20px);
 				margin-block-end: 0;
+				margin-inline-end: rem-calc(20px);
 			}
 
 			.gfield_description {
-				margin-inline-start: rem-calc(10px);
 				margin-block-end: 0;
+				margin-inline-start: rem-calc(10px);
 			}
 		}
 	}
@@ -1479,7 +1479,7 @@ $padding: rem-calc(10px);
 	.gf-right-half {
 		inline-size: 100%;
 
-		@include media-breakpoint-up(sm) {
+		@media (width >= $sm) {
 			inline-size: 50%;
 		}
 	}
@@ -1492,7 +1492,7 @@ $padding: rem-calc(10px);
 	.gf-right-third {
 		inline-size: 100%;
 
-		@include media-breakpoint-up(md) {
+		@media (width >= $md) {
 			inline-size: 33.333333%;
 		}
 	}
@@ -1507,11 +1507,11 @@ $padding: rem-calc(10px);
 	.gf-fourth-quarter {
 		inline-size: 100%;
 
-		@include media-breakpoint-up(sm) {
+		@media (width >= $sm) {
 			inline-size: 50%;
 		}
 
-		@include media-breakpoint-up(md) {
+		@media (width >= $md) {
 			inline-size: 25%;
 		}
 	}
@@ -1527,7 +1527,7 @@ $padding: rem-calc(10px);
 
 	.gf_left_half,
 	.gf-left-half {
-		@include media-breakpoint-up(sm) {
+		@media (width >= $sm) {
 			padding-inline-end: $padding;
 		}
 	}
@@ -1536,7 +1536,7 @@ $padding: rem-calc(10px);
 	.gf_middle_third,
 	.gf-left-third,
 	.gf-middle-third {
-		@include media-breakpoint-up(md) {
+		@media (width >= $md) {
 			padding-inline-end: $padding;
 		}
 	}
@@ -1545,21 +1545,21 @@ $padding: rem-calc(10px);
 	.gf_second_quarter,
 	.gf-first-quarter,
 	.gf-second-quarter {
-		@include media-breakpoint-up(sm) {
+		@media (width >= $sm) {
 			padding-inline-end: $padding;
 		}
 	}
 
 	.gf_third_quarter,
 	.gf-third-quarter {
-		@include media-breakpoint-up(md) {
+		@media (width >= $md) {
 			padding-inline-end: $padding;
 		}
 	}
 
 	.gf_right_half,
 	.gf-right-half {
-		@include media-breakpoint-up(sm) {
+		@media (width >= $sm) {
 			padding-inline-start: $padding;
 		}
 	}
@@ -1568,7 +1568,7 @@ $padding: rem-calc(10px);
 	.gf_right_third,
 	.gf-middle-third,
 	.gf-right-third {
-		@include media-breakpoint-up(md) {
+		@media (width >= $md) {
 			padding-inline-start: $padding;
 		}
 	}
@@ -1577,23 +1577,23 @@ $padding: rem-calc(10px);
 	.gf_fourth_quarter,
 	.gf-second-quarter,
 	.gf-fourth-quarter {
-		@include media-breakpoint-up(sm) {
+		@media (width >= $sm) {
 			padding-inline-start: $padding;
 		}
 	}
 
 	.gf_third_quarter,
 	.gf-third-quarter {
-		@include media-breakpoint-up(md) {
+		@media (width >= $md) {
 			padding-inline-start: $padding;
 		}
 	}
 
 	.gf_inline,
 	.gf-inline {
-		padding-inline-end: $padding * 2;
 		inline-size: auto;
 		min-inline-size: auto;
+		padding-inline-end: $padding * 2;
 	}
 
 	.gf_list_2col,
@@ -1623,7 +1623,7 @@ $padding: rem-calc(10px);
 		.gfield-radio li {
 			inline-size: 100%;
 
-			@include media-breakpoint-up(sm) {
+			@media (width >= $sm) {
 				inline-size: 50%;
 			}
 		}
@@ -1637,7 +1637,7 @@ $padding: rem-calc(10px);
 		.gfield-radio li {
 			inline-size: 100%;
 
-			@include media-breakpoint-up(md) {
+			@media (width >= $md) {
 				inline-size: 33.333333%;
 			}
 		}
@@ -1651,11 +1651,11 @@ $padding: rem-calc(10px);
 		.gfield-radio li {
 			inline-size: 100%;
 
-			@include media-breakpoint-up(sm) {
+			@media (width >= $sm) {
 				inline-size: 50%;
 			}
 
-			@include media-breakpoint-up(md) {
+			@media (width >= $md) {
 				inline-size: 25%;
 			}
 		}
@@ -1669,11 +1669,11 @@ $padding: rem-calc(10px);
 		.gfield-radio li {
 			inline-size: 100%;
 
-			@include media-breakpoint-up(sm) {
+			@media (width >= $sm) {
 				inline-size: 50%;
 			}
 
-			@include media-breakpoint-up(md) {
+			@media (width >= $md) {
 				inline-size: 20%;
 			}
 		}
@@ -1741,10 +1741,10 @@ $padding: rem-calc(10px);
 
 	.gf_scroll_text,
 	.gf-scroll-text {
+		block-size: rem-calc(240px);
 		padding: $padding * 2;
 		border: rem-calc(1px) solid #ddd;
 		overflow: hidden scroll;
-		block-size: rem-calc(240px);
 	}
 
 	.gf_hide_ampm .gfield_time_ampm,

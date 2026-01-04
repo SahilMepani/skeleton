@@ -263,13 +263,13 @@ Change the directory structure for some of the settings above to match yours.
 // ❌ NEVER use values for breakpoint
 @media (min-width: 768px) {
 }
-@include media-breakpoint-down(md) {
+@media (width < $md) {
 }
 
 // ✅ ALWAYS use $grid-breakpoints map and custom function alreadt defined
-@include media-breakpoint-up(md) {
+@media (width >= $md) {
 }
-@include media-breakpoint-up(lg) {
+@media (width >= $lg) {
 }
 ```
 

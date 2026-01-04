@@ -3,6 +3,7 @@
 This document captures the established design patterns, conventions, and best practices for the Skeleton WordPress theme.
 
 ## Table of Contents
+
 1. [Critical Rules](#critical-rules)
 2. [SCSS Patterns](#scss-patterns)
 3. [PHP Patterns](#php-patterns)
@@ -19,6 +20,7 @@ This document captures the established design patterns, conventions, and best pr
 ### NEVER Violate These Rules
 
 #### 1. No Inline Styles
+
 ```php
 // ❌ NEVER
 <div style="color: red; padding: 20px;">
@@ -28,6 +30,7 @@ This document captures the established design patterns, conventions, and best pr
 ```
 
 #### 2. No Raw px Values in SCSS
+
 ```scss
 // ❌ NEVER
 .component {
@@ -51,30 +54,40 @@ This document captures the established design patterns, conventions, and best pr
 ```
 
 **Exceptions where px is allowed:**
+
 - `1px` borders
 - Box shadows
 - Very small values (under 4px)
 
 #### 3. No @media Breakpoints Directly
+
 ```scss
 // ❌ NEVER
-@media (min-width: 768px) { }
-@media (max-width: 768px) { }
-@media screen and (min-width: 992px) { }
+@media (min-width: 768px) {
+}
+@media (max-width: 768px) {
+}
+@media screen and (min-width: 992px) {
+}
 
-// ✅ ALWAYS use media-breakpoint-up()
-@include media-breakpoint-up(md) { }
-@include media-breakpoint-up(lg) { }
+// ✅ ALWAYS use media queries up
+@media (width >= $md) {
+}
+@media (width < $md) {
+}
+@media (width >= $lg) {
+}
 ```
 
-#### 4. No Desktop-First / media-breakpoint-down
+#### 4. No Desktop-First / No media queries with max-width
+
 ```scss
 // ❌ NEVER - Desktop-first
 .component {
 	font-size: fluid(24, 32);
 	grid-template-columns: repeat(3, 1fr);
 
-	@include media-breakpoint-down(md) {
+	@media (width < $md) {
 		font-size: fluid(16, 20);
 		grid-template-columns: 1fr;
 	}
@@ -85,7 +98,7 @@ This document captures the established design patterns, conventions, and best pr
 	font-size: fluid(16, 20);
 	grid-template-columns: 1fr;
 
-	@include media-breakpoint-up(lg) {
+	@media (width >= $lg) {
 		font-size: fluid(24, 32);
 		grid-template-columns: repeat(3, 1fr);
 	}
@@ -138,24 +151,36 @@ font-size: fluid(16, 24, md, xl);
 // Available breakpoints
 $grid-breakpoints: (
 	'xs': 0,
-	'ph': 23.4375rem,    // 375px
-	'sm': 36rem,         // 576px
-	'md': 48rem,         // 768px
-	'lg': 62rem,         // 992px
-	'xl': 75rem,         // 1200px
-	'xxl': 87.5rem,      // 1400px
-	'xxxl': 100rem       // 1600px
+	'ph': 23.4375rem,
+	// 375px
+	'sm': 36rem,
+	// 576px
+	'md': 48rem,
+	// 768px
+	'lg': 62rem,
+	// 992px
+	'xl': 75rem,
+	// 1200px
+	'xxl': 87.5rem,
+	// 1400px
+	'xxxl': 100rem // 1600px
 );
 
 // Usage (mobile-first ONLY)
-@include media-breakpoint-up(sm) { }   // 576px+
-@include media-breakpoint-up(md) { }   // 768px+
-@include media-breakpoint-up(lg) { }   // 992px+
-@include media-breakpoint-up(xl) { }   // 1200px+
-@include media-breakpoint-up(xxl) { }  // 1400px+
+@media (width >= $sm) {
+} // 576px+
+@media (width >= $md) {
+} // 768px+
+@media (width >= $lg) {
+} // 992px+
+@media (width >= $xl) {
+} // 1200px+
+@media (width >= $xxl) {
+} // 1400px+
 ```
 
 **Usage Pattern:**
+
 ```scss
 .component {
 	// Mobile styles (default)
@@ -163,13 +188,13 @@ $grid-breakpoints: (
 	flex-direction: column;
 	padding: fluid(16, 20);
 
-	@include media-breakpoint-up(md) {
+	@media (width >= $md) {
 		// Tablet and up (768px+)
 		flex-direction: row;
 		padding: fluid(20, 32);
 	}
 
-	@include media-breakpoint-up(lg) {
+	@media (width >= $lg) {
 		// Desktop and up (992px+)
 		padding: fluid(32, 48);
 	}
@@ -180,19 +205,26 @@ $grid-breakpoints: (
 
 ```scss
 // Use lowercase with hyphens for class names
-.hero-slider-section { }
-.header-nav-toggle { }
-.site-header { }
+.hero-slider-section {
+}
+.header-nav-toggle {
+}
+.site-header {
+}
 
 // Section naming (full-width blocks)
-.block-name-section { }
+.block-name-section {
+}
 
 // JS-controlled classes use 'js-' prefix
-.js-active { }
-.js-popup-active { }
+.js-active {
+}
+.js-popup-active {
+}
 
 // Inner wrappers (rare)
-.inner-section { }
+.inner-section {
+}
 ```
 
 ### CSS Variables Pattern
@@ -213,34 +245,36 @@ $grid-breakpoints: (
 ```
 
 ### Grid Layout Pattern
+
 ```scss
 .grid {
 	display: grid;
 	gap: fluid(16, 32);
 	grid-template-columns: 1fr;
 
-	@include media-breakpoint-up(md) {
+	@media (width >= $md) {
 		grid-template-columns: repeat(2, 1fr);
 	}
 
-	@include media-breakpoint-up(lg) {
+	@media (width >= $lg) {
 		grid-template-columns: repeat(3, 1fr);
 	}
 
-	@include media-breakpoint-up(xl) {
+	@media (width >= $xl) {
 		grid-template-columns: repeat(4, 1fr);
 	}
 }
 ```
 
 ### Flexbox Pattern
+
 ```scss
 .flex-container {
 	display: flex;
 	flex-direction: column;
 	gap: fluid(12, 16);
 
-	@include media-breakpoint-up(md) {
+	@media (width >= $md) {
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
@@ -249,6 +283,7 @@ $grid-breakpoints: (
 ```
 
 ### Full-Height Section Pattern
+
 ```scss
 .hero-section {
 	block-size: calc(100svh - var(--header-height, rem-calc(65)));
@@ -272,6 +307,7 @@ esc_html_e( 'Skip to content', 'skel' );
 ```
 
 ### Escaping Output (ALWAYS)
+
 ```php
 // Text content
 echo esc_html( $text );
@@ -291,6 +327,7 @@ esc_html_e( 'Text', 'skel' );
 ```
 
 ### Sanitizing Input (ALWAYS)
+
 ```php
 $clean_text = sanitize_text_field( $_POST['field'] );
 $clean_email = sanitize_email( $_POST['email'] );
@@ -299,6 +336,7 @@ $clean_int = absint( $_GET['id'] );
 ```
 
 ### Template Parts
+
 ```php
 // Load template part
 get_template_part( 'template-parts/content', get_post_type() );
@@ -313,6 +351,7 @@ $style = $args['style'] ?? 'default';
 ```
 
 ### ACF Block Template Pattern
+
 ```php
 <?php
 // Set thumbnail preview in backend.
@@ -359,6 +398,7 @@ $unique_id      = get_field( 'unique_id' );
 ```
 
 ### The Loop
+
 ```php
 <?php if ( have_posts() ) : ?>
 	<?php while ( have_posts() ) : the_post(); ?>
@@ -375,6 +415,7 @@ $unique_id      = get_field( 'unique_id' );
 ```
 
 ### Hooks Pattern
+
 ```php
 // Actions
 add_action( 'after_setup_theme', 'skel_setup' );
@@ -391,6 +432,7 @@ add_filter( 'script_loader_tag', 'modify_script_attributes', 10, 3 );
 ## JavaScript Patterns
 
 ### Arrow Function IIFE Pattern (Required)
+
 ```javascript
 (() => {
 	// All code here
@@ -408,9 +450,11 @@ add_filter( 'script_loader_tag', 'modify_script_attributes', 10, 3 );
 ```
 
 ### Formatting Rules
+
 ```javascript
 // NO spaces inside parentheses (standard JS)
-if (condition) { }
+if (condition) {
+}
 document.querySelector('.selector');
 functionName(arg1, arg2);
 
@@ -419,13 +463,14 @@ const element = document.querySelector('.element');
 
 // camelCase for variables and functions
 const headerNavToggle = document.querySelector('.header-nav-toggle');
-const handleClick = (event) => { };
+const handleClick = event => {};
 ```
 
 ### Event Handling
+
 ```javascript
 // Named handler functions
-const handleClick = (event) => {
+const handleClick = event => {
 	event.preventDefault();
 	const target = event.currentTarget;
 	// Handle click
@@ -434,13 +479,14 @@ const handleClick = (event) => {
 element.addEventListener('click', handleClick);
 
 // Arrow functions in listeners
-headerNavToggle.addEventListener('click', (e) => {
+headerNavToggle.addEventListener('click', e => {
 	e.preventDefault();
 	toggleNavigation();
 });
 ```
 
 ### Class Toggling Pattern
+
 ```javascript
 // Use 'js-' prefix for JS-controlled classes
 const activeClass = 'js-active';
@@ -469,8 +515,9 @@ const closeNavigation = () => {
 ```
 
 ### Async/Await
+
 ```javascript
-const fetchData = async (url) => {
+const fetchData = async url => {
 	try {
 		const response = await fetch(url);
 
@@ -493,26 +540,33 @@ const fetchData = async (url) => {
 ### Animation Attributes (data-inview, data-aos)
 
 **`data-inview`**
+
 - Marks elements to be observed for viewport entry
 - When element enters viewport, `data-inview="true"` is set
 
 **`data-inview-repeat`**
+
 - Similar to `data-inview`, but attribute is removed when element exits viewport
 
 **`data-inview-offset`**
+
 - Specifies offset for when element is considered in view (px or %)
 
 **`data-inview-threshold`**
+
 - Proportion of element visible before triggering. Default: `0.05` (5%)
 
 **`data-aos`**
+
 - Animation type to apply (e.g., "fade-up", "fade")
 - Runs when `data-inview="true"`
 
 **`data-aos-stagger-item`**
+
 - Used for staggered animations among child elements
 
 ### CSS Custom Properties for Animations
+
 ```scss
 --aos-duration: 1000ms;
 --aos-delay: 0ms;
@@ -523,21 +577,27 @@ const fetchData = async (url) => {
 ### Toggle Attributes (data-toggle)
 
 **`data-toggle-click`**
+
 - Toggles `js-active` class when clicked
 
 **`data-toggle-group`**
+
 - Groups elements together. Only one has `js-active` at a time
 
 **`data-toggle-link`**
+
 - Links elements to toggle `js-active` in unison
 
 **`data-toggle-hover`**
+
 - Toggles `js-active` class on hover
 
 **`data-toggle-lenis`**
+
 - Adds/removes `data-lenis-prevent` on toggle
 
 ### Usage Examples
+
 ```html
 <!-- Click toggle with group -->
 <div data-toggle-click="example" data-toggle-group="group1"></div>
@@ -556,9 +616,11 @@ const fetchData = async (url) => {
 ### Other Data Attributes
 
 **`data-esc`**
+
 - Element closes on Escape key press
 
 **`data-lenis-prevent`**
+
 - Prevents Lenis smooth scroll on element
 
 ---
@@ -566,6 +628,7 @@ const fetchData = async (url) => {
 ## Accessibility Standards
 
 ### Focus Indicators
+
 ```scss
 .button,
 .link,
@@ -580,6 +643,7 @@ textarea {
 ```
 
 ### Reduced Motion
+
 ```scss
 @media (prefers-reduced-motion: reduce) {
 	*,
@@ -593,6 +657,7 @@ textarea {
 ```
 
 ### Screen Reader Text
+
 ```scss
 .screen-reader-text {
 	position: absolute;
@@ -621,6 +686,7 @@ textarea {
 ```
 
 ### Form Accessibility
+
 ```php
 <label for="email-field">
 	<?php esc_html_e( 'Email Address', 'skel' ); ?>
@@ -640,6 +706,7 @@ textarea {
 ```
 
 ### Skip Link
+
 ```php
 <a class="skip-link screen-reader-text" href="#site-content">
 	<?php esc_html_e( 'Skip to content', 'skel' ); ?>
@@ -647,6 +714,7 @@ textarea {
 ```
 
 ### ARIA Attributes
+
 ```php
 // Navigation toggle
 <button
@@ -669,6 +737,7 @@ textarea {
 ## File Organization
 
 ### Theme Structure
+
 ```
 skeleton/
 ├── acf-blocks/                 # ACF block templates
@@ -702,6 +771,7 @@ skeleton/
 ```
 
 ### SCSS Import Order
+
 ```scss
 // 1. Mixins (rem-calc first as it's used by config)
 @import 'partials/mixins/rem';
@@ -761,6 +831,7 @@ skeleton/
 ## Quick Reference
 
 ### SCSS Cheat Sheet
+
 ```scss
 // Fixed values (use rem-calc)
 gap: rem-calc(16);
@@ -772,14 +843,20 @@ padding: fluid(20, 40);
 gap: fluid(16, 32);
 
 // Breakpoints (mobile-first ONLY)
-@include media-breakpoint-up(sm) { }   // 576px+
-@include media-breakpoint-up(md) { }   // 768px+
-@include media-breakpoint-up(lg) { }   // 992px+
-@include media-breakpoint-up(xl) { }   // 1200px+
-@include media-breakpoint-up(xxl) { }  // 1400px+
+@media (width >= $sm) {
+} // 576px+
+@media (width >= $md) {
+} // 768px+
+@media (width >= $lg) {
+} // 992px+
+@media (width >= $xl) {
+} // 1200px+
+@media (width >= $xxl) {
+} // 1400px+
 ```
 
 ### PHP Cheat Sheet
+
 ```php
 // Escape output
 esc_html( $text )
@@ -799,6 +876,7 @@ absint( $number )
 ```
 
 ### JavaScript Cheat Sheet
+
 ```javascript
 // Arrow function IIFE
 (() => {
@@ -806,7 +884,8 @@ absint( $number )
 })();
 
 // Standard formatting (NO spaces in parentheses)
-if (condition) { }
+if (condition) {
+}
 document.querySelector('.class');
 functionName(arg);
 

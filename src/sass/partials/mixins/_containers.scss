@@ -3,7 +3,7 @@
 // Helper function to get breakpoint infix
 @function breakpoint-infix($name) {
 	$min: map.get($grid-breakpoints, $name);
-	@return if($min != 0, '-#{$name}', '');
+	@return if($min !=0, '-#{$name}', '');
 }
 
 // Responsive containers that are 100% wide until a breakpoint
@@ -14,7 +14,7 @@
 
 	$breakpoint-value: map.get($grid-breakpoints, $breakpoint);
 
-	@media (width >= $breakpoint-value) {
+	@media (width >=#{$breakpoint-value}) {
 		%responsive-container-#{$breakpoint} {
 			max-inline-size: $container-max-width;
 		}
@@ -29,7 +29,7 @@
 				}
 
 				// Once the current breakpoint is reached, stop extending
-				@if $breakpoint == $name {
+				@if $breakpoint ==$name {
 					$extend-breakpoint: false;
 				}
 			}

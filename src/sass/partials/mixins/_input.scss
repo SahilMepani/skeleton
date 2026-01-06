@@ -1,22 +1,26 @@
 @mixin input-placeholder($color: #999) {
 	&:placeholder {
 		color: $color;
-	} // Firefox 4-18
+	}
+
+	// Firefox 4-18
 	&::placeholder {
 		color: $color;
-	} // Firefox 19+
+	}
+
+	// Firefox 19+
 	&::placeholder {
 		color: $color;
-	} // Safari and Chrome
+	}
+
+	// Safari and Chrome
 }
 
-@mixin input-text(
-	$background: #fff,
+@mixin input-text($background: #fff,
 	$color: $body-color,
 	$border: #a6a6a6,
 	$border-focus: $blue,
-	$placeholder: #aaa
-) {
+	$placeholder: #aaa) {
 	background: var(--input-background, $background);
 	color: var(--input-color, $color);
 	font-weight: 700;
@@ -36,7 +40,7 @@
 	}
 
 	// required to disable auto zoom in iOS when font is less than 1 rem
-	@media screen and (min-device-pixel-ratio: 0) and (max-inline-size: 767) {
+	@media (min-device-pixel-ratio: 0) and (max-inline-size: 767) {
 		font-size: rem-calc(16) !important;
 	}
 }
@@ -56,14 +60,12 @@
 		right: fluid(10, 20);
 		transform: translateY(-50%);
 		content: '';
-		clip-path: polygon(
-			0 0,
-			rem-calc(3) 0,
-			50% rem-calc(7),
-			calc(100% - 3px) 0,
-			100% 0,
-			50% 100%
-		);
+		clip-path: polygon(0 0,
+				rem-calc(3) 0,
+				50% rem-calc(7),
+				calc(100% - 3px) 0,
+				100% 0,
+				50% 100%);
 	}
 
 	select {

@@ -143,7 +143,7 @@ this case the img-cover-block should have a aspect ratio explicitly set
 }
 @media (max-width: 768px) {
 }
-@media screen and (min-width: 992px) {
+@media (min-width: 992px) {
 }
 
 // ✅ ALWAYS use

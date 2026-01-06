@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 :root {
 	// set container max-width and half-width css variable for each breakpoints
 	////////////////////////////////////////////////
@@ -7,17 +9,14 @@
 	scrollbar-gutter: stable;
 
 	@each $breakpoint, $container-max-width in $container-max-widths {
-		@media (width >= $breakpoint) {
-			$half-width: calc(
-				(#{$container-max-width} * 0.5) - #{$container-padding-x}
-			);
+		$breakpoint-value: map.get($grid-breakpoints, $breakpoint);
+
+		@media (width >=#{$breakpoint-value}) {
+			$half-width: calc((#{$container-max-width} * 0.5) - #{$container-padding-x});
 
 			--container-max-inline-size: #{$container-max-width};
 			--container-half-width: #{$half-width};
-			--container-margin-x: calc(
-				((100% - #{$container-max-width}) * 0.5) -
-					#{$container-padding-x}
-			);
+			--container-margin-x: calc(((100% - #{$container-max-width}) * 0.5) - #{$container-padding-x});
 		}
 	}
 }
@@ -217,12 +216,12 @@ form {
 		list-style: none;
 	}
 
-	> ul {
-		> li {
+	>ul {
+		>li {
 			clear: both;
 			margin-block-end: rem-calc(15);
 
-			> label {
+			>label {
 				margin-inline-end: rem-calc(10);
 			}
 		}

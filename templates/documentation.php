@@ -504,14 +504,14 @@ h6 {
 			}
 		}
 
-		@media screen and (min-width: $min-screen) {
+		@media (min-width: $min-screen) {
 			@each $property in $properties {
 				#{$property}: calc-interpolation($min-screen, $min-value, $max-screen, $max-value);
 			}
 		}
 
 		@if ( $max-breakpoint ) {
-			@media screen and (min-width: $max-screen) {
+			@media (min-width: $max-screen) {
 				@each $property in $properties {
 					#{$property}: rem-calc( $max-value );
 				}

@@ -12,7 +12,7 @@
 	transform: translate(-50%, -50%);
 
 	/* % of current element */
-	@media screen and (orientation: landscape) {
+	@media (orientation: landscape) {
 		inline-size: 177.7778vh;
 
 		/* 100 * 16 / 9 */

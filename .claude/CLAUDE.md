@@ -75,7 +75,7 @@ Custom WordPress theme built with vanilla JavaScript, SCSS, and PHP following Wo
 }
 @media (max-width: 768px) {
 }
-@media screen and (min-width: 992px) {
+@media (min-width: 992px) {
 }
 
 // ✅ ALWAYS use media queries up

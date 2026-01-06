@@ -14,13 +14,13 @@ $grid-breakpoints: (
 $container-max-widths: (
 	// max-width value needs to be less than the (grid-breakpoints value(xxl) - $container-padding)
 	// any property added here should also be added to grid breakpoints
-	ph: 100vw,
-	sm: 100vw,
-	md: 95vw,
-	lg: 93vw,
-	xl: 93vw,
-	xxl: 93vw,
-	xxxl: 90rem // 1440px
+	'ph': 100vw,
+	'sm': 100vw,
+	'md': 95vw,
+	'lg': 93vw,
+	'xl': 93vw,
+	'xxl': 93vw,
+	'xxxl': 1440
 );
 $section-spacings: (
 	'small': (20,

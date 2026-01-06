@@ -4,7 +4,6 @@ import * as dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
 import concat from 'gulp-concat';
-import cleanCSS from 'gulp-clean-css';
 import uglify from 'gulp-uglify';
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
@@ -177,6 +176,14 @@ function lintJS() {
 	// .pipe(eslint.failAfterError());
 }
 
+function lintCSS(done) {
+	exec('npx stylelint "src/sass/**/*.scss"', (err, stdout, stderr) => {
+		if (stdout) console.log(stdout);
+		if (stderr) console.error(stderr);
+		done(); // Don't fail the task on lint errors to keep the process running
+	});
+}
+
 // Watch task
 function watch() {
 	gulp.watch('src/sass/**/*.{scss,sass}', gulp.series(sassTask));
@@ -214,6 +221,7 @@ export {
 	rtlCssTask as rtlcss,
 	jsTasks as js,
 	lintJS,
+	lintCSS,
 	buildDev, // Export dev build
 	buildProd, // Export prod build
 	prod,

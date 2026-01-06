@@ -1,11 +1,9 @@
-@media screen {
-	[data-aos] {
-		transition-delay: unset;
+[data-aos] {
+	transition-delay: unset;
 
-		@include aos-hidden;
+	@include aos-hidden;
 
-		@include aos-active {
-			@include aos-visible;
-		}
+	@include aos-active {
+		@include aos-visible;
 	}
 }

@@ -67,7 +67,7 @@ This document captures the established design patterns, conventions, and best pr
 }
 @media (max-width: 768px) {
 }
-@media screen and (min-width: 992px) {
+@media (min-width: 992px) {
 }
 
 // ✅ ALWAYS use media queries up

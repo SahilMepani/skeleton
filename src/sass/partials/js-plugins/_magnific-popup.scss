@@ -359,8 +359,9 @@ img.mfp-img {
 .mfp-gallery .mfp-image-holder .mfp-figure {
 	cursor: pointer;
 }
-@media screen and (max-inline-size: rem-calc(800)) and (orientation: landscape),
-	screen and (max-block-size: rem-calc(300)) {
+
+@media (max-inline-size: 800px) and (orientation: landscape),
+(max-block-size: 300px) {
 	.mfp-img-mobile .mfp-image-holder {
 		padding-inline-start: 0;
 		padding-inline-end: 0;
@@ -411,7 +412,8 @@ img.mfp-img {
 		right: 0;
 	}
 }
-@media all and (max-inline-size: rem-calc(900)) {
+
+@media all and (max-inline-size: 900px) {
 	.mfp-arrow {
 		transform: scale(0.75);
 	}

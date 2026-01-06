@@ -55,7 +55,7 @@
 	padding: rem-calc(10) rem-calc(15) rem-calc(10) rem-calc(50) !important;
 	position: relative;
 
-	@media (width >=$menu-breakpoint) {
+	@media (width >=#{$menu-breakpoint}) {
 		display: none;
 	}
 

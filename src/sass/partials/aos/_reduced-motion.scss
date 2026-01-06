@@ -1,3 +1,7 @@
+@use "config" as *;
+@use "../abstracts" as *;
+@use "mixins" as *;
+
 /**
  * Accessibility: Reduced Motion Mode
  * Disables AOS animations if the user has system-wide motion reduction enabled.

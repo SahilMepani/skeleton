@@ -1,5 +1,7 @@
 @use 'sass:map';
 @use 'sass:math';
+@use '../config' as *;
+@use 'placeholders' as *;
 
 // Responsive containers that are 100% wide until a breakpoint
 .container {

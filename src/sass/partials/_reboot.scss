@@ -1,3 +1,5 @@
+@use 'abstracts' as *;
+
 // Abbreviations
 // 1. Add the correct text decoration in Chrome, Edge, Opera, and Safari.
 // 2. Add explicit cursor to indicate changed behavior.
@@ -50,7 +52,6 @@ a:not([href], [class]) {
 }
 
 // Images and content
-
 img,
 svg {
 	vertical-align: middle;
@@ -127,13 +128,11 @@ select {
 // Remove the dropdown arrow only from text type inputs built with datalists in Chrome.
 // See https://stackoverflow.com/a/54997118
 
-[list]:not(
-		[type='date'],
-		[type='datetime-local'],
-		[type='month'],
-		[type='week'],
-		[type='time']
-	)::-webkit-calendar-picker-indicator {
+[list]:not([type='date'],
+	[type='datetime-local'],
+	[type='month'],
+	[type='week'],
+	[type='time'])::-webkit-calendar-picker-indicator {
 	display: none !important;
 }
 
@@ -143,7 +142,8 @@ select {
 // 3. Opinionated: add "hand" cursor to non-disabled button elements.
 
 button,
-[type="button"], // 1
+[type="button"],
+// 1
 [type="reset"],
 [type="submit"] {
 	appearance: button;

@@ -1,3 +1,7 @@
+@use "config" as *;
+@use "../abstracts" as *;
+@use "mixins" as *;
+
 [data-aos^='slide'] {
 	transition-property: transform;
 

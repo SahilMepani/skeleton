@@ -1,3 +1,5 @@
+@use "../abstracts" as *;
+
 .flexible-editor-section {
 	.text-block {
 		&:not(:last-child) {

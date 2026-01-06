@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 // Make all slides equal height
 .swiper-slide {
 	block-size: auto;

@@ -11,76 +11,65 @@
 * Requires PHP: 7.4
 */
 
-@import 'partials/mixins/rem';
-@import 'partials/config/maps';
-@import 'partials/config/colors';
-@import 'partials/config/typography';
-@import 'partials/config/variables';
-@import 'partials/mixins/placeholders';
-@import 'partials/mixins/containers';
-@import 'partials/mixins/buttons';
-@import 'partials/mixins/miscellaneous';
-@import 'partials/mixins/input';
-@import 'partials/mixins/animations';
-@import 'partials/mixins/keyframes';
+@use 'partials/abstracts' as *;
 
 // Base
-@import 'partials/reset';
-@import 'partials/reboot';
-@import 'partials/base-selectors';
+@use 'partials/reset';
+@use 'partials/reboot';
+@use 'partials/base-selectors';
 
 // JS plugins
 // Added at the top of other files for easy overwrite
-@import 'partials/js-plugins/swiper-modular';
-@import 'partials/js-plugins/magnific-popup';
-@import 'partials/js-plugins/swiper-custom';
-@import 'partials/js-plugins/magnific-popup-custom';
-@import 'partials/js-plugins/lenis';
-@import 'partials/aos/index';
+@use 'partials/js-plugins/swiper-modular';
+@use 'partials/js-plugins/magnific-popup';
+@use 'partials/js-plugins/swiper-custom';
+@use 'partials/js-plugins/magnific-popup-custom';
+@use 'partials/js-plugins/lenis';
+@use 'partials/aos/index' as aos;
 
 // Base
-@import 'partials/font-face';
-@import 'partials/base-styles';
+@use 'partials/font-face';
+@use 'partials/base-styles';
 
 // Components
-@import 'partials/components/content';
-@import 'partials/components/header';
-@import 'partials/components/header-menu';
-@import 'partials/components/search-form';
-@import 'partials/components/footer';
+@use 'partials/components/content';
+@use 'partials/components/header';
+@use 'partials/components/header-menu';
+@use 'partials/components/search-form';
+@use 'partials/components/footer';
 
 // Template Parts
-@import 'partials/template-parts/swiper-navigation';
-@import 'partials/template-parts/social-links';
-@import 'partials/template-parts/breadcrumbs';
+@use 'partials/template-parts/swiper-navigation';
+@use 'partials/template-parts/social-links';
+@use 'partials/template-parts/breadcrumbs';
 
 // ACF Blocks
-@import 'partials/acf-blocks/visual-editor';
-@import 'partials/acf-blocks/search-result';
-@import 'partials/acf-blocks/flexible-editor';
-@import 'partials/acf-blocks/spacer';
-@import 'partials/acf-blocks/two-columns';
-@import 'partials/acf-blocks/not-found-404';
-@import 'partials/acf-blocks/hero-slider';
-@import 'partials/acf-blocks/faqs';
-@import 'partials/acf-blocks/logo-slider';
+@use 'partials/acf-blocks/visual-editor';
+@use 'partials/acf-blocks/search-result';
+@use 'partials/acf-blocks/flexible-editor';
+@use 'partials/acf-blocks/spacer';
+@use 'partials/acf-blocks/two-columns';
+@use 'partials/acf-blocks/not-found-404';
+@use 'partials/acf-blocks/hero-slider';
+@use 'partials/acf-blocks/faqs';
+@use 'partials/acf-blocks/logo-slider';
 
 // END ACF Blocks
 
 // Templates
-@import 'partials/templates/index';
-@import 'partials/templates/front-page';
-@import 'partials/templates/single';
-@import 'partials/templates/multiple-slider';
+@use 'partials/templates/index';
+@use 'partials/templates/front-page';
+@use 'partials/templates/single';
+@use 'partials/templates/multiple-slider';
 
 // WP plugins
-@import 'partials/wp-plugins/gravity-forms';
+@use 'partials/wp-plugins/gravity-forms';
 
 // Helpers
-@import 'partials/helpers/buttons';
-@import 'partials/helpers/section-spacing';
-@import 'partials/helpers/miscellaneous';
+@use 'partials/helpers/buttons';
+@use 'partials/helpers/section-spacing';
+@use 'partials/helpers/miscellaneous';
 
 // Utilities
-@import 'partials/utilities/images';
-@import 'partials/utilities/rtl';
+@use 'partials/utilities/images';
+@use 'partials/utilities/rtl';

@@ -24,7 +24,7 @@ const colors = {
 	green: '\x1b[32m',
 	yellow: '\x1b[33m',
 	blue: '\x1b[34m',
-	cyan: '\x1b[36m',
+	cyan: '\x1b[36m'
 };
 
 function log(message, color = 'reset') {
@@ -75,10 +75,10 @@ function getImportedFiles() {
 			continue;
 		}
 
-		// Match @import statements
-		const match = trimmed.match(/@import\s+['"]([^'"]+)['"]/);
+		// Match @import or @use statements
+		const match = trimmed.match(/@(import|use)\s+['"]([^'"]+)['"]/);
 		if (match) {
-			const importPath = match[1];
+			const importPath = match[2];
 
 			// Only process imports from partials/
 			if (importPath.startsWith('partials/')) {
@@ -111,7 +111,9 @@ function getAllScssFiles(dir, baseDir = '') {
 
 		for (const entry of entries) {
 			const fullPath = path.join(dir, entry.name);
-			const relativePath = baseDir ? `${baseDir}/${entry.name}` : entry.name;
+			const relativePath = baseDir
+				? `${baseDir}/${entry.name}`
+				: entry.name;
 
 			if (entry.isDirectory()) {
 				files.push(...getAllScssFiles(fullPath, relativePath));
@@ -155,9 +157,16 @@ function getAllDirectories(dir, baseDir = '') {
 
 		for (const entry of entries) {
 			if (entry.isDirectory()) {
-				const relativePath = baseDir ? `${baseDir}/${entry.name}` : entry.name;
+				const relativePath = baseDir
+					? `${baseDir}/${entry.name}`
+					: entry.name;
 				directories.push(relativePath);
-				directories.push(...getAllDirectories(path.join(dir, entry.name), relativePath));
+				directories.push(
+					...getAllDirectories(
+						path.join(dir, entry.name),
+						relativePath
+					)
+				);
 			}
 		}
 	} catch (err) {
@@ -201,7 +210,9 @@ function removeEmptyDirectories() {
 				fs.rmdirSync(fullPath);
 				removedDirs.push(dir);
 			} catch (err) {
-				warning(`Could not remove directory: ${fullPath} - ${err.message}`);
+				warning(
+					`Could not remove directory: ${fullPath} - ${err.message}`
+				);
 			}
 		}
 	}

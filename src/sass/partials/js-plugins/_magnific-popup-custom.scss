@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 /* Fullscreen Video using Magnific Popup */
 .mfp-fullscreen-video {
 	.mfp-content {
@@ -67,7 +69,8 @@
 			opacity: 1;
 		}
 	}
-	@media (width >= $md) {
+
+	@media (width >=$md) {
 		.mfp-close {
 			font-size: rem-calc(60);
 			inline-size: rem-calc(60);

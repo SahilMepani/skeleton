@@ -1,3 +1,5 @@
+@use '../config' as *;
+
 @mixin stagger-animation($animation, $child, $interval: 100) {
 	$delay: $interval;
 

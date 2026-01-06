@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 .site-header {
 	background-color: orange;
 	padding-block: rem-calc(10);

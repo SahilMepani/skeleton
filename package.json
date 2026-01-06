@@ -3,6 +3,7 @@
 	"devDependencies": {
 		"autoprefixer": "^10.4.19",
 		"browser-sync": "^3.0.2",
+		"critical": "^7.2.1",
 		"cross-env": "^7.0.3",
 		"cssnano": "^7.0.4",
 		"del": "^7.1.0",
@@ -13,6 +14,8 @@
 		"gulp-concat": "^2.6.1",
 		"gulp-eslint": "^6.0.0",
 		"gulp-if": "^3.0.0",
+		"gulp-imagemin": "^9.2.0",
+		"gulp-newer": "^1.4.0",
 		"gulp-postcss": "^10.0.0",
 		"gulp-purgecss": "^6.0.0",
 		"gulp-rtlcss": "^2.0.0",
@@ -21,11 +24,13 @@
 		"gulp-wrapper": "^1.0.0",
 		"postcss-sort-media-queries": "^5.2.0",
 		"sass": "^1.77.8",
+		"sharp": "^0.34.5",
 		"stylelint": "^16.16.0",
 		"stylelint-config-standard": "^37.0.0",
 		"stylelint-config-standard-scss": "^14.0.0",
 		"stylelint-order": "^6.0.3",
-		"stylelint-scss": "^6.11.1"
+		"stylelint-scss": "^6.11.1",
+		"through2": "^4.0.2"
 	},
 	"scripts": {
 		"clean": "gulp clean",

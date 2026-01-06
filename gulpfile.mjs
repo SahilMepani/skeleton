@@ -16,6 +16,70 @@ import { deleteAsync } from 'del';
 import browserSync from 'browser-sync';
 import wrapper from 'gulp-wrapper';
 import gulpEsbuild from 'gulp-esbuild';
+import imagemin from 'gulp-imagemin';
+import newer from 'gulp-newer';
+import sharp from 'sharp';
+import through from 'through2';
+import { generate } from 'critical';
+
+// Image optimization task
+function imagesTask() {
+	return gulp
+		.src('src/images/**/*')
+		.pipe(newer('images'))
+		.pipe(imagemin())
+		.pipe(gulp.dest('images'))
+		.pipe(browserSyncInstance.stream());
+}
+
+// WebP generation task
+function webpTask() {
+	return gulp
+		.src('src/images/**/*.{jpg,jpeg,png}')
+		.pipe(newer({ extension: '.webp', dest: 'images' }))
+		.pipe(
+			through.obj(function (file, enc, cb) {
+				if (file.isNull()) return cb(null, file);
+				if (file.isStream())
+					return cb(new Error('Streaming not supported'));
+
+				sharp(file.contents)
+					.webp()
+					.toBuffer()
+					.then(buffer => {
+						file.contents = buffer;
+						file.path = file.path.replace(
+							/\.(jpg|jpeg|png)$/,
+							'.webp'
+						);
+						cb(null, file);
+					})
+					.catch(err => cb(err));
+			})
+		)
+		.pipe(gulp.dest('images'))
+		.pipe(browserSyncInstance.stream());
+}
+
+// Critical CSS task
+function criticalTask() {
+	return generate({
+		inline: false,
+		base: './',
+		src: process.env.LOCAL_URL,
+		css: ['style.css'],
+		target: {
+			css: 'critical.css'
+		},
+		width: 1300,
+		height: 900,
+		extract: false,
+		ignore: {
+			atrule: ['@font-face'],
+			decl: (node, value) => /url\(/.test(value)
+		}
+	});
+}
 
 // Swiper JS task using esbuild
 function swiperJsTask() {
@@ -209,6 +273,7 @@ function watch() {
 	gulp.watch('src/sass/**/*.{scss,sass}', gulp.series(sassTask));
 	gulp.watch('src/js/swiper-init.js', gulp.series(swiperJsTask));
 	gulp.watch('src/js/**/*.js', gulp.series(jsTasks));
+	gulp.watch('src/images/**/*', gulp.series(imagesTask, webpTask));
 	gulp.watch([
 		'*.html',
 		'*.php',
@@ -219,15 +284,20 @@ function watch() {
 
 // Define complex tasks
 const jsTasks = gulp.series(swiperJsTask, pluginsJsTask, customJsTask);
+const imgTasks = gulp.series(imagesTask, webpTask);
 
 // Dev build sequence (no purgecss)
-const buildDev = gulp.series(sassTask, gulp.parallel(lintJS, jsTasks));
+const buildDev = gulp.series(
+	gulp.parallel(sassTask, imgTasks),
+	gulp.parallel(lintJS, jsTasks)
+);
 
 // Prod build sequence (includes purgecss)
 const buildProd = gulp.series(
-	sassTask,
+	gulp.parallel(sassTask, imgTasks),
 	gulp.parallel(rtlCssTask, lintJS, jsTasks), // Run JS/Lint in parallel with SCSS
-	purgeCSSTask // Run PurgeCSS after initial CSS is built
+	purgeCSSTask, // Run PurgeCSS after initial CSS is built
+	criticalTask // Generate critical CSS last
 );
 
 const prod = gulp.series(buildProd, serve, watch);
@@ -240,6 +310,9 @@ export {
 	purgeCSSTask as purgecss,
 	rtlCssTask as rtlcss,
 	jsTasks as js,
+	imagesTask as images,
+	webpTask as webp,
+	criticalTask as critical,
 	lintJS,
 	lintCSS,
 	buildDev, // Export dev build

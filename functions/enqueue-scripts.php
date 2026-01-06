@@ -24,6 +24,26 @@ if ( is_admin() ) {
  *
  * @return void
  */
+function skel_inline_critical_css(): void {
+	$critical_css_path = get_template_directory() . '/critical.css';
+
+	if ( file_exists( $critical_css_path ) ) {
+		echo '<style id="critical-css">' . file_get_contents( $critical_css_path ) . '</style>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+}
+add_action( 'wp_head', 'skel_inline_critical_css', 1 );
+
+/**
+ * Enqueue and register theme scripts and styles.
+ *
+ * This function loads Google Fonts, theme stylesheets, and JS files.
+ * It also ensures jQuery is deregistered (if needed) and styles are
+ * versioned automatically using their file modification times.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
 function skel_enqueue_scripts(): void {
 
 	/* Load google fonts */
@@ -44,12 +64,20 @@ function skel_enqueue_scripts(): void {
 	// wp_scripts()->add_data( 'jquery', 'group', 1 );
 	// wp_scripts()->add_data( 'jquery-core', 'group', 1 );.
 
+	$critical_css_path = get_template_directory() . '/critical.css';
+	$has_critical_css  = file_exists( $critical_css_path );
+
 	wp_enqueue_style(
 		'skel-style',
 		get_stylesheet_uri(),
 		array(),
-		filemtime( get_template_directory() . '/style.css' )
+		filemtime( get_template_directory() . '/style.css' ),
+		$has_critical_css ? 'print' : 'all'
 	);
+
+	if ( $has_critical_css ) {
+		wp_style_add_data( 'skel-style', 'onload', "this.media='all'" );
+	}
 
 	// load style-rtl for rtl languages.
 	wp_style_add_data( 'skel-style', 'rtl', 'replace' );
@@ -86,24 +114,24 @@ function skel_enqueue_scripts(): void {
 	// 'adminUrl' => admin_url( 'admin-ajax.php' ),
 	// );.
 }
-add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
+	add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
 
 
 
-/**
- * Modify script tags to add defer, async, or type="module" attributes.
- *
- * Adds defer, async, or type="module" attributes to specified script handles.
- * - 'defer' for scripts listed in the $defer array.
- * - 'async' for the 'modernizr' handle.
- * - 'type="module"' for scripts listed in the $modules array.
- *
- * This function only applies modifications on the frontend (not in the admin area).
- *
- * @param string $tag The script tag for the enqueued script.
- * @param string $handle The handle of the enqueued script.
- * @return string Modified script tag with the added attributes.
- */
+	/**
+	 * Modify script tags to add defer, async, or type="module" attributes.
+	 *
+	 * Adds defer, async, or type="module" attributes to specified script handles.
+	 * - 'defer' for scripts listed in the $defer array.
+	 * - 'async' for the 'modernizr' handle.
+	 * - 'type="module"' for scripts listed in the $modules array.
+	 *
+	 * This function only applies modifications on the frontend (not in the admin area).
+	 *
+	 * @param string $tag The script tag for the enqueued script.
+	 * @param string $handle The handle of the enqueued script.
+	 * @return string Modified script tag with the added attributes.
+	 */
 function modify_script_attributes( $tag, $handle ) {
 	// Arrays of script handles to modify.
 	$defer = array(
@@ -116,16 +144,16 @@ function modify_script_attributes( $tag, $handle ) {
 		'skel-custom',
 	);
 	$async = array(
-		// 'skel-lottie-player',
+	// 'skel-lottie-player',
 	);
 	$priority_low = array(
-		// 'skel-lottie-player',
+	// 'skel-lottie-player',
 	);
 	$priority_high = array(
-		// 'skel-lottie-player',
+	// 'skel-lottie-player',
 	);
 	$modules = array(
-		// 'skel-lottie-player',
+	// 'skel-lottie-player',
 	);
 	// Add defer attribute.
 	if ( in_array( $handle, $defer, true ) ) {
@@ -156,7 +184,7 @@ function modify_script_attributes( $tag, $handle ) {
 	return $tag;
 }
 
-// Apply the filter only on the frontend.
+	// Apply the filter only on the frontend.
 if ( ! is_admin() ) {
 	add_filter( 'script_loader_tag', 'modify_script_attributes', 10, 3 );
 }

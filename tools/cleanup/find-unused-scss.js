@@ -4,8 +4,8 @@ const path = require('path');
 // Read style.scss
 const styleScss = fs.readFileSync('src/sass/style.scss', 'utf8');
 
-// Extract all @import statements
-const imports = styleScss.match(/@import\s+['"]([^'"]+)['"]/g) || [];
+// Extract all @import or @use statements
+const imports = styleScss.match(/@(import|use)\s+['"]([^'"]+)['"]/g) || [];
 
 // Get imported paths (only those starting with 'partials/')
 const importedPaths = imports
@@ -56,7 +56,9 @@ const allFiles = getAllScssFiles('src/sass/partials');
 const unused = allFiles.filter(f => !importedFiles.has(f));
 
 console.log('=== Imported Files ===');
-Array.from(importedFiles).sort().forEach(f => console.log(f));
+Array.from(importedFiles)
+	.sort()
+	.forEach(f => console.log(f));
 
 console.log('\n=== Unused Files ===');
 unused.sort().forEach(f => console.log(f));

@@ -1,3 +1,6 @@
+@use "config" as *;
+@use "../abstracts" as *;
+
 // AOS Utility Mixins
 
 @mixin aos-visible {

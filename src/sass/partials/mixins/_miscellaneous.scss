@@ -1,4 +1,5 @@
 @use 'sass:math';
+@use '../config' as *;
 
 @mixin ratio($width, $height) {
 	font-size: 0;

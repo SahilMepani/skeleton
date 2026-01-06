@@ -1,3 +1,7 @@
+@use '../mixins/rem' as *;
+@use 'colors' as *;
+@use 'maps' as *;
+
 // Text selection
 $text-selection-bg-color: beige;
 $text-selection-color: $body-color;

@@ -1,3 +1,5 @@
+@use "../abstracts" as *;
+
 .visual-editor-section {
 	&.bg-offwhite {
 		background-color: #ddd;
@@ -6,22 +8,22 @@
 
 	&.layout-small {
 		.inner-container {
-			margin: 0 auto;
 			max-inline-size: rem-calc(600);
+			margin: 0 auto;
 		}
 	}
 
 	&.layout-medium {
 		.inner-container {
-			margin: 0 auto;
 			max-inline-size: rem-calc(800);
+			margin: 0 auto;
 		}
 	}
 
 	&.layout-large {
 		.inner-container {
-			margin: 0 auto;
 			max-inline-size: rem-calc(1000);
+			margin: 0 auto;
 		}
 	}
 

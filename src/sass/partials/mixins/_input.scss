@@ -1,3 +1,5 @@
+@use '../config' as *;
+
 @mixin input-placeholder($color: #999) {
 	&:placeholder {
 		color: $color;

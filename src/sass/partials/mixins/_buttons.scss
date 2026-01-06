@@ -1,3 +1,5 @@
+@use '../config' as *;
+
 %btn {
 	font-size: rem-calc(16);
 	font-weight: 600;
@@ -8,6 +10,7 @@
 	inline-size: fit-content;
 	user-select: none;
 	border: 0;
+
 	span {
 		text-box: trim-both cap alphabetic;
 	}
@@ -21,7 +24,8 @@
 	padding-block-start: $input-padding-y;
 	padding-block-end: $input-padding-y;
 	border: rem-calc(1) solid $bg-color;
-	@media (width >= $md) {
+
+	@media (width >=$md) {
 		padding-block-start: $input-padding-y-lg;
 		padding-block-end: $input-padding-y-lg;
 	}

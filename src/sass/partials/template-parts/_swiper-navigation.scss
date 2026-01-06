@@ -1,3 +1,6 @@
+@use "../abstracts" as *;
+@use '../abstracts' as *;
+
 .swiper-navigation {
 	display: flex;
 	gap: rem-calc(4);
@@ -7,7 +10,6 @@
 	}
 
 	&.style-floating {
-
 		.swiper-button-prev,
 		.swiper-button-next {
 			position: absolute;
@@ -58,7 +60,6 @@
 	}
 
 	.swiper-button-prev {
-
 		&:hover,
 		&:focus-visible {
 			svg {
@@ -68,7 +69,6 @@
 	}
 
 	.swiper-button-next {
-
 		&:hover,
 		&:focus-visible {
 			svg {

@@ -1,3 +1,6 @@
+@use "../abstracts" as *;
+@use '../abstracts' as *;
+
 .img-fluid,
 .img-responsive,
 img[class*='wp-image-'] {

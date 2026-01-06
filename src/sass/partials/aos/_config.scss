@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 // AOS Global Configuration
 $stagger-limit: 10 !default;
 $aos-distance-mobile: 20px !default;
@@ -31,7 +33,7 @@ $aos-distance-desktop: 40px !default;
 	--aos-timing-function: var(--aos-ease-out);
 }
 
-@media (width >= $md) {
+@media (width >=$md) {
 	:root {
 		--aos-distance: #{$aos-distance-desktop};
 	}

@@ -9,6 +9,7 @@ import uglify from 'gulp-uglify';
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
+import sortMediaQueries from 'postcss-sort-media-queries';
 import purgecss from 'gulp-purgecss';
 import rtlcss from 'gulp-rtlcss';
 import eslint from 'gulp-eslint';
@@ -71,8 +72,8 @@ function sassTask() {
 		.pipe(
 			postcss(
 				isProduction
-					? [autoprefixer(), cssnano()] // Prod plugins
-					: [autoprefixer()] // Dev plugins (no cssnano)
+					? [autoprefixer(), sortMediaQueries(), cssnano()] // Prod plugins
+					: [autoprefixer(), sortMediaQueries()] // Dev plugins (no cssnano)
 			)
 		)
 		.pipe(gulpIf(!isProduction, sourcemaps.write('.'))) // Write sourcemaps only in dev

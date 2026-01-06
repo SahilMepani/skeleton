@@ -168,13 +168,18 @@ h6:not(:last-child) {
 }
 
 /* Do not edit anything below */
-.container-fluid, .container, .container-xxxl, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container-ph {
+.container-fluid, .container {
   inline-size: 100%;
   padding-inline-end: clamp(1.25rem, 1.25rem + 1.25 * (100vw - 48rem) / 27, 2.5rem);
   padding-inline-start: clamp(1.25rem, 1.25rem + 1.25 * (100vw - 48rem) / 27, 2.5rem);
   margin-inline-end: auto;
   margin-inline-start: auto;
 }
+
+.container-fluid {
+  padding: 0 5vw;
+}
+
 .btn, .filters__item--search .clear-search {
   font-size: 1rem;
   font-weight: 600;
@@ -1717,10 +1722,6 @@ html.lenis body {
  * Disables AOS animations if the user has system-wide motion reduction enabled.
  */
 /* ----------  Required  ---------- */
-.container-fluid {
-  padding: 0 5vw;
-}
-
 .modal-backdrop {
   background: rgba(0, 0, 0, 0.5);
   visibility: hidden;
@@ -3185,7 +3186,7 @@ table td {
 /*! rtl:end:ignore */
 
 @media (width >= 375px) {
-  .container-ph, .container-xs {
+  .container {
     max-inline-size: 100vw;
   }
   :root {
@@ -3196,7 +3197,7 @@ table td {
 }
 
 @media (width >= 576px) {
-  .container-sm, .container-ph, .container-xs {
+  .container {
     max-inline-size: 100vw;
   }
   :root {
@@ -3253,7 +3254,7 @@ table td {
 }
 
 @media (width >= 768px) {
-  .container-md, .container-sm, .container-ph, .container-xs {
+  .container {
     max-inline-size: 95vw;
   }
   :root {
@@ -3438,7 +3439,7 @@ table td {
 }
 
 @media (width >= 1024px) {
-  .container-lg, .container-md, .container-sm, .container-ph, .container-xs {
+  .container {
     max-inline-size: 93vw;
   }
   :root {
@@ -3560,7 +3561,7 @@ table td {
 }
 
 @media (width >= 1200px) {
-  .container-xl, .container-lg, .container-md, .container-sm, .container-ph, .container-xs {
+  .container {
     max-inline-size: 93vw;
   }
   :root {
@@ -3571,7 +3572,7 @@ table td {
 }
 
 @media (width >= 1400px) {
-  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container-ph, .container-xs {
+  .container {
     max-inline-size: 93vw;
   }
   :root {
@@ -3582,13 +3583,13 @@ table td {
 }
 
 @media (width >= 1600px) {
-  .container-xxxl, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container-ph, .container-xs {
-    max-inline-size: 1440;
+  .container {
+    max-inline-size: 90rem;
   }
   :root {
-    --container-max-inline-size: 1440;
-    --container-half-width: calc(1440 * 0.5 - clamp(1.25rem, 1.25rem + 1.25 * (100vw - 48rem) / 27, 2.5rem));
-    --container-margin-x: calc(((100% - 1440) * 0.5) - clamp(1.25rem, 1.25rem + 1.25 * (100vw - 48rem) / 27, 2.5rem));
+    --container-max-inline-size: 90rem;
+    --container-half-width: calc(90rem * 0.5 - clamp(1.25rem, 1.25rem + 1.25 * (100vw - 48rem) / 27, 2.5rem));
+    --container-margin-x: calc(((100% - 90rem) * 0.5) - clamp(1.25rem, 1.25rem + 1.25 * (100vw - 48rem) / 27, 2.5rem));
   }
 }
 

@@ -1,14 +1,4 @@
 /* ----------  Required  ---------- */
-.container {
-	@extend %container;
-}
-
-.container-fluid {
-	padding: 0 5vw;
-
-	@extend %container;
-}
-
 .modal-backdrop {
 	background: rgb(0 0 0 / 50%);
 	visibility: hidden;
@@ -53,7 +43,7 @@ option:first-child {
 	overflow: hidden;
 	user-select: none;
 
-	@media (width >= $md) {
+	@media (width >=$md) {
 		max-inline-size: 75%;
 	}
 

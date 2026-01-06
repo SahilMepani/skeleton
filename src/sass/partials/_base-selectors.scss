@@ -1,24 +1,22 @@
 @use 'sass:map';
 
 :root {
-	// set container max-width and half-width css variable for each breakpoints
-	////////////////////////////////////////////////
-	--container-margin-x: #{$container-padding-x}; // required for mobile as below starts from breakpoint
-
 	scroll-behavior: smooth;
 	scrollbar-gutter: stable;
 
-	@each $breakpoint, $container-max-width in $container-max-widths {
-		$breakpoint-value: map.get($grid-breakpoints, $breakpoint);
+	// set container max-width and half-width css variable for each breakpoints
+	// --container-margin-x: #{$container-padding-x}; // required for mobile as below starts from breakpoint
+	// @each $breakpoint, $container-max-width in $container-max-widths {
+	// 	$breakpoint-value: map.get($grid-breakpoints, $breakpoint);
 
-		@media (width >=#{$breakpoint-value}) {
-			$half-width: calc((#{$container-max-width} * 0.5) - #{$container-padding-x});
+	// 	@media (width >=#{$breakpoint-value}) {
+	// 		$half-width: calc((#{$container-max-width} * 0.5) - #{$container-padding-x});
 
-			--container-max-inline-size: #{$container-max-width};
-			--container-half-width: #{$half-width};
-			--container-margin-x: calc(((100% - #{$container-max-width}) * 0.5) - #{$container-padding-x});
-		}
-	}
+	// 		--container-max-inline-size: #{$container-max-width};
+	// 		--container-half-width: #{$half-width};
+	// 		--container-margin-x: calc(((100% - #{$container-max-width}) * 0.5) - #{$container-padding-x});
+	// 	}
+	// }
 }
 
 ::selection {

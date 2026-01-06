@@ -2,17 +2,12 @@
 	display: flex;
 	gap: rem-calc(4);
 
-	[dir='rtl'] & {
-		flex-direction: row-reverse;
-	}
-
-	&:has(.swiper-button-prev.swiper-button-disabled):has(
-			.swiper-button-next.swiper-button-disabled
-		) {
+	&:has(.swiper-button-prev.swiper-button-disabled):has(.swiper-button-next.swiper-button-disabled) {
 		display: none !important;
 	}
 
 	&.style-floating {
+
 		.swiper-button-prev,
 		.swiper-button-next {
 			position: absolute;
@@ -21,11 +16,11 @@
 		}
 
 		.swiper-button-prev {
-			left: rem-calc(20);
+			inset-inline-start: rem-calc(20);
 		}
 
 		.swiper-button-next {
-			right: rem-calc(20);
+			inset-inline-end: rem-calc(20);
 		}
 	}
 
@@ -63,6 +58,7 @@
 	}
 
 	.swiper-button-prev {
+
 		&:hover,
 		&:focus-visible {
 			svg {
@@ -72,6 +68,7 @@
 	}
 
 	.swiper-button-next {
+
 		&:hover,
 		&:focus-visible {
 			svg {

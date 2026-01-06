@@ -8,16 +8,17 @@
 
 // Footer menu
 .footer-menu {
-	float: right;
+	float: inline-end;
+
 	@include list-unstyled;
 
 	li {
-		float: left;
-		margin: 0 0 0 rem-calc(20);
+		float: inline-start;
+		margin-inline-start: rem-calc(20);
 		list-style: none;
 
-		&.current-menu-item > a,
-		&.current_page_parent > a {
+		&.current-menu-item>a,
+		&.current_page_parent>a {
 			color: #000;
 			text-decoration: underline;
 		}

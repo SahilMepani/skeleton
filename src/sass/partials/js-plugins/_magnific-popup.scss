@@ -44,7 +44,7 @@
 }
 
 .mfp-content {
-	text-align: left;
+	text-align: start;
 	vertical-align: middle;
 	display: inline-block;
 	margin: 0 auto;
@@ -171,7 +171,7 @@ button::-moz-focus-inner {
 .mfp-image-holder .mfp-close,
 .mfp-iframe-holder .mfp-close {
 	color: #fff;
-	text-align: right;
+	text-align: end;
 	inline-size: 100%;
 	padding-inline-end: rem-calc(6);
 	right: rem-calc(-6);
@@ -347,7 +347,7 @@ img.mfp-img {
 .mfp-title {
 	color: #f3f3f3;
 	line-height: rem-calc(18);
-	text-align: left;
+	text-align: start;
 	word-wrap: break-word;
 	padding-inline-end: rem-calc(36);
 }

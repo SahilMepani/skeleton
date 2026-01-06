@@ -56,8 +56,8 @@
 		block-size: rem-calc(10);
 		border-radius: rem-calc(5);
 		position: absolute;
+		inset-inline-end: fluid(10, 20);
 		top: 50%;
-		right: fluid(10, 20);
 		transform: translateY(-50%);
 		content: '';
 		clip-path: polygon(0 0,

@@ -4,7 +4,6 @@ import * as dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
 import concat from 'gulp-concat';
-import uglify from 'gulp-uglify';
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
@@ -86,7 +85,14 @@ function purgeCSSTask() {
 		.src('./style.css')
 		.pipe(
 			purgecss({
-				content: ['**/*.php', 'src/js/**/*.js'],
+				content: [
+					'./*.php',
+					'./templates/**/*.php',
+					'./template-parts/**/*.php',
+					'./acf-blocks/**/*.php',
+					'./functions/**/*.php',
+					'./src/js/**/*.js'
+				],
 				safelist: {
 					standard: [
 						'wp-post-image',
@@ -138,10 +144,17 @@ function rtlCssTask() {
 function pluginsJsTask() {
 	return gulp
 		.src('src/js/plugins/*.js')
-		.pipe(gulpIf(!isProduction, sourcemaps.init())) // Sourcemaps only in dev
+		.pipe(gulpIf(!isProduction, sourcemaps.init()))
 		.pipe(concat('plugins.js'))
-		.pipe(gulpIf(isProduction, uglify())) // Uglify only in prod
-		.pipe(gulpIf(!isProduction, sourcemaps.write('.'))) // Write sourcemaps only in dev
+		.pipe(
+			gulpIf(
+				isProduction,
+				gulpEsbuild({
+					minify: true
+				})
+			)
+		)
+		.pipe(gulpIf(!isProduction, sourcemaps.write('.')))
 		.pipe(gulp.dest('./js'))
 		.pipe(browserSyncInstance.stream());
 }
@@ -149,7 +162,7 @@ function pluginsJsTask() {
 function customJsTask() {
 	return gulp
 		.src('src/js/custom/**/*.js')
-		.pipe(gulpIf(!isProduction, sourcemaps.init())) // Sourcemaps only in dev
+		.pipe(gulpIf(!isProduction, sourcemaps.init()))
 		.pipe(concat('custom.js'))
 		.pipe(
 			wrapper({
@@ -157,8 +170,15 @@ function customJsTask() {
 				footer: '});'
 			})
 		)
-		.pipe(gulpIf(isProduction, uglify())) // Uglify only in prod
-		.pipe(gulpIf(!isProduction, sourcemaps.write('.'))) // Write sourcemaps only in dev
+		.pipe(
+			gulpIf(
+				isProduction,
+				gulpEsbuild({
+					minify: true
+				})
+			)
+		)
+		.pipe(gulpIf(!isProduction, sourcemaps.write('.')))
 		.pipe(gulp.dest('./js'))
 		.pipe(browserSyncInstance.stream());
 }

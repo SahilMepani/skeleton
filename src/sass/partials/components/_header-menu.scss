@@ -49,7 +49,7 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 	}
 
 	@media (width >=$menu-breakpoint) {
-		float: right;
+		float: inline-end;
 	}
 
 	@media (width < $menu-breakpoint) {
@@ -279,8 +279,8 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 						inline-size: rem-calc(10);
 						margin-block-start: rem-calc(-2);
 						position: absolute;
+						inset-inline-end: $desktop-parent-menu-item-padding-block;
 						top: 50%;
-						right: $desktop-parent-menu-item-padding-block;
 						content: '';
 						clip-path: polygon(0% 0%,
 								20% 0%,
@@ -306,7 +306,6 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 
 		// any level
 		li.menu-item-has-children {
-
 			&:hover,
 			&:focus-visible {
 				>.sub-menu {
@@ -367,8 +366,8 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 
 		// first sub menu
 		>li>.sub-menu {
+			inset-inline-start: 0;
 			top: 100%;
-			left: 0;
 
 			>li.menu-item-has-children>a {
 				// padding-inline-end: $desktop-parent-menu-item-padding-block +
@@ -397,8 +396,8 @@ $desktop-sub-menu-link-padding-inline: $desktop-parent-menu-item-padding-inline;
 			inline-size: fit-content;
 			min-inline-size: $desktop-sub-menu-width;
 			max-inline-size: 40vw;
+			inset-inline-start: $desktop-sub-menu-width;
 			top: 0;
-			left: $desktop-sub-menu-width;
 		}
 	}
 }

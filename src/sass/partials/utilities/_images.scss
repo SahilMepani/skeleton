@@ -14,7 +14,7 @@ img[class*='wp-image-'] {
 		display: none;
 	}
 
-	@media (width >= $md) {
+	@media (width >=$md) {
 		.img-mobile {
 			display: none;
 		}
@@ -48,27 +48,19 @@ img[class*='wp-image-'] {
 .alignleft {
 	margin-block-end: rem-calc(20);
 
-	@media (width >= $md) {
-		float: left;
-		margin: 0 rem-calc(20) rem-calc(20) 0;
+	@media (width >=$md) {
+		float: inline-start;
+		margin-block-end: rem-calc(20);
+		margin-inline-end: rem-calc(20);
 	}
 }
 
 .alignright {
 	margin-block-end: rem-calc(20);
 
-	@media (width >= $md) {
-		float: right;
-		margin: 0 0 rem-calc(20) rem-calc(20);
+	@media (width >=$md) {
+		float: inline-end;
+		margin-block-end: rem-calc(20);
+		margin-inline-start: rem-calc(20);
 	}
-}
-
-.alignleft {
-	float: left;
-	margin: 0 rem-calc(20) rem-calc(20) 0;
-}
-
-.alignright {
-	float: right;
-	margin: 0 0 rem-calc(20) rem-calc(20);
 }

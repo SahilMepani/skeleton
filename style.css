@@ -293,18 +293,6 @@ h6 {
   overflow-wrap: break-word;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 abbr[title] {
   -webkit-text-decoration: underline dotted;
           text-decoration: underline dotted;
@@ -454,18 +442,6 @@ iframe {
   border: 0;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 :root {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
@@ -1352,18 +1328,6 @@ img.mfp-img {
 .mfp-gallery .mfp-image-holder .mfp-figure {
   cursor: pointer;
 }
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .swiper-slide {
   block-size: auto;
 }
@@ -1390,18 +1354,6 @@ img.mfp-img {
   transition: 0.2s;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 /* Fullscreen Video using Magnific Popup */
 .mfp-fullscreen-video .mfp-content {
   background-color: #000;
@@ -1511,30 +1463,6 @@ html.lenis body {
   pointer-events: none;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 :root {
   --aos-duration: 750;
   --aos-delay: 50;
@@ -1562,30 +1490,6 @@ html.lenis body {
   --aos-ease-in-out-quart: cubic-bezier(0.455, 0.03, 0.515, 0.955);
   --aos-timing-function: var(--aos-ease-out);
 }
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 [data-aos] {
   transition-delay: unset;
   visibility: hidden;
@@ -1599,18 +1503,6 @@ html.lenis body {
   pointer-events: auto;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 [data-aos^=fade] {
   opacity: 0;
   transition-property: opacity, transform;
@@ -1630,18 +1522,6 @@ html.lenis body {
   transform: translate3d(0, 0, 0) scale(1);
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 [data-aos^=zoom] {
   opacity: 0;
   transition-property: opacity, transform;
@@ -1702,18 +1582,6 @@ html.lenis body {
   transform: translate3d(calc(var(--aos-distance) * -1), 0, 0) scale(1.2);
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 [data-aos^=slide] {
   transition-property: transform;
 }
@@ -1745,18 +1613,6 @@ html.lenis body {
   transform: translate3d(-100%, 0, 0);
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 [data-aos^=flip] {
   transition-property: opacity, transform;
   backface-visibility: hidden;
@@ -1793,18 +1649,6 @@ html.lenis body {
   transform: perspective(2500px) rotateX(0);
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 [data-aos^=clip-path-] {
   transition-property: clip-path;
 }
@@ -1832,18 +1676,6 @@ html.lenis body {
   clip-path: polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%);
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 [data-aos-stagger-item]:nth-child(1) {
   transition-delay: calc(1ms * 1 * var(--aos-stagger-interval));
 }
@@ -1884,34 +1716,10 @@ html.lenis body {
   transition-delay: calc(1ms * 10 * var(--aos-stagger-interval));
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 /**
  * Accessibility: Reduced Motion Mode
  * Disables AOS animations if the user has system-wide motion reduction enabled.
  */
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 /* ----------  Required  ---------- */
 .modal-backdrop {
   background: rgba(0, 0, 0, 0.5);
@@ -1997,18 +1805,6 @@ option:first-child {
   flex: 1 0 auto;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .site-header {
   background-color: orange;
   padding-block: 0.625rem;
@@ -2101,18 +1897,6 @@ option:first-child {
   pointer-events: auto;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 /* ==============================
 =            Mobile            =
 ============================== */
@@ -2165,18 +1949,6 @@ option:first-child {
   inline-size: rem-calc(24);
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .site-footer {
   background-color: #f9f9f9;
   font-size: 0.8125rem;
@@ -2207,30 +1979,6 @@ option:first-child {
   text-decoration: underline;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .swiper-navigation {
   display: flex;
   gap: 0.25rem;
@@ -2291,18 +2039,6 @@ option:first-child {
   animation: micro-right 0.3s cubic-bezier(0.17, 0.67, 0.63, 1.55);
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .list-social-links {
   display: flex;
   align-items: center;
@@ -2322,18 +2058,6 @@ option:first-child {
   transform: scale(1.2);
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .breadcrumbs-section .inner-container {
   color: #1f2261;
   padding-block: 1rem;
@@ -2376,18 +2100,6 @@ option:first-child {
   transform: rotate(180deg);
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .visual-editor-section.bg-offwhite {
   background-color: #ddd;
   color: #fff;
@@ -2408,18 +2120,6 @@ option:first-child {
   color: blue;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .search-result-section .search-container {
   max-inline-size: 50rem;
 }
@@ -2474,18 +2174,6 @@ option:first-child {
   margin-block-end: 0;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .flexible-editor-section .text-block:not(:last-child) {
   margin-block-end: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
 }
@@ -2570,18 +2258,6 @@ option:first-child {
   margin-block-end: 0.75rem;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .two-columns-section .row {
   display: grid;
   row-gap: 1.5rem;
@@ -2611,42 +2287,6 @@ option:first-child {
     transform: scale(0.75);
   }
 }
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .hero-slider-section {
   position: relative;
 }
@@ -2664,18 +2304,6 @@ option:first-child {
   z-index: 10;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .faq-section .section-heading {
   text-align: center;
 }
@@ -2738,30 +2366,6 @@ option:first-child {
   margin: 2.5rem auto 0;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .logo-slider-section {
   background-color: #f7f3f0;
 }
@@ -2784,18 +2388,6 @@ option:first-child {
   inline-size: clamp(6.25rem, 6.25rem + 3.125 * (100vw - 48rem) / 27, 9.375rem);
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .filters__item--search form {
   position: relative;
 }
@@ -2931,30 +2523,6 @@ option:first-child {
   border-bottom-color: #393939;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .type-post {
   margin-block-end: 5rem;
 }
@@ -3041,18 +2609,6 @@ option:first-child {
   border: 0.0625rem solid #eee;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .creative-slider {
   overflow: visible;
 }
@@ -3110,18 +2666,6 @@ option:first-child {
   inset: 0;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .gform_button {
   line-height: 1.1875rem;
   justify-content: center;
@@ -3306,18 +2850,6 @@ div.gform_wrapper.gravity-theme option:first-child {
   border: 0.125rem solid #000;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .btn-reset {
   background: transparent;
   color: #393939;
@@ -3364,18 +2896,6 @@ div.gform_wrapper.gravity-theme option:first-child {
   pointer-events: none;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .section-display-off {
   display: none !important;
 }
@@ -3486,18 +3006,6 @@ div.gform_wrapper.gravity-theme option:first-child {
   padding-bottom: clamp(6.25rem, 6.25rem + 3.75 * (100vw - 48rem) / 27, 10rem);
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .bg-video {
   min-inline-size: 100%;
   block-size: 100%;
@@ -3601,30 +3109,6 @@ div.gform_wrapper.gravity-theme option:first-child {
   margin-block-end: 0;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 .img-fluid,
 .img-responsive,
 img[class*=wp-image-] {
@@ -3670,18 +3154,6 @@ img[class*=wp-image-] {
   margin-block-end: 1.25rem;
 }
 
-/*!
-* Theme Name: Skeleton
-* Theme URI: http://www.sahilmepani.com
-* Description: Responsive custom theme
-* Text Domain: skel
-* Version: 1.0
-* Author: Sahil Mepani
-* Author URI: www.sahilmepani.com
-* License: GNU General Public License v2 or later
-* License URI: http://wordpress.org/about/gpl/
-* Requires PHP: 7.4
-*/
 /*! rtl:begin:ignore */
 .phone-rtl {
   /*! rtl:ignore */

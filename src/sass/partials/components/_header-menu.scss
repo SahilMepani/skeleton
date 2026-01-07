@@ -58,7 +58,7 @@ $mobile-sub-menu-link-padding-inline: rem-calc(20);
 		background-color: $mobile-sidebar-bg-color;
 		inline-size: 100%;
 		padding: rem-calc(90) 0 rem-calc(40);
-		position: fixed;
+		position: fixed; 
 		inset: 0;
 		z-index: $z-mobile-menu;
 		transform: translateX(-100%);

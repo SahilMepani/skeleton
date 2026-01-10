@@ -54,7 +54,13 @@ function webpTask() {
 						);
 						cb(null, file);
 					})
-					.catch(err => cb(err));
+					.catch(err => {
+						console.error(
+							`Error converting ${file.relative} to WebP:`,
+							err.message
+						);
+						cb();
+					});
 			})
 		)
 		.pipe(gulp.dest('images'))

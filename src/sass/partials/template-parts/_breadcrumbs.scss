@@ -2,17 +2,17 @@
 
 .breadcrumbs-section {
 	.inner-container {
-		color: $primary;
+		color: $primary-color;
 		padding-block: rem-calc(16);
 		border-top: rem-calc(1) solid #eee;
 	}
 
 	a {
-		color: $primary;
+		color: $primary-color;
 
 		&:hover,
 		&:focus-visible {
-			color: $secondary;
+			color: $secondary-color;
 		}
 	}
 
@@ -45,7 +45,7 @@
 			}
 		}
 
-		@media (width >= $md) {
+		@media (width >=$md) {
 			.dots {
 				display: none;
 			}
@@ -53,7 +53,7 @@
 	}
 
 	.last {
-		background-color: $secondary;
+		background-color: $secondary-color;
 		color: #fff;
 		font-size: rem-calc(16);
 		block-size: rem-calc(24);

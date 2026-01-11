@@ -51,7 +51,7 @@ div.gform_wrapper.gravity-theme {
 				border-radius: 0;
 
 				&:focus-visible {
-					border-color: $primary;
+					border-color: $primary-color;
 				}
 			}
 		}
@@ -60,8 +60,7 @@ div.gform_wrapper.gravity-theme {
 			block-size: rem-calc(49);
 		}
 
-		.chosen-choices {
-		}
+		.chosen-choices {}
 
 		.gfield_required {
 			font-size: rem-calc(16);
@@ -85,14 +84,14 @@ div.gform_wrapper.gravity-theme {
 				input {
 					display: none;
 
-					&:checked + label {
+					&:checked+label {
 						&::before {
-							background-color: $primary;
+							background-color: $primary-color;
 							background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12' /%3E%3C/svg%3E");
 							background-size: contain;
 							background-position: center;
 							background-repeat: no-repeat;
-							border-color: $primary;
+							border-color: $primary-color;
 						}
 					}
 				}
@@ -124,8 +123,7 @@ div.gform_wrapper.gravity-theme {
 			padding: rem-calc(7) rem-calc(10);
 		}
 
-		.chosen-choices {
-		}
+		.chosen-choices {}
 
 		.gfield_consent_description,
 		.gfield_description {
@@ -141,14 +139,14 @@ div.gform_wrapper.gravity-theme {
 				input {
 					display: none;
 
-					&:checked + label {
+					&:checked+label {
 						&::before {
-							background-color: $primary;
+							background-color: $primary-color;
 							background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12' /%3E%3C/svg%3E");
 							background-size: contain;
 							background-position: center;
 							background-repeat: no-repeat;
-							border-color: $primary;
+							border-color: $primary-color;
 						}
 					}
 				}
@@ -161,7 +159,7 @@ div.gform_wrapper.gravity-theme {
 					padding: rem-calc(5);
 					padding-inline-start: 0;
 
-					@media (width >= $sm) {
+					@media (width >=$sm) {
 						display: flex;
 						gap: rem-calc(2);
 
@@ -183,7 +181,7 @@ div.gform_wrapper.gravity-theme {
 					}
 
 					a {
-						color: $primary;
+						color: $primary-color;
 						text-decoration: underline;
 					}
 				}

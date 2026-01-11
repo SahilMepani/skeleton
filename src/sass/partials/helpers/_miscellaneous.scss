@@ -60,7 +60,7 @@
 		}
 
 		&.current {
-			background-color: $primary;
+			background-color: $primary-color;
 			color: #fff;
 		}
 
@@ -68,7 +68,7 @@
 		&.next {
 			inline-size: fluid(30, 60);
 			block-size: fluid(30, 60);
-			border: rem-calc(1) solid $primary;
+			border: rem-calc(1) solid $primary-color;
 			border-radius: 50%;
 
 			svg {
@@ -76,7 +76,7 @@
 			}
 
 			&:hover {
-				background-color: $primary;
+				background-color: $primary-color;
 				color: #fff;
 			}
 		}

@@ -29,6 +29,24 @@
 	}
 }
 
+.swiper-scrollbar {
+	background-color: #e0e0e0;
+	block-size: rem-calc(6);
+	border-radius: rem-calc(3);
+	inset-inline: 0;
+}
+
+.swiper-scrollbar-drag {
+	background-color: #000;
+	block-size: 100%;
+	border-radius: rem-calc(3);
+	cursor: grab;
+
+	&:active {
+		cursor: grabbing;
+	}
+}
+
 // .btn-prev, .btn-next {
 //   text-align: center;
 //   color: transparent;

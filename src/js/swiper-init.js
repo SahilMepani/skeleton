@@ -5,7 +5,8 @@ import {
 	Autoplay,
 	Thumbs,
 	EffectCreative,
-	EffectFade
+	EffectFade,
+	Scrollbar
 } from 'swiper/modules';
 
 // Initialize Swiper with modules
@@ -15,7 +16,8 @@ Swiper.use([
 	Autoplay,
 	Thumbs,
 	EffectCreative,
-	EffectFade
+	EffectFade,
+	Scrollbar
 ]);
 
 // Make Swiper available globally for other scripts

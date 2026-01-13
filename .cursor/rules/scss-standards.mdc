@@ -37,7 +37,6 @@ alwaysApply: false
 
 - `1px` borders
 - Box shadows
-- Very small values (under 4px)
 
 ### 2. NEVER Use @media Directly
 

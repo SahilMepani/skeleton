@@ -1,4 +1,31 @@
-# AI Agent Guidelines for Skeleton WordPress Theme
+# Skeleton - WordPress Theme
+
+## Overview
+
+Custom WordPress theme built with vanilla JavaScript, SCSS, and PHP following WordPress coding standards. Uses ACF blocks for content editing.
+
+## Key Principles
+
+- Add `js-*` to any element targeted using JavaScript
+- Use `js-*` class when you add or remove a class using JavaScript
+- WCAG 2.1 AA compliance required
+- Use ACF fields for theme options
+- Always use arrow functions and IIFE pattern for JavaScript
+- Never use inline styles
+- Never use jQuery
+- Never use !important
+- Use tabs for indentation (not spaces)
+
+## Build & Development
+
+- `npm run dev` / `npm start`: Start development server with BrowserSync and watch tasks
+- `npm run build`: Production build (includes PurgeCSS and minification)
+- `npm run clean`: Remove `dist` directory
+
+## Linting
+
+- `npm run lint:js`: Lint JavaScript files using ESLint
+- `npm run lint:css`: Lint SCSS files using Stylelint
 
 ## Project Structure
 
@@ -62,37 +89,25 @@ skeleton/
 └── index.php
 ```
 
-### HTML/PHP
+## Quick Reference for AI Agents
 
-Class Name:
-Always use lowercase separated by hypens
+**When writing SCSS:**
 
-```html
-// Full-width sections should have a section tag and its class name to end with
-*-section
-<section class="hero-section"></section>
-<section class="banner-section"></section>
+- Values: Use `fluid(min, max)` or `rem-calc(value)`
+- Breakpoints: `@media (width >= $md)` only
+- Always mobile-first
 
-// All sections should always have a direct children named .container
-<section class="*-section">
-	<div class="container"></div>
-</section>
+**When writing PHP:**
 
-// Any wrapper class should be called *-block
-<div class="img-block">
-	<img src="" />
-</div>
-<div class="content-block">
-	<h2>This is a heading</h2>
-	<p>lorem ipsum is a paragraph text</p>
-</div>
+- Prefix: `skel_`
+- Text domain: `'skel'`
+- Always escape: `esc_html()`, `esc_attr()`, `esc_url()`
 
-// All the images except the background pattern should be added as following. In
-this case the img-cover-block should have a aspect ratio explicitly set
-<div class="img-cover-block">
-	<img src="" class="img-cover" />
-</div>
-```
+**When writing JavaScript:**
+
+- Pattern: Arrow function IIFE `(() => { })();`
+- No spaces inside parentheses
+- Use `js-` prefix for JS-controlled classes
 
 ## Critical Rules - NEVER Violate
 
@@ -155,7 +170,7 @@ this case the img-cover-block should have a aspect ratio explicitly set
 }
 ```
 
-### 4. Never Use Desktop-First mediq queries
+### 4. Never Use Desktop-First Media Queries
 
 ```scss
 // ❌ NEVER do this - Desktop-first approach
@@ -175,6 +190,44 @@ this case the img-cover-block should have a aspect ratio explicitly set
 		font-size: fluid(24, 32);
 	}
 }
+```
+
+## Should I use rem-calc() or fluid()?
+
+- Value needs to scale between mobile/desktop? → Use `fluid()`
+- Value is fixed at all sizes? → Use `rem-calc()`
+- Value under 4px? → Can use `px`
+
+## HTML/PHP Structure
+
+### Class Naming Conventions
+
+Always use lowercase separated by hyphens
+
+```html
+<!-- Full-width sections should have a section tag and its class name to end with *-section -->
+<section class="hero-section"></section>
+<section class="banner-section"></section>
+
+<!-- All sections should always have a direct children named .container -->
+<section class="*-section">
+	<div class="container"></div>
+</section>
+
+<!-- Any wrapper class should be called *-block -->
+<div class="img-block">
+	<img src="" />
+</div>
+<div class="content-block">
+	<h2>This is a heading</h2>
+	<p>lorem ipsum is a paragraph text</p>
+</div>
+
+<!-- All images except background patterns should be added as following -->
+<!-- The img-cover-block should have an aspect ratio explicitly set -->
+<div class="img-cover-block">
+	<img src="" class="img-cover" />
+</div>
 ```
 
 ## SCSS Standards
@@ -214,20 +267,14 @@ font-size: fluid(16, 24, md, xl);
 ```scss
 // Available breakpoints (mobile-first)
 $grid-breakpoints: (
-	'xs': 0,
-	'ph': 23.4375rem,
-	// 375px
-	'sm': 36rem,
-	// 576px
-	'md': 48rem,
-	// 768px
-	'lg': 62rem,
-	// 992px
-	'xl': 75rem,
-	// 1200px
-	'xxl': 87.5rem,
-	// 1400px
-	'xxxl': 100rem // 1600px
+	'xs': 0px,
+	'ph': 375px,
+	'sm': 576px,
+	'md': 768px,
+	'lg': 1024px,
+	'xl': 1200px,
+	'xxl': 1400px,
+	'xxxl': 1600px
 );
 
 // Usage (mobile-first ONLY)
@@ -297,7 +344,7 @@ Import order in `style.scss`:
 @import 'partials/utilities/images';
 ```
 
-### Naming Conventions
+### SCSS Naming Conventions
 
 ```scss
 // Use lowercase with hyphens for class names
@@ -313,6 +360,33 @@ Import order in `style.scss`:
 
 	@media (width >= $md) {
 		gap: fluid(16, 32);
+	}
+}
+```
+
+### Complete SCSS Example
+
+```scss
+// ✅ Correct - Mobile-first with fluid/rem-calc values
+.component {
+	font-size: fluid(16, 24);
+	padding: fluid(16, 32);
+	gap: rem-calc(16);
+
+	@media (width >= $md) {
+		// Tablet and up styles
+	}
+
+	@media (width >= $lg) {
+		// Desktop and up styles
+	}
+}
+
+// ❌ Wrong - Desktop-first with px values
+.component {
+	font-size: 24px;
+	@media (max-width: 768px) {
+		font-size: 16px;
 	}
 }
 ```
@@ -378,16 +452,25 @@ echo esc_attr( $attribute );
 echo esc_url( $url );
 echo wp_kses_post( $html_content );
 
+// Escaping with translation
+esc_html_e( 'Skip to content', 'skel' );
+esc_attr_e( 'Attribute text', 'skel' );
+esc_url_e( 'https://example.com', 'skel' );
+
+// Escaping for variables or function arguments
+$text = esc_html__( 'Text', 'skel' );
+$attr = esc_attr__( 'Attribute', 'skel' );
+$url = esc_url__( 'https://example.com', 'skel' );
+
 // Always sanitize input
 $clean_text = sanitize_text_field( $_POST['field'] );
 $clean_email = sanitize_email( $_POST['email'] );
 $clean_int = absint( $_GET['id'] );
 ```
 
-### Template Structure
+### ACF Block Template Pattern
 
 ```php
-// ACF Block template pattern
 <?php
 // Set thumbnail preview in backend.
 if ( isset( $block['data']['preview_image'] ) ) {
@@ -435,14 +518,16 @@ $unique_id      = get_field( 'unique_id' );
 ### Arrow Function IIFE Pattern (Required)
 
 ```javascript
+// ✅ Correct - Arrow function IIFE pattern
 (() => {
 	// All code here - 'use strict' is implicit
-	const init = () => {
-		// Initialize components
-	};
+	const element = document.querySelector('.element');
+	if (!element) return;
 
-	// Code runs immediately
-	init();
+	element.addEventListener('click', e => {
+		e.preventDefault();
+		// Handle click
+	});
 })();
 ```
 
@@ -514,7 +599,44 @@ element.classList.toggle(activeClass);
 element.classList.contains(activeClass);
 ```
 
-## Animation using data attributes
+## ACF Block Registration & Auto-generation
+
+The theme uses an automated system to register and create ACF blocks.
+
+### 1. Registering a Block
+
+Add the block name (Title Case) to the `$block_types` array in `functions/register-acf-blocks.php`.
+
+```php
+$block_types = array(
+	'Hero Slider',
+	'Faqs',
+	'New Block Name', // Add here
+);
+```
+
+### 2. Blocks with JavaScript
+
+If the block requires a dedicated JS file, add it to the `$blocks_with_js` array.
+
+```php
+$blocks_with_js = array(
+	'Hero Slider',
+	'New Block Name',
+);
+```
+
+### 3. Auto-generated Files
+
+On local environments, adding a block to `$block_types` automatically creates:
+
+- `acf-blocks/{block-slug}.php` (Template)
+- `src/sass/partials/acf-blocks/_{block-slug}.scss` (Styles)
+- `src/js/custom/acf-blocks/{block-slug}.js` (Optional JS, if added to `$blocks_with_js`)
+
+**Important:** Import new block SCSS in `src/sass/style.scss`
+
+## Animation using Data Attributes
 
 ### Key Data Attributes
 
@@ -553,7 +675,7 @@ element.classList.contains(activeClass);
 --aos-distance: 40px;
 ```
 
-## Toggle state/class using data attributes
+## Toggle State/Class using Data Attributes
 
 ### Key Data Attributes
 
@@ -587,67 +709,6 @@ element.classList.contains(activeClass);
 <div data-toggle-hover="example"></div>
 <div data-toggle-link="example"></div>
 ```
-
-## Common Mistakes to Avoid
-
-### SCSS
-
-- ❌ Using raw `px` values - Use `rem-calc()` or `fluid()`
-- ❌ Desktop-first approach
-- ❌ Using spaces for indentation - Use tabs
-- ❌ Using IDs for styling
-
-### PHP
-
-- ❌ Not escaping output
-- ❌ Not sanitizing input
-- ❌ Using wrong text domain (`skeleton` instead of `skel`)
-- ❌ Using wrong function prefix (`skeleton_` instead of `skel_`)
-- ❌ Hardcoding URLs
-- ❌ Using short PHP tags `<?`
-
-### JavaScript
-
-- ❌ Global variables
-- ❌ Using `var` instead of `const`/`let`
-- ❌ Using IIFE with function keyword - Use arrow function IIFE
-- ❌ Inline event handlers in HTML
-- ❌ Using spaces inside parentheses
-
-## ACF Block Registration & Auto-generation
-
-The theme uses an automated system to register and create ACF blocks.
-
-### 1. Registering a Block
-
-Add the block name (Title Case) to the `$block_types` array in `functions/register-acf-blocks.php`.
-
-```php
-$block_types = array(
-	'Hero Slider',
-	'Faqs',
-	'New Block Name', // Add here
-);
-```
-
-### 2. Blocks with JavaScript
-
-If the block requires a dedicated JS file, add it to the `$blocks_with_js` array.
-
-```php
-$blocks_with_js = array(
-	'Hero Slider',
-	'New Block Name',
-);
-```
-
-### 3. Auto-generated Files
-
-On local environments, the system automatically creates the following files based on the sanitized name:
-
-- `acf-blocks/new-block-name.php`
-- `src/sass/partials/acf-blocks/_new-block-name.scss`
-- `src/js/custom/acf-blocks/new-block-name.js` (if in `$blocks_with_js`)
 
 ## Key Helper Functions
 
@@ -690,15 +751,62 @@ The theme includes helper classes for RTL support, primarily for Arabic.
 </div>
 ```
 
-## Build & Development Commands
+## Common Mistakes to Avoid
 
-- `npm run dev`: Start development server (BrowserSync + Watch).
-- `npm run build`: Production build (PurgeCSS + Minification).
-- `npm run lint:js`: Lint JavaScript.
-- `npm run lint:css`: Lint SCSS.
+### SCSS
+
+- ❌ Using raw `px` values - Use `rem-calc()` or `fluid()`
+- ❌ Desktop-first approach - Always use mobile-first
+- ❌ Using spaces for indentation - Use tabs
+- ❌ Using IDs for styling
+- ❌ Using `@media (min-width: 768px)` - Use `@media (width >= $md)`
+- ❌ Using `!important`
+
+### PHP
+
+- ❌ Not escaping output
+- ❌ Not sanitizing input
+- ❌ Using wrong text domain (`skeleton` instead of `skel`)
+- ❌ Using wrong function prefix (`skeleton_` instead of `skel_`)
+- ❌ Hardcoding URLs
+- ❌ Using short PHP tags `<?`
+- ❌ Missing spaces inside parentheses
+
+### JavaScript
+
+- ❌ Global variables
+- ❌ Using `var` instead of `const`/`let`
+- ❌ Using IIFE with function keyword - Use arrow function IIFE
+- ❌ Inline event handlers in HTML
+- ❌ Using spaces inside parentheses
+- ❌ Not using early return pattern
+- ❌ Using jQuery
+
+## Before Submitting Code - AI Agent Checklist
+
+### SCSS
+
+- [ ] No raw `px` values (except <4px)
+- [ ] No `@media (min-width: 768px)`
+- [ ] Mobile-first approach used
+- [ ] Using tabs, not spaces
+
+### PHP
+
+- [ ] All functions prefixed with `skel_`
+- [ ] Text domain is `'skel'`
+- [ ] All output escaped
+- [ ] Spaces inside parentheses
+
+### JavaScript
+
+- [ ] Arrow function IIFE pattern
+- [ ] No spaces inside parentheses
+- [ ] Early return if element doesn't exist
 
 ## Reference Files
 
-- `.claude/skills/design-patterns.md` - Complete patterns guide
-- `.cursor/rules/` - Technology-specific standards
-- `README.md` - Setup and formatting guide
+- **`AGENTS.md`** - Detailed AI agent guidelines (PRIMARY)
+- **`.claude/skills/design-patterns.md`** - Complete patterns guide
+- **`.cursor/rules/`** - Technology-specific standards
+- **`README.md`** - Setup and formatting guide

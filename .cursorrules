@@ -1,0 +1,122 @@
+# Skeleton WordPress Theme
+
+## Project Config
+
+- **Text Domain**: `skel`
+- **Function Prefix**: `skel_`
+- **Indent**: Tabs (not spaces)
+- **PHP Version**: 8.0+
+- **WordPress**: 6.x
+- **ACF Pro**: Required
+
+## Tech Stack
+
+- WordPress with ACF Pro blocks
+- Vanilla JavaScript (NO jQuery)
+- SCSS with fluid typography
+- Swiper.js for sliders
+- Lenis for smooth scroll
+- AOS for scroll animations
+
+## File Structure
+
+```
+acf-blocks/{slug}.php           # Block template
+src/sass/partials/acf-blocks/_{slug}.scss  # Block styles
+src/js/custom/acf-blocks/{slug}.js         # Block JS (if needed)
+functions/                       # PHP includes
+template-parts/                  # Reusable partials
+```
+
+## Naming Conventions
+
+| Type             | Convention     | Example                |
+| ---------------- | -------------- | ---------------------- |
+| PHP functions    | `skel_` prefix | `skel_get_phone_url()` |
+| PHP variables    | snake_case     | `$post_thumbnail_id`   |
+| JS variables     | camelCase      | `const sliderElement`  |
+| JS state classes | `js-` prefix   | `js-active`, `js-open` |
+| CSS sections     | `*-section`    | `hero-section`         |
+| CSS blocks       | `*-block`      | `content-block`        |
+
+## Critical Rules
+
+### SCSS - Always Use
+
+```scss
+gap: rem-calc(16); // Fixed spacing
+font-size: fluid(16, 24); // Responsive values
+@media (width >= $md) {
+} // Mobile-first breakpoints
+```
+
+### PHP - Always Escape
+
+```php
+echo esc_html( $text );
+echo esc_attr( $attribute );
+echo esc_url( $url );
+echo wp_kses_post( $html );
+```
+
+### JavaScript - Pattern
+
+```javascript
+(() => {
+	const el = document.querySelector('.element');
+	if (!el) return;
+	// Logic here
+})();
+```
+
+## Forbidden
+
+- ❌ Inline styles
+- ❌ jQuery
+- ❌ `!important` in CSS
+- ❌ `px` units (except borders < 4px)
+- ❌ Spaces for indentation
+- ❌ `var` in JavaScript
+
+## Data Attributes
+
+| Attribute                  | Purpose              |
+| -------------------------- | -------------------- |
+| `data-inview`              | Viewport trigger     |
+| `data-aos="fade-up"`       | Scroll animation     |
+| `data-aos-stagger-item`    | Stagger children     |
+| `data-toggle-click="name"` | Click toggle         |
+| `data-toggle-link="name"`  | Linked toggle target |
+| `data-toggle-group="name"` | Toggle group         |
+
+## ACF Block Registration
+
+Add to `functions/register-acf-blocks.php`:
+
+```php
+$block_types = array( 'Existing Block', 'New Block Name' );
+$blocks_with_js = array( 'New Block Name' );  // Only if needs JS
+```
+
+Files auto-generate on save in local environment.
+
+## Helper Functions
+
+- `svg( 'icon-name', ['class' => 'icon'] )` - SVG icon
+- `skel_get_phone_url( '+1234567890' )` - Tel: URL
+- `skel_get_the_excerpt( 20 )` - Truncated excerpt
+- `skel_direction_class()` - RTL/LTR class
+- `skel_swiper_direction_class()` - Swiper RTL class
+
+## Standards Files
+
+Detailed standards in `.cursor/rules/`:
+
+- `php-standards.mdc` - PHP/WordPress
+- `javascript-standards.mdc` - Vanilla JS
+- `scss-standards.mdc` - SCSS/CSS
+- `accessibility.mdc` - A11y
+- `project-patterns.mdc` - Theme patterns
+- `acf-fields.mdc` - ACF field structures
+- `helpers-reference.mdc` - Helper functions
+- `snippets.mdc` - Code snippets

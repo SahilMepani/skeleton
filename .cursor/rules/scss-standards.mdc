@@ -1,503 +1,67 @@
 ---
-description: Writing SCSS styles in .scss files
+description: SCSS quick reference
 globs: '**/*.scss'
 alwaysApply: false
 ---
 
-# SCSS Standards
+# SCSS Quick Reference
 
-## Critical Rules - NEVER Violate
-
-### 1. NEVER Use Raw px Values
-
+## Critical Rules
 ```scss
-// ❌ NEVER do this
-.component {
-	font-size: 18px;
-	padding: 24px;
-	margin-bottom: 32px;
-	gap: 16px;
-}
+// ❌ NEVER
+font-size: 18px;
+@media (min-width: 768px) { }
+@media (width < $md) { }
 
-// ✅ Use rem-calc() for fixed values
-.component {
-	border-radius: rem-calc(8);
-	gap: rem-calc(16);
-}
-
-// ✅ Use fluid() for responsive values
-.component {
-	font-size: fluid(16, 18);
-	padding: fluid(16, 24);
-	margin-bottom: fluid(24, 32);
-}
+// ✅ ALWAYS
+gap: rem-calc(16);              // Fixed values
+font-size: fluid(16, 24);       // Responsive values
+@media (width >= $md) { }       // Mobile-first only
 ```
 
-**Exceptions where px is allowed:**
-
-- `1px` borders
-- Box shadows
-
-### 2. NEVER Use @media Directly
-
+## Functions
 ```scss
-// ❌ NEVER do this
-@media (min-width: 768px) {
-}
-@media (max-width: 768px) {
-}
-@media (min-width: 992px) {
-}
-
-// ✅ ALWAYS use media queries up
-@media (width >= $md) {
-}
-@media (width >= $lg) {
-}
+rem-calc(16)                    // Fixed: 1rem
+fluid(16, 24)                   // Responsive: min 16px, max 24px
+fluid(16, 24, md, xl)          // Custom breakpoints
 ```
 
-### 3. NEVER Use Desktop-First media queries
-
+## Breakpoints
 ```scss
-// ❌ NEVER do this
-.component {
-	font-size: fluid(24, 32);
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-
-	@media (width < $md) {
-		font-size: fluid(16, 20);
-		grid-template-columns: 1fr;
-	}
-}
-
-// ✅ ALWAYS mobile-first
-.component {
-	font-size: fluid(16, 20);
-	display: grid;
-	grid-template-columns: 1fr;
-
-	@media (width >= $lg) {
-		font-size: fluid(24, 32);
-		grid-template-columns: repeat(3, 1fr);
-	}
-}
+$sm: 36rem;      // 576px
+$md: 48rem;      // 768px
+$lg: 62rem;      // 992px
+$xl: 75rem;      // 1200px
+$xxl: 87.5rem;   // 1400px
 ```
 
-## The rem-calc() Function
+## Import Order
+In `style.scss`:
+1. Mixins (rem-calc first)
+2. Config (maps, colors, variables)
+3. Base styles (reset, reboot)
+4. JS plugins (swiper, lenis)
+5. Components (header, footer)
+6. ACF blocks
+7. Templates
+8. Helpers & utilities (last)
 
-Use for single pixel values that don't need responsive scaling.
-
-```scss
-// rem-calc(value) - converts px to rem
-// Pass the value WITHOUT px unit
-
-border-radius: rem-calc(8);
-gap: rem-calc(16);
-border-width: rem-calc(2);
-padding: rem-calc(24);
-
-// Multiple values
-padding: rem-calc(16) rem-calc(24);
-```
-
-## The fluid() Function
-
-Use for responsive values that scale between mobile and desktop.
-
-### Basic Usage
-
-```scss
-// fluid(min-value, max-value)
-// Values are unitless (px implied)
-font-size: fluid(16, 24);
-padding: fluid(20, 40);
-margin-bottom: fluid(32, 64);
-gap: fluid(16, 32);
-```
-
-### With Custom Breakpoints
-
-```scss
-// fluid(min-value, max-value, min-breakpoint, max-breakpoint)
-// Use breakpoint NAMES not px values
-font-size: fluid(16, 24, md, xl);
-padding: fluid(20, 40, sm, xxl);
-```
-
-### Implementation (in partials/mixins/\_rem.scss)
-
-```scss
-@function fluid(
-	$min-value,
-	$max-value,
-	$min-breakpoint: 'sm',
-	$max-breakpoint: 'xxl'
-) {
-	// Returns clamp() with calculated values
-	// @return clamp(min-rem, preferred, max-rem);
-}
-```
-
-## Breakpoint System
-
-### Available Breakpoints (Mobile-First ONLY)
-
-```scss
-// In partials/config/_maps.scss
-$grid-breakpoints: (
-	'xs': 0,
-	'ph': 23.4375rem,
-	// 375px
-	'sm': 36rem,
-	// 576px
-	'md': 48rem,
-	// 768px
-	'lg': 62rem,
-	// 992px
-	'xl': 75rem,
-	// 1200px
-	'xxl': 87.5rem,
-	// 1400px
-	'xxxl': 100rem // 1600px
-);
-```
-
-### Usage Pattern
-
+## Mobile-First Pattern
 ```scss
 .component {
-	// Mobile styles (default)
-	padding: fluid(16, 20);
-
-	@media (width >= $sm) {
-		// 576px and up
-	}
+	font-size: fluid(14, 16);    // Mobile default
 
 	@media (width >= $md) {
-		// 768px and up
-		padding: fluid(20, 32);
+		font-size: fluid(16, 20); // Tablet+
 	}
 
 	@media (width >= $lg) {
-		// 992px and up
-		padding: fluid(32, 48);
-	}
-
-	@media (width >= $xl) {
-		// 1200px and up
-	}
-
-	@media (width >= $xxl) {
-		// 1400px and up
+		font-size: fluid(20, 24); // Desktop+
 	}
 }
 ```
 
-## Naming Convention
-
-### Class Names
-
-```scss
-// Use lowercase with hyphens
-.hero-slider-section {
-}
-.header-nav-toggle {
-}
-.site-header {
-}
-.container-fluid {
-}
-
-// Section naming (full-width blocks)
-.block-name-section {
-}
-
-// Inner wrappers (rare)
-.inner-section {
-}
-
-// JS-controlled classes use 'js-' prefix
-.js-active {
-}
-.js-popup-active {
-}
-```
-
-### BEM (Optional)
-
-```scss
-// Block
-.card {
-}
-
-// Element
-.card__header {
-}
-.card__body {
-}
-
-// Modifier
-.card--featured {
-}
-```
-
-## File Organization
-
-### SCSS Structure
-
-```
-src/sass/
-├── partials/
-│   ├── config/
-│   │   ├── _colors.scss
-│   │   ├── _maps.scss        # Breakpoints, spacings
-│   │   ├── _typography.scss
-│   │   └── _variables.scss
-│   ├── mixins/
-│   │   ├── _breakpoints.scss
-│   │   ├── _rem.scss         # rem-calc(), fluid()
-│   │   ├── _containers.scss
-│   │   └── ...
-│   ├── acf-blocks/
-│   ├── components/
-│   ├── helpers/
-│   ├── templates/
-│   └── utilities/
-└── style.scss
-```
-
-### Import Order in style.scss
-
-```scss
-// 1. Mixins (utilities first - rem-calc needs to be first)
-@import 'partials/mixins/rem';
-
-// 2. Config
-@import 'partials/config/maps';
-@import 'partials/config/colors';
-@import 'partials/config/typography';
-@import 'partials/config/variables';
-
-// 3. Rest of mixins
-@import 'partials/mixins/breakpoints';
-@import 'partials/mixins/placeholders';
-// ... other mixins
-
-// 4. Base styles
-@import 'partials/reset';
-@import 'partials/reboot';
-
-// 5. JS Plugins (for easy overwrite)
-@import 'partials/js-plugins/swiper';
-
-// 6. Components
-@import 'partials/components/header';
-
-// 7. ACF Blocks
-@import 'partials/acf-blocks/hero-slider';
-
-// 8. Templates
-@import 'partials/templates/index';
-
-// 9. Helpers & Utilities (last)
-@import 'partials/helpers/buttons';
-@import 'partials/utilities/images';
-```
-
-## Indentation & Formatting
-
-### Use Tabs (Not Spaces)
-
-```scss
-// ✅ Correct - tabs for indentation
-.component {
-	display: flex;
-	gap: rem-calc(16);
-
-	@media (width >= $md) {
-		gap: fluid(16, 32);
-	}
-}
-```
-
-## CSS Variables Pattern
-
-```scss
-// Global variables
-:root {
-	--header-height: #{rem-calc(65)};
-	--container-padding-x: #{fluid(20, 40)};
-}
-
-// Use in components
-.component {
-	padding-inline: var(--container-padding-x);
-	margin-top: var(--header-height);
-}
-```
-
-## Common Patterns
-
-### Grid Layout
-
-```scss
-.grid {
-	display: grid;
-	gap: fluid(16, 32);
-	grid-template-columns: 1fr;
-
-	@media (width >= $md) {
-		grid-template-columns: repeat(2, 1fr);
-	}
-
-	@media (width >= $lg) {
-		grid-template-columns: repeat(3, 1fr);
-	}
-}
-```
-
-### Flexbox Layout
-
-```scss
-.flex-container {
-	display: flex;
-	flex-direction: column;
-	gap: fluid(12, 16);
-
-	@media (width >= $md) {
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
-	}
-}
-```
-
-### Full-Height Section
-
-```scss
-.hero-section {
-	block-size: calc(100svh - var(--header-height, rem-calc(65)));
-	position: relative;
-}
-```
-
-### Image Cover Block
-
-```scss
-.img-cover-block {
-	position: absolute;
-	inset: 0;
-}
-
-.img-cover {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-```
-
-## Nesting Rules
-
-### Maximum 3 Levels
-
-```scss
-// ✅ Good - Clean and readable
-.card {
-	padding: fluid(16, 24);
-
-	.card__title {
-		font-size: fluid(18, 24);
-	}
-}
-
-// ❌ Bad - Too deep
-.card {
-	.card__header {
-		.card__title {
-			.card__title-text {
-				// Too deep!
-			}
-		}
-	}
-}
-```
-
-### Acceptable Deep Nesting
-
-```scss
-// Pseudo-classes and media queries don't count toward depth
-.button {
-	background: $color-primary;
-
-	&:hover {
-		background: darken($color-primary, 10%);
-	}
-
-	@media (width >= $md) {
-		padding: fluid(16, 24);
-	}
-}
-```
-
-## Specificity Rules
-
-### Keep It Low
-
-```scss
-// ✅ Good - Single class
-.button {
-}
-.card__title {
-}
-
-// ❌ Avoid - High specificity
-#header .navigation .menu-item {
-}
-div.card > p.text {
-}
-```
-
-### Never Use !important
-
-```scss
-// ❌ Never
-.component {
-	color: red !important;
-}
-
-// ✅ Fix the specificity issue instead
-```
-
-## Accessibility
-
-### Focus Styles
-
-```scss
-.button {
-	&:focus-visible {
-		outline: 2px solid var(--color-accent);
-		outline-offset: 2px;
-	}
-}
-
-// Never remove focus outlines without replacement
-// ❌ Never
-*:focus {
-	outline: none;
-}
-```
-
-### Reduced Motion
-
-```scss
-@media (prefers-reduced-motion: reduce) {
-	*,
-	*::before,
-	*::after {
-		animation-duration: 0.01ms !important;
-		animation-iteration-count: 1 !important;
-		transition-duration: 0.01ms !important;
-	}
-}
-```
+## Exceptions
+- `1px` borders allowed
+- Box shadows allowed
+- Under 4px values allowed

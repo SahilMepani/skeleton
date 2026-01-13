@@ -1,517 +1,121 @@
 ---
-description: Accessibility standards for WordPress theme development
+description: Accessibility quick reference
 globs:
 alwaysApply: false
 ---
 
-# Accessibility Standards
+# Accessibility Quick Reference
 
 ## WCAG 2.1 AA Requirements
+- Normal text: 4.5:1 contrast ratio
+- Large text (18pt+/14pt+ bold): 3:1 contrast ratio
+- UI components/focus: 3:1 contrast ratio
 
-### Color Contrast
-- **Normal text**: Minimum 4.5:1 contrast ratio
-- **Large text** (18pt+ or 14pt+ bold): Minimum 3:1 contrast ratio
-- **UI components & focus indicators**: Minimum 3:1 contrast ratio
-- **Icons (informative)**: Minimum 3:1 contrast ratio
-
-### Focus Indicators
+## Focus Indicators
 ```scss
-// ✅ Always provide visible focus
-.button,
-.link,
-input,
-select,
-textarea {
-  &:focus-visible {
-    outline: 2px solid var(--color-focus);
-    outline-offset: 2px;
-  }
+.interactive {
+	&:focus-visible {
+		outline: 2px solid var(--color-focus);
+		outline-offset: 2px;
+	}
 }
 
-// ❌ Never remove focus without replacement
-*:focus {
-  outline: none; // NEVER do this
-}
+// ❌ Never remove without replacement
+*:focus { outline: none; }
 ```
 
-### Motion Preferences
+## Reduced Motion
 ```scss
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+	*, *::before, *::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
 }
 ```
 
-## Semantic HTML
-
-### Document Structure
+## Skip Link
 ```php
-<!DOCTYPE html>
-<html <?php language_attributes(); ?>>
-<head>
-    <meta charset="<?php bloginfo( 'charset' ); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php wp_head(); ?>
-</head>
-<body <?php body_class(); ?>>
-<?php wp_body_open(); ?>
-
 <a class="skip-link screen-reader-text" href="#main-content">
-    <?php esc_html_e( 'Skip to content', 'skeleton' ); ?>
+	<?php esc_html_e( 'Skip to content', 'skel' ); ?>
 </a>
-
-<header class="site-header" role="banner">
-    <nav class="main-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Primary Navigation', 'skeleton' ); ?>">
-        <!-- Navigation -->
-    </nav>
-</header>
-
-<main id="main-content" class="site-main" role="main">
-    <!-- Main content -->
-</main>
-
-<aside class="sidebar" role="complementary">
-    <!-- Sidebar -->
-</aside>
-
-<footer class="site-footer" role="contentinfo">
-    <!-- Footer -->
-</footer>
-
-<?php wp_footer(); ?>
-</body>
-</html>
 ```
 
-### Heading Hierarchy
+## Form Accessibility
 ```php
-// ✅ Correct - Logical hierarchy
-<h1><?php the_title(); ?></h1>
-<h2>Section Heading</h2>
-<h3>Subsection</h3>
-<h2>Another Section</h2>
-
-// ❌ Wrong - Skipping levels
-<h1>Title</h1>
-<h3>Section</h3> <!-- Skipped h2! -->
-<h5>Subsection</h5> <!-- Skipped h4! -->
-```
-
-### Skip Links
-```php
-// In header.php, after body tag
-<a class="skip-link screen-reader-text" href="#main-content">
-    <?php esc_html_e( 'Skip to content', 'skeleton' ); ?>
-</a>
-
-// CSS
-.screen-reader-text {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-
-    &:focus {
-        position: fixed;
-        top: fluid(8px, 12px);
-        left: fluid(8px, 12px);
-        z-index: 100000;
-        width: auto;
-        height: auto;
-        padding: fluid(12px, 16px) fluid(20px, 24px);
-        clip: auto;
-        background: var(--color-background);
-        color: var(--color-text);
-        text-decoration: none;
-    }
-}
-```
-
-## Forms
-
-### Accessible Form Pattern
-```php
-<form action="" method="post" novalidate>
-    <div class="form-group">
-        <label for="name-field">
-            <?php esc_html_e( 'Full Name', 'skeleton' ); ?>
-            <span class="required" aria-hidden="true">*</span>
-        </label>
-        <input
-            type="text"
-            id="name-field"
-            name="name"
-            required
-            aria-required="true"
-            aria-describedby="name-description name-error"
-            autocomplete="name"
-        >
-        <p id="name-description" class="field-description">
-            <?php esc_html_e( 'Enter your first and last name.', 'skeleton' ); ?>
-        </p>
-        <p id="name-error" class="field-error" hidden aria-live="polite">
-            <!-- Error message inserted by JS -->
-        </p>
-    </div>
-
-    <div class="form-group">
-        <label for="email-field">
-            <?php esc_html_e( 'Email Address', 'skeleton' ); ?>
-            <span class="required" aria-hidden="true">*</span>
-        </label>
-        <input
-            type="email"
-            id="email-field"
-            name="email"
-            required
-            aria-required="true"
-            aria-describedby="email-error"
-            autocomplete="email"
-        >
-        <p id="email-error" class="field-error" hidden aria-live="polite"></p>
-    </div>
-
-    <fieldset>
-        <legend><?php esc_html_e( 'Preferred Contact Method', 'skeleton' ); ?></legend>
-
-        <div class="radio-group">
-            <input type="radio" id="contact-email" name="contact" value="email">
-            <label for="contact-email"><?php esc_html_e( 'Email', 'skeleton' ); ?></label>
-        </div>
-
-        <div class="radio-group">
-            <input type="radio" id="contact-phone" name="contact" value="phone">
-            <label for="contact-phone"><?php esc_html_e( 'Phone', 'skeleton' ); ?></label>
-        </div>
-    </fieldset>
-
-    <button type="submit" class="button">
-        <?php esc_html_e( 'Submit', 'skeleton' ); ?>
-    </button>
-</form>
-```
-
-### Error Handling
-```javascript
-const showError = ( input, message ) => {
-    const errorElement = document.getElementById( `${input.id}-error` );
-    if ( ! errorElement ) return;
-
-    input.setAttribute( 'aria-invalid', 'true' );
-    errorElement.textContent = message;
-    errorElement.hidden = false;
-};
-
-const clearError = ( input ) => {
-    const errorElement = document.getElementById( `${input.id}-error` );
-    if ( ! errorElement ) return;
-
-    input.removeAttribute( 'aria-invalid' );
-    errorElement.textContent = '';
-    errorElement.hidden = true;
-};
+<label for="field-id">Label <span class="required" aria-hidden="true">*</span></label>
+<input
+	type="text"
+	id="field-id"
+	name="field"
+	required
+	aria-required="true"
+	aria-describedby="field-error"
+	autocomplete="name"
+>
+<p id="field-error" class="field-error" hidden aria-live="polite"></p>
 ```
 
 ## Images
-
-### Informative Images
 ```php
-// Image with meaningful content
-<img
-    src="<?php echo esc_url( $image_url ); ?>"
-    alt="<?php echo esc_attr( $image_description ); ?>"
-    loading="lazy"
->
+// Informative
+<img src="..." alt="<?php echo esc_attr( $description ); ?>">
 
-// WordPress featured image
-<?php
-the_post_thumbnail( 'large', array(
-    'alt' => get_the_title(),
-    'loading' => 'lazy',
-) );
-?>
-```
-
-### Decorative Images
-```php
-// Decorative image - empty alt
-<img src="decoration.svg" alt="" aria-hidden="true">
-
-// Background decorative via CSS instead
-<div class="decorative-background" aria-hidden="true"></div>
-```
-
-### Complex Images
-```php
-<figure>
-    <img
-        src="<?php echo esc_url( $chart_url ); ?>"
-        alt="<?php esc_attr_e( 'Sales chart showing quarterly growth', 'skeleton' ); ?>"
-        aria-describedby="chart-description"
-    >
-    <figcaption id="chart-description">
-        <?php esc_html_e( 'Q1: $10k, Q2: $15k, Q3: $22k, Q4: $31k. Total annual growth of 210%.', 'skeleton' ); ?>
-    </figcaption>
-</figure>
+// Decorative
+<img src="..." alt="" aria-hidden="true">
 ```
 
 ## Interactive Components
-
-### Accordion
 ```php
-<div class="accordion" data-allow-multiple="false">
-    <?php foreach ( $items as $index => $item ) : ?>
-        <div class="accordion__item">
-            <h3 class="accordion__heading">
-                <button
-                    class="accordion__button"
-                    id="accordion-button-<?php echo esc_attr( $index ); ?>"
-                    aria-expanded="false"
-                    aria-controls="accordion-panel-<?php echo esc_attr( $index ); ?>"
-                >
-                    <?php echo esc_html( $item['title'] ); ?>
-                    <span class="accordion__icon" aria-hidden="true"></span>
-                </button>
-            </h3>
-            <div
-                class="accordion__panel"
-                id="accordion-panel-<?php echo esc_attr( $index ); ?>"
-                aria-labelledby="accordion-button-<?php echo esc_attr( $index ); ?>"
-                hidden
-            >
-                <div class="accordion__content">
-                    <?php echo wp_kses_post( $item['content'] ); ?>
-                </div>
-            </div>
-        </div>
-    <?php endforeach; ?>
-</div>
-```
-
-### Tabs
-```php
-<div class="tabs">
-    <div class="tabs__list" role="tablist" aria-label="<?php esc_attr_e( 'Content Tabs', 'skeleton' ); ?>">
-        <?php foreach ( $tabs as $index => $tab ) : ?>
-            <button
-                class="tabs__tab"
-                id="tab-<?php echo esc_attr( $index ); ?>"
-                role="tab"
-                aria-selected="<?php echo $index === 0 ? 'true' : 'false'; ?>"
-                aria-controls="tabpanel-<?php echo esc_attr( $index ); ?>"
-                tabindex="<?php echo $index === 0 ? '0' : '-1'; ?>"
-            >
-                <?php echo esc_html( $tab['title'] ); ?>
-            </button>
-        <?php endforeach; ?>
-    </div>
-
-    <?php foreach ( $tabs as $index => $tab ) : ?>
-        <div
-            class="tabs__panel"
-            id="tabpanel-<?php echo esc_attr( $index ); ?>"
-            role="tabpanel"
-            aria-labelledby="tab-<?php echo esc_attr( $index ); ?>"
-            tabindex="0"
-            <?php echo $index !== 0 ? 'hidden' : ''; ?>
-        >
-            <?php echo wp_kses_post( $tab['content'] ); ?>
-        </div>
-    <?php endforeach; ?>
-</div>
-```
-
-### Modal/Dialog
-```php
+// Button toggle
 <button
-    class="js-modal-trigger"
-    data-modal="example-modal"
-    aria-haspopup="dialog"
+	aria-expanded="false"
+	aria-controls="panel-id"
 >
-    <?php esc_html_e( 'Open Modal', 'skeleton' ); ?>
+	Toggle
 </button>
+<div id="panel-id" hidden>Content</div>
 
+// Modal
 <div
-    class="modal"
-    id="example-modal"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="modal-title"
-    aria-describedby="modal-description"
-    hidden
+	role="dialog"
+	aria-modal="true"
+	aria-labelledby="modal-title"
+	hidden
 >
-    <div class="modal__overlay" data-modal-close></div>
-    <div class="modal__content">
-        <h2 id="modal-title"><?php esc_html_e( 'Modal Title', 'skeleton' ); ?></h2>
-        <p id="modal-description"><?php esc_html_e( 'Modal description text.', 'skeleton' ); ?></p>
-
-        <button
-            class="modal__close"
-            data-modal-close
-            aria-label="<?php esc_attr_e( 'Close modal', 'skeleton' ); ?>"
-        >
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+	<h2 id="modal-title">Title</h2>
 </div>
-```
-
-### Keyboard Navigation for Modal
-```javascript
-const handleModalKeydown = ( event, modal ) => {
-    const focusableElements = modal.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    );
-    const firstFocusable = focusableElements[0];
-    const lastFocusable = focusableElements[focusableElements.length - 1];
-
-    switch ( event.key ) {
-        case 'Escape':
-            closeModal( modal );
-            break;
-
-        case 'Tab':
-            if ( event.shiftKey ) {
-                if ( document.activeElement === firstFocusable ) {
-                    event.preventDefault();
-                    lastFocusable.focus();
-                }
-            } else {
-                if ( document.activeElement === lastFocusable ) {
-                    event.preventDefault();
-                    firstFocusable.focus();
-                }
-            }
-            break;
-    }
-};
 ```
 
 ## Navigation
-
-### Main Navigation
 ```php
-<nav
-    class="main-navigation"
-    role="navigation"
-    aria-label="<?php esc_attr_e( 'Primary Navigation', 'skeleton' ); ?>"
->
-    <button
-        class="menu-toggle"
-        aria-controls="primary-menu"
-        aria-expanded="false"
-    >
-        <span class="screen-reader-text">
-            <?php esc_html_e( 'Menu', 'skeleton' ); ?>
-        </span>
-        <span class="menu-icon" aria-hidden="true"></span>
-    </button>
-
-    <?php
-    wp_nav_menu( array(
-        'theme_location' => 'primary',
-        'menu_id'        => 'primary-menu',
-        'container'      => false,
-        'menu_class'     => 'nav-menu',
-        'items_wrap'     => '<ul id="%1$s" class="%2$s" role="menubar">%3$s</ul>',
-    ) );
-    ?>
+<nav aria-label="<?php esc_attr_e( 'Primary Navigation', 'skel' ); ?>">
+	<button aria-controls="menu" aria-expanded="false">
+		<span class="screen-reader-text">Menu</span>
+	</button>
+	<?php wp_nav_menu( [ 'menu_id' => 'menu' ] ); ?>
 </nav>
 ```
 
-### Breadcrumbs
-```php
-<nav class="breadcrumbs" aria-label="<?php esc_attr_e( 'Breadcrumb', 'skeleton' ); ?>">
-    <ol class="breadcrumbs__list">
-        <li class="breadcrumbs__item">
-            <a href="<?php echo esc_url( home_url() ); ?>">
-                <?php esc_html_e( 'Home', 'skeleton' ); ?>
-            </a>
-        </li>
-        <li class="breadcrumbs__item">
-            <a href="<?php echo esc_url( get_post_type_archive_link( 'post' ) ); ?>">
-                <?php esc_html_e( 'Blog', 'skeleton' ); ?>
-            </a>
-        </li>
-        <li class="breadcrumbs__item" aria-current="page">
-            <?php the_title(); ?>
-        </li>
-    </ol>
-</nav>
-```
-
-## Live Regions
-
-### Status Messages
-```php
-<!-- For dynamic status updates -->
-<div
-    class="status-message"
-    role="status"
-    aria-live="polite"
-    aria-atomic="true"
->
-    <!-- Updated via JavaScript -->
-</div>
-
-<!-- For urgent alerts -->
-<div
-    class="alert-message"
-    role="alert"
-    aria-live="assertive"
->
-    <!-- Updated via JavaScript -->
-</div>
-```
-
+## Keyboard Navigation
 ```javascript
-// Update status
-const updateStatus = ( message ) => {
-    const statusRegion = document.querySelector( '[role="status"]' );
-    statusRegion.textContent = message;
-};
-
-// Show alert
-const showAlert = ( message ) => {
-    const alertRegion = document.querySelector( '[role="alert"]' );
-    alertRegion.textContent = message;
+const handleKeydown = (event) => {
+	switch (event.key) {
+		case 'Escape':
+			closeModal();
+			break;
+		case 'Tab':
+			// Handle focus trap
+			break;
+	}
 };
 ```
 
 ## Testing Checklist
-
-### Keyboard Testing
-- [ ] All interactive elements reachable with Tab
-- [ ] Logical tab order
-- [ ] Focus visible on all elements
-- [ ] Enter/Space activates buttons and links
-- [ ] Escape closes modals/dropdowns
-- [ ] Arrow keys navigate menus/tabs
-
-### Screen Reader Testing
-- [ ] Page title announces correctly
-- [ ] Headings create logical outline
+- [ ] Tab order logical
+- [ ] Focus visible on all interactive elements
+- [ ] Color contrast meets WCAG AA
 - [ ] Images have appropriate alt text
-- [ ] Links have descriptive text
 - [ ] Forms have proper labels
-- [ ] Error messages announced
-- [ ] Dynamic content updates announced
-
-### Visual Testing
-- [ ] Color contrast passes WCAG AA
-- [ ] Focus indicators visible
-- [ ] Text readable at 200% zoom
-- [ ] Content reflows at narrow widths
-- [ ] No horizontal scrolling at 320px
-- [ ] Reduced motion preference respected
+- [ ] ARIA attributes correct
+- [ ] Keyboard navigation works

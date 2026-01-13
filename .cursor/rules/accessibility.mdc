@@ -4,118 +4,56 @@ globs:
 alwaysApply: false
 ---
 
-# Accessibility Quick Reference
+# A11y Reference
 
-## WCAG 2.1 AA Requirements
-- Normal text: 4.5:1 contrast ratio
-- Large text (18pt+/14pt+ bold): 3:1 contrast ratio
-- UI components/focus: 3:1 contrast ratio
+## WCAG AA Contrast
+- Normal text: 4.5:1 | Large (18pt+): 3:1 | UI/focus: 3:1
 
-## Focus Indicators
+## Focus
 ```scss
-.interactive {
-	&:focus-visible {
-		outline: 2px solid var(--color-focus);
-		outline-offset: 2px;
-	}
-}
-
-// ❌ Never remove without replacement
-*:focus { outline: none; }
+&:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+// ❌ Never: *:focus { outline: none; }
 ```
 
 ## Reduced Motion
 ```scss
 @media (prefers-reduced-motion: reduce) {
-	*, *::before, *::after {
-		animation-duration: 0.01ms !important;
-		transition-duration: 0.01ms !important;
-	}
+	*, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 ```
 
-## Skip Link
+## Patterns
 ```php
-<a class="skip-link screen-reader-text" href="#main-content">
-	<?php esc_html_e( 'Skip to content', 'skel' ); ?>
-</a>
-```
+// Skip link
+<a class="skip-link screen-reader-text" href="#main-content"><?php esc_html_e( 'Skip to content', 'skel' ); ?></a>
 
-## Form Accessibility
-```php
+// Form field
 <label for="field-id">Label <span class="required" aria-hidden="true">*</span></label>
-<input
-	type="text"
-	id="field-id"
-	name="field"
-	required
-	aria-required="true"
-	aria-describedby="field-error"
-	autocomplete="name"
->
+<input type="text" id="field-id" required aria-required="true" aria-describedby="field-error" autocomplete="name">
 <p id="field-error" class="field-error" hidden aria-live="polite"></p>
-```
 
-## Images
-```php
-// Informative
-<img src="..." alt="<?php echo esc_attr( $description ); ?>">
-
-// Decorative
+// Images: informative
+<img src="..." alt="<?php echo esc_attr( $desc ); ?>">
+// Images: decorative
 <img src="..." alt="" aria-hidden="true">
-```
 
-## Interactive Components
-```php
-// Button toggle
-<button
-	aria-expanded="false"
-	aria-controls="panel-id"
->
-	Toggle
-</button>
+// Toggle
+<button aria-expanded="false" aria-controls="panel-id">Toggle</button>
 <div id="panel-id" hidden>Content</div>
 
 // Modal
-<div
-	role="dialog"
-	aria-modal="true"
-	aria-labelledby="modal-title"
-	hidden
->
-	<h2 id="modal-title">Title</h2>
-</div>
-```
+<div role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden><h2 id="modal-title">Title</h2></div>
 
-## Navigation
-```php
+// Nav
 <nav aria-label="<?php esc_attr_e( 'Primary Navigation', 'skel' ); ?>">
-	<button aria-controls="menu" aria-expanded="false">
-		<span class="screen-reader-text">Menu</span>
-	</button>
-	<?php wp_nav_menu( [ 'menu_id' => 'menu' ] ); ?>
+	<button aria-controls="menu" aria-expanded="false"><span class="screen-reader-text">Menu</span></button>
 </nav>
 ```
 
-## Keyboard Navigation
+## Keyboard
 ```javascript
-const handleKeydown = (event) => {
-	switch (event.key) {
-		case 'Escape':
-			closeModal();
-			break;
-		case 'Tab':
-			// Handle focus trap
-			break;
-	}
-};
+switch (event.key) {
+	case 'Escape': closeModal(); break;
+	case 'Tab': /* focus trap */ break;
+}
 ```
-
-## Testing Checklist
-- [ ] Tab order logical
-- [ ] Focus visible on all interactive elements
-- [ ] Color contrast meets WCAG AA
-- [ ] Images have appropriate alt text
-- [ ] Forms have proper labels
-- [ ] ARIA attributes correct
-- [ ] Keyboard navigation works

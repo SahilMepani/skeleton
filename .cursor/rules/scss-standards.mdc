@@ -4,64 +4,38 @@ globs: '**/*.scss'
 alwaysApply: false
 ---
 
-# SCSS Quick Reference
+# SCSS Reference
 
-## Critical Rules
+## Critical
 ```scss
-// ❌ NEVER
-font-size: 18px;
-@media (min-width: 768px) { }
-@media (width < $md) { }
-
-// ✅ ALWAYS
-gap: rem-calc(16);              // Fixed values
-font-size: fluid(16, 24);       // Responsive values
-@media (width >= $md) { }       // Mobile-first only
+// ❌ NEVER: font-size: 18px; @media (min-width: 768px) {} @media (width < $md) {}
+// ✅ ALWAYS:
+gap: rem-calc(16);           // Fixed values
+font-size: fluid(16, 24);    // Responsive (min, max)
+@media (width >= $md) { }    // Mobile-first only
 ```
 
 ## Functions
 ```scss
-rem-calc(16)                    // Fixed: 1rem
-fluid(16, 24)                   // Responsive: min 16px, max 24px
-fluid(16, 24, md, xl)          // Custom breakpoints
+rem-calc(16)              // → 1rem
+fluid(16, 24)             // Responsive: 16px min, 24px max
+fluid(16, 24, md, xl)     // Custom breakpoints
 ```
 
 ## Breakpoints
 ```scss
-$sm: 36rem;      // 576px
-$md: 48rem;      // 768px
-$lg: 62rem;      // 992px
-$xl: 75rem;      // 1200px
-$xxl: 87.5rem;   // 1400px
+$sm: 36rem;   // 576px    $md: 48rem;   // 768px
+$lg: 62rem;   // 992px    $xl: 75rem;   // 1200px    $xxl: 87.5rem; // 1400px
 ```
 
-## Import Order
-In `style.scss`:
-1. Mixins (rem-calc first)
-2. Config (maps, colors, variables)
-3. Base styles (reset, reboot)
-4. JS plugins (swiper, lenis)
-5. Components (header, footer)
-6. ACF blocks
-7. Templates
-8. Helpers & utilities (last)
-
-## Mobile-First Pattern
+## Mobile-First
 ```scss
 .component {
-	font-size: fluid(14, 16);    // Mobile default
-
-	@media (width >= $md) {
-		font-size: fluid(16, 20); // Tablet+
-	}
-
-	@media (width >= $lg) {
-		font-size: fluid(20, 24); // Desktop+
-	}
+	font-size: fluid(14, 16);
+	@media (width >= $md) { font-size: fluid(16, 20); }
+	@media (width >= $lg) { font-size: fluid(20, 24); }
 }
 ```
 
 ## Exceptions
-- `1px` borders allowed
-- Box shadows allowed
-- Under 4px values allowed
+1px borders, box shadows, values under 4px

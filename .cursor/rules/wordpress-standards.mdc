@@ -4,30 +4,22 @@ globs:
 alwaysApply: false
 ---
 
-# WordPress Quick Reference
+# WordPress Reference
 
-## Text Domain & Prefix
-- Text domain: `'skel'`
-- Function prefix: `skel_`
+## Identity
+Domain: `'skel'` | Prefix: `skel_`
 
 ## Template Hierarchy
 ```
-Front Page:   front-page.php → home.php → index.php
-Single Post:  single-{post-type}.php → single.php → index.php
-Page:         page-{slug}.php → page.php → index.php
-Archive:      archive-{post-type}.php → archive.php → index.php
+Front: front-page.php → home.php → index.php
+Single: single-{type}.php → single.php → index.php
+Page: page-{slug}.php → page.php → index.php
+Archive: archive-{type}.php → archive.php → index.php
 ```
 
-## Common Hooks
+## Hooks
 ```php
 add_action( 'after_setup_theme', 'skel_setup' );
 add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
 add_filter( 'body_class', 'skel_body_classes' );
-add_filter( 'excerpt_length', 'skel_excerpt_length' );
 ```
-
-## Data Attributes
-- `data-inview` - Viewport animation trigger
-- `data-toggle-click` - Toggle on click
-- `data-toggle-group` - Group toggle elements
-- `data-aos` - Animation type

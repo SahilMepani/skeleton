@@ -4,78 +4,35 @@ globs: "**/*.js"
 alwaysApply: false
 ---
 
-# JavaScript Quick Reference
+# JS Reference
 
 ## Pattern
 ```javascript
-// ✅ Arrow function IIFE
 (() => {
 	const element = document.querySelector('.element');
 	if (!element) return;
 
-	element.addEventListener('click', handleClick);
-})();
-```
-
-## Formatting
-```javascript
-// NO spaces in parentheses (standard JS, not PHP style)
-if (condition) { }
-document.querySelector('.selector');
-functionName(arg1, arg2);
-
-// Tabs for indentation
-// camelCase naming
-const headerNavToggle = document.querySelector('.header-nav-toggle');
-```
-
-## Variables
-```javascript
-const element = document.querySelector('.element'); // Default
-let counter = 0;                                    // Only if reassigning
-// Never use var
-```
-
-## DOM Pattern
-```javascript
-(() => {
-	// Cache elements
-	const element = document.querySelector('.element');
-
-	// Early return
-	if (!element) return;
-
-	// Event handlers
-	const handleClick = (event) => {
-		event.preventDefault();
+	const handleClick = (e) => {
+		e.preventDefault();
 		element.classList.toggle('js-active');
 	};
 
-	// Bind events
 	element.addEventListener('click', handleClick);
 })();
 ```
 
-## Class Toggling
-```javascript
-const activeClass = 'js-active';
+## Rules
+- No spaces in parentheses: `if (x) {}`, `fn(a, b)`
+- Tabs, camelCase, `const` default, `let` if reassigning, never `var`
+- Class prefix: `js-active`, `js-open`
 
-element.classList.add(activeClass);
-element.classList.remove(activeClass);
-element.classList.toggle(activeClass);
-element.classList.contains(activeClass);
-```
-
-## Async/Await
+## Async
 ```javascript
 const fetchData = async (url) => {
 	try {
-		const response = await fetch(url);
-		if (!response.ok) throw new Error('HTTP error');
-		return await response.json();
-	} catch (error) {
-		console.error('Error:', error);
-		return null;
-	}
+		const res = await fetch(url);
+		if (!res.ok) throw new Error('HTTP error');
+		return await res.json();
+	} catch (err) { console.error('Error:', err); return null; }
 };
 ```

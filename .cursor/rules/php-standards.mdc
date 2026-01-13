@@ -4,61 +4,34 @@ globs: "**/*.php"
 alwaysApply: false
 ---
 
-# PHP Quick Reference
+# PHP Reference
 
 ## Naming
 ```php
-// Prefix: skel_
-function skel_function_name() { }
+function skel_function_name() { }  // Prefix: skel_
 $variable_name = 'value';
-
-// Text domain: 'skel'
-__( 'Text', 'skel' );
-esc_html_e( 'Text', 'skel' );
+__( 'Text', 'skel' );              // Domain: 'skel'
 ```
 
 ## Formatting
 ```php
-// Spaces inside parentheses
-if ( $condition ) { }
-function_call( $arg1, $arg2 );
-
-// Tabs for indentation (not spaces)
+if ( $condition ) { }              // Spaces inside parentheses
+function_call( $arg1, $arg2 );     // Tabs for indentation
 ```
 
-## Escaping (Always)
+## Escape/Sanitize
 ```php
-echo esc_html( $text );
-echo esc_attr( $attribute );
-echo esc_url( $url );
-echo wp_kses_post( $html_content );
+echo esc_html( $text );            echo esc_attr( $attr );
+echo esc_url( $url );              echo wp_kses_post( $html );
+sanitize_text_field( $_POST['f'] );  sanitize_email( $_POST['e'] );  absint( $_GET['id'] );
 ```
 
-## Sanitizing (Always)
+## Loop & Parts
 ```php
-$clean = sanitize_text_field( $_POST['field'] );
-$email = sanitize_email( $_POST['email'] );
-$int = absint( $_GET['id'] );
-```
+<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+	<article <?php post_class(); ?>><?php the_title( '<h2>', '</h2>' ); the_content(); ?></article>
+<?php endwhile; endif; ?>
 
-## The Loop
-```php
-<?php if ( have_posts() ) : ?>
-	<?php while ( have_posts() ) : the_post(); ?>
-		<article <?php post_class(); ?>>
-			<?php the_title( '<h2>', '</h2>' ); ?>
-			<?php the_content(); ?>
-		</article>
-	<?php endwhile; ?>
-<?php endif; ?>
-```
-
-## Template Parts
-```php
 get_template_part( 'template-parts/content', get_post_type() );
-
-// With args (WP 5.5+)
-get_template_part( 'template-parts/card', 'product', [
-	'product_id' => $id,
-] );
+get_template_part( 'template-parts/card', 'product', [ 'product_id' => $id ] );
 ```

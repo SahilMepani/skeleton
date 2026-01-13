@@ -4,117 +4,57 @@ globs:
 alwaysApply: true
 ---
 
-# Skeleton Theme Patterns
+# Skeleton Patterns
 
-## Project Identity
-- **Text domain**: `'skel'`
-- **Function prefix**: `skel_`
-- **Tabs** for indentation (all files)
+**Domain**: `'skel'` | **Prefix**: `skel_` | **Indent**: Tabs
 
-## ACF Block Registration
-
-Add to `functions/register-acf-blocks.php`:
-
+## ACF Blocks
+Register in `functions/register-acf-blocks.php`:
 ```php
-$block_types = array(
-	'Hero Slider',
-	'New Block Name',  // Add here
-);
-
-// If block needs JS:
-$blocks_with_js = array(
-	'Hero Slider',
-	'New Block Name',
-);
+$block_types = array( 'Hero Slider', 'New Block' );
+$blocks_with_js = array( 'Hero Slider', 'New Block' );  // If needs JS
 ```
+Auto-generates: `acf-blocks/{slug}.php`, `src/sass/partials/acf-blocks/_{slug}.scss`, `src/js/custom/acf-blocks/{slug}.js`
 
-**Auto-generates**:
-- `acf-blocks/{slug}.php`
-- `src/sass/partials/acf-blocks/_{slug}.scss`
-- `src/js/custom/acf-blocks/{slug}.js` (if in `$blocks_with_js`)
-
-## ACF Block Template
-
+## Block Template
 ```php
 <?php
-if ( isset( $block['data']['preview_image'] ) ) {
-	echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '">';
-	return;
-}
-
-if ( 'on' !== get_field( 'display' ) ) {
-	return;
-}
-
+if ( isset( $block['data']['preview_image'] ) ) { echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '">'; return; }
+if ( 'on' !== get_field( 'display' ) ) { return; }
 $items = get_field( 'items' );
-if ( ! is_array( $items ) || empty( $items ) ) {
-	return;
-}
+if ( ! is_array( $items ) || empty( $items ) ) { return; }
 
-$spacing        = get_field( 'spacing' );
-$spacing_top    = $spacing['top']['spacing_top'] ?? '';
+$spacing = get_field( 'spacing' );
+$spacing_top = $spacing['top']['spacing_top'] ?? '';
 $spacing_bottom = $spacing['bottom']['spacing_bottom'] ?? '';
-$custom_classes = get_field( 'custom_classes' );
-$custom_css     = get_field( 'custom_css' );
-$unique_id      = get_field( 'unique_id' );
 ?>
-
-<section
-	class="block-section section <?php echo esc_attr( "{$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
-	style="<?php echo esc_attr( $custom_css ); ?>"
-	id="<?php echo esc_attr( $unique_id ); ?>"
-	data-inview>
+<section class="block-section section <?php echo esc_attr( "{$spacing_top} {$spacing_bottom} " . get_field( 'custom_classes' ) ); ?>"
+	style="<?php echo esc_attr( get_field( 'custom_css' ) ); ?>"
+	id="<?php echo esc_attr( get_field( 'unique_id' ) ); ?>" data-inview>
 	<div class="container">
-		<?php foreach ( $items as $item ) : ?>
-			<!-- Content -->
-		<?php endforeach; ?>
+		<?php foreach ( $items as $item ) : ?><!-- Content --><?php endforeach; ?>
 	</div>
 </section>
 ```
 
 ## HTML Structure
-
 ```html
-<!-- Sections end with *-section -->
-<section class="hero-section">
-	<div class="container"></div>
-</section>
-
-<!-- Wrappers end with *-block -->
-<div class="content-block"></div>
-
-<!-- Image cover pattern -->
-<div class="img-cover-block">
-	<img src="" class="img-cover" />
-</div>
+<section class="hero-section"><div class="container"></div></section>  <!-- *-section -->
+<div class="content-block"></div>                                       <!-- *-block -->
+<div class="img-cover-block"><img src="" class="img-cover" /></div>    <!-- img pattern -->
 ```
 
 ## Data Attributes
+| Animation | Toggles |
+|-----------|---------|
+| `data-inview` - viewport trigger | `data-toggle-click="name"` |
+| `data-aos="fade-up"` | `data-toggle-group="group"` |
+| `data-aos-stagger-item` | `data-toggle-link="name"` / `data-toggle-hover="name"` |
 
-### Animation
-- `data-inview` - Viewport animation trigger
-- `data-aos="fade-up"` - Animation type
-- `data-aos-stagger-item` - Staggered children
-
-### Toggles
-- `data-toggle-click="name"` - Toggle on click
-- `data-toggle-group="group"` - Only one active
-- `data-toggle-link="name"` - Toggle together
-- `data-toggle-hover="name"` - Hover toggle
-
-## Helper Functions
-
+## Helpers
 ```php
-// SVG icons
 <?php echo svg( 'arrow-right', [ 'class' => 'icon' ] ); ?>
-
-// Phone URL
 <a href="<?php echo skel_get_phone_url( '+971 50 123 4567' ); ?>">Call</a>
-
-// Excerpt
 <?php echo skel_get_the_excerpt( 20 ); ?>
-
-// RTL direction
 <div class="<?php echo esc_attr( skel_direction_class() ); ?>">
-<div class="<?php echo esc_attr( skel_swiper_direction_class() ); ?>">
 ```

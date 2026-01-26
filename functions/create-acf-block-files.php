@@ -7,6 +7,13 @@
  * @since 1.0.0
  */
 
+// Require the generator files.
+require_once get_template_directory() . '/functions/generators/generate-php.php';
+require_once get_template_directory() . '/functions/generators/generate-js.php';
+require_once get_template_directory() . '/functions/generators/generate-scss.php';
+require_once get_template_directory() . '/functions/generators/generate-json.php';
+require_once get_template_directory() . '/functions/generators/update-style.php';
+
 /**
  * This function checks the $block_types values, sanitizes the block names,
  * and creates a new .php file inside the acf-blocks folder in the root directory
@@ -27,11 +34,13 @@ function skel_create_acf_block_files( array $block_types, array $blocks_with_js 
 	WP_Filesystem();
 
 	// Define the directory where the block files will be created.
-	$php_directory  = get_template_directory() . '/acf-blocks/';
-	$js_directory   = get_template_directory() . '/src/js/custom/acf-blocks/';
-	$sass_directory = get_template_directory() . '/src/sass/partials/acf-blocks/';
-	$style_file     = get_template_directory() . '/src/sass/style.scss';
-	$template_file  = $php_directory . 'blank.php';
+	$php_directory      = get_template_directory() . '/acf-blocks/';
+	$js_directory       = get_template_directory() . '/src/js/custom/acf-blocks/';
+	$sass_directory     = get_template_directory() . '/src/sass/partials/acf-blocks/';
+	$style_file         = get_template_directory() . '/src/sass/style.scss';
+	$template_file      = $php_directory . 'blank.php';
+	$json_directory     = get_template_directory() . '/functions/acf-json/';
+	$json_template_file = get_template_directory() . '/functions/acf-json/blank.json';
 
 	// Initialize an array to hold the new import statements.
 	$sass_imports = array();
@@ -41,113 +50,22 @@ function skel_create_acf_block_files( array $block_types, array $blocks_with_js 
 		// Sanitize the block name by replacing spaces with dashes.
 		$sanitize_title = sanitize_title( $block );
 
-		// Define the full path to the block files.
-		$php_file_path  = $php_directory . $sanitize_title . '.php';
-		$js_file_path   = $js_directory . $sanitize_title . '.js';
-		$sass_file_path = $sass_directory . '_' . $sanitize_title . '.scss';
+		// Generate PHP file.
+		skel_create_block_php( $block, $sanitize_title, $php_directory, $template_file );
 
-		// Check if the PHP file already exists. If not, create it.
-		if ( ! file_exists( $php_file_path ) ) {
-			// Check if the template file exists.
-			if ( file_exists( $template_file ) ) {
-				// Get the content of the template file.
-				$php_content = $wp_filesystem->get_contents( $template_file );
-				if ( false !== $php_content ) {
-					// Replace the placeholder string with the sanitized block name.
-					$php_content = str_replace( 'blank-section', $sanitize_title . '-section', $php_content );
-					$php_content = str_replace( 'Blank ACF block', $block . ' ACF Block', $php_content );
-					// Create the new PHP file with the modified content.
-					if ( ! $wp_filesystem->put_contents( $php_file_path, $php_content, FS_CHMOD_FILE ) ) {
-						echo 'Error saving PHP file!';
-					}
-				} else {
-					echo 'Error reading template file!';
-				}
-			} else {
-				echo 'Template file does not exist!';
-			}
-		}
+		// Generate JS file.
+		skel_create_block_js( $block, $sanitize_title, $js_directory, $blocks_with_js );
 
-		// Only create JS file if it's listed in $blocks_with_js.
-		if ( in_array( $block, $blocks_with_js, true ) ) {
-			if ( ! file_exists( $js_file_path ) ) {
-				if ( ! $wp_filesystem->put_contents( $js_file_path, '', FS_CHMOD_FILE ) ) {
-					echo 'error saving JS file!';
-				}
-			}
-		}
-
-		// Check if the SASS file already exists. If not, create it.
-		if ( ! file_exists( $sass_file_path ) ) {
-			$sass_content = '.' . $sanitize_title . '-section {' . "\r\n\r\n" . '}';
-			// Create the new SASS file with the modified content.
-			if ( ! $wp_filesystem->put_contents( $sass_file_path, $sass_content, FS_CHMOD_FILE ) ) {
-				echo 'Error saving SASS file!';
-			}
-		}
+		// Generate SCSS file.
+		skel_create_block_scss( $sanitize_title, $sass_directory );
 
 		// Add the import statement to the array.
 		$sass_imports[] = "@import 'partials/acf-blocks/" . $sanitize_title . "';";
 
-		// Update the style.scss file.
-		update_style_scss( $style_file, $sass_imports );
-
-		// Create JSON file.
-		$json_file_path     = get_template_directory() . '/functions/acf-json/' . $sanitize_title . '.json';
-		$json_template_file = get_template_directory() . '/functions/acf-json/blank.json';
-
-		if ( ! file_exists( $json_file_path ) ) {
-			if ( file_exists( $json_template_file ) ) {
-				$json_content = $wp_filesystem->get_contents( $json_template_file );
-				if ( false !== $json_content ) {
-					$json_content = str_replace( '{{title}}', $block, $json_content );
-					$json_content = str_replace( '{{slug_snake}}', str_replace( '-', '_', $sanitize_title ), $json_content );
-
-					if ( ! $wp_filesystem->put_contents( $json_file_path, $json_content, FS_CHMOD_FILE ) ) {
-						echo 'Error saving JSON file!';
-					}
-				} else {
-					echo 'Error reading JSON template file!';
-				}
-			} else {
-				echo 'JSON Template file does not exist!';
-			}
-		}
-	}
-}
-
-/**
- * Update the style.scss file with new ACF block imports.
- *
- * This function will find the section between // ACF Blocks and // END ACF Blocks
- * in the style.scss file and replace it with new import statements.
- *
- * @param string $style_file Path to the style.scss file.
- * @param array  $sass_imports Array of new import statements to add.
- * @return void
- */
-function update_style_scss( string $style_file, array $sass_imports ): void {
-	global $wp_filesystem;
-
-	// Read the current content of the style.scss file.
-	$styles_content = $wp_filesystem->get_contents( $style_file );
-
-	if ( false === $styles_content ) {
-		echo 'Error reading style.scss file!';
-		return;
+		// Generate JSON file.
+		skel_create_block_json( $block, $sanitize_title, $json_directory, $json_template_file );
 	}
 
-	// Define the pattern to match the block between // ACF Blocks and // END ACF Blocks.
-	$pattern = '/(\/\/ ACF Blocks)(.*?)(\/\/ END ACF Blocks)/s';
-
-	// Create the new block content with the import statements.
-	$new_block = "// ACF Blocks\n" . implode( "\n", $sass_imports ) . "\n\n// END ACF Blocks";
-
-	// Replace the existing block with the new one.
-	$updated_content = preg_replace( $pattern, $new_block, $styles_content );
-
-	// Write the updated content back to the style.scss file.
-	if ( ! $wp_filesystem->put_contents( $style_file, $updated_content, FS_CHMOD_FILE ) ) {
-		echo 'Error updating style.scss file!';
-	}
+	// Update style.scss.
+	skel_update_style_scss( $style_file, $sass_imports );
 }

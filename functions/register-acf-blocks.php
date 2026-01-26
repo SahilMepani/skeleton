@@ -52,6 +52,8 @@ $blocks_stored_hash = get_option( 'acf_block_types_hash' );
  * Load ACF blocks from JSON files.
  */
 function skel_load_acf_json_blocks() {
+	global $block_post_type_map;
+
 	$paths    = skel_get_acf_block_paths();
 	$json_dir = $paths['json'];
 
@@ -110,6 +112,11 @@ function skel_load_acf_json_blocks() {
 		// Enforce required args.
 		$args['name']  = $slug;
 		$args['title'] = $block_data['title'];
+
+		// Check for post type restrictions.
+		if ( isset( $block_post_type_map[ $block_data['title'] ] ) ) {
+			$args['post_types'] = $block_post_type_map[ $block_data['title'] ];
+		}
 
 		if ( function_exists( 'acf_register_block_type' ) ) {
 			acf_register_block_type( $args );

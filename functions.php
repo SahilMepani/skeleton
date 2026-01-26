@@ -17,6 +17,7 @@ require get_template_directory() . '/functions/disable-wp-generated-image-sizes.
 require get_template_directory() . '/functions/add-image-sizes.php';
 require get_template_directory() . '/functions/create-acf-block-files.php';
 require get_template_directory() . '/functions/delete-unwanted-acf-block-files.php';
+require get_template_directory() . '/functions/acf-block-helpers.php';
 require get_template_directory() . '/functions/register-acf-blocks.php';
 require get_template_directory() . '/functions/block-editor-settings.php';
 require get_template_directory() . '/functions/enqueue-scripts.php';

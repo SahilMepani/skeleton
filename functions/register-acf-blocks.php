@@ -20,6 +20,7 @@ $block_types = array(
 	'Hero Slider',
 	'Faqs',
 	'Logo Slider',
+	'Test',
 );
 
 /**
@@ -51,7 +52,8 @@ $blocks_stored_hash = get_option( 'acf_block_types_hash' );
  * Load ACF blocks from JSON files.
  */
 function skel_load_acf_json_blocks() {
-	$json_dir = get_template_directory() . '/functions/acf-json/';
+	$paths    = skel_get_acf_block_paths();
+	$json_dir = $paths['json'];
 
 	if ( ! is_dir( $json_dir ) ) {
 		return;

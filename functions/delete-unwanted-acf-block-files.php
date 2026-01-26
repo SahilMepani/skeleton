@@ -12,10 +12,14 @@ function skel_delete_unwanted_acf_block_files( array $block_types ): void {
 	global $wp_filesystem;
 
 	// Define the directories where the block files are located.
-	$php_directory  = get_template_directory() . '/acf-blocks/';
-	$js_directory   = get_template_directory() . '/src/js/custom/acf-blocks/';
-	$sass_directory = get_template_directory() . '/src/sass/partials/acf-blocks/';
-	$json_directory = get_template_directory() . '/functions/acf-json/';
+	// Get block paths.
+	$paths = skel_get_acf_block_paths();
+
+	// Define the directories where the block files are located.
+	$php_directory  = $paths['php'];
+	$js_directory   = $paths['js'];
+	$sass_directory = $paths['sass'];
+	$json_directory = $paths['json'];
 
 	// Get a list of existing PHP files.
 	$existing_php_files = glob( $php_directory . '*.php' );
@@ -29,7 +33,7 @@ function skel_delete_unwanted_acf_block_files( array $block_types ): void {
 	// Create arrays of filenames from the block types.
 	$current_files = array_map(
 		function ( $block ) {
-			return sanitize_title( $block );
+			return skel_get_block_slug( $block );
 		},
 		$block_types
 	);

@@ -34,13 +34,17 @@ function skel_create_acf_block_files( array $block_types, array $blocks_with_js 
 	WP_Filesystem();
 
 	// Define the directory where the block files will be created.
-	$php_directory      = get_template_directory() . '/acf-blocks/';
-	$js_directory       = get_template_directory() . '/src/js/custom/acf-blocks/';
-	$sass_directory     = get_template_directory() . '/src/sass/partials/acf-blocks/';
-	$style_file         = get_template_directory() . '/src/sass/style.scss';
+	// Get block paths.
+	$paths = skel_get_acf_block_paths();
+
+	// Define the directory where the block files will be created.
+	$php_directory      = $paths['php'];
+	$js_directory       = $paths['js'];
+	$sass_directory     = $paths['sass'];
+	$style_file         = $paths['style_scss'];
 	$template_file      = $php_directory . 'blank.php';
-	$json_directory     = get_template_directory() . '/functions/acf-json/';
-	$json_template_file = get_template_directory() . '/functions/acf-json/blank.json';
+	$json_directory     = $paths['json'];
+	$json_template_file = $json_directory . 'blank.json';
 
 	// Initialize an array to hold the new import statements.
 	$sass_imports = array();
@@ -48,7 +52,8 @@ function skel_create_acf_block_files( array $block_types, array $blocks_with_js 
 	// Loop through each block type.
 	foreach ( $block_types as $block ) {
 		// Sanitize the block name by replacing spaces with dashes.
-		$sanitize_title = sanitize_title( $block );
+		// Sanitize the block name by replacing spaces with dashes.
+		$sanitize_title = skel_get_block_slug( $block );
 
 		// Generate PHP file.
 		skel_create_block_php( $block, $sanitize_title, $php_directory, $template_file );

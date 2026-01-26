@@ -93,173 +93,25 @@ function skel_create_acf_block_files( array $block_types, array $blocks_with_js 
 		update_style_scss( $style_file, $sass_imports );
 
 		// Create JSON file.
-		$json_file_path = get_template_directory() . '/functions/acf-json/' . $sanitize_title . '.json';
+		$json_file_path     = get_template_directory() . '/functions/acf-json/' . $sanitize_title . '.json';
+		$json_template_file = get_template_directory() . '/functions/acf-json/blank.json';
+
 		if ( ! file_exists( $json_file_path ) ) {
-			$json_data = array(
-				'title'    => $block,
-				// 'slug' => $sanitize_title, // Auto-generated
-				'fields'   => array(
-					array(
-						'key'          => 'field_' . str_replace( '-', '_', $sanitize_title ) . '_block_options',
-						'label'        => $block,
-						'type'         => 'accordion',
-						'open'         => 1,
-						'multi_expand' => 1,
-					),
-					array(
-						'key'   => 'field_' . str_replace( '-', '_', $sanitize_title ) . '_data_tab',
-						'label' => 'Data',
-						'type'  => 'tab',
-					),
-					// Add your content fields here...
-					array(
-						'key'   => 'field_' . str_replace( '-', '_', $sanitize_title ) . '_settings_tab',
-						'label' => 'Settings',
-						'type'  => 'tab',
-					),
-					array(
-						'key'           => 'field_' . str_replace( '-', '_', $sanitize_title ) . '_display',
-						'label'         => 'Show on Page',
-						'name'          => 'display',
-						'type'          => 'button_group',
-						'choices'       => array(
-							'on'  => 'Yes',
-							'off' => 'No',
-						),
-						'default_value' => 'on',
-					),
-					array(
-						'key'        => 'field_' . str_replace( '-', '_', $sanitize_title ) . '_spacing',
-						'label'      => 'Spacing',
-						'type'       => 'group',
-						'layout'     => 'block',
-						'sub_fields' => array(
-							array(
-								'key'        => 'field_' . str_replace( '-', '_', $sanitize_title ) . '_spacing_top_group',
-								'label'      => 'Top',
-								'name'       => 'top',
-								'type'       => 'group',
-								'layout'     => 'block',
-								'sub_fields' => array(
-									array(
-										'key'           => 'field_' . str_replace( '-', '_', $sanitize_title ) . '_spacing_top',
-										'label'         => 'Spacing Top',
-										'name'          => 'spacing_top',
-										'type'          => 'button_group',
-										'choices'       => array(
-											'none'    => 'None',
-											'small'   => 'Small',
-											'medium'  => 'Medium',
-											'large'   => 'Large',
-											'x-large' => 'X-Large',
-											'custom'  => 'Custom',
-										),
-										'default_value' => 'medium',
-									),
-									array(
-										'key'    => 'field_' . str_replace( '-', '_', $sanitize_title ) . '_custom_value_top',
-										'label'  => 'Custom Value',
-										'name'   => 'custom_value_top',
-										'type'   => 'range',
-										'min'    => 0,
-										'max'    => 200,
-										'step'   => 1,
-										'append' => 'px',
-										'conditional_logic' => array(
-											array(
-												array(
-													'field'    => 'field_' . str_replace( '-', '_', $sanitize_title ) . '_spacing_top',
-													'operator' => '==',
-													'value'    => 'custom',
-												),
-											),
-										),
-									),
-								),
-							),
-							array(
-								'key'        => 'field_' . str_replace( '-', '_', $sanitize_title ) . '_spacing_bottom_group',
-								'label'      => 'Bottom',
-								'name'       => 'bottom',
-								'type'       => 'group',
-								'layout'     => 'block',
-								'sub_fields' => array(
-									array(
-										'key'           => 'field_' . str_replace( '-', '_', $sanitize_title ) . '_spacing_bottom',
-										'label'         => 'Spacing Bottom',
-										'name'          => 'spacing_bottom',
-										'type'          => 'button_group',
-										'choices'       => array(
-											'none'    => 'None',
-											'small'   => 'Small',
-											'medium'  => 'Medium',
-											'large'   => 'Large',
-											'x-large' => 'X-Large',
-											'custom'  => 'Custom',
-										),
-										'default_value' => 'medium',
-									),
-									array(
-										'key'    => 'field_' . str_replace( '-', '_', $sanitize_title ) . '_custom_value_bottom',
-										'label'  => 'Custom Value',
-										'name'   => 'custom_value_bottom',
-										'type'   => 'range',
-										'min'    => 0,
-										'max'    => 200,
-										'step'   => 1,
-										'append' => 'px',
-										'conditional_logic' => array(
-											array(
-												array(
-													'field'    => 'field_' . str_replace( '-', '_', $sanitize_title ) . '_spacing_bottom',
-													'operator' => '==',
-													'value'    => 'custom',
-												),
-											),
-										),
-									),
-								),
-							),
-						),
-					),
-					array(
-						'key'          => 'field_' . str_replace( '-', '_', $sanitize_title ) . '_custom_css',
-						'label'        => 'Custom CSS',
-						'name'         => 'custom_css',
-						'type'         => 'text',
-						'instructions' => 'If unsure, do not edit.',
-						'wrapper'      => array(
-							'width' => '33',
-						),
-					),
-					array(
-						'key'          => 'field_' . str_replace( '-', '_', $sanitize_title ) . '_custom_classes',
-						'label'        => 'Custom Class(es)',
-						'name'         => 'custom_classes',
-						'type'         => 'text',
-						'instructions' => 'If unsure, do not edit.',
-						'wrapper'      => array(
-							'width' => '33',
-						),
-					),
-					array(
-						'key'          => 'field_' . str_replace( '-', '_', $sanitize_title ) . '_unique_id',
-						'label'        => 'Unique ID',
-						'name'         => 'unique_id',
-						'type'         => 'text',
-						'instructions' => 'only small case word allowed',
-						'wrapper'      => array(
-							'width' => '33',
-						),
-					),
-				),
-				'settings' => array(
-					'description' => $block . ' block.',
-					'icon'        => 'layout',
-					'category'    => 'uncategorized',
-				),
-			);
-			$wp_filesystem->put_contents( $json_file_path, wp_json_encode( $json_data, JSON_PRETTY_PRINT ), FS_CHMOD_FILE );
+			if ( file_exists( $json_template_file ) ) {
+				$json_content = $wp_filesystem->get_contents( $json_template_file );
+				if ( false !== $json_content ) {
+					$json_content = str_replace( '{{title}}', $block, $json_content );
+					$json_content = str_replace( '{{slug_snake}}', str_replace( '-', '_', $sanitize_title ), $json_content );
+
+					if ( ! $wp_filesystem->put_contents( $json_file_path, $json_content, FS_CHMOD_FILE ) ) {
+						echo 'Error saving JSON file!';
+					}
+				} else {
+					echo 'Error reading JSON template file!';
+				}
+			} else {
+				echo 'JSON Template file does not exist!';
+			}
 		}
 	}
 }

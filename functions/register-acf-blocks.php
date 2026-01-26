@@ -37,8 +37,7 @@ $blocks_with_js = array(
  */
 $block_post_type_map = array(
 	'Visual Editor' => array( 'page' ),
-	'Search Result' => array( 'page' ),
-	// Default post types will be used for blocks not listed here.
+	// All post types will be used for blocks not listed here.
 );
 
 // Hash the current block types array.

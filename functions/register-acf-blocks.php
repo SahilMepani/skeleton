@@ -161,34 +161,6 @@ function skel_load_acf_json_blocks() {
 				}
 			}
 
-			// Inject default settings fields if not present.
-			$default_fields = skel_get_block_default_fields();
-			$slug_snake     = str_replace( '-', '_', $slug );
-
-			// Replace placeholders in default fields.
-			$default_fields_json = wp_json_encode( $default_fields );
-			$default_fields_json = str_replace( '{{slug_snake}}', $slug_snake, $default_fields_json );
-			$default_fields      = json_decode( $default_fields_json, true );
-
-			// Get existing keys to avoid overwriting.
-			$existing_keys = array();
-			if ( ! empty( $field_group['fields'] ) ) {
-				foreach ( $field_group['fields'] as $field ) {
-					if ( isset( $field['key'] ) ) {
-						$existing_keys[] = $field['key'];
-					}
-				}
-			} else {
-				$field_group['fields'] = array();
-			}
-
-			// Append default fields if they don't exist.
-			foreach ( $default_fields as $default_field ) {
-				if ( ! in_array( $default_field['key'], $existing_keys, true ) ) {
-					$field_group['fields'][] = $default_field;
-				}
-			}
-
 			// Enforce critical keys.
 			$field_group['key']      = 'group_' . str_replace( '-', '_', $slug );
 			$field_group['location'] = array(

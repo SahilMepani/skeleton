@@ -3,7 +3,7 @@
  * Helper function to delete unnecessary ACF block files.
  *
  * This function checks the existing files against the $block_types values,
- * and deletes any files that are no longer needed, except for the `blank.php` file.
+ * and deletes any files that are no longer needed, except for the `blank.php` and `blank.json` files.
  *
  * @param array $block_types An array of current block names.
  * @return void
@@ -15,6 +15,7 @@ function skel_delete_unwanted_acf_block_files( array $block_types ): void {
 	$php_directory  = get_template_directory() . '/acf-blocks/';
 	$js_directory   = get_template_directory() . '/src/js/custom/acf-blocks/';
 	$sass_directory = get_template_directory() . '/src/sass/partials/acf-blocks/';
+	$json_directory = get_template_directory() . '/functions/acf-json/';
 
 	// Get a list of existing PHP files.
 	$existing_php_files = glob( $php_directory . '*.php' );
@@ -22,6 +23,8 @@ function skel_delete_unwanted_acf_block_files( array $block_types ): void {
 	$existing_js_files = glob( $js_directory . '*.js' );
 	// Get a list of existing SASS files.
 	$existing_sass_files = glob( $sass_directory . '*.scss' );
+	// Get a list of existing JSON files.
+	$existing_json_files = glob( $json_directory . '*.json' );
 
 	// Create arrays of filenames from the block types.
 	$current_files = array_map(
@@ -50,9 +53,16 @@ function skel_delete_unwanted_acf_block_files( array $block_types ): void {
 		},
 		$current_files
 	);
+	$current_json_files = array_map(
+		function ( $filename ) use ( $json_directory ) {
+			return $json_directory . $filename . '.json';
+		},
+		$current_files
+	);
 
 	// Exclude 'blank.php' from deletion.
-	$exclude_php_file = $php_directory . 'blank.php';
+	$exclude_php_file  = $php_directory . 'blank.php';
+	$exclude_json_file = $json_directory . 'blank.json';
 
 	// Delete PHP files that are no longer needed, excluding `blank.php`.
 	foreach ( $existing_php_files as $file ) {
@@ -77,6 +87,15 @@ function skel_delete_unwanted_acf_block_files( array $block_types ): void {
 		if ( ! in_array( $file, $current_sass_files, true ) ) {
 			if ( ! $wp_filesystem->delete( $file, false ) ) {
 				printf( 'Error deleting SASS file: %s!', esc_html( $file ) );
+			}
+		}
+	}
+
+	// Delete JSON files that are no longer needed, excluding `blank.json`.
+	foreach ( $existing_json_files as $file ) {
+		if ( $file !== $exclude_json_file && ! in_array( $file, $current_json_files, true ) ) {
+			if ( ! $wp_filesystem->delete( $file, false ) ) {
+				printf( 'Error deleting JSON file: %s!', esc_html( $file ) );
 			}
 		}
 	}

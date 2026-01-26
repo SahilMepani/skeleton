@@ -214,12 +214,12 @@ form {
 		list-style: none;
 	}
 
-	>ul {
-		>li {
+	> ul {
+		> li {
 			clear: both;
 			margin-block-end: rem-calc(15);
 
-			>label {
+			> label {
 				margin-inline-end: rem-calc(10);
 			}
 		}

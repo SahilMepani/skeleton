@@ -82,6 +82,26 @@ option:first-child {
 	}
 }
 
+.icon {
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	inline-size: 1em;
+	block-size: 1em;
+
+	svg {
+		fill: currentcolor;
+		inline-size: 100%;
+		block-size: 100%;
+
+		path[stroke] {
+			fill: none;
+			stroke: currentcolor;
+		}
+	}
+}
+
 // .container-small {
 // 	@extend %container;
 

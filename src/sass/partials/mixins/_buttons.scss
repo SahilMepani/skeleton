@@ -61,16 +61,19 @@
 }
 
 @mixin btn-sm {
-	block-size: rem-calc(36);
+	min-block-size: rem-calc(36);
 	padding-inline: rem-calc(20);
+	padding-block: rem-calc(8); // safety net
 }
 
 @mixin btn-md {
-	block-size: rem-calc(44);
+	min-block-size: rem-calc(44);
 	padding-inline: rem-calc(20);
+	padding-block: rem-calc(8); // safety net
 }
 
 @mixin btn-lg {
-	block-size: rem-calc(60);
+	min-block-size: rem-calc(60);
 	padding-inline: rem-calc(20);
+	padding-block: rem-calc(8); // safety net
 }

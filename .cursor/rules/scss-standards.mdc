@@ -8,7 +8,9 @@ alwaysApply: false
 
 ## Critical
 ```scss
-// ❌ NEVER: font-size: 18px; @media (min-width: 768px) {} @media (width < $md) {}
+// ❌ NEVER:
+font-size: 18px;
+@media (min-width: 768px) {} OR @media (width < $md) {}
 // ✅ ALWAYS:
 gap: rem-calc(16);           // Fixed values
 font-size: fluid(16, 24);    // Responsive (min, max)

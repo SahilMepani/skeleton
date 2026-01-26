@@ -48,83 +48,81 @@ $blocks_current_hash = md5( wp_json_encode( $block_types ) );
 $blocks_stored_hash = get_option( 'acf_block_types_hash' );
 
 /**
- * Create block options.
- *
- * Generates an array of options for a custom block based on the provided block name.
- *
- * @param string $block The name of the block.
- * @return array An array of options for the custom block.
+ * Load ACF blocks from JSON files.
  */
-function skel_create_block_options( string $block ): array {
-	global $block_post_type_map;
+function skel_load_acf_json_blocks() {
+	$json_dir = get_template_directory() . '/functions/acf-json/';
 
-	// Sanitize the block name.
-	$sanitize_block = sanitize_title( $block );
+	if ( ! is_dir( $json_dir ) ) {
+		return;
+	}
 
-	// Check if specific post types are defined for this block.
-	$post_types = $block_post_type_map[ $block ] ?? array( 'page' );
+	$files = glob( $json_dir . '*.json' );
 
-	// Define the options for the custom block.
-	$options = array(
-		'name'            => $sanitize_block,
-		'title'           => $block,
-		'icon'            => array(
-			'background' => '#fbf3db',
-			'foreground' => '#333',
-			'src'        => 'layout',
-		),
-		'post_types'      => $post_types, // Use specific post types.
-		'category'        => 'uncategorized',
-		'mode'            => 'edit',
-		'render_template' => 'acf-blocks/' . $sanitize_block . '.php',
-		'example'         => array(
-			'attributes' => array(
-				'mode' => 'preview',
-				'data' => array(
-					'preview_image' => get_template_directory_uri() . '/acf-blocks/preview/' . $sanitize_block . '.png',
+	if ( empty( $files ) ) {
+		return;
+	}
+
+	foreach ( $files as $file ) {
+		$json_content = file_get_contents( $file );
+		$block_data   = json_decode( $json_content, true );
+
+		if ( ! $block_data || ! isset( $block_data['title'] ) ) {
+			continue;
+		}
+
+		$slug = basename( $file, '.json' );
+
+		// Define arguments for block registration.
+		$args = array(
+			'name'            => $slug,
+			'title'           => $block_data['title'],
+			'description'     => $block_data['settings']['description'] ?? '',
+			'render_template' => 'acf-blocks/' . $slug . '.php',
+			'category'        => $block_data['settings']['category'] ?? 'uncategorized',
+			'icon'            => $block_data['settings']['icon'] ?? 'layout',
+			'mode'            => 'edit',
+			'supports'        => array(
+				'align'           => false,
+				'customClassName' => false,
+				'mode'            => false,
+			),
+			'example'         => array(
+				'attributes' => array(
+					'mode' => 'preview',
+					'data' => array(
+						'preview_image' => get_template_directory_uri() . '/acf-blocks/preview/' . $slug . '.png',
+					),
 				),
 			),
-		),
-		'supports'        => array(
-			'align'           => false,
-			'customClassName' => false,
-			'mode'            => false, // Disable toggle preview and edit.
-		),
-	);
+		);
 
-	return $options;
-}
+		// Register the block.
+		if ( function_exists( 'acf_register_block_type' ) ) {
+			acf_register_block_type( $args );
+		}
 
-
-/**
- * Register ACF blocks.
- *
- * Registers custom ACF blocks using the ACF plugin's `acf_register_block_type()` function.
- * The block options are generated using the `skel_create_block_options()` function.
- * This function is hooked into the 'acf/init' action.
- *
- * @return void
- */
-function skel_register_acf_blocks(): void {
-	global $block_types;
-
-	if ( $block_types ) {
-		// Create block options for each block type.
-		$blocks = array_map( 'skel_create_block_options', $block_types );
-
-		// Sort blocks in ascending order.
-		sort( $blocks );
-
-		// Register each block.
-		foreach ( $blocks as $block ) {
-			acf_register_block_type( $block );
+		// Register fields if they exist.
+		if ( ! empty( $block_data['fields'] ) && function_exists( 'acf_add_local_field_group' ) ) {
+			$field_group = array(
+				'key'      => 'group_' . str_replace( '-', '_', $slug ),
+				'title'    => $block_data['title'],
+				'fields'   => $block_data['fields'],
+				'location' => array(
+					array(
+						array(
+							'param'    => 'block',
+							'operator' => '==',
+							'value'    => 'acf/' . $slug,
+						),
+					),
+				),
+			);
+			acf_add_local_field_group( $field_group );
 		}
 	}
 }
-
-if ( has_action( 'acf/init' ) ) {
-	add_action( 'acf/init', 'skel_register_acf_blocks' );
-}
+add_action( 'acf/init', 'skel_load_acf_json_blocks' );
 
 if ( $blocks_current_hash !== $blocks_stored_hash ) {
 	// Update the stored hash with the current hash.

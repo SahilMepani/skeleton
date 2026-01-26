@@ -229,7 +229,7 @@ function skel_get_block_default_fields() {
 					'label'      => 'Top',
 					'name'       => 'top',
 					'type'       => 'group',
-					'layout'     => 'block',
+					'layout'     => 'table',
 					'sub_fields' => array(
 						array(
 							'key'           => 'field_{{slug_snake}}_spacing_top',
@@ -272,7 +272,7 @@ function skel_get_block_default_fields() {
 					'label'      => 'Bottom',
 					'name'       => 'bottom',
 					'type'       => 'group',
-					'layout'     => 'block',
+					'layout'     => 'table',
 					'sub_fields' => array(
 						array(
 							'key'           => 'field_{{slug_snake}}_spacing_bottom',

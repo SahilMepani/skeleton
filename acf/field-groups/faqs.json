@@ -1,0 +1,18 @@
+{
+	
+	"title": "Faqs",
+	"fields": [
+		{
+			"key": "field_faqs_block_options",
+			"label": "Faqs",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_faqs_data_tab",
+			"label": "Data",
+			"type": "tab"
+		}
+	]
+}

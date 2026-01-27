@@ -1,7 +1,6 @@
 {
 	"title": "All Fields Sample",
 	"active": true,
-	"description": "A sample block definition containing all available ACF field types and block options.",
 	"menu_order": 0,
 	"position": "normal",
 	"style": "default",

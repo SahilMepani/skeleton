@@ -43,7 +43,6 @@ $block_post_type_map = array(
 // Hash the current block types array.
 $blocks_current_hash = md5( wp_json_encode( $block_types ) );
 
-
 // Get the stored hash.
 $blocks_stored_hash = get_option( 'acf_block_types_hash' );
 
@@ -142,7 +141,7 @@ function skel_load_acf_json_blocks() {
 			$field_group = wp_parse_args( $block_data, $default_field_group );
 
 			// Inject default settings fields if not present.
-			$default_fields = skel_get_block_default_fields();
+			$default_fields = skel_get_block_default_settings_tab_fields();
 			$slug_snake     = str_replace( '-', '_', $slug );
 
 			// Replace placeholders in default fields.
@@ -206,7 +205,7 @@ if ( $blocks_current_hash !== $blocks_stored_hash ) {
  *
  * @return array Default fields.
  */
-function skel_get_block_default_fields() {
+function skel_get_block_default_settings_tab_fields() {
 	return array(
 		array(
 			'key'   => 'field_{{slug_snake}}_settings_tab',

@@ -13,7 +13,7 @@
  */
 function skel_get_acf_block_paths() {
 	return array(
-		'php'        => get_template_directory() . '/acf-blocks/',
+		'php'        => get_template_directory() . '/acf/blocks/',
 		'js'         => get_template_directory() . '/src/js/custom/acf-blocks/',
 		'sass'       => get_template_directory() . '/src/sass/partials/acf-blocks/',
 		'json'       => get_template_directory() . '/acf/field-groups/',

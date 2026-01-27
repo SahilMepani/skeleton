@@ -64,7 +64,7 @@ function skel_register_single_block( $block_data, $slug, $post_type_map ) {
 	// 1. Register Block.
 	$default_block_args = array(
 		'description'     => '',
-		'render_template' => 'acf-blocks/' . $slug . '.php',
+		'render_template' => 'acf/blocks/' . $slug . '.php',
 		'category'        => 'uncategorized',
 		'icon'            => 'layout',
 		'mode'            => 'edit',
@@ -77,7 +77,7 @@ function skel_register_single_block( $block_data, $slug, $post_type_map ) {
 			'attributes' => array(
 				'mode' => 'preview',
 				'data' => array(
-					'preview_image' => get_template_directory_uri() . '/acf-blocks/preview/' . $slug . '.png',
+					'preview_image' => get_template_directory_uri() . '/acf/blocks/preview/' . $slug . '.png',
 				),
 			),
 		),

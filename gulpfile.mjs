@@ -159,7 +159,7 @@ function purgeCSSTask() {
 					'./*.php',
 					'./templates/**/*.php',
 					'./template-parts/**/*.php',
-					'./acf-blocks/**/*.php',
+					'./acf/blocks/**/*.php',
 					'./functions/**/*.php',
 					'./src/js/**/*.js'
 				],

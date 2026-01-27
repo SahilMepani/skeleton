@@ -55,7 +55,7 @@ function skel_check_missing_acf_block_previews(): void {
 	}
 
 	$missing_preview_blocks = array();
-	$preview_folder_path    = get_template_directory() . '/acf-blocks/preview/';
+	$preview_folder_path    = get_template_directory() . '/acf/blocks/preview/';
 
 	foreach ( $block_types as $block_name ) {
 		$sanitized_block_name = sanitize_title( $block_name );
@@ -72,7 +72,7 @@ function skel_check_missing_acf_block_previews(): void {
 		<div class="notice notice-warning is-dismissible">
 			<p>
 				<strong>Heads up!</strong> The following ACF blocks are missing their preview images in
-				<code>/acf-blocks/preview/</code>:
+				<code>/acf/blocks/preview/</code>:
 			</p>
 			<ul>
 				<?php

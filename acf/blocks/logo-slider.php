@@ -37,6 +37,13 @@ $unique_id      = get_field( 'unique_id' );
 $spacing_top_custom    = 'custom' === $spacing_top ? "--spacing-top-custom: {$spacing['top']['custom_value_top']};" : '';
 $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom: {$spacing['bottom']['custom_value_bottom']};" : '';
 
+if ( 'custom' === $spacing_top ) {
+	$spacing_top = 'spacing-top-custom';
+}
+if ( 'custom' === $spacing_bottom ) {
+	$spacing_bottom = 'spacing-bottom-custom';
+}
+
 ?>
 
 <section

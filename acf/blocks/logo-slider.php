@@ -34,8 +34,9 @@ $custom_css     = get_field( 'custom_css' );
 $unique_id      = get_field( 'unique_id' );
 
 // Custom Spacing.
-$spacing_top_custom    = 'custom' === $spacing_top ? "--spacing-top-custom: {$spacing['top']['custom_value']};" : '';
-$spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom: {$spacing['bottom']['custom_value']};" : '';
+$spacing_top_custom    = 'custom' === $spacing_top ? "--spacing-top-custom: {$spacing['top']['custom_value_top']};" : '';
+$spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom: {$spacing['bottom']['custom_value_bottom']};" : '';
+
 ?>
 
 <section

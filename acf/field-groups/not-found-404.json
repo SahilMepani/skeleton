@@ -25,6 +25,7 @@
 			"label": "Description",
 			"name": "description",
 			"type": "wysiwyg",
+			"instructions": "DO NOT COPY-PASTE TEXT ON THE \"VISUAL\" TAB. USE \"TEXT\" TAB INSTEAD",
 			"tabs": "all",
 			"toolbar": "full",
 			"media_upload": 1

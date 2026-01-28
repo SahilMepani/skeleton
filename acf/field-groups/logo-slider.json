@@ -26,6 +26,7 @@
 					"label": "Image",
 					"name": "image",
 					"type": "image",
+					"required": 1,
 					"return_format": "id",
 					"preview_size": "w200",
 					"library": "all"

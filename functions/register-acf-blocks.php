@@ -223,15 +223,16 @@ function skel_get_block_default_settings_tab_fields( $slug_snake ) {
 		array(
 			'key'        => 'field_' . $slug_snake . '_spacing',
 			'label'      => 'Spacing',
+			'name'       => 'spacing',
 			'type'       => 'group',
-			'layout'     => 'block',
+			'layout'     => 'row',
 			'sub_fields' => array(
 				array(
 					'key'        => 'field_' . $slug_snake . '_spacing_top_group',
 					'label'      => 'Top',
 					'name'       => 'top',
 					'type'       => 'group',
-					'layout'     => 'table',
+					'layout'     => 'block',
 					'sub_fields' => array(
 						array(
 							'key'           => 'field_' . $slug_snake . '_spacing_top',
@@ -239,14 +240,14 @@ function skel_get_block_default_settings_tab_fields( $slug_snake ) {
 							'name'          => 'spacing_top',
 							'type'          => 'button_group',
 							'choices'       => array(
-								'none'    => 'None',
-								'small'   => 'Small',
-								'medium'  => 'Medium',
-								'large'   => 'Large',
-								'x-large' => 'X-Large',
-								'custom'  => 'Custom',
+								'none'               => 'None',
+								'spacing-top-small'  => 'Small',
+								'spacing-top-medium' => 'Medium',
+								'spacing-top-large'  => 'Large',
+								'spacing-top-xlarge' => 'X-Large',
+								'custom'             => 'Custom',
 							),
-							'default_value' => 'medium',
+							'default_value' => 'spacing-top-medium',
 						),
 						array(
 							'key'               => 'field_' . $slug_snake . '_custom_value_top',
@@ -254,7 +255,7 @@ function skel_get_block_default_settings_tab_fields( $slug_snake ) {
 							'name'              => 'custom_value_top',
 							'type'              => 'range',
 							'min'               => 0,
-							'max'               => 200,
+							'max'               => 400,
 							'step'              => 1,
 							'append'            => 'px',
 							'conditional_logic' => array(
@@ -282,12 +283,12 @@ function skel_get_block_default_settings_tab_fields( $slug_snake ) {
 							'name'          => 'spacing_bottom',
 							'type'          => 'button_group',
 							'choices'       => array(
-								'none'    => 'None',
-								'small'   => 'Small',
-								'medium'  => 'Medium',
-								'large'   => 'Large',
-								'x-large' => 'X-Large',
-								'custom'  => 'Custom',
+								'none'                  => 'None',
+								'spacing-bottom-small'  => 'Small',
+								'spacing-bottom-medium' => 'Medium',
+								'spacing-bottom-large'  => 'Large',
+								'spacing-bottom-xlarge' => 'X-Large',
+								'custom'                => 'Custom',
 							),
 							'default_value' => 'medium',
 						),
@@ -297,7 +298,7 @@ function skel_get_block_default_settings_tab_fields( $slug_snake ) {
 							'name'              => 'custom_value_bottom',
 							'type'              => 'range',
 							'min'               => 0,
-							'max'               => 200,
+							'max'               => 400,
 							'step'              => 1,
 							'append'            => 'px',
 							'conditional_logic' => array(

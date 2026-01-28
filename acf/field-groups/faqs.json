@@ -138,7 +138,8 @@
 					"instructions": "DO NOT COPY-PASTE TEXT ON THE \"VISUAL\" TAB. USE \"TEXT\" TAB INSTEAD",
 					"tabs": "all",
 					"toolbar": "full",
-					"media_upload": 1
+					"media_upload": 1,
+					"delay": 1
 				}
 			]
 		}

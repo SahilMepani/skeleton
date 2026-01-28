@@ -90,6 +90,7 @@
 					"tabs": "all",
 					"toolbar": "full",
 					"media_upload": 1,
+					"delay": 1,
 					"conditional_logic": [
 						[
 							{

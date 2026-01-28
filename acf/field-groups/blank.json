@@ -1,16 +1,15 @@
 {
-	"active": false,
-	"title": "{{title}}",
+	"title": "Blank",
 	"fields": [
 		{
-			"key": "field_{{slug_snake}}_block_options",
-			"label": "{{title}}",
+			"key": "field_blank_block_options",
+			"label": "Blank",
 			"type": "accordion",
 			"open": 1,
 			"multi_expand": 1
 		},
 		{
-			"key": "field_{{slug_snake}}_data_tab",
+			"key": "field_blank_data_tab",
 			"label": "Data",
 			"type": "tab"
 		}

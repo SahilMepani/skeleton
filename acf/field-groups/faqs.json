@@ -1,5 +1,4 @@
 {
-	
 	"title": "Faqs",
 	"fields": [
 		{
@@ -13,6 +12,134 @@
 			"key": "field_faqs_data_tab",
 			"label": "Data",
 			"type": "tab"
+		},
+		{
+			"key": "field_faqs_section_heading",
+			"label": "Section Heading",
+			"name": "section_heading",
+			"type": "text"
+		},
+		{
+			"key": "field_faqs_faq_type",
+			"label": "FAQ Type",
+			"name": "faq_type",
+			"type": "button_group",
+			"choices": {
+				"latest": "Latest",
+				"selected": "Selected",
+				"custom": "Custom"
+			},
+			"default_value": "latest",
+			"return_format": "value"
+		},
+		{
+			"key": "field_faqs_faq_count",
+			"label": "FAQ Count",
+			"name": "faq_count",
+			"type": "number",
+			"default_value": -1
+		},
+		{
+			"key": "field_faqs_button",
+			"label": "Button",
+			"name": "button",
+			"type": "link",
+			"return_format": "array"
+		},
+		{
+			"key": "field_faqs_faq_categories",
+			"label": "FAQ Categories",
+			"name": "faq_categories",
+			"type": "taxonomy",
+			"taxonomy": "faq-category",
+			"field_type": "multi_select",
+			"add_term": 0,
+			"save_terms": 0,
+			"load_terms": 0,
+			"return_format": "id",
+			"multiple": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_faqs_faq_type",
+						"operator": "==",
+						"value": "latest"
+					}
+				]
+			]
+		},
+		{
+			"key": "field_faqs_faq_dividers",
+			"label": "FAQ Dividers",
+			"name": "faq_dividers",
+			"type": "taxonomy",
+			"taxonomy": "faq-divider",
+			"field_type": "multi_select",
+			"add_term": 0,
+			"save_terms": 0,
+			"load_terms": 0,
+			"return_format": "id",
+			"multiple": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_faqs_faq_type",
+						"operator": "==",
+						"value": "latest"
+					}
+				]
+			]
+		},
+		{
+			"key": "field_faqs_selected_faq",
+			"label": "Selected FAQs",
+			"name": "selected_faq",
+			"type": "relationship",
+			"post_type": ["faq"],
+			"return_format": "id",
+			"conditional_logic": [
+				[
+					{
+						"field": "field_faqs_faq_type",
+						"operator": "==",
+						"value": "selected"
+					}
+				]
+			]
+		},
+		{
+			"key": "field_faqs_custom_faq",
+			"label": "Custom FAQs",
+			"name": "custom_faq",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Add FAQ",
+			"conditional_logic": [
+				[
+					{
+						"field": "field_faqs_faq_type",
+						"operator": "==",
+						"value": "custom"
+					}
+				]
+			],
+			"sub_fields": [
+				{
+					"key": "field_faqs_question",
+					"label": "Question",
+					"name": "question",
+					"type": "text"
+				},
+				{
+					"key": "field_faqs_answer",
+					"label": "Answer",
+					"name": "answer",
+					"type": "wysiwyg",
+					"tabs": "all",
+					"toolbar": "full",
+					"media_upload": 1
+				}
+			]
 		}
 	]
 }

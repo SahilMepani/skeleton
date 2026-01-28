@@ -1,5 +1,4 @@
 {
-	
 	"title": "Not Found 404",
 	"fields": [
 		{
@@ -13,6 +12,22 @@
 			"key": "field_not_found_404_data_tab",
 			"label": "Data",
 			"type": "tab"
+		},
+		{
+			"key": "field_not_found_404_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "text",
+			"default_value": "Page not found."
+		},
+		{
+			"key": "field_not_found_404_description",
+			"label": "Description",
+			"name": "description",
+			"type": "wysiwyg",
+			"tabs": "all",
+			"toolbar": "full",
+			"media_upload": 1
 		}
 	]
 }

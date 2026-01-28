@@ -7,7 +7,7 @@
  */
 
 // Load configuration.
-require_once get_template_directory() . '/functions/config/acf-blocks.php';
+require_once get_template_directory() . '/acf/config.php';
 
 // Hash the current block types array.
 $blocks_current_hash = md5( wp_json_encode( $block_types ) );

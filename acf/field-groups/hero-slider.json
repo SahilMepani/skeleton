@@ -1,5 +1,4 @@
 {
-	
 	"title": "Hero Slider",
 	"fields": [
 		{
@@ -13,6 +12,40 @@
 			"key": "field_hero_slider_data_tab",
 			"label": "Data",
 			"type": "tab"
+		},
+		{
+			"key": "field_hero_slider_slider",
+			"label": "Slider",
+			"name": "slider",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Add Slide",
+			"sub_fields": [
+				{
+					"key": "field_hero_slider_desktop_image",
+					"label": "Desktop Image",
+					"name": "desktop_image",
+					"type": "image",
+					"return_format": "id",
+					"preview_size": "w200",
+					"library": "all",
+					"wrapper": {
+						"width": "50"
+					}
+				},
+				{
+					"key": "field_hero_slider_mobile_image",
+					"label": "Mobile Image",
+					"name": "mobile_image",
+					"type": "image",
+					"return_format": "id",
+					"preview_size": "h200",
+					"library": "all",
+					"wrapper": {
+						"width": "50"
+					}
+				}
+			]
 		}
 	]
 }

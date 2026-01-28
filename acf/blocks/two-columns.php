@@ -22,7 +22,6 @@ if ( 'on' !== $display ) {
 $section_background = get_field( 'section_background' );
 $section_heading    = get_field( 'section_heading' );
 $column_order       = get_field( 'column_order' );
-$column_order       = get_field( 'column_order' );
 $column_width       = get_field( 'column_width' );
 $columns            = get_field( 'columns' );
 

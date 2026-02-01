@@ -7,14 +7,12 @@
  */
 
 // Set thumbnail preview in backend.
-if ( isset( $block['data']['preview_image'] ) ) {
-	echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
-	return; // required.
+if ( skel_render_block_preview( $block ) ) {
+	return;
 }
 
 // Return early if display is off.
-$display = get_field( 'display' );
-if ( 'on' !== $display ) {
+if ( ! skel_should_display_block() ) {
 	return;
 }
 
@@ -23,32 +21,24 @@ $heading     = get_field( 'heading' );
 $heading     = $heading ? $heading : __( 'Page not found.', 'skel' );
 $description = get_field( 'description' );
 $description = $description ? $description : __(
-	'<p>The page you’re looking for might have been removed, had its name changed, or is temporarily unavailable. Please check the URL or return to the homepage.</p>',
+	'<p>The page you're looking for might have been removed, had its name changed, or is temporarily unavailable . Please check the URL or return to the homepage . < / p > ',
 	'skel'
 );
 
 // Developer options.
-$spacing        = get_field( 'spacing' );
-$spacing_top    = $spacing['top']['spacing_top'] ?? '';
-$spacing_bottom = $spacing['bottom']['spacing_bottom'] ?? '';
-$custom_classes = get_field( 'custom_classes' );
-$custom_css     = get_field( 'custom_css' );
-$unique_id      = get_field( 'unique_id' );
-
-// Custom Spacing.
-$spacing_top_custom    = 'custom' === $spacing_top ? "--spacing-top-custom: {$spacing['top']['custom_value_top']};" : '';
-$spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom: {$spacing['bottom']['custom_value_bottom']};" : '';
-
-if ( 'custom' === $spacing_top ) {
-	$spacing_top = 'spacing-top-custom';
-}
-if ( 'custom' === $spacing_bottom ) {
-	$spacing_bottom = 'spacing-bottom-custom';
-}
+$opts                  = skel_get_block_developer_options();
+$display_class         = $opts['display_class'];
+$spacing_top           = $opts['spacing_top'];
+$spacing_bottom        = $opts['spacing_bottom'];
+$spacing_top_custom    = $opts['spacing_top_custom'];
+$spacing_bottom_custom = $opts['spacing_bottom_custom'];
+$custom_classes        = $opts['custom_classes'];
+$custom_css            = $opts['custom_css'];
+$unique_id             = $opts['unique_id'];
 ?>
 
 <section
-	class="not-found-404-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
+	class="not-found-404-section section <?php echo esc_attr( "{$display_class} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
 	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
 	id="<?php echo esc_attr( $unique_id ); ?>">
 

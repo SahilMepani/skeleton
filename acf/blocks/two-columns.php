@@ -7,14 +7,12 @@
  */
 
 // Set thumbnail preview in backend.
-if ( isset( $block['data']['preview_image'] ) ) {
-	echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
-	return; // required.
+if ( skel_render_block_preview( $block ) ) {
+	return;
 }
 
 // Return early if display is off.
-$display = get_field( 'display' );
-if ( 'on' !== $display ) {
+if ( ! skel_should_display_block() ) {
 	return;
 }
 
@@ -26,29 +24,13 @@ $column_width       = get_field( 'column_width' );
 $columns            = get_field( 'columns' );
 
 // Developer options.
-$spacing        = get_field( 'spacing' );
-$spacing_top    = $spacing['top']['spacing_top'] ?? '';
-$spacing_bottom = $spacing['bottom']['spacing_bottom'] ?? '';
-$custom_classes = get_field( 'custom_classes' );
-$custom_css     = get_field( 'custom_css' );
-$unique_id      = get_field( 'unique_id' );
-
-// Custom Spacing.
-$spacing_top_custom    = 'custom' === $spacing_top ? "--spacing-top-custom: {$spacing['top']['custom_value_top']};" : '';
-$spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom: {$spacing['bottom']['custom_value_bottom']};" : '';
-
-if ( 'custom' === $spacing_top ) {
-	$spacing_top = 'spacing-top-custom';
-}
-if ( 'custom' === $spacing_bottom ) {
-	$spacing_bottom = 'spacing-bottom-custom';
-}
+$dev_options = skel_get_block_developer_options();
 ?>
 
 <section
-	class="two-columns-section section <?php echo esc_attr( "bg-{$section_background} section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes} " ); ?>"
-	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
-	id="<?php echo esc_attr( $unique_id ); ?>">
+	class="two-columns-section section <?php echo esc_attr( "{$dev_options['display_class']} bg-{$section_background} {$dev_options['spacing_top']} {$dev_options['spacing_bottom']} {$dev_options['custom_classes']}" ); ?>"
+	style="<?php echo esc_attr( "{$dev_options['spacing_top_custom']} {$dev_options['spacing_bottom_custom']} {$dev_options['custom_css']}" ); ?>"
+	id="<?php echo esc_attr( $dev_options['unique_id'] ); ?>">
 
 	<div class="container" style="--grid-first-col: <?php echo esc_html( $column_width ); ?>;">
 
@@ -89,7 +71,7 @@ if ( 'custom' === $spacing_bottom ) {
 								$image_alt  = trim( wp_strip_all_tags( $image_alt ) );
 								?>
 						<div class="img-dialog-block">
-							<img src="<?php echo esc_attr( wp_get_attachment_image_url( $col_image, 'w768' ) ); ?>"
+							<img src="<?php echo esc_url( wp_get_attachment_image_url( $col_image, 'w768' ) ); ?>"
 								srcset="<?php echo esc_attr( wp_get_attachment_image_srcset( $col_image ) ); ?>" sizes="100vw"
 								alt="<?php echo esc_attr( $image_alt ); ?>" width="<?php echo esc_attr( $image_data[1] ); ?>"
 								height="<?php echo esc_attr( $image_data[2] ); ?>" class="img-responsive" loading="lazy" />

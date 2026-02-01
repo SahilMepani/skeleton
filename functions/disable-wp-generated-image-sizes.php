@@ -6,14 +6,16 @@
  * @subpackage Skeleton
  * @since 1.0.0
  */
-
-// Update default media sizes.
-update_option( 'thumbnail_size_w', 0 );
-update_option( 'medium_size_w', 0 );
-update_option( 'large_size_w', 0 );
-update_option( 'thumbnail_size_h', 0 );
-update_option( 'medium_size_h', 0 );
-update_option( 'large_size_h', 0 );
+function tse_theme_activation_setup() {
+	// Update default media sizes.
+	update_option( 'thumbnail_size_w', 0 );
+	update_option( 'medium_size_w', 0 );
+	update_option( 'large_size_w', 0 );
+	update_option( 'thumbnail_size_h', 0 );
+	update_option( 'medium_size_h', 0 );
+	update_option( 'large_size_h', 0 );
+}
+add_action( 'after_switch_theme', 'tse_theme_activation_setup' );
 
 /**
  * Disable specific image sizes.

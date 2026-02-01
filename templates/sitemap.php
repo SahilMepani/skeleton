@@ -97,23 +97,16 @@ $images = array(
 <div class="img-cover-block">
 	<?php
 	foreach ( array_filter( $images ) as $img ) :
-		$image_data   = wp_get_attachment_image_src( $img['id'], $img['size'] );
-		$image_url    = wp_get_attachment_image_url( $img['id'], $img['size'] );
-		$image_srcset = wp_get_attachment_image_srcset( $img['id'] );
-		$image_alt    = trim( wp_strip_all_tags( get_post_meta( $img['id'], '_wp_attachment_image_alt', true ) ) );
-
-		$image_width  = $image_data[1] ?? '';
-		$image_height = $image_data[2] ?? '';
-		?>
-		<img
-			src="<?php echo esc_url( $image_url ); ?>"
-			srcset="<?php echo esc_attr( $image_srcset ); ?>"
-			sizes="<?php echo esc_attr( $sizes ); ?>"
-			alt="<?php echo esc_attr( $image_alt ); ?>"
-			width="<?php echo esc_attr( $image_width ); ?>"
-			height="<?php echo esc_attr( $image_height ); ?>"
-			class="img-cover <?php echo esc_attr( $img['class'] ); ?>"
-			loading="lazy"
-		/>
-	<?php endforeach; ?>
+		echo wp_get_attachment_image(
+			$img['id'],
+			$img['size'],
+			false,
+			array(
+				'class'   => 'img-cover ' . $img['class'],
+				'sizes'   => $img['sizes'],
+				'loading' => 'lazy',
+			)
+		);
+	endforeach;
+	?>
 </div>

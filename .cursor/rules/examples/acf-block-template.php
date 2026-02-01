@@ -86,31 +86,25 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 				$title       = $item['title'] ?? '';
 				$description = $item['description'] ?? '';
 				$image_id    = $item['image'] ?? '';
-				$link        = $item['link'] ?? [];
+				$link        = $item['link'] ?? array();
 				?>
 
 				<div class="item" data-aos-stagger-item data-aos="fade-up">
 
 					<?php if ( $image_id ) : ?>
-						<?php
-						$image_data   = wp_get_attachment_image_src( $image_id, 'w768' );
-						$image_url    = wp_get_attachment_image_url( $image_id, 'w768' );
-						$image_srcset = wp_get_attachment_image_srcset( $image_id );
-						$image_alt    = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
-						$image_alt    = trim( wp_strip_all_tags( $image_alt ) );
-						$image_width  = $image_data[1] ?? '';
-						$image_height = $image_data[2] ?? '';
-						?>
 						<div class="img-cover-block">
-							<img
-								src="<?php echo esc_url( $image_url ); ?>"
-								srcset="<?php echo esc_attr( $image_srcset ); ?>"
-								sizes="(min-width: 992px) 33vw, (min-width: 768px) 50vw, 100vw"
-								alt="<?php echo esc_attr( $image_alt ); ?>"
-								width="<?php echo esc_attr( $image_width ); ?>"
-								height="<?php echo esc_attr( $image_height ); ?>"
-								class="img-cover"
-								loading="lazy" />
+							<?php
+							echo wp_get_attachment_image(
+								$image_id,
+								'w768',
+								false,
+								array(
+									'class'   => 'img-cover',
+									'sizes'   => '(min-width: 992px) 33vw, (min-width: 768px) 50vw, 100vw',
+									'loading' => 'lazy',
+								)
+							);
+							?>
 						</div>
 					<?php endif; ?>
 

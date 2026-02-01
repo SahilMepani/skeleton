@@ -34,66 +34,46 @@ $dev_options = skel_get_block_developer_options();
 
 	<div class="swiper hero-slider">
 		<!-- Additional required wrapper -->
-		<div class="swiper-wrapper">
-			<?php
-			$i = 0;
-			foreach ( $slider as $slide ) {
-				$desktop_image = $slide['desktop_image'] ?? DEFAULT_THUMBNAIL_ID;
-				$mobile_image  = $slide['mobile_image'] ?? '';
-				$mobile_class  = $mobile_image ? 'has-mobile' : '';
-				++$i;
-				?>
-				<div class="swiper-slide">
-					<div class="img-cover-block">
-						<?php
-							$image_data   = wp_get_attachment_image_src( $desktop_image, 'w1920' );
-							$image_url    = wp_get_attachment_image_url( $desktop_image, 'w1920' );
-							$image_srcset = wp_get_attachment_image_srcset( $desktop_image );
-							$image_alt    = get_post_meta( $desktop_image, '_wp_attachment_image_alt', true );
-							$image_alt    = trim( wp_strip_all_tags( $image_alt ) );
+	<div class="swiper-wrapper">
+		<?php
+		foreach ( $slider as $index => $slide ) {
+			$desktop_image = $slide['desktop_image'] ?? DEFAULT_THUMBNAIL_ID;
+			$mobile_image  = $slide['mobile_image'] ?? '';
+			$mobile_class  = $mobile_image ? 'has-mobile' : '';
+			?>
+			<div class="swiper-slide">
+				<div class="img-cover-block">
+					<?php
+					$desktop_attrs = array(
+						'class' => 'img-cover img-desktop ' . $mobile_class,
+						'sizes' => '100vw',
+					);
+					if ( 0 === $index ) {
+						$desktop_attrs['fetchpriority'] = 'high';
+					} else {
+						$desktop_attrs['loading'] = 'lazy';
+					}
+					echo wp_get_attachment_image( $desktop_image, 'w1920', false, $desktop_attrs );
+					?>
 
-							// Prevent undefined index notices.
-							$image_width  = isset( $image_data[1] ) ? $image_data[1] : '';
-							$image_height = isset( $image_data[2] ) ? $image_data[2] : '';
-						?>
-						<img
-							src="<?php echo esc_url( $image_url ); ?>"
-							srcset="<?php echo esc_attr( $image_srcset ); ?>"
-							sizes="100vw"
-							alt="<?php echo esc_attr( $image_alt ); ?>"
-							width="<?php echo esc_attr( $image_width ); ?>"
-							height="<?php echo esc_attr( $image_height ); ?>"
-							class="img-cover img-desktop <?php echo esc_html( $mobile_class ); ?>"
-							<?php echo ( 1 === $i ) ? 'fetchpriority="high"' : 'loading="lazy"'; ?>
-							/>
+					<?php
+					if ( $mobile_image ) {
+						$mobile_attrs = array(
+							'class' => 'img-cover img-mobile',
+							'sizes' => '100vw',
+						);
+						if ( 0 === $index ) {
+							$mobile_attrs['fetchpriority'] = 'high';
+						} else {
+							$mobile_attrs['loading'] = 'lazy';
+						}
+						echo wp_get_attachment_image( $mobile_image, 'w992', false, $mobile_attrs );
+					}
+					?>
+				</div>
 
-						<?php
-						if ( $mobile_image ) {
-							$image_data   = wp_get_attachment_image_src( $mobile_image, 'w992' );
-							$image_url    = wp_get_attachment_image_url( $mobile_image, 'w992' );
-							$image_srcset = wp_get_attachment_image_srcset( $mobile_image );
-							$image_alt    = get_post_meta( $mobile_image, '_wp_attachment_image_alt', true );
-							$image_alt    = trim( wp_strip_all_tags( $image_alt ) );
-
-							// Prevent undefined index notices.
-							$image_width  = isset( $image_data[1] ) ? $image_data[1] : '';
-							$image_height = isset( $image_data[2] ) ? $image_data[2] : '';
-							?>
-							<img
-								src="<?php echo esc_url( $image_url ); ?>"
-								srcset="<?php echo esc_attr( $image_srcset ); ?>"
-								sizes="100vw"
-								alt="<?php echo esc_attr( $image_alt ); ?>"
-								width="<?php echo esc_attr( $image_width ); ?>"
-								height="<?php echo esc_attr( $image_height ); ?>"
-								class="img-cover img-mobile"
-								<?php echo ( 1 === $i ) ? 'fetchpriority="high"' : 'loading="lazy"'; ?>
-								/>
-						<?php } ?>
-					</div>
-
-				</div> <!-- .swiper-slide -->
-			<?php } ?>
+			</div> <!-- .swiper-slide -->
+		<?php } ?>
 		</div> <!-- .swiper-wrapper -->
 
 		<div class="swiper-pagination swiper-pagination-dot"></div>

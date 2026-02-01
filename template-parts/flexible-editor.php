@@ -36,25 +36,16 @@ if ( is_array( $flexible_editor ) && ! empty( $flexible_editor ) ) :
 
 				if ( 'yes' === $enable_popup && $image ) {
 					// even if when $media is selected as image. Enable popup is Yes because that is its default value set in the ACF backend.
-					$image_data   = wp_get_attachment_image_src( $image, 'w1200' );
-					$image_alt    = trim( wp_strip_all_tags( get_post_meta( $image, '_wp_attachment_image_alt', true ) ) );
-					$image_src    = esc_attr( wp_get_attachment_image_url( $image, 'w768' ) );
-					$image_srcset = esc_attr( wp_get_attachment_image_srcset( $image ) );
-					$image_alt    = esc_attr( $image_alt ) ?? '';
-					$image_width  = esc_attr( $image_data[1] ) ?? '';
-					$image_height = esc_attr( $image_data[2] ) ?? '';
-
-					$image_tag = <<<HTML
-					<img src="{$image_src}"
-						srcset="{$image_srcset}"
-						sizes="100vw"
-						alt="{$image_alt}"
-						width="{$image_width}"
-						height="{$image_height}"
-						class="img-responsive"
-						loading="lazy" />
-					HTML;
-					echo $image_tag; // phpcs:ignore
+					echo wp_get_attachment_image(
+						$image,
+						'w768',
+						false,
+						array(
+							'class'   => 'img-responsive',
+							'sizes'   => '100vw',
+							'loading' => 'lazy',
+						)
+					);
 
 					if ( 'video' === $media_type ) {
 						$random_dialog_id = skel_get_random_string();

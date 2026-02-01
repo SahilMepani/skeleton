@@ -66,15 +66,20 @@ $dev_options = skel_get_block_developer_options();
 
 							<?php
 							if ( ( 'text' !== $col_content_type ) && $col_image ) {
-								$image_data = wp_get_attachment_image_src( $col_image, 'w768' );
-								$image_alt  = get_post_meta( $col_image, '_wp_attachment_image_alt', true );
-								$image_alt  = trim( wp_strip_all_tags( $image_alt ) );
 								?>
 						<div class="img-dialog-block">
-							<img src="<?php echo esc_url( wp_get_attachment_image_url( $col_image, 'w768' ) ); ?>"
-								srcset="<?php echo esc_attr( wp_get_attachment_image_srcset( $col_image ) ); ?>" sizes="100vw"
-								alt="<?php echo esc_attr( $image_alt ); ?>" width="<?php echo esc_attr( $image_data[1] ); ?>"
-								height="<?php echo esc_attr( $image_data[2] ); ?>" class="img-responsive" loading="lazy" />
+								<?php
+								echo wp_get_attachment_image(
+									$col_image,
+									'w768',
+									false,
+									array(
+										'class'   => 'img-responsive',
+										'sizes'   => '100vw',
+										'loading' => 'lazy',
+									)
+								);
+								?>
 
 								<?php if ( 'video' === $col_content_type ) { ?>
 							<button class="btn btn-reset btn-dialog-open js-dialog-open" data-dialog="<?php echo esc_attr( $dialog_id ); ?>">

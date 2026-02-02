@@ -19,7 +19,17 @@ function update_post() {
 		wp_send_json_error( 'Invalid nonce.' );
 	}
 
-	$data = $_POST;
+	// Sanitize each field.
+	$data = array(
+		'cpt'          => isset( $_POST['cpt'] ) ? sanitize_text_field( wp_unslash( $_POST['cpt'] ) ) : '',
+		'postsPerPage' => isset( $_POST['postsPerPage'] ) ? absint( $_POST['postsPerPage'] ) : 10,
+		'pageNumber'   => isset( $_POST['pageNumber'] ) ? absint( $_POST['pageNumber'] ) : 0,
+		'cat'          => isset( $_POST['cat'] ) ? sanitize_text_field( wp_unslash( $_POST['cat'] ) ) : '',
+		'tax'          => isset( $_POST['tax'] ) ? sanitize_text_field( wp_unslash( $_POST['tax'] ) ) : '',
+		'authorID'     => isset( $_POST['authorID'] ) ? absint( $_POST['authorID'] ) : 0,
+		'tagID'        => isset( $_POST['tagID'] ) ? absint( $_POST['tagID'] ) : 0,
+		'search'       => isset( $_POST['search'] ) ? sanitize_text_field( wp_unslash( $_POST['search'] ) ) : '',
+	);
 
 	// Define query arguments.
 	$args = array(
@@ -28,7 +38,7 @@ function update_post() {
 	);
 
 	// Check if pagenumber is set for load more.
-	if ( isset( $data['pageNumber'] ) && ! empty( $data['pageNumber'] ) ) {
+	if ( ! empty( $data['pageNumber'] ) ) {
 		$args['paged'] = $data['pageNumber'] + 1;
 	}
 
@@ -45,12 +55,12 @@ function update_post() {
 	}
 
 	// Add author ID if provided.
-	if ( '' !== $data['authorID'] ) {
+	if ( ! empty( $data['authorID'] ) ) {
 		$args['author'] = $data['authorID'];
 	}
 
 	// Add tag ID if provided.
-	if ( '' !== $data['tagID'] ) {
+	if ( ! empty( $data['tagID'] ) ) {
 		$args['tag_id'] = $data['tagID'];
 	}
 

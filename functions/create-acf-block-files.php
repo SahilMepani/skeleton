@@ -24,14 +24,8 @@ require_once get_template_directory() . '/functions/generators/update-style.php'
  * @return void
  */
 function skel_create_acf_block_files( array $block_types, array $blocks_with_js = array() ): void {
-	global $wp_filesystem;
-
 	// Initialize the WordPress filesystem API.
-	if ( ! function_exists( 'WP_Filesystem' ) ) {
-		require_once ABSPATH . 'wp-admin/includes/file.php';
-	}
-
-	WP_Filesystem();
+	skel_init_filesystem();
 
 	// Define the directory where the block files will be created.
 	// Get block paths.

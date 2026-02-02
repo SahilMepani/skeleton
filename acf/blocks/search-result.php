@@ -50,7 +50,7 @@ $dev_options = skel_get_block_developer_options();
 				array(
 					's'              => $search_term, /* search query */
 					'post_type'      => array( 'post', 'page' ),
-					'posts_per_page' => -1,
+					'posts_per_page' => 100,
 					'post_status'    => 'publish',
 					'fields'         => 'ids',
 				)

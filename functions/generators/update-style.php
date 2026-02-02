@@ -16,12 +16,7 @@
  * @return void
  */
 function skel_update_style_scss( $style_file, $sass_imports ) {
-	global $wp_filesystem;
-
-	if ( ! function_exists( 'WP_Filesystem' ) ) {
-		require_once ABSPATH . 'wp-admin/includes/file.php';
-	}
-	WP_Filesystem();
+	$wp_filesystem = skel_init_filesystem();
 
 	// Read the current content of the style.scss file.
 	$styles_content = $wp_filesystem->get_contents( $style_file );

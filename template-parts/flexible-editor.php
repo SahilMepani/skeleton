@@ -9,7 +9,7 @@ if ( is_array( $flexible_editor ) && ! empty( $flexible_editor ) ) :
 
 				break;
 			case 'text':
-				echo '<div class="text-block" data-inview data-aos="fade-up">' . $layout['text'] . '</div>'; //phpcs:ignore
+				echo '<div class="text-block" data-inview data-aos="fade-up">' . wp_kses_post( $layout['text'] ) . '</div>';
 
 				break;
 			case 'heading':

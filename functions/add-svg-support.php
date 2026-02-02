@@ -33,13 +33,8 @@ add_filter( 'upload_mimes', 'allow_svg_uploads' );
 function sanitize_svg_file( $file ) {
 	// Check if the uploaded file is an SVG.
 	if ( 'image/svg+xml' === $file['type'] ) {
-		global $wp_filesystem;
-
 		// Initialize the WordPress filesystem API.
-		if ( empty( $wp_filesystem ) ) {
-			require_once ABSPATH . 'wp-admin/includes/file.php';
-			WP_Filesystem();
-		}
+		$wp_filesystem = skel_init_filesystem();
 
 		// Read the SVG file contents securely.
 		$svg_contents = $wp_filesystem->get_contents( $file['tmp_name'] );

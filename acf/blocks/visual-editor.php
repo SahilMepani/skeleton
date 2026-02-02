@@ -17,9 +17,14 @@ if ( ! skel_should_display_block() ) {
 }
 
 // Data options.
+$content = get_field( 'content' );
+
+if ( empty( $content ) ) {
+	return;
+}
+
 $background = get_field( 'background' );
 $layout     = get_field( 'layout' );
-$content    = get_field( 'content' );
 
 // Developer options.
 $dev_options = skel_get_block_developer_options();

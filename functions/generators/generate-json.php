@@ -15,12 +15,7 @@
  * @return void
  */
 function skel_create_block_json( $block_name, $sanitize_title, $json_directory, $json_template_file ) {
-	global $wp_filesystem;
-
-	if ( ! function_exists( 'WP_Filesystem' ) ) {
-		require_once ABSPATH . 'wp-admin/includes/file.php';
-	}
-	WP_Filesystem();
+	$wp_filesystem = skel_init_filesystem();
 
 	$json_file_path = $json_directory . $sanitize_title . '.json';
 

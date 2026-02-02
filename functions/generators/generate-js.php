@@ -15,12 +15,7 @@
  * @return void
  */
 function skel_create_block_js( $block_name, $sanitize_title, $js_directory, $blocks_with_js ) {
-	global $wp_filesystem;
-
-	if ( ! function_exists( 'WP_Filesystem' ) ) {
-		require_once ABSPATH . 'wp-admin/includes/file.php';
-	}
-	WP_Filesystem();
+	$wp_filesystem = skel_init_filesystem();
 
 	$js_file_path = $js_directory . $sanitize_title . '.js';
 

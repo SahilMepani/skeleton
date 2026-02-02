@@ -129,22 +129,15 @@ get_header();
 
 		$query_args = wp_parse_args( $wp_query->query );
 
-		$count_query_args                   = $query_args;
-		$count_query_args['posts_per_page'] = -1;
-		$count_query_args['post_status']    = 'publish';
-
-		$count_query      = new WP_Query( $count_query_args );
-		$total_post_count = (int) $count_query->found_posts;
-
-		$posts_per_page    = 6;
-		$unseen_post_count = max( 0, $total_post_count - $posts_per_page );
+		$posts_per_page = 6;
 
 		$main_query_args                   = $query_args;
 		$main_query_args['posts_per_page'] = $posts_per_page;
 		$main_query_args['post_status']    = 'publish';
 
-		$posts_query = new WP_Query( $main_query_args );
-		$post_count  = $posts_query->post_count;
+		$posts_query       = new WP_Query( $main_query_args );
+		$total_post_count  = (int) $posts_query->found_posts;
+		$unseen_post_count = max( 0, $total_post_count - $posts_per_page );
 
 		$skel_term   = is_category() ? get_query_var( 'cat' ) : '';
 		$author_id   = is_author() ? get_query_var( 'author' ) : '';

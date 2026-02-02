@@ -59,7 +59,7 @@ function skel_list_block_types(): array {
  * @return void
  */
 function skel_list_enqueued_styles() {
-	if ( isset( $_GET['debug_styles'] ) && $_GET['debug_styles'] === 'true' ) { //phpcs:ignore
+	if ( isset( $_GET['debug_styles'] ) && 'true' === sanitize_text_field( wp_unslash( $_GET['debug_styles'] ) ) ) {
 		global $wp_styles;
 
 		// Loop through the enqueued styles and output their handles.
@@ -78,7 +78,7 @@ add_action( 'wp_print_styles', 'skel_list_enqueued_styles' );
  * @return void
  */
 function skel_list_enqueued_scripts() {
-	if ( isset( $_GET['debug_scripts'] ) && $_GET['debug_scripts'] === 'true' ) { //phpcs:ignore
+	if ( isset( $_GET['debug_scripts'] ) && 'true' === sanitize_text_field( wp_unslash( $_GET['debug_scripts'] ) ) ) {
 		global $wp_scripts;
 
 		// Loop through the enqueued scripts and output their handles.
@@ -98,7 +98,7 @@ add_action( 'wp_print_scripts', 'skel_list_enqueued_scripts' );
  */
 function handle_cache_operations() {
 	// Checking a cache endpoint.
-	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';  //phpcs:ignore
+	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 
 	// Check if the URL matches /add-cache for cache priming.
 	if ( strpos( $request_uri, '/add-cache' ) !== false ) {
@@ -292,12 +292,19 @@ function print_block_usage_report() {
  * @return array Associative array of post ID => array of block names.
  */
 function get_blocks_by_page() {
+	$cache_key = 'skel_block_usage_report';
+	$usage     = get_transient( $cache_key );
+
+	if ( false !== $usage ) {
+		return $usage;
+	}
+
 	$block_usage = array();
 
 	$args = array(
 		'post_type'      => array( 'page', 'post' ), // Add custom post types here if needed.
 		'post_status'    => 'publish',
-		'posts_per_page' => -1,
+		'posts_per_page' => 100,
 	);
 
 	$query = new WP_Query( $args );
@@ -313,6 +320,8 @@ function get_blocks_by_page() {
 			}
 		}
 	}
+
+	set_transient( $cache_key, $block_usage, HOUR_IN_SECONDS );
 
 	return $block_usage;
 }

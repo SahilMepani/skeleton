@@ -9,7 +9,8 @@
  * @return void
  */
 function skel_delete_unwanted_acf_block_files( array $block_types ): void {
-	global $wp_filesystem;
+	// Initialize the WordPress filesystem API.
+	$wp_filesystem = skel_init_filesystem();
 
 	// Define the directories where the block files are located.
 	// Get block paths.

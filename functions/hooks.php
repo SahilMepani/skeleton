@@ -324,4 +324,6 @@ add_action( 'wp_insert_post', 'create_template_with_preselected_blocks', 10, 3 )
  * This function updates the default image link type option to 'none'.
  * It removes the link from images inserted into posts by default.
  */
-update_option( 'image_default_link_type', 'none' );
+if ( 'none' !== get_option( 'image_default_link_type' ) ) {
+	update_option( 'image_default_link_type', 'none' );
+}

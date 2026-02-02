@@ -17,21 +17,33 @@ if ( ! skel_should_display_block() ) {
 }
 
 // Data options.
-$section_heading = get_field( 'section_heading' );
-$faq_type        = get_field( 'faq_type' );
-$faq_count     = get_field( 'faq_count' ) ?: -1; // phpcs:ignore
-$button          = get_field( 'button' );
+$faq_type = get_field( 'faq_type' );
 
+// Validate FAQ data exists before proceeding.
 if ( 'latest' === $faq_type ) {
 	$faq_categories = get_field( 'faq_categories' );
 	$faq_dividers   = get_field( 'faq_dividers' );
+	// At least one taxonomy should be selected for latest type.
+	if ( empty( $faq_categories ) && empty( $faq_dividers ) ) {
+		return;
+	}
 }
 if ( 'selected' === $faq_type ) {
 	$selected_faq = get_field( 'selected_faq' );
+	if ( ! is_array( $selected_faq ) || empty( $selected_faq ) ) {
+		return;
+	}
 }
 if ( 'custom' === $faq_type ) {
 	$custom_faq = get_field( 'custom_faq' );
+	if ( ! is_array( $custom_faq ) || empty( $custom_faq ) ) {
+		return;
+	}
 }
+
+$section_heading = get_field( 'section_heading' );
+$faq_count       = get_field( 'faq_count' ) ?: -1; // phpcs:ignore
+$button          = get_field( 'button' );
 
 // Developer options.
 $dev_options = skel_get_block_developer_options();
@@ -54,28 +66,32 @@ $dev_options = skel_get_block_developer_options();
 					$question = $faq['question'] ?? '';
 					$answer   = $faq['answer'] ?? '';
 					?>
-					<div class="accordion" data-aos-stagger-item data-aos="fade-up">
+				<div class="accordion" data-aos-stagger-item data-aos="fade-up">
 					<?php
 					$question_html = <<<HTML
-					<p class="accordion-heading h5">
-						{$question}
-						<span class="icon"></span>
-					</p>
-					HTML;
+				<p class="accordion-heading h5">
+					{$question}
+					<span class="icon"></span>
+				</p>
+				HTML;
 					$answer_html   = <<<HTML
-					<div class="accordion-content">
-						<div class="inner-block">
-							{$answer}
-						</div> <!-- .inner-block -->
-					</div>
-					HTML;
-					if ( $question ) echo $question_html; //phpcs:ignore
-					if ( $answer ) echo $answer_html; //phpcs:ignore
+				<div class="accordion-content">
+					<div class="inner-block">
+						{$answer}
+					</div> <!-- .inner-block -->
+				</div>
+				HTML;
+					if ( $question ) {
+						echo wp_kses_post( $question_html );
+					}
+					if ( $answer ) {
+						echo wp_kses_post( $answer_html );
+					}
 					?>
-					</div>
+				</div>
 					<?php
 			endforeach;
-			endif;
+		endif;
 			?>
 
 			<?php
@@ -125,28 +141,32 @@ $dev_options = skel_get_block_developer_options();
 						$question = get_post_field( 'post_title', $faq_id );
 						$answer   = apply_filters( 'the_content', get_post_field( 'post_content', $faq_id ) );
 						?>
-						<div class="accordion" data-aos-stagger-item data-aos="fade-up">
-								<?php
-								$question_html = <<<HTML
-								<p class="accordion-heading h5">
-									{$question}
-									<span class="icon"></span>
-								</p>
-								HTML;
-								$answer_html   = <<<HTML
-								<div class="accordion-content">
-									<div class="inner-block">
-										{$answer}
-									</div> <!-- .inner-block -->
-								</div>
-								HTML;
-								if ( $question ) echo $question_html; //phpcs:ignore
-								if ( $answer ) echo $answer_html; //phpcs:ignore
-								?>
-						</div>
+					<div class="accordion" data-aos-stagger-item data-aos="fade-up">
+							<?php
+							$question_html = <<<HTML
+							<p class="accordion-heading h5">
+								{$question}
+								<span class="icon"></span>
+							</p>
+							HTML;
+							$answer_html   = <<<HTML
+							<div class="accordion-content">
+								<div class="inner-block">
+									{$answer}
+								</div> <!-- .inner-block -->
+							</div>
+							HTML;
+							if ( $question ) {
+								echo wp_kses_post( $question_html );
+							}
+							if ( $answer ) {
+								echo wp_kses_post( $answer_html );
+							}
+							?>
+					</div>
 						<?php
 					endforeach;
-				endif;
+			endif;
 			endif;
 			?>
 		</div>

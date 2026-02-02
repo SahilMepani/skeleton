@@ -21,7 +21,7 @@ get_header();
 		<div id="tab-1" class="tab-content">
 			<?php
 			$args       = array(
-				'numberposts' => -1,
+				'numberposts' => 100,
 			);
 			$list_posts = wp_get_recent_posts( $args );
 			?>
@@ -54,7 +54,7 @@ get_header();
 			<?php
 			$args       = array(
 				'post_type'   => 'event',
-				'numberposts' => -1,
+				'numberposts' => 100,
 			);
 			$list_posts = wp_get_recent_posts( $args );
 			?>

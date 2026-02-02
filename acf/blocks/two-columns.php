@@ -17,11 +17,16 @@ if ( ! skel_should_display_block() ) {
 }
 
 // Data options.
+$columns = get_field( 'columns' );
+
+if ( ! is_array( $columns ) || empty( $columns ) ) {
+	return;
+}
+
 $section_background = get_field( 'section_background' );
 $section_heading    = get_field( 'section_heading' );
 $column_order       = get_field( 'column_order' );
 $column_width       = get_field( 'column_width' );
-$columns            = get_field( 'columns' );
 
 // Developer options.
 $dev_options = skel_get_block_developer_options();

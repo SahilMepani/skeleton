@@ -10,6 +10,20 @@
  */
 
 /**
+ * Initialize WordPress Filesystem API.
+ *
+ * @return WP_Filesystem_Base|null The filesystem object or null on failure.
+ */
+function skel_init_filesystem() {
+	global $wp_filesystem;
+	if ( empty( $wp_filesystem ) ) {
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		WP_Filesystem();
+	}
+	return $wp_filesystem;
+}
+
+/**
  * Retrieves the thumbnail ID for a given post.
  *
  * If the specified post has a featured image (thumbnail), its ID is returned.
@@ -112,6 +126,13 @@ function skel_direction_class(): string|null {
  * @return string|false The content of the SVG file if found, or FALSE if the file does not exist or cannot be read.
  */
 function skel_get_svg_content( string $image ): string|false {
+	$cache_key = 'skel_svg_' . sanitize_key( $image );
+	$cached    = wp_cache_get( $cache_key, 'skel_svgs' );
+
+	if ( false !== $cached ) {
+		return $cached;
+	}
+
 	// Construct the full path to the SVG file.
 	$file_path = get_template_directory() . '/images/svg/' . sanitize_file_name( $image ) . '.svg';
 
@@ -126,18 +147,15 @@ function skel_get_svg_content( string $image ): string|false {
 	// Check if the file exists and is readable.
 	if ( file_exists( $real_file ) && is_readable( $real_file ) ) {
 		// Safely read the file using WP_Filesystem API.
-		global $wp_filesystem;
-
-		if ( ! $wp_filesystem ) {
-			require_once ABSPATH . '/wp-admin/includes/file.php';
-			WP_Filesystem();
-		}
+		$wp_filesystem = skel_init_filesystem();
 
 		$content = $wp_filesystem->get_contents( $real_file );
 
 		if ( false === $content ) {
 			return false;
 		}
+
+		wp_cache_set( $cache_key, $content, 'skel_svgs' );
 
 		return $content;
 	}
@@ -230,7 +248,7 @@ function skel_get_random_string( int $length = 10 ): string {
  */
 function skel_get_the_excerpt( int $limit = 50, ?int $post_id = null ): string {
 
-	if ( 'null' === $post_id ) {
+	if ( null === $post_id ) {
 		$post_id = get_the_ID();
 	}
 
@@ -298,13 +316,16 @@ function skel_get_the_terms( int $post_id, string $taxonomy, string $separator =
 	// Retrieve term objects associated with the post and taxonomy.
 	$term_objects = get_the_terms( $post_id, $taxonomy );
 
+	// Return early if no terms found or error occurred.
+	if ( ! is_array( $term_objects ) || is_wp_error( $term_objects ) ) {
+		return '';
+	}
+
 	// Extract the names of the terms.
 	$term_names = wp_list_pluck( $term_objects, 'name' );
 
 	// Join all term names with the specified separator.
-	$output = join( $separator, $term_names );
-
-	return $output;
+	return join( $separator, $term_names );
 }
 
 /**

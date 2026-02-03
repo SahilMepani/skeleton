@@ -847,6 +847,10 @@
       setCSSProperty(wrapperEl, "--swiper-centered-offset-before", "");
       setCSSProperty(wrapperEl, "--swiper-centered-offset-after", "");
     }
+    if (params.cssMode) {
+      setCSSProperty(wrapperEl, "--swiper-slides-offset-before", `${offsetBefore}px`);
+      setCSSProperty(wrapperEl, "--swiper-slides-offset-after", `${offsetAfter}px`);
+    }
     const gridEnabled = params.grid && params.grid.rows > 1 && swiper.grid;
     if (gridEnabled) {
       swiper.grid.initSlides(slides);
@@ -953,17 +957,44 @@
       swiper.grid.updateWrapperSize(slideSize, snapGrid);
     }
     if (!params.centeredSlides) {
+      const isFractionalSlidesPerView = params.slidesPerView !== "auto" && params.slidesPerView % 1 !== 0;
+      const shouldSnapToSlideEdge = params.snapToSlideEdge && !params.loop && (params.slidesPerView === "auto" || isFractionalSlidesPerView);
+      let lastAllowedSnapIndex = snapGrid.length;
+      if (shouldSnapToSlideEdge) {
+        let minVisibleSlides;
+        if (params.slidesPerView === "auto") {
+          minVisibleSlides = 1;
+          let accumulatedSize = 0;
+          for (let i = slidesSizesGrid.length - 1; i >= 0; i -= 1) {
+            accumulatedSize += slidesSizesGrid[i] + (i < slidesSizesGrid.length - 1 ? spaceBetween : 0);
+            if (accumulatedSize <= swiperSize) {
+              minVisibleSlides = slidesSizesGrid.length - i;
+            } else {
+              break;
+            }
+          }
+        } else {
+          minVisibleSlides = Math.floor(params.slidesPerView);
+        }
+        lastAllowedSnapIndex = Math.max(slidesLength - minVisibleSlides, 0);
+      }
       const newSlidesGrid = [];
       for (let i = 0; i < snapGrid.length; i += 1) {
         let slidesGridItem = snapGrid[i];
         if (params.roundLengths) slidesGridItem = Math.floor(slidesGridItem);
-        if (snapGrid[i] <= swiper.virtualSize - swiperSize) {
+        if (shouldSnapToSlideEdge) {
+          if (i <= lastAllowedSnapIndex) {
+            newSlidesGrid.push(slidesGridItem);
+          }
+        } else if (snapGrid[i] <= swiper.virtualSize - swiperSize) {
           newSlidesGrid.push(slidesGridItem);
         }
       }
       snapGrid = newSlidesGrid;
       if (Math.floor(swiper.virtualSize - swiperSize) - Math.floor(snapGrid[snapGrid.length - 1]) > 1) {
-        snapGrid.push(swiper.virtualSize - swiperSize);
+        if (!shouldSnapToSlideEdge) {
+          snapGrid.push(swiper.virtualSize - swiperSize);
+        }
       }
     }
     if (isVirtual && params.loop) {
@@ -1295,12 +1326,12 @@
           requestAnimationFrame(() => {
             if (slideEl.shadowRoot) {
               lazyEl = slideEl.shadowRoot.querySelector(`.${swiper.params.lazyPreloaderClass}`);
-              if (lazyEl) lazyEl.remove();
+              if (lazyEl && !lazyEl.lazyPreloaderManaged) lazyEl.remove();
             }
           });
         }
       }
-      if (lazyEl) lazyEl.remove();
+      if (lazyEl && !lazyEl.lazyPreloaderManaged) lazyEl.remove();
     }
   };
   var unlazy = (swiper, index) => {
@@ -1411,8 +1442,12 @@
     }
     const gridEnabled = swiper.grid && params.grid && params.grid.rows > 1;
     let realIndex;
-    if (swiper.virtual && params.virtual.enabled && params.loop) {
-      realIndex = getVirtualRealIndex(activeIndex);
+    if (swiper.virtual && params.virtual.enabled) {
+      if (params.loop) {
+        realIndex = getVirtualRealIndex(activeIndex);
+      } else {
+        realIndex = activeIndex;
+      }
     } else if (gridEnabled) {
       const firstSlideInColumn = swiper.slides.find((slideEl) => slideEl.column === activeIndex);
       let activeSlideIndex = parseInt(firstSlideInColumn.getAttribute("data-swiper-slide-index"), 10);
@@ -3427,6 +3462,7 @@
     // in px
     normalizeSlideIndex: true,
     centerInsufficientSlides: false,
+    snapToSlideEdge: false,
     // Disable swiper and hide navigation when container not overflow
     watchOverflow: true,
     // Round length
@@ -4308,7 +4344,7 @@
 
   // node_modules/swiper/shared/classes-to-selector.mjs
   function classesToSelector(classes2 = "") {
-    return `.${classes2.trim().replace(/([\.:!+\/()[\]])/g, "\\$1").replace(/ /g, ".")}`;
+    return `.${classes2.trim().replace(/([\.:!+\/()[\]#>~*^$|=,'"@{}\\])/g, "\\$1").replace(/ /g, ".")}`;
   }
 
   // node_modules/swiper/modules/pagination.mjs
@@ -5153,7 +5189,6 @@
     let isTouched;
     let pausedByTouch;
     let touchStartTimeout;
-    let slideChanged;
     let pausedByInteraction;
     let pausedByPointerEnter;
     function onTransitionEnd(e) {
@@ -5191,18 +5226,23 @@
       const currentSlideDelay = parseInt(activeSlideEl.getAttribute("data-swiper-autoplay"), 10);
       return currentSlideDelay;
     };
+    const getTotalDelay = () => {
+      let totalDelay = swiper.params.autoplay.delay;
+      const currentSlideDelay = getSlideDelay();
+      if (!Number.isNaN(currentSlideDelay) && currentSlideDelay > 0) {
+        totalDelay = currentSlideDelay;
+      }
+      return totalDelay;
+    };
     const run = (delayForce) => {
       if (swiper.destroyed || !swiper.autoplay.running) return;
       cancelAnimationFrame(raf);
       calcTimeLeft();
-      let delay = typeof delayForce === "undefined" ? swiper.params.autoplay.delay : delayForce;
-      autoplayDelayTotal = swiper.params.autoplay.delay;
-      autoplayDelayCurrent = swiper.params.autoplay.delay;
-      const currentSlideDelay = getSlideDelay();
-      if (!Number.isNaN(currentSlideDelay) && currentSlideDelay > 0 && typeof delayForce === "undefined") {
-        delay = currentSlideDelay;
-        autoplayDelayTotal = currentSlideDelay;
-        autoplayDelayCurrent = currentSlideDelay;
+      let delay = delayForce;
+      if (typeof delay === "undefined") {
+        delay = getTotalDelay();
+        autoplayDelayTotal = delay;
+        autoplayDelayCurrent = delay;
       }
       autoplayTimeLeft = delay;
       const speed = swiper.params.speed;
@@ -5272,10 +5312,6 @@
       };
       swiper.autoplay.paused = true;
       if (reset) {
-        if (slideChanged) {
-          autoplayTimeLeft = swiper.params.autoplay.delay;
-        }
-        slideChanged = false;
         proceed();
         return;
       }
@@ -5406,7 +5442,10 @@
     });
     on("slideChange", () => {
       if (swiper.destroyed || !swiper.autoplay.running) return;
-      slideChanged = true;
+      if (swiper.autoplay.paused) {
+        autoplayTimeLeft = getTotalDelay();
+        autoplayDelayTotal = getTotalDelay();
+      }
     });
     Object.assign(swiper.autoplay, {
       start,
@@ -5436,6 +5475,11 @@
     swiper.thumbs = {
       swiper: null
     };
+    function isVirtualEnabled() {
+      const thumbsSwiper = swiper.thumbs.swiper;
+      if (!thumbsSwiper || thumbsSwiper.destroyed) return false;
+      return thumbsSwiper.params.virtual && thumbsSwiper.params.virtual.enabled;
+    }
     function onThumbClick() {
       const thumbsSwiper = swiper.thumbs.swiper;
       if (!thumbsSwiper || thumbsSwiper.destroyed) return;
@@ -5488,12 +5532,18 @@
       }
       swiper.thumbs.swiper.el.classList.add(swiper.params.thumbs.thumbsContainerClass);
       swiper.thumbs.swiper.on("tap", onThumbClick);
+      if (isVirtualEnabled()) {
+        swiper.thumbs.swiper.on("virtualUpdate", () => {
+          update2(false, {
+            autoScroll: false
+          });
+        });
+      }
       return true;
     }
-    function update2(initial) {
+    function update2(initial, p) {
       const thumbsSwiper = swiper.thumbs.swiper;
       if (!thumbsSwiper || thumbsSwiper.destroyed) return;
-      const slidesPerView = thumbsSwiper.params.slidesPerView === "auto" ? thumbsSwiper.slidesPerViewDynamic() : thumbsSwiper.params.slidesPerView;
       let thumbsToActivate = 1;
       const thumbActiveClass = swiper.params.thumbs.slideThumbActiveClass;
       if (swiper.params.slidesPerView > 1 && !swiper.params.centeredSlides) {
@@ -5504,7 +5554,7 @@
       }
       thumbsToActivate = Math.floor(thumbsToActivate);
       thumbsSwiper.slides.forEach((slideEl) => slideEl.classList.remove(thumbActiveClass));
-      if (thumbsSwiper.params.loop || thumbsSwiper.params.virtual && thumbsSwiper.params.virtual.enabled) {
+      if (thumbsSwiper.params.loop || isVirtualEnabled()) {
         for (let i = 0; i < thumbsToActivate; i += 1) {
           elementChildren(thumbsSwiper.slidesEl, `[data-swiper-slide-index="${swiper.realIndex + i}"]`).forEach((slideEl) => {
             slideEl.classList.add(thumbActiveClass);
@@ -5517,6 +5567,14 @@
           }
         }
       }
+      if (p?.autoScroll ?? true) {
+        autoScroll(initial ? 0 : void 0);
+      }
+    }
+    function autoScroll(slideSpeed) {
+      const thumbsSwiper = swiper.thumbs.swiper;
+      if (!thumbsSwiper || thumbsSwiper.destroyed) return;
+      const slidesPerView = thumbsSwiper.params.slidesPerView === "auto" ? thumbsSwiper.slidesPerViewDynamic() : thumbsSwiper.params.slidesPerView;
       const autoScrollOffset = swiper.params.thumbs.autoScrollOffset;
       const useOffset = autoScrollOffset && !thumbsSwiper.params.loop;
       if (swiper.realIndex !== thumbsSwiper.realIndex || useOffset) {
@@ -5542,7 +5600,7 @@
               newThumbsIndex = newThumbsIndex + Math.floor(slidesPerView / 2) - 1;
             }
           } else if (newThumbsIndex > currentThumbsIndex && thumbsSwiper.params.slidesPerGroup === 1) ;
-          thumbsSwiper.slideTo(newThumbsIndex, initial ? 0 : void 0);
+          thumbsSwiper.slideTo(newThumbsIndex, slideSpeed);
         }
       }
     }

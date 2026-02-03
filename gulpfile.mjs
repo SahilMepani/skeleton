@@ -10,24 +10,65 @@ import cssnano from 'cssnano';
 import sortMediaQueries from 'postcss-sort-media-queries';
 import purgecss from 'gulp-purgecss';
 import rtlcss from 'gulp-rtlcss';
-import eslint from 'gulp-eslint';
 import gulpIf from 'gulp-if'; // Added gulp-if
 import { deleteAsync } from 'del';
 import browserSync from 'browser-sync';
-import wrapper from 'gulp-wrapper';
 import gulpEsbuild from 'gulp-esbuild';
-import imagemin from 'gulp-imagemin';
 import newer from 'gulp-newer';
 import sharp from 'sharp';
 import through from 'through2';
 import { generate } from 'critical';
 
-// Image optimization task
+// Image optimization task using Sharp
 function imagesTask() {
 	return gulp
-		.src('src/images/**/*')
+		.src('src/images/**/*.{jpg,jpeg,png,gif,svg,webp}')
 		.pipe(newer('images'))
-		.pipe(imagemin())
+		.pipe(
+			through.obj(function (file, enc, cb) {
+				if (file.isNull()) return cb(null, file);
+				if (file.isStream())
+					return cb(new Error('Streaming not supported'));
+
+				const ext = file.extname.toLowerCase();
+
+				// Skip SVG files - they don't need Sharp processing
+				if (ext === '.svg' || ext === '.webp') {
+					return cb(null, file);
+				}
+
+				let sharpInstance = sharp(file.contents);
+
+				// Optimize based on file type
+				if (ext === '.jpg' || ext === '.jpeg') {
+					sharpInstance = sharpInstance.jpeg({
+						quality: 85,
+						mozjpeg: true
+					});
+				} else if (ext === '.png') {
+					sharpInstance = sharpInstance.png({
+						quality: 85,
+						compressionLevel: 9
+					});
+				} else if (ext === '.gif') {
+					sharpInstance = sharpInstance.gif();
+				}
+
+				sharpInstance
+					.toBuffer()
+					.then(buffer => {
+						file.contents = buffer;
+						cb(null, file);
+					})
+					.catch(err => {
+						console.error(
+							`Error optimizing ${file.relative}:`,
+							err.message
+						);
+						cb();
+					});
+			})
+		)
 		.pipe(gulp.dest('images'))
 		.pipe(browserSyncInstance.stream());
 }
@@ -235,9 +276,20 @@ function customJsTask() {
 		.pipe(gulpIf(!isProduction, sourcemaps.init()))
 		.pipe(concat('custom.js'))
 		.pipe(
-			wrapper({
-				header: 'document.addEventListener("DOMContentLoaded", function() {',
-				footer: '});'
+			through.obj(function (file, enc, cb) {
+				if (file.isNull()) return cb(null, file);
+				if (file.isStream())
+					return cb(new Error('Streaming not supported'));
+
+				const header =
+					'document.addEventListener("DOMContentLoaded", function() {';
+				const footer = '});';
+				file.contents = Buffer.concat([
+					Buffer.from(header + '\n'),
+					file.contents,
+					Buffer.from('\n' + footer)
+				]);
+				cb(null, file);
 			})
 		)
 		.pipe(
@@ -253,17 +305,13 @@ function customJsTask() {
 		.pipe(browserSyncInstance.stream());
 }
 
-function lintJS() {
-	// Keep linting in both modes for now
-	return gulp
-		.src([
-			'src/js/custom/*.js'
-			// '!src/js/!document.ready.js',
-			// '!src/js/Ιdocument.close.js'
-		])
-		.pipe(eslint())
-		.pipe(eslint.format());
-	// .pipe(eslint.failAfterError());
+function lintJS(done) {
+	// Use ESLint via CLI instead of gulp-eslint
+	exec('npx eslint "src/js/custom/**/*.js"', (err, stdout, stderr) => {
+		if (stdout) console.log(stdout);
+		if (stderr) console.error(stderr);
+		done(); // Don't fail the task on lint errors
+	});
 }
 
 function lintCSS(done) {

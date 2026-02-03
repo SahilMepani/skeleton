@@ -75,7 +75,7 @@ function getImportedFiles() {
 			continue;
 		}
 
-		// Match @import or @use statements
+		// Match @use or @use statements
 		const match = trimmed.match(/@(import|use)\s+['"]([^'"]+)['"]/);
 		if (match) {
 			const importPath = match[2];

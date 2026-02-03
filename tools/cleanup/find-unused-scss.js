@@ -4,7 +4,7 @@ const path = require('path');
 // Read style.scss
 const styleScss = fs.readFileSync('src/sass/style.scss', 'utf8');
 
-// Extract all @import or @use statements
+// Extract all @use or @use statements
 const imports = styleScss.match(/@(import|use)\s+['"]([^'"]+)['"]/g) || [];
 
 // Get imported paths (only those starting with 'partials/')

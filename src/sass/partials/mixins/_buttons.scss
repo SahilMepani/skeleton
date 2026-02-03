@@ -45,13 +45,13 @@
 
 @mixin btn-rarr {
 	position: relative;
+	gap: rem-calc(20);
 
 	svg {
 		fill: currentcolor;
 		inline-size: rem-calc(24);
 		block-size: rem-calc(24);
 		flex-shrink: 0;
-		margin-inline-start: rem-calc(20);
 	}
 }
 

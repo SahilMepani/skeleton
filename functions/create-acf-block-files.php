@@ -59,7 +59,7 @@ function skel_create_acf_block_files( array $block_types, array $blocks_with_js 
 		skel_create_block_scss( $sanitize_title, $sass_directory );
 
 		// Add the import statement to the array.
-		$sass_imports[] = "@import 'partials/acf-blocks/" . $sanitize_title . "';";
+		$sass_imports[] = "@use 'partials/acf-blocks/" . $sanitize_title . "';";
 
 		// Generate JSON file.
 		skel_create_block_json( $block, $sanitize_title, $json_directory, $json_template_file );

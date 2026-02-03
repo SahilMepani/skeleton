@@ -34,7 +34,7 @@ node tools/cleanup/cleanup-unused-scss.cjs
 
 The script:
 
-- Parses `@import` statements in `style.scss` (skips commented lines)
+- Parses `@use` statements in `style.scss` (skips commented lines)
 - Converts import paths to actual file paths (e.g., `partials/mixins/rem` → `mixins/_rem.scss`)
 - Compares imported files with all existing SCSS files
 - Deletes files that are not in the imported list

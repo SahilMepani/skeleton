@@ -1,0 +1,20 @@
+# ignore all files starting with . or ~
+# .*
+# ~*
+# tools
+# *.todo
+todo/
+*.map
+*.css.map
+Thumbs.db
+acf-json
+node_modules
+editor-style.css
+style.css
+style-rtl.css
+blocks/*/*.css
+js/plugins.js
+js/custom.js
+debug.log
+critical.css
+package-lock.json

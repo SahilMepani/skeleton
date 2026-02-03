@@ -1,0 +1,165 @@
+@use '../abstracts' as *;
+
+.bg-video {
+	min-inline-size: 100%;
+	block-size: 100%;
+	min-block-size: 56.25vw;
+
+	/* 100 * 9 / 16 */
+	position: absolute;
+
+	/* % of surrounding element */
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	/* % of current element */
+	@media (orientation: landscape) {
+		inline-size: 177.7778vh;
+
+		/* 100 * 16 / 9 */
+	}
+}
+
+.bg-cover {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.posts-pagination {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: fluid(5, 10);
+	padding-block: fluid(30, 50);
+	border-bottom: rem-calc(1) solid rgba(#000, 0.75);
+
+	.page-numbers {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		inline-size: fluid(30, 50);
+		block-size: fluid(30, 50);
+		transition: 250ms ease-out;
+
+		&[class~='dots'] {
+			pointer-events: none;
+		}
+
+		&.current:first-child {
+			margin-inline-start: auto;
+		}
+
+		&.current:last-child {
+			margin-inline-end: auto;
+		}
+
+		&:hover {
+			background-color: rgba(#999, 0.75);
+		}
+
+		&.current {
+			background-color: $primary-color;
+			color: #fff;
+		}
+
+		&.prev,
+		&.next {
+			inline-size: fluid(30, 60);
+			block-size: fluid(30, 60);
+			border: rem-calc(1) solid $primary-color;
+			border-radius: 50%;
+
+			svg {
+				inline-size: fluid(6, 12);
+			}
+
+			&:hover {
+				background-color: $primary-color;
+				color: #fff;
+			}
+		}
+
+		&.prev {
+			margin-inline-end: auto;
+		}
+
+		&.next {
+			margin-inline-start: auto;
+		}
+	}
+}
+
+.loader {
+	display: inline-block;
+	inline-size: fluid(24, 48);
+	block-size: fluid(24, 48);
+	border: fluid(3, 5) solid #333;
+	border-bottom-color: transparent;
+	border-radius: 50%;
+	animation: rotation 1s linear infinite;
+	box-sizing: border-box;
+	pointer-events: none;
+
+	&.small {
+		inline-size: rem-calc(24);
+		block-size: rem-calc(24);
+	}
+
+	&.center {
+		margin: auto;
+		border-width: rem-calc(3);
+		position: absolute;
+		inset: 0;
+	}
+}
+
+/* ----------  Required  ---------- */
+.list-unstyled {
+	@include list-unstyled;
+}
+
+// Using Oldschool Grotesk weights:
+.thin {
+	font-weight: 100;
+}
+
+.light {
+	font-weight: 300;
+}
+
+.regular {
+	font-weight: 400;
+}
+
+.medium {
+	font-weight: 500;
+}
+
+.bold {
+	font-weight: 700;
+}
+
+.extra-bold {
+	font-weight: 800;
+}
+
+// Using Source Serif Pro (italic styles):
+.serif-italic {
+	font-family: $heading-font-family;
+	font-style: italic;
+	font-weight: 400;
+}
+
+.serif-light-italic {
+	font-family: $heading-font-family;
+	font-style: italic;
+	font-weight: 300;
+}
+
+.serif-semibold-italic {
+	font-family: $heading-font-family;
+	font-style: italic;
+	font-weight: 600;
+}

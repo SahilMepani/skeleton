@@ -342,9 +342,14 @@ function watch() {
 	gulp.watch([
 		'*.html',
 		'*.php',
+		'blocks/**/*.php',
+		'templates/**/*.php',
+		'template-parts/**/*.php',
+		'functions/**/*.php',
 		'assets/js/**/*.js',
 		'assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
 	]).on('change', browserSyncInstance.reload);
+	gulp.watch('blocks/**/*.js').on('change', browserSyncInstance.reload);
 }
 
 // Define complex tasks

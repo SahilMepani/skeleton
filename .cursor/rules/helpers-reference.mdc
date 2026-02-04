@@ -246,11 +246,29 @@ function skel_posts_pagination( int $total_pages ): void {}
  * Get raw SVG file content from theme's /images/svg/ directory.
  *
  * @param string $image SVG filename without extension.
+ * @param array $attributes Optional. Array of attributes to add to SVG element. Default aria-hidden="true".
  * @return string|false SVG content or false.
  *
  * @example
  * $svg = skel_get_svg_content( 'logo' );
- * echo $svg;  // Raw SVG markup
+ * echo $svg;  // Raw SVG markup with aria-hidden="true"
+ *
+ * $svg = skel_get_svg_content( 'arrow', [ 'class' => 'icon', 'aria-hidden' => 'true' ] );
+ * echo $svg;  // SVG with custom class
  */
-function skel_get_svg_content( string $image ): string|false {}
+function skel_get_svg_content( string $image, array $attributes = array() ): string|false {}
+
+/**
+ * Output an SVG icon with optional attributes.
+ *
+ * @param string $image SVG filename without extension.
+ * @param array $attributes Optional. Array of attributes to add to SVG element. Default aria-hidden="true".
+ * @return string SVG content or empty string on failure.
+ *
+ * @example
+ * echo svg( 'arrow-right' );
+ * echo svg( 'arrow-right', [ 'class' => 'icon' ] );
+ * echo svg( 'check', [ 'class' => 'icon', 'aria-label' => 'Completed' ] );
+ */
+function svg( string $image, array $attributes = array() ): string {}
 ```

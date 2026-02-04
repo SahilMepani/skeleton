@@ -36,7 +36,8 @@ function skel_get_post_thumbnail_id( $post_id ) {
 	if ( has_post_thumbnail( $post_id ) ) {
 		return get_post_thumbnail_id( $post_id );
 	}
-	return defined( 'DEFAULT_THUMBNAIL_ID' ) ? DEFAULT_THUMBNAIL_ID : '';}
+	return defined( 'DEFAULT_THUMBNAIL_ID' ) ? DEFAULT_THUMBNAIL_ID : '';
+}
 
 /**
  * Check if the current page is the login or registration page.
@@ -80,6 +81,18 @@ function skel_posts_pagination( int $total_pages ): void {
 }
 
 /**
+ * Check if the current language is RTL (right-to-left).
+ *
+ * This function checks if the current language is Arabic (ar) using WPML.
+ *
+ * @requires WPML plugin
+ * @return bool True if the language is RTL, false otherwise.
+ */
+function skel_is_rtl(): bool {
+	return defined( 'ICL_LANGUAGE_CODE' ) && ICL_LANGUAGE_CODE === 'ar';
+}
+
+/**
  * Retrieve the Swiper direction-based class for slides.
  *
  * This function returns a class name based on the language direction for Swiper slides.
@@ -88,15 +101,10 @@ function skel_posts_pagination( int $total_pages ): void {
  * This function requires the WPML plugin to work properly.
  *
  * @requires WPML plugin
- * @return string|null The class name for the Swiper direction, or null if the language code is not supported.
+ * @return string The class name for the Swiper direction.
  */
-function skel_swiper_direction_class(): string|null {
-	if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
-		if ( ICL_LANGUAGE_CODE === 'ar' ) {
-			return 'swiper-rtl';
-		}
-	}
-	return 'swiper';
+function skel_swiper_direction_class(): string {
+	return skel_is_rtl() ? 'swiper-rtl' : 'swiper';
 }
 
 /**
@@ -108,117 +116,62 @@ function skel_swiper_direction_class(): string|null {
  * This function requires the WPML plugin to work properly.
  *
  * @requires WPML plugin
- * @return string|null The class name for the language direction, or null if the language code is not supported.
+ * @return string The class name for the language direction.
  */
-function skel_direction_class(): string|null {
-	if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
-		if ( ICL_LANGUAGE_CODE === 'ar' ) {
-			return 'dir-rtl';
-		}
-	}
-	return 'dir-ltr';
-}
-
-/**
- * Retrieve the content of an SVG file located in the current active theme's '/assets/images/icons/' directory.
- *
- * @param  string $image The name of the SVG file (without the '.svg' extension) to retrieve.
- * @return string|false The content of the SVG file if found, or FALSE if the file does not exist or cannot be read.
- */
-function skel_get_svg_content( string $image ): string|false {
-	$cache_key = 'skel_svg_' . sanitize_key( $image );
-	$cached    = wp_cache_get( $cache_key, 'skel_svgs' );
-
-	if ( false !== $cached ) {
-		return $cached;
-	}
-
-	// Construct the full path to the SVG file.
-	$file_path = get_template_directory() . '/assets/images/icons/' . sanitize_file_name( $image ) . '.svg';
-
-	// Ensure the file exists and is within the theme directory (path traversal protection).
-	$real_base = realpath( get_template_directory() . '/assets/images/icons/' );
-	$real_file = realpath( $file_path );
-
-	if ( false === $real_file || 0 !== strpos( $real_file, $real_base ) ) {
-		return false;
-	}
-
-	// Check if the file exists and is readable.
-	if ( file_exists( $real_file ) && is_readable( $real_file ) ) {
-		// Safely read the file using WP_Filesystem API.
-		$wp_filesystem = skel_init_filesystem();
-
-		$content = $wp_filesystem->get_contents( $real_file );
-
-		if ( false === $content ) {
-			return false;
-		}
-
-		wp_cache_set( $cache_key, $content, 'skel_svgs' );
-
-		return $content;
-	}
-
-	return false;
-}
-
-
-/**
- * Generates an SVG icon.
- *
- * @param string $icon The icon name.
- * @param array  $attributes Additional attributes for the SVG element.
- * @return string SVG HTML.
- */
-function svg( $icon, $attributes = array() ) {
-	$svg = '<svg class="icon icon-' . esc_attr( $icon ) . '"';
-
-	foreach ( $attributes as $key => $value ) {
-		$svg .= ' ' . esc_attr( $key ) . '="' . esc_attr( $value ) . '"';
-	}
-
-	$svg .= '><use xlink:href="#icon-' . esc_attr( $icon ) . '"></use></svg>';
-
-	return $svg;
-}
-
-/**
- * Generates a valid YouTube video link from a given YouTube video URL.
- *
- * @param  string $url The YouTube video URL from which to extract the video ID.
- * @return string The valid YouTube video link generated from the provided URL.
- */
-function skel_get_yt_link( string $url ): string {
-	// Find the position of the last occurrence of forward slash '/' in the URL.
-	$pos = strrpos( $url, '/' );
-	// If no forward slash is found, set $id to the entire URL; otherwise, extract the substring starting from the position after the last forward slash.
-	$id = false === $pos ? $url : substr( $url, $pos + 1 );
-	// Concatenate the extracted video ID with the YouTube watch URL to create a working YouTube video link.
-	$url = 'https://www.youtube.com/watch?v=' . $id;
-
-	return $url;
+function skel_direction_class(): string {
+	return skel_is_rtl() ? 'dir-rtl' : 'dir-ltr';
 }
 
 /**
  * Validates and retrieves a YouTube video link from a given input string.
  *
+ * This function extracts YouTube video IDs from various URL formats including:
+ * - Standard watch URLs: https://www.youtube.com/watch?v=VIDEO_ID
+ * - Short URLs: https://youtu.be/VIDEO_ID
+ * - Embed URLs: https://www.youtube.com/embed/VIDEO_ID
+ * - URLs with parameters: https://www.youtube.com/watch?v=VIDEO_ID&t=10s
+ *
  * @param string $link The input string containing a potential YouTube video link.
- * @return string|false The valid YouTube video link generated from the provided input string,
+ * @return string|false The valid YouTube video link in standard format, or false if invalid.
  */
 function skel_get_validate_youtube_link( string $link ): string|false {
-	// Regular expression to extract the video ID from various YouTube URL formats.
-	$pattern = "#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#";
-
-	// Check if the input string matches the expected YouTube URL format.
-	if ( preg_match( $pattern, $link, $matches ) ) {
-		// Construct the valid YouTube video link.
-		$youtube_link = 'https://www.youtube.com/watch?v=' . $matches[0];
-		return $youtube_link;
-	} else {
-		// If no valid YouTube video link found, return false.
+	// Return false for empty strings.
+	if ( empty( trim( $link ) ) ) {
 		return false;
 	}
+
+	// Comprehensive regex pattern to extract video IDs from various YouTube URL formats.
+	// Supports video IDs with letters, numbers, underscores, and hyphens (standard YouTube ID format).
+	$pattern = '#(?:https?://)?(?:www\.)?(?:youtube\.com/(?:watch\?v=|embed/|v/)|youtu\.be/)([a-zA-Z0-9_-]{11})#i';
+
+	// Check if the input string matches a valid YouTube URL format.
+	if ( preg_match( $pattern, $link, $matches ) ) {
+		// Construct and return the standardized YouTube watch URL.
+		return 'https://www.youtube.com/watch?v=' . $matches[1];
+	}
+
+	// Fallback pattern for edge cases (v= or after last slash).
+	$fallback_pattern = '#(?:v=|/)([a-zA-Z0-9_-]{11})(?:[&\?]|$)#';
+	if ( preg_match( $fallback_pattern, $link, $matches ) ) {
+		return 'https://www.youtube.com/watch?v=' . $matches[1];
+	}
+
+	// If no valid YouTube video link found, return false.
+	return false;
+}
+
+/**
+ * Generates a valid YouTube video link from a given YouTube video URL.
+ *
+ * This is an alias/wrapper for skel_get_validate_youtube_link() for backward compatibility.
+ *
+ * @param string $url The YouTube video URL from which to extract the video ID.
+ * @return string The valid YouTube video link generated from the provided URL.
+ */
+function skel_get_yt_link( string $url ): string {
+	$result = skel_get_validate_youtube_link( $url );
+	// Return the validated link or the original URL if validation fails.
+	return false !== $result ? $result : $url;
 }
 
 /**
@@ -228,10 +181,7 @@ function skel_get_validate_youtube_link( string $link ): string|false {
  * @return string
  */
 function skel_get_random_string( int $length = 10 ): string {
-
-	$string = 'abcdefghijklmnopqrstuvwxyz';
-
-	return substr( str_shuffle( $string ), 0, $length );
+	return substr( wp_generate_password( $length, false, false ), 0, $length );
 }
 
 
@@ -264,7 +214,7 @@ function skel_get_the_excerpt( int $limit = 50, ?int $post_id = null ): string {
 	}
 
 	// Remove any shortcodes from the excerpt before returning.
-	$excerpt = preg_replace( '`\[[^\]]*\]`', '', $excerpt );
+	$excerpt = strip_shortcodes( $excerpt );
 
 	return $excerpt;
 }
@@ -277,6 +227,7 @@ function skel_get_the_excerpt( int $limit = 50, ?int $post_id = null ): string {
  * If the text is already shorter than the specified length, it is returned as is.
  * If the text needs to be shortened, it finds the last space within the specified length and trims the text up to that space.
  * It then appends ellipses (...) to indicate that the text has been shortened.
+ * Uses multibyte string functions for proper UTF-8 handling.
  *
  * @param  string $input  The input text string to be shortened.
  * @param  int    $length The maximum length of the shortened text.
@@ -284,48 +235,20 @@ function skel_get_the_excerpt( int $limit = 50, ?int $post_id = null ): string {
  */
 function skel_get_text_shorter( string $input, int $length ): string {
 	// No need to trim, already shorter than trim length.
-	if ( strlen( $input ) <= $length ) {
+	if ( mb_strlen( $input ) <= $length ) {
 		return $input;
 	}
-	// find last space within length.
-	$last_space = strrpos( substr( $input, 0, $length ), ' ' );
-	if ( ! $last_space ) {
-		$last_space = $length;
+
+	// Find last space within length.
+	$trimmed    = mb_substr( $input, 0, $length );
+	$last_space = mb_strrpos( $trimmed, ' ' );
+
+	if ( false !== $last_space && $last_space > 0 ) {
+		$trimmed = mb_substr( $trimmed, 0, $last_space );
 	}
 
-	$trimmed_text = substr( $input, 0, $last_space );
-
-	// add ellipses (...).
-	$trimmed_text .= '...';
-
-	return $trimmed_text;
-}
-
-/**
- * Return terms without link.
- *
- * This function retrieves the terms associated with a specified post and taxonomy
- * and returns them as a string without any HTML links.
- *
- * @param  int    $post_id   The ID of the post for which to retrieve the terms.
- * @param  string $taxonomy  The taxonomy from which to retrieve the terms.
- * @param  string $separator (Optional) The separator to use between terms. Default is a single space.
- * @return string The terms associated with the specified post, separated by the specified separator.
- */
-function skel_get_the_terms( int $post_id, string $taxonomy, string $separator = ' ' ): string {
-	// Retrieve term objects associated with the post and taxonomy.
-	$term_objects = get_the_terms( $post_id, $taxonomy );
-
-	// Return early if no terms found or error occurred.
-	if ( ! is_array( $term_objects ) || is_wp_error( $term_objects ) ) {
-		return '';
-	}
-
-	// Extract the names of the terms.
-	$term_names = wp_list_pluck( $term_objects, 'name' );
-
-	// Join all term names with the specified separator.
-	return join( $separator, $term_names );
+	// Add ellipses (...).
+	return $trimmed . '...';
 }
 
 /**
@@ -342,21 +265,43 @@ function skel_get_the_terms_data( int $post_id, string $taxonomy ): array {
 	// Retrieve term objects associated with the post and taxonomy.
 	$terms = get_the_terms( $post_id, $taxonomy );
 
-	// Initialize an array to store term data.
-	$terms_data = array();
+	// Return early if no terms found or error occurred.
+	if ( ! is_array( $terms ) || is_wp_error( $terms ) ) {
+		return array();
+	}
 
-	// If terms are found, iterate over them to extract name and ID.
-	if ( $terms ) {
-		foreach ( $terms as $term ) {
-			// Store term name and ID in the terms data array.
-			$terms_data[] = array(
+	// Map terms to structured array with name and ID.
+	return array_map(
+		function ( $term ) {
+			return array(
 				'name' => $term->name,
 				'id'   => $term->term_id,
 			);
-		}
+		},
+		$terms
+	);
+}
+
+/**
+ * Return terms without link.
+ *
+ * This function retrieves the terms associated with a specified post and taxonomy
+ * and returns them as a string without any HTML links.
+ *
+ * @param  int    $post_id   The ID of the post for which to retrieve the terms.
+ * @param  string $taxonomy  The taxonomy from which to retrieve the terms.
+ * @param  string $separator (Optional) The separator to use between terms. Default is a single space.
+ * @return string The terms associated with the specified post, separated by the specified separator.
+ */
+function skel_get_the_terms( int $post_id, string $taxonomy, string $separator = ' ' ): string {
+	$terms_data = skel_get_the_terms_data( $post_id, $taxonomy );
+
+	if ( empty( $terms_data ) ) {
+		return '';
 	}
 
-	return $terms_data;
+	// Extract names and join with separator.
+	return implode( $separator, array_column( $terms_data, 'name' ) );
 }
 
 /**
@@ -365,11 +310,16 @@ function skel_get_the_terms_data( int $post_id, string $taxonomy ): array {
  * This function takes a phone number and removes any non-numeric characters such as parentheses, hyphens, dots, etc.
  * Then it constructs a tel: URL with the sanitized phone number and returns it.
  *
- * @param  string|false $phone_number (Optional) The phone number to generate the URL for. If not provided or false, an empty tel: URL is returned.
+ * @param  string|false $phone_number (Optional) The phone number to generate the URL for. If not provided or false, an empty string is returned.
  * @return string       The URL for the phone number in the format tel:phonenumber.
  */
 function skel_get_phone_url( string|false $phone_number = false ): string {
-	$phone_number = str_replace( array( '(', ')', '-', '.', '|', ' ' ), '', $phone_number );
+	if ( false === $phone_number || '' === $phone_number ) {
+		return '';
+	}
+
+	// Keep only digits, plus sign, and remove all other characters.
+	$phone_number = preg_replace( '/[^\d+]/', '', $phone_number );
 
 	return esc_url( 'tel:' . $phone_number );
 }
@@ -421,11 +371,11 @@ function skel_insert_page( int $id, bool $display = false ): ?string {
  * This function uses a regular expression to find the src attribute in an iframe tag
  * and returns its value. If no src attribute is found, it returns null.
  *
- * @param string $html The HTML string containing the iframe element.
+ * @param string|null $html The HTML string containing the iframe element.
  *
  * @return string|null The value of the src attribute, or null if not found.
  */
-function skel_extract_oembed_src( $html ) {
+function skel_extract_oembed_src( ?string $html ): ?string {
 	if ( ! $html ) {
 		return null;
 	}
@@ -504,22 +454,23 @@ function skel_get_full_url(): string {
 function skel_replace_text_with_icon( string $text ): void {
 	// Check if the text is not falsy.
 	if ( ! $text ) {
-		echo '';
+		return;
 	}
 
 	// Replace the placeholder '[play]' with the HTML for the icon.
 	$output = str_replace( '[play]', '<i class="i-play"></i>', $text );
 
-	if ( str_contains( $output, '[play-image]' ) ) {
-		// Replace the placeholder '[play-image]' with the HTML for the icon.
-		$output = str_replace( '[play-image]', '<i class="i-play w-image"></i>', $text );
-	}
-	// phpcs:ignore
+	// Replace the placeholder '[play-image]' with the HTML for the icon.
+	$output = str_replace( '[play-image]', '<i class="i-play w-image"></i>', $output );
+
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo $output;
 }
 
 /**
  * Sanitize superglobal values safely.
+ *
+ * Note: Caller is responsible for nonce verification when appropriate.
  *
  * @param string $key     The superglobal key to retrieve.
  * @param string $type    The superglobal type ('GET' or 'POST'). Default 'POST'.
@@ -527,6 +478,7 @@ function skel_replace_text_with_icon( string $text ): void {
  * @return string Sanitized value or default.
  */
 function skel_sanitize_superglobal( string $key, string $type = 'POST', string $default = '' ): string {
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 	$superglobal = 'GET' === $type ? $_GET : $_POST;
 	return isset( $superglobal[ $key ] )
 		? sanitize_text_field( wp_unslash( $superglobal[ $key ] ) )

@@ -78,13 +78,13 @@ function skel_enqueue_block_assets(): void {
 		$css_path = "{$blocks_dir}/{$block_slug}/{$block_slug}.css";
 		$js_path  = "{$blocks_dir}/{$block_slug}/{$block_slug}.js";
 
-		if ( file_exists( $css_path ) ) {
-			wp_enqueue_style(
+		if ( file_exists( $js_path ) ) {
+			wp_enqueue_script(
 				"block-{$block_slug}",
-				"{$blocks_uri}/{$block_slug}/{$block_slug}.css",
-				array(),
-				filemtime( $css_path ),
-				'all'
+				"{$blocks_uri}/{$block_slug}/{$block_slug}.js",
+				array( 'skel-swiper' ),
+				filemtime( $js_path ),
+				true
 			);
 		}
 
@@ -149,7 +149,7 @@ function skel_enqueue_scripts(): void {
 	}
 
 	// load style-rtl for rtl languages.
-	wp_style_add_data( 'skel-style', 'rtl', 'replace' );
+	// wp_style_add_data( 'skel-style', 'rtl', 'replace' );
 
 	wp_enqueue_script(
 		'skel-swiper',
@@ -225,7 +225,7 @@ function modify_script_attributes( $tag, $handle ) {
 	// 'skel-lottie-player',
 	);
 	// Add defer attribute.
-	if ( in_array( $handle, $defer, true ) ) {
+	if ( in_array( $handle, $defer, true ) || str_starts_with( $handle, 'block-' ) ) {
 		$tag = str_replace( ' src', ' defer="defer" src', $tag );
 	}
 

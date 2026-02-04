@@ -11,6 +11,7 @@
 require get_template_directory() . '/functions/define-constants.php';
 require get_template_directory() . '/functions/register-nav-menus.php';
 require get_template_directory() . '/functions/helpers.php';
+require get_template_directory() . '/functions/svg-helpers.php';
 require get_template_directory() . '/functions/hooks.php';
 require get_template_directory() . '/functions/disable-auto-embed-script.php';
 require get_template_directory() . '/functions/disable-wp-generated-image-sizes.php';

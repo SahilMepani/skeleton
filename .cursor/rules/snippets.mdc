@@ -1,6 +1,6 @@
 ---
-description: Common code snippets
-globs:
+description: Code snippets - block boilerplate, repeater loop, WP_Query, swiper slider, accordion, dialog, toggle patterns
+globs: 'blocks/**/*'
 alwaysApply: false
 ---
 
@@ -18,8 +18,7 @@ alwaysApply: false
  */
 
 // Set thumbnail preview in backend.
-if ( isset( $block['data']['preview_image'] ) ) {
-	echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
+if ( skel_render_block_preview( $block ) ) {
 	return;
 }
 
@@ -37,22 +36,13 @@ if ( ! is_array( $items ) || empty( $items ) ) {
 }
 
 // Developer options.
-$spacing        = get_field( 'spacing' );
-$spacing_top    = $spacing['top']['spacing_top'] ?? '';
-$spacing_bottom = $spacing['bottom']['spacing_bottom'] ?? '';
-$custom_classes = get_field( 'custom_classes' );
-$custom_css     = get_field( 'custom_css' );
-$unique_id      = get_field( 'unique_id' );
-
-// Custom Spacing.
-$spacing_top_custom    = 'custom' === $spacing_top ? "--spacing-top-custom: {$spacing['top']['custom_value']};" : '';
-$spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom: {$spacing['bottom']['custom_value']};" : '';
+$dev_options = skel_get_block_developer_options();
 ?>
 
 <section
-	class="block-name-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
-	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
-	id="<?php echo esc_attr( $unique_id ); ?>" data-inview>
+	class="{block-name}-section section <?php echo esc_attr( "{$dev_options['display_class']} {$dev_options['spacing_top']} {$dev_options['spacing_bottom']} {$dev_options['custom_classes']}" ); ?>"
+	style="<?php echo esc_attr( "{$dev_options['spacing_top_custom']} {$dev_options['spacing_bottom_custom']} {$dev_options['custom_css']}" ); ?>"
+	id="<?php echo esc_attr( $dev_options['unique_id'] ); ?>">
 
 	<div class="container">
 		<?php foreach ( $items as $item ) : ?>
@@ -69,25 +59,18 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 <?php
 $image_id = $item['image'] ?? DEFAULT_THUMBNAIL_ID;
 if ( $image_id ) :
-	$image_data   = wp_get_attachment_image_src( $image_id, 'w768' );
-	$image_url    = wp_get_attachment_image_url( $image_id, 'w768' );
-	$image_srcset = wp_get_attachment_image_srcset( $image_id );
-	$image_alt    = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
-	$image_alt    = trim( wp_strip_all_tags( $image_alt ) );
-	$image_width  = $image_data[1] ?? '';
-	$image_height = $image_data[2] ?? '';
-	?>
-	<div class="img-cover-block">
-		<img
-			src="<?php echo esc_url( $image_url ); ?>"
-			srcset="<?php echo esc_attr( $image_srcset ); ?>"
-			sizes="100vw"
-			alt="<?php echo esc_attr( $image_alt ); ?>"
-			width="<?php echo esc_attr( $image_width ); ?>"
-			height="<?php echo esc_attr( $image_height ); ?>"
-			class="img-cover"
-			loading="lazy" />
-	</div>
+	echo wp_get_attachment_image(
+		$image_id,
+		'w1920',
+		false,
+		[
+			'class'   => 'img-responsive',
+			'loading' => 'lazy',
+			'sizes'   => 'auto',
+			'data-inview'   => '',
+			'data-aos'   => 'fade'
+		]
+	);
 <?php endif; ?>
 ```
 
@@ -139,7 +122,8 @@ $args = array(
 	'post_type'      => 'post',
 	'post_status'    => 'publish',
 	'posts_per_page' => 6,
-	'no_found_rows'  => true,  // Disable pagination count for performance
+	'no_found_rows'  => true, // Disable pagination count for performance
+	'update_post_term_cache' => false,
 );
 
 $query = new WP_Query( $args );
@@ -328,7 +312,7 @@ $query = new WP_Query( $args );
 
 <dialog class="dialog js-dialog" data-dialog="<?php echo esc_attr( $dialog_id ); ?>">
 	<button class="btn btn-dialog-close js-dialog-close">
-		<?php echo svg( 'close', array( 'aria-hidden' => 'true' ) ); ?>
+		<?php echo skel_svg( 'close', array( 'aria-hidden' => 'true' ) ); ?>
 		<span class="screen-reader-text"><?php esc_html_e( 'Close', 'skel' ); ?></span>
 	</button>
 

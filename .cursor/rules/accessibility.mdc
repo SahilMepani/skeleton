@@ -1,5 +1,5 @@
 ---
-description: Accessibility quick reference
+description: Accessibility - WCAG AA contrast, focus-visible, ARIA patterns, keyboard navigation, reduced motion
 globs:
 alwaysApply: false
 ---

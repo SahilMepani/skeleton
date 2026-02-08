@@ -484,3 +484,42 @@ function skel_sanitize_superglobal( string $key, string $type = 'POST', string $
 		? sanitize_text_field( wp_unslash( $superglobal[ $key ] ) )
 		: $default;
 }
+
+
+/**
+ * Determine whether a hex color is dark (needs light text).
+ *
+ * Uses WCAG 2.0 relative luminance to decide contrast. Returns true when
+ * the luminance is at or below 0.179 (~4.5:1 ratio against white).
+ *
+ * Handles #-prefixed and bare hex, 3-digit and 6-digit formats.
+ *
+ * @param string $hex Hex color value, e.g. '#d2fe45', '212368', '#fff'.
+ * @return bool True if the color is dark, false otherwise (including invalid input).
+ */
+function skel_is_dark_color( string $hex ): bool {
+	$hex = ltrim( $hex, '#' );
+
+	// Expand 3-digit shorthand to 6-digit.
+	if ( 3 === strlen( $hex ) ) {
+		$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+	}
+
+	// Must be exactly 6 hex characters.
+	if ( ! preg_match( '/^[0-9a-fA-F]{6}$/', $hex ) ) {
+		return false;
+	}
+
+	$r = hexdec( substr( $hex, 0, 2 ) ) / 255;
+	$g = hexdec( substr( $hex, 2, 2 ) ) / 255;
+	$b = hexdec( substr( $hex, 4, 2 ) ) / 255;
+
+	// sRGB to linear conversion per WCAG 2.0.
+	$r = $r <= 0.03928 ? $r / 12.92 : pow( ( $r + 0.055 ) / 1.055, 2.4 );
+	$g = $g <= 0.03928 ? $g / 12.92 : pow( ( $g + 0.055 ) / 1.055, 2.4 );
+	$b = $b <= 0.03928 ? $b / 12.92 : pow( ( $b + 0.055 ) / 1.055, 2.4 );
+
+	$luminance = 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
+
+	return $luminance <= 0.179;
+}

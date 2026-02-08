@@ -1,8 +1,7 @@
 import gulp from 'gulp';
 import { exec } from 'child_process';
-import * as dartSass from 'sass';
+import * as dartSass from 'sass-embedded';
 import gulpSass from 'gulp-sass';
-import sourcemaps from 'gulp-sourcemaps';
 import concat from 'gulp-concat';
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
@@ -171,45 +170,40 @@ function clean() {
 
 // Sass task
 function sassTask() {
-	return gulp
+	const stream = gulp
 		.src('src/sass/style.scss')
-		.pipe(
-			sassCompiler({
-				outputStyle: isProduction ? 'compressed' : 'expanded', // Conditional output style
-				includePaths: ['node_modules']
-			}).on('error', sassCompiler.logError)
-		)
-		.pipe(
-			postcss(
-				isProduction
-					? [autoprefixer(), sortMediaQueries(), cssnano()] // Prod plugins
-					: [autoprefixer(), sortMediaQueries()] // Dev plugins (no cssnano)
-			)
-		)
-		.pipe(gulpIf(!isProduction, sourcemaps.write('.'))) // Write sourcemaps only in dev
-		.pipe(gulp.dest('./')) // Output to root for now
-		.pipe(browserSyncInstance.stream());
-}
-
-// Block Sass task - compiles individual block SCSS files
-function blockSassTask() {
-	return gulp
-		.src('blocks/**/*.scss', { since: gulp.lastRun(blockSassTask) })
-		.pipe(gulpIf(!isProduction, sourcemaps.init()))
 		.pipe(
 			sassCompiler({
 				outputStyle: isProduction ? 'compressed' : 'expanded',
 				includePaths: ['node_modules']
 			}).on('error', sassCompiler.logError)
-		)
+		);
+
+	if (isProduction) {
+		stream.pipe(postcss([autoprefixer(), sortMediaQueries(), cssnano()]));
+	}
+
+	return stream
+		.pipe(gulp.dest('./'))
+		.pipe(browserSyncInstance.stream());
+}
+
+// Block Sass task - compiles individual block SCSS files
+function blockSassTask() {
+	const stream = gulp
+		.src('blocks/**/*.scss', { since: gulp.lastRun(blockSassTask) })
 		.pipe(
-			postcss(
-				isProduction
-					? [autoprefixer(), sortMediaQueries(), cssnano()]
-					: [autoprefixer(), sortMediaQueries()]
-			)
-		)
-		.pipe(gulpIf(!isProduction, sourcemaps.write('.')))
+			sassCompiler({
+				outputStyle: isProduction ? 'compressed' : 'expanded',
+				includePaths: ['node_modules']
+			}).on('error', sassCompiler.logError)
+		);
+
+	if (isProduction) {
+		stream.pipe(postcss([autoprefixer(), sortMediaQueries(), cssnano()]));
+	}
+
+	return stream
 		.pipe(gulp.dest('blocks'))
 		.pipe(browserSyncInstance.stream());
 }
@@ -279,10 +273,8 @@ function rtlCssTask() {
 function pluginsJsTask() {
 	return gulp
 		.src('src/js/plugins/*.js')
-		.pipe(gulpIf(!isProduction, sourcemaps.init()))
 		.pipe(concat('plugins.js'))
 		.pipe(gulpIf(isProduction, terser()))
-		.pipe(gulpIf(!isProduction, sourcemaps.write('.')))
 		.pipe(gulp.dest('./assets/js'))
 		.pipe(browserSyncInstance.stream());
 }
@@ -290,7 +282,6 @@ function pluginsJsTask() {
 function customJsTask() {
 	return gulp
 		.src('src/js/custom/**/*.js')
-		.pipe(gulpIf(!isProduction, sourcemaps.init()))
 		.pipe(concat('custom.js'))
 		.pipe(
 			through.obj(function (file, enc, cb) {
@@ -310,7 +301,6 @@ function customJsTask() {
 			})
 		)
 		.pipe(gulpIf(isProduction, terser()))
-		.pipe(gulpIf(!isProduction, sourcemaps.write('.')))
 		.pipe(gulp.dest('./assets/js'))
 		.pipe(browserSyncInstance.stream());
 }

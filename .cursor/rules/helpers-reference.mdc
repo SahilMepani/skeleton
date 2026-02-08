@@ -1,6 +1,6 @@
 ---
-description: Helper functions reference
-globs: '**/*.php'
+description: Helper functions reference - skel_svg, skel_get_the_excerpt, skel_render_acf_link, etc.
+globs: 'blocks/**/*.php'
 alwaysApply: false
 ---
 
@@ -20,10 +20,10 @@ alwaysApply: false
  * @return string SVG HTML markup.
  *
  * @example
- * echo svg( 'arrow-right' );
- * echo svg( 'arrow-right', [ 'class' => 'icon-lg', 'aria-hidden' => 'true' ] );
+ * echo skel_svg( 'arrow-right' );
+ * echo skel_svg( 'arrow-right', [ 'class' => 'icon-lg', 'aria-hidden' => 'true' ] );
  */
-function svg( $icon, $attributes = array() ) {}
+function skel_svg( $icon, $attributes = array() ) {}
 ```
 
 ## Phone URL
@@ -266,9 +266,9 @@ function skel_get_svg_content( string $image, array $attributes = array() ): str
  * @return string SVG content or empty string on failure.
  *
  * @example
- * echo svg( 'arrow-right' );
- * echo svg( 'arrow-right', [ 'class' => 'icon' ] );
- * echo svg( 'check', [ 'class' => 'icon', 'aria-label' => 'Completed' ] );
+ * echo skel_svg( 'arrow-right' );
+ * echo skel_svg( 'arrow-right', [ 'class' => 'icon' ] );
+ * echo skel_svg( 'check', [ 'class' => 'icon', 'aria-label' => 'Completed' ] );
  */
-function svg( string $image, array $attributes = array() ): string {}
+function skel_svg( string $image, array $attributes = array() ): string {}
 ```

@@ -10,11 +10,13 @@ alwaysApply: false
 ```scss
 // ❌ NEVER:
 font-size: 18px;
-@media (min-width: 768px) {} OR @media (width < $md) {}
+@media (min-width: 768px) {}
+@include bp-down() {} OR @include bp-up() {}
 // ✅ ALWAYS:
 gap: rem-calc(16);           // Fixed values
 font-size: fluid(16, 24);    // Responsive (min, max)
-@media (width >= $md) { }    // Mobile-first only
+@media (width < $md) { }     // Desktop-first (smaller screens)
+@media (width >= $md) { }    // Progressive enhancement (larger screens)
 ```
 
 ## Functions
@@ -26,16 +28,39 @@ fluid(16, 24, md, xl)     // Custom breakpoints
 
 ## Breakpoints
 ```scss
-$sm: 36rem;   // 576px    $md: 48rem;   // 768px
-$lg: 62rem;   // 992px    $xl: 75rem;   // 1200px    $xxl: 87.5rem; // 1400px
+$sm: 576px;    $md: 768px;
+$lg: 1024px;   $xl: 1200px;   $xxl: 1400px;
 ```
 
-## Mobile-First
+## Responsive Design
+
+**Desktop-first approach** - Write desktop styles first, then adjust for smaller screens:
+
 ```scss
 .component {
-	font-size: fluid(14, 16);
-	@media (width >= $md) { font-size: fluid(16, 20); }
-	@media (width >= $lg) { font-size: fluid(20, 24); }
+	// Desktop styles (default)
+	grid-template-columns: repeat(4, 1fr);
+	gap: rem-calc(40);
+	
+	// Tablet
+	@media (width < $lg) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	
+	// Mobile
+	@media (width < $md) {
+		grid-template-columns: 1fr;
+		gap: rem-calc(24);
+	}
+}
+
+// Progressive enhancement when needed
+.header {
+	display: block; // Mobile default
+	
+	@media (width >= $md) {
+		display: flex; // Desktop enhancement
+	}
 }
 ```
 

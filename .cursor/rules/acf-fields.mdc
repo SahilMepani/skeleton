@@ -1,6 +1,6 @@
 ---
-description: ACF field structures for blocks
-globs: 'acf-blocks/**/*.php'
+description: ACF field structures for blocks - field types, access patterns, image sizes
+globs: 'blocks/**/*.php'
 alwaysApply: false
 ---
 
@@ -31,16 +31,31 @@ $display        = get_field( 'display' );         // true_false: 'on' or ''
 
 ### Image Field (Return: ID)
 
+**Always use `wp_get_attachment_image()` for output:**
+
 ```php
 $image_id = get_field( 'image' );  // or $item['image'] in repeater
 if ( $image_id ) {
-	$image_url    = wp_get_attachment_image_url( $image_id, 'w768' );
-	$image_srcset = wp_get_attachment_image_srcset( $image_id );
-	$image_data   = wp_get_attachment_image_src( $image_id, 'w768' );
-	$image_alt    = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
-	$image_alt    = trim( wp_strip_all_tags( $image_alt ) );
-	$image_width  = $image_data[1] ?? '';
-	$image_height = $image_data[2] ?? '';
+	echo wp_get_attachment_image(
+		$image_id,
+		'w768',
+		false,
+		[
+			'class'   => 'img-cover',
+			'loading' => 'lazy',
+			'sizes'   => '(max-width: 768px) 100vw, 768px',
+		]
+	);
+}
+```
+
+**ACF JSON preview size must always be `w200`:**
+
+```json
+{
+	"type": "image",
+	"return_format": "id",
+	"preview_size": "w200"
 }
 ```
 

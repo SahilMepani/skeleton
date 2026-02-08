@@ -329,9 +329,41 @@ function skel_get_svg_content( string $image, array $attributes = array() ): str
  * @param  array  $attributes Optional. Array of attributes to add to the SVG element.
  * @return string The SVG content or empty string on failure.
  */
-function svg( string $image, array $attributes = array() ): string {
+function skel_svg( string $image, array $attributes = array() ): string {
 	$svg = skel_get_svg_content( $image, $attributes );
 	return $svg ? $svg : '';
+}
+
+/**
+ * Output an attachment image, inlining SVGs and using <img> for raster images.
+ *
+ * @param  int    $attachment_id The attachment ID.
+ * @param  string $size          Optional. Image size for raster images. Default 'w1400'.
+ * @param  array  $attributes    Optional. Attributes for the SVG or img element.
+ * @return string The SVG markup or img tag.
+ */
+function skel_get_attachment_image( int $attachment_id, string $size = 'w1400', array $attributes = array() ): string {
+	if ( ! $attachment_id ) {
+		return '';
+	}
+
+	if ( 'image/svg+xml' === get_post_mime_type( $attachment_id ) ) {
+		$file = get_attached_file( $attachment_id );
+
+		if ( ! $file || ! file_exists( $file ) ) {
+			return '';
+		}
+
+		$content = skel_sanitize_svg( file_get_contents( $file ) );
+
+		if ( ! $content ) {
+			return '';
+		}
+
+		return skel_add_svg_attributes( $content, $attributes ) ?: '';
+	}
+
+	return wp_get_attachment_image( $attachment_id, $size, false, $attributes );
 }
 
 /**
@@ -363,6 +395,10 @@ function skel_add_svg_attributes( string $svg_content, array $attributes = array
 		libxml_use_internal_errors( $use_errors );
 		return false;
 	}
+
+	// Remove width and height so SVGs scale via CSS.
+	$svg_element->removeAttribute( 'width' );
+	$svg_element->removeAttribute( 'height' );
 
 	// Add or merge attributes.
 	foreach ( $attributes as $attr_name => $attr_value ) {

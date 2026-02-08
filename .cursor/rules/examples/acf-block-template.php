@@ -124,7 +124,7 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 								target="<?php echo esc_attr( $link['target'] ); ?>"
 								class="btn btn-link">
 								<?php echo esc_html( $link['title'] ?: __( 'Learn More', 'skel' ) ); ?>
-								<?php echo svg( 'arrow-right', array( 'aria-hidden' => 'true' ) ); ?>
+								<?php echo skel_svg('arrow-right', array( 'aria-hidden' => 'true' ) ); ?>
 							</a>
 						<?php endif; ?>
 					</div>

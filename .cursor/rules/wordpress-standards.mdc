@@ -1,6 +1,6 @@
 ---
-description: Quick reference for WordPress theme development
-globs:
+description: WordPress theme development - template hierarchy, hooks, theme setup
+globs: 'functions/**/*.php'
 alwaysApply: false
 ---
 

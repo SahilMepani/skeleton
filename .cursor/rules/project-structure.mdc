@@ -1,0 +1,73 @@
+---
+description: Project folder structure - where blocks, functions, SCSS, JS, templates, and assets live
+globs:
+alwaysApply: false
+---
+
+# Project Structure
+
+```
+theme-root/
+├── blocks/                    ← ACF Gutenberg blocks (self-contained)
+│   ├── config.php             ← Block registration list (human-readable names)
+│   ├── blank/                 ← Template for new blocks (auto-copied)
+│   ├── {slug}/
+│   │   ├── {slug}.php         ← Block render template
+│   │   ├── {slug}.scss        ← Source styles
+│   │   ├── {slug}.css         ← Compiled CSS (enqueued per-page)
+│   │   ├── {slug}.js          ← Block-specific JavaScript
+│   │   ├── {slug}.json        ← ACF field group definition
+│   │   └── preview.png        ← Editor preview image
+│   └── ... (35+ blocks)
+│
+├── src/
+│   ├── sass/
+│   │   ├── style.scss         ← Main entry → style.css
+│   │   └── partials/
+│   │       ├── _abstracts.scss          ← @forward config + mixins
+│   │       ├── _abstracts-blocks.scss   ← @forward all (blocks import this)
+│   │       ├── _base-selectors.scss / _base-styles.scss
+│   │       ├── _font-face.scss / _reboot.scss / _reset.scss
+│   │       ├── aos/             ← AOS animation SCSS
+│   │       ├── components/      ← header, footer, nav, search
+│   │       ├── config/          ← variables, colors, typography, breakpoints
+│   │       ├── helpers/         ← buttons, section-spacing, misc, wp
+│   │       ├── js-plugins/      ← swiper, lenis, magnific-popup
+│   │       ├── mixins/          ← rem, fluid, containers, animations, buttons
+│   │       ├── template-parts/  ← swiper-nav, social-links, breadcrumbs
+│   │       ├── templates/       ← index, single, multiple-slider
+│   │       └── utilities/       ← images, rtl
+│   └── js/
+│       ├── swiper-init.js       ← esbuild → assets/js/swiper-bundle.js
+│       ├── plugins/             ← concat → assets/js/plugins.js
+│       └── custom/              ← concat → assets/js/custom.js
+│
+├── assets/fonts/ images/ js/  ← Compiled output
+│
+├── functions/                 ← All PHP function files (required by functions.php)
+│   ├── helpers.php            ← General helpers (skel_*)
+│   ├── hooks.php              ← Theme setup, filters, actions
+│   ├── svg-helpers.php        ← SVG sprite/inline
+│   ├── acf-block-helpers.php  ← Block rendering helpers
+│   ├── register-acf-blocks.php ← ACF block registration
+│   ├── enqueue-scripts.php    ← Script/style enqueueing
+│   ├── define-constants.php   ← ACF-sourced PHP constants
+│   ├── add-image-sizes.php    ← Custom sizes: w480, w768, w992, w1200, w1920
+│   └── ... (30+ files)
+│
+├── template-parts/            ← Reusable PHP partials (get_template_part)
+├── templates/                 ← Page templates
+├── header.php / footer.php
+├── functions.php              ← Requires all functions/*.php
+├── style.css                  ← Compiled main stylesheet
+├── gulpfile.mjs               ← Build system (Gulp 5)
+└── package.json
+```
+
+## Key Relationships
+
+- `functions.php` requires every file in `functions/` directory
+- `blocks/config.php` lists all blocks → auto-generates files from `blocks/blank/`
+- `register-acf-blocks.php` scans `blocks/*/` for `.json` → registers with ACF
+- `enqueue-scripts.php` conditionally loads block CSS/JS via `has_block()`
+- Block SCSS imports `../../src/sass/partials/abstracts-blocks` for variables/mixins

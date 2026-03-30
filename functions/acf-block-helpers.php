@@ -40,9 +40,11 @@ function skel_render_block_preview( array $block ): bool {
 
 /**
  * Check if block should display.
+ * Defaults to true when the field has no saved value (new block instances).
  */
 function skel_should_display_block(): bool {
-	return 'on' === get_field( 'display' );
+	$display = get_field( 'display' );
+	return 'off' !== ( $display ?: 'on' );
 }
 
 /**
@@ -51,6 +53,7 @@ function skel_should_display_block(): bool {
 function skel_get_block_developer_options(): array {
 	$display        = get_field( 'display' );
 	$spacing        = get_field( 'spacing' );
+	$spacing        = is_array( $spacing ) ? $spacing : array();
 	$spacing_top    = $spacing['top']['spacing_top'] ?? '';
 	$spacing_bottom = $spacing['bottom']['spacing_bottom'] ?? '';
 
@@ -58,16 +61,20 @@ function skel_get_block_developer_options(): array {
 	$spacing_bottom_custom = '';
 
 	if ( 'custom' === $spacing_top ) {
-		$spacing_top_custom = "--spacing-top-custom: {$spacing['top']['custom_value_top']};";
+		$top_mobile         = (int) ( $spacing['top']['custom_value_top_mobile'] ?? 0 );
+		$top_desktop        = (int) ( $spacing['top']['custom_value_top_desktop'] ?? 0 );
+		$spacing_top_custom = "--spacing-top-mobile: {$top_mobile}; --spacing-top-desktop: {$top_desktop};";
 		$spacing_top        = 'spacing-top-custom';
 	}
 	if ( 'custom' === $spacing_bottom ) {
-		$spacing_bottom_custom = "--spacing-bottom-custom: {$spacing['bottom']['custom_value_bottom']};";
+		$bottom_mobile         = (int) ( $spacing['bottom']['custom_value_bottom_mobile'] ?? 0 );
+		$bottom_desktop        = (int) ( $spacing['bottom']['custom_value_bottom_desktop'] ?? 0 );
+		$spacing_bottom_custom = "--spacing-bottom-mobile: {$bottom_mobile}; --spacing-bottom-desktop: {$bottom_desktop};";
 		$spacing_bottom        = 'spacing-bottom-custom';
 	}
 
 	return array(
-		'display_class'         => 'on' === $display ? 'section-display-on' : 'section-display-off',
+		'display_class'         => 'off' === ( $display ?: 'on' ) ? 'section-display-off' : 'section-display-on',
 		'spacing_top'           => $spacing_top,
 		'spacing_bottom'        => $spacing_bottom,
 		'spacing_top_custom'    => $spacing_top_custom,
@@ -97,12 +104,18 @@ function skel_get_background_image_css( $image_id, string $size = 'medium_crop' 
  * @param string $section_class Additional section class names.
  */
 function skel_render_block_section_open( array $dev_options, string $section_class = '' ): void {
-	printf(
-		'<section class="%s" style="%s" id="%s">',
-		esc_attr( trim( "{$section_class} section {$dev_options['display_class']} {$dev_options['spacing_top']} {$dev_options['spacing_bottom']} {$dev_options['custom_classes']}" ) ),
-		esc_attr( trim( "{$dev_options['spacing_top_custom']} {$dev_options['spacing_bottom_custom']} {$dev_options['custom_css']}" ) ),
-		esc_attr( $dev_options['unique_id'] )
-	);
+	$classes = esc_attr( trim( "{$section_class} section {$dev_options['display_class']} {$dev_options['spacing_top']} {$dev_options['spacing_bottom']} {$dev_options['custom_classes']}" ) );
+
+	$style_parts = array_filter( array(
+		$dev_options['spacing_top_custom'],
+		$dev_options['spacing_bottom_custom'],
+		wp_strip_all_tags( $dev_options['custom_css'] ),
+	) );
+	$style_attr = $style_parts ? sprintf( ' style="%s"', esc_attr( implode( ' ', $style_parts ) ) ) : '';
+
+	$id_attr = $dev_options['unique_id'] ? sprintf( ' id="%s"', esc_attr( $dev_options['unique_id'] ) ) : '';
+
+	printf( '<section class="%s"%s%s>', $classes, $style_attr, $id_attr );
 }
 
 /**
@@ -117,10 +130,10 @@ function skel_render_acf_link( $link, string $classes = 'btn', string $default_t
 		return;
 	}
 	printf(
-		'<a href="%s" target="%s" class="%s">%s</a>',
+		'<a href="%s" target="%s" class="%s"><span>%s</span></a>',
 		esc_url( $link['url'] ),
 		esc_attr( $link['target'] ?? '_self' ),
 		esc_attr( $classes ),
-		'<span>' . esc_html( $link['title'] ?: $default_text ) . '</span>'
+		esc_html( $link['title'] ?: $default_text )
 	);
 }

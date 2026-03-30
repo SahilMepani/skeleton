@@ -24,13 +24,15 @@ function skel_create_acf_block_files( array $block_types ): void {
 	// Initialize the WordPress filesystem API.
 	$wp_filesystem = skel_init_filesystem();
 
-	// Define base directories.
+	// Define base directory and template files.
 	$blocks_base_dir = get_template_directory() . '/blocks/';
-	$blank_dir       = $blocks_base_dir . 'blank/';
+	$php_template    = $blocks_base_dir . 'blank/blank.php';
+	$json_template   = $blocks_base_dir . 'blank/blank.json';
 
-	// Template files.
-	$php_template  = $blank_dir . 'blank.php';
-	$json_template = $blank_dir . 'blank.json';
+	// Bail early if template files are missing.
+	if ( ! file_exists( $php_template ) || ! file_exists( $json_template ) ) {
+		return;
+	}
 
 	// Loop through each block type.
 	foreach ( $block_types as $block ) {
@@ -44,12 +46,12 @@ function skel_create_acf_block_files( array $block_types ): void {
 		}
 
 		// Generate PHP file.
-		skel_create_block_php( $block, $slug, $block_dir, $php_template );
+		skel_create_block_php( $wp_filesystem, $block, $slug, $block_dir, $php_template );
 
 		// Generate SCSS file.
-		skel_create_block_scss( $slug, $block_dir );
+		skel_create_block_scss( $wp_filesystem, $slug, $block_dir );
 
 		// Generate JSON file.
-		skel_create_block_json( $block, $slug, $block_dir, $json_template );
+		skel_create_block_json( $wp_filesystem, $block, $slug, $block_dir, $json_template );
 	}
 }

@@ -96,6 +96,13 @@ function skel_load_acf_json_options() {
 		$slug = sanitize_key( basename( $json_file, '.json' ) );
 		$data = json_decode( $json_content, true );
 
+		if ( json_last_error() !== JSON_ERROR_NONE ) {
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( 'Skeleton: Invalid JSON in ' . basename( $json_file ) . ' — ' . json_last_error_msg() );
+			}
+			continue;
+		}
+
 		if ( ! $data || ! isset( $data['title'], $data['options_page'], $data['fields'] ) ) {
 			continue;
 		}
@@ -126,27 +133,3 @@ function skel_load_acf_json_options() {
 }
 add_action( 'acf/init', 'skel_load_acf_json_options' );
 
-/**
- * Populate page select fields with published pages.
- */
-function skel_load_page_select_choices( $field ) {
-	$field['choices'] = array();
-
-	$pages = get_pages(
-		array(
-			'post_status' => 'publish',
-			'sort_column' => 'post_title',
-		)
-	);
-
-	if ( $pages ) {
-		foreach ( $pages as $page ) {
-			$field['choices'][ $page->ID ] = $page->post_title;
-		}
-	}
-
-	return $field;
-}
-add_filter( 'acf/load_field/key=field_global_pages_four_four', 'skel_load_page_select_choices' );
-add_filter( 'acf/load_field/key=field_global_pages_search', 'skel_load_page_select_choices' );
-add_filter( 'acf/load_field/key=field_global_pages_kb', 'skel_load_page_select_choices' );

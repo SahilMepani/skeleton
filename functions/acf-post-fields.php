@@ -34,6 +34,13 @@ function skel_load_acf_json_post_fields() {
 		$json_content = file_get_contents( $json_file );
 		$data         = json_decode( $json_content, true );
 
+		if ( json_last_error() !== JSON_ERROR_NONE ) {
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( 'Skeleton: Invalid JSON in ' . basename( $json_file ) . ' — ' . json_last_error_msg() );
+			}
+			continue;
+		}
+
 		if ( ! $data || ! isset( $data['title'], $data['post_type'], $data['fields'] ) ) {
 			continue;
 		}

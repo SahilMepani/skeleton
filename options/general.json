@@ -21,34 +21,28 @@
 			"key": "field_global_pages_four_four",
 			"label": "404 Page",
 			"name": "four_four_page",
-			"type": "select",
-			"choices": [],
-			"default_value": "",
-			"allow_null": 1,
-			"placeholder": "Select a page",
-			"ui": 1
+			"type": "post_object",
+			"post_type": ["page"],
+			"return_format": "id",
+			"allow_null": 1
 		},
 		{
 			"key": "field_global_pages_search",
 			"label": "Search Page",
 			"name": "search_page",
-			"type": "select",
-			"choices": [],
-			"default_value": "",
-			"allow_null": 1,
-			"placeholder": "Select a page",
-			"ui": 1
+			"type": "post_object",
+			"post_type": ["page"],
+			"return_format": "id",
+			"allow_null": 1
 		},
 		{
 			"key": "field_global_pages_kb",
 			"label": "Knowledge Base Page",
 			"name": "kb_page",
-			"type": "select",
-			"choices": [],
-			"default_value": "",
-			"allow_null": 1,
-			"placeholder": "Select a page",
-			"ui": 1
+			"type": "post_object",
+			"post_type": ["page"],
+			"return_format": "id",
+			"allow_null": 1
 		}
 	]
 }

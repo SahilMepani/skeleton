@@ -19,11 +19,6 @@ function update_post() {
 		wp_send_json_error( 'Invalid nonce.' );
 	}
 
-	// Check user capabilities.
-	if ( ! current_user_can( 'edit_posts' ) ) {
-		wp_send_json_error( 'Insufficient permissions.' );
-	}
-
 	// Sanitize each field.
 	$data = array(
 		'cpt'          => isset( $_POST['cpt'] ) ? sanitize_text_field( wp_unslash( $_POST['cpt'] ) ) : '',
@@ -39,6 +34,8 @@ function update_post() {
 	$args = array(
 		'post_type'      => $data['cpt'],
 		'posts_per_page' => $data['postsPerPage'],
+		'orderby'        => 'menu_order',
+		'order'          => 'ASC',
 	);
 
 	// Check if pagenumber is set for load more.
@@ -70,11 +67,11 @@ function update_post() {
 
 	// Add query optimizations.
 	$args['no_found_rows']          = true;
-	$args['update_post_meta_cache'] = false;
+	$args['update_post_meta_cache'] = in_array( $data['cpt'], array( 'insights', 'knowledge-base' ), true );
 	$args['update_post_term_cache'] = false;
 
 	// Generate cache key based on query arguments.
-	$cache_key = 'ajax_query_' . md5( serialize( $args ) );
+	$cache_key = 'ajax_query_' . md5( wp_json_encode( $args ) );
 	$results   = get_transient( $cache_key );
 
 	if ( false === $results ) {
@@ -94,9 +91,15 @@ function update_post() {
 		while ( $custom_query->have_posts() ) :
 			$custom_query->the_post();
 
-			// Output post card template part for 'post' post type.
+			// Output template part based on post type.
 			if ( 'post' === $data['cpt'] ) {
 				get_template_part( 'template-parts/post-card' );
+			} elseif ( 'project' === $data['cpt'] ) {
+				get_template_part( 'template-parts/project-card' );
+			} elseif ( 'insights' === $data['cpt'] ) {
+				get_template_part( 'template-parts/insight-card' );
+			} elseif ( 'knowledge-base' === $data['cpt'] ) {
+				get_template_part( 'template-parts/kb-article-card' );
 			}
 
 		endwhile;

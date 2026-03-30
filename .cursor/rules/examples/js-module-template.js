@@ -126,7 +126,7 @@
 					slidesPerView: 2,
 					spaceBetween: 24
 				},
-				992: {
+				1024: {
 					slidesPerView: 3,
 					spaceBetween: 32
 				}

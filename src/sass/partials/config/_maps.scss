@@ -6,8 +6,8 @@ $rem-base-unitless: strip-unit($rem-base);
 $container-max-widths: (
 	// max-width value needs to be less than the (grid-breakpoints value(xxl) - $container-padding)
 	// any property added here should also be added to grid breakpoints
-	'ph': 100vw,
-	'sm': 100vw,
+	'ph': 100%,
+	'sm': 100%,
 	'md': 95vw,
 	'lg': 93vw,
 	'xl': 93vw,

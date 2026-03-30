@@ -1,23 +1,55 @@
 import Swiper from 'swiper';
 import {
 	Navigation,
-	Pagination
-	// Autoplay,
-	// Thumbs,
-	// EffectCreative,
+	Pagination,
+	Autoplay,
+	FreeMode,
+	Scrollbar,
+	A11y
 	// EffectFade,
-	// Scrollbar
+	// EffectCreative,
+	// Thumbs,
+	// Keyboard,
+	// Mousewheel,
+	// EffectCoverflow,
+	// EffectCube,
+	// EffectFlip,
+	// EffectCards,
+	// Grid,
+	// HashNavigation,
+	// History,
+	// Controller,
+	// Manipulation,
+	// Parallax,
+	// Virtual,
+	// Zoom,
 } from 'swiper/modules';
 
 // Initialize Swiper with modules
 Swiper.use([
 	Navigation,
-	Pagination
-	// Autoplay,
-	// Thumbs,
-	// EffectCreative,
+	Pagination,
+	Autoplay,
+	FreeMode,
+	Scrollbar,
+	A11y
 	// EffectFade,
-	// Scrollbar
+	// EffectCreative,
+	// Thumbs,
+	// Keyboard,
+	// Mousewheel,
+	// EffectCoverflow,
+	// EffectCube,
+	// EffectFlip,
+	// EffectCards,
+	// Grid,
+	// HashNavigation,
+	// History,
+	// Controller,
+	// Manipulation,
+	// Parallax,
+	// Virtual,
+	// Zoom,
 ]);
 
 // Make Swiper available globally for other scripts

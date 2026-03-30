@@ -1,4 +1,4 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 @use 'sass:math';
 @use 'sass:map';
 
@@ -6,7 +6,7 @@
 	display: none !important;
 }
 
-.section {
+:where(.section) {
 	$sizes: map.set($section-spacings, 'custom', 0);
 
 	overflow: hidden;
@@ -16,13 +16,20 @@
 			/* stylelint-disable */
 			&.spacing-#{$position}-#{$size} {
 				@if $size == 'custom' {
-					$max-s: var(--spacing-#{$position}-custom);
-					$min-s: calc($max-s / 2);
-					padding-#{$position}: min(
-						calc($min-s * 1px) +
-							calc(($max-s / 16) - ($min-s / 16)) *
-							((100vw - 375px) / 100),
-						calc($max-s * 1px)
+					$mobile: var(--spacing-#{$position}-mobile);
+					$desktop: var(--spacing-#{$position}-desktop);
+					$min-bp: strip-unit($sm); // 576
+					$max-bp: strip-unit($xl); // 1200
+					$bp-diff: $max-bp - $min-bp; // 624
+					padding-#{$position}: clamp(
+						calc(#{$mobile} * 1px),
+						calc(
+							#{$mobile} *
+								1px +
+								(#{$desktop} - #{$mobile}) *
+								((100vw - #{$min-bp}px) / #{$bp-diff})
+						),
+						calc(#{$desktop} * 1px)
 					);
 				} @else {
 					padding-#{$position}: fluid($values...);

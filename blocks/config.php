@@ -21,9 +21,3 @@ $block_types = array(
 	'Logo Slider',
 	'Main Hero',
 );
-
-/**
- * Block post types are now defined in individual block JSON files.
- * Add "post_types": ["page", "post"] in {block-slug}.json to override.
- * Default: ["page"] if not specified.
- */

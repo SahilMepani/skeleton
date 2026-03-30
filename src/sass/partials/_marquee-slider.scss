@@ -60,10 +60,14 @@
 		flex: 0 0 auto;
 		align-items: center;
 		justify-content: center;
-		max-block-size: rem-calc(37);
 		padding-inline: rem-calc(24);
 		opacity: 0.7;
 		user-select: none;
+
+		img {
+			inline-size: auto;
+			max-block-size: rem-calc(37);
+		}
 	}
 
 	@keyframes marquee {

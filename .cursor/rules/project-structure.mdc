@@ -52,7 +52,7 @@ theme-root/
 │   ├── register-acf-blocks.php ← ACF block registration
 │   ├── enqueue-scripts.php    ← Script/style enqueueing
 │   ├── define-constants.php   ← ACF-sourced PHP constants
-│   ├── add-image-sizes.php    ← Custom sizes: w480, w768, w992, w1200, w1920
+│   ├── add-image-sizes.php    ← Custom sizes: w480, w768, w1400, w1920
 │   └── ... (30+ files)
 │
 ├── template-parts/            ← Reusable PHP partials (get_template_part)

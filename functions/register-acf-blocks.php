@@ -254,14 +254,39 @@ function skel_get_block_default_settings_tab_fields( $slug_snake ) {
 							'default_value' => 'spacing-top-medium',
 						),
 						array(
-							'key'               => 'field_' . $slug_snake . '_custom_value_top',
-							'label'             => 'Custom Value',
-							'name'              => 'custom_value_top',
+							'key'               => 'field_' . $slug_snake . '_custom_value_top_mobile',
+							'label'             => 'Mobile Value',
+							'name'              => 'custom_value_top_mobile',
 							'type'              => 'range',
 							'min'               => 0,
 							'max'               => 400,
-							'step'              => 1,
+							'step'              => 5,
 							'append'            => 'px',
+							'wrapper'           => array(
+								'width' => '50',
+							),
+							'conditional_logic' => array(
+								array(
+									array(
+										'field'    => 'field_' . $slug_snake . '_spacing_top',
+										'operator' => '==',
+										'value'    => 'custom',
+									),
+								),
+							),
+						),
+						array(
+							'key'               => 'field_' . $slug_snake . '_custom_value_top_desktop',
+							'label'             => 'Desktop Value',
+							'name'              => 'custom_value_top_desktop',
+							'type'              => 'range',
+							'min'               => 0,
+							'max'               => 400,
+							'step'              => 5,
+							'append'            => 'px',
+							'wrapper'           => array(
+								'width' => '50',
+							),
 							'conditional_logic' => array(
 								array(
 									array(
@@ -294,17 +319,42 @@ function skel_get_block_default_settings_tab_fields( $slug_snake ) {
 								'spacing-bottom-xlarge' => 'X-Large',
 								'custom'                => 'Custom',
 							),
-							'default_value' => 'medium',
+							'default_value' => 'spacing-bottom-medium',
 						),
 						array(
-							'key'               => 'field_' . $slug_snake . '_custom_value_bottom',
-							'label'             => 'Custom Value',
-							'name'              => 'custom_value_bottom',
+							'key'               => 'field_' . $slug_snake . '_custom_value_bottom_mobile',
+							'label'             => 'Mobile Value',
+							'name'              => 'custom_value_bottom_mobile',
 							'type'              => 'range',
 							'min'               => 0,
 							'max'               => 400,
 							'step'              => 1,
 							'append'            => 'px',
+							'wrapper'           => array(
+								'width' => '50',
+							),
+							'conditional_logic' => array(
+								array(
+									array(
+										'field'    => 'field_' . $slug_snake . '_spacing_bottom',
+										'operator' => '==',
+										'value'    => 'custom',
+									),
+								),
+							),
+						),
+						array(
+							'key'               => 'field_' . $slug_snake . '_custom_value_bottom_desktop',
+							'label'             => 'Desktop Value',
+							'name'              => 'custom_value_bottom_desktop',
+							'type'              => 'range',
+							'min'               => 0,
+							'max'               => 400,
+							'step'              => 1,
+							'append'            => 'px',
+							'wrapper'           => array(
+								'width' => '50',
+							),
 							'conditional_logic' => array(
 								array(
 									array(

@@ -18,7 +18,7 @@ function skel_create_block_scss( $slug, $block_dir ) {
 	$sass_file_path = $block_dir . $slug . '.scss';
 
 	if ( ! file_exists( $sass_file_path ) ) {
-		$sass_content = "@use '../../src/sass/partials/abstracts' as *;\n\n" . '.' . $slug . '-section {' . "\n\n" . '}';
+		$sass_content = "@use '../../src/sass/partials/abstracts-blocks' as *;\n\n" . '.' . $slug . '-section {' . "\n\n" . '}';
 		if ( ! $wp_filesystem->put_contents( $sass_file_path, $sass_content, FS_CHMOD_FILE ) ) {
 			echo 'Error saving SCSS file for ' . esc_html( $slug ) . '!';
 		}

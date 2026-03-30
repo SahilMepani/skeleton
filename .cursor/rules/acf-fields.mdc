@@ -63,10 +63,23 @@ if ( $image_id ) {
 
 ```php
 $link = get_field( 'link' );  // or $item['link']
-if ( is_array( $link ) && $link['url'] ) {
-	$url    = $link['url'];
-	$title  = $link['title'] ?: __( 'Learn More', 'skel' );
-	$target = $link['target'];
+```
+
+```php
+if ( is_array( $link ) && $link['url'] ) { ?>
+	<a
+		href="<?php echo esc_url( $link['url'] ); ?>"
+		target="<?php echo esc_attr( $link['target'] ); ?>"
+		<?php echo ( '_blank' === $link['target'] ) ? 'rel="noopener noreferrer"' : ''; ?>
+		class="btn">
+		<?php
+		$text = ( $link['title'] ) ? $link['title'] : __( 'Read More', 'skel' );
+		echo '<span>' . esc_html( $text ) . '</span>';
+		if ( '_blank' === $link['target'] ) {
+			echo '<span class="sr-only">' . esc_html__( '(opens in a new tab)', 'skel' ) . '</span>';
+		}
+		?>
+	</a>
 }
 ```
 
@@ -193,8 +206,7 @@ $columns            = get_field( 'columns' );             // repeater
 'large'      // 1024x1024
 'w480'       // Custom: 480w
 'w768'       // Custom: 768w
-'w992'       // Custom: 992w
-'w1200'      // Custom: 1200w
+'w1400'      // Custom: 1400w
 'w1920'      // Custom: 1920w (full width)
 ```
 
@@ -202,5 +214,5 @@ $columns            = get_field( 'columns' );             // repeater
 
 ```php
 // Use constant for fallback
-$image_id = $item['image'] ?? DEFAULT_THUMBNAIL_ID;
+$image_id = $item['image'];
 ```

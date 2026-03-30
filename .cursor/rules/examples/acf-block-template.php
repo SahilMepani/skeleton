@@ -69,18 +69,17 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 <section
 	class="block-name-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
 	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
-	id="<?php echo esc_attr( $unique_id ); ?>"
-	data-inview>
+	id="<?php echo esc_attr( $unique_id ); ?>">
 
 	<div class="container">
 
 		<?php if ( $section_heading ) : ?>
-			<h2 class="section-heading" data-aos="fade-up">
+			<h2 class="section-heading">
 				<?php echo esc_html( $section_heading ); ?>
 			</h2>
 		<?php endif; ?>
 
-		<div class="items-grid" data-inview>
+		<div class="items-grid">
 			<?php foreach ( $items as $item ) : ?>
 				<?php
 				$title       = $item['title'] ?? '';
@@ -89,7 +88,7 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 				$link        = $item['link'] ?? array();
 				?>
 
-				<div class="item" data-aos-stagger-item data-aos="fade-up">
+				<div class="item">
 
 					<?php if ( $image_id ) : ?>
 						<div class="img-cover-block">
@@ -100,7 +99,7 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 								false,
 								array(
 									'class'   => 'img-cover',
-									'sizes'   => '(min-width: 992px) 33vw, (min-width: 768px) 50vw, 100vw',
+									'sizes'   => '(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw',
 									'loading' => 'lazy',
 								)
 							);
@@ -120,11 +119,19 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 						<?php endif; ?>
 
 						<?php if ( is_array( $link ) && ! empty( $link['url'] ) ) : ?>
-							<a href="<?php echo esc_url( $link['url'] ); ?>"
+							<a
+								href="<?php echo esc_url( $link['url'] ); ?>"
 								target="<?php echo esc_attr( $link['target'] ); ?>"
+								<?php echo ( '_blank' === $link['target'] ) ? 'rel="noopener noreferrer"' : ''; ?>
 								class="btn btn-link">
-								<?php echo esc_html( $link['title'] ?: __( 'Learn More', 'skel' ) ); ?>
-								<?php echo skel_svg('arrow-right', array( 'aria-hidden' => 'true' ) ); ?>
+								<?php
+								$text = ( $link['title'] ) ? $link['title'] : __( 'Learn More', 'skel' );
+								echo '<span>' . esc_html( $text ) . '</span>';
+								if ( '_blank' === $link['target'] ) {
+									echo '<span class="sr-only">' . esc_html__( '(opens in a new tab)', 'skel' ) . '</span>';
+								}
+								echo skel_get_svg( 'arrow-right', array( 'aria-hidden' => 'true' ) );
+								?>
 							</a>
 						<?php endif; ?>
 					</div>
@@ -135,11 +142,19 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 		</div>
 
 		<?php if ( is_array( $button ) && ! empty( $button['url'] ) ) : ?>
-			<div class="section-cta" data-inview data-aos="fade-up">
-				<a href="<?php echo esc_url( $button['url'] ); ?>"
+			<div class="section-cta">
+				<a
+					href="<?php echo esc_url( $button['url'] ); ?>"
 					target="<?php echo esc_attr( $button['target'] ); ?>"
+					<?php echo ( '_blank' === $button['target'] ) ? 'rel="noopener noreferrer"' : ''; ?>
 					class="btn btn-primary btn-lg">
-					<?php echo esc_html( $button['title'] ?: __( 'View All', 'skel' ) ); ?>
+					<?php
+					$text = ( $button['title'] ) ? $button['title'] : __( 'View All', 'skel' );
+					echo '<span>' . esc_html( $text ) . '</span>';
+					if ( '_blank' === $button['target'] ) {
+						echo '<span class="sr-only">' . esc_html__( '(opens in a new tab)', 'skel' ) . '</span>';
+					}
+					?>
 				</a>
 			</div>
 		<?php endif; ?>

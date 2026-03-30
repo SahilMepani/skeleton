@@ -13,12 +13,7 @@
 			"label": "Data",
 			"type": "tab"
 		},
-		{
-			"key": "field_faqs_section_heading",
-			"label": "Section Heading",
-			"name": "section_heading",
-			"type": "text"
-		},
+
 		{
 			"key": "field_faqs_faq_type",
 			"label": "FAQ Type",
@@ -37,7 +32,16 @@
 			"label": "FAQ Count",
 			"name": "faq_count",
 			"type": "number",
-			"default_value": -1
+			"default_value": -1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_faqs_faq_type",
+						"operator": "==",
+						"value": "latest"
+					}
+				]
+			]
 		},
 		{
 			"key": "field_faqs_button",
@@ -46,50 +50,7 @@
 			"type": "link",
 			"return_format": "array"
 		},
-		{
-			"key": "field_faqs_faq_categories",
-			"label": "FAQ Categories",
-			"name": "faq_categories",
-			"type": "taxonomy",
-			"taxonomy": "faq-category",
-			"field_type": "multi_select",
-			"add_term": 0,
-			"save_terms": 0,
-			"load_terms": 0,
-			"return_format": "id",
-			"multiple": 0,
-			"conditional_logic": [
-				[
-					{
-						"field": "field_faqs_faq_type",
-						"operator": "==",
-						"value": "latest"
-					}
-				]
-			]
-		},
-		{
-			"key": "field_faqs_faq_dividers",
-			"label": "FAQ Dividers",
-			"name": "faq_dividers",
-			"type": "taxonomy",
-			"taxonomy": "faq-divider",
-			"field_type": "multi_select",
-			"add_term": 0,
-			"save_terms": 0,
-			"load_terms": 0,
-			"return_format": "id",
-			"multiple": 0,
-			"conditional_logic": [
-				[
-					{
-						"field": "field_faqs_faq_type",
-						"operator": "==",
-						"value": "latest"
-					}
-				]
-			]
-		},
+
 		{
 			"key": "field_faqs_selected_faq",
 			"label": "Selected FAQs",

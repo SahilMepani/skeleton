@@ -84,7 +84,7 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 <section
 	class="block-section section <?php echo esc_attr( "{$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
 	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
-	id="<?php echo esc_attr( $unique_id ); ?>" data-inview>
+	id="<?php echo esc_attr( $unique_id ); ?>">
 	<div class="container">
 		<?php foreach ( $items as $item ) : ?><!-- Content --><?php endforeach; ?>
 	</div>
@@ -135,7 +135,7 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 
 ```php
 // Icons
-<?php echo skel_svg( 'arrow-right', [ 'class' => 'icon', 'aria-hidden' => 'true' ] ); ?>
+<?php echo skel_get_svg( 'arrow-right', [ 'class' => 'icon', 'aria-hidden' => 'true' ] ); ?>
 
 // URLs
 <a href="<?php echo skel_get_phone_url( '+971 50 123 4567' ); ?>">Call</a>
@@ -161,7 +161,7 @@ $dialog_id = skel_get_random_string();
 
 ```php
 <?php
-$image_id = $item['image'] ?? DEFAULT_THUMBNAIL_ID;
+$image_id = $item['image'];
 if ( $image_id ) :
 	echo wp_get_attachment_image(
 		$image_id,

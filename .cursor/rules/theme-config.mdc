@@ -44,24 +44,24 @@ display-3: fluid(40, 80)
 ```scss
 $xs: 0px      $ph: 375px    $sm: 576px
 $md: 768px    $lg: 1024px   $xl: 1200px
-$xxl: 1400px  $xxxl: 1600px
+$xxl: 1400px
 ```
 
 ## Container
 
 ```scss
 // Max-widths by breakpoint:
-// ph/sm: 100vw, md: 95vw, lg/xl/xxl: 93vw, xxxl: 90rem (1440px)
+// ph/sm: 100vw, md: 95vw, lg/xl/xxl: 93vw, xxl: 80rem (1280px)
 // Padding: fluid(20, 40)  ($container-padding-x)
 ```
 
 ## Section Spacing Classes
 
-| Class | Value |
-|---|---|
-| `.spacing-top-small` / `.spacing-bottom-small` | `fluid(20, 40)` |
-| `.spacing-top-medium` / `.spacing-bottom-medium` | `fluid(40, 70)` |
-| `.spacing-top-large` / `.spacing-bottom-large` | `fluid(70, 140)` |
+| Class                                            | Value             |
+| ------------------------------------------------ | ----------------- |
+| `.spacing-top-small` / `.spacing-bottom-small`   | `fluid(20, 40)`   |
+| `.spacing-top-medium` / `.spacing-bottom-medium` | `fluid(40, 70)`   |
+| `.spacing-top-large` / `.spacing-bottom-large`   | `fluid(70, 140)`  |
 | `.spacing-top-xlarge` / `.spacing-bottom-xlarge` | `fluid(100, 160)` |
 
 ## PHP Constants (from ACF Options)

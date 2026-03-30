@@ -14,99 +14,8 @@ import terser from 'gulp-terser';
 import { deleteAsync } from 'del';
 import browserSync from 'browser-sync';
 import gulpEsbuild from 'gulp-esbuild';
-import newer from 'gulp-newer';
-import sharp from 'sharp';
 import through from 'through2';
 import { generate } from 'critical';
-
-// Image optimization task using Sharp
-function imagesTask() {
-	return gulp
-		.src('src/images/**/*.{jpg,jpeg,png,gif,svg,webp}')
-		.pipe(newer('assets/images'))
-		.pipe(
-			through.obj(function (file, enc, cb) {
-				if (file.isNull()) return cb(null, file);
-				if (file.isStream())
-					return cb(new Error('Streaming not supported'));
-
-				const ext = file.extname.toLowerCase();
-
-				// Skip SVG files - they don't need Sharp processing
-				if (ext === '.svg' || ext === '.webp') {
-					return cb(null, file);
-				}
-
-				let sharpInstance = sharp(file.contents);
-
-				// Optimize based on file type
-				if (ext === '.jpg' || ext === '.jpeg') {
-					sharpInstance = sharpInstance.jpeg({
-						quality: 85,
-						mozjpeg: true
-					});
-				} else if (ext === '.png') {
-					sharpInstance = sharpInstance.png({
-						quality: 85,
-						compressionLevel: 9
-					});
-				} else if (ext === '.gif') {
-					sharpInstance = sharpInstance.gif();
-				}
-
-				sharpInstance
-					.toBuffer()
-					.then(buffer => {
-						file.contents = buffer;
-						cb(null, file);
-					})
-					.catch(err => {
-						console.error(
-							`Error optimizing ${file.relative}:`,
-							err.message
-						);
-						cb();
-					});
-			})
-		)
-		.pipe(gulp.dest('assets/images'))
-		.pipe(browserSyncInstance.stream());
-}
-
-// WebP generation task
-function webpTask() {
-	return gulp
-		.src('src/images/**/*.{jpg,jpeg,png}')
-		.pipe(newer({ extension: '.webp', dest: 'assets/images' }))
-		.pipe(
-			through.obj(function (file, enc, cb) {
-				if (file.isNull()) return cb(null, file);
-				if (file.isStream())
-					return cb(new Error('Streaming not supported'));
-
-				sharp(file.contents)
-					.webp()
-					.toBuffer()
-					.then(buffer => {
-						file.contents = buffer;
-						file.path = file.path.replace(
-							/\.(jpg|jpeg|png)$/,
-							'.webp'
-						);
-						cb(null, file);
-					})
-					.catch(err => {
-						console.error(
-							`Error converting ${file.relative} to WebP:`,
-							err.message
-						);
-						cb();
-					});
-			})
-		)
-		.pipe(gulp.dest('assets/images'))
-		.pipe(browserSyncInstance.stream());
-}
 
 // Critical CSS task
 function criticalTask() {
@@ -324,11 +233,11 @@ function lintCSS(done) {
 
 // Watch task
 function watch() {
-	gulp.watch('src/sass/**/*.{scss,sass}', gulp.series(sassTask));
-	gulp.watch('blocks/**/*.scss', gulp.series(blockSassTask));
-	gulp.watch('src/js/swiper-init.js', gulp.series(swiperJsTask));
-	gulp.watch('src/js/**/*.js', gulp.series(jsTasks));
-	gulp.watch('src/images/**/*', gulp.series(imagesTask, webpTask));
+	const watchOpts = { usePolling: true, interval: 500 };
+	gulp.watch('src/sass/**/*.{scss,sass}', watchOpts, gulp.series(sassTask));
+	gulp.watch('blocks/**/*.scss', watchOpts, gulp.series(blockSassTask));
+	gulp.watch('src/js/swiper-init.js', watchOpts, gulp.series(swiperJsTask));
+	gulp.watch('src/js/**/*.js', watchOpts, gulp.series(jsTasks));
 	gulp.watch([
 		'*.html',
 		'*.php',
@@ -338,23 +247,22 @@ function watch() {
 		'functions/**/*.php',
 		'assets/js/**/*.js',
 		'assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
-	]).on('change', browserSyncInstance.reload);
-	gulp.watch('blocks/**/*.js').on('change', browserSyncInstance.reload);
+	], watchOpts).on('change', browserSyncInstance.reload);
+	gulp.watch('blocks/**/*.js', watchOpts).on('change', browserSyncInstance.reload);
 }
 
 // Define complex tasks
 const jsTasks = gulp.series(swiperJsTask, pluginsJsTask, customJsTask);
-const imgTasks = gulp.series(imagesTask, webpTask);
 
 // Dev build sequence (no purgecss)
 const buildDev = gulp.series(
-	gulp.parallel(sassTask, blockSassTask, imgTasks),
+	gulp.parallel(sassTask, blockSassTask),
 	gulp.parallel(lintJS, jsTasks)
 );
 
 // Prod build sequence (includes purgecss)
 const buildProd = gulp.series(
-	gulp.parallel(sassTask, blockSassTask, imgTasks),
+	gulp.parallel(sassTask, blockSassTask),
 	gulp.parallel(rtlCssTask, lintJS, jsTasks) // Run JS/Lint in parallel with SCSS
 	// purgeCSSTask, // Run PurgeCSS after initial CSS is built
 	// criticalTask // Generate critical CSS last
@@ -371,8 +279,6 @@ export {
 	purgeCSSTask as purgecss,
 	rtlCssTask as rtlcss,
 	jsTasks as js,
-	imagesTask as images,
-	webpTask as webp,
 	criticalTask as critical,
 	lintJS,
 	lintCSS,

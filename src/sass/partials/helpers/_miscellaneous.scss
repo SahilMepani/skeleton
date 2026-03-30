@@ -120,46 +120,8 @@
 	@include list-unstyled;
 }
 
-// Using Oldschool Grotesk weights:
-.thin {
-	font-weight: 100;
-}
-
-.light {
-	font-weight: 300;
-}
-
-.regular {
-	font-weight: 400;
-}
-
-.medium {
-	font-weight: 500;
-}
-
-.bold {
-	font-weight: 700;
-}
-
-.extra-bold {
-	font-weight: 800;
-}
-
-// Using Source Serif Pro (italic styles):
-.serif-italic {
-	font-family: $heading-font-family;
-	font-style: italic;
-	font-weight: 400;
-}
-
-.serif-light-italic {
-	font-family: $heading-font-family;
-	font-style: italic;
-	font-weight: 300;
-}
-
-.serif-semibold-italic {
-	font-family: $heading-font-family;
-	font-style: italic;
-	font-weight: 600;
+svg {
+	block-size: 1em;
+	inline-size: 1em;
+	flex-shrink: 0;
 }

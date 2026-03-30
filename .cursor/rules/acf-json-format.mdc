@@ -12,27 +12,27 @@ Each block has a `.json` file defining its ACF field group:
 
 ```json
 {
-    "title": "Block Name",
-    "fields": [
-        {
-            "key": "field_{slug}_block_options",
-            "label": "Block Name",
-            "type": "accordion",
-            "open": 1,
-            "multi_expand": 1
-        },
-        {
-            "key": "field_{slug}_data_tab",
-            "label": "Data",
-            "type": "tab"
-        },
-        {
-            "key": "field_{slug}_heading",
-            "label": "Heading",
-            "name": "heading",
-            "type": "text"
-        }
-    ]
+	"title": "Block Name",
+	"fields": [
+		{
+			"key": "field_{slug}_block_options",
+			"label": "Block Name",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_{slug}_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_{slug}_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "text"
+		}
+	]
 }
 ```
 
@@ -44,7 +44,7 @@ Always prefix with `field_{block_slug}_`:
 { "key": "field_main_hero_heading", "name": "heading", "type": "text" }
 ```
 
-For sub_fields in repeaters: `field_{slug}_{repeater}_{field}`:
+For sub*fields in repeaters: `field*{slug}_{repeater}_{field}`:
 
 ```json
 { "key": "field_main_hero_items_title", "name": "title", "type": "text" }
@@ -84,12 +84,12 @@ These are added automatically at block registration:
 
 ```json
 {
-    "key": "field_{slug}_image",
-    "label": "Image",
-    "name": "image",
-    "type": "image",
-    "return_format": "id",
-    "preview_size": "w200"
+	"key": "field_{slug}_image",
+	"label": "Image",
+	"name": "image",
+	"type": "image",
+	"return_format": "id",
+	"preview_size": "w200"
 }
 ```
 
@@ -97,11 +97,11 @@ These are added automatically at block registration:
 
 ```json
 {
-    "key": "field_{slug}_link",
-    "label": "Link",
-    "name": "link",
-    "type": "link",
-    "return_format": "array"
+	"key": "field_{slug}_link",
+	"label": "Link",
+	"name": "link",
+	"type": "link",
+	"return_format": "array"
 }
 ```
 
@@ -109,15 +109,15 @@ These are added automatically at block registration:
 
 ```json
 {
-    "key": "field_{slug}_style",
-    "label": "Style",
-    "name": "style",
-    "type": "select",
-    "choices": {
-        "default": "Default",
-        "alternate": "Alternate"
-    },
-    "default_value": "default"
+	"key": "field_{slug}_style",
+	"label": "Style",
+	"name": "style",
+	"type": "select",
+	"choices": {
+		"default": "Default",
+		"alternate": "Alternate"
+	},
+	"default_value": "default"
 }
 ```
 
@@ -125,16 +125,30 @@ These are added automatically at block registration:
 
 ```json
 {
-    "key": "field_{slug}_layout",
-    "label": "Layout",
-    "name": "layout",
-    "type": "button_group",
-    "choices": {
-        "left": "Left",
-        "center": "Center",
-        "right": "Right"
-    },
-    "default_value": "left"
+	"key": "field_{slug}_layout",
+	"label": "Layout",
+	"name": "layout",
+	"type": "button_group",
+	"choices": {
+		"left": "Left",
+		"center": "Center",
+		"right": "Right"
+	},
+	"default_value": "left"
+}
+```
+
+### Textarea
+
+```json
+{
+	"key": "field_{slug}_heading",
+	"label": "Heading",
+	"name": "heading",
+	"type": "textarea",
+	"rows": 2,
+	"new_lines": "br",
+	"instructions": "Line breaks are preserved"
 }
 ```
 
@@ -142,29 +156,31 @@ These are added automatically at block registration:
 
 ```json
 {
-    "key": "field_{slug}_items",
-    "label": "Items",
-    "name": "items",
-    "type": "repeater",
-    "min": 1,
-    "max": 6,
-    "layout": "block",
-    "sub_fields": [
-        {
-            "key": "field_{slug}_items_title",
-            "label": "Title",
-            "name": "title",
-            "type": "text"
-        },
-        {
-            "key": "field_{slug}_items_image",
-            "label": "Image",
-            "name": "image",
-            "type": "image",
-            "return_format": "id",
-            "preview_size": "w200"
-        }
-    ]
+	"key": "field_{slug}_items",
+	"label": "Items",
+	"name": "items",
+	"type": "repeater",
+	"min": 1,
+	"max": 6,
+	"layout": "block",
+	"button_label": "Add {item}",
+	"collapsed": "field_{slug}_items_title",
+	"sub_fields": [
+		{
+			"key": "field_{slug}_items_title",
+			"label": "Title",
+			"name": "title",
+			"type": "text"
+		},
+		{
+			"key": "field_{slug}_items_image",
+			"label": "Image",
+			"name": "image",
+			"type": "image",
+			"return_format": "id",
+			"preview_size": "w200"
+		}
+	]
 }
 ```
 
@@ -172,19 +188,19 @@ These are added automatically at block registration:
 
 ```json
 {
-    "key": "field_{slug}_cta",
-    "label": "CTA",
-    "name": "cta",
-    "type": "group",
-    "layout": "block",
-    "sub_fields": [
-        {
-            "key": "field_{slug}_cta_heading",
-            "label": "Heading",
-            "name": "heading",
-            "type": "text"
-        }
-    ]
+	"key": "field_{slug}_cta",
+	"label": "CTA",
+	"name": "cta",
+	"type": "group",
+	"layout": "block",
+	"sub_fields": [
+		{
+			"key": "field_{slug}_cta_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "text"
+		}
+	]
 }
 ```
 
@@ -192,13 +208,14 @@ These are added automatically at block registration:
 
 ```json
 {
-    "key": "field_{slug}_content",
-    "label": "Content",
-    "name": "content",
-    "type": "wysiwyg",
-    "tabs": "all",
-    "toolbar": "full",
-    "media_upload": 0
+	"key": "field_{slug}_content",
+	"label": "Content",
+	"name": "content",
+	"type": "wysiwyg",
+	"tabs": "all",
+	"toolbar": "full",
+	"media_upload": 0,
+	"delay": 1
 }
 ```
 
@@ -206,13 +223,13 @@ These are added automatically at block registration:
 
 ```json
 {
-    "key": "field_{slug}_count",
-    "label": "Count",
-    "name": "count",
-    "type": "number",
-    "default_value": 3,
-    "min": 1,
-    "max": 12
+	"key": "field_{slug}_count",
+	"label": "Count",
+	"name": "count",
+	"type": "number",
+	"default_value": 3,
+	"min": 1,
+	"max": 12
 }
 ```
 
@@ -220,11 +237,11 @@ These are added automatically at block registration:
 
 ```json
 {
-    "key": "field_{slug}_show_title",
-    "label": "Show Title",
-    "name": "show_title",
-    "type": "true_false",
-    "default_value": 1
+	"key": "field_{slug}_show_title",
+	"label": "Show Title",
+	"name": "show_title",
+	"type": "true_false",
+	"default_value": 1
 }
 ```
 
@@ -232,10 +249,10 @@ These are added automatically at block registration:
 
 ```json
 {
-    "key": "field_{slug}_video",
-    "label": "Video",
-    "name": "video",
-    "type": "oembed"
+	"key": "field_{slug}_video",
+	"label": "Video",
+	"name": "video",
+	"type": "oembed"
 }
 ```
 
@@ -243,13 +260,13 @@ These are added automatically at block registration:
 
 ```json
 {
-    "key": "field_{slug}_post",
-    "label": "Post",
-    "name": "post",
-    "type": "post_object",
-    "post_type": ["post"],
-    "return_format": "id",
-    "multiple": 0
+	"key": "field_{slug}_post",
+	"label": "Post",
+	"name": "post",
+	"type": "post_object",
+	"post_type": ["post"],
+	"return_format": "id",
+	"multiple": 0
 }
 ```
 
@@ -257,14 +274,14 @@ These are added automatically at block registration:
 
 ```json
 {
-    "key": "field_{slug}_posts",
-    "label": "Posts",
-    "name": "posts",
-    "type": "relationship",
-    "post_type": ["post"],
-    "return_format": "id",
-    "min": 1,
-    "max": 6
+	"key": "field_{slug}_posts",
+	"label": "Posts",
+	"name": "posts",
+	"type": "relationship",
+	"post_type": ["post"],
+	"return_format": "id",
+	"min": 1,
+	"max": 6
 }
 ```
 
@@ -272,9 +289,9 @@ These are added automatically at block registration:
 
 ```json
 {
-    "key": "field_{slug}_content_tab",
-    "label": "Content",
-    "type": "tab"
+	"key": "field_{slug}_content_tab",
+	"label": "Content",
+	"type": "tab"
 }
 ```
 
@@ -282,18 +299,18 @@ These are added automatically at block registration:
 
 ```json
 {
-    "key": "field_{slug}_custom_text",
-    "label": "Custom Text",
-    "name": "custom_text",
-    "type": "text",
-    "conditional_logic": [
-        [
-            {
-                "field": "field_{slug}_style",
-                "operator": "==",
-                "value": "custom"
-            }
-        ]
-    ]
+	"key": "field_{slug}_custom_text",
+	"label": "Custom Text",
+	"name": "custom_text",
+	"type": "text",
+	"conditional_logic": [
+		[
+			{
+				"field": "field_{slug}_style",
+				"operator": "==",
+				"value": "custom"
+			}
+		]
+	]
 }
 ```

@@ -1,4 +1,5 @@
 @use '../config/blocks' as *;
+@use 'rem' as *;
 
 @mixin stagger-animation($animation, $child, $interval: 100) {
 	$delay: $interval;
@@ -17,14 +18,12 @@
 	}
 }
 
-@mixin pseudo-underline(
-	$space-above-line: rem-calc(1),
+@mixin pseudo-underline($space-above-line: rem-calc(1),
 	$line-height: rem-calc(1),
 	$text-color: currentColor,
 	$line-color: currentColor,
 	$hover-text-color: currentColor,
-	$hover-line-color: currentColor
-) {
+	$hover-line-color: currentColor) {
 	color: $text-color;
 	padding-block-end: $space-above-line;
 	position: relative;
@@ -64,13 +63,11 @@
 	}
 }
 
-@mixin animate-line-on-hover(
-	$space-above-line: rem-calc(1),
+@mixin animate-line-on-hover($space-above-line: rem-calc(1),
 	$pseudo-padding: 0,
 	$line-height: rem-calc(1),
 	$text-color: currentColor,
-	$line-color: currentColor
-) {
+	$line-color: currentColor) {
 	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
 	padding-block-start: $pseudo-padding;
 	padding-block-end: $space-above-line;
@@ -112,16 +109,12 @@
 	}
 }
 
-@mixin animate-background-underline-on-hover(
-	$text-color: currentColor,
+@mixin animate-background-underline-on-hover($text-color: currentColor,
 	$background-start-color: currentColor,
-	$background-end-color: currentColor
-) {
-	background-image: linear-gradient(
-		to right,
-		$background-start-color,
-		$background-end-color
-	);
+	$background-end-color: currentColor) {
+	background-image: linear-gradient(to right,
+			$background-start-color,
+			$background-end-color);
 	background-size: 0 rem-calc(2);
 	background-position: left bottom;
 	background-repeat: no-repeat;

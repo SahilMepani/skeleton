@@ -15,31 +15,28 @@
  * This function modifies the list of allowed block types for all contexts,
  * including the block editor and block inserter.
  *
+ * @param bool|string[] $allowed_block_types Array of allowed block types or true for all.
+ * @param WP_Block_Editor_Context $editor_context The current block editor context.
  * @return array The modified list of allowed block types.
  */
-function skel_allowed_block_types(): array {
-	// Get all registered block types.
+function skel_allowed_block_types( $allowed_block_types, $editor_context ): array {
 	$block_types = WP_Block_Type_Registry::get_instance()->get_all_registered();
 
-	// Filter out ACF blocks.
 	$allowed_blocks = array_values(
 		array_filter(
 			array_keys( $block_types ),
 			function ( $block ) {
-				return strpos( $block, 'acf/' ) === 0;
+				return str_starts_with( $block, 'acf/' );
 			}
 		)
 	);
 
-	// Include reusable blocks in the block inserter.
-	$allowed_blocks = array_merge( $allowed_blocks, array( 'core/block' ) );
+	$allowed_blocks[] = 'core/block';
 
-	// Additional block types allowed based fr page post type.
-	if ( 'page' === get_post_type() ) {
-		$post_allowed_blocks = array(
-			'core/image',
-		);
-		$allowed_blocks      = array_merge( $allowed_blocks, $post_allowed_blocks );
+	// Additional block types allowed based on page post type.
+	$post_type = $editor_context->post->post_type ?? '';
+	if ( 'page' === $post_type ) {
+		$allowed_blocks[] = 'core/image';
 	}
 
 	return $allowed_blocks;

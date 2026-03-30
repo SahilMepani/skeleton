@@ -30,18 +30,17 @@ function skel_load_acf_json_post_fields() {
 	}
 
 	foreach ( $json_files as $json_file ) {
-		$slug         = basename( $json_file, '.json' );
-		$json_content = file_get_contents( $json_file );
-		$data         = json_decode( $json_content, true );
+		$slug = sanitize_title( basename( $json_file, '.json' ) );
+		$data = wp_json_file_decode( $json_file, array( 'associative' => true ) );
 
-		if ( json_last_error() !== JSON_ERROR_NONE ) {
+		if ( ! is_array( $data ) ) {
 			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( 'Skeleton: Invalid JSON in ' . basename( $json_file ) . ' — ' . json_last_error_msg() );
+				error_log( 'Skeleton: Invalid JSON in ' . basename( $json_file ) );
 			}
 			continue;
 		}
 
-		if ( ! $data || ! isset( $data['title'], $data['post_type'], $data['fields'] ) ) {
+		if ( ! isset( $data['title'], $data['post_type'], $data['fields'] ) ) {
 			continue;
 		}
 

@@ -25,7 +25,8 @@ function prevent_post_deletion( $postid ) {
 
 	if ( in_array( $postid, $protected_posts, true ) ) {
 		// Redirect to the page list in the admin area with a protected_post flag.
-		wp_safe_redirect( admin_url( 'edit.php?post_type=page&protected_post=true' ) );
+		$redirect_url = wp_nonce_url( admin_url( 'edit.php?post_type=page&protected_post=true' ), 'protected_post_notice' );
+		wp_safe_redirect( $redirect_url );
 		exit;
 	}
 }

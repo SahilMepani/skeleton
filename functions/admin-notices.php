@@ -2,7 +2,7 @@
 /**
  * Admin Notices
  *
- * This is the template that displays all of the <head> section and everything up until main.
+ * Handles custom admin notices for the Skeleton theme.
  *
  * @package WordPress
  * @subpackage Skeleton
@@ -21,15 +21,22 @@ if ( ! is_admin() ) {
  * The notice is triggered by the presence of a 'protected_post=true' query parameter
  * in the URL, which is set when a protected post is attempted to be deleted.
  */
-function show_custom_admin_notice() {
-	if ( isset( $_GET['protected_post'] ) && 'true' === sanitize_text_field( wp_unslash( $_GET['protected_post'] ) ) ) {
-		// Display the custom admin notice.
+function skel_show_custom_admin_notice() {
+	if ( ! isset( $_GET['protected_post'], $_GET['_wpnonce'] ) ) {
+		return;
+	}
+
+	if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'protected_post_notice' ) ) {
+		return;
+	}
+
+	if ( 'true' === sanitize_text_field( wp_unslash( $_GET['protected_post'] ) ) ) {
 		echo '<div id="custom-admin-notice" class="notice notice-warning is-dismissible">
             <p>This page is protected and cannot be deleted.</p>
         </div>';
 	}
 }
-add_action( 'admin_notices', 'show_custom_admin_notice' );
+add_action( 'admin_notices', 'skel_show_custom_admin_notice' );
 
 
 
@@ -50,8 +57,8 @@ add_action( 'admin_notices', 'show_custom_admin_notice' );
 function skel_check_missing_acf_block_previews(): void {
 	global $block_types;
 
-	if ( ! current_user_can( 'manage_options' ) ) {
-		return; // Only show notice to users who can manage options.
+	if ( empty( $block_types ) || ! is_array( $block_types ) ) {
+		return;
 	}
 
 	$missing_preview_blocks = array();
@@ -90,7 +97,43 @@ function skel_check_missing_acf_block_previews(): void {
 	}
 }
 
-if ( 'local' === wp_get_environment_type() && current_user_can( 'manage_options' ) ) {
-	// Hook the function to the 'admin_notices' action.
+if ( 'local' === wp_get_environment_type() ) {
 	add_action( 'admin_notices', 'skel_check_missing_acf_block_previews' );
 }
+
+/**
+ * Displays a warning notice on the ACF Field Groups admin page
+ * to inform users that all fields are managed via code.
+ *
+ * @return void
+ */
+function skel_acf_field_groups_notice(): void {
+	$screen = get_current_screen();
+
+	if ( ! $screen ) {
+		return;
+	}
+
+	$notices = array(
+		'edit-acf-field-group'      => array(
+			'title'   => '⚠ Do Not Edit Field Groups Here',
+			'message' => 'All ACF field groups are managed via code in this theme. Any field group added or modified here <strong>will be overwritten</strong> on the next deployment and is <strong>prohibited</strong>.',
+		),
+		'edit-acf-ui-options-page'  => array(
+			'title'   => '⚠ Do Not Edit Options Pages Here',
+			'message' => 'All ACF options pages are managed via code in this theme. Any options page added or modified here <strong>will be overwritten</strong> on the next deployment and is <strong>prohibited</strong>.',
+		),
+	);
+
+	if ( ! isset( $notices[ $screen->id ] ) ) {
+		return;
+	}
+
+	$notice = $notices[ $screen->id ];
+
+	echo '<div class="notice notice-error" style="border-left-color:#d63638;background:#fcf0f0;padding:16px 20px;margin:20px 0;">
+		<p style="font-size:15px;font-weight:700;color:#d63638;margin:0 0 6px;">' . esc_html( $notice['title'] ) . '</p>
+		<p style="font-size:14px;margin:0;color:#1d2327;">' . wp_kses( $notice['message'], array( 'strong' => array() ) ) . '</p>
+	</div>';
+}
+add_action( 'admin_notices', 'skel_acf_field_groups_notice' );

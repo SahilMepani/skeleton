@@ -14,7 +14,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 			'page_title' => 'Global Options',
 			'menu_title' => 'Global Options',
 			'menu_slug'  => 'global-options',
-			'capability' => 'edit_posts',
+			'capability' => 'manage_options',
 			'redirect'   => true,
 			'icon_url'   => 'dashicons-admin-generic',
 			'position'   => 2,
@@ -88,9 +88,13 @@ function skel_load_acf_json_options() {
 	}
 
 	foreach ( $json_files as $json_file ) {
-		$slug         = basename( $json_file, '.json' );
 		$json_content = file_get_contents( $json_file );
-		$data         = json_decode( $json_content, true );
+		if ( false === $json_content ) {
+			continue;
+		}
+
+		$slug = sanitize_key( basename( $json_file, '.json' ) );
+		$data = json_decode( $json_content, true );
 
 		if ( ! $data || ! isset( $data['title'], $data['options_page'], $data['fields'] ) ) {
 			continue;
@@ -110,7 +114,7 @@ function skel_load_acf_json_options() {
 						),
 					),
 				),
-				'menu_order'            => 0,
+				'menu_order'            => $data['menu_order'] ?? 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'top',

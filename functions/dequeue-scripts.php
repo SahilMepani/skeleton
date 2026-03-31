@@ -12,4 +12,4 @@ function skel_remove_wp_block_library_css(): void {
 	wp_dequeue_style( 'global-styles' );
 	wp_dequeue_style( 'classic-theme-styles' );
 }
-add_action( 'wp_enqueue_scripts', 'skel_remove_wp_block_library_css' );
+add_action( 'wp_enqueue_scripts', 'skel_remove_wp_block_library_css', 100 );

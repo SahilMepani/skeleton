@@ -40,8 +40,8 @@ add_theme_support( 'title-tag' );
  */
 add_filter(
 	'jpeg_quality',
-	function ( $quality = 100 ) {
-		return $quality;
+	function () {
+		return 100;
 	}
 );
 
@@ -58,14 +58,14 @@ add_filter(
  * @param string $handle The handle of the enqueued style.
  * @return string Modified HTML link tag with additional attributes.
  */
-function add_style_attribute( $tag, $handle ) {
+function skel_add_style_attribute( string $tag, string $handle ): string {
 	if ( 'google-fonts' !== $handle ) {
 		return $tag;
 	}
 	// phpcs:ignore -- Disable enqueue script warning
 	return str_replace( " rel='stylesheet'", " rel='preload'", $tag );
 }
-add_filter( 'style_loader_tag', 'add_style_attribute', 10, 2 );
+add_filter( 'style_loader_tag', 'skel_add_style_attribute', 10, 2 );
 
 
 /**
@@ -96,14 +96,14 @@ add_filter( 'wp_default_scripts', 'remove_jquery_migrate' );
  * @return string The modified source URL without the version query string.
  */
 function skel_remove_cssjs_ver( string $src ): string {
-	if ( false !== strpos( $src, '?ver=' ) ) { // Yoda condition.
+	if ( false !== strpos( $src, '?ver=' ) ) {
 		$src = remove_query_arg( 'ver', $src );
 	}
 	return $src;
 }
 
-add_filter( 'style_loader_src', 'skel_remove_cssjs_ver', 10, 2 );
-add_filter( 'script_loader_src', 'skel_remove_cssjs_ver', 10, 2 );
+add_filter( 'style_loader_src', 'skel_remove_cssjs_ver' );
+add_filter( 'script_loader_src', 'skel_remove_cssjs_ver' );
 
 
 /**
@@ -115,7 +115,7 @@ add_filter( 'script_loader_src', 'skel_remove_cssjs_ver', 10, 2 );
  * @return WP_Query Modified query.
  */
 function searchfilter( WP_Query $query ): WP_Query {
-	if ( $query->is_search && ! is_admin() ) {
+	if ( $query->is_search() && ! is_admin() ) {
 		$query->set( 'post_type', array( 'post' ) );
 	}
 	return $query;
@@ -164,23 +164,7 @@ function skel_embed_oembed_html( string $html ): string {
 	return '<div class="embed-responsive embed-responsive-16by9">' . $html . '</div>';
 }
 
-add_filter( 'embed_oembed_html', 'skel_embed_oembed_html', 99, 4 );
-
-/**
- * Add custom body class to TinyMCE editor.
- *
- * This function modifies the TinyMCE settings to include a custom body class
- * for the editor.
- *
- * @param array $init_array An array of TinyMCE initialization parameters.
- * @return array Modified array of TinyMCE initialization parameters.
- */
-function skel_mce_settings( array $init_array ): array {
-	$init_array['body_class'] = 'post';
-	return $init_array;
-}
-
-add_filter( 'tiny_mce_before_init', 'skel_mce_settings' );
+add_filter( 'embed_oembed_html', 'skel_embed_oembed_html', 99 );
 
 
 /**
@@ -203,32 +187,6 @@ function skel_add_slug_body_class( array $classes ): array {
 
 add_filter( 'body_class', 'skel_add_slug_body_class' );
 
-
-/**
- * Prevent the WordPress editor from removing <span> elements.
- *
- * This function modifies TinyMCE settings to ensure that <span> elements with specific attributes
- * are not removed by the editor.
- *
- * @param array $init An array of TinyMCE initialization parameters.
- * @return array Modified array of TinyMCE initialization parameters.
- */
-function skel_no_delete_span( array $init ): array {
-	// Comma-separated string of extended elements.
-	$ext = 'span[id|name|class|style]';
-
-	// Add to extended_valid_elements if it already exists.
-	if ( isset( $init['extended_valid_elements'] ) ) {
-		$init['extended_valid_elements'] .= ',' . $ext;
-	} else {
-		$init['extended_valid_elements'] = $ext;
-	}
-
-	// Super important: return $init!
-	return $init;
-}
-
-add_filter( 'tiny_mce_before_init', 'skel_no_delete_span' );
 
 
 /**
@@ -284,10 +242,8 @@ add_filter( 'excerpt_more', 'skel_get_the_excerpt_more' );
  * @param WP_Post $post    The post object.
  * @param bool    $update  Whether this is an existing post being updated.
  */
-function create_template_with_preselected_blocks( $post_id, $post, $update ) {
-	// Check if the post type is 'accommodation' and it's a new post (not an update).
+function skel_create_template_with_preselected_blocks( $post_id, $post, $update ) {
 	if ( 'custom_type' === get_post_type( $post_id ) && ! $update ) {
-		// Define the default blocks as an array of block names and attributes.
 		$default_blocks = array(
 			array(
 				'blockName' => 'acf/text-image-video',
@@ -299,31 +255,97 @@ function create_template_with_preselected_blocks( $post_id, $post, $update ) {
 			),
 		);
 
-		// Initialize the default content variable.
 		$default_content = '';
-
-		// Convert each block to a serialized string and append to the default content.
 		foreach ( $default_blocks as $block ) {
 			$default_content .= serialize_block( $block );
 		}
 
-		// Update the post content with the default blocks.
+		// Prevent infinite loop: unhook before updating, re-hook after.
+		remove_action( 'wp_insert_post', 'skel_create_template_with_preselected_blocks', 10 );
+
 		wp_update_post(
 			array(
 				'ID'           => $post_id,
 				'post_content' => $default_content,
 			)
 		);
+
+		add_action( 'wp_insert_post', 'skel_create_template_with_preselected_blocks', 10, 3 );
 	}
 }
-add_action( 'wp_insert_post', 'create_template_with_preselected_blocks', 10, 3 );
+add_action( 'wp_insert_post', 'skel_create_template_with_preselected_blocks', 10, 3 );
 
 /**
- * Update default image link type option.
- *
- * This function updates the default image link type option to 'none'.
- * It removes the link from images inserted into posts by default.
+ * Update default image link type option on theme activation.
  */
-if ( 'none' !== get_option( 'image_default_link_type' ) ) {
-	update_option( 'image_default_link_type', 'none' );
+add_action(
+	'after_switch_theme',
+	function () {
+		update_option( 'image_default_link_type', 'none' );
+	}
+);
+
+
+/**
+ * Process gradient section markers in page content.
+ *
+ * Finds gradient-marker-start / gradient-marker-end block pairs and wraps
+ * all content between them in a div with the configured gradient background.
+ *
+ * @param string $content The post content.
+ * @return string Modified content with gradient section wrappers.
+ */
+function skel_process_gradient_sections( string $content ): string {
+	if ( false === strpos( $content, 'gradient-marker-start' ) ) {
+		return $content;
+	}
+
+	return preg_replace_callback(
+		'#(<div[^>]*class="gradient-marker-start"[^>]*>[\s\S]*?</div>)([\s\S]*?)(<div[^>]*class="gradient-marker-end"[^>]*>[\s\S]*?</div>)#',
+		function ( $matches ) {
+			$start_marker  = $matches[1];
+			$inner_content = trim( $matches[2] );
+
+			preg_match( '/data-gradient-type="([^"]*)"/', $start_marker, $type_m );
+			preg_match( '/data-gradient-angle="([^"]*)"/', $start_marker, $angle_m );
+			preg_match( '/data-gradient-stops="([^"]*)"/', $start_marker, $stops_m );
+			preg_match( '/data-gradient-custom="([^"]*)"/', $start_marker, $custom_m );
+
+			$type       = $type_m[1] ?? 'linear';
+			$angle      = $angle_m[1] ?? '135';
+			$stops_json = html_entity_decode( $stops_m[1] ?? '[]' );
+			$custom     = html_entity_decode( $custom_m[1] ?? '' );
+
+			if ( 'custom' === $type ) {
+				if ( empty( $custom ) ) {
+					return $inner_content;
+				}
+				$gradient = $custom;
+			} else {
+				$stops = json_decode( $stops_json, true ) ?: array();
+				if ( count( $stops ) < 2 ) {
+					return $inner_content;
+				}
+
+				$stop_strings = array_map(
+					function ( $stop ) {
+						$color    = $stop['color'] ?? '';
+						$position = $stop['position'] ?? '';
+						return '' !== (string) $position ? "{$color} {$position}%" : $color;
+					},
+					$stops
+				);
+
+				$stop_list = implode( ', ', $stop_strings );
+				$gradient  = 'radial' === $type
+					? "radial-gradient(circle, {$stop_list})"
+					: "linear-gradient({$angle}deg, {$stop_list})";
+			}
+
+			return '<div class="gradient-section" style="background: ' . esc_attr( $gradient ) . '">' . $inner_content . '</div>';
+		},
+		$content
+	);
 }
+
+add_filter( 'the_content', 'skel_process_gradient_sections', 20 );

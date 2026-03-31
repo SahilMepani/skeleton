@@ -6,16 +6,18 @@
  * @subpackage Skeleton
  * @since 1.0.0
  */
-function tse_theme_activation_setup() {
+function skel_theme_activation_setup() {
 	// Update default media sizes.
 	update_option( 'thumbnail_size_w', 0 );
 	update_option( 'medium_size_w', 0 );
 	update_option( 'large_size_w', 0 );
+	update_option( 'medium_large_size_w', 0 );
 	update_option( 'thumbnail_size_h', 0 );
 	update_option( 'medium_size_h', 0 );
 	update_option( 'large_size_h', 0 );
+	update_option( 'medium_large_size_h', 0 );
 }
-add_action( 'after_switch_theme', 'tse_theme_activation_setup' );
+add_action( 'after_switch_theme', 'skel_theme_activation_setup' );
 
 /**
  * Disable specific image sizes.
@@ -37,7 +39,7 @@ function skel_disable_image_sizes( array $sizes ): array {
 	return $sizes;
 }
 // Add action.
-add_action( 'intermediate_image_sizes_advanced', 'skel_disable_image_sizes' );
+add_filter( 'intermediate_image_sizes_advanced', 'skel_disable_image_sizes' );
 
 // Disable scaled image size.
 add_filter( 'big_image_size_threshold', '__return_false' );

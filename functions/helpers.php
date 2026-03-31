@@ -36,7 +36,7 @@ function skel_get_post_thumbnail_id( $post_id ) {
 	if ( has_post_thumbnail( $post_id ) ) {
 		return get_post_thumbnail_id( $post_id );
 	}
-	return DEFAULT_THUMBNAIL_ID ?: '';
+	return DEFAULT_THUMBNAIL_ID ?: 0;
 }
 
 /**
@@ -324,13 +324,6 @@ function skel_get_phone_url( string|false $phone_number = false ): string {
 	return esc_url( 'tel:' . $phone_number );
 }
 
-/**
- * Limit WP Revisions
- */
-if ( ! defined( 'WP_POST_REVISIONS' ) ) {
-	define( 'WP_POST_REVISIONS', 5 );
-}
-
 
 /**
  * Retrieve the content of a specified page and apply content filters.
@@ -352,8 +345,6 @@ function skel_insert_page( int $id, bool $display = false ): ?string {
 	// If the post exists, retrieve its content and apply content filters.
 	if ( $post ) {
 		$output = apply_filters( 'the_content', $post->post_content );
-	} else {
-		echo esc_html( "Cannot Find Page ID: {$id}" );
 	}
 
 	if ( $display ) {
@@ -391,8 +382,8 @@ function skel_extract_oembed_src( ?string $html ): ?string {
 		// Replace youtube.com with youtube-nocookie.com.
 		$src = str_replace( 'youtube.com', 'youtube-nocookie.com', $src );
 
-		// Remove ?feature=oembed from the src attribute.
-		$src = preg_replace( '/\?feature=oembed/', '', $src );
+		// Remove the feature=oembed query parameter.
+		$src = remove_query_arg( 'feature', $src );
 
 		// Return the modified src attribute.
 		return $src;
@@ -434,10 +425,7 @@ function skel_get_full_url(): string {
 		? 'https://'
 		: 'http://';
 
-	// Construct the full URL.
-	$full_url = esc_url_raw( $protocol . $server_host . $server_uri );
-
-	return $full_url;
+	return esc_url_raw( $protocol . $server_host . $server_uri );
 }
 
 
@@ -457,10 +445,9 @@ function skel_replace_text_with_icon( string $text ): void {
 		return;
 	}
 
-	// Replace the placeholder '[play]' with the HTML for the icon.
-	$output = str_replace( '[play]', '<i class="i-play"></i>', $text );
-
-	// Replace the placeholder '[play-image]' with the HTML for the icon.
+	// Escape text first, then replace placeholders with icon HTML.
+	$output = esc_html( $text );
+	$output = str_replace( '[play]', '<i class="i-play"></i>', $output );
 	$output = str_replace( '[play-image]', '<i class="i-play w-image"></i>', $output );
 
 	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -522,4 +509,31 @@ function skel_is_dark_color( string $hex ): bool {
 	$luminance = 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
 
 	return $luminance <= 0.179;
+}
+
+/**
+ * Convert {text} to <i>text</i>, [text] to <strong>text</strong>, and sanitize.
+ *
+ * @param string $text Raw text potentially containing {braces} for italic or [brackets] for bold.
+ * @return string Sanitized HTML with <i> and <strong> tags.
+ */
+/**
+ * Limit WP Revisions
+ */
+if ( ! defined( 'WP_POST_REVISIONS' ) ) {
+	define( 'WP_POST_REVISIONS', 5 );
+}
+
+function skel_get_italic_braces( $text ) {
+	$text = preg_replace( '/\{(.+?)\}/', '<i class="ff-serif">$1</i>', $text );
+	$text = preg_replace( '/\[(.+?)\]/', '<strong>$1</strong>', $text );
+	return wp_kses(
+		$text,
+		array(
+			'i'      => array( 'class' => array() ),
+			'strong' => array(),
+			'br'     => array(),
+			'span'   => array( 'class' => array() ),
+		)
+	);
 }

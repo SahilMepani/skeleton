@@ -36,7 +36,7 @@ function skel_get_post_thumbnail_id( $post_id ) {
 	if ( has_post_thumbnail( $post_id ) ) {
 		return get_post_thumbnail_id( $post_id );
 	}
-	return defined( 'DEFAULT_THUMBNAIL_ID' ) ? DEFAULT_THUMBNAIL_ID : '';
+	return DEFAULT_THUMBNAIL_ID ?: '';
 }
 
 /**

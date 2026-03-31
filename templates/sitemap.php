@@ -74,7 +74,7 @@ get_header();
 
 
 <?php
-$desktop_image = get_field( 'desktop_image' ) ?: DEFAULT_THUMBNAIL_ID;
+$desktop_image = get_field( 'desktop_image' ) ?: DEFAULT_THUMBNAIL_ID ?: null;
 $mobile_image  = get_field( 'mobile_image' ) ?: '';
 $mobile_class  = $mobile_image ? 'has-mobile' : '';
 

@@ -20,14 +20,14 @@ $cpt_mapping = array(
 );
 
 // Search result.
-$search_result_id    = defined( 'PAGE_SEARCH_ID' ) ? PAGE_SEARCH_ID : null;
-$search_result_title = get_the_title( $search_result_id );
-$search_result_link  = get_permalink( $search_result_id );
+$search_result_id    = PAGE_SEARCH_ID ?: null;
+$search_result_title = $search_result_id ? get_the_title( $search_result_id ) : '';
+$search_result_link  = $search_result_id ? get_permalink( $search_result_id ) : '';
 
 // 404
-$page_404_id    = defined( 'PAGE_404_ID' ) ? PAGE_404_ID : null;
-$page_404_title = get_the_title( $page_404_id );
-$page_404_link  = get_permalink( $page_404_id );
+$page_404_id    = PAGE_404_ID ?: null;
+$page_404_title = $page_404_id ? get_the_title( $page_404_id ) : '';
+$page_404_link  = $page_404_id ? get_permalink( $page_404_id ) : '';
 
 // Check if the current post type has a corresponding ID defined and is valid.
 $associated_page_id = $cpt_mapping[ $item_post_type ] ?? 0;

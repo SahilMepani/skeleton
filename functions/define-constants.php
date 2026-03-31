@@ -8,29 +8,28 @@
  * Hooked into the 'acf/init' action to ensure that ACF functions
  * (like get_field) are available before this runs.
  *
- * Constants defined:
+ * Constants defined (0 if the ACF field is empty):
  * - DEFAULT_THUMBNAIL_ID : The default featured image ID.
  * - PAGE_404_ID          : The page ID used for the 404 error page.
  * - PAGE_SEARCH_ID       : The page ID used for the search results page.
+ * - PAGE_KB_ID           : The page ID used for the knowledge base page.
  *
  * @since 1.0.0
  *
  * @return void
  */
 function define_constants() {
-	$global_default_thumbnail_id = get_field( 'default_featured_image', 'option' );
-	$global_pages                = get_field( 'pages', 'option' );
+	$constants = array(
+		'DEFAULT_THUMBNAIL_ID' => get_field( 'default_featured_image', 'option' ) ?: 0,
+		'PAGE_404_ID'          => get_field( 'four_four_page', 'option' ) ?: 0,
+		'PAGE_SEARCH_ID'       => get_field( 'search_page', 'option' ) ?: 0,
+		'PAGE_KB_ID'           => get_field( 'kb_page', 'option' ) ?: 0,
+	);
 
-	if ( $global_default_thumbnail_id && ! defined( 'DEFAULT_THUMBNAIL_ID' ) ) {
-		define( 'DEFAULT_THUMBNAIL_ID', $global_default_thumbnail_id );
-	}
-
-	if ( $global_pages && $global_pages['four_four'] && ! defined( 'PAGE_404_ID' ) ) {
-		define( 'PAGE_404_ID', $global_pages['four_four'] );
-	}
-
-	if ( $global_pages && $global_pages['search'] && ! defined( 'PAGE_SEARCH_ID' ) ) {
-		define( 'PAGE_SEARCH_ID', $global_pages['search'] );
+	foreach ( $constants as $name => $value ) {
+		if ( ! defined( $name ) ) {
+			define( $name, $value );
+		}
 	}
 }
 

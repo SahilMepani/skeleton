@@ -7,7 +7,7 @@
 
 get_header();
 
-if ( defined( 'PAGE_SEARCH_ID' ) ) {
+if ( PAGE_SEARCH_ID ) {
 	skel_insert_page( PAGE_SEARCH_ID, true );
 }
 

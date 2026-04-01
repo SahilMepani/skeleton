@@ -30,10 +30,11 @@
 }
 
 .swiper-scrollbar {
-	background-color: #e0e0e0;
-	block-size: rem-calc(6);
+	background-color: #eee;
+	block-size: rem-calc(8);
 	border-radius: rem-calc(3);
 	inset-inline: 0;
+	margin-block-start: fluid(20, 40);
 }
 
 .swiper-scrollbar-drag {

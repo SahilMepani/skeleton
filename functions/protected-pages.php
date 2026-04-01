@@ -32,19 +32,39 @@ function prevent_post_deletion( $postid ) {
 		$protected_posts[] = (int) PAGE_KB_ID;
 	}
 
-	if ( in_array( (int) $postid, $protected_posts, true ) ) {
-		$redirect_url = add_query_arg(
-			array(
-				'post_type'      => 'page',
-				'protected_post' => 'true',
-				'_wpnonce'       => wp_create_nonce( 'protected_post_notice' ),
-			),
-			admin_url( 'edit.php' )
-		);
-
-		wp_safe_redirect( $redirect_url );
-		exit;
+	if ( empty( $protected_posts ) || ! in_array( (int) $postid, $protected_posts, true ) ) {
+		return;
 	}
+
+	$redirect_url = add_query_arg(
+		array(
+			'post_type'      => 'page',
+			'protected_post' => 'true',
+			'_wpnonce'       => wp_create_nonce( 'protected_post_notice' ),
+		),
+		admin_url( 'edit.php' )
+	);
+
+	wp_safe_redirect( $redirect_url );
+	exit;
 }
 add_action( 'wp_trash_post', 'prevent_post_deletion' );
 add_action( 'before_delete_post', 'prevent_post_deletion' );
+
+/**
+ * Displays an admin notice when a user attempts to delete a protected post.
+ */
+function protected_post_admin_notice() {
+	if ( ! isset( $_GET['protected_post'], $_GET['_wpnonce'] ) ) {
+		return;
+	}
+
+	if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'protected_post_notice' ) ) {
+		return;
+	}
+
+	echo '<div class="notice notice-error is-dismissible"><p>';
+	echo esc_html__( 'This page is protected and cannot be deleted.', 'skeleton' );
+	echo '</p></div>';
+}
+add_action( 'admin_notices', 'protected_post_admin_notice' );

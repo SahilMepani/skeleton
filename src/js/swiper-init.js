@@ -5,10 +5,10 @@ import {
 	Autoplay,
 	FreeMode,
 	Scrollbar,
-	A11y
-	// EffectFade,
+	A11y,
+	EffectFade,
 	// EffectCreative,
-	// Thumbs,
+	Thumbs
 	// Keyboard,
 	// Mousewheel,
 	// EffectCoverflow,
@@ -32,10 +32,10 @@ Swiper.use([
 	Autoplay,
 	FreeMode,
 	Scrollbar,
-	A11y
-	// EffectFade,
+	A11y,
+	EffectFade,
 	// EffectCreative,
-	// Thumbs,
+	Thumbs
 	// Keyboard,
 	// Mousewheel,
 	// EffectCoverflow,

@@ -96,14 +96,18 @@ add_filter( 'wp_default_scripts', 'remove_jquery_migrate' );
  * @return string The modified source URL without the version query string.
  */
 function skel_remove_cssjs_ver( string $src ): string {
+	// Keep ?ver= for theme files so filemtime() cache-busting works.
+	if ( false !== strpos( $src, get_template_directory_uri() ) ) {
+		return $src;
+	}
 	if ( false !== strpos( $src, '?ver=' ) ) {
 		$src = remove_query_arg( 'ver', $src );
 	}
 	return $src;
 }
 
-add_filter( 'style_loader_src', 'skel_remove_cssjs_ver' );
-add_filter( 'script_loader_src', 'skel_remove_cssjs_ver' );
+add_filter( 'style_loader_src', 'skel_remove_cssjs_ver', 10, 2 );
+add_filter( 'script_loader_src', 'skel_remove_cssjs_ver', 10, 2 );
 
 
 /**

@@ -146,13 +146,20 @@
 		window.addEventListener('orientationchange', rebuild, {
 			passive: true
 		});
-		window.addEventListener('resize', rebuild);
+
+		let rebuildTimer;
+		window.addEventListener('resize', () => {
+			clearTimeout(rebuildTimer);
+			rebuildTimer = setTimeout(rebuild, 200);
+		}, { passive: true });
 
 		// If supported, also listen to visualViewport changes
 		if (window.visualViewport) {
-			window.visualViewport.addEventListener('resize', rebuild, {
-				passive: true
-			});
+			let vpTimer;
+			window.visualViewport.addEventListener('resize', () => {
+				clearTimeout(vpTimer);
+				vpTimer = setTimeout(rebuild, 200);
+			}, { passive: true });
 		}
 	} else {
 		console.warn(

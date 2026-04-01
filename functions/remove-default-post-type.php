@@ -8,10 +8,7 @@
  */
 
 /**
- * Remove default Posts type since no blog.
- *
- * This function removes the default Posts type from the admin menu and top admin menu bar,
- * and also removes the Quick Draft Dashboard Widget.
+ * Remove default Posts type from the admin menu.
  *
  * @return void
  */

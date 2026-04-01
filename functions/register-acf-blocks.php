@@ -9,12 +9,6 @@
 // Load configuration.
 require_once get_template_directory() . '/blocks/config.php';
 
-// Hash the current block types array.
-$blocks_current_hash = md5( wp_json_encode( $block_types ) );
-
-// Get the stored hash.
-$blocks_stored_hash = get_option( 'acf_block_types_hash' );
-
 /**
  * Load ACF blocks from JSON files.
  */
@@ -91,10 +85,50 @@ function skel_register_single_block( $block_data, $slug ) {
 	$args['name']  = $slug;
 	$args['title'] = $block_data['title'];
 
+	// Capture swiper dependency from JSON to avoid re-reading at render time.
+	$needs_swiper = ! empty( $block_data['needs_swiper'] );
+
+	// Enqueue block CSS/JS at render time (covers inserted pages, 404, search).
+	$args['enqueue_assets'] = function () use ( $slug, $needs_swiper ) {
+		$blocks_dir = get_template_directory() . '/blocks';
+		$blocks_uri = get_template_directory_uri() . '/blocks';
+		$css_path   = "{$blocks_dir}/{$slug}/{$slug}.css";
+		$js_path    = "{$blocks_dir}/{$slug}/{$slug}.js";
+
+		if ( file_exists( $css_path ) ) {
+			wp_enqueue_style(
+				"block-{$slug}",
+				"{$blocks_uri}/{$slug}/{$slug}.css",
+				array(),
+				filemtime( $css_path )
+			);
+		}
+
+		if ( file_exists( $js_path ) ) {
+			if ( $needs_swiper ) {
+				wp_enqueue_script(
+					'skel-swiper',
+					get_template_directory_uri() . '/assets/js/swiper-bundle.js',
+					array(),
+					filemtime( get_template_directory() . '/assets/js/swiper-bundle.js' ),
+					true
+				);
+			}
+
+			wp_enqueue_script(
+				"block-{$slug}",
+				"{$blocks_uri}/{$slug}/{$slug}.js",
+				$needs_swiper ? array( 'skel-swiper' ) : array(),
+				filemtime( $js_path ),
+				true
+			);
+		}
+	};
+
 	if ( isset( $block_data['post_types'] ) && is_array( $block_data['post_types'] ) ) {
 		$args['post_types'] = $block_data['post_types'];
 	} else {
-		$args['post_types'] = array( 'page' );
+		$args['post_types'] = array( 'page', 'service', 'project', 'insights', 'knowledge-base' );
 	}
 
 	if ( function_exists( 'acf_register_block_type' ) ) {
@@ -114,11 +148,34 @@ function skel_register_single_block( $block_data, $slug ) {
 			'description'           => '',
 		);
 
-		$field_group = wp_parse_args( $block_data, $default_field_group );
+		// Pick only field-group-relevant keys from block data.
+		$field_group_data = array_intersect_key(
+			$block_data,
+			array(
+				'fields'                => true,
+				'menu_order'            => true,
+				'position'              => true,
+				'style'                 => true,
+				'label_placement'       => true,
+				'instruction_placement' => true,
+				'hide_on_screen'        => true,
+				'active'                => true,
+				'description'           => true,
+				'skip_settings'         => true,
+			)
+		);
+
+		$field_group = wp_parse_args( $field_group_data, $default_field_group );
 
 		// Inject default settings fields.
-		$slug_snake     = str_replace( '-', '_', $slug );
-		$default_fields = skel_get_block_default_settings_tab_fields( $slug_snake );
+		$slug_snake = str_replace( '-', '_', $slug );
+
+		if ( ! empty( $field_group['skip_settings'] ) ) {
+			unset( $field_group['skip_settings'] );
+			$default_fields = array();
+		} else {
+			$default_fields = skel_get_block_default_settings_tab_fields( $slug_snake );
+		}
 
 		$existing_keys = array();
 		if ( ! empty( $field_group['fields'] ) ) {
@@ -151,8 +208,6 @@ function skel_register_single_block( $block_data, $slug ) {
 				),
 			),
 		);
-
-		unset( $field_group['settings'] );
 
 		acf_add_local_field_group( $field_group );
 	}
@@ -190,6 +245,10 @@ function skel_ensure_field_keys( &$fields, $prefix ) {
 		}
 	}
 }
+
+// Check if block config changed and regenerate files if needed.
+$blocks_current_hash = md5( wp_json_encode( $block_types ) );
+$blocks_stored_hash  = get_option( 'acf_block_types_hash' );
 
 if ( $blocks_current_hash !== $blocks_stored_hash ) {
 	update_option( 'acf_block_types_hash', $blocks_current_hash );
@@ -304,7 +363,7 @@ function skel_get_block_default_settings_tab_fields( $slug_snake ) {
 					'label'      => 'Bottom',
 					'name'       => 'bottom',
 					'type'       => 'group',
-					'layout'     => 'table',
+					'layout'     => 'block',
 					'sub_fields' => array(
 						array(
 							'key'           => 'field_' . $slug_snake . '_spacing_bottom',
@@ -319,7 +378,7 @@ function skel_get_block_default_settings_tab_fields( $slug_snake ) {
 								'spacing-bottom-xlarge' => 'X-Large',
 								'custom'                => 'Custom',
 							),
-							'default_value' => 'spacing-bottom-medium',
+							'default_value' => 'spacing-bottom-xlarge',
 						),
 						array(
 							'key'               => 'field_' . $slug_snake . '_custom_value_bottom_mobile',
@@ -328,7 +387,7 @@ function skel_get_block_default_settings_tab_fields( $slug_snake ) {
 							'type'              => 'range',
 							'min'               => 0,
 							'max'               => 400,
-							'step'              => 1,
+							'step'              => 5,
 							'append'            => 'px',
 							'wrapper'           => array(
 								'width' => '50',
@@ -350,7 +409,7 @@ function skel_get_block_default_settings_tab_fields( $slug_snake ) {
 							'type'              => 'range',
 							'min'               => 0,
 							'max'               => 400,
-							'step'              => 1,
+							'step'              => 5,
 							'append'            => 'px',
 							'wrapper'           => array(
 								'width' => '50',

@@ -20,4 +20,5 @@ $block_types = array(
 	'Faqs',
 	'Logo Slider',
 	'Main Hero',
+	'Brand Marquee',
 );

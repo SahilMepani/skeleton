@@ -43,5 +43,5 @@
 	}
 
 	// Attach the onScroll function to the scroll event
-	window.addEventListener('scroll', debounce(onScroll, 10));
+	window.addEventListener('scroll', onScroll);
 })();

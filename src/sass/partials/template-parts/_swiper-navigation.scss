@@ -1,11 +1,13 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 @use '../abstracts' as *;
 
 .swiper-navigation {
 	display: flex;
 	gap: rem-calc(4);
 
-	&:has(.swiper-button-prev.swiper-button-disabled):has(.swiper-button-next.swiper-button-disabled) {
+	&:has(.swiper-button-prev.swiper-button-disabled):has(
+			.swiper-button-next.swiper-button-disabled
+		) {
 		display: none !important;
 	}
 
@@ -26,17 +28,24 @@
 		}
 	}
 
+	&.style-dark {
+		.swiper-button-prev,
+		.swiper-button-next {
+			background-color: $body-color;
+			color: #fff;
+		}
+	}
+
 	.swiper-button-prev,
 	.swiper-button-next {
 		all: unset;
-		background-color: #f2f2f2;
-		line-height: fluid(44, 56);
+		line-height: rem-calc(44);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		inline-size: fluid(44, 56);
-		block-size: fluid(44, 56);
-		border: rem-calc(1) solid #ddd;
+		inline-size: rem-calc(44);
+		block-size: rem-calc(44);
+		border-radius: 50%;
 		position: relative;
 		z-index: 10;
 		transition: 0.2s ease-out;

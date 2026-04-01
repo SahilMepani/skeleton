@@ -14,6 +14,10 @@ if (siteHeader) {
 			);
 		};
 		resizeHeaderHeight();
-		window.addEventListener('resize', resizeHeaderHeight);
+		let headerTimer;
+		window.addEventListener('resize', () => {
+			clearTimeout(headerTimer);
+			headerTimer = setTimeout(resizeHeaderHeight, 100);
+		}, { passive: true });
 	})();
 }

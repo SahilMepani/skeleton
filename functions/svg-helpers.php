@@ -29,34 +29,34 @@ function skel_sanitize_svg( string $svg_content ): string|false {
 		'polygon',
 		'text',
 		'tspan',
-		'textPath',
+		'textpath',
 		'defs',
 		'symbol',
 		'use',
-		'clipPath',
+		'clippath',
 		'mask',
 		'pattern',
-		'linearGradient',
-		'radialGradient',
+		'lineargradient',
+		'radialgradient',
 		'stop',
 		'filter',
-		'feBlend',
-		'feColorMatrix',
-		'feComponentTransfer',
-		'feComposite',
-		'feConvolveMatrix',
-		'feDiffuseLighting',
-		'feDisplacementMap',
-		'feFlood',
-		'feGaussianBlur',
-		'feImage',
-		'feMerge',
-		'feMergeNode',
-		'feMorphology',
-		'feOffset',
-		'feSpecularLighting',
-		'feTile',
-		'feTurbulence',
+		'feblend',
+		'fecolormatrix',
+		'fecomponenttransfer',
+		'fecomposite',
+		'feconvolvematrix',
+		'fediffuselighting',
+		'fedisplacementmap',
+		'feflood',
+		'fegaussianblur',
+		'feimage',
+		'femerge',
+		'femergenode',
+		'femorphology',
+		'feoffset',
+		'fespecularlighting',
+		'fetile',
+		'feturbulence',
 		'title',
 		'desc',
 		'metadata',
@@ -80,7 +80,7 @@ function skel_sanitize_svg( string $svg_content ): string|false {
 		'fill-rule',
 		'opacity',
 		'transform',
-		'viewBox',
+		'viewbox',
 		'width',
 		'height',
 		'x',
@@ -96,7 +96,7 @@ function skel_sanitize_svg( string $svg_content ): string|false {
 		'ry',
 		'd',
 		'points',
-		'preserveAspectRatio',
+		'preserveaspectratio',
 		'xmlns',
 		'xmlns:xlink',
 		'version',
@@ -104,19 +104,19 @@ function skel_sanitize_svg( string $svg_content ): string|false {
 		'clip-rule',
 		'mask',
 		'filter',
-		'gradientUnits',
-		'gradientTransform',
-		'spreadMethod',
+		'gradientunits',
+		'gradienttransform',
+		'spreadmethod',
 		'offset',
 		'stop-color',
 		'stop-opacity',
-		'patternUnits',
-		'patternTransform',
+		'patternunits',
+		'patterntransform',
 		'dx',
 		'dy',
 		'rotate',
-		'textLength',
-		'lengthAdjust',
+		'textlength',
+		'lengthadjust',
 		'dominant-baseline',
 		'text-anchor',
 		'font-family',
@@ -278,8 +278,8 @@ function skel_sanitize_svg_element( DOMElement $element, array $allowed_elements
  * @return string|false The content of the SVG file if found, or FALSE if the file does not exist or cannot be read.
  */
 function skel_get_svg_content( string $image, array $attributes = array() ): string|false {
-	$cache_key = 'skel_svg_' . sanitize_key( $image );
-	$cached    = wp_cache_get( $cache_key, 'skel_svgs' );
+	$cache_key = 'skel_get_svg_' . sanitize_key( $image );
+	$cached    = wp_cache_get( $cache_key, 'skel_get_svgs' );
 
 	if ( false !== $cached ) {
 		return skel_add_svg_attributes( $cached, $attributes );
@@ -314,7 +314,7 @@ function skel_get_svg_content( string $image, array $attributes = array() ): str
 			return false;
 		}
 
-		wp_cache_set( $cache_key, $content, 'skel_svgs' );
+		wp_cache_set( $cache_key, $content, 'skel_get_svgs' );
 
 		return skel_add_svg_attributes( $content, $attributes );
 	}
@@ -329,7 +329,7 @@ function skel_get_svg_content( string $image, array $attributes = array() ): str
  * @param  array  $attributes Optional. Array of attributes to add to the SVG element.
  * @return string The SVG content or empty string on failure.
  */
-function skel_svg( string $image, array $attributes = array() ): string {
+function skel_get_svg( string $image, array $attributes = array() ): string {
 	$svg = skel_get_svg_content( $image, $attributes );
 	return $svg ? $svg : '';
 }

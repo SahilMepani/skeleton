@@ -10,13 +10,14 @@
 /**
  * Register navigation menus.
  *
- * This function registers navigation menus for the theme.
- *
  * @return void
  */
-register_nav_menus(
-	array(
-		'header-menu' => esc_html__( 'Header Menu' ),
-		'footer-menu' => esc_html__( 'Footer Menu' ),
-	)
-);
+function skel_register_nav_menus(): void {
+	register_nav_menus(
+		array(
+			'header-menu' => esc_html__( 'Header Menu', 'skeleton' ),
+			'footer-menu' => esc_html__( 'Footer Menu', 'skeleton' ),
+		)
+	);
+}
+add_action( 'after_setup_theme', 'skel_register_nav_menus' );

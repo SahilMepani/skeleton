@@ -1,31 +1,22 @@
 <?php
-if ( isset( $block['data']['preview_image'] ) ) {
-	echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
+// Set thumbnail preview in backend.
+if ( skel_render_block_preview( $block ) ) {
 	return;
 }
 
-$display = get_field( 'display' );
-if ( 'on' !== $display ) {
+// Return early if display is off.
+if ( ! skel_should_display_block() ) {
 	return;
 }
 
 // Developer options.
-$spacing        = get_field( 'spacing' );
-$spacing_top    = $spacing['top']['spacing_top'] ?? '';
-$spacing_bottom = $spacing['bottom']['spacing_bottom'] ?? '';
-$custom_classes = get_field( 'custom_classes' );
-$custom_css     = get_field( 'custom_css' );
-$unique_id      = get_field( 'unique_id' );
-
-// Custom Spacing CSS Variables.
-$spacing_top_custom    = 'custom' === $spacing_top ? "--spacing-top-custom: {$spacing['top']['custom_value']};" : '';
-$spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom: {$spacing['bottom']['custom_value']};" : '';
+$dev_options = skel_get_block_developer_options();
 ?>
 
 <section
-	class="block-name-section section <?php echo esc_attr( "section-display-{$display} {$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
-	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
-	id="<?php echo esc_attr( $unique_id ); ?>">
+	class="heading-text-section section <?php echo esc_attr( "{$dev_options['display_class']} {$dev_options['spacing_top']} {$dev_options['spacing_bottom']} {$dev_options['custom_classes']}" ); ?>"
+	style="<?php echo esc_attr( "{$dev_options['spacing_top_custom']} {$dev_options['spacing_bottom_custom']} {$dev_options['custom_css']}" ); ?>"
+	id="<?php echo esc_attr( $dev_options['unique_id'] ); ?>">
 
 	<div class="container">
 

@@ -99,19 +99,15 @@
 				// Toggle 'js-active' class on the parent <li>
 				// The 'this' context refers to the <chevron>, so its parentElement is the <a>,
 				// and the parentElement of the <a> is the <li>.
-				this.parentElement.parentElement.classList.toggle(activeClass);
+				this.closest('li').classList.toggle(activeClass);
 
 				// IMPORTANT: Manage ARIA for the dropdown
 				// Find the direct child <ul> (submenu) of the <li>
 				const subMenu =
-					this.parentElement.parentElement.querySelector(
-						'ul.header-sub-menu'
-					);
+					this.closest('li').querySelector('ul.header-sub-menu');
 				if (subMenu) {
 					const isExpanded =
-						this.parentElement.parentElement.classList.contains(
-							activeClass
-						);
+						this.closest('li').classList.contains(activeClass);
 					// Set aria-expanded on the <a> (or the chevron, or the <li> if that's what controls the dropdown)
 					// For a better experience, aria-expanded should be on the interactive element (the <a> or the span acting as a button).
 					// And aria-hidden on the dropdown content (the <ul>).

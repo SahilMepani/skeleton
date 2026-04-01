@@ -63,7 +63,7 @@ function skel_add_style_attribute( string $tag, string $handle ): string {
 		return $tag;
 	}
 	// phpcs:ignore -- Disable enqueue script warning
-	return str_replace( " rel='stylesheet'", " rel='preload'", $tag );
+	return str_replace( " rel='stylesheet'", " rel='preload' as='style' onload=\"this.onload=null;this.rel='stylesheet'\"", $tag );
 }
 add_filter( 'style_loader_tag', 'skel_add_style_attribute', 10, 2 );
 
@@ -114,11 +114,10 @@ add_filter( 'script_loader_src', 'skel_remove_cssjs_ver' );
  * @param WP_Query $query The main query.
  * @return WP_Query Modified query.
  */
-function searchfilter( WP_Query $query ): WP_Query {
+function searchfilter( WP_Query $query ): void {
 	if ( $query->is_search() && ! is_admin() ) {
 		$query->set( 'post_type', array( 'post' ) );
 	}
-	return $query;
 }
 
 add_filter( 'pre_get_posts', 'searchfilter' );
@@ -233,7 +232,7 @@ add_filter( 'excerpt_more', 'skel_get_the_excerpt_more' );
 
 
 /**
- * Automatically insert preselected blocks into new posts of the 'accommodation' custom post type.
+ * Automatically insert preselected blocks into new posts of the 'custom_type' custom post type.
  *
  * This function hooks into the 'wp_insert_post' action to add a predefined set of blocks
  * to the post content when a new post of type 'accommodation' is created.

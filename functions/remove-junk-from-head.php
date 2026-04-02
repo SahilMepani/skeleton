@@ -57,7 +57,7 @@ add_action( 'init', 'skel_disable_emojis' );
  * @param array $plugins Array of TinyMCE plugins.
  * @return array Modified array of TinyMCE plugins.
  */
-function disable_emojis_tinymce( $plugins ) {
+function disable_emojis_tinymce( $plugins ): array {
 	if ( is_array( $plugins ) ) {
 		return array_diff( $plugins, array( 'wpemoji' ) );
 	} else {
@@ -72,7 +72,7 @@ function disable_emojis_tinymce( $plugins ) {
  * @param string $relation_type The relation type.
  * @return array Modified array of URLs.
  */
-function disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
+function disable_emojis_remove_dns_prefetch( $urls, $relation_type ): array {
 	if ( 'dns-prefetch' === $relation_type ) {
 		$emoji_svg_url = apply_filters( 'emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/' );
 		$urls          = array_diff( $urls, array( $emoji_svg_url ) );

@@ -348,8 +348,7 @@ function skel_insert_page( int $id, bool $display = false ): ?string {
 	}
 
 	if ( $display ) {
-		// phpcs:ignore
-		echo $output;
+		echo wp_kses_post( $output );
 	}
 
 	return $output;

@@ -9,14 +9,15 @@ $search_term = isset( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s']
 ?>
 
 
-<form method="get" action="<?php echo esc_url( home_url() ); ?>" class="search-form">
+<form method="get" action="<?php echo esc_url( home_url() ); ?>" class="search-form" role="search">
+	<label for="search-field" class="screen-reader-text"><?php esc_html_e( 'Search', 'skel' ); ?></label>
 	<input
 		type="search"
+		id="search-field"
 		name="s"
 		class="search"
 		placeholder="<?php echo esc_attr__( 'Search', 'skel' ); ?>"
-		value="<?php echo esc_html( $search_term ); ?>"
-		aria-label="Search through site content"
+		value="<?php echo esc_attr( $search_term ); ?>"
 		required
 	/>
 	<input type="hidden" name="_wpnonce" value="<?php echo esc_attr( wp_create_nonce( 'search_nonce' ) ); ?>" />

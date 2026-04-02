@@ -38,10 +38,17 @@ add_theme_support( 'title-tag' );
  * @param int $arg The current JPEG quality level.
  * @return int The updated JPEG quality level (100).
  */
+/**
+ * JPEG quality for image processing.
+ */
+if ( ! defined( 'SKEL_JPEG_QUALITY' ) ) {
+	define( 'SKEL_JPEG_QUALITY', 100 );
+}
+
 add_filter(
 	'jpeg_quality',
 	function () {
-		return 100;
+		return SKEL_JPEG_QUALITY;
 	}
 );
 
@@ -77,13 +84,13 @@ add_filter( 'style_loader_tag', 'skel_add_style_attribute', 10, 2 );
  *
  * @param WP_Scripts $scripts The WP_Scripts object.
  */
-function remove_jquery_migrate( &$scripts ) {
+function remove_jquery_migrate(): void {
 	if ( ! is_admin() ) {
-		$scripts->remove( 'jquery' );
-		$scripts->add( 'jquery', false, array( 'jquery-core' ), '1.10.2' );
+		wp_deregister_script( 'jquery' );
+		wp_register_script( 'jquery', false, array( 'jquery-core' ), null, false ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 	}
 }
-add_filter( 'wp_default_scripts', 'remove_jquery_migrate' );
+add_action( 'wp_enqueue_scripts', 'remove_jquery_migrate', 1 );
 
 
 /**
@@ -124,7 +131,7 @@ function searchfilter( WP_Query $query ): void {
 	}
 }
 
-add_filter( 'pre_get_posts', 'searchfilter' );
+add_action( 'pre_get_posts', 'searchfilter' );
 
 
 /**
@@ -214,8 +221,15 @@ add_filter( 'login_errors', 'skel_custom_wordpress_errors' );
  *
  * @return int Custom excerpt length.
  */
+/**
+ * Default excerpt word count.
+ */
+if ( ! defined( 'SKEL_EXCERPT_LENGTH' ) ) {
+	define( 'SKEL_EXCERPT_LENGTH', 150 );
+}
+
 function skel_get_the_excerpt_length(): int {
-	return 150; // Default length.
+	return SKEL_EXCERPT_LENGTH;
 }
 
 add_filter( 'excerpt_length', 'skel_get_the_excerpt_length' );
@@ -246,40 +260,37 @@ add_filter( 'excerpt_more', 'skel_get_the_excerpt_more' );
  * @param bool    $update  Whether this is an existing post being updated.
  */
 function skel_create_template_with_preselected_blocks( $post_id, $post, $update ) {
-	static $is_updating = false;
-
-	if ( $is_updating ) {
+	if ( 'custom_type' !== get_post_type( $post_id ) || $update ) {
 		return;
 	}
 
-	if ( 'custom_type' === get_post_type( $post_id ) && ! $update ) {
-		$default_blocks = array(
-			array(
-				'blockName' => 'acf/text-image-video',
-				'attrs'     => array( 'content' => 'This is a preselected paragraph block.' ),
-			),
-			array(
-				'blockName' => 'acf/scroll-navigation',
-				'attrs'     => array( 'content' => 'This is a preselected heading block.' ),
-			),
-		);
+	$default_blocks = array(
+		array(
+			'blockName' => 'acf/text-image-video',
+			'attrs'     => array( 'content' => 'This is a preselected paragraph block.' ),
+		),
+		array(
+			'blockName' => 'acf/scroll-navigation',
+			'attrs'     => array( 'content' => 'This is a preselected heading block.' ),
+		),
+	);
 
-		$default_content = '';
-		foreach ( $default_blocks as $block ) {
-			$default_content .= serialize_block( $block );
-		}
-
-		$is_updating = true;
-
-		wp_update_post(
-			array(
-				'ID'           => $post_id,
-				'post_content' => $default_content,
-			)
-		);
-
-		$is_updating = false;
+	$default_content = '';
+	foreach ( $default_blocks as $block ) {
+		$default_content .= serialize_block( $block );
 	}
+
+	// Temporarily unhook to prevent infinite recursion during wp_update_post.
+	remove_action( 'wp_insert_post', 'skel_create_template_with_preselected_blocks', 10 );
+
+	wp_update_post(
+		array(
+			'ID'           => $post_id,
+			'post_content' => $default_content,
+		)
+	);
+
+	add_action( 'wp_insert_post', 'skel_create_template_with_preselected_blocks', 10, 3 );
 }
 add_action( 'wp_insert_post', 'skel_create_template_with_preselected_blocks', 10, 3 );
 

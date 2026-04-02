@@ -31,7 +31,7 @@
  * @param  object $form   Contains all the properties of the current form.
  * @return string The filtered button.
  */
-function input_to_button( $button, $form ) {
+function input_to_button( $button, $form ): string {
 	$dom = new DOMDocument();
 	$dom->loadHTML( '<?xml encoding="utf-8" ?>' . $button );
 	$input      = $dom->getElementsByTagName( 'input' )->item( 0 );

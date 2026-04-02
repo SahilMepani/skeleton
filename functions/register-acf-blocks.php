@@ -128,7 +128,7 @@ function skel_register_single_block( $block_data, $slug ) {
 	if ( isset( $block_data['post_types'] ) && is_array( $block_data['post_types'] ) ) {
 		$args['post_types'] = $block_data['post_types'];
 	} else {
-		$args['post_types'] = array( 'page', 'service', 'project', 'insights', 'knowledge-base' );
+		$args['post_types'] = apply_filters( 'skel_acf_block_post_types', array( 'page', 'service', 'project', 'insights', 'knowledge-base' ), $slug );
 	}
 
 	if ( function_exists( 'acf_register_block_type' ) ) {

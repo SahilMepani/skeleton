@@ -26,7 +26,9 @@ function skel_inline_critical_css(): void {
 	if ( file_exists( $critical_css_path ) ) {
 		$critical_css = file_get_contents( $critical_css_path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		if ( false !== $critical_css ) {
-			echo '<style id="critical-css">' . wp_strip_all_tags( $critical_css ) . '</style>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			// Strip tags to remove any HTML, then output inside <style> — CSS context, not HTML.
+			$safe_css = wp_strip_all_tags( $critical_css );
+			echo '<style id="critical-css">' . $safe_css . '</style>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted local file, tags already stripped
 		}
 	}
 }

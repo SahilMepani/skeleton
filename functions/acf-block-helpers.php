@@ -23,7 +23,7 @@ function skel_get_acf_block_paths() {
  * @param string $block_name Block name.
  * @return string
  */
-function skel_get_block_slug( $block_name ) {
+function skel_get_block_slug( string $block_name ): string {
 	return sanitize_title( $block_name );
 }
 

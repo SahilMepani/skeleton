@@ -5,7 +5,7 @@ if ( is_array( $flexible_editor ) && ! empty( $flexible_editor ) ) :
 
 		switch ( $layout['acf_fc_layout'] ) {
 			case 'spacing':
-				echo '<div role="presentation" class="spacing-block" style="margin-block-end: ' . esc_html( $layout['spacing'] ) . 'px"></div>';
+				echo '<div role="presentation" class="spacing-block" style="margin-block-end: ' . esc_attr( $layout['spacing'] ) . 'px"></div>';
 
 				break;
 			case 'text':
@@ -48,40 +48,42 @@ if ( is_array( $flexible_editor ) && ! empty( $flexible_editor ) ) :
 					);
 
 					if ( 'video' === $media_type ) {
-						$random_dialog_id = skel_get_random_string();
-						$button_play_html = <<<HTML
-						<button class="btn btn-reset btn-dialog-open js-dialog-open" data-dialog="{$random_dialog_id}">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 249 239" fill="none">
-								<path d="M248.857 119.332L0.609375 0.166016V238.499L248.857 119.332Z" fill="currentColor" />
-							</svg>
-						</button>
-						HTML;
-						echo $button_play_html; // phpcs:ignore
+						$random_dialog_id     = skel_get_random_string();
+						$random_dialog_id_esc = esc_attr( $random_dialog_id );
 
-						echo '<dialog class="dialog js-dialog" data-dialog="' . esc_attr( $random_dialog_id ) . '">';
+						printf(
+							'<button class="btn btn-reset btn-dialog-open js-dialog-open" data-dialog="%s">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 249 239" fill="none">
+									<path d="M248.857 119.332L0.609375 0.166016V238.499L248.857 119.332Z" fill="currentColor" />
+								</svg>
+							</button>',
+							$random_dialog_id_esc
+						);
 
-						$dialog_close_button = <<<HTML
-						<button class="btn btn-reset btn-dialog-close js-dialog-close" data-dialog="{$random_dialog_id}">
-							<svg viewBox="0 0 24 24" fill="none">
-								<path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z" fill="currentColor"></path>
-							</svg>
-						</button>
-						HTML;
-						echo $dialog_close_button; // phpcs:ignore
+						echo '<dialog class="dialog js-dialog" data-dialog="' . $random_dialog_id_esc . '">';
+
+						printf(
+							'<button class="btn btn-reset btn-dialog-close js-dialog-close" data-dialog="%s">
+								<svg viewBox="0 0 24 24" fill="none">
+									<path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z" fill="currentColor"></path>
+								</svg>
+							</button>',
+							$random_dialog_id_esc
+						);
 
 						if ( 'file' === $video_type && $video_file ) {
-							$video_html = <<<HTML
-						<video class="js-video" autoplay controls preload="none">
-							<source src="{$video_file}" type="video/mp4">
-							Your browser does not support the video tag.
-						</video>
-						HTML;
-							echo $video_html; // phpcs:ignore
+							printf(
+								'<video class="js-video" autoplay controls preload="none">
+									<source src="%s" type="video/mp4">
+									Your browser does not support the video tag.
+								</video>',
+								esc_url( $video_file )
+							);
 						} elseif ( 'file' !== $video_type && $stream_url ) {
-							$iframe_html = <<<HTML
-						<iframe class="js-iframe" frameborder="0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy"  data-video-url="{$stream_url}"></iframe>
-						HTML;
-							echo $iframe_html;
+							printf(
+								'<iframe class="js-iframe" frameborder="0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy" data-video-url="%s"></iframe>',
+								esc_url( $stream_url )
+							);
 						}
 
 						echo '</dialog>';
@@ -90,19 +92,18 @@ if ( is_array( $flexible_editor ) && ! empty( $flexible_editor ) ) :
 
 				if ( 'no' === $enable_popup ) {
 					if ( 'file' === $video_type && $video_file ) {
-						$video_html = <<<HTML
-						<video playsinline controls preload="metadata">
-							<source src="{$video_file}" type="video/mp4">
-							Your browser does not support the video tag.
-						</video>
-						HTML;
-						echo $video_html; // phpcs:ignore
-
+						printf(
+							'<video playsinline controls preload="metadata">
+								<source src="%s" type="video/mp4">
+								Your browser does not support the video tag.
+							</video>',
+							esc_url( $video_file )
+						);
 					} elseif ( 'file' !== $video_type && $stream_url ) {
-						$iframe_html = <<<HTML
-						<iframe class="js-iframe" frameborder="0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy"  src="{$stream_url}"></iframe>
-						HTML;
-						echo $iframe_html;
+						printf(
+							'<iframe class="js-iframe" frameborder="0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy" src="%s"></iframe>',
+							esc_url( $stream_url )
+						);
 					}
 				}
 
@@ -118,19 +119,20 @@ if ( is_array( $flexible_editor ) && ! empty( $flexible_editor ) ) :
 					echo '<div class="swiper text-card-slider">';
 					echo '<div class="swiper-wrapper" data-inview>';
 					foreach ( $text_cards as $card ) {
-						$icon      = $card['icon'] ?? '';
-						$text      = $card['text'] ?? '';
-						$card_html = <<<HTML
-						<div class="swiper-slide" data-aos-stagger-item data-aos="fade-up">
-							<div class="card">
-								<div class="icon-block">
-									<img src="{$icon}" alt="" class="img-responsive">
+						$icon = $card['icon'] ?? '';
+						$text = $card['text'] ?? '';
+						printf(
+							'<div class="swiper-slide" data-aos-stagger-item data-aos="fade-up">
+								<div class="card">
+									<div class="icon-block">
+										<img src="%s" alt="" class="img-responsive">
+									</div>
+									<p class="text">%s</p>
 								</div>
-								<p class="text">{$text}</p>
-							</div>
-						</div>
-						HTML;
-						echo $card_html;
+							</div>',
+							esc_url( $icon ),
+							esc_html( $text )
+						);
 					}
 					echo '</div>';
 					?>

@@ -51,7 +51,14 @@ function update_post() {
 	}
 
 	// Add taxonomy query if category is set.
-	if ( '' !== $data['cat'] ) {
+	if ( '' !== $data['cat'] && '' !== $data['tax'] ) {
+		// Validate taxonomy against public taxonomies to prevent querying private ones.
+		$allowed_taxonomies = get_taxonomies( array( 'public' => true ) );
+		if ( ! isset( $allowed_taxonomies[ $data['tax'] ] ) ) {
+			wp_send_json_error( 'Invalid taxonomy.' );
+			return;
+		}
+
 		// phpcs:ignore -- Detected use of tax query - possible slow query
 		$args['tax_query'] = array(
 			array(

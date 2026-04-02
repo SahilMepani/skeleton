@@ -27,7 +27,7 @@
 								<h1 class="post-title"><?php the_title(); ?></h1>
 								<div class="post-meta">
 									Published by <?php the_author_posts_link(); ?> on
-									<time pubdate><?php the_time( 'F j, Y' ); ?></time> under<?php the_category( ' / ' ); ?>
+									<time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php the_time( 'F j, Y' ); ?></time> under<?php the_category( ' / ' ); ?>
 								</div> <!-- .post-meta -->
 							</header>
 
@@ -54,7 +54,7 @@
 
 								<h5><?php the_author_posts_link(); ?></h5>
 
-								<p><?php the_author_meta( 'description' ); ?></p>
+								<p><?php echo esc_html( get_the_author_meta( 'description' ) ); ?></p>
 
 				<ul class="list-author-meta list-connections list-unstyled">
 
@@ -79,13 +79,7 @@
 						<li class="i-facebook"><a href="<?php echo esc_url( $facebook ); ?>" title="View my facebook profile">Facebook</a></li>
 							<?php } ?>
 
-						<?php $google = get_the_author_meta( 'googleplus' ); ?>
-						<?php
-						if ( $google ) {
-							?>
-						<li class="i-gplus"><a href="https://googleplus.com/<?php echo esc_attr( $google ); ?>"
-							title="View my google+ profile">Google+</a></li>
-							<?php } ?>
+						<?php // Google+ removed — service is defunct. ?>
 
 				</ul>
 

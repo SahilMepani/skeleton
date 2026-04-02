@@ -15,8 +15,8 @@
 function skel_register_nav_menus(): void {
 	register_nav_menus(
 		array(
-			'header-menu' => esc_html__( 'Header Menu', 'skeleton' ),
-			'footer-menu' => esc_html__( 'Footer Menu', 'skeleton' ),
+			'header-menu' => esc_html__( 'Header Menu', 'skel' ),
+			'footer-menu' => esc_html__( 'Footer Menu', 'skel' ),
 		)
 	);
 }

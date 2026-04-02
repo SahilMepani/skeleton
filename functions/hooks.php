@@ -246,6 +246,12 @@ add_filter( 'excerpt_more', 'skel_get_the_excerpt_more' );
  * @param bool    $update  Whether this is an existing post being updated.
  */
 function skel_create_template_with_preselected_blocks( $post_id, $post, $update ) {
+	static $is_updating = false;
+
+	if ( $is_updating ) {
+		return;
+	}
+
 	if ( 'custom_type' === get_post_type( $post_id ) && ! $update ) {
 		$default_blocks = array(
 			array(
@@ -263,8 +269,7 @@ function skel_create_template_with_preselected_blocks( $post_id, $post, $update 
 			$default_content .= serialize_block( $block );
 		}
 
-		// Prevent infinite loop: unhook before updating, re-hook after.
-		remove_action( 'wp_insert_post', 'skel_create_template_with_preselected_blocks', 10 );
+		$is_updating = true;
 
 		wp_update_post(
 			array(
@@ -273,7 +278,7 @@ function skel_create_template_with_preselected_blocks( $post_id, $post, $update 
 			)
 		);
 
-		add_action( 'wp_insert_post', 'skel_create_template_with_preselected_blocks', 10, 3 );
+		$is_updating = false;
 	}
 }
 add_action( 'wp_insert_post', 'skel_create_template_with_preselected_blocks', 10, 3 );

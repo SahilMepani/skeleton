@@ -24,7 +24,10 @@ function skel_inline_critical_css(): void {
 	$critical_css_path = get_template_directory() . '/critical.css';
 
 	if ( file_exists( $critical_css_path ) ) {
-		echo '<style id="critical-css">' . file_get_contents( $critical_css_path ) . '</style>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		$critical_css = file_get_contents( $critical_css_path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+		if ( false !== $critical_css ) {
+			echo '<style id="critical-css">' . wp_strip_all_tags( $critical_css ) . '</style>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
 	}
 }
 add_action( 'wp_head', 'skel_inline_critical_css', 1 );

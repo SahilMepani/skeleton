@@ -88,7 +88,7 @@ function skel_get_block_developer_options(): array {
 /**
  * Get background image CSS string.
  */
-function skel_get_background_image_css( $image_id, string $size = 'medium_crop' ): string {
+function skel_get_background_image_css( int $image_id, string $size = 'medium_crop' ): string {
 	if ( $image_id ) {
 		$image_url = wp_get_attachment_image_url( $image_id, $size );
 	} else {

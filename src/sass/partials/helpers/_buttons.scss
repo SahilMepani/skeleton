@@ -12,8 +12,16 @@
 	@include btn-reset;
 }
 
+.btn-icon {
+	@include btn-icon;
+}
+
 .btn-rarr {
 	@include btn-rarr;
+}
+
+.btn-barr {
+	@include btn-barr;
 }
 
 .btn-dark {

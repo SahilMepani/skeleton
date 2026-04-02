@@ -17,6 +17,13 @@ function update_post() {
 		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['skel-nonce'] ) ), 'update_post_nonce' )
 	) {
 		wp_send_json_error( 'Invalid nonce.' );
+		return;
+	}
+
+	// Verify user capability.
+	if ( ! current_user_can( 'edit_posts' ) ) {
+		wp_send_json_error( 'Insufficient permissions.' );
+		return;
 	}
 
 	// Sanitize each field.

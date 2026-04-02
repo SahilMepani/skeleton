@@ -16,7 +16,7 @@ add_action(
 			$customizer_url = add_query_arg(
 				'return',
 				rawurlencode( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ),
-				'customize.php'
+				admin_url( 'customize.php' )
 			);
 
 			// Remove the Customizer and Theme Editor submenu pages.

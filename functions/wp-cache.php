@@ -83,24 +83,20 @@ function skel_invalidate_caches_by_post_type( $post_id ) {
 function skel_delete_transients_by_prefix( $prefix ) {
 	global $wpdb;
 
-	$prefix = $wpdb->esc_like( '_transient_' . $prefix ) . '%';
+	$like_prefix = $wpdb->esc_like( '_transient_' . $prefix ) . '%';
 
-	$wpdb->query(
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+	$transient_keys = $wpdb->get_col(
 		$wpdb->prepare(
-			"DELETE FROM {$wpdb->options} WHERE option_name LIKE %s",
-			$prefix
+			"SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE %s",
+			$like_prefix
 		)
 	);
 
-	// Also delete transient timeout entries.
-	$timeout_prefix = $wpdb->esc_like( '_transient_timeout_' . str_replace( '_transient_', '', $prefix ) ) . '%';
-
-	$wpdb->query(
-		$wpdb->prepare(
-			"DELETE FROM {$wpdb->options} WHERE option_name LIKE %s",
-			$timeout_prefix
-		)
-	);
+	foreach ( $transient_keys as $key ) {
+		$transient_name = str_replace( '_transient_', '', $key );
+		delete_transient( $transient_name );
+	}
 }
 
 /**

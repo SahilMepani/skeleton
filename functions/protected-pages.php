@@ -64,7 +64,7 @@ function protected_post_admin_notice() {
 	}
 
 	echo '<div class="notice notice-error is-dismissible"><p>';
-	echo esc_html__( 'This page is protected and cannot be deleted.', 'skeleton' );
+	echo esc_html__( 'This page is protected and cannot be deleted.', 'skel' );
 	echo '</p></div>';
 }
 add_action( 'admin_notices', 'protected_post_admin_notice' );

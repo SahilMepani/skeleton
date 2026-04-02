@@ -44,22 +44,43 @@
 	cursor: pointer;
 }
 
-@mixin btn-rarr {
+@mixin btn-icon {
 	position: relative;
+	overflow: hidden;
+	gap: rem-calc(20);
 
 	svg {
 		fill: currentcolor;
 		inline-size: rem-calc(24);
 		max-block-size: rem-calc(24);
 		flex-shrink: 0;
-		margin-inline-start: rem-calc(20);
+	}
+}
+
+@mixin btn-rarr {
+	&:hover,
+	&:focus-visible {
+		svg {
+			animation: btn-rarr 0.4s ease-in-out;
+		}
+	}
+}
+
+@mixin btn-barr {
+	&:hover,
+	&:focus-visible {
+		svg {
+			animation: btn-barr 0.4s ease-in-out;
+		}
 	}
 }
 
 @mixin btn-dark {
-	background: radial-gradient(509.01% 118.28% at 100.22% 81.25%,
-			rgba(0, 0, 0, 0.4) 0%,
-			#000 100%);
+	background: radial-gradient(
+		509.01% 118.28% at 100.22% 81.25%,
+		rgba(0, 0, 0, 0.4) 0%,
+		#000 100%
+	);
 	color: #fff;
 	backdrop-filter: blur(12px);
 
@@ -70,14 +91,36 @@
 }
 
 @mixin btn-light {
-	background: linear-gradient(101deg,
-			rgba(255, 255, 255, 0.08) 8.04%,
-			rgba(255, 255, 255, 0.4) 92.32%);
+	background: linear-gradient(
+		101deg,
+		rgba(255, 255, 255, 0.08) 8.04%,
+		rgba(255, 255, 255, 0.4) 92.32%
+	);
 	color: #080c11;
 
 	&:hover,
 	&:focus-visible {
 		color: #080c11;
+	}
+}
+
+@mixin sheen($sheen-color: rgba(255, 255, 255, 0.3)) {
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset-block: 0;
+		inline-size: 60%;
+		background: linear-gradient(
+			120deg,
+			transparent 0%,
+			$sheen-color 50%,
+			transparent 100%
+		);
+		inset-inline-start: -75%;
+		animation: sheen 5s ease-in-out infinite;
 	}
 }
 

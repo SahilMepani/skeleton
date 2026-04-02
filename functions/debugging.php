@@ -190,6 +190,10 @@ add_action(
  * including the post title and ID.
  */
 function print_block_usage_report() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'skel' ) );
+	}
+
 	$usage = get_blocks_by_page();
 
 	echo '<div class="wrap"><h1>Gutenberg Block Usage</h1>';
@@ -240,7 +244,7 @@ function get_blocks_by_page() {
 	$args = array(
 		'post_type'      => array( 'page', 'post' ), // Add custom post types here if needed.
 		'post_status'    => 'publish',
-		'posts_per_page' => 100,
+		'posts_per_page' => -1,
 		'no_found_rows'  => true,
 	);
 

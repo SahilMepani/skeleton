@@ -8,11 +8,11 @@
 		display: grid;
 		row-gap: rem-calc(24);
 
-		@media (width < $md) {
-			&.reverse {
-				> .col:nth-child(2) {
-					order: -1;
-				}
+		// Mobile default: reverse swaps stacking order.
+		// On desktop the explicit grid-column placements below override this, so order: -1 is a no-op there.
+		&.reverse {
+			> .col:nth-child(2) {
+				order: -1;
 			}
 		}
 

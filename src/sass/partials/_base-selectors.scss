@@ -103,25 +103,25 @@ input[type='reset'] {
 		box-shadow 0.15s ease-in-out;
 }
 
-p,
-table,
-ul,
-ol,
-dl,
-dd,
-pre,
-blockquote,
-address,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	&:last-child {
-		margin-block-end: 0;
-	}
-}
+// p,
+// table,
+// ul,
+// ol,
+// dl,
+// dd,
+// pre,
+// blockquote,
+// address,
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+// 	&:last-child {
+// 		margin-block-end: 0;
+// 	}
+// }
 
 p,
 pre,

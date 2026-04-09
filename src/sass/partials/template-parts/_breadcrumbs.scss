@@ -39,13 +39,16 @@
 	}
 
 	.middle {
-		@media (width < $md) {
-			.title {
-				display: none;
-			}
+		// Mobile default: show dots, hide title
+		.title {
+			display: none;
 		}
 
-		@media (width >=$md) {
+		@media (width >= $md) {
+			.title {
+				display: revert;
+			}
+
 			.dots {
 				display: none;
 			}

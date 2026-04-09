@@ -55,6 +55,12 @@ Read existing files in parallel:
 - `blocks/{slug}/{slug}.json`
 - `blocks/{slug}/{slug}.js` — auto-generated JS stub (read before potentially writing)
 
+**Read token partials first** (before any SCSS work) so you reuse existing tokens instead of inlining values:
+
+- `src/sass/partials/config/_typography.scss` — font families, font-size scale, weights, line-heights
+- `src/sass/partials/config/_colors.scss` — color tokens (match Figma colors to these first)
+- `src/sass/partials/config/_variables.scss` — shared spacing, radii, misc variables
+
 Also read these reference files for theme conventions:
 
 - `.cursor/rules/snippets.mdc` — block patterns, repeater, link, image snippets, JS patterns (swiper, accordion, dialog)
@@ -64,6 +70,8 @@ Also read these reference files for theme conventions:
 - `.cursor/rules/examples/acf-block-template.php` — full real-world PHP block example
 
 Understand what boilerplate exists before editing.
+
+> **Token rule:** If Figma uses a color/font-size/spacing that matches an existing token, **use the token**. Only fall back to raw hex/values when no token matches — and in that case consider whether the new value should be added to the config partial as a shared token rather than inlined.
 
 > Also note any interactive patterns in the design (toggles, expanded sections, modals) — these will require both ARIA attributes in PHP and JavaScript in Step 5.5.
 
@@ -113,16 +121,18 @@ Edit `blocks/{slug}/{slug}.scss`. The import line already exists in the boilerpl
 | `border-left/right`          | `border-inline-start/end`                         |
 | `border-radius: TL TR BR BL` | `border-start-start-radius`, etc.                 |
 
-**Layout rules:**
+**Layout & token rules:**
 
-- **NO responsive breakpoints** — never write `@media` queries
+- **Tokens first** — reuse variables/mixins from `_typography.scss`, `_colors.scss`, `_variables.scss`. Only inline raw values when no token matches. When a new shared value is needed, add it to the config partial, not the block file.
+- **Colors:** match Figma colors to `_colors.scss` tokens first; fall back to hex only when no token matches (and consider adding a new token).
+- **Typography:** reuse mixins/variables from `_typography.scss` — font families (`$sans-serif-font-family`, `$serif-font-family`), weights, sizes.
+- **Mobile-first only** — if an `@media` query is genuinely needed for a layout change, it must be `@media (width >= $bp)`. Never desktop-first (`width < $bp`). Most blocks shouldn't need `@media` at all — prefer `fluid()` for values.
+- **`@media` is for layout, not values** — use `fluid(min, max)` to scale font-size, padding, gap, margin. Only reach for `@media` when the layout genuinely restructures (1 col → 3 col, stacked → side-by-side).
 - **NO flex for gap-only spacing** — only use `display: flex` for actual row/column layouts
 - Vertical spacing between stacked elements: use `margin-block-end` on the element
 - BEM naming: `.{slug}-section` for outer section, `.{slug}__element` for children
 - **Full BEM classes (MANDATORY):** Always write the full class name — never use `&__` or `&--` nesting shorthand. Write `.slug__element { }` not `.slug { &__element { } }`
-- Font variables: `$sans-serif-font-family`, `$serif-font-family`
 - Functions: `rem-calc(16)` for fixed values, `fluid(min, max)` for responsive values
-- Colors: use hex values from the Figma design
 - No stylelint directives
 
 ### Step 5: Write the PHP
@@ -279,11 +289,47 @@ An `init` hook in `functions/claude-preview.php` reads this file, updates the "c
 
 The `data` object is intentionally empty — the PHP template has default/fallback values for all fields.
 
-### Step 6: Compile & Verify
+### Step 6: Visual Verification Loop (MANDATORY)
 
-1. Navigate the browser to **`{preview_url}/claude/`** (the third argument appended with `/claude/`, or `http://localhost:3000/claude/` by default). The block will render automatically via the trigger file written in Step 5.6. Take a screenshot to compare against the Figma design.
+After writing JSON/PHP/SCSS/JS, verify the rendered output matches the Figma design by screenshotting the live preview page and comparing it side-by-side with the Figma reference. Iterate until it matches.
 
-2. If the output does not match the Figma design, iterate on the SCSS and PHP, and take another screenshot until it matches.
+**1. Navigate to the preview page:**
+
+Use **`{preview_url}/claude/`** (the third argument appended with `/claude/`, or `http://localhost:3000/claude/` by default). The block renders automatically via the `blocks/.claude-preview-pending` trigger file written in Step 5.6.
+
+**2. Screenshot the rendered block via `/playwright-cli`:**
+
+Invoke the `playwright-cli` skill to:
+
+- Navigate to `{preview_url}/claude/`
+- Wait for the page to be fully loaded (fonts, images)
+- Locate the block by its outer selector `.{slug}-section`
+- Take an **element-scoped** screenshot of that selector (not a full-page screenshot)
+- Capture at desktop width (1440px) — and also at ~768px if the design has any responsive considerations
+- Save to `screenshots/{slug}-render.png`
+
+**3. Compare against the Figma screenshot:**
+
+Place the playwright screenshot next to the `get_screenshot` output from Step 1 and check:
+
+- Layout / structure / element ordering
+- Spacing (gaps, margins, padding) — measure proportionally, not pixel-perfect
+- Typography (font family, size, weight, line-height, letter-spacing)
+- Colors (backgrounds, text, borders)
+- Image sizing, aspect ratios, and positioning
+- Border radius, shadows, and other decorative details
+- Alignment of text and elements within their containers
+
+**4. Iterate:**
+
+If discrepancies are found, edit the SCSS (or PHP markup if structural) to fix them, then repeat steps 2–3.
+
+**Stopping criteria:**
+
+- Stop when the rendered output visually matches the Figma reference with no meaningful discrepancies, OR
+- Stop after 3 iterations and report remaining differences to the user for guidance (do not loop indefinitely)
+
+Do not consider the block complete until this verification loop has run at least once and the result is acceptable.
 
 ## Validation Checklist
 
@@ -300,6 +346,9 @@ Before marking complete, verify:
 - [ ] SCSS: No flex used solely for gap spacing
 - [ ] SCSS: BEM naming with block slug prefix
 - [ ] SCSS: Full BEM class names (no `&__` or `&--` nesting shorthand)
+- [ ] Tokens: `_typography.scss`, `_colors.scss`, `_variables.scss` read before writing SCSS
+- [ ] Tokens: Figma colors matched to existing color tokens where possible (raw hex only as fallback)
+- [ ] Tokens: Typography reuses existing font variables/mixins
 - [ ] PHP: All fields have default/fallback values
 - [ ] PHP: All output escaped (`esc_html`, `esc_attr`, `esc_url`, `wp_kses_post`)
 - [ ] PHP: Tab indentation, spaces inside parentheses
@@ -309,4 +358,6 @@ Before marking complete, verify:
 - [ ] JS: If slider — Swiper init implemented and `min-inline-size: 0` on `.swiper` in SCSS
 - [ ] `blocks/{slug}/preview.png` saved from Figma screenshot
 - [ ] `blocks/.claude-preview-pending` written with block slug
-- [ ] Screenshot taken at `{preview_url}/claude/` and compared against Figma design
+- [ ] Visual verification loop ran via `/playwright-cli` against `{preview_url}/claude/`
+- [ ] Element-scoped screenshot saved to `screenshots/{slug}-render.png`
+- [ ] Rendered screenshot matches the Figma reference (or remaining diffs reported to the user after 3 iterations)

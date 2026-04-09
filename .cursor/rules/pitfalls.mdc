@@ -22,6 +22,20 @@ Never use `&` to reference outer ancestors in deep nesting.
 .modifier .outer .inner { }
 ```
 
+Also avoid `&__` / `&--` BEM nesting shorthand in block SCSS — always write the full class name:
+
+```scss
+// ❌ WRONG — nested BEM shorthand
+.home-hero {
+	&__title { }
+	&__cta { }
+}
+
+// ✅ RIGHT — full BEM class names, flat
+.home-hero__title { }
+.home-hero__cta { }
+```
+
 ## 2. `.img-cover` Class
 
 Uses `position: absolute`. Only use on full-bleed images inside a `.img-cover-block` wrapper. Never on small contained images.
@@ -125,13 +139,38 @@ if ( is_array( $items ) && ! empty( $items ) ) {
 }
 ```
 
-## 8. SCSS Block Import
+## 8. SCSS Block Import — Always `abstracts-blocks`
 
-The boilerplate may use `abstracts` instead of `abstracts-blocks`. Always match what is already in the file rather than blindly copying the import line.
+Block SCSS files must import **`abstracts-blocks`**, not `abstracts`. If you see `abstracts` (without `-blocks`) in a block file, it's a bug — correct it. Do not "match what's already in the file" — the correct form is always `abstracts-blocks` in block SCSS.
 
 ```scss
-// Match existing — could be either:
-@use '../../src/sass/partials/abstracts' as *;
-// or
+// ✅ CORRECT — in every blocks/{slug}/{slug}.scss
 @use '../../src/sass/partials/abstracts-blocks' as *;
+
+// ❌ WRONG — missing -blocks suffix
+@use '../../src/sass/partials/abstracts' as *;
 ```
+
+## 10. Using `@media` to Change Values Instead of `fluid()`
+
+`@media` is for **layout changes** (grid columns, flex direction, show/hide, position). It is **not** for changing values like font-size, padding, gap, or margin — those should use `fluid(min, max)`. If the only thing changing at a breakpoint is a numeric value, rewrite with `fluid()`.
+
+```scss
+// ❌ WRONG — @media used to tweak a value
+.title {
+	font-size: rem-calc(18);
+
+	@media (width >= $md) {
+		font-size: rem-calc(28);
+	}
+}
+
+// ✅ RIGHT — fluid() handles the scale
+.title {
+	font-size: fluid(18, 28);
+}
+```
+
+Reserve `@media` for things that genuinely restructure the layout (e.g. 1 column → 3 columns, stacked → side-by-side).
+
+Also: **always mobile-first** (`width >= $bp`), never desktop-first (`width < $bp`). Write the mobile layout as the default, then progressively enhance for larger screens.

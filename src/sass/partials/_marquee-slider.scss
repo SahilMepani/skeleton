@@ -8,8 +8,11 @@
 	border-block: rem-calc(1) solid rgb(12 24 28 / 12%);
 
 	.container {
-		@media (width < $md) {
-			padding: 0;
+		// Mobile default: no container padding (marquee is edge-to-edge on mobile)
+		padding-inline: 0;
+
+		@media (width >= $md) {
+			padding-inline: $container-padding-x;
 		}
 	}
 

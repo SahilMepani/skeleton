@@ -210,6 +210,10 @@ if ( is_array( $link ) && $link['url'] ) {
     id="<?php echo esc_attr( $dev_options['unique_id'] ); ?>">
 ```
 
+**Container rule (non-negotiable):** Every block section MUST have `.container` as its **first and only direct child**. Every other element from the design — headings, images, grids, buttons, everything — must be a descendant of `.container`. Never place siblings next to `.container` inside the section, and never omit the `.container` wrapper.
+
+**Corollary — never set `padding-inline` on `.{slug}-section`.** Horizontal gutters are owned by `.container` globally. If the Figma design shows side padding on the section, that spacing is already handled by `.container`'s own `padding-inline`; do not re-declare it on the section. Only `padding-block-*` (top/bottom) belongs on the section.
+
 **Accessibility basics (MANDATORY):**
 
 - Images: descriptive `alt` on informative images, `alt=""` on decorative ones
@@ -268,7 +272,7 @@ If **needed**, write `blocks/{slug}/{slug}.js`. All JS follows the IIFE pattern.
 				slidesPerView: 'auto',
 				spaceBetween: 16,
 				speed: 500,
-				grabCursor: true,
+				grabCursor: true
 			});
 		}
 	});
@@ -346,6 +350,7 @@ Before marking complete, verify:
 - [ ] SCSS: No flex used solely for gap spacing
 - [ ] SCSS: BEM naming with block slug prefix
 - [ ] SCSS: Full BEM class names (no `&__` or `&--` nesting shorthand)
+- [ ] SCSS: No `padding-inline` on `.{slug}-section` (horizontal gutters come from `.container`)
 - [ ] Tokens: `_typography.scss`, `_colors.scss`, `_variables.scss` read before writing SCSS
 - [ ] Tokens: Figma colors matched to existing color tokens where possible (raw hex only as fallback)
 - [ ] Tokens: Typography reuses existing font variables/mixins

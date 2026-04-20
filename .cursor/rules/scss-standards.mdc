@@ -10,26 +10,33 @@ alwaysApply: false
 
 ```scss
 // ❌ NEVER:
-font-size: 18px;                  // raw px
-@media (min-width: 768px) { }     // raw px in media query
-@media (width < $md) { }          // desktop-first — NOT allowed in this project
-@include bp-down() { }            // legacy helper
-@include bp-up() { }              // legacy helper
+font-size: 18px; // raw px
+@media (min-width: 768px) {
+} // raw px in media query
+@media (width < $md) {
+} // desktop-first — NOT allowed in this project
+@include bp-down() {
+} // legacy helper
+@include bp-up() {
+} // legacy helper
 font-size: 18px;
-@media (width >= $md) { font-size: 22px; }  // don't use @media to change values — use fluid()
+@media (width >= $md) {
+	font-size: 22px;
+} // don't use @media to change values — use fluid()
 
 // ✅ ALWAYS:
-gap: rem-calc(16);                // Fixed values → rem-calc()
-font-size: fluid(16, 24);         // Responsive values → fluid(min, max)
-@media (width >= $md) { }         // Mobile-first only — progressive enhancement for layout changes
+gap: rem-calc(16); // Fixed values → rem-calc()
+font-size: fluid(16, 24); // Responsive values → fluid(min, max)
+@media (width >= $md) {
+} // Mobile-first only — progressive enhancement for layout changes
 ```
 
 ## Media Query Rule (READ THIS)
 
 This project uses two complementary tools for responsiveness:
 
-1. **`fluid(min, max)` for *values*** — font sizes, spacing, padding, margins, gaps, radii. Never change these with `@media`.
-2. **`@media` for *layout changes only*** — grid column count, flex direction, show/hide, position. Allowed when a layout genuinely restructures at a breakpoint, not as a way to tweak values.
+1. **`fluid(min, max)` for _values_** — font sizes, spacing, padding, margins, gaps, radii. Never change these with `@media`.
+2. **`@media` for _layout changes only_** — grid column count, flex direction, show/hide, position. Allowed when a layout genuinely restructures at a breakpoint, not as a way to tweak values.
 
 **All `@media` queries MUST be mobile-first** (`width >= $bp`), not desktop-first (`width < $bp`). Write the mobile layout as the default, then progressively enhance for larger screens.
 
@@ -37,8 +44,8 @@ This project uses two complementary tools for responsiveness:
 // ✅ GOOD — fluid() for values, mobile-first @media only for layout shape
 .card-grid {
 	display: grid;
-	grid-template-columns: 1fr;        // Mobile default
-	gap: fluid(16, 32);                // Value scales fluidly — no @media needed
+	grid-template-columns: 1fr; // Mobile default
+	gap: fluid(16, 32); // Value scales fluidly — no @media needed
 
 	@media (width >= $md) {
 		grid-template-columns: repeat(2, 1fr); // Layout change
@@ -54,9 +61,10 @@ This project uses two complementary tools for responsiveness:
 	grid-template-columns: repeat(3, 1fr); // desktop default
 	gap: rem-calc(32);
 
-	@media (width < $md) {                 // desktop-first direction forbidden
+	@media (width < $md) {
+		// desktop-first direction forbidden
 		grid-template-columns: 1fr;
-		gap: rem-calc(16);                 // value change — should be fluid() instead
+		gap: rem-calc(16); // value change — should be fluid() instead
 	}
 }
 ```
@@ -79,6 +87,20 @@ $md: 768px;
 $lg: 1024px;
 $xl: 1200px;
 $xxl: 1400px;
+```
+
+**No custom breakpoints.** You cannot add breakpoints of your own. Every `@media` query must use one of the breakpoints defined in `src/sass/partials/config/_breakpoints.scss` (`$xs`, `$ph`, `$sm`, `$md`, `$lg`, `$xl`, `$xxl`, `$xxxl`), and must reference the **variable name** — never the raw px value.
+
+```scss
+// ❌ NEVER:
+@media (width >= 900px) {
+} // raw px
+@media (width >= 820px) {
+} // unlisted breakpoint
+
+// ✅ ALWAYS:
+@media (width >= $md) {
+} // use the variable from _breakpoints.scss
 ```
 
 ## Responsive Design
@@ -105,7 +127,7 @@ $xxl: 1400px;
 }
 ```
 
-**Remember:** `@media` is for *layout changes* (grid columns, flex direction, visibility), not *value changes*. Use `fluid()` for values that scale.
+**Remember:** `@media` is for _layout changes_ (grid columns, flex direction, visibility), not _value changes_. Use `fluid()` for values that scale.
 
 **Legacy exception:** A few pre-existing partials (`src/sass/partials/components/_header-menu.scss`, `src/sass/partials/mixins/_miscellaneous.scss` — the `swiper-cards-overflow-down` mixin) still use desktop-first `@media (width < $bp)` because rewriting them carries regression risk on live, shared UI. Mobile-first is **mandatory for all new code**, all block SCSS, and any partial you touch for unrelated reasons. Don't copy the legacy pattern into new work.
 

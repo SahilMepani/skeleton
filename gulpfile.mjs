@@ -79,27 +79,25 @@ function clean() {
 
 // Sass task
 function sassTask() {
-	const stream = gulp
-		.src('src/sass/style.scss')
-		.pipe(
-			sassCompiler({
-				outputStyle: isProduction ? 'compressed' : 'expanded',
-				includePaths: ['node_modules']
-			}).on('error', sassCompiler.logError)
-		);
+	let stream = gulp.src('src/sass/style.scss').pipe(
+		sassCompiler({
+			outputStyle: isProduction ? 'compressed' : 'expanded',
+			includePaths: ['node_modules']
+		}).on('error', sassCompiler.logError)
+	);
 
 	if (isProduction) {
-		stream.pipe(postcss([autoprefixer(), sortMediaQueries(), cssnano()]));
+		stream = stream.pipe(
+			postcss([autoprefixer(), sortMediaQueries(), cssnano()])
+		);
 	}
 
-	return stream
-		.pipe(gulp.dest('./'))
-		.pipe(browserSyncInstance.stream());
+	return stream.pipe(gulp.dest('./')).pipe(browserSyncInstance.stream());
 }
 
 // Block Sass task - compiles individual block SCSS files
 function blockSassTask() {
-	const stream = gulp
+	let stream = gulp
 		.src('blocks/**/*.scss', { since: gulp.lastRun(blockSassTask) })
 		.pipe(
 			sassCompiler({
@@ -109,12 +107,12 @@ function blockSassTask() {
 		);
 
 	if (isProduction) {
-		stream.pipe(postcss([autoprefixer(), sortMediaQueries(), cssnano()]));
+		stream = stream.pipe(
+			postcss([autoprefixer(), sortMediaQueries(), cssnano()])
+		);
 	}
 
-	return stream
-		.pipe(gulp.dest('blocks'))
-		.pipe(browserSyncInstance.stream());
+	return stream.pipe(gulp.dest('blocks')).pipe(browserSyncInstance.stream());
 }
 
 // PurgeCSS task
@@ -238,17 +236,23 @@ function watch() {
 	gulp.watch('blocks/**/*.scss', watchOpts, gulp.series(blockSassTask));
 	gulp.watch('src/js/swiper-init.js', watchOpts, gulp.series(swiperJsTask));
 	gulp.watch('src/js/**/*.js', watchOpts, gulp.series(jsTasks));
-	gulp.watch([
-		'*.html',
-		'*.php',
-		'blocks/**/*.php',
-		'templates/**/*.php',
-		'template-parts/**/*.php',
-		'functions/**/*.php',
-		'assets/js/**/*.js',
-		'assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
-	], watchOpts).on('change', browserSyncInstance.reload);
-	gulp.watch('blocks/**/*.js', watchOpts).on('change', browserSyncInstance.reload);
+	gulp.watch(
+		[
+			'*.html',
+			'*.php',
+			'blocks/**/*.php',
+			'templates/**/*.php',
+			'template-parts/**/*.php',
+			'functions/**/*.php',
+			'assets/js/**/*.js',
+			'assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
+		],
+		watchOpts
+	).on('change', browserSyncInstance.reload);
+	gulp.watch('blocks/**/*.js', watchOpts).on(
+		'change',
+		browserSyncInstance.reload
+	);
 }
 
 // Define complex tasks

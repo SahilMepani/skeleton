@@ -1,9 +1,8 @@
 @use '../abstracts' as *;
-@use '../abstracts' as *;
 
 .swiper-navigation {
 	display: flex;
-	gap: rem-calc(4);
+	gap: fluid(8, 16);
 
 	&:has(.swiper-button-prev.swiper-button-disabled):has(
 			.swiper-button-next.swiper-button-disabled
@@ -11,41 +10,19 @@
 		display: none !important;
 	}
 
-	&.style-floating {
-		.swiper-button-prev,
-		.swiper-button-next {
-			position: absolute;
-			top: 50%;
-			transform: translateY(-50%);
-		}
-
-		.swiper-button-prev {
-			inset-inline-start: rem-calc(20);
-		}
-
-		.swiper-button-next {
-			inset-inline-end: rem-calc(20);
-		}
-	}
-
-	&.style-dark {
-		.swiper-button-prev,
-		.swiper-button-next {
-			background-color: $body-color;
-			color: #fff;
-		}
-	}
-
 	.swiper-button-prev,
 	.swiper-button-next {
 		all: unset;
-		line-height: rem-calc(44);
+		background-color: transparent;
+		color: $deep;
+		line-height: rem-calc(40);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		inline-size: rem-calc(44);
-		block-size: rem-calc(44);
-		border-radius: 50%;
+		inline-size: rem-calc(40);
+		block-size: rem-calc(40);
+		border: 1px solid $deep;
+		border-radius: rem-calc(6);
 		position: relative;
 		z-index: 10;
 		transition: 0.2s ease-out;
@@ -60,7 +37,7 @@
 
 		svg {
 			color: currentcolor;
-			max-inline-size: fluid(16, 24);
+			font-size: rem-calc(20);
 		}
 
 		&::after {
@@ -71,6 +48,9 @@
 	.swiper-button-prev {
 		&:hover,
 		&:focus-visible {
+			background-color: $deep;
+			color: $pale;
+
 			svg {
 				animation: micro-left 0.3s cubic-bezier(0.17, 0.67, 0.63, 1.55);
 			}
@@ -80,6 +60,9 @@
 	.swiper-button-next {
 		&:hover,
 		&:focus-visible {
+			background-color: $deep;
+			color: $pale;
+
 			svg {
 				animation: micro-right 0.3s cubic-bezier(0.17, 0.67, 0.63, 1.55);
 			}

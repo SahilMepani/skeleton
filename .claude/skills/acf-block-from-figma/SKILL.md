@@ -64,6 +64,7 @@ Read existing files in parallel:
 Also read these reference files for theme conventions:
 
 - `.cursor/rules/snippets.mdc` — block patterns, repeater, link, image snippets, JS patterns (swiper, accordion, dialog)
+- `.cursor/rules/swiper-standards.mdc` — full Swiper slider standards (HTML, JS init, SCSS, navigation/pagination, accessibility) — consult when the design includes a slider
 - `.cursor/rules/acf-json-format.mdc` — JSON field structure
 - `.cursor/rules/helpers-reference.mdc` — available helper functions
 - `.cursor/rules/theme-config.mdc` — colors, typography scale, breakpoints (critical for Figma color matching)
@@ -73,7 +74,7 @@ Understand what boilerplate exists before editing.
 
 > **Token rule:** If Figma uses a color/font-size/spacing that matches an existing token, **use the token**. Only fall back to raw hex/values when no token matches — and in that case consider whether the new value should be added to the config partial as a shared token rather than inlined.
 
-> Also note any interactive patterns in the design (toggles, expanded sections, modals) — these will require both ARIA attributes in PHP and JavaScript in Step 5.5.
+> Also note any interactive patterns in the design (toggles, accordions, sliders, modals) — these will require both ARIA attributes in PHP and JavaScript in Step 5.5.
 
 ### Step 3: Write ACF JSON Fields
 
@@ -121,17 +122,43 @@ Edit `blocks/{slug}/{slug}.scss`. The import line already exists in the boilerpl
 | `border-left/right`          | `border-inline-start/end`                         |
 | `border-radius: TL TR BR BL` | `border-start-start-radius`, etc.                 |
 
+**Structural rule (MANDATORY — non-negotiable):**
+
+ALL CSS for the block MUST live nested inside the outer `.{slug}-section { … }` selector. No top-level selectors outside that wrapper. Every child, descendant, pseudo-class, media query, and modifier is nested under `.{slug}-section`. Uniqueness is achieved via the parent selector, not BEM prefixes.
+
+CSS inside the wrapper may target direct children or any descendant depth. Nothing lives outside `.{slug}-section`.
+
+Minimal skeleton (shape only — use your actual tokens/breakpoints):
+
+```scss
+.{slug}-section {
+    // base section styles
+
+    .child { /* descendant */
+        .grandchild { /* deeper nesting is fine */ }
+    }
+
+    .child--modifier { /* full class, not `&--modifier` */ }
+
+    @media (width >= $bp-md) { /* layout flips — still nested */ }
+}
+```
+
+**Class naming rules:**
+
+- **No BEM `__` separator.** Outer section is `.{slug}-section`. Children use **plain descriptive class names** (`.card`, `.image`, `.body`, `.tag`, `.brand`, `.price`) — NEVER BEM-prefixed like `.{slug}__card`. Uniqueness is achieved via SCSS nesting inside `.{slug}-section`, not via long class prefixes.
+- **Modifiers keep `--`:** variant classes still use the `--` suffix (`.tag--dark`, `.tag--sand`, `.btn--primary`). Only the `__` BEM separator is banned.
+- **No SCSS `&__` / `&--` shorthand** — write the full modifier class.
+
 **Layout & token rules:**
 
 - **Tokens first** — reuse variables/mixins from `_typography.scss`, `_colors.scss`, `_variables.scss`. Only inline raw values when no token matches. When a new shared value is needed, add it to the config partial, not the block file.
 - **Colors:** match Figma colors to `_colors.scss` tokens first; fall back to hex only when no token matches (and consider adding a new token).
 - **Typography:** reuse mixins/variables from `_typography.scss` — font families (`$sans-serif-font-family`, `$serif-font-family`), weights, sizes.
 - **Mobile-first only** — if an `@media` query is genuinely needed for a layout change, it must be `@media (width >= $bp)`. Never desktop-first (`width < $bp`). Most blocks shouldn't need `@media` at all — prefer `fluid()` for values.
-- **`@media` is for layout, not values** — use `fluid(min, max)` to scale font-size, padding, gap, margin. Only reach for `@media` when the layout genuinely restructures (1 col → 3 col, stacked → side-by-side).
+- **`@media` is for layout, not values** — use `fluid(min, max)` to scale font-size, padding, gap, margin. Only reach for `@media` when the layout genuinely restructures (1 col → 3 col, stacked → side-by-side). Nest the media query inside `.{slug}-section` (or inside a nested child) — never at the file root.
 - **NO flex for gap-only spacing** — only use `display: flex` for actual row/column layouts
 - Vertical spacing between stacked elements: use `margin-block-end` on the element
-- BEM naming: `.{slug}-section` for outer section, `.{slug}__element` for children
-- **Full BEM classes (MANDATORY):** Always write the full class name — never use `&__` or `&--` nesting shorthand. Write `.slug__element { }` not `.slug { &__element { } }`
 - Functions: `rem-calc(16)` for fixed values, `fluid(min, max)` for responsive values
 - No stylelint directives
 
@@ -280,7 +307,7 @@ If **needed**, write `blocks/{slug}/{slug}.js`. All JS follows the IIFE pattern.
 ```
 
 - Add `min-inline-size: 0` to `.swiper` in SCSS when the slider is inside a flex/grid parent
-- If prev/next buttons or pagination exist, scope them with per-instance classes (see `media-card-slider.js` for the pattern)
+- If prev/next buttons or pagination exist, scope them with per-instance classes — see `.cursor/rules/swiper-standards.mdc` §2 for the full pattern (parent-scoped `.closest()` lookup, `snapIndexChange` direction handler, and the §3 responsive destroy/init variant)
 
 ### Step 5.6: Load Block on "Claude" Preview Page
 
@@ -348,8 +375,10 @@ Before marking complete, verify:
 - [ ] SCSS: No `@media` queries
 - [ ] SCSS: Import line is `abstracts-blocks` (not `abstracts`)
 - [ ] SCSS: No flex used solely for gap spacing
-- [ ] SCSS: BEM naming with block slug prefix
-- [ ] SCSS: Full BEM class names (no `&__` or `&--` nesting shorthand)
+- [ ] SCSS: All rules are nested inside `.{slug}-section { … }` — zero top-level selectors outside the wrapper
+- [ ] SCSS: Plain child class names (`.card`, `.image`, `.body`) — no BEM `__` prefixes like `.{slug}__card`
+- [ ] SCSS: Modifiers use `--` suffix (`.tag--dark`) — kept, not removed
+- [ ] SCSS: No SCSS `&__` / `&--` nesting shorthand
 - [ ] SCSS: No `padding-inline` on `.{slug}-section` (horizontal gutters come from `.container`)
 - [ ] Tokens: `_typography.scss`, `_colors.scss`, `_variables.scss` read before writing SCSS
 - [ ] Tokens: Figma colors matched to existing color tokens where possible (raw hex only as fallback)

@@ -16,8 +16,8 @@
 	// HEADING
 	// ============================================
 	.section-heading {
-		margin-block-end: fluid(24, 40);
 		text-align: center;
+		margin-block-end: fluid(24, 40);
 	}
 
 	// ============================================
@@ -50,8 +50,8 @@
 	// ============================================
 	.img-cover-block {
 		aspect-ratio: 16 / 9;
-		overflow: hidden;
 		border-radius: rem-calc(8);
+		overflow: hidden;
 
 		.img-cover {
 			transition: transform 0.3s ease;
@@ -104,8 +104,8 @@
 	// CTA SECTION
 	// ============================================
 	.section-cta {
-		margin-block-start: fluid(32, 48);
 		text-align: center;
+		margin-block-start: fluid(32, 48);
 	}
 
 	// ============================================
@@ -127,6 +127,7 @@
 // ============================================
 // SLIDER VARIANT
 // ============================================
+
 /*
 .block-slider-section {
 	.swiper {

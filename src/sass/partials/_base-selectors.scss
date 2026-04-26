@@ -201,9 +201,9 @@ ol {
 li {
 	line-height: 1.3;
 
-	&:not(:last-child) {
-		margin-block-end: rem-calc(15);
-	}
+	// &:not(:last-child) {
+	// 	margin-block-end: rem-calc(15);
+	// }
 }
 
 dt {

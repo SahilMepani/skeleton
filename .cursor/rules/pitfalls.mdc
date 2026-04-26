@@ -22,18 +22,23 @@ Never use `&` to reference outer ancestors in deep nesting.
 .modifier .outer .inner { }
 ```
 
-Also avoid `&__` / `&--` BEM nesting shorthand in block SCSS — always write the full class name:
+Also avoid `&__` / `&--` SCSS nesting shorthand in block SCSS — and do not use BEM `__` class names at all. Every rule lives nested inside the outer `.{slug}-section` wrapper, using **plain child class names**. Modifiers keep the `--` suffix and are written in full (no `&--` shorthand).
 
 ```scss
-// ❌ WRONG — nested BEM shorthand
+// ❌ WRONG — BEM class names and `&__` shorthand
 .home-hero {
 	&__title { }
 	&__cta { }
 }
-
-// ✅ RIGHT — full BEM class names, flat
 .home-hero__title { }
 .home-hero__cta { }
+
+// ✅ RIGHT — nested inside the section wrapper, plain child names
+.home-hero-section {
+	.title { }
+	.cta { }
+	.tag--dark { } // modifier written in full, never `&--dark`
+}
 ```
 
 ## 2. `.img-cover` Class

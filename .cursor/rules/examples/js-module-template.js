@@ -76,66 +76,77 @@
 
 // ============================================
 // SWIPER VARIANT (for slider blocks)
+// See .cursor/rules/swiper-standards.mdc for the full pattern.
 // ============================================
 /*
 (() => {
-	const sliders = document.querySelectorAll('.block-slider');
+	if (typeof Swiper === 'undefined') {
+		console.warn('Swiper is not loaded');
+		return;
+	}
+
+	const sliders = document.querySelectorAll('.{slug}-slider');
 
 	sliders.forEach((el, i) => {
-		const swiperClass = `block-slider-${i}`;
+		const swiperClass = `{slug}-slider-${i}`;
 		el.classList.add(swiperClass);
 
-		const slides = el.querySelectorAll('.swiper-slide');
+		const section = el.closest('.{slug}-section');
+		const prevBtn = section?.querySelector('.swiper-button-prev');
+		const nextBtn = section?.querySelector('.swiper-button-next');
+		const pagination = section?.querySelector('.swiper-pagination');
+		const scrollbar = section?.querySelector('.swiper-scrollbar');
 
-		// Handle single slide
-		if (slides.length <= 1) {
-			slides.forEach((slide) => slide.classList.add('swiper-slide-active'));
+		if (prevBtn) prevBtn.classList.add(`${swiperClass}-prev`);
+		if (nextBtn) nextBtn.classList.add(`${swiperClass}-next`);
+		if (pagination) pagination.classList.add(`${swiperClass}-pagination`);
+		if (scrollbar) scrollbar.classList.add(`${swiperClass}-scrollbar`);
+
+		const slides = el.querySelectorAll('.swiper-slide');
+		if (slides.length <= 0) return;
+
+		// Single slide — just mark active, no Swiper needed
+		if (slides.length === 1) {
+			slides.forEach(slide => slide.classList.add('swiper-slide-active'));
 			return;
 		}
 
-		// Setup navigation classes
-		const parent = el.closest('.block-section');
-		const prevClass = `block-prev-${i}`;
-		const nextClass = `block-next-${i}`;
-		const paginationClass = `block-pagination-${i}`;
-
-		const prevBtn = parent?.querySelector('.swiper-button-prev');
-		const nextBtn = parent?.querySelector('.swiper-button-next');
-		const pagination = parent?.querySelector('.swiper-pagination');
-
-		if (prevBtn) prevBtn.classList.add(prevClass);
-		if (nextBtn) nextBtn.classList.add(nextClass);
-		if (pagination) pagination.classList.add(paginationClass);
-
-		// Initialize Swiper
-		new Swiper(`.${swiperClass}`, {
-			slidesPerView: 1,
+		const swiper = new Swiper(`.${swiperClass}`, {
+			slidesPerView: 'auto',
 			spaceBetween: 16,
-			loop: true,
-			speed: 300,
+			speed: 500,
+			grabCursor: true,
 			navigation: {
-				prevEl: `.${prevClass}`,
-				nextEl: `.${nextClass}`
+				prevEl: `.${swiperClass}-prev`,
+				nextEl: `.${swiperClass}-next`
 			},
 			pagination: {
-				el: `.${paginationClass}`,
-				clickable: true
-			},
-			breakpoints: {
-				768: {
-					slidesPerView: 2,
-					spaceBetween: 24
-				},
-				1024: {
-					slidesPerView: 3,
-					spaceBetween: 32
-				}
-			},
-			autoplay: {
-				delay: 5000,
-				disableOnInteraction: false
+				el: `.${swiperClass}-pagination`,
+				clickable: true,
+				type: 'bullets'
 			}
 		});
+
+		// Directional animation — bind AFTER init using snapIndexChange
+		// (slideChange + activeIndex is unreliable with slidesPerView: 'auto')
+		if (pagination || scrollbar) {
+			let prevSnap = swiper.snapIndex;
+
+			swiper.on('snapIndexChange', () => {
+				const direction =
+					swiper.snapIndex >= prevSnap ? 'forward' : 'backward';
+
+				if (pagination) {
+					pagination.setAttribute('data-direction', direction);
+				}
+
+				if (scrollbar) {
+					scrollbar.setAttribute('data-direction', direction);
+				}
+
+				prevSnap = swiper.snapIndex;
+			});
+		}
 	});
 })();
 */

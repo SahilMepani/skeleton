@@ -19,8 +19,8 @@
 }
 
 body:has([data-modal-backdrop].js-active) {
-	block-size: 100svh;
-	overflow: hidden;
+	// block-size: 100svh;
+	// overflow: hidden;
 }
 
 select {

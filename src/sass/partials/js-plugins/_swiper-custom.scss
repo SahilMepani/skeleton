@@ -5,30 +5,6 @@
 	block-size: auto;
 }
 
-/* ----------  Swiper Dot Pagination  ---------- */
-.swiper-pagination-dot {
-	all: unset; // overwrite default from swiper
-	display: flex;
-	justify-content: center;
-	gap: rem-calc(10);
-
-	span {
-		all: unset; // overwrite default from swiper
-		background-color: rgba(#000, 40%);
-		display: inline-block;
-		inline-size: rem-calc(10);
-		block-size: rem-calc(10);
-		border-radius: 50%;
-		position: relative;
-		cursor: pointer;
-
-		&.swiper-pagination-bullet-active {
-			background-color: #000;
-			transition: 0.2s;
-		}
-	}
-}
-
 .swiper-scrollbar {
 	background-color: #eee;
 	block-size: rem-calc(8);
@@ -48,33 +24,24 @@
 	}
 }
 
-// .btn-prev, .btn-next {
-//   text-align: center;
-//   color: transparent;
-//   font: 0/0 a;
-//   inline-size: 40px;
-//   block-size: 40px;
-//   float: left;
-//   border: 1px solid #ccc;
-//   &.swiper-button-disabled {
-//     opacity: .5;
-//     cursor: default;
-//   }
-//   &:before {
-//     color: $color_primary;
-//     font-size: 20px;
-//   }
-// }
+// Scrollbar drag
+.swiper-scrollbar {
+	.swiper-scrollbar-drag {
+		transform-origin: left center;
+		animation: scrollbar-fill 300ms ease-out forwards;
+	}
 
-// .btn-prev {
-//   margin-inline-end: rem-calc( 10px );
-//   &:before {
-//     content: '\e616';
-//   }
-// }
+	&[data-direction='backward'] .swiper-scrollbar-drag {
+		transform-origin: right center;
+	}
+}
 
-// .btn-next {
-//   &:before {
-//     content: '\e617';
-//   }
-// }
+@keyframes scrollbar-fill {
+	from {
+		transform: scaleX(0);
+	}
+
+	to {
+		transform: scaleX(1);
+	}
+}

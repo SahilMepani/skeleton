@@ -8,6 +8,11 @@ import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 import sortMediaQueries from 'postcss-sort-media-queries';
 import purgecss from 'gulp-purgecss';
+import { PurgeCSS } from 'purgecss';
+import { statSync, writeFileSync } from 'fs';
+import { promisify } from 'util';
+import _glob from 'glob';
+const globAsync = promisify(_glob);
 import rtlcss from 'gulp-rtlcss';
 import gulpIf from 'gulp-if';
 import terser from 'gulp-terser';
@@ -77,6 +82,11 @@ function clean() {
 	return deleteAsync(['dist']);
 }
 
+// Remove source map files — runs in production only
+function cleanMaps() {
+	return deleteAsync(['**/*.css.map', '**/*.js.map', '!node_modules/**']);
+}
+
 // Sass task
 function sassTask() {
 	let stream = gulp.src('src/sass/style.scss').pipe(
@@ -115,7 +125,8 @@ function blockSassTask() {
 	return stream.pipe(gulp.dest('blocks')).pipe(browserSyncInstance.stream());
 }
 
-// PurgeCSS task
+// PurgeCSS task — touches style.css only (not block CSS files)
+// To see what would be removed across style.css + all blocks/*.css, run: npx gulp purgeAudit
 function purgeCSSTask() {
 	return gulp
 		.src('./style.css')
@@ -157,7 +168,7 @@ function purgeCSSTask() {
 						/header-nav/,
 						/dir-(rtl|ltr)/
 					],
-					greedy: [],
+					greedy: [/\[data-slider-inview/, /\[data-inview/, /\[dir=/],
 					keyframes: true,
 					variables: true
 				}
@@ -167,11 +178,130 @@ function purgeCSSTask() {
 		.pipe(browserSyncInstance.stream());
 }
 
-// CSS RTL task
+// PurgeCSS dry-run audit — scans style.css + all blocks/**/*.css, nothing is written to disk
+async function purgeCSSAuditTask() {
+	const contentPaths = [
+		'./*.php',
+		'./templates/**/*.php',
+		'./template-parts/**/*.php',
+		'./blocks/**/*.php',
+		'./functions/**/*.php',
+		'./src/js/**/*.js'
+	];
+	const safelist = {
+		standard: [
+			'wp-post-image',
+			'dark-mode-on',
+			/^style-(.*)?$/,
+			/^swiper-(.*)?$/,
+			/^js-(.*)?$/,
+			/^bg-(.*)?$/,
+			/^layout-(.*)?$/,
+			/^has-(.*)?$/,
+			/^grid-(.*)?$/
+		],
+		deep: [
+			/rtl$/,
+			/^lenis/,
+			/^wpml/,
+			/^mfp/,
+			/^gform_(.*)?$/,
+			/^single-(.*)?$/,
+			/^page-(.*)?$/,
+			/^template-(.*)?$/,
+			/header-nav/,
+			/dir-(rtl|ltr)/
+		],
+		greedy: [/\[data-slider-inview/, /\[data-inview/, /\[dir=/],
+		keyframes: true,
+		variables: true
+	};
+
+	const blockFiles = await globAsync('./blocks/**/*.css');
+	const allFiles = ['./style.css', ...blockFiles.sort()];
+
+	const rejectedResults = await new PurgeCSS().purge({
+		content: contentPaths,
+		css: allFiles,
+		safelist,
+		rejected: true
+	});
+
+	const purgedResults = await new PurgeCSS().purge({
+		content: contentPaths,
+		css: allFiles,
+		safelist
+	});
+
+	let totalOriginal = 0,
+		totalPurged = 0,
+		totalSelectors = 0;
+	const fileLines = [];
+
+	for (let i = 0; i < allFiles.length; i++) {
+		const originalBytes = statSync(allFiles[i]).size;
+		const purgedBytes = Buffer.byteLength(purgedResults[i].css, 'utf8');
+		const savedBytes = originalBytes - purgedBytes;
+		const percent = ((savedBytes / originalBytes) * 100).toFixed(1);
+		const selectors = rejectedResults[i].rejected ?? [];
+
+		totalOriginal += originalBytes;
+		totalPurged += purgedBytes;
+		totalSelectors += selectors.length;
+
+		if (selectors.length === 0) continue;
+
+		fileLines.push(`── ${allFiles[i]}`);
+		fileLines.push(
+			`   ${(originalBytes / 1024).toFixed(2)} KB → ${(purgedBytes / 1024).toFixed(2)} KB  (saves ${(savedBytes / 1024).toFixed(2)} KB, ${percent}%)`
+		);
+		fileLines.push(`   ${selectors.length} selectors removed:`);
+		selectors.sort().forEach(s => fileLines.push(`   - ${s}`));
+		fileLines.push('');
+	}
+
+	const totalSaved = totalOriginal - totalPurged;
+	const totalPercent = ((totalSaved / totalOriginal) * 100).toFixed(1);
+
+	const report = [
+		`PurgeCSS Dry Run — ${new Date().toLocaleString()}`,
+		``,
+		`SUMMARY`,
+		`  Files audited : ${allFiles.length}`,
+		`  Original      : ${(totalOriginal / 1024).toFixed(2)} KB`,
+		`  After purge   : ${(totalPurged / 1024).toFixed(2)} KB`,
+		`  Total savings : ${(totalSaved / 1024).toFixed(2)} KB  (${totalPercent}%)`,
+		`  Selectors     : ${totalSelectors} removed`,
+		``,
+		`─────────────────────────────────────────`,
+		``,
+		...fileLines
+	].join('\n');
+
+	writeFileSync('./purge-audit.txt', report, 'utf8');
+
+	console.log('\n╔══ PurgeCSS Dry Run (nothing written) ══╗');
+	console.log(`  Files     : ${allFiles.length}`);
+	console.log(`  Original  : ${(totalOriginal / 1024).toFixed(2)} KB`);
+	console.log(`  After     : ${(totalPurged / 1024).toFixed(2)} KB`);
+	console.log(
+		`  Savings   : ${(totalSaved / 1024).toFixed(2)} KB  (${totalPercent}%)`
+	);
+	console.log(`  Selectors : ${totalSelectors} removed`);
+	console.log(`\n  Full report saved to purge-audit.txt\n`);
+}
+
+// CSS RTL task — outputs style-rtl.css (WordPress convention), never overwrites style.css
 function rtlCssTask() {
 	return gulp
 		.src('./style.css')
 		.pipe(rtlcss())
+		.pipe(
+			through.obj(function (file, enc, cb) {
+				file.path = file.path.replace('style.css', 'style-rtl.css');
+				cb(null, file);
+			})
+		)
 		.pipe(gulp.dest('./'))
 		.pipe(browserSyncInstance.stream());
 }
@@ -266,6 +396,7 @@ const buildDev = gulp.series(
 
 // Prod build sequence (includes purgecss)
 const buildProd = gulp.series(
+	cleanMaps, // Remove any leftover .css.map files before production build
 	gulp.parallel(sassTask, blockSassTask),
 	gulp.parallel(rtlCssTask, lintJS, jsTasks) // Run JS/Lint in parallel with SCSS
 	// purgeCSSTask, // Run PurgeCSS after initial CSS is built
@@ -278,9 +409,11 @@ const dev = gulp.series(buildDev, serve, watch);
 // Export tasks
 export {
 	clean,
+	cleanMaps,
 	sassTask as sass,
 	blockSassTask as blockSass,
 	purgeCSSTask as purgecss,
+	purgeCSSAuditTask as purgeAudit,
 	rtlCssTask as rtlcss,
 	jsTasks as js,
 	criticalTask as critical,

@@ -15,6 +15,7 @@ js/plugins.js
 js/custom.js
 debug.log
 critical.css
+purge-audit.txt
 package-lock.json
 composer.lock
 
@@ -27,3 +28,12 @@ tests/.phpunit.cache/
 vendor/
 .env.test.local
 nul
+
+
+# .claude
+# .cursor
+# .vscode
+# .geminirules
+# CLAUDE.md
+# CODEX.md
+# GEMINI.md

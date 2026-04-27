@@ -110,13 +110,11 @@ add_action( 'wp_enqueue_scripts', 'skel_enqueue_block_assets' );
 function skel_enqueue_scripts(): void {
 	// wp_enqueue_style( 'google-font', '//fonts.googleapis.com/css?family=Montserrat&display=swap', array(), '1.0.0', 'all' );
 
-	wp_dequeue_script( 'jquery' );
-	wp_deregister_script( 'jquery' );
-
-	// Load jquery at bottom if you need jQuery.
-	// This will break Gravity Forms on some pages, be careful.
-	// wp_scripts()->add_data( 'jquery', 'group', 1 );
-	// wp_scripts()->add_data( 'jquery-core', 'group', 1 );
+	// Remove jquery — keep it when Gravity Forms is needed on this page.
+	// if ( ! has_block( 'acf/contact-page' ) ) {
+		wp_dequeue_script( 'jquery' );
+		wp_deregister_script( 'jquery' );
+	// }
 
 	$critical_css_path = get_template_directory() . '/critical.css';
 	$has_critical_css  = file_exists( $critical_css_path );
@@ -160,11 +158,11 @@ function skel_enqueue_scripts(): void {
 	);
 
 	// wp_localize_script(
-	// 	'skel-plugins',
-	// 	'localize_var',
-	// 	array(
-	// 		'adminUrl' => admin_url( 'admin-ajax.php' ),
-	// 	)
+	// 'skel-plugins',
+	// 'localize_var',
+	// array(
+	// 'adminUrl' => admin_url( 'admin-ajax.php' ),
+	// )
 	// );
 }
 add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
@@ -178,6 +176,7 @@ add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
  */
 function skel_modify_script_attributes( $tag, $handle ) {
 	$defer = array(
+		// uncomment for production as it doesn't work with Query monitor
 		// 'jquery',
 		// 'jquery-core',
 		'skel-swiper',

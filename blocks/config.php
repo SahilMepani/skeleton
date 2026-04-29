@@ -19,6 +19,5 @@ $block_types = array(
 	'Not Found 404',
 	'Faqs',
 	'Logo Slider',
-	'Main Hero',
 	'Brand Marquee',
 );

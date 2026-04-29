@@ -72,6 +72,31 @@
 	}
 }
 
+.img-link {
+	overflow: hidden;
+
+	img {
+		transition: 200ms ease-out;
+	}
+
+	&:hover,
+	&:focus-visible {
+		img {
+			transform: scale(1.2);
+		}
+	}
+}
+
+.text-link {
+	--line-color: #{$primary-color};
+
+	&:hover,
+	&:focus-visible {
+		text-decoration: underline var(--line-color) 1px;
+		text-underline-offset: 2px;
+	}
+}
+
 .bg-video {
 	min-inline-size: 100%;
 	block-size: 100%;

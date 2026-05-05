@@ -72,21 +72,6 @@
 	}
 }
 
-.img-link {
-	overflow: hidden;
-
-	img {
-		transition: 200ms ease-out;
-	}
-
-	&:hover,
-	&:focus-visible {
-		img {
-			transform: scale(1.2);
-		}
-	}
-}
-
 .text-link {
 	--line-color: #{$primary-color};
 

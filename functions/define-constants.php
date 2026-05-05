@@ -20,10 +20,10 @@
  */
 function define_constants() {
 	$constants = array(
-		'DEFAULT_THUMBNAIL_ID' => get_field( 'default_featured_image', 'option' ) ?: 0,
-		'PAGE_404_ID'          => get_field( 'four_four_page', 'option' ) ?: 0,
-		'PAGE_SEARCH_ID'       => get_field( 'search_page', 'option' ) ?: 0,
-		'PAGE_KB_ID'           => get_field( 'kb_page', 'option' ) ?: 0,
+		'DEFAULT_THUMBNAIL_ID' => get_field( 'general_default_featured_image', 'option' ) ?: 0,
+		'PAGE_404_ID'          => get_field( 'general_four_four_page', 'option' ) ?: 0,
+		'PAGE_SEARCH_ID'       => get_field( 'general_search_page', 'option' ) ?: 0,
+		'PAGE_KB_ID'           => get_field( 'general_kb_page', 'option' ) ?: 0,
 	);
 
 	foreach ( $constants as $name => $value ) {

@@ -40,6 +40,15 @@
 	</svg>
 </a>
 
+<?php
+if ( wp_get_environment_type() === 'production' ) {
+	$footer_code = get_field( 'analytics_footer_code', 'option' );
+	if ( $footer_code ) {
+		echo $footer_code;
+	}
+}
+?>
+
 <?php wp_footer(); ?>
 
 <!-- Testing commit -->

@@ -5,7 +5,7 @@
 		{
 			"key": "field_header_logo",
 			"label": "Logo",
-			"name": "logo",
+			"name": "header_logo",
 			"type": "image",
 			"return_format": "id",
 			"preview_size": "medium"
@@ -13,7 +13,7 @@
 		{
 			"key": "field_header_menu",
 			"label": "Menu",
-			"name": "menu",
+			"name": "header_menu",
 			"type": "taxonomy",
 			"taxonomy": "nav_menu",
 			"field_type": "select",

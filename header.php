@@ -24,7 +24,7 @@
 
 	<?php
 	if ( wp_get_environment_type() === 'production' ) {
-		$head_code = get_field( 'head_code', 'option' );
+		$head_code = get_field( 'analytics_head_code', 'option' );
 		if ( $head_code ) {
 			echo $head_code;
 		}

@@ -5,7 +5,7 @@
 		{
 			"key": "field_footer_option_logo",
 			"label": "Logo",
-			"name": "logo",
+			"name": "footer_logo",
 			"type": "image",
 			"return_format": "id",
 			"preview_size": "medium",
@@ -14,7 +14,7 @@
 		{
 			"key": "field_footer_option_menus",
 			"label": "Menus",
-			"name": "menus",
+			"name": "footer_menus",
 			"type": "repeater",
 			"min": 0,
 			"max": 3,
@@ -46,41 +46,6 @@
 					"name": "title_link",
 					"type": "url",
 					"instructions": "Add a link to the title."
-				}
-			]
-		},
-		{
-			"key": "field_footer_option_office",
-			"label": "Office Location",
-			"name": "office",
-			"type": "group",
-			"layout": "block",
-			"sub_fields": [
-				{
-					"key": "field_footer_option_office_country_flag",
-					"label": "Country Flag",
-					"name": "country_flag",
-					"type": "image",
-					"return_format": "id",
-					"preview_size": "w200",
-					"instructions": "Upload a circular flag icon (21x21px recommended)"
-				},
-				{
-					"key": "field_footer_option_office_country_name",
-					"label": "Country Name",
-					"name": "country_name",
-					"type": "text",
-					"default_value": "UAE"
-				},
-				{
-					"key": "field_footer_option_office_address",
-					"label": "Address",
-					"name": "address",
-					"type": "textarea",
-					"rows": 3,
-					"new_lines": "br",
-					"instructions": "Line breaks are preserved.",
-					"default_value": "Level 8, The Office 5,\nOne Central, DTWC\nDubai, UAE"
 				}
 			]
 		},

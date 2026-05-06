@@ -1,7 +1,7 @@
 @use '../abstracts' as *;
 
 .site-header {
-	font-family: $sans-serif-font-family;
+	font-family: $sans-serif;
 
 	// border-block-end: rem-calc(1) solid transparent;
 	position: sticky;

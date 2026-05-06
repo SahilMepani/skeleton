@@ -154,7 +154,7 @@ Minimal skeleton (shape only — use your actual tokens/breakpoints):
 
 - **Tokens first** — reuse variables/mixins from `_typography.scss`, `_colors.scss`, `_variables.scss`. Only inline raw values when no token matches. When a new shared value is needed, add it to the config partial, not the block file.
 - **Colors:** match Figma colors to `_colors.scss` tokens first; fall back to hex only when no token matches (and consider adding a new token).
-- **Typography:** reuse mixins/variables from `_typography.scss` — font families (`$sans-serif-font-family`, `$serif-font-family`), weights, sizes.
+- **Typography:** reuse mixins/variables from `_typography.scss` — font families (`$sans-serif`, `$serif`), weights, sizes.
 - **Mobile-first only** — if an `@media` query is genuinely needed for a layout change, it must be `@media (width >= $bp)`. Never desktop-first (`width < $bp`). Most blocks shouldn't need `@media` at all — prefer `fluid()` for values.
 - **`@media` is for layout, not values** — use `fluid(min, max)` to scale font-size, padding, gap, margin. Only reach for `@media` when the layout genuinely restructures (1 col → 3 col, stacked → side-by-side). Nest the media query inside `.{slug}-section` (or inside a nested child) — never at the file root.
 - **NO flex for gap-only spacing** — only use `display: flex` for actual row/column layouts

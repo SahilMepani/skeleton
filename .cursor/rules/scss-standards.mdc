@@ -141,7 +141,7 @@ Before writing any rule using a color, font, font-size, spacing, breakpoint, z-i
 
 **`src/sass/partials/config/_typography.scss`**
 
-- Vars: `$serif-font-family`, `$sans-serif-font-family`, `$body-font-size`, `$body-font-family`, `$heading-font-family`, `$paragraph-line-height`, `$paragraph-margin-block-end`, `$heading-margin-block-end`
+- Vars: `$serif`, `$sans-serif`, `$body-font-size`, `$body-font-family`, `$heading-font-family`, `$paragraph-line-height`, `$paragraph-margin-block-end`, `$heading-margin-block-end`
 - Map: `$typography-styles` (h1–h6)
 - Mixins: `@include font(h1..h6)`, `@include text(small|medium)`
 

@@ -19,8 +19,8 @@ $black: #000;
 ## Typography
 
 ```scss
-$sans-serif-font-family: 'Oldschool Grotesk', system-ui, sans-serif;
-$serif-font-family: 'Source Serif Pro', georgia, serif;
+$sans-serif: 'Oldschool Grotesk', system-ui, sans-serif;
+$serif: 'Source Serif Pro', georgia, serif;
 $body-font-size: rem-calc(20);
 ```
 

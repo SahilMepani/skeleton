@@ -2,8 +2,8 @@
 @use '../mixins/rem' as *;
 @use 'colors' as *;
 
-$serif-font-family: 'Source Serif Pro', georgia, serif;
-$sans-serif-font-family:
+$serif: 'Source Serif Pro', georgia, serif;
+$sans-serif:
 	'Oldschool Grotesk',
 	-apple-system,
 	blinkmacsystemfont,
@@ -17,8 +17,8 @@ $sans-serif-font-family:
 	arial,
 	sans-serif;
 $body-font-size: rem-calc(16);
-$body-font-family: $serif-font-family;
-$heading-font-family: $sans-serif-font-family;
+$body-font-family: $serif;
+$heading-font-family: $sans-serif;
 $paragraph-line-height: 1.5;
 $paragraph-margin-block-end: rem-calc(32);
 $heading-margin-block-end: rem-calc(32);

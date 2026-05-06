@@ -1,7 +1,7 @@
 @use '../abstracts' as *;
 
 .visual-editor-section {
-	font-family: $sans-serif-font-family;
+	font-family: $sans-serif;
 	font-size: rem-calc(16);
 	font-weight: 400;
 	line-height: 1.4;
@@ -50,7 +50,7 @@
 	h4,
 	h5,
 	h6 {
-		font-family: $sans-serif-font-family;
+		font-family: $sans-serif;
 		font-weight: 400;
 		line-height: 1.2;
 		letter-spacing: -0.03em;

@@ -15,6 +15,12 @@ Output: **PHP include partial + SCSS + optional vanilla JS**, fully wired into `
 
 > **Project reality:** static HTML/SCSS site. PHP is only a `require` partial mechanism. No WordPress, no ACF, no block registration, no React, no Tailwind. Despite the name of the sibling skill, `acf` is a misnomer.
 
+## Configuration
+
+<!-- Toggle visual verification mode. Change the value to flip behavior of Step 12. -->
+
+- **`visual-verification`**: `required` ← change to `optional` to use opt-in / auto-judged logic, or back to `required` to always run the three-viewport pass.
+
 ## Invocation
 
 ```
@@ -44,53 +50,71 @@ Run four calls in parallel:
 3. `get_design_context(desktopFileKey, desktopNodeId)`
 4. `get_screenshot(desktopFileKey, desktopNodeId)`
 
+`get_design_context` returns screenshot + layout + typography + colors + asset URLs; the explicit `get_screenshot` calls are insurance for higher-fidelity image data when the bundled screenshot is lossy. Fidelity over token cost.
+
 If any response is truncated, fall back to `get_metadata` for that frame and fetch child nodes individually.
 
-Study both designs side by side. Identify:
+### Step 2 — Diff the two designs (silent, internal)
 
-- Element inventory and hierarchy (should be the same in both).
-- **VALUE differences** — same layout, different numbers (font-size, padding, gap, margin, border-radius, fixed sizes). These become `fluid(mobileVal, desktopVal)`.
-- **LAYOUT differences** — structural flips (flex-direction, grid-template-columns, order, display, position, max-inline-size unconstrained → fixed). These become mobile-first `@media (width >= $bp)`.
-- Interactive patterns (toggles, accordions, sliders, dialogs) — drive Step 6 JS decision and Step 4 ARIA.
+Build an internal table per element. **Never output it.**
 
-### Step 2 — Determine slug; refuse to clobber
+| Element / Selector | Mobile | Desktop | Decision |
+| --- | --- | --- | --- |
+
+Decision rules:
+
+- **VALUE** (same layout, different number) → `fluid(mobile, desktop)` directly in SCSS. If `mobile == desktop` → static `rem-calc(X)` for px, plain number for unitless. **Never emit `fluid(0, X)` placeholders.** **Never emit `fluid(X, X)`** — collapse to `rem-calc(X)`.
+- **LAYOUT** (flex-direction, grid-template-columns, order, display change, flex-wrap, position, `max-inline-size` unconstrained → fixed) → mobile-first base + `@media (width >= $md)` containing **only** the differing structural properties. No font / padding / gap inside the MQ.
+- **TYPOGRAPHY** → always inline `font-size: fluid(mobile, desktop); line-height: ...; font-family: ...; font-weight: ...;` in block SCSS. **Never** apply `.h1`–`.h6` classes; **never** `@include font(...)` or `@include text(...)`.
+- **SLIDER** → flag for Step 3.
+
+Default to VALUE when unsure. Goal: minimize media queries.
+
+`fluid()` mechanics: `fluid($min, $max, $min-bp: 'md', $max-bp: 'xl')` → `clamp()`. Below 768px → `$min`. Above 1200px → `$max`. Don't widen the third/fourth args without an explicit reason.
+
+Slider behavior signals on a viewport: horizontal overflow strip, dots / arrows, off-canvas card edges, slide-shaped cards spilling past the right edge.
+
+### Step 3 — Decide Swiper wiring up front
+
+Cross-reference both designs:
+
+- **Mobile slider + desktop static/grid** → wire Swiper with `matchMedia` destroy-above-`$md`. Below `$md` Swiper runs; at/above `$md` it's destroyed and CSS owns the layout.
+- **Mobile slider + desktop slider** → wire Swiper at all sizes, no destroy logic.
+- **Both static** → no Swiper.
+- **Ambiguous** (e.g. mobile cards spill off the right but it's unclear whether they paginate) → **ask the user** with a single targeted question, then proceed. Do not write code first.
+
+### Step 4 — Determine slug; refuse to clobber
 
 1. Derive slug from the desktop frame name.
 2. Check `blocks/{slug}/`. If it exists, **stop** and ask the user how to proceed (rename, overwrite, abort). Do not continue automatically.
 
-### Step 3 — Scaffold from `blocks/blank/`
+### Step 5 — Scaffold from `blocks/blank/`
 
 There is no auto-generation and no `blocks/config.php`.
 
 1. Copy `blocks/blank/blank.php` → `blocks/{slug}/{slug}.php`
 2. Copy `blocks/blank/blank.scss` → `blocks/{slug}/{slug}.scss`
 3. **Do not copy** `blank.css` / `blank.css.map` (build output — regenerated).
-4. JS file is created only in Step 6 if actually needed.
+4. JS file is created only in Step 10 if actually needed.
 
 **Gotcha:** `blocks/blank/blank.php` ships with a stale hardcoded class `heading-text-section`. Replace it with `{slug}-section` immediately — never leave the blank class behind.
 
-### Step 4 — Read tokens (before writing any SCSS)
+### Step 6 — Read project conventions (before writing any SCSS)
 
-Read these so values map to existing tokens instead of being inlined:
+Read these for shared spacing / radii / breakpoints, and for live block patterns:
 
-- `src/sass/partials/config/_typography.scss` — font families, size scale, weights, line-heights
-- `src/sass/partials/config/_colors.scss` — color tokens
 - `src/sass/partials/config/_variables.scss` — shared spacing, radii, misc
 - `src/sass/partials/config/_breakpoints.scss` — breakpoint map (rarely needed)
-
-Theme conventions:
-
 - `.cursor/rules/snippets.mdc` — block patterns, repeater/link/image snippets, JS patterns (swiper, accordion, dialog)
-- `.cursor/rules/theme-config.mdc` — colors, typography scale, breakpoints
 - `.cursor/rules/scss-standards.mdc` — SCSS rules
 - `.cursor/rules/examples/scss-block-template.scss` — canonical SCSS block structure
 - `.cursor/rules/examples/js-module-template.js` — canonical JS pattern
 
 Skim a real reference block (e.g. `blocks/home-hero/`) for live conventions.
 
-> **Token rule:** if Figma uses a color/font-size/spacing matching an existing token, **use the token**. Only fall back to raw hex/values when no token matches; if a new value is shared across blocks, add it to the config partial instead of inlining.
+> **Typography & colors policy:** typography is **inlined** per Step 2's TYPOGRAPHY rule (no `_typography.scss` mappings, no `.h1`–`.h6` classes, no `@include font/text`). Colors are **inlined as Figma hex** — no token-mapping pass. The `_typography.scss` and `_colors.scss` partials still exist for global / non-block uses; the block-authoring workflow does not reach for them.
 
-### Step 5 — Extract images at 2x to `assets/images/`
+### Step 7 — Extract images at 2x to `assets/images/`
 
 Any raster images (photos, illustrations, decorative PNGs) must be exported from Figma and saved to `assets/images/` — **never** the block folder.
 
@@ -99,7 +123,7 @@ Any raster images (photos, illustrations, decorative PNGs) must be exported from
 - Destination: `assets/images/{descriptive-name}.png`.
 - Markup references the 2x file directly (`/assets/images/{name}.png`); the browser handles DPR via CSS sizing. Do not generate `@1x`/`@2x` pairs unless asked.
 
-### Step 6 — Write the PHP markup (from the desktop design)
+### Step 8 — Write the PHP markup (from the desktop design)
 
 Edit `blocks/{slug}/{slug}.php`. Plain HTML fragment wrapped in a `<section>`. No PHP logic, no WordPress functions, no ACF field calls. Hardcode content from the desktop Figma frame (mobile and desktop share the same content — only layout/values differ).
 
@@ -123,14 +147,16 @@ Edit `blocks/{slug}/{slug}.php`. Plain HTML fragment wrapped in a `<section>`. N
 - **Modifiers keep `--`:** `.tag--dark`, `.tag--sand`, `.btn--primary`. Only the `__` separator is banned.
 - **Semantic HTML:** `<article>`, `<header>`, `<h2>`/`<h3>`, `<button>`, `<nav>` where appropriate — not `<div>` soup.
 - **Heading hierarchy:** no skipped levels (`h2` for section, `h3` for cards).
+- **Heading classes:** never apply `.h1`–`.h6` classes. Use semantic tags (`<h2>`, `<h3>`, etc.) and let block SCSS own the size via inline `font-size` / `line-height` / `font-family`.
 - **Images:** descriptive `alt` on informative images, `alt=""` on decorative ones. Path: `/assets/images/{name}.png`.
 - **Interactive toggles/accordions:** `aria-expanded="false"` + `aria-controls` pointing to a panel `id`.
 - **Icon-only buttons:** include `<span class="screen-reader-text">Label</span>`.
 - **External links:** the link snippet in `snippets.mdc` already includes an `(opens in a new tab)` sr-only span — keep it.
+- **Swiper markup** (when wired per Step 3): wrap items in `.{slug}-slider.swiper > .swiper-wrapper > .swiper-slide`. Standard nav classes only: `.swiper-navigation`, `.swiper-button-prev`, `.swiper-button-next` — never block-specific nav classes.
 - Content text comes verbatim from Figma.
 - Full a11y patterns: `.cursor/rules/accessibility.mdc`.
 
-### Step 7 — Write the SCSS (single pass, both designs)
+### Step 9 — Write the SCSS (single pass, both designs)
 
 Edit `blocks/{slug}/{slug}.scss`. Boilerplate import is already present:
 
@@ -146,23 +172,12 @@ Edit `blocks/{slug}/{slug}.scss`. Boilerplate import is already present:
 
 CSS inside the wrapper may target direct children **or any descendant depth**. The only rule: nothing lives outside `.{slug}-section`.
 
-**Single-pass classification — for every property, decide VALUE vs LAYOUT:**
+**Apply Step 2's diff-table decisions:**
 
-| Kind | Meaning | Treatment |
-|---|---|---|
-| **VALUE** | Same layout, different number across mobile/desktop | `fluid(mobileVal, desktopVal)` |
-| **LAYOUT** | Structural flip (flex direction, grid columns, order, display, wrap, position, max-inline-size unconstrained → fixed) | Mobile-first `@media (width >= $bp)` |
-
-Rules:
-
-- `font-size, line-height, padding, margin, gap, border-radius, fixed sizes` → VALUE.
-- `flex-direction, grid-template-columns, order, display changes, flex-wrap, position` → LAYOUT.
-- `max-inline-size: unconstrained → fixed` → LAYOUT (clamp can't express "no constraint").
-- Default to VALUE when unsure. Goal: minimize media queries.
-- If `mobileVal == desktopVal`, **collapse to static** — `rem-calc(X)` for px, plain number for unitless. **Never write `fluid(X, X)`**.
-- **Never write `fluid(0, X)` placeholders** — both designs are available, fill real numbers from the start.
-
-**`fluid()` mechanics:** `fluid($min, $max, $min-bp: 'md', $max-bp: 'xl')` → `clamp()`. Below 768px → `$min`. Above 1200px → `$max`. Linear interpolation between. Keep the default `md → xl` window unless there's an explicit reason.
+- **VALUE** rows → `fluid(mobile, desktop)` or static `rem-calc(X)` when values match.
+- **LAYOUT** rows → mobile base + `@media (width >= $md) { ... }` for structural properties only. No font / padding / gap inside the MQ.
+- **TYPOGRAPHY** rows → inline `font-size: fluid(mobile, desktop); line-height: ...; font-family: ...; font-weight: ...;`. Never apply `.h1`–`.h6` classes; never `@include font(...)` or `@include text(...)`.
+- **Color values** inline as Figma hex. No token-mapping pass.
 
 **Spacing & value rules:**
 
@@ -199,13 +214,18 @@ Rules:
 - Modifiers keep `--` and are written **in full** (`.tag--primary`) — no `&--primary` / `&__child` shorthand.
 - No SCSS `&__` / `&--` nesting shorthand.
 
-**Layout & token rules:**
+**Layout rules:**
 
-- Tokens first — reuse `_typography.scss`, `_colors.scss`, `_variables.scss`. Inline raw values only when no token matches; if shared, add a new token instead of inlining.
-- Match Figma colors to `_colors.scss` tokens first; raw hex only as fallback.
 - **NO flex for gap-only spacing** — only `display: flex` for actual row/column layouts. Vertical spacing between stacked elements: `margin-block-end` on the element.
 - Functions: `rem-calc(16)` for fixed equal values, `fluid(min, max)` for responsive ones.
+- `#{…}` Sass interpolation required inside CSS `min()` / `max()` for Sass compatibility.
 - No stylelint directives.
+
+**Swiper SCSS** (when wired per Step 3):
+
+- `.{slug}-slider { inline-size: 100%; min-inline-size: 0; overflow: visible; }`
+- Slide widths: `inline-size: rem-calc(X); max-inline-size: 90%;` — **not** `flex: 0 0 rem-calc(X)`.
+- No `overflow-x: auto` on the wrapper — Swiper owns overflow.
 
 **Minimal skeleton:**
 
@@ -234,23 +254,29 @@ Rules:
         }
     }
 
+    .title {
+        font-family: 'Libre Baskerville', serif;
+        font-size: fluid(24, 40);
+        line-height: 1.4;
+        font-weight: 400;
+        color: #362925;
+    }
+
     .tag--primary { /* full modifier class, not &--primary */ }
 }
 ```
 
-**Token quick reference (skip re-reading config files when these match):**
+**Quick reference (skip re-reading config files when these match):**
 
 | Category | Values |
 |---|---|
-| Colors | `$pale #fbf8f3` `$mist #f7f1e8` `$sand #eae2d7` `$muted #8c807d` `$deep #362925` `$primary-color #1f2261` `$secondary-color #fdba00` `$body-color #080c11` |
-| Fonts | `$serif-font-family: 'Libre Baskerville'`, `$sans-serif-font-family: 'Geist'` (system stack fallback) |
-| Typography | h1:`fluid(32,48)/1.2/-0.96px` h2:`fluid(24,40)/1.4/-0.8px` h3:`fluid(20,32)/1.4/-0.64px` h4:`fluid(18,22)/1.4` h5:`fluid(16,18)/1.4` h6:`fluid(14,16)/1.4` text-small:`fluid(12,14)` text-medium:`fluid(14,16)` |
-| Spacing | `$container-padding-x: fluid(20, 40)` |
-| Figma tokens | `sp-N` = N px (2,4,6,8,12,16,24,32,48). Radius: `xxs=4 xs=6 sm=8 md=12 lg=16 xl=24` |
+| Fonts (family names — for the inline `font-family:` value) | `'Libre Baskerville'` (serif), `'Geist'` (sans-serif) — fall back to system stacks |
+| Spacing | `$container-padding-x: fluid(20, 40)` (site-wide; do not redeclare on the section) |
+| Figma sp tokens | `sp-N` = N px (2,4,6,8,12,16,24,32,48). Radius: `xxs=4 xs=6 sm=8 md=12 lg=16 xl=24` |
 
-### Step 8 — Write JS (only if needed)
+### Step 10 — Write JS (only if needed)
 
-Assess from designs + Step 6 markup whether JS is required.
+Assess from designs + Step 8 markup whether JS is required.
 
 - **Requires JS:** Swiper slider, accordion, tab switching, dialog, counter / scroll animations.
 - **Does NOT require JS:** static grids, text/image layouts, pure CSS layouts.
@@ -259,7 +285,12 @@ If not needed, **skip the file entirely**. Most blocks have no JS.
 
 If needed, create `blocks/{slug}/{slug}.js`. All JS uses the IIFE pattern. See `.cursor/rules/examples/js-module-template.js` and existing examples (`blocks/testimonials/testimonials.js`, `blocks/faqs/faqs.js`).
 
-**Swiper slider pattern** (copy exactly, adapt options):
+**Swiper destroy logic from Step 3:**
+
+- Mobile slider + desktop static → `matchMedia('(min-width: ${$md}px)')` listener; instantiate below `$md`, destroy at/above.
+- Slider at all sizes → no destroy logic.
+
+**Swiper init pattern** (copy exactly, adapt options):
 
 ```js
 (() => {
@@ -295,10 +326,7 @@ If needed, create `blocks/{slug}/{slug}.js`. All JS uses the IIFE pattern. See `
 })();
 ```
 
-- Add `min-inline-size: 0` to `.swiper` in SCSS when the slider sits inside a flex/grid parent.
-- Swiper navigation classes are always the **standard** ones: `.swiper-navigation`, `.swiper-button-prev`, `.swiper-button-next`. Never block-specific nav classes.
-
-### Step 9 — Wire the block up (the most-forgotten step)
+### Step 11 — Wire the block up (the most-forgotten step)
 
 A block isn't done until it's wired in. Wiring happens in **two or three** places — blocks are **NOT** imported into `src/sass/style.scss`.
 
@@ -326,11 +354,31 @@ Add it alongside other block `<link>` tags.
 
 Follow the existing script tag pattern. Skip entirely if no JS file.
 
-### Step 10 — Visual verification (mandatory, three viewports)
+### Step 12 — Visual verification
 
-After scaffolding + wiring, verify the rendered output matches both Figma designs.
+**Mode:** controlled by the `visual-verification` toggle in the Configuration block at the top of this skill.
 
-**1. Read `LOCAL_URL`** from project root `.env`. Block renders on the base URL because Step 9 wired it into `index.php`.
+- **`required`** → always run this step after Step 11, regardless of explicit ask or risk judgment. Skip the opt-in / auto-judged logic below.
+- **`optional`** → use the opt-in / auto-judged logic below. Default action is **skip**; the user previews in their own page.
+
+#### When `optional`, run only when **either** of the following is true:
+
+- **Explicit user request** — "verify", "screenshot it", "compare to Figma", "/verify", or any clear ask to check the rendered output against the design.
+- **Your own judgment says it's worth it** — trigger verification yourself when translation risk is high enough that a screenshot will likely catch an issue you can't catch by reading the SCSS:
+  - Swiper wiring with `matchMedia` destroy logic (Step 3 wired a slider).
+  - Two or more LAYOUT media queries, or a layout that flips between flex / grid / absolute positioning.
+  - Overlapping elements, negative margins, `position: absolute` over a sibling, or any z-index dependency.
+  - A pattern you haven't used in this project before (first slider, first grid-template-areas block, etc.).
+
+  Skip for low-risk blocks: value-only diffs, pure text/content blocks, single-column stacks, simple two-column rows with no overlap.
+
+**Hard opt-out (applies in both modes):** if the user said "skip verification" / "no screenshots" / "don't run playwright" anywhere in the conversation, do not run it regardless of mode or judgment.
+
+If you choose to run verification on your own judgment (no explicit ask, `optional` mode), say so in one sentence before starting (e.g. "Running a quick screenshot pass — slider destroy logic is the kind of thing that's easy to get wrong.") so the user can interrupt if they'd rather skip. In `required` mode, just announce in one sentence that verification is running per the skill's configuration.
+
+**Steps when running:**
+
+**1. Read `LOCAL_URL`** from project root `.env`. Block renders on the base URL because Step 11 wired it into `index.php`.
 
 **2. Screenshot via `/playwright-cli`** at three viewports. Screenshot the **element** `.{slug}-section`, not the full page. Save to `screenshots/{slug}-render-{width}.png`:
 
@@ -357,8 +405,7 @@ Check on each: layout / element ordering, spacing (proportionally, not pixel-per
 
 ## Output policy
 
-- **Silence is the default during the work.** No audit trail, no diff table, no narration of what you changed. The user reads the diff themselves.
-- **End-of-run report = screenshots + flags.** Show the three screenshots. Add up to 3 bullet flags ONLY if something needs the user's attention: a value you guessed because the design didn't specify it, a button-sizing mismatch you couldn't fix (buttons are owned by `_buttons.scss`), dead/legacy CSS you noticed, a Figma export failure, an unresolved diff after 3 iterations. If the pass was clean, screenshots only — no text.
+Silent by default. Final response = a one-line confirmation that the block files are written, plus the three screenshots if verification ran, plus up to 3 bullet flags for unresolved issues only (heading-class ambiguity, dimensions Figma omitted, Swiper-vs-static ambiguity that was resolved by asking, dead/legacy CSS noticed, button sizing diff, Figma export failure, unresolved diff after 3 iterations). If the pass was clean and verification ran, screenshots only — no extra text.
 
 ## Constraints
 
@@ -374,7 +421,7 @@ Check on each: layout / element ordering, spacing (proportionally, not pixel-per
 
 - `src/sass/style.scss` (blocks are NOT imported here)
 - Config partials (`src/sass/partials/config/*`) — flag a needed change instead
-- Other blocks (`blocks/*/`)
+- Other blocks (`blocks/*/`) — reading other blocks as a structural reference is fine; editing them is not.
 
 **Buttons** — never add or edit `.btn*` rules. Buttons are owned by `_buttons.scss`. No block-scoped `.btn` overrides. Flag button sizing diffs in the report.
 
@@ -384,6 +431,7 @@ Check on each: layout / element ordering, spacing (proportionally, not pixel-per
 - Images → `assets/images/`, never the block folder.
 - `@media` scalar form: `width >= $md`, not `map.get($grid-breakpoints, 'md')`.
 - `#{…}` interpolation required inside CSS `min()` / `max()` for Sass compatibility.
+- No `!important`, no inline styles, no jQuery.
 
 ## Gotchas
 
@@ -391,27 +439,22 @@ Check on each: layout / element ordering, spacing (proportionally, not pixel-per
 - **Container padding** is site-wide via `$container-padding-x: fluid(20, 40)`. Don't redeclare `padding-inline` on the section to match Figma side-padding — it's already handled.
 - **`fluid(0, X)` is BANNED in this skill.** Both designs are available — write real numbers. The `0` placeholder convention belongs to the two-pass workflow (`/acf-block-from-figma` → `/mobile-block`).
 - **`fluid(X, X)` is BANNED.** If mobile and desktop values match, collapse to `rem-calc(X)` (or unitless).
-- **Dead legacy BEM** — old blocks may still have `.{slug}__button-label` / `__button-icon` selectors. These are dead (current button system is `.btn .btn-icon .btn-dark .btn-md`). New blocks must NOT reintroduce `__` prefixes. Plain child names only.
-- **Top-level selectors in `.scss`** — every rule, modifier, and `@media` nests inside `.{slug}-section`. If you find yourself writing a top-level `@media` or utility, you're doing it wrong.
+- **Dead legacy BEM** — old blocks may still have `.{slug}__button-label` / `__button-icon` selectors. These are dead (current button system is `.btn .btn-icon .btn-dark .btn-md`). Flag, don't delete. New blocks must NOT reintroduce `__` prefixes. Plain child names only.
+- **Top-level selectors in legacy `.scss`** — every rule, modifier, and `@media` nests inside `.{slug}-section`. If you find yourself writing a top-level `@media` or utility, you're doing it wrong. Flag and fix only if trivial when found in legacy blocks.
 - **`LOCAL_URL`** lives in `.env` — read it, don't assume.
-- **`fluid()` scaling window** — default `md → xl` (768 → 1200). Widening the third/fourth args needs explicit user approval.
 
 ## Validation Checklist
 
 **Inputs**
 - [ ] Both URLs received; mobile first, desktop second
 - [ ] Slug determined; `blocks/{slug}/` does not already exist (if it did, user was asked)
+- [ ] Swiper decision made up front per Step 3
 
 **Scaffolding**
 - [ ] Block folder created by copying from `blocks/blank/`
 - [ ] Stale `heading-text-section` class replaced with `{slug}-section`
 - [ ] No `.css` / `.css.map` files copied from blank
 - [ ] JS file only exists if the block actually needs JS
-
-**Tokens**
-- [ ] `_typography.scss`, `_colors.scss`, `_variables.scss` read before writing SCSS
-- [ ] Figma colors matched to existing tokens where possible
-- [ ] Typography reuses existing variables/mixins
 
 **SCSS**
 - [ ] All rules nested inside `.{slug}-section { … }` — zero top-level selectors
@@ -425,6 +468,8 @@ Check on each: layout / element ordering, spacing (proportionally, not pixel-per
 - [ ] Plain child class names (`.card`, `.image`) — no BEM `__`
 - [ ] Modifiers use `--` written in full (`.tag--dark`) — no `&--` / `&__` shorthand
 - [ ] No `padding-inline` on `.{slug}-section`
+- [ ] No `.h1`–`.h6` classes in markup; no `@include font/text` in SCSS — typography inlined via `font-size: fluid(...)` / `line-height` / `font-family` / `font-weight`
+- [ ] Colors written as Figma hex inline — no token-mapping pass
 
 **Markup & A11y**
 - [ ] `.container` is the first and only direct child of `.{slug}-section`
@@ -436,9 +481,12 @@ Check on each: layout / element ordering, spacing (proportionally, not pixel-per
 **Images**
 - [ ] Extracted to `assets/images/` at 2x scale (not 1x, not in block folder)
 
-**JS**
-- [ ] File only exists if needed; no empty stubs
-- [ ] If slider — Swiper init implemented, standard nav classes, `min-inline-size: 0` on `.swiper`
+**Swiper (if wired)**
+- [ ] `.swiper-wrapper > .swiper-slide` markup; `min-inline-size: 0` on `.swiper`
+- [ ] Slide widths use `inline-size`, not `flex: 0 0 …`; `max-inline-size: 90%`
+- [ ] No `overflow-x: auto` on wrapper
+- [ ] Destroy logic matches Step 3 (matchMedia for mobile-only sliders, none for slider-everywhere)
+- [ ] Standard nav classes: `.swiper-navigation`, `.swiper-button-prev`, `.swiper-button-next`
 
 **Wiring**
 - [ ] `require` added to root `index.php`
@@ -446,7 +494,7 @@ Check on each: layout / element ordering, spacing (proportionally, not pixel-per
 - [ ] JS `<script>` added to `footer.php` (only if JS file exists)
 - [ ] Block NOT imported into `src/sass/style.scss`
 
-**Verification**
+**Verification (when run)**
 - [ ] Three screenshots saved: `{slug}-render-375.png`, `{slug}-render-768.png`, `{slug}-render-1440.png`
 - [ ] 375 matches mobile Figma, 1440 matches desktop Figma, 768 has no broken state
 - [ ] Iterated up to 3 rounds; remaining diffs (if any) reported to the user

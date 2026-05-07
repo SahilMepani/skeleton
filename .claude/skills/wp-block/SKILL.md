@@ -30,9 +30,16 @@ Two Figma URLs:
 
 Extract `fileKey` + `nodeId` from each URL: `figma.com/design/:fileKey/...?node-id=1-2` → `nodeId = 1:2`. If the user supplies only one URL, ask for the other before doing any work.
 
-## Step 1 — Fetch both designs
+## Step 1 — Fetch both designs (parallel)
 
-Call `get_design_context(fileKey, nodeId)` once per design — same call for desktop and mobile, for consistent fidelity. Each call returns screenshot + layout + typography + colors + asset URLs.
+Run four calls in parallel:
+
+1. `get_design_context(mobileFileKey, mobileNodeId)`
+2. `get_screenshot(mobileFileKey, mobileNodeId)`
+3. `get_design_context(desktopFileKey, desktopNodeId)`
+4. `get_screenshot(desktopFileKey, desktopNodeId)`
+
+`get_design_context` already returns screenshot + layout + typography + colors + asset URLs; the explicit `get_screenshot` calls are insurance for higher-fidelity image data when the bundled screenshot is lossy. Fidelity over token cost.
 
 If a response is truncated, fall back to `get_metadata` and fetch children individually for the affected design.
 

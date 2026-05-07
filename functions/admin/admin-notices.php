@@ -43,14 +43,9 @@ add_action( 'admin_notices', 'skel_show_custom_admin_notice' );
 /**
  * Check for missing ACF block preview images and display an admin notice.
  *
- * This function iterates through the defined block types, constructs the expected
- * path for their preview images within the 'acf - blocks / preview / ' folder,
- * and checks if the image file exists. If a preview image is missing for any block,
- * it adds the block's name to a list . finally, if there are missing images,
- * it displays a warning notice in the WordPress admin area listing these blocks .
- *
- * This function is hooked into the 'admin_notices' action, ensuring it runs
- * when admin pages are loaded .
+ * Iterates through the defined block types and verifies that each block has a
+ * `preview.png` inside its own folder (`blocks/{slug}/preview.png`). Lists any
+ * missing previews in a warning notice on admin pages.
  *
  * @return void
  */
@@ -62,13 +57,12 @@ function skel_check_missing_acf_block_previews(): void {
 	}
 
 	$missing_preview_blocks = array();
-	$preview_folder_path    = get_template_directory() . '/acf/blocks/preview/';
+	$blocks_root            = get_template_directory() . '/blocks/';
 
 	foreach ( $block_types as $block_name ) {
 		$sanitized_block_name = sanitize_title( $block_name );
-		$preview_image_path   = $preview_folder_path . $sanitized_block_name . '.png'; // Assuming .png extension.
+		$preview_image_path   = $blocks_root . $sanitized_block_name . '/preview.png';
 
-		// Check if the file exists.
 		if ( ! file_exists( $preview_image_path ) ) {
 			$missing_preview_blocks[] = $block_name;
 		}
@@ -78,8 +72,8 @@ function skel_check_missing_acf_block_previews(): void {
 		?>
 		<div class="notice notice-warning is-dismissible">
 			<p>
-				<strong>Heads up!</strong> The following ACF blocks are missing their preview images in
-				<code>/acf/blocks/preview/</code>:
+				<strong>Heads up!</strong> The following ACF blocks are missing their <code>preview.png</code> inside their own folder
+				(<code>blocks/{slug}/preview.png</code>):
 			</p>
 			<ul>
 				<?php
@@ -88,9 +82,8 @@ function skel_check_missing_acf_block_previews(): void {
 				}
 				?>
 			</ul>
-			<p>Please ensure a <code>.png</code> preview image with the same name as the block (e.g.,
-				<code><?php echo esc_html( sanitize_title( $missing_preview_blocks[0] ) ); ?>.png</code>)
-				exists for each listed block.
+			<p>Please add a <code>preview.png</code> inside the matching block folder (e.g.,
+				<code>blocks/<?php echo esc_html( sanitize_title( $missing_preview_blocks[0] ) ); ?>/preview.png</code>).
 			</p>
 		</div>
 		<?php
@@ -115,11 +108,11 @@ function skel_acf_field_groups_notice(): void {
 	}
 
 	$notices = array(
-		'edit-acf-field-group'      => array(
+		'edit-acf-field-group'     => array(
 			'title'   => '⚠ Do Not Edit Field Groups Here',
 			'message' => 'All ACF field groups are managed via code in this theme. Any field group added or modified here <strong>will be overwritten</strong> on the next deployment and is <strong>prohibited</strong>.',
 		),
-		'edit-acf-ui-options-page'  => array(
+		'edit-acf-ui-options-page' => array(
 			'title'   => '⚠ Do Not Edit Options Pages Here',
 			'message' => 'All ACF options pages are managed via code in this theme. Any options page added or modified here <strong>will be overwritten</strong> on the next deployment and is <strong>prohibited</strong>.',
 		),

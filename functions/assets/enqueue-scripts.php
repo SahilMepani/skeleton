@@ -45,13 +45,7 @@ add_action( 'wp_head', 'skel_inline_critical_css', 1 );
  * @return void
  */
 function skel_enqueue_scripts(): void {
-	// wp_enqueue_style( 'google-font', '//fonts.googleapis.com/css?family=Montserrat&display=swap', array(), '1.0.0', 'all' );
-
-	// Remove jquery — keep it when Gravity Forms is needed on this page.
-	// if ( ! has_block( 'acf/contact-page' ) ) {
-		wp_dequeue_script( 'jquery' );
-		wp_deregister_script( 'jquery' );
-	// }
+	// jQuery removal lives in functions/cleanup/dequeue-scripts.php.
 
 	$critical_css_path = get_template_directory() . '/critical.css';
 	$has_critical_css  = file_exists( $critical_css_path );

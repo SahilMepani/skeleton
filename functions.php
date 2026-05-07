@@ -1,54 +1,48 @@
 <?php
 /**
- * Load functions
+ * Theme bootstrap.
  *
- * @package WordPress
- * @subpackage Skeleton
+ * Loads site config, then auto-includes every PHP file under each functions/
+ * subfolder. Add a new feature by dropping a file into the right subfolder —
+ * no edits here required. Remove a feature by deleting its folder or file.
+ *
+ * Folder map:
+ *   functions/core/           — always-needed scaffolding (helpers, hooks, image sizes, nav)
+ *   functions/cleanup/        — WP defaults trimming (delete folder = restore stock WP)
+ *   functions/admin/          — admin UI behaviour (skip-dashboard, notices, claude-preview)
+ *   functions/admin/_disabled/— commented-out / opt-in admin code; NOT auto-loaded
+ *   functions/acf/            — ACF options pages and post-field group registration
+ *   functions/assets/         — enqueue / dequeue style and script handling
+ *   functions/blocks-system/  — ACF block registration plumbing + generator (under /generator)
+ *   functions/integrations/   — anything talking to a CPT or external system (AJAX, etc.)
+ *   functions/cpt/            — per-site CPT glue (protected pages, etc.)
+ *   functions/env/            — environment-gated (debugging on local, security on prod)
+ *
+ * @package Skeleton
  * @since 1.0.0
  */
 
-require get_template_directory() . '/functions/define-constants.php';
-require get_template_directory() . '/functions/register-nav-menus.php';
-require get_template_directory() . '/functions/helpers.php';
-require get_template_directory() . '/functions/svg-helpers.php';
-require get_template_directory() . '/functions/hooks.php';
-require get_template_directory() . '/functions/disable-auto-embed-script.php';
-require get_template_directory() . '/functions/disable-wp-generated-image-sizes.php';
-require get_template_directory() . '/functions/add-image-sizes.php';
-require get_template_directory() . '/functions/create-acf-block-files.php';
-require get_template_directory() . '/functions/delete-unwanted-acf-block-files.php';
-require get_template_directory() . '/functions/acf-block-helpers.php';
-require get_template_directory() . '/functions/register-acf-blocks.php';
-require get_template_directory() . '/functions/block-editor-settings.php';
-require get_template_directory() . '/functions/enqueue-scripts.php';
-require get_template_directory() . '/functions/remove-junk-from-head.php';
-require get_template_directory() . '/functions/wp-plugins.php';
-require get_template_directory() . '/functions/remove-comments.php';
-require get_template_directory() . '/functions/remove-default-post-type.php';
-require get_template_directory() . '/functions/allowed-blocks.php';
-require get_template_directory() . '/functions/disable-blocks-directory.php';
-require get_template_directory() . '/functions/skip-dashboard.php';
-require get_template_directory() . '/functions/dequeue-scripts.php';
-require get_template_directory() . '/functions/protected-pages.php';
-require get_template_directory() . '/functions/admin-notices.php';
-require get_template_directory() . '/functions/admin-ajax.php';
-require get_template_directory() . '/functions/wp-cache.php';
-require get_template_directory() . '/functions/acf-options-page.php';
-require get_template_directory() . '/functions/acf-post-fields.php';
-// require get_template_directory() . '/functions/custom-login.php';
-// require( get_template_directory() . '/functions/custom-post-types.php' );
-// require get_template_directory() . '/functions/remove-admin-menu-items.php';
+require get_template_directory() . '/config/site.php';
 
-// if ( is_login_or_registration_page() ) {
-// require_once get_template_directory() . '/functions/captcha.php';
-// }
+// Auto-load every PHP file in the listed subfolders. _disabled/ is excluded by omission.
+$skel_includes = glob(
+	get_template_directory() . '/functions/{core,cleanup,admin,acf,assets,blocks-system,integrations,cpt}/*.php',
+	GLOB_BRACE
+);
+foreach ( (array) $skel_includes as $skel_include ) {
+	require_once $skel_include;
+}
 
+// Block generator helpers live one level deeper.
+foreach ( (array) glob( get_template_directory() . '/functions/blocks-system/generator/*.php' ) as $skel_include ) {
+	require_once $skel_include;
+}
+
+// Environment-gated bootstraps.
 if ( 'local' === wp_get_environment_type() ) {
-	require get_template_directory() . '/functions/debugging.php';
+	require get_template_directory() . '/functions/env/debugging.php';
 }
 
 if ( 'production' === wp_get_environment_type() ) {
-	require get_template_directory() . '/functions/security.php';
+	require get_template_directory() . '/functions/env/security.php';
 }
-
-require get_template_directory() . '/functions/claude-preview.php';

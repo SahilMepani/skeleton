@@ -1,0 +1,34 @@
+// =====================================================================
+// SITE BRAND TOKENS — edit this file per fork.
+//
+// One source of truth for brand colors and font stacks. Other config
+// files (_colors.scss, _typography.scss) are semantic mappings that
+// pull from here, so a per-site swap touches only this file.
+// =====================================================================
+
+// --- Brand palette ---
+$site-color-primary:   #1f2261;
+$site-color-secondary: #fdba00;
+$site-color-success:   #33b469;
+$site-color-info:      #ebbc2e;
+$site-color-warning:   #ebbc2e;
+$site-color-text:      #080c11;
+
+// Optional named brand colors (use sparingly)
+$site-color-blue: #1f2261;
+
+// --- Brand font stacks ---
+$site-font-serif: 'Source Serif Pro', georgia, serif;
+$site-font-sans:
+	'Oldschool Grotesk',
+	-apple-system,
+	blinkmacsystemfont,
+	'avenir next',
+	'avenir, segoe ui',
+	'helvetica neue',
+	helvetica,
+	ubuntu,
+	roboto,
+	noto,
+	arial,
+	sans-serif;

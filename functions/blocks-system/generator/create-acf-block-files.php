@@ -7,10 +7,8 @@
  * @since 1.0.0
  */
 
-// Require the generator files.
-require_once get_template_directory() . '/functions/block-generator/generate-php.php';
-require_once get_template_directory() . '/functions/block-generator/generate-scss.php';
-require_once get_template_directory() . '/functions/block-generator/generate-json.php';
+// Generator helpers (generate-php.php, generate-scss.php, generate-json.php) are
+// auto-loaded by the theme bootstrap from functions/blocks-system/generator/.
 
 /**
  * This function checks the $block_types values, sanitizes the block names,

@@ -21,7 +21,7 @@ $heading     = get_field( 'heading' );
 $heading     = $heading ? $heading : __( 'Page not found.', 'skel' );
 $description = get_field( 'description' );
 $description = $description ? $description : __(
-	'<p>The page you're looking for might have been removed, had its name changed, or is temporarily unavailable . Please check the URL or return to the homepage . < / p > ',
+	'<p>The page you\'re looking for might have been removed, had its name changed, or is temporarily unavailable . Please check the URL or return to the homepage . < / p > ',
 	'skel'
 );
 

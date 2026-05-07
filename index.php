@@ -1,5 +1,11 @@
 <?php //phpcs:ignore file comment
 
 get_header();
-the_content();
+?>
+
+<div class="container spacing-top-medium spacing-bottom-medium">
+	<?php the_content(); ?>
+</div> <!-- .container -->
+
+<?php
 get_footer();

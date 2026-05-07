@@ -3,10 +3,8 @@
   display: grid;
   row-gap: 1.5rem;
 }
-@media (width < 768px) {
-  .two-columns-section .row.reverse > .col:nth-child(2) {
-    order: -1;
-  }
+.two-columns-section .row.reverse > .col:nth-child(2) {
+  order: -1;
 }
 @media (width >= 768px) {
   .two-columns-section .row {

@@ -93,20 +93,4 @@
 			margin-block-end: fluid(32, 48);
 		}
 	}
-
-	.text-cards-block {
-		&:not(:last-child) {
-			margin-block-end: fluid(32, 48);
-		}
-
-		.text-card-slider {
-			overflow: visible;
-		}
-
-		.icon-block {
-			inline-size: rem-calc(32);
-			block-size: rem-calc(32);
-			margin-block-end: rem-calc(12);
-		}
-	}
 }

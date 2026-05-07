@@ -1,198 +1,256 @@
 document.addEventListener("DOMContentLoaded", function() {
 (() => {
-	const btnMorePost = document.getElementById('ajax-more-post');
-	const formSearchPost = document.getElementById('ajax-search-post');
-	const loadingDots = document.querySelector('.loading-dots');
-	const ajaxListPost = document.getElementById('ajax-list-post');
+	/**
+	 * Check if the user's screen primary input device is touch or not
+	 * https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript
+	 */
+	if (!window.matchMedia('(pointer: coarse)').matches) {
+		document.documentElement.classList.add('js-no-touchevents');
+	}
 
-	// Load More Post
-	btnMorePost?.addEventListener('click', e => {
-		e.preventDefault();
-		btnMorePost.classList.add('disabled');
-		updatePost(e.currentTarget, 'filter_more');
-	});
+	// JavaScript to detect macOS and add a class to the body element
+	function detectPlatform() {
+		const platform = navigator.platform.toUpperCase();
 
-	// Filter Search Post
-	formSearchPost?.addEventListener('submit', e => {
-		e.preventDefault();
+		if (platform.indexOf('MAC') >= 0) {
+			document.documentElement.classList.add('macos');
+		} else if (platform.indexOf('WIN') >= 0) {
+			document.documentElement.classList.add('windows');
+		} else if (platform.indexOf('LINUX') >= 0) {
+			document.documentElement.classList.add('linux');
+		}
+	}
+	// Run the function on page load
+	detectPlatform();
+})();
 
-		document.getElementById('ajax-submit-block')?.classList.add('d-none');
-		document
-			.getElementById('ajax-search-clear')
-			?.classList.remove('js-active');
+(() => {
+	// ------------------------------------
+	// Constants
+	// ------------------------------------
+	const VIDEO_OPTIONS = {
+		youtube:
+			'?autoplay=1&rel=0&showinfo=0&iv_load_policy=3&modestbranding=1&disablekb=1',
+		vimeo: '?autoplay=1&title=0&byline=0&portrait=0'
+	};
 
-		formSearchPost
-			.querySelector('.loading-spinner')
-			?.classList.add('js-active');
+	// ------------------------------------
+	// Helper Functions
+	// ------------------------------------
 
-		const searchValue =
-			formSearchPost.querySelector('.input-search')?.value || '';
-		document.getElementById('filter-search').value = searchValue;
+	// Helper function to stop Lenis scroll
+	const handleLenisStop = () => {
+		if (typeof lenis !== 'undefined' && lenis.stop) {
+			lenis.stop();
+		}
+	};
 
-		updatePost(formSearchPost, 'filter_search');
-	});
+	// Helper function to start Lenis scroll
+	const handleLenisStart = () => {
+		if (typeof lenis !== 'undefined' && lenis.start) {
+			lenis.start();
+		}
+	};
 
-	// Clear Search Post
-	document
-		.getElementById('ajax-search-clear')
-		?.addEventListener('click', e => {
-			e.preventDefault();
+	// Reset media (video and iframe) inside a dialog
+	const resetMedia = dialog => {
+		const video = dialog.querySelector('.js-video');
+		if (video) {
+			video.pause();
+			video.currentTime = 0;
+		}
+		const iframe = dialog.querySelector('.js-iframe');
+		if (iframe) {
+			// Reset source to stop playing (by re-assigning the clean source if stored, or just src)
+			// Ideally we want to remove the autoplay params, but resetting src works to stop it.
+			// Best practice: store original src in data attribute if we want to reset completely,
+			// but here we just need to stop playback.
+			const src = iframe.src;
+			iframe.src = src; // Reloading stops the video
+		}
+	};
 
-			formSearchPost.querySelector('.input-search').value = '';
-			document.getElementById('filter-search').value = '';
-
-			formSearchPost.dispatchEvent(
-				new Event('submit', { bubbles: true })
-			);
-		});
-
-	// Filter Categories Post
-	document
-		.getElementById('ajax-filter-cat')
-		?.addEventListener('change', e => {
-			const selected = e.target.options[e.target.selectedIndex];
-			const term = selected?.dataset.term || '';
-			document.getElementById('filter-term').value = term;
-			updatePost(selected, 'filter_term');
-		});
-
-	function updatePost(triggerElement, triggerType) {
-		document.getElementById('alert-no-data')?.classList.add('d-none');
-		loadingDots?.classList.add('js-active');
-
-		const isSearchOrTerm =
-			triggerType === 'filter_search' || triggerType === 'filter_term';
-
-		if (isSearchOrTerm) {
-			btnMorePost?.style.setProperty('display', 'none');
-			Array.from(ajaxListPost.children).forEach(li => {
-				li.style.opacity = '0';
-				setTimeout(() => li.remove(), 400);
-			});
-			document.getElementById('filter-pagenum').value = 1;
+	// Setup media for playback
+	const playMedia = dialog => {
+		const video = dialog.querySelector('.js-video');
+		if (video) {
+			video.play();
 		}
 
-		const getVal = id => document.getElementById(id)?.value || '';
-		const getData = (el, attr) => el?.dataset?.[attr] || '';
-
-		const data = {
-			action: 'update_post_ajax',
-			cpt: getData(triggerElement, 'cpt'),
-			tax: getData(triggerElement, 'tax'),
-			term: getVal('filter-term'),
-			authorID: getVal('filter-author-id'),
-			tagID: getVal('filter-tag-id'),
-			search: getVal('filter-search'),
-			pageNumber: getVal('filter-pagenum'),
-			postsPerPage: getVal('filter-posts-per-page')
-		};
-
-		let unseenPostCount =
-			parseInt(getVal('filter-unseen-post-count'), 10) || 0;
-
-		fetch(localize_var.ajax_url, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			body: new URLSearchParams(data)
-		})
-			.then(res => res.text())
-			.then(html => {
-				const temp = document.createElement('div');
-				temp.innerHTML = html.trim();
-				const newItems = Array.from(temp.children);
-
-				if (newItems.length) {
-					loadingDots?.classList.remove('js-active');
-
-					if (triggerType === 'filter_more') {
-						unseenPostCount -= newItems.length;
-						document.getElementById('filter-pagenum').value =
-							parseInt(data.pageNumber) + 1;
-						document.getElementById(
-							'filter-unseen-post-count'
-						).value = unseenPostCount;
-
-						newItems.forEach(el => ajaxListPost.appendChild(el));
-
-						window.scrollTo({
-							top: newItems[0].offsetTop - 40,
-							behavior: 'auto'
-						});
-					}
-
-					if (triggerType === 'filter_search') {
-						setTimeout(() => {
-							if (data.search !== '') {
-								document
-									.getElementById('ajax-search-clear')
-									?.classList.add('js-active');
-							} else {
-								document
-									.getElementById('ajax-submit-block')
-									?.classList.remove('d-none');
-							}
-							formSearchPost
-								.querySelector('.loading-spinner')
-								?.classList.remove('js-active');
-							newItems.forEach(el =>
-								ajaxListPost.appendChild(el)
-							);
-							ajaxListPost.style.opacity = 1;
-							btnMorePost?.style.removeProperty('display');
-						}, 300);
-					}
-
-					if (triggerType === 'filter_term') {
-						ajaxListPost.innerHTML = '';
-						setTimeout(() => {
-							newItems.forEach(el =>
-								ajaxListPost.appendChild(el)
-							);
-							ajaxListPost.style.opacity = 1;
-							btnMorePost?.style.removeProperty('display');
-						}, 300);
-					}
-
-					if (unseenPostCount > 0) {
-						btnMorePost?.classList.remove('disabled');
-					}
-				} else {
-					if (
-						formSearchPost
-							.querySelector('.loading-spinner')
-							?.classList.contains('js-active')
-					) {
-						document
-							.getElementById('ajax-search-clear')
-							?.classList.add('js-active');
-					}
-					formSearchPost
-						.querySelector('.loading-spinner')
-						?.classList.remove('js-active');
-					document
-						.getElementById('alert-no-data')
-						?.classList.remove('d-none');
-					loadingDots?.classList.remove('js-active');
-					btnMorePost?.style.setProperty('display', 'none');
+		const iframe = dialog.querySelector('.js-iframe');
+		if (iframe) {
+			const baseVideoURL = iframe.getAttribute('data-video-url');
+			if (baseVideoURL) {
+				let embedOptions = '';
+				if (baseVideoURL.includes('youtube')) {
+					embedOptions = VIDEO_OPTIONS.youtube;
+				} else if (baseVideoURL.includes('vimeo')) {
+					embedOptions = VIDEO_OPTIONS.vimeo;
 				}
-			})
-			.catch(err => {
-				console.error('AJAX Error:', err);
-				loadingDots?.classList.remove('js-active');
-				btnMorePost?.classList.remove('disabled');
-				formSearchPost
-					.querySelector('.loading-spinner')
-					?.classList.remove('js-active');
-				const alertNoData = document.getElementById('alert-no-data');
-				if (alertNoData) {
-					alertNoData.textContent =
-						'Failed to load content. Please try again.';
-					alertNoData.classList.remove('d-none');
-				}
-			});
+				iframe.src = `${baseVideoURL}${embedOptions}`;
+			}
+		}
+	};
+
+	// ------------------------------------
+	// Event Listeners
+	// ------------------------------------
+
+	document.addEventListener('click', e => {
+		// 1. Handle Open Button
+		const openBtn = e.target.closest('.js-dialog-open');
+		if (openBtn) {
+			e.preventDefault();
+			const dialogId = openBtn.getAttribute('data-dialog');
+			const targetDialog = document.querySelector(
+				`.js-dialog[data-dialog="${dialogId}"]`
+			);
+
+			if (!targetDialog) {
+				console.warn(`No dialog found for data-dialog="${dialogId}"`);
+				return;
+			}
+
+			// Setup and Show
+			playMedia(targetDialog);
+			handleLenisStop();
+			document.body.setAttribute('inert', ''); // This might be too aggressive if not polyfilled correctly or if it affects the dialog itself (the dialog should be outside the inert root usually, or inert logic needs to be mindful).
+			// Standard HTML5 <dialog> handles inertness of background automatically when using showModal().
+			// Manually setting inert on body might make the *dialog* inert if it is a child of body.
+			// However, checking the original code, it was setting inert on body.
+			// If <dialog> is a direct child of body, `body.setAttribute('inert')` makes the dialog inert too.
+			// Assuming the modal is moved to top level or the user knows what they are doing.
+			// I will keep the original behavior but add a safety check or comment.
+			// Actually, removing 'inert' from body might be better if using showModal(), as showModal() handles backend interaction blocking.
+			// But for now, I'll stick to the user's pattern but be aware.
+
+			// Wait, if <dialog> is inside <body>, setting inert on <body> kills the dialog.
+			// The original code did `document.body.setAttribute('inert', '')`. This is likely a bug unless the dialog is moved out of body (impossible) or the script removes inert from the dialog specifically (which you can't really do if parent is inert).
+			// Maybe they meant `document.querySelector('main').setAttribute('inert', '')`?
+			// I will REMOVE the inert setting on body because `showModal()` natively handles the backdrop.
+			// The original code had it, maybe it was causing issues they didn't notice? or maybe they use a polyfill that handles it?
+			// I'll comment it out for safety unless I see a specific reason.
+			// actually, let's keep it but maybe it was a mistake in original. I will remove it to be "Standard".
+			// `showModal` makes everything else inert.
+
+			// Re-reading 'dialog-polyfill' or standard behavior: showModal makes the dialog the only interactive part.
+			// So `document.body.setAttribute('inert', '')` is definitely WRONG if the dialog is in the body.
+			// I will remove the `inert` manipulation on body.
+
+			targetDialog.showModal();
+
+			// Attach cleanup on close
+			targetDialog.addEventListener(
+				'close',
+				() => {
+					handleLenisStart();
+					// document.body.removeAttribute('inert'); // Removed counterpart
+					resetMedia(targetDialog);
+				},
+				{ once: true }
+			);
+
+			return;
+		}
+
+		// 2. Handle Close Button
+		const closeBtn = e.target.closest('.js-dialog-close');
+		if (closeBtn) {
+			const dialog = closeBtn.closest('dialog');
+			if (dialog) {
+				e.preventDefault();
+				dialog.close();
+			}
+			return;
+		}
+
+		// 3. Handle Backdrop Click
+		if (
+			e.target.tagName === 'DIALOG' &&
+			e.target.classList.contains('js-dialog')
+		) {
+			e.target.close();
+		}
+	});
+})();
+
+const lenis = new Lenis({
+	wheelMultiplier: 1.1
+});
+
+function raf(time) {
+	lenis.raf(time);
+	requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+
+/**
+ * Scroll to a specific section from #ID at the end of Window URL
+ */
+(() => {
+	const current_url = window.location.href;
+	if (current_url.includes('#')) {
+		const hashIndex = current_url.indexOf('#');
+		const elementId = current_url.substring(hashIndex + 1);
+		const element = document.getElementById(elementId);
+		if (element) {
+			setTimeout(() => {
+				element.scrollIntoView({
+					behavior: 'smooth',
+					block: 'center'
+				});
+			}, 100);
+		}
 	}
+})();
+
+(() => {
+	const siteHeader = document.querySelector('.site-header');
+	if (!siteHeader) return;
+
+	// Variable to store the last known vertical scroll position
+	let lastScrollTop = 0;
+	// Flag to prevent multiple requestAnimationFrame calls
+	let ticking = false;
+
+	// Function to handle the scroll event
+	function handleScroll() {
+		// Get the current scroll position
+		const st = window.pageYOffset || document.documentElement.scrollTop;
+		// Determine the scroll direction
+		const direction = st >= lastScrollTop ? 'down' : 'up';
+		// Toggle site header class
+		if (siteHeader) {
+			if (st > lastScrollTop) {
+				// scrolling down
+				siteHeader.classList.add('js-user-scroll-down');
+				siteHeader.classList.remove('js-user-scroll-up');
+			} else if (st < lastScrollTop) {
+				// scrolling up
+				siteHeader.classList.add('js-user-scroll-up');
+				siteHeader.classList.remove('js-user-scroll-down');
+			}
+		}
+		// Update lastScrollTop to the current position, ensuring it is non-negative
+		lastScrollTop = st <= 0 ? 0 : st;
+		// Reset the ticking flag
+		ticking = false;
+	}
+
+	// Function to be called on the scroll event
+	function onScroll() {
+		// If a scroll event is not already being processed
+		if (!ticking) {
+			// Schedule handleScroll to be called just before the next repaint
+			requestAnimationFrame(handleScroll);
+			// Set the ticking flag to true to prevent multiple calls
+			ticking = true;
+		}
+	}
+
+	// Attach the onScroll function to the scroll event
+	window.addEventListener('scroll', onScroll);
 })();
 
 (() => {
@@ -409,19 +467,68 @@ document.addEventListener("DOMContentLoaded", function() {
 		window.addEventListener('orientationchange', rebuild, {
 			passive: true
 		});
-		window.addEventListener('resize', rebuild);
+
+		let rebuildTimer;
+		window.addEventListener('resize', () => {
+			clearTimeout(rebuildTimer);
+			rebuildTimer = setTimeout(rebuild, 200);
+		}, { passive: true });
 
 		// If supported, also listen to visualViewport changes
 		if (window.visualViewport) {
-			window.visualViewport.addEventListener('resize', rebuild, {
-				passive: true
-			});
+			let vpTimer;
+			window.visualViewport.addEventListener('resize', () => {
+				clearTimeout(vpTimer);
+				vpTimer = setTimeout(rebuild, 200);
+			}, { passive: true });
 		}
 	} else {
 		console.warn(
 			'[InView] IntersectionObserver not supported by this browser.'
 		);
 	}
+})();
+
+(() => {
+	const targets = document.querySelectorAll('[data-modal-backdrop]');
+	if (!targets.length) return;
+
+	const body = document.body;
+	let savedScrollY = 0;
+	let isLocked = false;
+
+	function lock() {
+		if (isLocked) return;
+		isLocked = true;
+		savedScrollY = window.scrollY || window.pageYOffset || 0;
+		body.style.position = 'fixed';
+		body.style.insetInlineStart = '0';
+		body.style.insetInlineEnd = '0';
+		body.style.insetBlockStart = `-${savedScrollY}px`;
+	}
+
+	function unlock() {
+		if (!isLocked) return;
+		isLocked = false;
+		body.style.position = '';
+		body.style.insetInlineStart = '';
+		body.style.insetInlineEnd = '';
+		body.style.insetBlockStart = '';
+		window.scrollTo({ top: savedScrollY, left: 0, behavior: 'instant' });
+	}
+
+	function update() {
+		const anyActive = Array.from(targets).some(el =>
+			el.classList.contains('js-active')
+		);
+		if (anyActive) lock();
+		else unlock();
+	}
+
+	const observer = new MutationObserver(update);
+	targets.forEach(el => {
+		observer.observe(el, { attributes: true, attributeFilter: ['class'] });
+	});
 })();
 
 (() => {
@@ -708,147 +815,199 @@ document.addEventListener("DOMContentLoaded", function() {
 })();
 
 (() => {
-	/**
-	 * Check if the user's screen primary input device is touch or not
-	 * https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript
-	 */
-	if (!window.matchMedia('(pointer: coarse)').matches) {
-		document.documentElement.classList.add('js-no-touchevents');
-	}
+	const btnMorePost = document.getElementById('ajax-more-post');
+	const formSearchPost = document.getElementById('ajax-search-post');
+	const loadingDots = document.querySelector('.loading-dots');
+	const ajaxListPost = document.getElementById('ajax-list-post');
 
-	// JavaScript to detect macOS and add a class to the body element
-	function detectPlatform() {
-		const platform = navigator.platform.toUpperCase();
-
-		if (platform.indexOf('MAC') >= 0) {
-			document.documentElement.classList.add('macos');
-		} else if (platform.indexOf('WIN') >= 0) {
-			document.documentElement.classList.add('windows');
-		} else if (platform.indexOf('LINUX') >= 0) {
-			document.documentElement.classList.add('linux');
-		}
-	}
-	// Run the function on page load
-	detectPlatform();
-})();
-
-(() => {
-	// Select all dialog open buttons
-	const allDialogOpeners = document.querySelectorAll('.js-dialog-open');
-
-	// Helper function to stop Lenis scroll
-	const handleLenisStop = () => {
-		if (typeof lenis !== 'undefined' && lenis.stop) {
-			lenis.stop();
-		}
-	};
-
-	// Helper function to start Lenis scroll
-	const handleLenisStart = () => {
-		if (typeof lenis !== 'undefined' && lenis.start) {
-			lenis.start();
-		}
-	};
-
-	// Helper function to reset media (video and iframe)
-	const resetMedia = dialog => {
-		const video = dialog.querySelector('.js-video');
-		if (video) {
-			video.pause();
-			video.currentTime = 0;
-		}
-		const iframe = dialog.querySelector('.js-iframe');
-		if (iframe) {
-			const newIframe = iframe.cloneNode(true);
-			iframe.parentNode.replaceChild(newIframe, iframe);
-		}
-	};
-
-	allDialogOpeners.forEach(dialogOpenButton => {
-		// Get the unique identifier from the data-dialog attribute of the open button
-		const dialogId = dialogOpenButton.getAttribute('data-dialog');
-
-		// Find the corresponding dialog element using the data-dialog ID
-		const targetDialog = document.querySelector(
-			`.js-dialog[data-dialog="${dialogId}"]`
-		);
-
-		// If no target dialog found, skip this opener
-		if (!targetDialog) {
-			console.warn(`No dialog found for data-dialog="${dialogId}"`);
-			return;
-		}
-
-		// Find elements specific to this dialog instance
-		const video = targetDialog.querySelector('.js-video');
-		const iframe = targetDialog.querySelector('.js-iframe');
-		const dialogCloseButton =
-			targetDialog.querySelector('.js-dialog-close');
-
-		dialogOpenButton.addEventListener('click', () => {
-			handleLenisStop();
-			document.body.setAttribute('inert', ''); // Makes background content unclickable/unscrollable
-
-			// Video/Iframe auto-play logic
-			if (video) {
-				video.play();
-			}
-			if (iframe) {
-				const baseVideoURL = iframe.getAttribute('data-video-url');
-				const youtubeOptions =
-					'?autoplay=1&rel=0&showinfo=0&iv_load_policy=3&modestbranding=1&disablekb=1';
-				const vimeoOptions = '?autoplay=1&title=0&byline=0&portrait=0';
-				const embedOptions =
-					baseVideoURL && baseVideoURL.includes('youtube')
-						? youtubeOptions
-						: baseVideoURL && baseVideoURL.includes('vimeo')
-							? vimeoOptions
-							: '';
-				const autoplayVideoURL = baseVideoURL
-					? `${baseVideoURL}${embedOptions}`
-					: ''; // Ensure baseVideoURL exists
-				iframe.src = autoplayVideoURL;
-			}
-
-			// Show dialog
-			targetDialog.showModal();
-
-			// Attach close event to the specific close button within this dialog
-			// We attach it here because the dialog might be dynamically added or its close button might change.
-			// Using { once: true } ensures the listener is automatically removed after first click.
-			if (dialogCloseButton) {
-				dialogCloseButton.addEventListener(
-					'click',
-					function closeDialogHandler() {
-						// Named function for clarity
-						handleLenisStart();
-						document.body.removeAttribute('inert');
-						resetMedia(targetDialog);
-						targetDialog.close();
-					},
-					{ once: true }
-				);
-			}
-		});
-
-		// Close when clicking outside the dialog content (on the dialog backdrop)
-		targetDialog.addEventListener('click', event => {
-			if (event.target === targetDialog) {
-				// Checks if the click was directly on the <dialog> element itself (the backdrop)
-				handleLenisStart();
-				document.body.removeAttribute('inert');
-				resetMedia(targetDialog);
-				targetDialog.close();
-			}
-		});
-
-		// Handle dialog's native 'close' event (e.g., when pressing ESC key)
-		targetDialog.addEventListener('close', () => {
-			handleLenisStart();
-			document.body.removeAttribute('inert');
-			resetMedia(targetDialog);
-		});
+	// Load More Post
+	btnMorePost?.addEventListener('click', e => {
+		e.preventDefault();
+		btnMorePost.classList.add('disabled');
+		updatePost(e.currentTarget, 'filter_more');
 	});
+
+	// Filter Search Post
+	formSearchPost?.addEventListener('submit', e => {
+		e.preventDefault();
+
+		document.getElementById('ajax-submit-block')?.classList.add('d-none');
+		document
+			.getElementById('ajax-search-clear')
+			?.classList.remove('js-active');
+
+		formSearchPost
+			.querySelector('.loading-spinner')
+			?.classList.add('js-active');
+
+		const searchValue =
+			formSearchPost.querySelector('.input-search')?.value || '';
+		document.getElementById('filter-search').value = searchValue;
+
+		updatePost(formSearchPost, 'filter_search');
+	});
+
+	// Clear Search Post
+	document
+		.getElementById('ajax-search-clear')
+		?.addEventListener('click', e => {
+			e.preventDefault();
+
+			formSearchPost.querySelector('.input-search').value = '';
+			document.getElementById('filter-search').value = '';
+
+			formSearchPost.dispatchEvent(
+				new Event('submit', { bubbles: true })
+			);
+		});
+
+	// Filter Categories Post
+	document
+		.getElementById('ajax-filter-cat')
+		?.addEventListener('change', e => {
+			const selected = e.target.options[e.target.selectedIndex];
+			const term = selected?.dataset.term || '';
+			document.getElementById('filter-term').value = term;
+			updatePost(selected, 'filter_term');
+		});
+
+	function updatePost(triggerElement, triggerType) {
+		document.getElementById('alert-no-data')?.classList.add('d-none');
+		loadingDots?.classList.add('js-active');
+
+		const isSearchOrTerm =
+			triggerType === 'filter_search' || triggerType === 'filter_term';
+
+		if (isSearchOrTerm) {
+			btnMorePost?.style.setProperty('display', 'none');
+			Array.from(ajaxListPost.children).forEach(li => {
+				li.style.opacity = '0';
+				setTimeout(() => li.remove(), 400);
+			});
+			document.getElementById('filter-pagenum').value = 1;
+		}
+
+		const getVal = id => document.getElementById(id)?.value || '';
+		const getData = (el, attr) => el?.dataset?.[attr] || '';
+
+		const data = {
+			action: 'update_post_ajax',
+			cpt: getData(triggerElement, 'cpt'),
+			tax: getData(triggerElement, 'tax'),
+			term: getVal('filter-term'),
+			authorID: getVal('filter-author-id'),
+			tagID: getVal('filter-tag-id'),
+			search: getVal('filter-search'),
+			pageNumber: getVal('filter-pagenum'),
+			postsPerPage: getVal('filter-posts-per-page')
+		};
+
+		let unseenPostCount =
+			parseInt(getVal('filter-unseen-post-count'), 10) || 0;
+
+		fetch(localize_var.ajax_url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			body: new URLSearchParams(data)
+		})
+			.then(res => res.text())
+			.then(html => {
+				const temp = document.createElement('div');
+				temp.innerHTML = html.trim();
+				const newItems = Array.from(temp.children);
+
+				if (newItems.length) {
+					loadingDots?.classList.remove('js-active');
+
+					if (triggerType === 'filter_more') {
+						unseenPostCount -= newItems.length;
+						document.getElementById('filter-pagenum').value =
+							parseInt(data.pageNumber) + 1;
+						document.getElementById(
+							'filter-unseen-post-count'
+						).value = unseenPostCount;
+
+						newItems.forEach(el => ajaxListPost.appendChild(el));
+
+						window.scrollTo({
+							top: newItems[0].offsetTop - 40,
+							behavior: 'auto'
+						});
+					}
+
+					if (triggerType === 'filter_search') {
+						setTimeout(() => {
+							if (data.search !== '') {
+								document
+									.getElementById('ajax-search-clear')
+									?.classList.add('js-active');
+							} else {
+								document
+									.getElementById('ajax-submit-block')
+									?.classList.remove('d-none');
+							}
+							formSearchPost
+								.querySelector('.loading-spinner')
+								?.classList.remove('js-active');
+							newItems.forEach(el =>
+								ajaxListPost.appendChild(el)
+							);
+							ajaxListPost.style.opacity = 1;
+							btnMorePost?.style.removeProperty('display');
+						}, 300);
+					}
+
+					if (triggerType === 'filter_term') {
+						ajaxListPost.innerHTML = '';
+						setTimeout(() => {
+							newItems.forEach(el =>
+								ajaxListPost.appendChild(el)
+							);
+							ajaxListPost.style.opacity = 1;
+							btnMorePost?.style.removeProperty('display');
+						}, 300);
+					}
+
+					if (unseenPostCount > 0) {
+						btnMorePost?.classList.remove('disabled');
+					}
+				} else {
+					if (
+						formSearchPost
+							.querySelector('.loading-spinner')
+							?.classList.contains('js-active')
+					) {
+						document
+							.getElementById('ajax-search-clear')
+							?.classList.add('js-active');
+					}
+					formSearchPost
+						.querySelector('.loading-spinner')
+						?.classList.remove('js-active');
+					document
+						.getElementById('alert-no-data')
+						?.classList.remove('d-none');
+					loadingDots?.classList.remove('js-active');
+					btnMorePost?.style.setProperty('display', 'none');
+				}
+			})
+			.catch(err => {
+				console.error('AJAX Error:', err);
+				loadingDots?.classList.remove('js-active');
+				btnMorePost?.classList.remove('disabled');
+				formSearchPost
+					.querySelector('.loading-spinner')
+					?.classList.remove('js-active');
+				const alertNoData = document.getElementById('alert-no-data');
+				if (alertNoData) {
+					alertNoData.textContent =
+						'Failed to load content. Please try again.';
+					alertNoData.classList.remove('d-none');
+				}
+			});
+	}
 })();
 
 /**
@@ -867,7 +1026,11 @@ if (siteHeader) {
 			);
 		};
 		resizeHeaderHeight();
-		window.addEventListener('resize', resizeHeaderHeight);
+		let headerTimer;
+		window.addEventListener('resize', () => {
+			clearTimeout(headerTimer);
+			headerTimer = setTimeout(resizeHeaderHeight, 100);
+		}, { passive: true });
 	})();
 }
 
@@ -972,19 +1135,15 @@ if (siteHeader) {
 				// Toggle 'js-active' class on the parent <li>
 				// The 'this' context refers to the <chevron>, so its parentElement is the <a>,
 				// and the parentElement of the <a> is the <li>.
-				this.parentElement.parentElement.classList.toggle(activeClass);
+				this.closest('li').classList.toggle(activeClass);
 
 				// IMPORTANT: Manage ARIA for the dropdown
 				// Find the direct child <ul> (submenu) of the <li>
 				const subMenu =
-					this.parentElement.parentElement.querySelector(
-						'ul.header-sub-menu'
-					);
+					this.closest('li').querySelector('ul.header-sub-menu');
 				if (subMenu) {
 					const isExpanded =
-						this.parentElement.parentElement.classList.contains(
-							activeClass
-						);
+						this.closest('li').classList.contains(activeClass);
 					// Set aria-expanded on the <a> (or the chevron, or the <li> if that's what controls the dropdown)
 					// For a better experience, aria-expanded should be on the interactive element (the <a> or the span acting as a button).
 					// And aria-hidden on the dropdown content (the <ul>).
@@ -995,17 +1154,6 @@ if (siteHeader) {
 		});
 	}
 })();
-
-const lenis = new Lenis({
-	wheelMultiplier: 1.1
-});
-
-function raf(time) {
-	lenis.raf(time);
-	requestAnimationFrame(raf);
-}
-
-requestAnimationFrame(raf);
 
 /*==============================================
 =            Magnific Popup - Basic            =
@@ -1164,26 +1312,6 @@ requestAnimationFrame(raf);
 // 	}
 // }
 
-/**
- * Scroll to a specific section from #ID at the end of Window URL
- */
-(() => {
-	const current_url = window.location.href;
-	if (current_url.includes('#')) {
-		const hashIndex = current_url.indexOf('#');
-		const elementId = current_url.substring(hashIndex + 1);
-		const element = document.getElementById(elementId);
-		if (element) {
-			setTimeout(() => {
-				element.scrollIntoView({
-					behavior: 'smooth',
-					block: 'center'
-				});
-			}, 100);
-		}
-	}
-})();
-
 (() => {
 	if (typeof Swiper === 'undefined') {
 		console.warn('Swiper is not loaded');
@@ -1319,54 +1447,6 @@ requestAnimationFrame(raf);
 			swiperInstance.slideTo(swiperThumbInstance.realIndex);
 		});
 	});
-})();
-
-(() => {
-	const siteHeader = document.querySelector('.site-header');
-	if (!siteHeader) return;
-
-	// Variable to store the last known vertical scroll position
-	let lastScrollTop = 0;
-	// Flag to prevent multiple requestAnimationFrame calls
-	let ticking = false;
-
-	// Function to handle the scroll event
-	function handleScroll() {
-		// Get the current scroll position
-		const st = window.pageYOffset || document.documentElement.scrollTop;
-		// Determine the scroll direction
-		const direction = st >= lastScrollTop ? 'down' : 'up';
-		// Toggle site header class
-		if (siteHeader) {
-			if (st > lastScrollTop) {
-				// scrolling down
-				siteHeader.classList.add('js-user-scroll-down');
-				siteHeader.classList.remove('js-user-scroll-up');
-			} else if (st < lastScrollTop) {
-				// scrolling up
-				siteHeader.classList.add('js-user-scroll-up');
-				siteHeader.classList.remove('js-user-scroll-down');
-			}
-		}
-		// Update lastScrollTop to the current position, ensuring it is non-negative
-		lastScrollTop = st <= 0 ? 0 : st;
-		// Reset the ticking flag
-		ticking = false;
-	}
-
-	// Function to be called on the scroll event
-	function onScroll() {
-		// If a scroll event is not already being processed
-		if (!ticking) {
-			// Schedule handleScroll to be called just before the next repaint
-			requestAnimationFrame(handleScroll);
-			// Set the ticking flag to true to prevent multiple calls
-			ticking = true;
-		}
-	}
-
-	// Attach the onScroll function to the scroll event
-	window.addEventListener('scroll', debounce(onScroll, 10));
 })();
 
 });

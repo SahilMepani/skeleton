@@ -1,5 +1,6 @@
 {
 	"title": "Flexible Editor",
+	"post_types": ["page", "post", "product"],
 	"fields": [
 		{
 			"key": "field_flexible_editor_block_options",
@@ -26,7 +27,7 @@
 					"display": "block",
 					"sub_fields": [
 						{
-							"key": "field_flexible_editor_spacing",
+							"key": "field_flexible_editor_spacing_value",
 							"label": "Spacing",
 							"name": "spacing",
 							"type": "number"
@@ -217,39 +218,6 @@
 											}
 										]
 									]
-								}
-							]
-						}
-					]
-				},
-				{
-					"key": "layout_text_cards",
-					"name": "text_cards",
-					"label": "Text Cards",
-					"display": "block",
-					"sub_fields": [
-						{
-							"key": "field_flexible_editor_text_cards",
-							"label": "Cards",
-							"name": "text_cards",
-							"type": "repeater",
-							"layout": "block",
-							"button_label": "Add Card",
-							"sub_fields": [
-								{
-									"key": "field_flexible_editor_icon",
-									"label": "Icon",
-									"name": "icon",
-									"type": "image",
-									"return_format": "url",
-									"preview_size": "w200",
-									"library": "all"
-								},
-								{
-									"key": "field_flexible_editor_card_text",
-									"label": "Text",
-									"name": "text",
-									"type": "textarea"
 								}
 							]
 						}

@@ -119,6 +119,17 @@ function skel_render_block_section_open( array $dev_options, string $section_cla
 }
 
 /**
+ * Render block section closing tag.
+ *
+ * Pair with skel_render_block_section_open(). Exists for symmetry so block
+ * templates open and close with helper calls instead of mixing helper + raw
+ * markup. Use this when the block's only top-level wrapper is the section.
+ */
+function skel_render_block_section_close(): void {
+	echo '</section>';
+}
+
+/**
  * Render ACF link field as HTML anchor tag.
  *
  * @param array  $link         ACF link field array.

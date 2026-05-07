@@ -1,21 +1,11 @@
 @use 'sass:map';
 @use '../mixins/rem' as *;
 @use 'colors' as *;
+@use 'site' as *;
 
-$serif: 'Source Serif Pro', georgia, serif;
-$sans-serif:
-	'Oldschool Grotesk',
-	-apple-system,
-	blinkmacsystemfont,
-	'avenir next',
-	'avenir, segoe ui',
-	'helvetica neue',
-	helvetica,
-	ubuntu,
-	roboto,
-	noto,
-	arial,
-	sans-serif;
+// Brand font stacks come from _site.scss — change them there per fork.
+$serif:      $site-font-serif;
+$sans-serif: $site-font-sans;
 $body-font-size: rem-calc(16);
 $body-font-family: $serif;
 $heading-font-family: $sans-serif;

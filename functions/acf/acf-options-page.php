@@ -69,67 +69,27 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 
 /**
  * Load ACF options field groups from JSON files in /options/.
+ * Each JSON file must declare 'title', 'options_page', and 'fields'.
  */
 function skel_load_acf_json_options() {
-	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
-		return;
-	}
-
-	$options_dir = get_template_directory() . '/options';
-
-	if ( ! is_dir( $options_dir ) ) {
-		return;
-	}
-
-	$json_files = glob( $options_dir . '/*.json' );
-
-	if ( empty( $json_files ) ) {
-		return;
-	}
-
-	foreach ( $json_files as $json_file ) {
-		$json_content = file_get_contents( $json_file );
-		if ( false === $json_content ) {
-			continue;
-		}
-
-		$slug = sanitize_key( basename( $json_file, '.json' ) );
-		$data = json_decode( $json_content, true );
-
-		if ( json_last_error() !== JSON_ERROR_NONE ) {
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( 'Skeleton: Invalid JSON in ' . basename( $json_file ) . ' — ' . json_last_error_msg() );
+	skel_register_acf_json_groups(
+		'options',
+		'group_options_',
+		function ( array $data ): ?array {
+			if ( ! isset( $data['options_page'] ) ) {
+				return null;
 			}
-			continue;
-		}
-
-		if ( ! $data || ! isset( $data['title'], $data['options_page'], $data['fields'] ) ) {
-			continue;
-		}
-
-		acf_add_local_field_group(
-			array(
-				'key'                   => 'group_options_' . $slug,
-				'title'                 => $data['title'],
-				'fields'                => $data['fields'],
-				'location'              => array(
+			return array(
+				array(
 					array(
-						array(
-							'param'    => 'options_page',
-							'operator' => '==',
-							'value'    => $data['options_page'],
-						),
+						'param'    => 'options_page',
+						'operator' => '==',
+						'value'    => $data['options_page'],
 					),
 				),
-				'menu_order'            => $data['menu_order'] ?? 0,
-				'position'              => 'normal',
-				'style'                 => 'default',
-				'label_placement'       => 'top',
-				'instruction_placement' => 'label',
-				'active'                => true,
-			)
-		);
-	}
+			);
+		}
+	);
 }
 add_action( 'acf/init', 'skel_load_acf_json_options' );
 

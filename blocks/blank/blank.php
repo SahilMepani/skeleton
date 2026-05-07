@@ -11,12 +11,9 @@ if ( ! skel_should_display_block() ) {
 
 // Developer options.
 $dev_options = skel_get_block_developer_options();
-?>
 
-<section
-	class="{slug}-section section <?php echo esc_attr( "{$dev_options['display_class']} {$dev_options['spacing_top']} {$dev_options['spacing_bottom']} {$dev_options['custom_classes']}" ); ?>"
-	style="<?php echo esc_attr( "{$dev_options['spacing_top_custom']} {$dev_options['spacing_bottom_custom']} {$dev_options['custom_css']}" ); ?>"
-	id="<?php echo esc_attr( $dev_options['unique_id'] ); ?>">
+skel_render_block_section_open( $dev_options, '{slug}-section' );
+?>
 
 	<div class="container">
 
@@ -24,4 +21,4 @@ $dev_options = skel_get_block_developer_options();
 
 	</div>
 
-</section>
+<?php skel_render_block_section_close(); ?>

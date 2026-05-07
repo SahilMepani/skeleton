@@ -1,4 +1,4 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 
 .gform_button {
 	line-height: rem-calc(19);
@@ -14,7 +14,6 @@ div.gform_wrapper.gravity-theme {
 	}
 
 	.gform_description {
-
 	}
 
 	.gform_body {
@@ -58,7 +57,8 @@ div.gform_wrapper.gravity-theme {
 			block-size: rem-calc(49);
 		}
 
-		.chosen-choices {}
+		.chosen-choices {
+		}
 
 		.gfield_required {
 			font-size: rem-calc(16);
@@ -82,7 +82,7 @@ div.gform_wrapper.gravity-theme {
 				input {
 					display: none;
 
-					&:checked+label {
+					&:checked + label {
 						&::before {
 							background-color: $primary-color;
 							background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12' /%3E%3C/svg%3E");
@@ -121,7 +121,8 @@ div.gform_wrapper.gravity-theme {
 			padding: rem-calc(7) rem-calc(10);
 		}
 
-		.chosen-choices {}
+		.chosen-choices {
+		}
 
 		.gfield_consent_description,
 		.gfield_description {
@@ -137,7 +138,7 @@ div.gform_wrapper.gravity-theme {
 				input {
 					display: none;
 
-					&:checked+label {
+					&:checked + label {
 						&::before {
 							background-color: $primary-color;
 							background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12' /%3E%3C/svg%3E");
@@ -197,6 +198,7 @@ div.gform_wrapper.gravity-theme {
 			font-family: $body-font-family;
 			font-size: rem-calc(14);
 			font-weight: 400;
+			letter-spacing: unset;
 			text-align: center;
 			padding: 0;
 		}

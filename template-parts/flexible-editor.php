@@ -9,7 +9,7 @@ if ( is_array( $flexible_editor ) && ! empty( $flexible_editor ) ) :
 
 				break;
 			case 'text':
-				echo '<div class="text-block" data-inview data-aos="fade-up">' . wp_kses_post( $layout['text'] ) . '</div>';
+				echo '<div class="text-block visual-editor-section" data-inview data-aos="fade-up">' . wp_kses_post( $layout['text'] ) . '</div>';
 
 				break;
 			case 'heading':
@@ -110,56 +110,7 @@ if ( is_array( $flexible_editor ) && ! empty( $flexible_editor ) ) :
 				echo '</div>';
 
 				break;
-
-			case 'text_cards':
-				$text_cards = $layout['text_cards'];
-
-				echo '<div class="text-cards-block">';
-				if ( $text_cards ) {
-					echo '<div class="swiper text-card-slider">';
-					echo '<div class="swiper-wrapper" data-inview>';
-					foreach ( $text_cards as $card ) {
-						$icon = $card['icon'] ?? '';
-						$text = $card['text'] ?? '';
-						printf(
-							'<div class="swiper-slide" data-aos-stagger-item data-aos="fade-up">
-								<div class="card">
-									<div class="icon-block">
-										<img src="%s" alt="" class="img-responsive">
-									</div>
-									<p class="text">%s</p>
-								</div>
-							</div>',
-							esc_url( $icon ),
-							esc_html( $text )
-						);
-					}
-					echo '</div>';
-					?>
-				<div class="swiper-controls" data-inview data-aos="fade">
-					<div class="swiper-pagination swiper-pagination-line style-dark-blue"></div>
-
-					<?php
-					if ( count( $text_cards ) > 1 ) {
-						get_template_part(
-							'template-parts/swiper-navigation',
-							null,
-							array(
-								'style' => 'light-blue',
-							)
-						);
-					}
-					?>
-				</div> <!-- .swiper-controls -->
-					<?php
-					echo '</div>';
-				}
-				echo '</div>';
-
-				break;
-
 		}
 
 endforeach;
 endif;
-?>

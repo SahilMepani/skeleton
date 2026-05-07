@@ -79,9 +79,15 @@ function update_post() {
 		$args['s'] = $data['search'];
 	}
 
+	// Reject CPTs not declared in skel_ajax_cpts().
+	if ( ! in_array( $data['cpt'], skel_ajax_cpts(), true ) && 'post' !== $data['cpt'] ) {
+		wp_send_json_error( 'Invalid post type.' );
+		return;
+	}
+
 	// Add query optimizations.
 	$args['no_found_rows']          = true;
-	$args['update_post_meta_cache'] = in_array( $data['cpt'], array( 'insights', 'knowledge-base' ), true );
+	$args['update_post_meta_cache'] = in_array( $data['cpt'], skel_ajax_cpts(), true );
 	$args['update_post_term_cache'] = false;
 
 	// Generate cache key based on query arguments.
@@ -105,15 +111,11 @@ function update_post() {
 		while ( $custom_query->have_posts() ) :
 			$custom_query->the_post();
 
-			// Output template part based on post type.
-			if ( 'post' === $data['cpt'] ) {
-				get_template_part( 'template-parts/post-card' );
-			} elseif ( 'project' === $data['cpt'] ) {
-				get_template_part( 'template-parts/project-card' );
-			} elseif ( 'insights' === $data['cpt'] ) {
-				get_template_part( 'template-parts/insight-card' );
-			} elseif ( 'knowledge-base' === $data['cpt'] ) {
-				get_template_part( 'template-parts/kb-article-card' );
+			// Render template-parts/{cpt}-card.php (e.g. post-card, project-card).
+			// To support a new CPT: add it to skel_ajax_cpts() and create the matching card file.
+			$card_slug = sanitize_file_name( $data['cpt'] ) . '-card';
+			if ( locate_template( "template-parts/{$card_slug}.php" ) ) {
+				get_template_part( "template-parts/{$card_slug}" );
 			}
 
 		endwhile;

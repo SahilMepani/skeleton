@@ -6,12 +6,14 @@ alwaysApply: false
 
 # PHP Reference
 
+<!-- @project-config:prefix-references -->
 ## Naming
 ```php
 function skel_function_name() { }  // Prefix: skel_
 $variable_name = 'value';
 __( 'Text', 'skel' );              // Domain: 'skel'
 ```
+<!-- @end -->
 
 ## Formatting
 ```php

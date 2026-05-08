@@ -16,7 +16,9 @@
 
 # Skeleton Theme
 
+<!-- @project-config:identity -->
 **Domain**: `'skel'` | **Prefix**: `skel_` | **Indent**: Tabs
+<!-- @end -->
 WordPress theme with ACF blocks.
 
 # AI Coding Guidelines
@@ -56,10 +58,12 @@ Read files in `.cursor/rules/` **only when needed for the specific task**:
 
 ## Commands
 
+<!-- @project-config:npm-scripts -->
 ```bash
-npm run dev    # Dev + BrowserSync
-npm run build  # Production
+npm start          # Watch mode (dev build + BrowserSync)
+npm run build      # Production build (NODE_ENV=production)
 ```
+<!-- @end -->
 
 ## Critical Rules
 

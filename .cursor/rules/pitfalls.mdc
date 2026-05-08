@@ -64,9 +64,11 @@ Always prefix field keys: `field_{block_slug}_{field_name}`
 { "key": "field_hero_slider_title" }
 ```
 
+<!-- @project-config:auto-injected-fields -->
 ## 4. Auto-Injected Fields
 
 Settings / Spacing / Display / Custom CSS / Classes / Unique ID are auto-injected at block registration. Never add these to the block's `.json` file.
+<!-- @end -->
 
 ## 5. Swiper Inside Flex/Grid Parent
 

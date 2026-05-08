@@ -91,6 +91,7 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 </section>
 ```
 
+<!-- @project-config:block-section-naming -->
 ## HTML Structure
 
 | Element         | Class Pattern     | Example                           |
@@ -100,6 +101,7 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 | Image container | `img-cover-block` | With `img-cover` class on `<img>` |
 | Grid container  | `*-grid`          | `items-grid`, `cards-grid`        |
 | Row container   | `row`             | Flex row with columns             |
+<!-- @end -->
 
 ## Data Attributes
 

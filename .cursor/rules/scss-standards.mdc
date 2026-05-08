@@ -81,13 +81,18 @@ fluid(16, 24, md, xl)     // Custom breakpoints
 
 ## Breakpoints
 
+<!-- @project-config:breakpoint-tokens -->
 ```scss
+$xs: 0px;
+$ph: 375px;
 $sm: 576px;
 $md: 768px;
 $lg: 1024px;
 $xl: 1200px;
 $xxl: 1400px;
+$xxxl: 1600px;
 ```
+<!-- @end -->
 
 **No custom breakpoints.** You cannot add breakpoints of your own. Every `@media` query must use one of the breakpoints defined in `src/sass/partials/config/_breakpoints.scss` (`$xs`, `$ph`, `$sm`, `$md`, `$lg`, `$xl`, `$xxl`, `$xxxl`), and must reference the **variable name** — never the raw px value.
 
@@ -129,7 +134,9 @@ $xxl: 1400px;
 
 **Remember:** `@media` is for _layout changes_ (grid columns, flex direction, visibility), not _value changes_. Use `fluid()` for values that scale.
 
+<!-- @project-config:legacy-partials -->
 **Legacy exception:** A few pre-existing partials (`src/sass/partials/components/_header-menu.scss`, `src/sass/partials/mixins/_miscellaneous.scss` — the `swiper-cards-overflow-down` mixin) still use desktop-first `@media (width < $bp)` because rewriting them carries regression risk on live, shared UI. Mobile-first is **mandatory for all new code**, all block SCSS, and any partial you touch for unrelated reasons. Don't copy the legacy pattern into new work.
+<!-- @end -->
 
 ## Exceptions
 
@@ -139,23 +146,32 @@ $xxl: 1400px;
 
 Before writing any rule using a color, font, font-size, spacing, breakpoint, z-index, or easing value, check the config partials and reuse what already exists. If a new shared token is needed, add it to the matching config file rather than hardcoding inline.
 
+<!-- @project-config:typography-tokens -->
 **`src/sass/partials/config/_typography.scss`**
 
-- Vars: `$serif`, `$sans-serif`, `$body-font-size`, `$body-font-family`, `$heading-font-family`, `$paragraph-line-height`, `$paragraph-margin-block-end`, `$heading-margin-block-end`
-- Map: `$typography-styles` (h1–h6)
-- Mixins: `@include font(h1..h6)`, `@include text(small|medium)`
+- Vars: `$serif`, `$sans-serif`, `$body-font-size`, `$body-font-family`, `$heading-font-family`, `$paragraph-line-height`, `$paragraph-margin-block-end`, `$heading-margin-block-end`, `$headings`
+- Map: `$typography-styles` (h1–h6, display-1 / display-2 / display-3)
+- Mixins: `@include font(h1..h6 | display-1..3)`, `@include text(small | medium)`
+<!-- @end -->
 
+<!-- @project-config:colors-tokens -->
 **`src/sass/partials/config/_colors.scss`**
 
-- Palette: `$pale`, `$mist`, `$sand`, `$muted`, `$deep`
+- Palette: `$blue`
 - Semantic: `$primary-color`, `$secondary-color`, `$success-color`, `$info-color`, `$warning-color`
 - Typography: `$body-color`, `$heading-color`, `$link-color`, `$link-hover-color`
+<!-- @end -->
 
+<!-- @project-config:variables-tokens -->
 **`src/sass/partials/config/_variables.scss`**
 
-- `$container-padding-x`, `$menu-breakpoint`, `$custom-ease`
-- Z-index scale: `$z-search`, `$z-header`, `$z-mobile-menu`, `$z-backdrop`, `$z-popup`
-- Selection and scrollbar tokens
+- Container: `$container-padding-x`
+- Menu: `$menu-breakpoint`
+- Easing: `$custom-ease`
+- Z-index: `$z-search`, `$z-header`, `$z-mobile-menu`, `$z-backdrop`, `$z-popup`
+- Selection: `$text-selection-bg-color`, `$text-selection-color`
+- Scrollbar: `$custom-scrollbar-enable`, `$track-inline-size`, `$track-background`, `$track-border-radius`, `$track-margin-block-start`, `$track-margin-block-end`, `$thumb-background`, `$thumb-border-radius`
+<!-- @end -->
 
 ```scss
 // ❌ NEVER:

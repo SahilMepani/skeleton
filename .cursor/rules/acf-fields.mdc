@@ -198,17 +198,20 @@ $columns            = get_field( 'columns' );             // repeater
 // $col['video']['stream_url']  - oembed
 ```
 
+<!-- @project-config:image-sizes -->
 ## Image Sizes
 
 ```php
-'thumbnail'  // 150x150
-'medium'     // 300x300
-'large'      // 1024x1024
-'w480'       // Custom: 480w
+'thumbnail'  // 150x150 (WordPress default)
+'medium'     // 300x300 (WordPress default)
+'large'      // 1024x1024 (WordPress default)
+'h200'       // Custom: 200h
+'w200'       // Custom: 200w (preview size for ACF image fields)
 'w768'       // Custom: 768w
 'w1400'      // Custom: 1400w
 'w1920'      // Custom: 1920w (full width)
 ```
+<!-- @end -->
 
 ## Default Thumbnail
 

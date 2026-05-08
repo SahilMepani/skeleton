@@ -8,22 +8,42 @@ alwaysApply: false
 
 ## Colors
 
+<!-- @project-config:colors -->
 ```scss
-$body-color: #080c11;
+// Palette (optional)
+$blue: #1f2261;
+
+// Brand / semantic
 $primary-color: #1f2261;
 $secondary-color: #fdba00;
-$white: #fff;
-$black: #000;
+$success-color: #33b469;
+$info-color: #ebbc2e;
+$warning-color: #ebbc2e;
+
+// Typography
+$body-color: #080c11;
+$heading-color: inherit;
+$link-color: $body-color;
+$link-hover-color: inherit;
 ```
+<!-- @end -->
 
 ## Typography
 
+<!-- @project-config:fonts -->
 ```scss
-$sans-serif: 'Oldschool Grotesk', system-ui, sans-serif;
 $serif: 'Source Serif Pro', georgia, serif;
-$body-font-size: rem-calc(20);
+$sans-serif: 'Oldschool Grotesk', system-ui, sans-serif;
+$body-font-size: rem-calc(16);
+$body-font-family: $serif;
+$heading-font-family: $sans-serif;
+$paragraph-line-height: 1.5;
+$paragraph-margin-block-end: rem-calc(32);
+$heading-margin-block-end: rem-calc(32);
 ```
+<!-- @end -->
 
+<!-- @project-config:heading-scale -->
 ### Heading Scale (fluid)
 
 ```scss
@@ -38,36 +58,46 @@ display-1: fluid(72, 160)
 display-2: fluid(60, 120)
 display-3: fluid(40, 80)
 ```
+<!-- @end -->
 
 ## Breakpoints
 
+<!-- @project-config:breakpoints -->
 ```scss
 $xs: 0px      $ph: 375px    $sm: 576px
 $md: 768px    $lg: 1024px   $xl: 1200px
-$xxl: 1400px
+$xxl: 1400px  $xxxl: 1600px
 ```
+<!-- @end -->
 
 ## Container
 
+<!-- @project-config:container -->
 ```scss
 // Max-widths by breakpoint:
-// ph/sm: 100vw, md: 95vw, lg/xl/xxl: 93vw, xxl: 80rem (1280px)
+// ph/sm: 100%, md: 95vw, lg/xl/xxl: 93vw, xxxl: 90rem (1440px)
 // Padding: fluid(20, 40)  ($container-padding-x)
 ```
+<!-- @end -->
 
 ## Section Spacing Classes
 
+<!-- @project-config:spacing -->
 | Class                                            | Value             |
 | ------------------------------------------------ | ----------------- |
 | `.spacing-top-small` / `.spacing-bottom-small`   | `fluid(20, 40)`   |
 | `.spacing-top-medium` / `.spacing-bottom-medium` | `fluid(40, 70)`   |
 | `.spacing-top-large` / `.spacing-bottom-large`   | `fluid(70, 140)`  |
 | `.spacing-top-xlarge` / `.spacing-bottom-xlarge` | `fluid(100, 160)` |
+<!-- @end -->
 
 ## PHP Constants (from ACF Options)
 
+<!-- @project-config:php-constants -->
 ```php
 DEFAULT_THUMBNAIL_ID   // Fallback featured image
 PAGE_404_ID            // Custom 404 page ID
 PAGE_SEARCH_ID         // Search results page ID
+PAGE_KB_ID             // Knowledge base page ID
 ```
+<!-- @end -->

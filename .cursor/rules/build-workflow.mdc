@@ -6,30 +6,49 @@ alwaysApply: false
 
 # Build Workflow
 
+<!-- @project-config:gulp-tasks -->
 ## Commands
 
 ```bash
-npm start          # Watch mode (dev build + BrowserSync)
-npm run dev        # Same as npm start
-npm run build      # Production build (NODE_ENV=production)
-npm run sass       # Compile SCSS only
-npm run js         # Compile JS only
-npm run build:dev  # Dev build (no watch, no server)
+npm start                  # Watch mode (dev build + BrowserSync) — same as `npm run dev`
+npm run dev                # Watch mode (alias for `npm start`)
+npm run build              # Production build (NODE_ENV=production gulp prod)
+npm run build:dev          # Dev build, no watch / no server
+npm run sass               # Compile SCSS only
+npm run js                 # Compile JS only
+npm run rtlcss             # Generate style-rtl.css from style.css
+npm run lint:css           # stylelint on src/sass/**/*.scss
+npm run lint:js            # eslint on src/js/custom/**/*.js
+npm run cleanup:scss       # Remove unused SCSS via tools/cleanup script
+npm run clean              # Delete dist/
+npm run test               # Run unit tests (alias for test:unit)
+npm run test:unit          # vitest run
+npm run test:unit:watch    # vitest watch
+npm run test:unit:coverage # vitest run --coverage
+npm run test:e2e           # playwright test
+npm run test:e2e:ui        # playwright test --ui
+npm run test:e2e:headed    # playwright test --headed
+npm run test:php           # composer test
 ```
 
 ## Gulp Tasks (gulpfile.mjs)
 
 | Task | Input | Output | Notes |
 |---|---|---|---|
-| `sassTask` | `src/sass/style.scss` | `style.css` | Main stylesheet |
+| `sassTask` | `src/sass/style.scss` | `style.css` | Main stylesheet (postcss in prod: autoprefixer + sort-media-queries + cssnano) |
 | `blockSassTask` | `blocks/**/*.scss` | `blocks/**/*.css` (in-place) | Per-block styles |
-| `customJsTask` | `src/js/custom/**/*.js` | `assets/js/custom.js` | Concat, DOMContentLoaded wrapped |
+| `swiperJsTask` | `src/js/swiper-init.js` | `assets/js/swiper-bundle.js` | esbuild IIFE bundle |
 | `pluginsJsTask` | `src/js/plugins/*.js` | `assets/js/plugins.js` | Simple concat |
-| `swiperJsTask` | `src/js/swiper-init.js` | `assets/js/swiper-bundle.js` | esbuild bundle |
-| `imagesTask` | source images | `assets/images/` | Sharp optimization |
-| `webpTask` | source images | `assets/images/` | WebP conversion |
-| `purgeCSSTask` | style.css | purged style.css | Production only |
-| `rtlCssTask` | style.css | style-rtl.css | RTL stylesheet |
+| `customJsTask` | `src/js/custom/**/*.js` | `assets/js/custom.js` | Concat, DOMContentLoaded wrapped |
+| `rtlCssTask` | `style.css` | `style-rtl.css` | RTL stylesheet |
+| `purgeCSSTask` | `style.css` | purged `style.css` | Production only (commented out by default) |
+| `purgeCSSAuditTask` | `style.css` + `blocks/**/*.css` | `purge-audit.txt` | Dry-run audit, nothing written to source |
+| `criticalTask` | live URL | `critical.css` | Critical CSS extraction (commented out by default) |
+| `lintJS` | `src/js/custom/**/*.js` | (stdout) | ESLint via CLI, non-blocking |
+| `lintCSS` | `src/sass/**/*.scss` | (stdout) | stylelint via CLI, non-blocking |
+| `clean` | — | deletes `dist/` | |
+| `cleanMaps` | `**/*.css.map`, `**/*.js.map` | deletes maps | Runs at start of prod build |
+<!-- @end -->
 
 ## PostCSS Pipeline
 

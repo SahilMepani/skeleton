@@ -6,8 +6,10 @@ alwaysApply: false
 
 # WordPress Reference
 
+<!-- @project-config:prefix-references -->
 ## Identity
 Domain: `'skel'` | Prefix: `skel_`
+<!-- @end -->
 
 ## Template Hierarchy
 ```

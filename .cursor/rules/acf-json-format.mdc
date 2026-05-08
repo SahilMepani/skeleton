@@ -50,15 +50,20 @@ For sub*fields in repeaters: `field*{slug}_{repeater}_{field}`:
 { "key": "field_main_hero_items_title", "name": "title", "type": "text" }
 ```
 
+<!-- @project-config:auto-injected-fields -->
 ## Auto-Injected Fields (DO NOT add to JSON)
 
-These are added automatically at block registration:
+These are added automatically at block registration (`skel_get_block_default_settings_tab_fields()`):
 
-- **Settings tab** with display on/off (button_group)
-- **Spacing group** (top/bottom: small/medium/large/xlarge/custom/none)
-- **Custom CSS** (textarea)
-- **Custom Classes** (text)
-- **Unique ID** (text)
+- **Settings tab** (`tab`)
+- **Show on Page** / `display` (`button_group`: `on` | `off`, default `on`)
+- **Spacing group** (`group`) with top/bottom subgroups, each containing:
+    - `spacing_top` / `spacing_bottom` (`button_group`: `none` | `spacing-{top|bottom}-small` | `…-medium` | `…-large` | `…-xlarge` | `custom`)
+    - `custom_value_{top|bottom}_mobile`, `custom_value_{top|bottom}_desktop` (`range`, conditional on `custom`)
+- **Custom CSS** / `custom_css` (`text`)
+- **Custom Class(es)** / `custom_classes` (`text`)
+- **Unique ID** / `unique_id` (`text`)
+<!-- @end -->
 
 ## Block Optional Settings (top-level)
 

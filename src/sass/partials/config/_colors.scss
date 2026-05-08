@@ -1,18 +1,17 @@
-// Semantic color tokens. Brand hex values live in _site.scss — change them there.
-@use 'site' as *;
+// Brand palette — edit these per fork.
 
 // optional, as per project
-$blue: $site-color-blue;
+$blue: #1f2261;
 
 // required, as per project
-$primary-color:   $site-color-primary;
-$secondary-color: $site-color-secondary;
-$success-color:   $site-color-success;
-$info-color:      $site-color-info;
-$warning-color:   $site-color-warning;
+$primary-color: #1f2261;
+$secondary-color: #fdba00;
+$success-color: #33b469;
+$info-color: #ebbc2e;
+$warning-color: #ebbc2e;
 
 // required, typography
-$body-color:       $site-color-text;
-$heading-color:    inherit;
-$link-color:       $body-color;
+$body-color: #080c11;
+$heading-color: inherit;
+$link-color: $body-color;
 $link-hover-color: inherit;

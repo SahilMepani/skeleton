@@ -2939,6 +2939,7 @@ div.gform_wrapper.gravity-theme .gform_validation_errors .gform_submission_error
   font-family: "Source Serif Pro", georgia, serif;
   font-size: 0.875rem;
   font-weight: 400;
+  letter-spacing: unset;
   text-align: center;
   padding: 0;
 }

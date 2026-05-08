@@ -113,6 +113,8 @@ General PHP rules (tab indent, escape every output, `'skel'` text domain) are in
 - **Image output:** `wp_get_attachment_image()` with `loading => 'lazy'` and a sensible `sizes`. Custom sizes: `w480`, `w768`, `w1400`, `w1920`. Full-bleed images use `img-cover` inside `img-cover-block`. Linked images: add `img-link` to the `<a>`.
 - **Heading markup:** never apply `.h1`–`.h6` classes. Use semantic tags (`<h2>`, `<h3>`, etc.) and let block SCSS own the size via inline `font-size` / `line-height` / `font-family`.
 - **Swiper markup** (when wired): wrap items in `.{block}-slider.swiper > .swiper-wrapper > .swiper-slide`. If a Swiper-using block already exists in this project, read it as a structural reference (read-only).
+- **Animation attributes (MANDATORY):** every visible content element rendered by the block (headings, paragraphs, images, cards, buttons, list items, slides, etc.) must have **both** `data-inview` and `data-aos="fade-up"` attributes. The project's AOS system (`src/js/custom/data-inview.js` + `src/sass/partials/aos/`) requires both — `data-inview` triggers the IntersectionObserver, `data-aos="fade-up"` selects the animation. Pure structural wrappers (`.container`, `.swiper-wrapper`, `.swiper-slide` itself, decorative-only `<div>`s used purely for layout) do NOT need them. Inside `foreach`/`while` loops, add the attributes to each rendered item element (e.g. each card, each slide's content). When in doubt, add them — the system handles `prefers-reduced-motion` and is idempotent. Default to `fade-up`; only deviate (`fade`, `fade-left`, etc.) if the Figma frame has explicit motion direction notes.
+  - Example: `<h2 data-inview data-aos="fade-up"><?php echo esc_html( $title ); ?></h2>`, `<article class="card" data-inview data-aos="fade-up">…</article>`.
 - Guard every `foreach` with `if ( is_array( $items ) && ! empty( $items ) ) :`.
 
 ## Step 7 — Write `{slug}.js`
@@ -179,5 +181,6 @@ If you choose to run verification on your own judgment (no explicit ask, `option
 - [ ] No `.h1`–`.h6` classes in markup; no `@include font/text` in SCSS — typography inlined via `font-size: fluid(...)`.
 - [ ] LAYOUT media queries contain only structural properties.
 - [ ] PHP: every field has a fallback; `.container` is the only direct `<section>` child; `foreach` guards in place; output escaped.
+- [ ] Every content element has `data-inview` + `data-aos="fade-up"` (skip pure structural wrappers like `.container`, `.swiper-wrapper`).
 - [ ] Swiper (if wired): `.swiper-wrapper > .swiper-slide`; `min-inline-size: 0` on `.swiper`; destroy logic matches Step 3; slide widths use `inline-size`, not `flex: 0 0 …`.
 - [ ] If verification was opted in: `blocks/.claude-preview-pending` written; both 375px and 1440px screenshots taken.

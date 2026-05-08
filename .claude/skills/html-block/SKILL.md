@@ -153,6 +153,8 @@ Edit `blocks/{slug}/{slug}.php`. Plain HTML fragment wrapped in a `<section>`. N
 - **Icon-only buttons:** include `<span class="screen-reader-text">Label</span>`.
 - **External links:** the link snippet in `snippets.mdc` already includes an `(opens in a new tab)` sr-only span — keep it.
 - **Swiper markup** (when wired per Step 3): wrap items in `.{slug}-slider.swiper > .swiper-wrapper > .swiper-slide`. Standard nav classes only: `.swiper-navigation`, `.swiper-button-prev`, `.swiper-button-next` — never block-specific nav classes.
+- **Animation attributes (MANDATORY):** every visible content element in the block (headings, paragraphs, images, cards, buttons, list items, slides, etc.) must have **both** `data-inview` and `data-aos="fade-up"` attributes. The project's AOS system (`src/js/custom/data-inview.js` + `src/sass/partials/aos/`) requires both — `data-inview` triggers the IntersectionObserver, `data-aos="fade-up"` selects the animation. Pure structural wrappers (`.container`, `.swiper-wrapper`, `.swiper-slide` itself, decorative-only `<div>`s used purely for layout) do NOT need them. When in doubt, add them — the system handles `prefers-reduced-motion` and is idempotent. Default to `fade-up`; only deviate (`fade`, `fade-left`, etc.) if the Figma frame has explicit motion direction notes.
+  - Example: `<h2 data-inview data-aos="fade-up">Title</h2>`, `<article class="card" data-inview data-aos="fade-up">…</article>`.
 - Content text comes verbatim from Figma.
 - Full a11y patterns: `.cursor/rules/accessibility.mdc`.
 
@@ -477,6 +479,7 @@ Silent by default. Final response = a one-line confirmation that the block files
 - [ ] Informative images have `alt`; decorative have `alt=""`
 - [ ] Interactive toggles have `aria-expanded` + `aria-controls`
 - [ ] Icon-only buttons have `screen-reader-text`
+- [ ] Every content element has `data-inview` + `data-aos="fade-up"` (skip pure structural wrappers like `.container`, `.swiper-wrapper`)
 
 **Images**
 - [ ] Extracted to `assets/images/` at 2x scale (not 1x, not in block folder)

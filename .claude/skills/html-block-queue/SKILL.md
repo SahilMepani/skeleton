@@ -21,7 +21,8 @@ That's the canonical entry point. `/loop` puts us in dynamic-pacing mode so this
 - `.claude/.html-queue-stats.json` — rolling array of recent per-block costs (e.g. `[8.2, 7.4, 9.1]`). Newest at end. Cap at 5 entries. **Separate from `.queue-stats.json` (owned by wp-block-queue)** — html-block has a different cost profile (no JSON authoring), so the rolling averages must not mix.
 
 Read but never write:
-- `~/.claude/.usage.json` — populated by the statusline; contains `five_used`, `five_resets`, `seven_used`, `seven_resets`, `captured_at`.
+
+- `~/.claude/.usage.json` — populated by the statusline; contains `five_used`, `five_resets`, `seven_used`, `seven_resets`, `ctx_remaining`, `captured_at`.
 
 ## Queue file format
 
@@ -29,15 +30,17 @@ Headings under `# Block Queue`, one per block:
 
 ```markdown
 ## [STATUS] {slug}
+
 - mobile: {url}
 - desktop: {url}
 - notes: |
-    {free-form user context, optional}
+  {free-form user context, optional}
 - result: |
-    {written by this skill, optional}
+  {written by this skill, optional}
 ```
 
 `STATUS` markers:
+
 - `[ ]` pending — pick this one
 - `[~]` running — should only exist transiently; if seen on entry, treat as pending and overwrite (previous tick crashed mid-write)
 - `[x]` done — skip
@@ -65,39 +68,76 @@ Headings under `# Block Queue`, one per block:
     - `notes` = the YAML-ish block-scalar under `notes: |` (preserve newlines; trim trailing blank lines).
 3. Validate both URLs match `figma.com/design/.+node-id=`. If either fails → **failure path** (Step 6).
 
-## Step 3 — Invoke /html-block
+## Step 3 — Spawn a subagent to run /html-block
 
-Call the `html-block` skill via the `Skill` tool:
+Building the block runs **inside a foreground general-purpose subagent**, not in this orchestrator's main thread. The subagent's context absorbs the Figma fetches, file edits, and verification screenshots; the orchestrator only sees a short structured summary back. This keeps main-thread context small enough that Tier A (Step 7) rarely fires.
+
+Call the `Agent` tool (no `run_in_background` — sequential by default; main thread blocks until the agent returns):
 
 ```
-Skill(skill="html-block", args="""
-mobile: {mobile_url}
-desktop: {desktop_url}
+Agent(
+    subagent_type="general-purpose",
+    description="Build html block {slug}",
+    prompt="""
+You are a one-shot block builder running inside the html-block-queue skill.
+The main thread is the orchestrator; you do the heavy work so its context stays small.
 
-User notes for this block (forwarded from queue):
+Inputs:
+- mobile: {mobile_url}
+- desktop: {desktop_url}
+- notes (forward verbatim into the skill):
 {notes if notes else "(none)"}
-""")
+
+Instructions:
+1. Invoke the `html-block` skill via the Skill tool with these exact args:
+
+       mobile: {mobile_url}
+       desktop: {desktop_url}
+
+       User notes for this block (forwarded from queue):
+       {notes if notes else "(none)"}
+
+   If the Skill tool is unavailable in your context, read `.claude/skills/html-block/SKILL.md`
+   and follow it step by step — the SKILL.md is the source of truth either way.
+2. Run it end-to-end: writes `.php` / `.scss` / optional `.js` under `blocks/{slug}/`,
+   wires `index.php` / `header.php` / `footer.php`, and runs the 375/768/1440 verification pass.
+   Resolve any ambiguity unilaterally (you're running unattended) and surface the call in HEADS_UP.
+3. Do NOT touch `.claude/html-block-queue.md`, `.claude/.html-queue-stats.json`, and do NOT call
+   ScheduleWakeup or PushNotification — those are owned by the orchestrator.
+4. When the build is done (or has failed), return a SHORT structured summary in this EXACT format,
+   no prose preamble or closing remarks — the orchestrator parses it mechanically:
+
+   STATUS: ok            # or `failed`
+   SLUG: {slug}
+   JS_WIRED: yes         # or `no`
+   SWIPER: {one-line description, or `none`}
+   HEADS_UP:
+   - {single-line issue}
+   - {single-line issue}
+   VERIFICATION: {one-line summary, or `skipped`}
+   FAIL_REASON: {one line, only when STATUS: failed}
+
+   Use `HEADS_UP:` followed by `- (none)` if there are no issues. Keep each HEADS_UP bullet to one line.
+"""
+)
 ```
 
-The html-block skill reads inputs from the args and runs end-to-end (writes `.php` / `.scss` / optional `.js` under `blocks/{slug}/`, wires `index.php` / `header.php` / `footer.php` itself, and may run a 375/768/1440 verification pass per its Step 12).
+When the agent returns, parse its summary into these fields for the Step 5 `result:` write-back:
 
-While it runs, watch for and remember any of these for the `result:` write-back:
+- `STATUS` — `ok` continues to Step 4; `failed` jumps to Step 6 (failure path).
+- `JS_WIRED` — drives the `Wired JS into footer.php.` line.
+- `SWIPER` — drives the `Swiper: {description}.` line (omit when `none`).
+- `HEADS_UP` bullets — each becomes a `HEADS-UP: {issue}.` line. Skip when the only bullet is `(none)`.
+- `VERIFICATION` — drives the `Verification: {summary}.` line (omit when `skipped`).
+- `FAIL_REASON` — only used in Step 6.
 
-- design-vs-codebase mismatches the html-block skill called out (e.g. custom font weights not in tokens, image asset that couldn't be exported, button sizing diff)
-- Swiper wiring decisions ("mobile slider + desktop static → matchMedia destroy-above-md")
-- whether a JS file was created (means `footer.php` was wired too)
-- ambiguity questions the html-block skill normally asks but had to resolve unilaterally because it's running unattended
-- Figma fetch fallbacks (truncation → metadata)
-- verification outcome (matched cleanly at 375/768/1440, or remaining diffs after 3 iterations)
-- anything the html-block skill flagged as "confirm before shipping"
-
-If `/html-block` errors or returns failure → **failure path** (Step 6).
+If the return is unparseable (agent returned prose instead of the structured format), still proceed with Step 4 cost accounting and Step 5 write-back, but add a `HEADS-UP: subagent returned unstructured output — review {slug} manually.` line so it's visible in the queue file.
 
 ## Step 4 — Snapshot usage after, compute cost
 
-1. Re-read `~/.claude/.usage.json` → `five_used_after`. If file unchanged (statusline didn't refresh yet), wait briefly then re-read once. If still stale, fall back to `five_used_after = five_used_before` (cost will be 0; not great but not fatal).
+1. Re-read `~/.claude/.usage.json` → `five_used_after` and `ctx_remaining_after`. If file unchanged (statusline didn't refresh yet), wait briefly then re-read once. If still stale, fall back to `five_used_after = five_used_before` (cost will be 0; not great but not fatal). If `ctx_remaining` key is missing entirely (older statusline cache), set `ctx_remaining_after = 100` so the ctx gate in Step 7 is skipped rather than misfiring.
 2. `cost = max(0, five_used_after - five_used_before)`.
-3. Append `cost` to `.claude/.html-queue-stats.json`, trim to last 5 entries. Compute `avg_cost = mean(stats) or 8` (8% as a safe initial guess — html-block tends to be a touch lighter than wp-block since there's no JSON authoring).
+3. Append `cost` to `.claude/.html-queue-stats.json`, trim to last 5 entries. Compute `avg_cost = mean(stats) or 8` (8% as a safe initial guess — html-block tends to be a touch lighter than wp-block since there's no JSON authoring). Cost stats append + the forecast comment update in Step 5 happen unconditionally — they're independent of the Step 7 ctx-gate decision.
 
 ## Step 5 — Write back result, mark done, update forecast
 
@@ -129,15 +169,29 @@ If `/html-block` errors or returns failure → **failure path** (Step 6).
 
 ## Step 7 — Schedule the next tick
 
-Re-read `five_used_after` from `.usage.json` (or use the value from Step 4). Count remaining `[ ]` entries.
+Re-read `five_used_after` and `ctx_remaining_after` from `.usage.json` (or use the values from Step 4). Count remaining `[ ]` entries.
 
-Decision tree:
+Decision is **two-tier**: the ctx gate runs first and supersedes the 5h tree when it fires. Never fire both tiers in the same tick.
 
-| condition | action |
-| --- | --- |
-| no `[ ]` entries left | no wakeup; print "queue drained" line |
-| `five_used_after < 80` | `ScheduleWakeup(delaySeconds=120, prompt="/loop /html-block-queue", reason="processing next block in queue")` |
-| `five_used_after >= 80` AND `(five_resets - now) > 3600` | `ScheduleWakeup(delaySeconds=3600, prompt="/loop /html-block-queue", reason="paused — 5h cap reached, will re-check")` then `PushNotification("html-block-queue paused — 5h cap reached, resuming after reset at HH:MM, N items left")` |
+### Tier A — ctx gate (checked first)
+
+| condition                                           | action                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx_remaining_after < 40` AND `[ ]` entries remain | `ScheduleWakeup(delaySeconds=60, prompt="/compact this is a queued block-builder loop where each block is fully independent — discard essentially all prior block-building context, conversation history, and tool results. Preserve only the queue file path (.claude/html-block-queue.md) and the resume command (/loop /html-block-queue). The next tick will re-read everything it needs from disk.", reason="ctx >60% used, compacting before next block")` then `PushNotification("html-block-queue compacting — ctx at {100-ctx_remaining_after:.0f}% used, run /loop /html-block-queue after compact finishes; N items left")`. Skip Tier B entirely. |
+
+The compact instruction is verbose on purpose: it tells the summarizer to drop nearly everything because each queue tick is self-contained — the queue file on disk is the only state that needs to survive. Without that hint, `/compact` defaults to retaining task-relevant context, which here is wasted tokens.
+
+**Why not `/clear` instead?** `/clear` would wipe context more thoroughly, but it (a) takes no arguments so we can't bundle a resume command, (b) starts a fresh session that almost certainly drops the `/loop` dynamic-pacing scheduler, and (c) has no documented wakeup-survival guarantee. The user can always manually `/clear` after seeing the `compacting…` notification if they want a harder wipe — the manual re-run step is the same either way. Don't change this to `/clear` automatically.
+
+Only one wakeup is scheduled (the `/compact`). Wakeup survival across a `/compact` boundary isn't a documented guarantee, so the user manually re-runs `/loop /html-block-queue` after compaction finishes — the PushNotification tells them to. Queue state in `.claude/html-block-queue.md` is durable so resume is safe.
+
+### Tier B — 5h gate (only when Tier A didn't fire)
+
+| condition                                                 | action                                                                                                                                                                                                                                                                     |
+| --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| no `[ ]` entries left                                     | no wakeup; print "queue drained" line                                                                                                                                                                                                                                      |
+| `five_used_after < 80`                                    | `ScheduleWakeup(delaySeconds=120, prompt="/loop /html-block-queue", reason="processing next block in queue")`                                                                                                                                                              |
+| `five_used_after >= 80` AND `(five_resets - now) > 3600`  | `ScheduleWakeup(delaySeconds=3600, prompt="/loop /html-block-queue", reason="paused — 5h cap reached, will re-check")` then `PushNotification("html-block-queue paused — 5h cap reached, resuming after reset at HH:MM, N items left")`                                    |
 | `five_used_after >= 80` AND `(five_resets - now) <= 3600` | `delay = max(120, int(five_resets - now) + 120)` then `ScheduleWakeup(delaySeconds=delay, prompt="/loop /html-block-queue", reason="resuming shortly after 5h reset")` then `PushNotification("html-block-queue paused — resuming after 5h reset at HH:MM, N items left")` |
 
 `delaySeconds` is clamped to [60, 3600] by the runtime; chains naturally for waits longer than 1h.
@@ -147,18 +201,23 @@ Only fire the "paused" PushNotification once per pause window — if the previou
 ## Step 8 — Report
 
 One terse line to stdout:
+
 ```
 done: {slug} | cost {cost:.0f}% | 5h used {five_used_after:.0f}% | next: {wakeup_summary}
 ```
 
-Where `wakeup_summary` is `120s`, `~Hh{M}m to reset`, or `queue drained`.
+Where `wakeup_summary` is `120s`, `~Hh{M}m to reset`, `compacting (manual resume)`, or `queue drained`.
 
 ## Hard rules
 
+- The `/html-block` builder always runs in a general-purpose subagent (foreground, sequential). Never invoke the html-block skill directly in this orchestrator's main thread — that defeats the whole purpose of this two-tier setup.
 - Never modify `mobile:`, `desktop:`, or `notes:` content.
 - Never modify `index.php`, `header.php`, or `footer.php` — `/html-block` already wires those; this skill only orchestrates.
 - Never delete a `[!]` entry — leave it for the user to inspect.
 - Always flip `[~]` to a terminal status (`[x]` or `[!]`) before exiting; never leave a tick in `[~]`.
 - Failure of one entry must not abort the loop — schedule the next tick.
 - Process exactly one block per invocation.
+- If `ctx_remaining` key is missing from `.usage.json`, treat as 100 and skip the ctx gate.
+- The ctx gate fires at most once per tick and supersedes the 5h tree — never both.
+- Never call `/compact` mid-tick — only via `ScheduleWakeup` at the end of Step 7, so the current block's `result:` write is durable first.
 - Never call `git commit` or push from this skill — the user reviews and commits manually.

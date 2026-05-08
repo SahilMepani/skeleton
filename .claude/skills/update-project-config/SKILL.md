@@ -19,6 +19,7 @@ The codebase already holds the source of truth for #2 (SCSS config partials, hel
 3. Walk through each step in order. For each step: READ the source file → EXTRACT values → REWRITE the content between the matching `<!-- @project-config:* -->` markers in the target `.mdc` file.
 4. Show a per-file diff summary to the user and confirm before saving non-trivial rewrites. Trivial rewrites (the markers' content is byte-identical to the regenerated content) are skipped silently.
 5. Output the final report (format at the bottom of this file).
+6. After the report, invoke `/init` (via the Skill tool with `skill: "init"`) to refresh `CLAUDE.md` so its codebase documentation reflects the just-synced `.cursor` rules.
 
 Do not edit text outside the markers. Do not invent values. If a source file does not exist, or a value cannot be extracted unambiguously, surface the problem in the report — do not guess.
 
@@ -281,6 +282,10 @@ Issues / manual review:
 ```
 
 If there are issues, list them concretely (file + line + what was unclear) so the user can fix the source and rerun.
+
+## Final step — refresh CLAUDE.md
+
+After printing the report, invoke the `init` skill (via the Skill tool: `skill: "init"`) so `CLAUDE.md` is regenerated against the just-synced `.cursor` rules. This is mandatory unless the report's "Files updated" list is empty AND bootstrap was skipped — in that case nothing changed, so skip `/init` and note "init skipped — no changes" in the report.
 
 ## Rules
 

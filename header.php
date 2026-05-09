@@ -26,7 +26,7 @@
 	if ( wp_get_environment_type() === 'production' ) {
 		$head_code = get_field( 'analytics_head_code', 'option' );
 		if ( $head_code ) {
-			echo $head_code;
+			echo $head_code; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 	}
 	?>

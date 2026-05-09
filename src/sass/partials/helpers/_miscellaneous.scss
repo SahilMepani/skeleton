@@ -1,5 +1,25 @@
 @use '../abstracts' as *;
 
+.sr-only {
+	white-space: nowrap;
+	inline-size: 1px;
+	block-size: 1px;
+	position: absolute;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+}
+
+.d-none {
+	display: none !important;
+}
+
+.d-md-block {
+	@media (width >= $md) {
+		display: block !important;
+	}
+}
+
 .visual-editor-section {
 	font-family: $sans-serif;
 	font-size: rem-calc(16);

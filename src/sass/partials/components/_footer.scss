@@ -38,7 +38,7 @@
 
 	@media (width >= $md) {
 		background-color: #fff;
-		color: #000;
+		color: #333;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
@@ -48,17 +48,29 @@
 		position: fixed;
 		right: rem-calc(24);
 		bottom: rem-calc(24);
-		z-index: 100;
-		transition: background-color 200ms ease;
+		z-index: $z-scroll-top;
+		opacity: 0;
+		transform: translateY(rem-calc(8));
+		transition:
+			opacity 200ms ease,
+			transform 200ms ease,
+			background-color 200ms ease;
+		pointer-events: none;
+		will-change: opacity, transform;
+
+		&.js-visible {
+			opacity: 1;
+			transform: translateY(0);
+			pointer-events: auto;
+		}
 
 		&:hover,
 		&:focus-visible {
-			background-color: #ddd;
+			background-color: #eee;
 		}
 
 		svg {
-			inline-size: rem-calc(24);
-			block-size: rem-calc(24);
+			font-size: rem-calc(24);
 		}
 	}
 }

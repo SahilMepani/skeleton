@@ -50,9 +50,7 @@
 	gap: rem-calc(20);
 
 	svg {
-		fill: currentcolor;
-		inline-size: rem-calc(24);
-		max-block-size: rem-calc(24);
+		font-size: rem-calc(24);
 		flex-shrink: 0;
 	}
 }
@@ -75,6 +73,15 @@
 	}
 }
 
+@mixin btn-tarr {
+	&:hover,
+	&:focus-visible {
+		svg {
+			animation: btn-tarr 0.4s ease-in-out;
+		}
+	}
+}
+
 @mixin btn-dark {
 	background: radial-gradient(
 		509.01% 118.28% at 100.22% 81.25%,
@@ -82,7 +89,6 @@
 		#000 100%
 	);
 	color: #fff;
-	backdrop-filter: blur(12px);
 
 	&:hover,
 	&:focus-visible {
@@ -133,9 +139,7 @@
 @mixin btn-md {
 	min-block-size: rem-calc(64);
 	padding-inline: rem-calc(32);
-	text-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 	padding-block: rem-calc(8); // safety net
-	border-radius: rem-calc(32);
 }
 
 @mixin btn-lg {

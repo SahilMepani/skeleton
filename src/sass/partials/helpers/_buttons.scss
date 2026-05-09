@@ -47,3 +47,13 @@
 .btn-disabled {
 	pointer-events: none;
 }
+
+.btn-fill {
+	inline-size: 100%;
+}
+
+.btn-sm-fill-auto {
+	@media (width >= $sm) {
+		inline-size: unset;
+	}
+}

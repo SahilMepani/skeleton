@@ -18,7 +18,8 @@ That's the canonical entry point. `/loop` puts us in dynamic-pacing mode so this
 ## Files this skill owns
 
 - `.claude/wp-block-queue.md` — the queue. User-edited; this skill rewrites status markers, the `result:` block per entry, and the top-of-file `<!-- forecast: ... -->` comment.
-- `.claude/.queue-stats.json` — rolling array of recent per-block costs (e.g. `[12.4, 9.1, 11.0]`). Newest at end. Cap at 5 entries.
+- `.claude/.wp-queue-stats.json` — rolling array of recent per-block costs (e.g. `[12.4, 9.1, 11.0]`). Newest at end. Cap at 5 entries. **Migration:** if a legacy `.claude/.queue-stats.json` exists from before the rename, read it once, write the contents to `.wp-queue-stats.json`, then delete the legacy file. Don't merge — the legacy file is the only source of truth in that case.
+- `.claude/.wp-queue-pause-state.json` — single epoch-second integer recording when the most recent "paused" PushNotification fired. Used in Step 8 to dedupe pause pushes inside a 5h window.
 
 Read but never write:
 
@@ -45,6 +46,7 @@ Headings under `# Block Queue`, one per block:
 - `[~]` running — should only exist transiently; if seen on entry, treat as pending and overwrite (previous tick crashed mid-write)
 - `[x]` done — skip
 - `[!]` failed — skip (user must clear manually after fixing)
+- `[?]` parked — user-set; skip without counting as failure (e.g. blocked on a missing asset or design question). Treat identically to `[x]` for selection; counted separately in the empty-queue summary.
 
 `mobile:` / `desktop:` — single-line URLs. **Never modify these.**
 `notes:` — multi-line user text under a `|` indicator. **Never modify these.** Forward verbatim into `/wp-block`.
@@ -52,11 +54,11 @@ Headings under `# Block Queue`, one per block:
 
 ## Step 1 — Snapshot usage and pick an entry
 
-1. `cat ~/.claude/.usage.json` → parse `five_used_before` (float, 0–100) and `five_resets` (epoch seconds). If file missing or unreadable, set `five_used_before = 0` and proceed (don't bail — the statusline may not have run yet on first session start).
-2. Read `.claude/wp-block-queue.md`. Find the first heading matching `^## \[[ ~]\] (.+)$`. If none → **queue empty path**:
-    - Update the forecast comment one last time (use current `five_used_before`, leave est_room blank).
-    - Count totals (`[x]` and `[!]`).
-    - Fire `PushNotification` with message like `wp-block-queue done — N built, M failed`.
+1. `cat ~/.claude/.usage.json` → parse `five_used_before` (float, 0–100), `five_resets` (epoch seconds), and `captured_at` (epoch seconds). If file missing or unreadable, set `five_used_before = 0`, `usage_stale = true`, and proceed (don't bail — the statusline may not have run yet on first session start). If `captured_at` is older than 300 s relative to `now`, also set `usage_stale = true`. A stale snapshot doesn't block the tick, but it suppresses cost-stat updates in Step 5 so a single bad reading doesn't poison the rolling average.
+2. Read `.claude/wp-block-queue.md`. Find the first heading matching `^## \[[ ~]\] (.+)$` (parked `[?]`, done `[x]`, and failed `[!]` are all skipped). If none → **queue empty path**:
+    - Update the forecast comment one last time (use current `five_used_before`; render `est room this window: —` when there's no usable forecast).
+    - Count totals separately: `built` (`[x]`), `failed` (`[!]`), `parked` (`[?]`).
+    - Fire `PushNotification` with message like `wp-block-queue done — N built, M failed, K parked` (omit the `parked` segment when K = 0).
     - Print one-line summary. Exit. Do NOT call ScheduleWakeup.
 
 ## Step 2 — Mark the entry running and parse it
@@ -71,8 +73,9 @@ Headings under `# Block Queue`, one per block:
 ## Step 3 — Auto-register the slug
 
 1. Read `blocks/config.php`. Find the `$block_types = array(` block.
-2. Convert `slug` to Title Case (`portfolio-showcase` → `Portfolio Showcase`). If that exact string is already in the array, skip. Otherwise append a new `'<Title Case>',` line before the closing `);`. Preserve tab indentation.
-3. Remember whether you appended (used in the `result:` write).
+2. Convert `slug` to Title Case (`portfolio-showcase` → `Portfolio Showcase`). The Title-Case form is best-effort — numeric tokens (`our-2024-launch`) and acronyms (`usa-flag`) won't always match an established repo convention, so step 3 below uses a lenient comparison.
+3. Compare case-insensitively against every existing string entry in the array. If any entry matches the Title-Case form, the kebab-case slug, or any token-equal variant after stripping spaces and dashes — skip registration. Otherwise append a new `'<Title Case>',` line before the closing `);`. Preserve tab indentation.
+4. Remember whether you appended (used in the `result:` write **and** in Step 7's failure rollback).
 
 ## Step 4 — Spawn a subagent to run /wp-block
 
@@ -102,14 +105,12 @@ Instructions:
 
        User notes for this block (forwarded from queue):
        {notes if notes else "(none)"}
-
-   If the Skill tool is unavailable in your context, read `.claude/skills/wp-block/SKILL.md`
-   and follow it step by step — the SKILL.md is the source of truth either way.
 2. Run it end-to-end: writes `.json/.scss/.php/.js` under `blocks/{slug}/`. The orchestrator has
    already auto-registered the slug in `blocks/config.php` — do NOT touch that file.
    Resolve any ambiguity unilaterally (you're running unattended) and surface the call in HEADS_UP.
-3. Do NOT touch `.claude/wp-block-queue.md`, `.claude/.queue-stats.json`, and do NOT call
-   ScheduleWakeup or PushNotification — those are owned by the orchestrator.
+3. Do NOT touch `.claude/wp-block-queue.md`, `.claude/.wp-queue-stats.json`,
+   `.claude/.wp-queue-pause-state.json`, and do NOT call ScheduleWakeup or PushNotification —
+   those are owned by the orchestrator.
 4. When the build is done (or has failed), return a SHORT structured summary in this EXACT format,
    no prose preamble or closing remarks — the orchestrator parses it mechanically:
 
@@ -135,13 +136,13 @@ When the agent returns, parse its summary into these fields for the Step 6 `resu
 
 (The `Auto-registered '{Title Case}' in blocks/config.php.` line is driven by Step 3's own bookkeeping, not by the agent's summary.)
 
-If the return is unparseable (agent returned prose instead of the structured format), still proceed with Step 5 cost accounting and Step 6 write-back, but add a `HEADS-UP: subagent returned unstructured output — review {slug} manually.` line so it's visible in the queue file.
+If the return is unparseable (agent returned prose instead of the structured format), treat the tick as a failure and route through Step 7. The build may have completed fine, but a silent `[x]` would let a real failure slip past the user — `[!]` plus a fail reason like `subagent returned unstructured output — inspect {slug} files and re-mark as [ ] if the build is actually good` is the safer default. Failure-path ticks skip Step 5 (cost accounting) just like other failures, since their token spend isn't representative of a real block-build cost and would skew the rolling average.
 
 ## Step 5 — Snapshot usage after, compute cost
 
-1. Re-read `~/.claude/.usage.json` → `five_used_after` and `ctx_remaining_after`. If file unchanged (statusline didn't refresh yet), wait briefly then re-read once. If still stale, fall back to `five_used_after = five_used_before` (cost will be 0; not great but not fatal). If `ctx_remaining` key is missing entirely (older statusline cache), set `ctx_remaining_after = 100` so the ctx gate in Step 8 is skipped rather than misfiring.
-2. `cost = max(0, five_used_after - five_used_before)`.
-3. Append `cost` to `.claude/.queue-stats.json`, trim to last 5 entries. Compute `avg_cost = mean(stats) or 10` (10% as a safe initial guess). Cost stats append + the forecast comment update in Step 6 happen unconditionally — they're independent of the Step 8 ctx-gate decision.
+1. Re-read `~/.claude/.usage.json` → `five_used_after`, `ctx_remaining_after`, and `captured_at_after`. If `captured_at_after == captured_at` from Step 1 (statusline didn't refresh yet), wait briefly then re-read once. If still unchanged, or if `captured_at_after` is older than 300 s relative to `now`, set `usage_stale = true` and `cost = None`. Otherwise `cost = max(0, five_used_after - five_used_before)`. If `ctx_remaining` key is missing entirely (older statusline cache), set `ctx_remaining_after = 100` so the ctx gate in Step 8 is skipped rather than misfiring.
+2. **Outlier guard:** if `cost > 30`, treat it as an outlier (likely picked up `/compact` overhead, an unrelated long-running task, or a clock skew) and set `cost_excluded_from_stats = true`. The number still appears in the `result:` block for transparency, but it doesn't enter the rolling average.
+3. Append `cost` to `.claude/.wp-queue-stats.json` only when `usage_stale` is false **and** `cost_excluded_from_stats` is false. Trim to last 5 entries. Compute `avg_cost = mean(stats) or 10` (10% as a safe initial guess). The forecast comment update in Step 6 always runs — it just uses the previous `avg_cost` when this tick contributed nothing.
 
 ## Step 6 — Write back result, mark done, update forecast
 
@@ -149,30 +150,36 @@ If the return is unparseable (agent returned prose instead of the structured for
     - `Auto-registered '{Title Case}' in blocks/config.php.` (if appended)
     - `Swiper: {description}.` (if a slider was wired)
     - `HEADS-UP: {issue}.` for each design/codebase mismatch
-    - `Cost: ~{cost}% of 5h window.` (always)
+    - Cost line (always — render whichever applies):
+        - `Cost: ~{cost}% of 5h window.` — normal case
+        - `Cost: ~{cost}% of 5h window (outlier — excluded from rolling average).` — when `cost_excluded_from_stats` is true
+        - `Cost: unknown (statusline stale).` — when `usage_stale` is true
 2. Replace any existing `result: |` block under that entry with the new one (or insert it after `notes:` / after `desktop:` if no notes). Don't touch `mobile:`, `desktop:`, or `notes:`.
 3. Flip the entry's marker `[~]` → `[x]`.
-4. Compute `est_room = floor((100 - five_used_after) / max(avg_cost, 1))`.
+4. Compute `est_room = floor((100 - five_used_after) / max(avg_cost, 1))` when usage is fresh; otherwise carry the previous forecast's `est_room` forward unchanged.
 5. Rewrite the top-of-file forecast comment:
     ```
     <!-- forecast: managed by /wp-block-queue, do not edit -->
     <!-- 5h used: {five_used_after:.0f}% | avg/block: {avg_cost:.1f}% | est room this window: {est_room} blocks | last updated: {YYYY-MM-DD HH:MM} -->
     ```
-    If both comment lines don't already exist at the top, insert them above the `# Block Queue` heading.
+    Render `est room this window: —` when the value is unavailable (queue empty path, or no usable forecast). If both comment lines don't already exist at the top, insert them above the `# Block Queue` heading.
 6. Save the queue file.
 
 ## Step 7 — Failure path
 
-(Triggered when validation fails in Step 2 or `/wp-block` errors in Step 4.)
+(Triggered when validation fails in Step 2, `/wp-block` errors in Step 4, or the subagent returns unparseable output.)
 
-1. Build a one-line `result: failed — {short reason}`.
-2. Write it under the entry, flip marker `[~]` → `[!]`.
-3. Fire `PushNotification`: `wp-block-queue stalled on {slug}: {short reason}` (under 200 chars).
-4. Continue to Step 8 — one bad block doesn't kill the loop.
+1. **Roll back Step 3 if it appended.** If the orchestrator added a new `'<Title Case>',` line to `blocks/config.php` this tick, remove that exact line now. A `[!]` entry with a phantom registration is worse than no registration at all — the user would have to remember to clean up two places when they reset to `[ ]`. Skip the rollback when Step 3 reported "already present" (no append happened).
+2. Build a one-line `result: failed — {short reason}` (or a short multi-line block if Step 5/6 added a HEADS-UP about unparseable output — keep the `failed —` prefix on the first line).
+3. Write it under the entry, flip marker `[~]` → `[!]`.
+4. Fire `PushNotification`: `wp-block-queue stalled on {slug}: {short reason}` (under 200 chars).
+5. Continue to Step 8 — one bad block doesn't kill the loop.
 
 ## Step 8 — Schedule the next tick
 
 Re-read `five_used_after` and `ctx_remaining_after` from `.usage.json` (or use the values from Step 5). Count remaining `[ ]` entries.
+
+**Bare-mode guard.** `ScheduleWakeup` is only available when this skill is running under `/loop` (dynamic-pacing mode). If the call errors with "scheduling unavailable" or anything equivalent, the user ran `/wp-block-queue` bare. Don't retry — print `next-tick: not scheduled (re-run /loop /wp-block-queue to continue)` in the Step 9 report and exit cleanly. Do the same when you'd otherwise schedule but a `PushNotification` is the only useful signal (e.g. drained queue).
 
 Decision is **two-tier**: the ctx gate runs first and supersedes the 5h tree when it fires. Never fire both tiers in the same tick.
 
@@ -199,17 +206,39 @@ Only one wakeup is scheduled (the `/compact`). Wakeup survival across a `/compac
 
 `delaySeconds` is clamped to [60, 3600] by the runtime; chains naturally for waits longer than 1h.
 
-Only fire the "paused" PushNotification once per pause window — if the previous tick already paused (you can detect by reading the most recent `result:` cost — but simpler: just always fire; mobile dedupes). Do NOT push for normal `<80%` rolls.
+**Pause-notification dedupe.** Only fire the "paused" PushNotification once per pause window:
+
+1. Before pushing, read `.claude/.wp-queue-pause-state.json` (single epoch-second integer) if it exists.
+2. If that timestamp is within the current 5h window — i.e. `> (five_resets - 18000)` — a prior tick has already notified for this pause; skip the PushNotification but still ScheduleWakeup as normal.
+3. Otherwise fire the PushNotification, then write `now` (epoch seconds) to `.claude/.wp-queue-pause-state.json`.
+4. When `five_used_after < 80` (i.e. we're back in the normal continuation row), delete `.claude/.wp-queue-pause-state.json` if it exists, so the next pause window starts clean.
+
+Do NOT push for normal `<80%` rolls.
+
+About the `Tier A` ctx threshold (`< 40`): this was sized for an earlier model. The subagent isolation here keeps the orchestrator's context small, so 40 may be conservative on Opus 4.7. If you find the gate firing rarely (or never) over a long run, consider lowering it; if it fires multiple times per session, raise it. Don't tune it speculatively — wait for evidence in real ticks.
 
 ## Step 9 — Report
 
 One terse line to stdout:
 
 ```
-done: {slug} | cost {cost:.0f}% | 5h used {five_used_after:.0f}% | next: {wakeup_summary}
+done: {slug} | cost {cost_text} | 5h used {five_used_after:.0f}% | next: {wakeup_summary}
 ```
 
-Where `wakeup_summary` is `120s`, `~Hh{M}m to reset`, `compacting (manual resume)`, or `queue drained`.
+`cost_text` is `{cost:.0f}%`, `{cost:.0f}% (outlier)`, or `unknown`.
+
+`wakeup_summary` is one of:
+- `120s` — normal continuation
+- `~Hh{M}m to reset` — paused at 5h cap
+- `compacting (manual resume)` — Tier A ctx gate fired
+- `queue drained` — no remaining `[ ]` entries
+- `not scheduled (bare mode)` — ScheduleWakeup unavailable; user ran without `/loop`
+
+When `est_room == 0` and there are still `[ ]` entries, append a second line:
+
+```
+heads-up: forecast says no blocks fit in the remaining 5h window — next tick is likely to pause.
+```
 
 ## Hard rules
 

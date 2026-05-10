@@ -1,18 +1,19 @@
 ---
-description: JavaScript quick reference
-globs: "**/*.js"
+description: JavaScript quick reference - IIFE module pattern, naming, async/fetch
+globs: '**/*.js'
 alwaysApply: false
 ---
 
 # JS Reference
 
 ## Pattern
+
 ```javascript
 (() => {
 	const element = document.querySelector('.element');
 	if (!element) return;
 
-	const handleClick = (e) => {
+	const handleClick = e => {
 		e.preventDefault();
 		element.classList.toggle('js-active');
 	};
@@ -22,17 +23,30 @@ alwaysApply: false
 ```
 
 ## Rules
+
 - No spaces in parentheses: `if (x) {}`, `fn(a, b)`
 - Tabs, camelCase, `const` default, `let` if reassigning, never `var`
 - Class prefix: `js-active`, `js-open`
 
 ## Async
+
 ```javascript
-const fetchData = async (url) => {
+const fetchData = async url => {
 	try {
 		const res = await fetch(url);
 		if (!res.ok) throw new Error('HTTP error');
 		return await res.json();
-	} catch (err) { console.error('Error:', err); return null; }
+	} catch (err) {
+		console.error('Error:', err);
+		return null;
+	}
 };
 ```
+
+## Scroll / animation perf
+
+Three rules. See `scroll-performance.mdc` for the full pattern:
+
+1. **Never read layout (`getBoundingClientRect`, `offsetTop`, `offsetHeight`, `clientHeight`, `window.innerHeight`) inside a `requestAnimationFrame` loop.** Cache geometry on init/resize, derive from `window.scrollY`.
+2. **Scroll-driven updates run on `scroll` events (passive, RAF-throttled, one tick per scroll batch)** — not on a continuous RAF loop that ticks forever.
+3. **Animation libraries (Lottie, video, etc.) must pause when offscreen.** Wrap with an `IntersectionObserver` that toggles `play()` / `pause()`; never `unobserve()` after first hit.

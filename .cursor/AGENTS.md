@@ -1,24 +1,23 @@
 ## Token-Saving Rules
 
-- `npm start` is running — never compile manually, never run bash for sass/gulp
-- Never commit or run git commands unless explicitly asked
-- Use Write tool (full file) instead of Read+Edit for new files
-- Skip plan mode for standard blocks
-- Never re-read a file you just wrote — trust your own output
-- Keep responses short — no explanations unless asked
-- Don't suggest improvements beyond what was requested
+- `npm start` is already running — never compile manually, never run sass/gulp/build commands unless explicitly asked.
 - Block starter files (`.php`, `.scss`, `.js`, `.json`) and config entry already exist when user asks to implement — never generate blank files or update `config.php`
+- Prefer updating source files only; let the watcher handle generated assets.
 - Edit tool struggles with tab-indented files — use Write for full rewrites
-- Assume the user is already running `npm start` or an equivalent watcher during active styling work.
-- Do not run Sass compilation or other build/watch commands by default.
-- Prefer updating source files only, and let the user's existing process handle generated assets.
-- Only run build-related commands when the user explicitly asks for them.
+- Never re-read a file you just wrote — trust your own output.
+- Never commit or run git commands unless explicitly asked.
+- Use the Write tool (full file) instead of Read+Edit for new files.
+- Skip plan mode for standard blocks.
+- Keep responses short — no explanations unless asked, no improvements beyond what was requested.
 
 # Skeleton Theme
 
 <!-- @project-config:identity -->
+
 **Domain**: `'skel'` | **Prefix**: `skel_` | **Indent**: Tabs
+
 <!-- @end -->
+
 WordPress theme with ACF blocks.
 
 # AI Coding Guidelines
@@ -27,7 +26,7 @@ You are acting as a WordPress expert developer AI assistant on this project.
 
 **CRITICAL: Your very first step for any prompt MUST be to identify and load relevant rules and skills.**
 
-1. **Locate Rules & Skills:** You MUST use your file reading / directory listing tools to check the contents of:
+1. **Locate Rules & Skills:** Use your file reading / directory listing tools to check the contents of:
     - `.cursor/commands/`
     - `.cursor/rules/`
     - `.claude/skills/`
@@ -54,15 +53,20 @@ Read files in `.cursor/rules/` **only when needed for the specific task**:
 | `wordpress-standards.mdc`  | Template hierarchy, hooks                                        |
 | `accessibility.mdc`        | WCAG, focus, ARIA patterns                                       |
 | `pitfalls.mdc`             | Known pitfalls and antipatterns                                  |
+| `swiper-standards.mdc`     | Swiper HTML/JS/SCSS, navigation, responsive destroy/init         |
+| `scroll-performance.mdc`   | 60-FPS scroll rules, offscreen pause, will-change discipline     |
+| `skip-scss-linting.mdc`    | Skip Stylelint and SCSS auto-fixes                               |
 | `examples/`                | Full block PHP, SCSS, JS templates                               |
 
 ## Commands
 
 <!-- @project-config:npm-scripts -->
+
 ```bash
 npm start          # Watch mode (dev build + BrowserSync)
 npm run build      # Production build (NODE_ENV=production)
 ```
+
 <!-- @end -->
 
 ## Critical Rules
@@ -105,4 +109,6 @@ if ( $condition ) { }              // Spaces in parens
 
 ## Standards
 
-Auto-load from `.cursor/rules/`: scss, php, javascript, accessibility, project-patterns
+Load the relevant rule on demand from `.cursor/rules/`: `php-standards`, `scss-standards`, `javascript-standards`, `wordpress-standards`, `acf-fields`, `acf-json-format`, `project-patterns`, `project-structure`, `build-workflow`, `theme-config`, `helpers-reference`, `snippets`, `swiper-standards`, `accessibility`, `pitfalls`, `scroll-performance`, `skip-scss-linting`. `image-assets`.
+
+For scroll/animation perf work: capture a Chrome DevTools trace (4× CPU, Slow 4G, Screenshots ON) before changing code. Apply only fixes the trace justifies.

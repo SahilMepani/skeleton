@@ -1,0 +1,171 @@
+---
+description: Scroll-perf and 60-FPS standards — pause offscreen animations, serialize heavy inits, no per-frame DOM measurement, will-change surgical
+globs: '{blocks/**/*.{js,scss,php},src/js/custom/**/*.js}'
+alwaysApply: false
+---
+
+# Scroll Performance
+
+The site targets 60 FPS during scroll. Every frame ≤ 16.7 ms. Profile-first: capture a Chrome DevTools Performance trace (4× CPU, Slow 4G, Screenshots ON) and apply a fix only where the trace shows the corresponding cost.
+
+---
+
+## 1. Pause animation libraries when offscreen
+
+Lottie, GSAP, video, Three.js — none of them pause themselves. Wrap every instance with an `IntersectionObserver` that toggles `play()` / `pause()` on enter/exit. Keep the observer alive for the element's lifetime — do not `unobserve()` after first hit.
+
+The project's Lottie wrapper at `src/js/custom/data-lottie.js` already does this. New Lottie containers only need the `data-lottie="/path/to/file.json"` attribute. Never call `lottie.loadAnimation()` directly in a block.
+
+```html
+<!-- ✅ Use the wrapper -->
+<div
+	class="lottie"
+	data-lottie="/assets/lottie/foo.json"
+	aria-hidden="true"
+></div>
+```
+
+For other animation libs, follow the same pattern with a small (100–200 px) pre-warm `rootMargin`.
+
+## 2. Pause infinite CSS animations when offscreen
+
+Default any `animation: ... infinite` to `paused`. Toggle to `running` via an `.is-inview` class set by an `IntersectionObserver` on the section wrapper. Existing reference: `blocks/stats-strip/`.
+
+```scss
+// ✅ RIGHT — paused by default, only runs while in view
+.{slug}-section {
+	.track {
+		animation: marquee 30s linear infinite;
+		animation-play-state: paused;
+		will-change: transform;
+	}
+
+	&.is-inview .track {
+		animation-play-state: running;
+	}
+}
+
+// ❌ WRONG — runs forever, costs CPU even when offscreen
+.{slug}-section .track {
+	animation: marquee 30s linear infinite;
+}
+```
+
+Companion JS in `blocks/{slug}/{slug}.js`:
+
+```javascript
+const observer = new IntersectionObserver(
+	entries => {
+		entries.forEach(entry => {
+			entry.target.classList.toggle('is-inview', entry.isIntersecting);
+		});
+	},
+	{ rootMargin: '100px 0px' }
+);
+sections.forEach(section => observer.observe(section));
+```
+
+## 3. Serialize heavy library inits
+
+When multiple animation instances may enter the viewport in the same scroll batch, do not initialize them all at once — microtask pile-up causes seconds-long blocking tasks. The Lottie wrapper already serializes inits one per frame, gated on bodymovin's `DOMLoaded`. Apply the same pattern to any new library that builds a heavy DOM tree on init.
+
+```javascript
+// ✅ RIGHT — process one per frame, wait for ready event
+const queue = [];
+let processing = false;
+
+const processQueue = () => {
+	if (processing || !queue.length) return;
+	processing = true;
+	const el = queue.shift();
+	initLibrary(el, () => {
+		requestAnimationFrame(() => {
+			processing = false;
+			processQueue();
+		});
+	});
+};
+
+// ❌ WRONG — pre-resolved Promises pile into one microtask flush
+paths.forEach(p => {
+	cache.set(
+		p,
+		fetch(p).then(r => r.json())
+	);
+});
+// later: cached.then(initLibrary)  // all .then callbacks fire back-to-back
+```
+
+## 4. Never measure layout inside a RAF loop
+
+Calling `getBoundingClientRect()`, `offsetTop`, `offsetHeight`, `clientHeight`, or `window.innerHeight` inside `requestAnimationFrame` forces synchronous layout every frame. This is the most common scroll-jank root cause.
+
+**Pattern for scroll-driven progress effects** (existing reference: `blocks/big-heading/big-heading.js`):
+
+```javascript
+// ✅ RIGHT — cache geometry on init/resize, derive from scrollY
+let vh = window.innerHeight;
+const cache = new WeakMap();
+
+const measure = el => {
+	const rect = el.getBoundingClientRect();
+	cache.set(el, { docTop: rect.top + window.scrollY, height: rect.height });
+};
+
+const update = el => {
+	const c = cache.get(el);
+	const top = c.docTop - window.scrollY; // pure math, no DOM read
+	// ...derive progress from top, vh, c.height
+};
+
+let rafId = null;
+const schedule = () => {
+	if (rafId !== null) return;
+	rafId = requestAnimationFrame(() => {
+		rafId = null;
+		visible.forEach(update);
+	});
+};
+
+window.addEventListener('scroll', schedule, { passive: true });
+window.addEventListener(
+	'resize',
+	() => {
+		vh = window.innerHeight;
+		headings.forEach(measure);
+	},
+	{ passive: true }
+);
+```
+
+```javascript
+// ❌ WRONG — getBoundingClientRect every frame forces layout
+const tick = () => {
+	visible.forEach(el => {
+		const rect = el.getBoundingClientRect(); // layout-thrash
+		const vh = window.innerHeight; // also forces layout
+		// ...
+	});
+	requestAnimationFrame(tick);
+};
+requestAnimationFrame(tick);
+```
+
+Also: the update should run **once per scroll event batch**, not on a continuous RAF loop. Continuous RAF burns CPU even when the user isn't scrolling.
+
+## 5. `will-change` is surgical, not blanket
+
+Add `will-change: transform` only on elements the trace shows as composite-churning (e.g. an actively transforming marquee track — see `blocks/stats-strip/stats-strip.scss`). Over-promotion costs GPU memory. Never apply site-wide.
+
+## 6. Image perf — see `image-assets.mdc`
+
+Non-LCP `<img>` get `loading="lazy" decoding="async"` plus explicit `width` / `height`. The above-the-fold logo / hero stays eager.
+
+## 7. What NOT to change without a profile
+
+- Lenis config (`wheelMultiplier`, `lerp`, `syncTouch`) — touching this changes feel.
+- Animation timings, easing, durations — visible behavior changes.
+- Lottie renderer (SVG → canvas) — visual quality changes.
+- Replacing animations with simpler equivalents — design changes.
+
+These are out-of-scope for a perf pass unless explicitly approved.

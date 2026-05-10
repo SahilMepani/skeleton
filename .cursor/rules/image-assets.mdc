@@ -1,0 +1,83 @@
+---
+description: Image asset conventions — where block images live, Figma export scale, formats, and how to reference them in markup.
+globs: '{blocks/**/*.{php,html,scss},assets/images/**/*}'
+alwaysApply: false
+---
+
+# Image Assets
+
+## Location
+
+All block images live in **`assets/images/`**, never inside a block folder.
+
+```
+assets/images/
+  home-hero-banner.png
+  stores-map.png
+  about-team-1.png
+```
+
+Block folders should contain only `.php`, `.scss`, `.css`, and optionally `.js` — no images.
+
+## Figma Export Scale — Always 2x
+
+When extracting raster images from Figma, **always export at 2x scale** so they render crisp on high-DPI displays. Never export at 1x.
+
+- **Scale:** 2x (non-negotiable — never 1x)
+- **Format:** PNG for photos and images with transparency; SVG for icons, logos, and vector art (scale doesn't apply to SVG)
+- **Destination:** `assets/images/{descriptive-kebab-name}.png`
+
+In markup, reference the 2x file directly — the browser handles DPR scaling via CSS sizing. Do **not** generate `@1x` / `@2x` pairs unless explicitly asked.
+
+## Referencing in Markup
+
+Use an **absolute path** from the site root (`/assets/images/...`), not a relative path:
+
+```html
+<!-- ✅ RIGHT -->
+<img src="/assets/images/home-hero-banner.png" alt="Descriptive alt text">
+
+<!-- ❌ WRONG — relative path -->
+<img src="../../assets/images/home-hero-banner.png" alt="...">
+
+<!-- ❌ WRONG — image inside block folder -->
+<img src="/blocks/home-hero/banner.png" alt="...">
+```
+
+## Alt Text
+
+- **Informative images** (photos, illustrations that carry meaning): descriptive `alt` text
+- **Decorative images** (purely visual, no semantic value): `alt=""` — empty alt is required, not missing
+- **Icons inside buttons:** the button's label handles accessibility; the icon can have `alt=""` or be an inline SVG with `aria-hidden="true"`
+
+## Naming
+
+Use descriptive, kebab-case names that indicate the block or purpose:
+
+```
+✅ stores-map.png
+✅ about-team-headshot-1.png
+✅ home-hero-banner.png
+❌ img1.png
+❌ Screenshot_2024-03-15.png
+❌ Banner@2x.png
+```
+
+## Performance Attributes
+
+Every `<img>` below the fold needs `loading="lazy" decoding="async"`. The above-the-fold LCP image (e.g. site-header logo, home-hero) stays eager — do **not** add `loading="lazy"` to it.
+
+Add explicit `width` and `height` attributes whenever known, to prevent CLS as the image loads. Use the image's intrinsic pixel dimensions (a 96×29 logo gets `width="96" height="29"`); CSS still controls rendered size.
+
+```html
+<!-- ✅ Below-the-fold image -->
+<img src="/assets/images/foo.png" alt="..." width="600" height="400" loading="lazy" decoding="async">
+
+<!-- ✅ Above-the-fold LCP image — eager, no loading attribute -->
+<img src="/assets/images/header-logo.svg" alt="Site name" width="120" height="32" decoding="async">
+
+<!-- ❌ Below-the-fold image with no perf attributes -->
+<img src="/assets/images/foo.png" alt="...">
+```
+
+See `scroll-performance.mdc` §6.

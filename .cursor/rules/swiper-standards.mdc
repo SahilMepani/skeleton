@@ -69,46 +69,29 @@ Block SCSS rules are always nested inside an outer `.{slug}-section` wrapper; ch
 		return;
 	}
 
-	const sliders = document.querySelectorAll('.{slug}-slider');
-
-	sliders.forEach((el, i) => {
-		const swiperClass = `{slug}-slider-${i}`;
-		el.classList.add(swiperClass);
-
+	document.querySelectorAll('.{slug}-slider').forEach(el => {
 		const section = el.closest('.{slug}-section');
 		const prevBtn = section?.querySelector('.swiper-button-prev');
 		const nextBtn = section?.querySelector('.swiper-button-next');
 		const pagination = section?.querySelector('.swiper-pagination');
 		const scrollbar = section?.querySelector('.swiper-scrollbar');
 
-		if (prevBtn) prevBtn.classList.add(`${swiperClass}-prev`);
-		if (nextBtn) nextBtn.classList.add(`${swiperClass}-next`);
-		if (pagination) pagination.classList.add(`${swiperClass}-pagination`);
-		if (scrollbar) scrollbar.classList.add(`${swiperClass}-scrollbar`);
-
 		const slides = el.querySelectorAll('.swiper-slide');
-		if (slides.length <= 0) return;
-
-		// Single slide — just mark active, no Swiper needed
-		if (slides.length === 1) {
-			slides.forEach(slide => slide.classList.add('swiper-slide-active'));
+		if (slides.length <= 1) {
+			slides[0]?.classList.add('swiper-slide-active');
 			return;
 		}
 
-		const swiper = new Swiper(`.${swiperClass}`, {
+		const swiper = new Swiper(el, {
 			slidesPerView: 'auto',
 			spaceBetween: 16,
 			speed: 500,
 			grabCursor: true,
-			navigation: {
-				prevEl: `.${swiperClass}-prev`,
-				nextEl: `.${swiperClass}-next`
-			},
-			pagination: {
-				el: `.${swiperClass}-pagination`,
-				clickable: true,
-				type: 'bullets'
-			}
+			navigation: { prevEl: prevBtn, nextEl: nextBtn },
+			pagination: pagination
+				? { el: pagination, clickable: true, type: 'bullets' }
+				: false,
+			scrollbar: scrollbar ? { el: scrollbar, draggable: true } : false
 		});
 
 		// Directional animation — bind AFTER init using snapIndexChange
@@ -120,13 +103,8 @@ Block SCSS rules are always nested inside an outer `.{slug}-section` wrapper; ch
 				const direction =
 					swiper.snapIndex >= prevSnap ? 'forward' : 'backward';
 
-				if (pagination) {
-					pagination.setAttribute('data-direction', direction);
-				}
-
-				if (scrollbar) {
-					scrollbar.setAttribute('data-direction', direction);
-				}
+				if (pagination) pagination.setAttribute('data-direction', direction);
+				if (scrollbar) scrollbar.setAttribute('data-direction', direction);
 
 				prevSnap = swiper.snapIndex;
 			});
@@ -138,9 +116,10 @@ Block SCSS rules are always nested inside an outer `.{slug}-section` wrapper; ch
 ### Rules
 
 - **Guard** — always check `typeof Swiper === 'undefined'` first.
-- **Unique selectors** — append `-${i}` index to the slider class so multiple instances on the same page don't collide.
-- **Parent lookup** — use `el.closest('.{slug}-section')` to scope nav/pagination lookups.
-- **Single slide bailout** — if only 1 slide, mark it active and skip Swiper instantiation.
+- **Pass DOM nodes, not selector strings** — give Swiper element references directly (`new Swiper(el, ...)`, `prevEl: prevBtn`, `pagination.el: pagination`, `scrollbar.el: scrollbar`). No classList mutations, no `-${i}` suffixes, no collision risk between multiple instances on the page.
+- **Parent lookup** — use `el.closest('.{slug}-section')` to scope nav/pagination/scrollbar lookups.
+- **Conditional configs** — only enable `pagination`/`scrollbar` when the element exists (`pagination ? {...} : false`), so blocks without them don't error.
+- **Single slide bailout** — if `slides.length <= 1`, mark the first one active (if any) and skip Swiper instantiation.
 - **No module imports** — Swiper + modules are global; just call `new Swiper(...)`.
 - **IIFE** — wrap everything in `(() => { ... })()`.
 - **Direction handler** — bind `snapIndexChange` on the instance **after** init (not in the config `on` object); `slideChange`/`activeIndex` is unreliable with `slidesPerView: 'auto'`.
@@ -159,17 +138,13 @@ When a slider should only be active below a breakpoint, use this pattern:
 	}
 
 	const BP = 1024; // breakpoint in px
-	const sliders = document.querySelectorAll('.{slug}-slider');
 
-	sliders.forEach((el, i) => {
-		const swiperClass = `{slug}-slider-${i}`;
-		el.classList.add(swiperClass);
-
+	document.querySelectorAll('.{slug}-slider').forEach(el => {
 		let swiperInstance = null;
 
 		function initSwiper() {
 			if (swiperInstance) return;
-			swiperInstance = new Swiper(`.${swiperClass}`, {
+			swiperInstance = new Swiper(el, {
 				slidesPerView: 'auto',
 				spaceBetween: 24,
 				speed: 500,

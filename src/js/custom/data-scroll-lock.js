@@ -1,5 +1,5 @@
 (() => {
-	const targets = document.querySelectorAll('[data-modal-backdrop]');
+	const targets = document.querySelectorAll('[data-scroll-lock]');
 	if (!targets.length) return;
 
 	const body = document.body;

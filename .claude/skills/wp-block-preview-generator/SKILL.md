@@ -1,6 +1,7 @@
 ---
 name: wp-block-preview-generator
 description: Walks every page of a running web app and saves one screenshot per unique repeated section/component (e.g. ACF blocks, design-system sections, route-level views) to a per-component folder. Use when the user asks for component/block/section preview thumbnails, design-system snapshots, or asks to "regenerate previews" for blocks. Invoke explicitly via /wp-block-preview-generator.
+disable-model-invocation: true
 allowed-tools: Bash(playwright-cli:*), Read, Write, Edit, Glob, Grep
 ---
 

@@ -1,6 +1,7 @@
 ---
 name: wp-block-queue
 description: Processes the next pending block in .claude/wp-block-queue.md by invoking /wp-block with that entry's URLs and notes, writes back a result, updates a usage forecast, and schedules the next tick based on 5h rate-limit headroom. Triggered explicitly via /wp-block-queue (typically wrapped in /loop).
+disable-model-invocation: true
 metadata:
     mcp-server: figma, figma-desktop, playwright
 ---

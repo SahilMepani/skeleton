@@ -1,6 +1,7 @@
 ---
 name: wp-block
 description: Builds a complete ACF Gutenberg block (PHP + SCSS + JSON + JS) from a mobile + desktop Figma pair in one pass. Reads both designs first, inlines typography directly with fluid(mobile, desktop), and wires Swiper up front when mobile is a slider but desktop is static. Only invoke when explicitly called via /wp-block.
+disable-model-invocation: true
 ---
 
 # Block — One-pass Figma → ACF block (mobile + desktop)
@@ -165,11 +166,14 @@ If you trigger verification on your own judgment (no explicit ask), say so in on
 
 ## Validation checklist
 
-- [ ] JSON: keys prefixed `field_{slug}_`; no Settings/Spacing/Display; repeater `collapsed` = first sub-field; images `return_format: id` + `preview_size: w200`; links `return_format: array`; `needs_swiper: true` if applicable.
-- [ ] SCSS: `abstracts-blocks` import; everything nested in `.{slug}-section`; plain child names; no `padding-inline` on the section; no `fluid(0, X)` placeholders; logical properties throughout.
-- [ ] No `.h1`–`.h6` classes in markup; no `@include font/text` in SCSS — typography inlined via `font-size: fluid(...)`.
-- [ ] LAYOUT media queries contain only structural properties.
-- [ ] PHP: every field has a fallback; `.container` is the only direct `<section>` child; `foreach` guards in place; output escaped.
+After writing files, run the deterministic project-wide checks via the `wp-checklist` skill — it owns JSON key prefix (`field_{slug}_`), no auto-injected dev fields, image `return_format: id` + `preview_size: w200`, `abstracts-blocks` import, `.{slug}-section` root selector, no BEM `&__` / `&--` shorthand, no `@include font/text`, no top-level `@media`, and no desktop-first / raw-px media queries. Don't re-list those here — single source of truth.
+
+This skill's own checklist covers only items wp-checklist does NOT verify (block-specific, design-driven, or workflow-output):
+
+- [ ] JSON specifics not covered by wp-checklist: repeater `collapsed` = first sub-field; links `return_format: array`; `needs_swiper: true` if applicable.
+- [ ] SCSS specifics not covered by wp-checklist: no `padding-inline` on the section wrapper; no `fluid(0, X)` placeholders; logical properties throughout.
+- [ ] LAYOUT media queries contain only structural properties (no font / padding / gap inside).
+- [ ] PHP: every field that can't be JSON-pre-seeded has a fallback; `.container` is the only direct `<section>` child; `foreach` guards in place; output escaped.
 - [ ] Every content element has `data-inview` + `data-aos="fade-up"` (skip pure structural wrappers like `.container`, `.swiper-wrapper`).
 - [ ] Swiper (if wired): `.swiper-wrapper > .swiper-slide`; `min-inline-size: 0` on `.swiper`; destroy logic matches Step 3; slide widths use `inline-size`, not `flex: 0 0 …`.
 - [ ] If verification was opted in: `blocks/.claude-preview-pending` written; both 375px and 1440px screenshots taken.

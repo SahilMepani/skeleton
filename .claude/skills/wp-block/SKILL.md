@@ -1,12 +1,17 @@
 ---
 name: wp-block
-description: Builds a complete ACF Gutenberg block (PHP + SCSS + JSON + JS) from a mobile + desktop Figma pair in one pass. Reads both designs first, inlines typography directly with fluid(mobile, desktop), and wires Swiper up front when mobile is a slider but desktop is static. Only invoke when explicitly called via /wp-block.
+description: Builds a complete ACF Gutenberg block (PHP + SCSS + JSON + JS) in one pass from either a mobile + desktop Figma pair or a free-form text description of the design. When only a text note is given, first delegates to /frontend-design to materialize a mobile + desktop reference, then builds the block off that reference. Reads both designs up front, inlines typography directly with fluid(mobile, desktop), and wires Swiper when mobile is a slider but desktop is static. Only invoke when explicitly called via /wp-block.
 disable-model-invocation: true
 ---
 
-# Block — One-pass Figma → ACF block (mobile + desktop)
+# Block — One-pass design → ACF block (mobile + desktop)
 
-Translates **two** Figma nodes (mobile + desktop) into PHP + SCSS + JSON + JS in a single pass. Seeing both designs up front lets the skill make heading-class and Swiper decisions correctly the first time — no `fluid(0, X)` placeholders, no late slider rewrites.
+Translates **two designs** (mobile + desktop) into PHP + SCSS + JSON + JS in a single pass. The two designs can come from either source:
+
+- **Figma mode** — a mobile Figma URL + a desktop Figma URL (the original flow).
+- **Note mode** — a free-form text description of the block. The skill first calls `/frontend-design` to materialize a mobile + desktop visual reference, then builds the block off that.
+
+Seeing both designs up front lets the skill make heading-class and Swiper decisions correctly the first time — no `fluid(0, X)` placeholders, no late slider rewrites.
 
 > General SCSS / PHP / JS / accessibility / ACF JSON rules already live in `CLAUDE.md`, `.cursor/AGENTS.md` (always loaded), and `.cursor/rules/*.mdc` (read on demand). This skill covers only what's specific to the two-design workflow.
 
@@ -16,15 +21,18 @@ Translates **two** Figma nodes (mobile + desktop) into PHP + SCSS + JSON + JS in
 - **`playwright-cli` skill** available (used in Step 9 if visual verification runs).
 - Block exists at `blocks/{slug}/` and is registered in `blocks/config.php`. If not, ask the user to register it first.
 
-## Inputs
+## Inputs — auto-detect mode
 
-Two Figma URLs:
-- **Mobile design** (typically a 375px frame).
-- **Desktop design** (typically 1440px+).
+Scan the user's message for any `figma.com/design/...` URL:
 
-Extract `fileKey` + `nodeId` from each URL: `figma.com/design/:fileKey/...?node-id=1-2` → `nodeId = 1:2`. If the user supplies only one URL, ask for the other before doing any work.
+- **Figma mode** — one or more `figma.com` URLs present. Two URLs expected (mobile + desktop, typically 375px and 1440px+). Extract `fileKey` + `nodeId` from each: `figma.com/design/:fileKey/...?node-id=1-2` → `nodeId = 1:2`. If only one URL is supplied, ask for the other before doing any work. Proceed to **Step 1**.
+- **Note mode** — no `figma.com` URL anywhere in the message. Treat the rest of the message as a free-form design note (tone, layout intent, slider vs. grid, colors, type feel, hero element, etc.). If the note is too thin to design from (e.g. just "make a testimonial block"), ask one targeted clarifying question first — the kind of detail a Figma frame would have fixed. Then proceed to **Step 1a**.
 
-## Step 1 — Fetch both designs (parallel)
+If both a Figma URL and a long note are present, **Figma mode wins** — `/frontend-design` is not called. The note becomes supplementary guidance for the Step 2 diff (copy hints, slider intent, etc.).
+
+## Step 1 — Figma mode: fetch both designs (parallel)
+
+Skip this step entirely in note mode; Step 1a produces the two designs instead.
 
 Run four calls in parallel:
 
@@ -37,9 +45,25 @@ Run four calls in parallel:
 
 If a response is truncated, fall back to `get_metadata` and fetch children individually for the affected design.
 
+## Step 1a — Note mode: materialize the reference via `/frontend-design`
+
+Skip this step entirely in Figma mode.
+
+Invoke the `/frontend-design` skill via the Skill tool with a prompt that asks for **two** concrete artifacts: a **mobile (375px)** variant and a **desktop (1440px+)** variant of the block, with the user's note as the brief. Be explicit in the prompt:
+
+- Both viewports are required so Step 2's diff has two designs to compare. Label them clearly.
+- Output must be self-contained HTML + CSS (no framework, no external assets) so this skill can read it directly in context.
+- Typography needs concrete `font-size` / `line-height` / `font-family` values **per viewport** so Step 2 can emit `fluid(mobile, desktop)`.
+- Colors should be inline hex (matches Step 5's "Color values inline as hex" rule).
+- If the note implies a slider on mobile, the mobile variant should make that explicit (off-canvas card, dots/arrows, horizontal strip). Otherwise produce static layouts at both viewports.
+
+The `/frontend-design` output is **reference-only**: read it in-context, do not save it to `blocks/{slug}/`, do not commit it, do not present the HTML/CSS to the user as a deliverable. Once Step 7 is finished, the reference is dropped.
+
+If `/frontend-design` returns something underspecified (missing per-viewport type values, ambiguous layout, only one viewport) — ask one targeted question or re-prompt the skill before continuing. Do not start writing block files off vague output.
+
 ## Step 2 — Diff the two designs (silent, internal)
 
-Build an internal table per element. Never output it.
+Build an internal table per element. Never output it. Source the per-element data from whichever mode produced the designs — `get_design_context` payloads in Figma mode, or the `/frontend-design` HTML/CSS reference in note mode. The diff logic below is mode-agnostic.
 
 | Element / Selector | Mobile | Desktop | Decision |
 | --- | --- | --- | --- |
@@ -64,7 +88,7 @@ Cross-reference both designs:
 - **Mobile slider + desktop static/grid** → wire Swiper with `matchMedia` destroy-above-`$md`. Below `$md` Swiper runs; at/above `$md` it's destroyed and CSS owns the layout.
 - **Mobile slider + desktop slider** → wire Swiper at all sizes, no destroy logic.
 - **Both static** → no Swiper.
-- **Ambiguous** (e.g. mobile cards spill off the right but it's unclear whether they paginate) → **ask the user** with a single targeted question, then proceed. Do not write code first.
+- **Ambiguous** (e.g. mobile cards spill off the right but it's unclear whether they paginate) → **ask the user** with a single targeted question, then proceed. Do not write code first. In note mode this applies the same way — if the `/frontend-design` reference doesn't make slider intent obvious, ask rather than guess.
 
 If Swiper is wired (any of the first two cases), **read `references/swiper.md` before Steps 4–7** — it consolidates the JSON / SCSS / PHP / JS rules that follow from this decision. Skip the reference if no Swiper is wired.
 
@@ -125,7 +149,7 @@ General PHP rules (tab indent, escape every output, `'skel'` text domain) are in
 
 ## Step 8 — Output policy
 
-Silent by default. Final response = a one-line confirmation that the block files are written, plus up to 3 bullet flags for unresolved issues (heading-class ambiguity, dimensions Figma omitted, Swiper-vs-static ambiguity that was resolved by asking, dead CSS, button sizing diffs, etc.).
+Silent by default. Final response = a one-line confirmation that the block files are written, plus up to 3 bullet flags for unresolved issues (heading-class ambiguity, dimensions the design omitted, Swiper-vs-static ambiguity that was resolved by asking, dead CSS, button sizing diffs, etc.). In note mode, the confirmation line should mention that `/frontend-design` was used to materialize the reference, so the user knows which mode ran — but do not surface the reference HTML/CSS itself.
 
 ## Step 9 — Visual verification
 
@@ -149,7 +173,7 @@ Steps when running (use the **`playwright-cli` skill** — don't shell to `playw
 3. Invoke `playwright-cli` → navigate to `{LOCAL_URL}/claude/`. Wait for fonts and images.
 4. Element-scoped screenshot of `.{slug}-section` at **375px** → `screenshots/{slug}-render-375.png`.
 5. Element-scoped screenshot at **1440px** → `screenshots/{slug}-render-1440.png`.
-6. Compare each to the matching Figma frame. Iterate up to 2 rounds.
+6. Compare each to the matching design — the Figma frame in Figma mode, or the `/frontend-design` reference HTML rendered at the same viewport in note mode (you already have it in context from Step 1a). Iterate up to 2 rounds.
 7. `playwright-cli close` at the end.
 
 If you trigger verification on your own judgment (no explicit ask), say so in one sentence before starting (e.g. "Running a quick screenshot pass — slider destroy logic is the kind of thing that's easy to get wrong.") so the user can interrupt if they'd rather skip.
@@ -177,3 +201,4 @@ This skill's own checklist covers only items wp-checklist does NOT verify (block
 - [ ] Every content element has `data-inview` + `data-aos="fade-up"` (skip pure structural wrappers like `.container`, `.swiper-wrapper`).
 - [ ] Swiper (if wired): `.swiper-wrapper > .swiper-slide`; `min-inline-size: 0` on `.swiper`; destroy logic matches Step 3; slide widths use `inline-size`, not `flex: 0 0 …`.
 - [ ] If verification was opted in: `blocks/.claude-preview-pending` written; both 375px and 1440px screenshots taken.
+- [ ] If note mode was used: `/frontend-design` was invoked once, its output stayed in-context only (nothing under `blocks/{slug}/` traces back to the reference HTML/CSS), and the block's typography / colors / layout all came from that reference.

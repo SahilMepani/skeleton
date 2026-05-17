@@ -11,7 +11,7 @@ Add `"needs_swiper": true`. This is read by `functions/blocks-system/register-ac
 - `.{block}-slider { inline-size: 100%; min-inline-size: 0; overflow: visible; }` — `min-inline-size: 0` is the standard Swiper-inside-flexbox fix; `overflow: visible` lets adjacent slides peek past the container edge.
 - Slide widths: `inline-size: rem-calc(X); max-inline-size: 90%;` — **not** `flex: 0 0 rem-calc(X)`. Swiper's wrapper is already a flex container; the `flex` shorthand fights its internal sizing.
 - No `overflow-x: auto` on the wrapper — Swiper owns overflow.
-- `#{…}` Sass interpolation required inside CSS `min()` / `max()`.
+- Sass interpolation in `min()` / `max()` — see `.cursor/rules/scss-standards.mdc` §Functions.
 
 ## PHP markup (in `{slug}.php`)
 
@@ -26,4 +26,4 @@ Destroy logic from Step 3:
 - **Mobile slider + desktop static** → `matchMedia('(min-width: ${$md}px)')` listener; instantiate below `$md`, destroy at/above. Re-instantiate when the viewport shrinks back below `$md`.
 - **Slider at all sizes** → no destroy logic; just initialize on `DOMContentLoaded`.
 
-JS rules: no `var`, `const` default, tabs, camelCase, no spaces inside JS parentheses. JS-only DOM hooks use `js-*` prefix.
+General JS rules — see `.cursor/rules/javascript-standards.mdc`.

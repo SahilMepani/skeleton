@@ -1,5 +1,5 @@
 ---
-description: Skeleton theme project-specific patterns - block structure, data attributes, helpers, image/swiper patterns
+description: Skeleton theme project-specific patterns - block structure, data attributes (incl. animation attributes), helpers, image/swiper patterns
 globs: 'blocks/**/*'
 alwaysApply: false
 ---
@@ -112,6 +112,26 @@ $spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom
 | `data-inview`           | Viewport trigger for animations  |
 | `data-aos="fade-up"`    | AOS animation type               |
 | `data-aos-stagger-item` | Child elements stagger animation |
+
+#### Animation Attributes — when to apply
+
+**Every visible content element** (headings, paragraphs, images, cards, buttons, list items, slides' content, etc.) must carry **both** `data-inview` and `data-aos="fade-up"`. The project's AOS system (`src/js/custom/data-inview.js` + `src/sass/partials/aos/`) needs both — `data-inview` triggers the `IntersectionObserver`, `data-aos="fade-up"` selects the animation. The system is idempotent and already respects `prefers-reduced-motion`, so when in doubt, add the pair.
+
+**Don't add them to pure structural wrappers.** `.container`, `.swiper-wrapper`, the `.swiper-slide` element itself (animate the slide's content, not the slide), and decorative layout-only `<div>`s do not get the attributes.
+
+**Inside loops, attach the pair to each rendered item.**
+
+```php
+<h2 data-inview data-aos="fade-up"><?php echo esc_html( $title ); ?></h2>
+
+<?php foreach ( $items as $item ) : ?>
+	<article class="card" data-inview data-aos="fade-up">
+		<!-- card body -->
+	</article>
+<?php endforeach; ?>
+```
+
+Default to `fade-up`. Only deviate (`fade`, `fade-left`, `fade-right`, …) when the design explicitly calls for a different direction.
 
 ### Toggles
 

@@ -1,5 +1,5 @@
 ---
-description: Image asset conventions — where block images live, Figma export scale, formats, and how to reference them in markup.
+description: Image asset conventions — file locations, Figma export, raw <img> markup, ACF image render via wp_get_attachment_image, img-cover / img-cover-block / img-link patterns.
 globs: '{blocks/**/*.{php,html,scss},assets/images/**/*}'
 alwaysApply: false
 ---
@@ -81,3 +81,66 @@ Add explicit `width` and `height` attributes whenever known, to prevent CLS as t
 ```
 
 See `scroll-performance.mdc` §6.
+
+## Rendering ACF Images
+
+ACF image fields store an attachment ID. Render them with `wp_get_attachment_image()` — never compose `<img>` markup by hand from the attachment URL. The helper auto-emits `srcset`, `sizes`, `width`, `height`, and the right loading hint.
+
+```php
+$image_id = get_field( 'image' );  // or $item['image'] in a repeater
+if ( $image_id ) {
+	echo wp_get_attachment_image(
+		$image_id,
+		'w768',
+		false,
+		[
+			'class'   => 'img-cover',
+			'loading' => 'lazy',
+			'sizes'   => '(max-width: 768px) 100vw, 768px',
+		]
+	);
+}
+```
+
+Pass `loading => 'lazy'` for below-the-fold; omit it for the LCP image.
+
+### Custom Image Sizes
+
+The theme registers four custom sizes in `functions/core/add-image-sizes.php`. Pick the smallest size that still renders crisp at the largest viewport the image hits:
+
+| Size    | Use                                                          |
+| ------- | ------------------------------------------------------------ |
+| `w200`  | ACF preview thumbnails only (set in JSON `preview_size`)     |
+| `h200`  | Square / aspect-locked thumbnails 200px tall                 |
+| `w768`  | Default for in-content imagery (cards, repeater items)       |
+| `w1400` | Wide imagery, hero-adjacent panels                           |
+| `w1920` | Full-bleed hero / banner images                              |
+
+Don't invent sizes (`w480`, `w900`, …); they aren't registered and will fall back to the original full-size file.
+
+### Full-Bleed Images: `img-cover` + `img-cover-block`
+
+`.img-cover` uses `position: absolute` to fill its parent. It must live inside an `.img-cover-block` wrapper (the wrapper provides the positioning context and the aspect ratio). Never put `.img-cover` on a small contained image — it'll absolutely-position to the nearest positioned ancestor and break the layout.
+
+```php
+<div class="img-cover-block">
+	<?php
+	echo wp_get_attachment_image(
+		$image_id,
+		'w1400',
+		false,
+		[ 'class' => 'img-cover', 'loading' => 'lazy', 'sizes' => '100vw' ]
+	);
+	?>
+</div>
+```
+
+### Linked Images: `img-link`
+
+When an attachment image is wrapped in an `<a>`, add the `img-link` class to the anchor so the project's link styles know to suppress the default underline / hover treatment around the image.
+
+```php
+<a href="<?php echo esc_url( $link['url'] ); ?>" class="img-link">
+	<?php echo wp_get_attachment_image( $image_id, 'w768', false, [ 'class' => 'img-cover', 'loading' => 'lazy' ] ); ?>
+</a>
+```

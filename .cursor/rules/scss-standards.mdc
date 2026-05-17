@@ -1,5 +1,5 @@
 ---
-description: SCSS quick reference
+description: SCSS quick reference - functions, fluid() mechanics, breakpoints, mobile-first MQs, typography pattern, logical properties
 globs: '**/*.scss'
 alwaysApply: false
 ---
@@ -77,6 +77,22 @@ This project uses two complementary tools for responsiveness:
 rem-calc(16)              // → 1rem
 fluid(16, 24)             // Responsive: 16px min, 24px max
 fluid(16, 24, md, xl)     // Custom breakpoints
+```
+
+### `fluid()` mechanics
+
+`fluid($min, $max, $min-bp: 'md', $max-bp: 'xl')` compiles to a `clamp()` expression. Below `$min-bp` the value stays at `$min`; above `$max-bp` it stays at `$max`; between the two it scales linearly. Default span is `$md` (768px) → `$xl` (1200px). Don't widen the third / fourth arguments without an explicit reason — wider spans flatten the curve and the value barely moves through the middle viewports where most users actually sit.
+
+### Sass interpolation in CSS `min()` / `max()`
+
+`#{…}` interpolation is required when a Sass variable appears inside CSS `min()` or `max()` — without it Sass treats them as its own functions and refuses to compile.
+
+```scss
+// ❌ NEVER:
+max-inline-size: min($container-max, 100%);
+
+// ✅ ALWAYS:
+max-inline-size: min(#{$container-max}, 100%);
 ```
 
 ## Breakpoints
@@ -174,16 +190,17 @@ Before writing any rule using a color, font, font-size, spacing, breakpoint, z-i
 <!-- @end -->
 
 ```scss
-// ❌ NEVER:
+// ❌ NEVER — raw color, raw font family
 .card {
 	color: #080c11;
 	font-family: 'Libre Baskerville', serif;
-	font-size: 2rem;
 }
-// ✅ ALWAYS:
+// ✅ ALWAYS — token for color/family; explicit inline values for type metrics (see §Typography)
 .card {
 	color: $body-color;
-	@include font(h2);
+	font-family: $heading-font-family;
+	font-size: fluid(24, 40);
+	line-height: 1.2;
 }
 ```
 
@@ -198,3 +215,61 @@ Add to `_colors.scss` / `_typography.scss` / `_variables.scss` if:
 - It's a value you keep re-deriving (a specific radius, a recurring border color)
 
 Inline the raw value if it's a **one-off decorative value specific to this block** (e.g. a unique overlay opacity, a block-specific aspect ratio). When in doubt, prefer adding a token — hardcoded values drift faster than shared ones.
+
+## Typography
+
+**Write `font-size`, `line-height`, and `font-family` inline on each component**, scaled with `fluid()` where the design calls for it. Don't reach for the `@include font(...)` / `@include text(...)` mixins, and don't apply `.h1`–`.h6` utility classes to elements — both abstractions hide the actual type metrics and make it harder to match a specific design without touching the global tokens.
+
+```scss
+// ❌ NEVER — mixin / utility class hides the actual values
+.title {
+	@include font(h2);
+}
+<h2 class="h2">Title</h2>
+
+// ✅ ALWAYS — values explicit at the component
+.title {
+	font-family: $heading-font-family;
+	font-size: fluid(28, 48);
+	line-height: 1.1;
+}
+<h2 class="title">Title</h2>
+```
+
+`$heading-font-family`, `$sans-serif`, etc. (the font-family vars) are still good — those are brand identity, not per-component type metrics. Size and leading stay inline.
+
+Color and other tokens (`$body-color`, `$primary-color`, spacing/z-index/easing variables) keep using token reuse per §Config tokens.
+
+## Logical Properties
+
+Default to logical properties — they read correctly in both LTR and RTL and match the project's existing patterns.
+
+| Use | Not |
+| --- | --- |
+| `margin-inline` / `margin-block` | `margin-left` / `margin-top` |
+| `padding-inline` / `padding-block` | `padding-left` / `padding-top` |
+| `inline-size` / `block-size` | `width` / `height` (when meaningful — pure pixel boxes can stay physical) |
+| `inset-inline-start` / `inset-block-start` | `left` / `top` |
+| `border-inline-start` | `border-left` |
+
+Physical properties are fine when the value is genuinely physical (an icon's `width: 16px`, a divider's `border-bottom`), but for flow-aware layout (gutters, padding, content offsets) reach for logical.
+
+## Vertical Stacks — don't reach for flex + gap
+
+For a simple vertical stack (header + paragraph + button, FAQ items, etc.), use `display: block` with `margin-block` between siblings (or `> * + *` if you need a flow utility). Don't switch to `display: flex; flex-direction: column; gap: …` just to get spacing — flex on a stack adds layout complexity (intrinsic shrink, baseline, alignment) you don't need and makes the container behave differently inside grids.
+
+Reserve flex on a vertical stack for genuine cross-axis needs: centering children horizontally, anchoring one child to the bottom (`margin-block-start: auto`), or aligning items along the inline axis.
+
+```scss
+// ❌ NEVER — flex used purely for spacing
+.stack {
+	display: flex;
+	flex-direction: column;
+	gap: fluid(16, 24);
+}
+
+// ✅ ALWAYS — block flow with margin-block
+.stack > * + * {
+	margin-block-start: fluid(16, 24);
+}
+```

@@ -1,5 +1,5 @@
 ---
-description: ACF field structures for blocks - field types, access patterns, image sizes
+description: ACF field structures for blocks - field types, access patterns, image sizes, repeater normalization
 globs: 'blocks/**/*.php'
 alwaysApply: false
 ---
@@ -95,6 +95,30 @@ if ( is_array( $items ) && ! empty( $items ) ) {
 	}
 }
 ```
+
+#### Normalize single-value repeaters with `wp_list_pluck`
+
+When a repeater carries **one useful value per row** (logo IDs, tag names, image IDs for a gallery strip), flatten it with `wp_list_pluck` once at the top of the template instead of dereferencing `$row['key']` inside the loop. The render loop then iterates the values directly and reads cleaner.
+
+```php
+// ❌ Nested-array loop just to pull one value
+$logos = get_field( 'logos' );
+if ( is_array( $logos ) && ! empty( $logos ) ) :
+	foreach ( $logos as $row ) :
+		echo wp_get_attachment_image( $row['logo'], 'w200' );
+	endforeach;
+endif;
+
+// ✅ Pluck once, iterate the value list
+$logo_ids = wp_list_pluck( get_field( 'logos' ) ?: [], 'logo' );
+if ( ! empty( $logo_ids ) ) :
+	foreach ( $logo_ids as $logo_id ) :
+		echo wp_get_attachment_image( $logo_id, 'w200' );
+	endforeach;
+endif;
+```
+
+Keep the nested-array shape only when the loop genuinely consumes multiple sub-fields per row.
 
 ### Group Field
 

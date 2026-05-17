@@ -37,26 +37,27 @@ You are acting as a WordPress expert developer AI assistant on this project.
 
 Read files in `.cursor/rules/` **only when needed for the specific task**:
 
-| File                       | Contents                                                         |
-| -------------------------- | ---------------------------------------------------------------- |
-| `project-patterns.mdc`     | Block structure, data attributes, helpers, image/swiper patterns |
-| `php-standards.mdc`        | PHP naming, formatting, escaping                                 |
-| `scss-standards.mdc`       | SCSS functions, breakpoints, responsive rules                    |
-| `javascript-standards.mdc` | IIFE pattern, JS rules                                           |
-| `acf-fields.mdc`           | ACF field types, PHP access patterns, image sizes                |
-| `acf-json-format.mdc`      | How to write block `.json` field files                           |
-| `snippets.mdc`             | Block boilerplate, repeater, WP query, swiper, accordion, dialog |
-| `helpers-reference.mdc`    | Full helper function signatures with examples                    |
-| `theme-config.mdc`         | Colors, typography, spacing values, breakpoints                  |
-| `build-workflow.mdc`       | Gulp tasks, npm commands, compilation                            |
-| `project-structure.mdc`    | Full folder layout                                               |
-| `wordpress-standards.mdc`  | Template hierarchy, hooks                                        |
-| `accessibility.mdc`        | WCAG, focus, ARIA patterns                                       |
-| `pitfalls.mdc`             | Known pitfalls and antipatterns                                  |
-| `swiper-standards.mdc`     | Swiper HTML/JS/SCSS, navigation, responsive destroy/init         |
-| `scroll-performance.mdc`   | 60-FPS scroll rules, offscreen pause, will-change discipline     |
-| `skip-scss-linting.mdc`    | Skip Stylelint and SCSS auto-fixes                               |
-| `examples/`                | Full block PHP, SCSS, JS templates                               |
+| File                       | Contents                                                                          |
+| -------------------------- | --------------------------------------------------------------------------------- |
+| `project-patterns.mdc`     | Block structure, data attributes (incl. animation attrs), helpers, image/swiper patterns |
+| `php-standards.mdc`        | PHP naming, formatting, escaping, heading markup                                  |
+| `scss-standards.mdc`       | SCSS functions, breakpoints, responsive rules, typography pattern, logical properties |
+| `javascript-standards.mdc` | IIFE pattern, JS rules                                                            |
+| `acf-fields.mdc`           | ACF field types, PHP access patterns, image sizes, repeater normalization         |
+| `acf-json-format.mdc`      | How to write block `.json` field files                                            |
+| `image-assets.mdc`         | Image asset location, Figma export, ACF image render (`wp_get_attachment_image`), `img-cover` / `img-link` |
+| `snippets.mdc`             | Block boilerplate, repeater, WP query, swiper, accordion, dialog                  |
+| `helpers-reference.mdc`    | Full helper function signatures with examples                                     |
+| `theme-config.mdc`         | Colors, typography, spacing values, breakpoints                                   |
+| `build-workflow.mdc`       | Gulp tasks, npm commands, compilation                                             |
+| `project-structure.mdc`    | Full folder layout                                                                |
+| `wordpress-standards.mdc`  | Template hierarchy, hooks                                                         |
+| `accessibility.mdc`        | WCAG, focus, ARIA patterns                                                        |
+| `pitfalls.mdc`             | Known pitfalls and antipatterns (incl. no `.btn*` edits, container padding, `!important`, inline styles) |
+| `swiper-standards.mdc`     | Swiper HTML/JS/SCSS, navigation, responsive destroy/init                          |
+| `scroll-performance.mdc`   | 60-FPS scroll rules, offscreen pause, will-change discipline                      |
+| `skip-scss-linting.mdc`    | Skip Stylelint and SCSS auto-fixes                                                |
+| `examples/`                | Full block PHP, SCSS, JS templates                                                |
 
 ## Commands
 

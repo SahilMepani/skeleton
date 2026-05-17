@@ -181,3 +181,61 @@ Block SCSS files must import **`abstracts-blocks`**, not `abstracts`. If you see
 Reserve `@media` for things that genuinely restructure the layout (e.g. 1 column → 3 columns, stacked → side-by-side).
 
 Also: **always mobile-first** (`width >= $bp`), never desktop-first (`width < $bp`). Write the mobile layout as the default, then progressively enhance for larger screens.
+
+## 11. Never Edit `.btn*` Rules
+
+Button styles are owned by `src/sass/partials/components/_buttons.scss`. Don't add, override, or scope `.btn`, `.btn-primary`, `.btn-outline`, etc. inside a block's SCSS — every override there silently fights the global rules and creates one-off variants nobody else can find.
+
+If a Figma frame shows a button at a different size or color, **flag it** in the block-build output ("button width differs from `_buttons.scss` defaults") and surface it to the user as a design-system conversation, not a per-block patch.
+
+```scss
+// ❌ NEVER — block reaching into the button namespace
+.home-hero-section {
+	.btn { padding-inline: rem-calc(40); }
+}
+
+// ✅ ALWAYS — leave .btn alone; flag the diff instead
+```
+
+## 12. `$container-padding-x` Is Site-Wide
+
+The horizontal `.container` padding (`$container-padding-x` in `src/sass/partials/config/_variables.scss`) is a global rhythm value. Don't override it per-block to match a one-off Figma `padding-inline: 16px`. If the design genuinely shifts container spacing, that's a design-system change — flag it and update the token, don't patch a single block.
+
+```scss
+// ❌ NEVER — per-block container override
+.feature-grid-section {
+	.container { padding-inline: rem-calc(16); }
+}
+
+// ✅ ALWAYS — leave the container alone; align the design or update the token
+```
+
+## 13. Never `!important`
+
+`!important` is a sign the cascade was lost, not won. Fix selector specificity, restructure nesting, or move the rule closer to the source — don't reach for `!important`.
+
+```scss
+// ❌ NEVER
+.card { color: $body-color !important; }
+
+// ✅ ALWAYS — sharpen the selector or move the rule
+.testimonial-section .card { color: $body-color; }
+```
+
+**Sole exception** — the `prefers-reduced-motion` global override (see `accessibility.mdc`), which has to outweigh every per-component animation rule by design.
+
+## 14. No Static Inline Styles
+
+Static styling belongs in SCSS, not in PHP-emitted `style=""` attributes. Inline styles bypass the cascade, can't be overridden by a later refactor, and hide intent from search.
+
+```php
+// ❌ NEVER — static inline rule
+<div class="card" style="background: #f8f8f8; padding: 24px;">
+```
+
+**Exception — dynamic CSS variables.** Passing per-instance values (block spacing, ACF colors, computed offsets) into a CSS custom property via `style=""` is the project's standard pattern; the actual rule still lives in SCSS, reading the variable. See `project-patterns.mdc` §Block Template Structure for the canonical `--spacing-top-custom` example.
+
+```php
+// ✅ ALWAYS — dynamic CSS var, real rule lives in SCSS
+<section style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom}" ); ?>">
+```

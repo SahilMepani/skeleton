@@ -72,12 +72,12 @@ Decision rules:
 
 - **VALUE** (same layout, different number) → `fluid(mobile, desktop)` directly in SCSS. If `mobile == desktop` → static `rem-calc(X)` for px, plain number for unitless. **Never emit `fluid(0, X)` placeholders.**
 - **LAYOUT** (flex-direction, grid-template-columns, order, display change, flex-wrap, position, `max-inline-size` unconstrained → fixed) → mobile-first base + `@media (width >= $md)` containing **only** the differing structural properties. No font / padding / gap inside the MQ.
-- **TYPOGRAPHY** → always inline `font-size: fluid(mobile, desktop); line-height: ...; font-family: ...;` in block SCSS. Never apply `.h1`–`.h6` classes; never `@include font(...)` or `@include text(...)`.
+- **TYPOGRAPHY** → emit `font-size: fluid(mobile, desktop); line-height: ...; font-family: ...;` per the inline pattern (see `.cursor/rules/scss-standards.mdc` §Typography).
 - **SLIDER** → flag for Step 3.
 
 Default to VALUE when unsure. Goal: minimize media queries.
 
-`fluid()` mechanics: `fluid($min, $max, $min-bp: 'md', $max-bp: 'xl')` → `clamp()`. Below `$md` → `$min`. Above `$xl` → `$max`. Project breakpoints live in the SCSS config (currently `$md = 768px`, `$xl = 1200px` — verify if porting). Don't widen the third/fourth args without an explicit reason.
+Project breakpoints currently `$md = 768px` / `$xl = 1200px` — verify if porting. `fluid()` mechanics and span guidance live in `.cursor/rules/scss-standards.mdc` §Functions.
 
 Slider behavior signals on a viewport: horizontal overflow strip, dots / arrows, off-canvas card edges, slide-shaped cards spilling past the right edge.
 
@@ -106,7 +106,7 @@ If Swiper is wired (any of the first two cases), **read `references/swiper.md` b
 
 ## Step 5 — Write `{slug}.scss`
 
-General SCSS rules (logical properties, `fluid()`, mobile-first MQs, no flex-for-gap on a vertical stack) are in CLAUDE.md / `.cursor/rules/scss-standards.mdc`. Block-specific:
+General SCSS rules (logical properties, `fluid()` + mechanics, mobile-first MQs, inline typography, no flex-for-gap on a vertical stack, Sass interpolation in `min()` / `max()`) are in CLAUDE.md / `.cursor/rules/scss-standards.mdc`. Block-specific:
 
 - Import: `@use '../../src/sass/partials/abstracts-blocks' as *;` — `abstracts-blocks`, not plain `abstracts`.
 - **Everything nests inside `.{slug}-section { … }`.** Zero top-level selectors. Media queries and modifiers nest too.
@@ -115,14 +115,13 @@ General SCSS rules (logical properties, `fluid()`, mobile-first MQs, no flex-for
 - Apply Step 2 decisions:
   - VALUE rows → `fluid(mobile, desktop)` or static `rem-calc(X)`.
   - LAYOUT rows → mobile base + `@media (width >= $md) { ... }` for structural properties only.
-  - TYPOGRAPHY rows → inline `font-size` / `line-height` / `font-family` in block SCSS. No `.h1`–`.h6` classes, no `@include font/text`.
+  - TYPOGRAPHY rows → `font-size: fluid(mobile, desktop)` with `line-height` / `font-family` per the inline pattern.
 - **Color values inline as hex** — write the Figma hex code directly. No token-mapping pass.
 - **Swiper SCSS** (when wired): see `references/swiper.md` § SCSS — covers wrapper sizing, slide-width pattern, and the `min-inline-size: 0` / `overflow: visible` rationale.
-- `#{…}` Sass interpolation required inside CSS `min()` / `max()`.
 
 ## Step 6 — Write `{slug}.php`
 
-General PHP rules (tab indent, escape every output, `'skel'` text domain) are in CLAUDE.md / `.cursor/rules/php-standards.mdc`. Block-specific:
+General PHP rules (tab indent, escape every output, `'skel'` text domain, `foreach` array guards, heading markup, image render via `wp_get_attachment_image`, repeater normalization, animation attributes) are in CLAUDE.md / `.cursor/rules/php-standards.mdc`, `.cursor/rules/pitfalls.mdc`, `.cursor/rules/image-assets.mdc`, `.cursor/rules/acf-fields.mdc`, `.cursor/rules/project-patterns.mdc`. Block-specific:
 
 - Use the standard section wrapper from `.cursor/rules/project-patterns.mdc` §Block Template Structure: `skel_render_block_preview` early-return, `skel_should_display_block` early-return, `skel_get_block_developer_options` for spacing/display/custom-class plumbing, `<section class="{slug}-section section ...">` with `.container` as the **only** direct child.
 - **PHP fallback shapes** (per the defaults policy in Step 4 — PHP only handles field types ACF cannot pre-seed via JSON `default_value`):
@@ -132,20 +131,15 @@ General PHP rules (tab indent, escape every output, `'skel'` text domain) are in
   - `gallery` / `file`, and relationship-style fields (`post_object`, `page_link`, `relationship`, `taxonomy`, `user`) → minimal placeholder shaped like Figma
 
   Keep Figma copy inside those PHP arrays so the block renders meaningfully on a fresh insert. For JSON-pre-seeded fields, PHP just calls `get_field()` — no `?:` / `??`.
-- **Repeater normalization:** if a repeater only collects one useful value per row, normalize before rendering (e.g. `wp_list_pluck`) instead of carrying nested arrays through the loop.
-- **Image output:** `wp_get_attachment_image()` with `loading => 'lazy'` and a sensible `sizes`. Custom sizes: `w480`, `w768`, `w1400`, `w1920`. Full-bleed images use `img-cover` inside `img-cover-block`. Linked images: add `img-link` to the `<a>`.
-- **Heading markup:** never apply `.h1`–`.h6` classes. Use semantic tags (`<h2>`, `<h3>`, etc.) and let block SCSS own the size via inline `font-size` / `line-height` / `font-family`.
 - **Swiper markup** (when wired): see `references/swiper.md` § PHP markup.
-- **Animation attributes (MANDATORY):** every visible content element rendered by the block (headings, paragraphs, images, cards, buttons, list items, slides, etc.) must have **both** `data-inview` and `data-aos="fade-up"` attributes. The project's AOS system (`src/js/custom/data-inview.js` + `src/sass/partials/aos/`) requires both — `data-inview` triggers the IntersectionObserver, `data-aos="fade-up"` selects the animation. Pure structural wrappers (`.container`, `.swiper-wrapper`, `.swiper-slide` itself, decorative-only `<div>`s used purely for layout) do NOT need them. Inside `foreach`/`while` loops, add the attributes to each rendered item element (e.g. each card, each slide's content). When in doubt, add them — the system handles `prefers-reduced-motion` and is idempotent. Default to `fade-up`; only deviate (`fade`, `fade-left`, etc.) if the Figma frame has explicit motion direction notes.
-  - Example: `<h2 data-inview data-aos="fade-up"><?php echo esc_html( $title ); ?></h2>`, `<article class="card" data-inview data-aos="fade-up">…</article>`.
-- Guard every `foreach` with `if ( is_array( $items ) && ! empty( $items ) ) :`.
 
 ## Step 7 — Write `{slug}.js`
+
+General JS rules are in `.cursor/rules/javascript-standards.mdc`. Block-specific:
 
 - Default: leave the auto-generated stub `(() => { })();`.
 - Need JS for: swiper, accordion, tab, dialog, scroll/counter animation.
 - **Swiper init + destroy logic:** see `references/swiper.md` § JS.
-- JS rules: no `var`, `const` default, tabs, camelCase, no spaces inside JS parentheses. JS-only DOM hooks use `js-*` prefix.
 
 ## Step 8 — Output policy
 
@@ -180,13 +174,11 @@ If you trigger verification on your own judgment (no explicit ask), say so in on
 
 ## Constraints
 
-- **Buttons:** never add or edit `.btn*` rules — owned by `_buttons.scss`. Flag button sizing diffs.
-- **Images:** save to `assets/images/`, not the block folder.
-- **Container padding** (`$container-padding-x`) is site-wide. Don't match a Figma `p-16` by editing the block.
+Project-wide constraints (no `.btn*` edits, container padding is site-wide, no `!important`, no static inline styles, no `nl2br()`) live in `.cursor/rules/pitfalls.mdc` and the `wp-checklist` skill. The constraints below are workflow-policy specific to this skill:
+
 - **Dead BEM rules** (`__button-label`, etc.) in legacy blocks: flag, don't delete.
 - **Top-level selectors** in existing `{slug}.scss`: flag and fix only if trivial.
 - **Scope:** only edit `blocks/{slug}/{slug}.{php,scss,json,js}`. Never edit `index.php`, `header.php`, `footer.php`, `src/sass/style.scss`, `src/sass/**` partials, or other blocks. Reading other blocks as a structural reference is fine; editing them is not.
-- **No `!important`, no inline styles, no jQuery, no `nl2br()`** (use `white-space: pre-line`).
 
 ## Validation checklist
 
